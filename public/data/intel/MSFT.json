@@ -1,0 +1,273 @@
+{
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "website": "https://www.microsoft.com",
+    "sector": "Technology / Software & Infrastructure",
+    "description": "Microsoft is a global technology and sovereign digital infrastructure provider, primarily driven by its Azure hyperscale cloud network, enterprise AI software, and geographically dispersed research and development hubs.",
+    "anchorFiling": {
+        "type": "10-Q",
+        "date": "2026-01-28",
+        "fiscalPeriod": "Q2 FY2026"
+    },
+    "generatedDate": "2026-03-14",
+    "offices": [
+        {
+            "id": "msft-redmond-hq",
+            "name": "Microsoft Global Headquarters",
+            "city": "Redmond",
+            "state": "Washington",
+            "country": "USA",
+            "lat": 47.6396,
+            "lng": -122.1284,
+            "type": "headquarters",
+            "businessFocus": "Executive Leadership, Core Engineering, Cloud Administration",
+            "size": "500 acres, 125+ buildings",
+            "source": "10-K FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "msft-silicon-valley-engineering",
+            "name": "Silicon Valley Campus",
+            "city": "Mountain View",
+            "state": "California",
+            "country": "USA",
+            "lat": 37.4090,
+            "lng": -122.0628,
+            "type": "engineering",
+            "businessFocus": "Major R&D Center",
+            "source": "10-K FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "msft-dublin-regional",
+            "name": "Microsoft Ireland Operations",
+            "city": "Dublin",
+            "country": "Ireland",
+            "lat": 53.2680,
+            "lng": -6.1950,
+            "type": "regional",
+            "businessFocus": "Financial Flows, International Tax Optimization, IP Localization",
+            "source": "10-K FY2025, Exhibit 21",
+            "confidence": "verified"
+        },
+        {
+            "id": "msft-hyderabad-engineering",
+            "name": "India Development Centre (IDC)",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "country": "India",
+            "lat": 17.4300,
+            "lng": 78.3420,
+            "type": "engineering",
+            "businessFocus": "Major R&D Center, Sovereign Cloud Infrastructure",
+            "source": "Microsoft News India Press Release",
+            "confidence": "verified"
+        },
+        {
+            "id": "msft-mt-pleasant-data-center",
+            "name": "Fairwater AI Datacenter",
+            "city": "Mount Pleasant",
+            "state": "Wisconsin",
+            "country": "USA",
+            "lat": 42.7161,
+            "lng": -87.9542,
+            "type": "data_center",
+            "businessFocus": "AI Hyperscale Datacenter, GPU Clusters, Liquid Cooling",
+            "size": "315 acres, 1.2M sq ft",
+            "source": "Tom's Hardware / Tech Press",
+            "confidence": "verified"
+        },
+        {
+            "id": "msft-atlanta-data-center",
+            "name": "East US 3 Region",
+            "city": "Atlanta",
+            "state": "Georgia",
+            "country": "USA",
+            "lat": 33.7490,
+            "lng": -84.3880,
+            "type": "data_center",
+            "businessFocus": "Datacenter / Cloud Region",
+            "source": "Microsoft Corporate Blog",
+            "confidence": "verified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "Q2 FY2026",
+        "totalRevenue": 81300000000,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "International",
+                "revenue": null,
+                "percentage": null,
+                "yoyGrowth": null,
+                "notes": "Exact revenue by region is abstracted. A 2% favorable foreign currency impact was noted. Geographically, 103,000 of 228,000 employees are international, proxying substantial ex-US revenue generation."
+            },
+            {
+                "region": "Intelligent Cloud",
+                "revenue": 32900000000,
+                "percentage": 40.47,
+                "yoyGrowth": 29.0,
+                "notes": "Geographically shifting toward sovereign clouds due to data residency laws in EMEA and APAC."
+            }
+        ],
+        "concentrationRisk": "Approximately 45% of Microsoft's commercial remaining performance obligation (RPO) is tied to OpenAI contracts.",
+        "source": "10-Q Q2 FY2026, Earnings Transcript"
+    },
+    "supplyChain": [
+        {
+            "entity": "China Domestic Mining/Processing",
+            "role": "raw_material",
+            "city": "Beijing",
+            "country": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "product": "Rare-Earth Elements (Samarium, Terbium)",
+            "criticality": "critical",
+            "source": "MERICS / Geopolitical Intelligence"
+        },
+        {
+            "entity": "Nvidia",
+            "role": "key_supplier",
+            "city": "Santa Clara",
+            "country": "USA",
+            "lat": 37.3712,
+            "lng": -121.9650,
+            "product": "GB200 and GB300 GPUs",
+            "criticality": "critical",
+            "source": "10-Q Q2 FY2026 Earnings Transcript"
+        },
+        {
+            "entity": "TSMC",
+            "role": "foundry",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.7735,
+            "lng": 120.9976,
+            "product": "Advanced AI Silicon Fabrication",
+            "criticality": "critical",
+            "source": "Industry Disclosures"
+        },
+        {
+            "entity": "Foxconn",
+            "role": "contract_manufacturer",
+            "city": "New Taipei City",
+            "country": "Taiwan",
+            "lat": 24.9680,
+            "lng": 121.4390,
+            "product": "Consumer Xbox Consoles, AI Server Final Assembly",
+            "criticality": "important",
+            "source": "Wikipedia / Manufacturing Digital"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "OpenAI",
+            "revenueShare": "45% of Commercial RPO ($126B)",
+            "hqCity": "San Francisco",
+            "hqCountry": "USA",
+            "lat": 37.7631,
+            "lng": -122.4168,
+            "relationship": "Exclusive cloud provider, AI model integration partner",
+            "source": "10-Q Q2 FY2026 Earnings Transcript"
+        },
+        {
+            "customer": "Government of India",
+            "revenueShare": "Undisclosed",
+            "hqCity": "New Delhi",
+            "hqCountry": "India",
+            "lat": 28.6139,
+            "lng": 77.2090,
+            "relationship": "Digital welfare infrastructure integration (e-Shram, NCS), covering over 310 million citizens",
+            "source": "Microsoft News Asia"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "European Union",
+            "lat": 50.8476,
+            "lng": 4.3572,
+            "riskScore": 5,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "DMA & DSA Enforcement",
+            "description": "European Commission enforcing Digital Markets Act. Potential fines up to 10% of global revenue for structural non-compliance, equating to over $28B based on FY25 revenues.",
+            "impactLevel": "critical",
+            "filingReference": "European Business Magazine / Tech Enforcement Tracking",
+            "lastUpdated": "2026-03-14"
+        },
+        {
+            "region": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "riskScore": 5,
+            "riskCategory": "trade_restriction",
+            "riskLabel": "Rare-Earth Element Export Controls",
+            "description": "Beijing strictly regulating export of REEs critical to PCBs and specialized cooling fan motors.",
+            "impactLevel": "critical",
+            "filingReference": "MERICS Report",
+            "lastUpdated": "2026-03-14"
+        },
+        {
+            "region": "United States",
+            "lat": 38.8951,
+            "lng": -77.0364,
+            "riskScore": 4,
+            "riskCategory": "trade_restriction",
+            "riskLabel": "100% Tariffs on Chinese Imports",
+            "description": "Incoming US administration threatens 100% tariffs, forcing rapid, capital-intensive unwinding of MSFT's Chinese manufacturing base.",
+            "impactLevel": "high",
+            "filingReference": "Industry Trade Press",
+            "lastUpdated": "2026-03-14"
+        },
+        {
+            "region": "United States",
+            "lat": 47.6396,
+            "lng": -122.1284,
+            "riskScore": 5,
+            "riskCategory": "environmental_regulation",
+            "riskLabel": "Seismic Activity at Core Hubs",
+            "description": "Redmond HQ and Silicon Valley campuses exist in seismically active regions; single points of failure for corporate governance.",
+            "impactLevel": "critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-14"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Hyderabad, India",
+            "lat": 17.4300,
+            "lng": 78.3420,
+            "description": "India South Central hyperscale cloud region to support domestic AI infrastructure",
+            "estimatedTimeline": "2026-2029",
+            "investment": "$17.5B",
+            "source": "Microsoft News Asia",
+            "dateAnnounced": "2025-12-09"
+        },
+        {
+            "type": "expansion",
+            "location": "Mount Pleasant, WI, USA",
+            "lat": 42.7161,
+            "lng": -87.9542,
+            "description": "Fairwater campus: 1.2M sq ft site built for dense AI/GPU workloads and closed-loop liquid cooling",
+            "estimatedTimeline": "2026",
+            "investment": "Undisclosed",
+            "source": "Tom's Hardware",
+            "dateAnnounced": "2026-01-01"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "China",
+            "description": "Mandated exodus of surface notebooks, Xbox consoles, and vital server product manufacturing to neutral territories to evade tariffs",
+            "source": "Windows Forum / Tom's Hardware"
+        },
+        {
+            "type": "contraction",
+            "location": "Global",
+            "description": "8% workforce reduction in Gaming division following Activision Blizzard acquisition to redirect capital toward AI capacity",
+            "source": "10-Q Q2 FY2026 Earnings Transcript"
+        }
+    ]
+}

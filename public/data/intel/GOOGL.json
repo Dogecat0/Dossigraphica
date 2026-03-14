@@ -1,0 +1,263 @@
+{
+  "company": "Alphabet Inc.",
+  "ticker": "GOOGL",
+  "website": "https://abc.xyz",
+  "sector": "Technology / Communication Services",
+  "description": "A global technology conglomerate with a massive footprint spanning sovereign-level infrastructure, characterized by highly concentrated corporate hubs and geographically dispersed, energy-intensive data centers powering global search, cloud, and generative AI.",
+  "anchorFiling": {
+    "type": "10-K",
+    "date": "2026-02-05",
+    "fiscalPeriod": "FY2025"
+  },
+  "generatedDate": "2026-03-12",
+  "offices": [
+    {
+      "id": "googl-mountain-view-hq",
+      "name": "Googleplex & Bay View",
+      "city": "Mountain View",
+      "state": "CA",
+      "country": "USA",
+      "lat": 37.4221,
+      "lng": -122.0841,
+      "type": "headquarters",
+      "businessFocus": "Global Headquarters, Executive Management, Core Product R&D",
+      "source": "10-K FY2025, Item 2",
+      "confidence": "verified"
+    },
+    {
+      "id": "googl-new-york-regional",
+      "name": "St. John's Terminal & Chelsea",
+      "city": "New York City",
+      "state": "NY",
+      "country": "USA",
+      "lat": 40.7420,
+      "lng": -74.0048,
+      "type": "regional",
+      "businessFocus": "Major Regional Corporate Hub, Financial Market Operations",
+      "source": "10-K FY2025, Item 2",
+      "confidence": "verified"
+    },
+    {
+      "id": "googl-london-regional",
+      "name": "Pancras Square",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.5333,
+      "lng": -0.1262,
+      "type": "regional",
+      "businessFocus": "EMEA Regional Headquarters, Sales, Strategic Partnerships",
+      "source": "10-K FY2025, Item 2",
+      "confidence": "verified"
+    },
+    {
+      "id": "googl-dublin-regional",
+      "name": "Gordon House & Docks",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.3394,
+      "lng": -6.2366,
+      "type": "regional",
+      "businessFocus": "EU Operations, Tax Hub, Corporate Governance",
+      "source": "10-K FY2025, Item 2",
+      "confidence": "verified"
+    },
+    {
+      "id": "googl-singapore-hq",
+      "name": "Google Singapore",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.2760,
+      "lng": 103.7997,
+      "type": "headquarters",
+      "businessFocus": "APAC Regional Headquarters",
+      "source": "10-K FY2025, Item 2",
+      "confidence": "verified"
+    },
+    {
+      "id": "googl-midlothian-dc",
+      "name": "Ellis County Campus",
+      "city": "Midlothian",
+      "state": "TX",
+      "country": "USA",
+      "lat": 32.4824,
+      "lng": -96.9958,
+      "type": "data_center",
+      "businessFocus": "Cloud Infrastructure, Data Center",
+      "source": "10-K FY2025, Item 2",
+      "confidence": "verified"
+    },
+    {
+      "id": "googl-visakhapatnam-dc",
+      "name": "Visakhapatnam AI Hub",
+      "city": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "country": "India",
+      "lat": 17.6868,
+      "lng": 83.2185,
+      "type": "data_center",
+      "businessFocus": "AI and Cloud Infrastructure Hub",
+      "size": "$15B Investment",
+      "source": "Press Release / Form 10-K FY2025",
+      "confidence": "verified"
+    }
+  ],
+  "revenueGeography": {
+    "fiscalYear": "FY2025",
+    "totalRevenue": 402960000000,
+    "currency": "USD",
+    "segments": [
+      {
+        "region": "United States",
+        "revenue": 194230000000,
+        "percentage": 48.2,
+        "yoyGrowth": 14.0,
+        "notes": "Financial bedrock, highest ARPU globally."
+      },
+      {
+        "region": "EMEA",
+        "revenue": 117150000000,
+        "percentage": 29.0,
+        "yoyGrowth": 14.7,
+        "notes": "12.0% growth in constant currency; faces structural headwinds."
+      },
+      {
+        "region": "APAC",
+        "revenue": 67680000000,
+        "percentage": 16.8,
+        "yoyGrowth": 19.1,
+        "notes": "Most dynamic growth vector; 20.0% growth in constant currency."
+      },
+      {
+        "region": "Other Americas",
+        "revenue": 23900000000,
+        "percentage": 6.0,
+        "yoyGrowth": 17.1,
+        "notes": "21.0% growth in constant currency; extreme FX volatility."
+      }
+    ],
+    "concentrationRisk": "No single direct customer accounts for 10% or more of direct revenues, but distribution relies heavily on key hardware partners.",
+    "source": "10-K FY2025"
+  },
+  "supplyChain": [
+    {
+      "entity": "Foxconn & FIH Mobile",
+      "role": "contract_manufacturer",
+      "city": "Bac Giang",
+      "country": "Vietnam",
+      "lat": 21.2731,
+      "lng": 106.1946,
+      "product": "Pixel Smartphone NPI & Mass Assembly",
+      "criticality": "important",
+      "source": "Supply Chain Disclosures FY2025"
+    },
+    {
+      "entity": "TSMC (Fab 18)",
+      "role": "foundry",
+      "city": "Tainan",
+      "country": "Taiwan",
+      "lat": 23.1095,
+      "lng": 120.2858,
+      "product": "Tensor G5 SoC (3nm N3P) & Nvidia GPUs",
+      "criticality": "critical",
+      "source": "10-K FY2025 / Tier 2 Reporting"
+    }
+  ],
+  "customerConcentration": [
+    {
+      "customer": "Apple Inc.",
+      "revenueShare": "Unquantified precisely, yields ~28% of US search queries",
+      "hqCity": "Cupertino",
+      "hqCountry": "USA",
+      "lat": 37.3230,
+      "lng": -122.0322,
+      "relationship": "Exclusive default search engine on iOS/Safari via $20B annual agreement",
+      "source": "DOJ Antitrust Litigation Disclosures 2025"
+    },
+    {
+      "customer": "Samsung Electronics",
+      "revenueShare": "Unquantified precisely, part of ~19.4% US query share from OEMs",
+      "hqCity": "Seoul",
+      "hqCountry": "South Korea",
+      "lat": 37.5665,
+      "lng": 126.9780,
+      "relationship": "MADA and RSA agreements for Android pre-installation",
+      "source": "DOJ Antitrust Litigation Disclosures 2025"
+    }
+  ],
+  "geopoliticalRisks": [
+    {
+      "region": "United States",
+      "lat": 38.8951,
+      "lng": -77.0364,
+      "riskScore": 5,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "DOJ Antitrust Final Judgment",
+      "description": "Dec 2025 ruling striking down exclusive default search agreements and mandating proprietary search index data sharing.",
+      "impactLevel": "critical",
+      "filingReference": "10-K FY2025, Item 1A",
+      "lastUpdated": "2026-02-05"
+    },
+    {
+      "region": "European Union",
+      "lat": 50.8476,
+      "lng": 4.3572,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "EC AdTech Antitrust Probe",
+      "description": "Probe into AdTech pricing with threats of structural separation; potential multi-billion Euro fines and AI copyright mandates.",
+      "impactLevel": "critical",
+      "filingReference": "10-K FY2025, Item 1A",
+      "lastUpdated": "2026-02-05"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "riskScore": 5,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "TSMC Hyper-concentration",
+      "description": "Absolute reliance on TSMC for Tensor G5 and Nvidia GPUs. A kinetic event would halt hardware and cloud infrastructure scaling.",
+      "impactLevel": "critical",
+      "filingReference": "10-K FY2025, Item 1A",
+      "lastUpdated": "2026-02-05"
+    }
+  ],
+  "expansionSignals": [
+    {
+      "type": "expansion",
+      "location": "Global / US HQ",
+      "lat": 37.4221,
+      "lng": -122.0841,
+      "description": "Acquisition of Wiz ($32B) to integrate enterprise security into Google Cloud.",
+      "estimatedTimeline": "March 2026",
+      "investment": "$32,000,000,000",
+      "source": "10-K FY2025 / M&A Announcements",
+      "dateAnnounced": "2025-10-01"
+    },
+    {
+      "type": "expansion",
+      "location": "Texas, USA",
+      "lat": 31.9686,
+      "lng": -99.9018,
+      "description": "Acquisition of Intersect ($4.75B) for sovereign energy generation (3.6 GW capacity).",
+      "estimatedTimeline": "2026",
+      "investment": "$4,750,000,000",
+      "source": "10-K FY2025",
+      "dateAnnounced": "2025-12-01"
+    }
+  ],
+  "contractionSignals": [
+    {
+      "type": "contraction",
+      "location": "Global",
+      "description": "Rolling workforce reductions targeting Platforms, Devices (Pixel, Nest, Fitbit), AR, and Google Assistant divisions.",
+      "source": "10-K FY2025 / Q1 2026 PR"
+    },
+    {
+      "type": "contraction",
+      "location": "Sweden",
+      "description": "1,900 industry-wide regional cuts reflecting footprint adjustments.",
+      "source": "Tier 2 Regional Labor Disclosures 2026"
+    }
+  ]
+}

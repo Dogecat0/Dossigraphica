@@ -1,0 +1,313 @@
+{
+    "company": "Broadcom Inc.",
+    "ticker": "AVGO",
+    "website": "https://www.broadcom.com",
+    "sector": "Semiconductor and Infrastructure Software",
+    "description": "A global technology leader designing, developing, and supplying semiconductor and infrastructure software solutions, operating a bifurcated geographic model that pairs Western R&D and administration with highly concentrated Indo-Pacific manufacturing and distribution networks.",
+    "anchorFiling": {
+        "type": "10-Q",
+        "date": "2026-03-04",
+        "fiscalPeriod": "Q1 FY2026"
+    },
+    "generatedDate": "2026-03-10",
+    "offices": [
+        {
+            "id": "avgo-palo-alto-hq",
+            "name": "Broadcom Corporate Headquarters",
+            "city": "Palo Alto",
+            "state": "CA",
+            "country": "United States",
+            "address": "3421 Hillview Avenue",
+            "lat": 37.3986,
+            "lng": -122.1466,
+            "type": "headquarters",
+            "businessFocus": "Principal executive offices, software engineering, enterprise administration",
+            "size": "561,000 sq ft",
+            "established": "2023",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "avgo-fort-collins-eng",
+            "name": "Fort Collins Engineering Node",
+            "city": "Fort Collins",
+            "state": "CO",
+            "country": "United States",
+            "address": "4380 Ziegler Road",
+            "lat": 40.5401,
+            "lng": -105.0268,
+            "type": "engineering",
+            "businessFocus": "Engineering, design, internal manufacturing oversight",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "avgo-batu-kawan-dist",
+            "name": "Global Distribution Hub",
+            "city": "Batu Kawan",
+            "state": "Penang",
+            "country": "Malaysia",
+            "lat": 5.2647,
+            "lng": 100.4429,
+            "type": "logistics",
+            "businessFocus": "Global supply chain management, final product engineering, physical distribution",
+            "size": "Primary global node",
+            "established": "2018",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "avgo-tel-aviv-rd",
+            "name": "Israel R&D Center",
+            "city": "Tel Aviv",
+            "country": "Israel",
+            "address": "17 George Weiss Street",
+            "lat": 32.1130,
+            "lng": 34.8016,
+            "type": "engineering",
+            "businessFocus": "Advanced networking and security solutions development",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "avgo-singapore-sub",
+            "name": "Singapore Operations Hub",
+            "city": "Singapore",
+            "country": "Singapore",
+            "lat": 1.3521,
+            "lng": 103.8198,
+            "type": "regional",
+            "businessFocus": "Tax optimization, supply chain billing, corporate subsidiary (Avago Technologies International Sales Pte. Limited)",
+            "source": "Exhibit 21 FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "avgo-bangalore-rd",
+            "name": "Bangalore Engineering Hub",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "country": "India",
+            "address": "International Tech Park",
+            "lat": 12.9866,
+            "lng": 77.7374,
+            "type": "engineering",
+            "businessFocus": "Software engineering, back-end design support",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": 63880000000,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "United States",
+                "revenue": 16506000000,
+                "percentage": 25.83,
+                "yoyGrowth": null,
+                "notes": "Largest single billing destination, though end-market consumption varies."
+            },
+            {
+                "region": "China (Including Hong Kong)",
+                "revenue": 11155000000,
+                "percentage": 17.46,
+                "yoyGrowth": null,
+                "notes": "High risk of two-way tariffs; significant end-customer reliance."
+            },
+            {
+                "region": "Singapore",
+                "revenue": 10796000000,
+                "percentage": 16.90,
+                "yoyGrowth": null,
+                "notes": "Primarily a billing artifact for contract manufacturers and distribution."
+            },
+            {
+                "region": "Taiwan",
+                "revenue": 6451000000,
+                "percentage": 10.09,
+                "yoyGrowth": null,
+                "notes": "Assembly and manufacturing hub for key clients."
+            }
+        ],
+        "concentrationRisk": "Direct sales to a single semiconductor distributor (Customer A) represent 32% of net revenue. Top 5 customers account for ~40%.",
+        "source": "10-K FY2025, Geographic Net Revenue Table"
+    },
+    "supplyChain": [
+        {
+            "entity": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+            "role": "foundry",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.7735,
+            "lng": 120.9972,
+            "product": "Sub-5nm wafers, CoWoS advanced packaging, custom XPUs",
+            "criticality": "critical",
+            "source": "Q1 2026 Earnings Call Transcript"
+        },
+        {
+            "entity": "Advanced Semiconductor Engineering (ASE)",
+            "role": "assembly_test",
+            "city": "Taipei",
+            "country": "Taiwan",
+            "lat": 25.0329,
+            "lng": 121.5654,
+            "product": "OSAT full turnkey services",
+            "criticality": "important",
+            "source": "10-K FY2025"
+        },
+        {
+            "entity": "Amkor Technology",
+            "role": "assembly_test",
+            "city": "Peoria",
+            "country": "United States",
+            "lat": 33.5805,
+            "lng": -112.2373,
+            "product": "Advanced packaging and test (under construction)",
+            "criticality": "important",
+            "source": "10-K FY2025, Item 1A"
+        },
+        {
+            "entity": "Broadcom Batu Kawan Distribution",
+            "role": "logistics",
+            "city": "Batu Kawan",
+            "country": "Malaysia",
+            "lat": 5.2647,
+            "lng": 100.4429,
+            "product": "Final distribution of >95% hardware revenue",
+            "criticality": "critical",
+            "source": "10-K FY2025, Item 2"
+        },
+        {
+            "entity": "Advanced Substrate Technologies (AST)",
+            "role": "key_supplier",
+            "city": "Singapore",
+            "country": "Singapore",
+            "lat": 1.3521,
+            "lng": 103.8198,
+            "product": "FC-BGA substrates for AI devices",
+            "criticality": "important",
+            "source": "Investor Presentations 2025"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "Customer A (Distributor for Primary Mobile OEM)",
+            "revenueShare": "32%",
+            "hqCity": "Cupertino",
+            "hqCountry": "USA",
+            "lat": 37.3229,
+            "lng": -122.0321,
+            "relationship": "Largest single semiconductor solutions customer (RF components, wireless chips)",
+            "source": "10-K FY2025, Note 3"
+        },
+        {
+            "customer": "Alphabet Inc. (Google)",
+            "revenueShare": "Undisclosed",
+            "hqCity": "Mountain View",
+            "hqCountry": "USA",
+            "lat": 37.3860,
+            "lng": -122.0838,
+            "relationship": "Custom AI Accelerator (TPU) co-development",
+            "source": "Q1 2026 Earnings Call Transcript"
+        },
+        {
+            "customer": "Meta Platforms",
+            "revenueShare": "Undisclosed",
+            "hqCity": "Menlo Park",
+            "hqCountry": "USA",
+            "lat": 37.4529,
+            "lng": -122.1817,
+            "relationship": "Custom AI Accelerator (MTIA) co-development",
+            "source": "Q1 2026 Earnings Call Transcript"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "riskScore": 5,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "Xinchuang (Document 79) Software Ban",
+            "description": "Chinese government mandate blacklisting VMware products from state-owned enterprises, threatening massive software backlog and domestic R&D footprint.",
+            "impactLevel": "critical",
+            "filingReference": "Q1 2026 Earnings Disclosures / Macro Risk Updates",
+            "lastUpdated": "2026-02-15"
+        },
+        {
+            "region": "Taiwan",
+            "lat": 23.6978,
+            "lng": 120.9605,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Cross-Strait Tensions & TSMC Reliance",
+            "description": "100% reliance on Taiwan for sub-5nm wafer fabrication and CoWoS packaging. Any maritime blockade or kinetic conflict would cause existential supply shock.",
+            "impactLevel": "critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2025-11-20"
+        },
+        {
+            "region": "European Union",
+            "lat": 50.8476,
+            "lng": 4.3572,
+            "riskScore": 4,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "EC Antitrust Probe",
+            "description": "European Commission investigation into abuse of market dominance regarding VMware licensing overhauls. Potential fines up to 10% of global annual revenue (~$6.3B).",
+            "impactLevel": "critical",
+            "filingReference": "Q1 2026 Earnings Call Macro Updates",
+            "lastUpdated": "2026-01-30"
+        },
+        {
+            "region": "Malaysia",
+            "lat": 5.2647,
+            "lng": 100.4429,
+            "riskScore": 4,
+            "riskCategory": "tax_policy",
+            "riskLabel": "Single Node Logistics Concentration & Tax Expirations",
+            "description": ">95% of hardware revenue flows through one Batu Kawan facility. Vulnerable to maritime disruptions. Local tax holidays set to expire in 2028 under global minimum tax pressures.",
+            "impactLevel": "high",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2025-11-20"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Peoria, AZ, USA",
+            "lat": 33.5805,
+            "lng": -112.2373,
+            "description": "Domestic onshoring of advanced packaging via partner Amkor Technology",
+            "estimatedTimeline": "2028",
+            "investment": "$2B (Partner Investment)",
+            "source": "10-K FY2025, Item 1A",
+            "dateAnnounced": "2025-11-20"
+        },
+        {
+            "type": "expansion",
+            "location": "Singapore",
+            "lat": 1.3521,
+            "lng": 103.8198,
+            "description": "Capacity expansion for critical FC-BGA substrates via partner AST",
+            "estimatedTimeline": "2026",
+            "investment": "Undisclosed",
+            "source": "Partner Disclosures / Investor Deck",
+            "dateAnnounced": "2024-05-15"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Palo Alto, CA, USA",
+            "description": "Post-VMware merger workforce reductions (247 employees) at HQ, triggering WARN act investigation.",
+            "source": "Q1 2026 HR/Regulatory Disclosures"
+        },
+        {
+            "type": "contraction",
+            "location": "China",
+            "description": "Potential contraction of approximately 6 R&D/administrative offices if Xinchuang software bans render local market operations economically unviable.",
+            "source": "Analyst Macro Assessment Q1 2026"
+        }
+    ]
+}

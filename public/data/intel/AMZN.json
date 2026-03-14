@@ -1,0 +1,336 @@
+{
+    "company": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "website": "https://www.amazon.com",
+    "sector": "Consumer Discretionary / Information Technology",
+    "description": "Amazon is a multinational technology conglomerate operating a globally distributed corporate footprint, featuring a highly bifurcated architecture that separates its legacy retail fulfillment logistics, its hyperscale AWS cloud computing infrastructure, and its emerging low Earth orbit (LEO) satellite manufacturing operations.",
+    "anchorFiling": {
+        "type": "10-K",
+        "date": "2026-02-06",
+        "fiscalPeriod": "FY2025"
+    },
+    "generatedDate": "2026-03-14",
+    "offices": [
+        {
+            "id": "amzn-seattle-hq",
+            "name": "Global Headquarters (Day 1)",
+            "city": "Seattle",
+            "state": "WA",
+            "country": "USA",
+            "address": "410 Terry Avenue North",
+            "lat": 47.6227,
+            "lng": -122.3362,
+            "type": "headquarters",
+            "businessFocus": "Core global leadership, enterprise operations, innovation laboratories",
+            "established": 2012,
+            "source": "10-K FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-arlington-hq2",
+            "name": "HQ2 (National Landing)",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "USA",
+            "address": "1770 Crystal Drive",
+            "lat": 38.8583,
+            "lng": -77.0494,
+            "type": "headquarters",
+            "businessFocus": "Secondary corporate HQ, AWS government contracting hub",
+            "source": "Where Is Amazon Headquarters?",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-bellevue-hub",
+            "name": "Bellevue Corporate Hub",
+            "city": "Bellevue",
+            "state": "WA",
+            "country": "USA",
+            "lat": 47.6101,
+            "lng": -122.2015,
+            "type": "regional",
+            "businessFocus": "Major corporate campus",
+            "size": "15,000 employees",
+            "source": "List of Amazon locations",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-luxembourg-emea",
+            "name": "EMEA Headquarters",
+            "city": "Luxembourg City",
+            "country": "Luxembourg",
+            "lat": 49.6116,
+            "lng": 6.1319,
+            "type": "regional",
+            "businessFocus": "European, Middle Eastern, and African operations and central European logistics coordination",
+            "source": "List of Amazon locations",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-london-uk",
+            "name": "UK Headquarters",
+            "city": "London",
+            "country": "UK",
+            "address": "Principal Place, Shoreditch",
+            "lat": 51.5230,
+            "lng": -0.0789,
+            "type": "regional",
+            "businessFocus": "United Kingdom operations management",
+            "source": "List of Amazon locations",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-hyderabad-apac",
+            "name": "Hyderabad Campus",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "country": "India",
+            "lat": 17.4156,
+            "lng": 78.3424,
+            "type": "engineering",
+            "businessFocus": "Major APAC engineering, operational, and customer support nerve center",
+            "size": "15,000 employees, 9.5 acres",
+            "source": "List of Amazon locations",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-kirkland-kuiper",
+            "name": "Project Kuiper Manufacturing",
+            "city": "Kirkland",
+            "state": "WA",
+            "country": "USA",
+            "lat": 47.6815,
+            "lng": -122.2087,
+            "type": "manufacturing",
+            "businessFocus": "LEO Satellite Manufacturing",
+            "size": "172,000 sq ft",
+            "source": "Project Kuiper launches in Kirkland",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-everett-kuiper",
+            "name": "Project Kuiper Logistics",
+            "city": "Everett",
+            "state": "WA",
+            "country": "USA",
+            "lat": 47.9789,
+            "lng": -122.2020,
+            "type": "satellite",
+            "businessFocus": "Supply Chain / Warehousing for aerospace materials",
+            "size": "184,000 sq ft",
+            "source": "VIPs cut the ribbon at the grand opening of Amazon's Project Kuiper",
+            "confidence": "verified"
+        },
+        {
+            "id": "amzn-titusville-kuiper",
+            "name": "Kennedy Space Center Facility",
+            "city": "Titusville",
+            "state": "FL",
+            "country": "USA",
+            "lat": 28.5833,
+            "lng": -80.6489,
+            "type": "satellite",
+            "businessFocus": "Satellite processing and payload integration",
+            "size": "100-foot tall high bay",
+            "source": "Amazon's Project Kuiper will open a new satellite-processing facility",
+            "confidence": "verified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": 716924000000,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "North America",
+                "revenue": 426305000000,
+                "percentage": 59.4,
+                "yoyGrowth": 10.0,
+                "notes": "Includes $29.61 billion in operating income; robust first/third-party seller unit sales velocity."
+            },
+            {
+                "region": "International",
+                "revenue": 161894000000,
+                "percentage": 22.5,
+                "yoyGrowth": 13.0,
+                "notes": "Generated positive operating income of $4.75 billion. Favorable FX translation artificially inflated net sales by $4.9B."
+            },
+            {
+                "region": "AWS",
+                "revenue": 128725000000,
+                "percentage": 18.1,
+                "yoyGrowth": 20.0,
+                "notes": "Primary profit engine generating $45.60 billion in operating income."
+            }
+        ],
+        "concentrationRisk": "Overwhelmingly anchored to North American and Western European consumer spending, with top distinct markets being US (68.3%), Germany (6.4%), and UK (6.0%). Unhedged macroeconomic currency volatility poses severe balance sheet exposure.",
+        "source": "10-K FY2025, Note 11/12 Geographic Disclosures"
+    },
+    "supplyChain": [
+        {
+            "entity": "Foxconn Technology Group",
+            "role": "contract_manufacturer",
+            "city": "Hengyang",
+            "country": "China",
+            "lat": 26.8936,
+            "lng": 112.5720,
+            "product": "Echo smart speakers, Kindle e-readers",
+            "criticality": "critical",
+            "source": "Investigative Report of Hengyang Foxconn"
+        },
+        {
+            "entity": "Foxconn / Quanta",
+            "role": "contract_manufacturer",
+            "city": "Hai Phong",
+            "country": "Vietnam",
+            "lat": 20.8449,
+            "lng": 106.6881,
+            "product": "Advanced consumer electronics assembly",
+            "criticality": "important",
+            "source": "ASEAN Investment Report 2025"
+        },
+        {
+            "entity": "TSMC",
+            "role": "foundry",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "product": "Custom AI Silicon (Trainium, Graviton)",
+            "criticality": "critical",
+            "source": "Derived Analysis / Supply Chain Mapping"
+        },
+        {
+            "entity": "Marvell Technology / Alchip",
+            "role": "key_supplier",
+            "city": "Santa Clara",
+            "country": "USA",
+            "lat": 37.3541,
+            "lng": -121.9552,
+            "product": "Custom AI product design, Trainium accelerator architecture",
+            "criticality": "important",
+            "source": "Marvell Expands Strategic Collaboration with AWS"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "Western Consumers (US, Germany, UK)",
+            "revenueShare": "80.7%",
+            "hqCity": "N/A",
+            "hqCountry": "Various",
+            "lat": 0.0,
+            "lng": 0.0,
+            "relationship": "Prime subscription ecosystem and discretionary retail spending.",
+            "source": "10-K FY2025, Note 11/12"
+        },
+        {
+            "customer": "Global Banking, Defense, Telecom (Enterprise Cloud)",
+            "revenueShare": "18.1%",
+            "hqCity": "N/A",
+            "hqCountry": "Global",
+            "lat": 0.0,
+            "lng": 0.0,
+            "relationship": "$244B AWS Enterprise Backlog",
+            "source": "Q4 2025 Earnings Call Transcript"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "Middle East (UAE/Bahrain)",
+            "lat": 25.2048,
+            "lng": 55.2708,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Kinetic Military Strikes on Cloud Infrastructure",
+            "description": "Direct drone strikes by the IRGC on AWS data centers in me-central-1 (UAE) and near me-south-1 (Bahrain), destroying multiple availability zones.",
+            "impactLevel": "critical",
+            "filingReference": "Contemporaneous Geopolitical Intelligence (March 2026)",
+            "lastUpdated": "2026-03-14"
+        },
+        {
+            "region": "European Union",
+            "lat": 50.8503,
+            "lng": 4.3517,
+            "riskScore": 4,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "EU DMA Gatekeeper Compliance",
+            "description": "Forced restructuring of European advertising and 3P merchant data usage. Potential fines up to 10% of global turnover.",
+            "impactLevel": "moderate",
+            "filingReference": "Contemporaneous Intelligence / Regulatory Reports",
+            "lastUpdated": "2026-03-14"
+        },
+        {
+            "region": "United States",
+            "lat": 38.8951,
+            "lng": -77.0364,
+            "riskScore": 4,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "FTC UI Enforcement (Dark Patterns)",
+            "description": "$2.5B settlement for deceptive subscription UI. Mandatory friction-free cancellation likely to increase Prime churn.",
+            "impactLevel": "moderate",
+            "filingReference": "FTC Secures Historic $2.5 Billion Settlement Against Amazon",
+            "lastUpdated": "2026-03-14"
+        },
+        {
+            "region": "Taiwan",
+            "lat": 23.6978,
+            "lng": 120.9605,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Silicon Fabrication Dependency",
+            "description": "Extreme reliance on TSMC for physical printing of critical Trainium and Graviton ASICs. Disruption would cripple AWS AI expansion.",
+            "impactLevel": "critical",
+            "filingReference": "Derived Analysis / AI Server Compute ASIC Shipments",
+            "lastUpdated": "2026-03-14"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Global",
+            "lat": 0.0,
+            "lng": 0.0,
+            "description": "Commissioned over 1 GW of new data center capacity in Q4 2025. 2026 CapEx guided at $200B.",
+            "estimatedTimeline": "2026",
+            "investment": "$200B",
+            "source": "Q4 2025 Earnings Call Transcript",
+            "dateAnnounced": "2026-02-05"
+        },
+        {
+            "type": "expansion",
+            "location": "India",
+            "lat": 20.5937,
+            "lng": 78.9629,
+            "description": "Expansion of AWS geographic footprint and engineering talent acquisition.",
+            "estimatedTimeline": "By 2030",
+            "investment": "$35B",
+            "source": "Digitimes India Roundup",
+            "dateAnnounced": "2025-12-12"
+        },
+        {
+            "type": "expansion",
+            "location": "Low Earth Orbit (LEO)",
+            "lat": 0.0,
+            "lng": 0.0,
+            "description": "Accelerating Project Kuiper launch cadence. 20+ heavy-lift launches in 2026, 30+ in 2027.",
+            "estimatedTimeline": "2026-2027",
+            "investment": "Multi-billion",
+            "source": "Q4 2025 Earnings Call Transcript",
+            "dateAnnounced": "2026-02-05"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Global Corporate Footprint",
+            "description": "Aggressive labor force reductions resulting in $2.7B in severance costs for FY2025 ($1.8B in Q3 alone).",
+            "source": "10-K FY2025"
+        },
+        {
+            "type": "contraction",
+            "location": "International Operations",
+            "description": "Material impairments related to physical stores and legacy infrastructure, part of a $2.4B special charge in Q4 2025.",
+            "source": "Q4 2025 Earnings Call Transcript"
+        }
+    ]
+}
