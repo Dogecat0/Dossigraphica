@@ -54,9 +54,10 @@ export const useGeoIntel = create<GeoIntelState>((set, get) => ({
   fetchGeoIntelData: async (companyTicker: string) => {
     set({ intelLoading: true, intelError: null, intelMarkdownContent: null, geoIntelligence: null });
     
-    // In a real app, these paths would be dynamic or come from a config
-    const jsonUrl = `/data/intel/${companyTicker}.json`;
-    const mdUrl = `/data/research/${companyTicker}.md`;
+    // Use BASE_URL to correctly resolve paths when deployed to a subpath (e.g. GitHub Pages)
+    const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const jsonUrl = `${baseUrl}/data/intel/${companyTicker}.json`;
+    const mdUrl = `${baseUrl}/data/research/${companyTicker}.md`;
 
     try {
       // 1. Fetch JSON Data

@@ -141,7 +141,8 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
     useEffect(() => {
         let mounted = true
-        fetchTextOrThrow('public/data/countries.json')
+        const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+        fetchTextOrThrow(`${baseUrl}/data/countries.json`)
             .then(res => {
                 if (mounted && res) {
                     const parsed = JSON.parse(res)
