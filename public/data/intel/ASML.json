@@ -1,0 +1,298 @@
+{
+    "company": "ASML Holding N.V.",
+    "ticker": "ASML",
+    "website": "https://www.asml.com",
+    "sector": "Semiconductor Equipment",
+    "description": "ASML operates as a monopoly in extreme ultraviolet (EUV) lithography, with a highly centralized R&D and manufacturing nucleus in Europe and a revenue base heavily concentrated in Asian semiconductor fabrication hubs.",
+    "anchorFiling": {
+        "type": "20-F",
+        "date": "2026-02-25",
+        "fiscalPeriod": "FY2025"
+    },
+    "generatedDate": "2026-03-15",
+    "offices": [
+        {
+            "id": "asml-veldhoven-hq",
+            "name": "ASML Global Headquarters",
+            "city": "Veldhoven",
+            "country": "Netherlands",
+            "lat": 51.4173,
+            "lng": 5.4053,
+            "type": "headquarters",
+            "businessFocus": "Core R&D, Primary Manufacturing, Global Administration",
+            "size": "53% of global workforce",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-san-diego-manufacturing",
+            "name": "ASML San Diego (Cymer)",
+            "city": "San Diego",
+            "state": "CA",
+            "country": "USA",
+            "lat": 32.7157,
+            "lng": -117.1611,
+            "type": "manufacturing",
+            "businessFocus": "DUV light sources, EUV droplet generators",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-wilton-manufacturing",
+            "name": "ASML Wilton",
+            "city": "Wilton",
+            "state": "CT",
+            "country": "USA",
+            "lat": 41.2001,
+            "lng": -73.4379,
+            "type": "manufacturing",
+            "businessFocus": "Optical fabrication, reticle handlers, reticle stages",
+            "size": ">1000 employees",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-chandler-regional",
+            "name": "ASML Chandler",
+            "city": "Chandler",
+            "state": "AZ",
+            "country": "USA",
+            "lat": 33.3062,
+            "lng": -111.8413,
+            "type": "regional",
+            "businessFocus": "US Global Support Center, Sales, Technical Training Academy",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-berlin-manufacturing",
+            "name": "ASML Berlin GmbH",
+            "city": "Berlin",
+            "country": "Germany",
+            "lat": 52.5200,
+            "lng": 13.4050,
+            "type": "manufacturing",
+            "businessFocus": "Wafer clamps, reticle chucks, mirror blocks",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-hsinchu-regional",
+            "name": "ASML Hsinchu",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "type": "regional",
+            "businessFocus": "Asian Regional HQ, Customer Support, Software Development",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-hwasung-regional",
+            "name": "ASML Hwasung",
+            "city": "Hwasung",
+            "country": "South Korea",
+            "lat": 37.2068,
+            "lng": 126.8180,
+            "type": "regional",
+            "businessFocus": "Korean Regional HQ, Customer Support",
+            "established": "2025",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "asml-beijing-engineering",
+            "name": "ASML Beijing",
+            "city": "Beijing",
+            "country": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "type": "engineering",
+            "businessFocus": "R&D, Manufacturing (e-beam), Customer Support",
+            "source": "20-F FY2025",
+            "confidence": "verified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": 32667000000,
+        "currency": "EUR",
+        "segments": [
+            {
+                "region": "China",
+                "revenue": 9521000000,
+                "percentage": 29.1,
+                "yoyGrowth": -6.4,
+                "notes": "Contraction from 36% in FY2024 due to export controls and normalized DUV demand."
+            },
+            {
+                "region": "Taiwan",
+                "revenue": 8339000000,
+                "percentage": 25.5,
+                "yoyGrowth": null,
+                "notes": "Driven by High-NA EUV adoption."
+            },
+            {
+                "region": "South Korea",
+                "revenue": 8173000000,
+                "percentage": 25.0,
+                "yoyGrowth": null,
+                "notes": "Driven by HBM demand and advanced DRAM manufacturing."
+            },
+            {
+                "region": "United States",
+                "revenue": 4090000000,
+                "percentage": 12.5,
+                "yoyGrowth": -9.1,
+                "notes": "Driven by domestic reshoring and CHIPS Act."
+            },
+            {
+                "region": "EMEA",
+                "revenue": 500000000,
+                "percentage": 1.5,
+                "yoyGrowth": -61.5,
+                "notes": "Includes €172M from the Netherlands."
+            }
+        ],
+        "concentrationRisk": "Top 3 regional jurisdictions (China, Taiwan, South Korea) account for 79.6% of total revenue. Top three customers account for majority of accounts receivable.",
+        "source": "20-F FY2025"
+    },
+    "supplyChain": [
+        {
+            "entity": "Carl Zeiss SMT Holding GmbH & Co. KG",
+            "role": "key_supplier",
+            "city": "Oberkochen",
+            "country": "Germany",
+            "lat": 48.7846,
+            "lng": 10.1060,
+            "product": "Ultra-precise lenses, mirrors, and optical illuminators",
+            "criticality": "critical",
+            "source": "20-F FY2025"
+        },
+        {
+            "entity": "TRUMPF",
+            "role": "key_supplier",
+            "city": "Ditzingen",
+            "country": "Germany",
+            "lat": 48.8267,
+            "lng": 9.0667,
+            "product": "EUV high-energy lasers",
+            "criticality": "critical",
+            "source": "20-F FY2025"
+        },
+        {
+            "entity": "Edwards Vacuum",
+            "role": "key_supplier",
+            "city": "Chandler",
+            "country": "USA",
+            "lat": 33.3062,
+            "lng": -111.8413,
+            "product": "Vacuum and abatement systems",
+            "criticality": "important",
+            "source": "20-F FY2025"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "TSMC (Estimated proxy for Taiwan segment)",
+            "revenueShare": "25.5%",
+            "hqCity": "Hsinchu",
+            "hqCountry": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "relationship": "Dominant purchaser of advanced EUV systems",
+            "source": "20-F FY2025"
+        },
+        {
+            "customer": "Samsung / SK Hynix (Estimated proxy for S. Korea segment)",
+            "revenueShare": "25.0%",
+            "hqCity": "Suwon",
+            "hqCountry": "South Korea",
+            "lat": 37.2636,
+            "lng": 127.0286,
+            "relationship": "Key purchasers for advanced DRAM and HBM memory",
+            "source": "20-F FY2025"
+        },
+        {
+            "customer": "Intel Corporation (Estimated proxy for US segment)",
+            "revenueShare": "12.5%",
+            "hqCity": "Santa Clara",
+            "hqCountry": "USA",
+            "lat": 37.3541,
+            "lng": -121.9552,
+            "relationship": "Early adopter of High-NA EUV (TWINSCAN EXE:5200B)",
+            "source": "20-F FY2025"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "riskScore": 5,
+            "riskCategory": "trade_restriction",
+            "riskLabel": "US & NL Export Controls",
+            "description": "Expanded NL export controls and US 'Affiliates Rule' restricting shipments of advanced metrology and DUV equipment. Risks immediate loss of access to €9.5B market and inability to service existing installed base.",
+            "impactLevel": "critical",
+            "filingReference": "20-F FY2025, Item 1A",
+            "lastUpdated": "2026-02-25"
+        },
+        {
+            "region": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "riskScore": 4,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Cross-Strait Tensions",
+            "description": "Unique international political status of Taiwan. A blockade or conflict would instantaneously disrupt over 25% of ASML’s revenue pipeline.",
+            "impactLevel": "critical",
+            "filingReference": "20-F FY2025, Item 1A",
+            "lastUpdated": "2026-02-25"
+        },
+        {
+            "region": "Netherlands",
+            "lat": 51.4173,
+            "lng": 5.4053,
+            "riskScore": 3,
+            "riskCategory": "environmental_regulation",
+            "riskLabel": "Nitrogen Regulations & Grid Congestion",
+            "description": "Strict European/Dutch nitrogen emission regulations and regional power grid congestion threatening physical cleanroom expansion in Eindhoven.",
+            "impactLevel": "moderate",
+            "filingReference": "20-F FY2025, Item 1A",
+            "lastUpdated": "2026-02-25"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Eindhoven, Netherlands",
+            "lat": 51.4416,
+            "lng": 5.4697,
+            "description": "Project Beethoven: Brainport Industries Campus expansion to eventually house 20,000 employees. Supported by €2.51B state funding.",
+            "estimatedTimeline": "2026-2028",
+            "investment": "€93M (ASML direct contribution to infrastructure)",
+            "source": "20-F FY2025 / Corporate Disclosures",
+            "dateAnnounced": "2026-02-25"
+        },
+        {
+            "type": "expansion",
+            "location": "Phoenix, AZ, USA",
+            "lat": 33.4484,
+            "lng": -112.0740,
+            "description": "Inauguration of technical training academy to support US workforce and Intel fabs.",
+            "estimatedTimeline": "2025-2026",
+            "investment": "Undisclosed",
+            "source": "20-F FY2025",
+            "dateAnnounced": "2025-10-15"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Global",
+            "description": "Strategic restructuring to streamline Technology and IT organizations, prioritizing manufacturing and engineering headcount.",
+            "source": "Q4 2025 Earnings Call Transcript"
+        }
+    ]
+}
