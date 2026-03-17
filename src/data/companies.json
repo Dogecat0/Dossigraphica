@@ -648,5 +648,152 @@
         "confidence": "verified"
       }
     ]
+  },
+  {
+    "company": "Taiwan Semiconductor Manufacturing Company Limited",
+    "website": "https://www.tsmc.com",
+    "ticker": "TSM",
+    "sector": "Semiconductors",
+    "description": "TSMC is the world's preeminent dedicated semiconductor contract manufacturer, currently transitioning from a highly concentrated Taiwanese footprint to a decentralized global manufacturing architecture.",
+    "offices": [
+      {
+        "id": "tsm-hsinchu-hq",
+        "name": "Global Headquarters & GIGAFAB",
+        "city": "Hsinchu",
+        "country": "Taiwan",
+        "lat": 24.8138,
+        "lng": 120.9675,
+        "type": "headquarters",
+        "businessFocus": "Corporate HQ, Executive Leadership, R&D Vanguard, Advanced Manufacturing (2nm/A14)",
+        "source": "Form 6-K Subsidiary Data / Q4 2025 Earnings Transcript",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-taichung-manufacturing",
+        "name": "Taichung GIGAFAB Cluster",
+        "city": "Taichung",
+        "country": "Taiwan",
+        "lat": 24.1477,
+        "lng": 120.6736,
+        "type": "manufacturing",
+        "businessFocus": "Advanced Manufacturing",
+        "source": "Q4 2025 Earnings Transcript",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-tainan-manufacturing",
+        "name": "Tainan GIGAFAB Cluster",
+        "city": "Tainan",
+        "country": "Taiwan",
+        "lat": 23.1113,
+        "lng": 120.2858,
+        "type": "manufacturing",
+        "businessFocus": "Advanced Manufacturing",
+        "source": "Q4 2025 Earnings Transcript",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-phoenix-manufacturing",
+        "name": "TSMC Arizona (Fabs 1, 2, 3)",
+        "city": "Phoenix",
+        "state": "Arizona",
+        "country": "USA",
+        "lat": 33.4484,
+        "lng": -112.074,
+        "type": "manufacturing",
+        "businessFocus": "Advanced Manufacturing (4nm, 3nm, 2nm/A16), Onshore Integration",
+        "investment": "$165B",
+        "source": "Q4 2025 Earnings Transcript / TSMC Press Release",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-camas-manufacturing",
+        "name": "TSMC Washington",
+        "city": "Camas",
+        "state": "Washington",
+        "country": "USA",
+        "lat": 45.5826,
+        "lng": -122.4015,
+        "type": "manufacturing",
+        "businessFocus": "Legacy 8-inch Wafer Manufacturing",
+        "source": "TSMC 2024 Annual Report",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-sanjose-regional",
+        "name": "TSMC North America",
+        "city": "San Jose",
+        "state": "California",
+        "country": "USA",
+        "lat": 37.3382,
+        "lng": -121.8863,
+        "type": "regional",
+        "businessFocus": "Regional Sales, Customer Support, Financial Operations",
+        "source": "TSMC Affiliates and Forward Contracts",
+        "confidence": "unverified"
+      },
+      {
+        "id": "tsm-kumamoto-manufacturing",
+        "name": "Japan Advanced Semiconductor Manufacturing (JASM)",
+        "city": "Kumamoto",
+        "country": "Japan",
+        "lat": 32.8031,
+        "lng": 130.7079,
+        "type": "manufacturing",
+        "businessFocus": "Manufacturing (22/28nm, 12/16nm, transitioning to 3nm logic chips)",
+        "source": "Q4 2025 Earnings Transcript",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-dresden-manufacturing",
+        "name": "European Semiconductor Manufacturing Company (ESMC)",
+        "city": "Dresden",
+        "country": "Germany",
+        "lat": 51.0504,
+        "lng": 13.7373,
+        "type": "manufacturing",
+        "businessFocus": "Manufacturing (28/22nm, 16/12nm FinFET) for Automotive/Industrial",
+        "established": "2024",
+        "source": "TrendForce / GTAI Press Release",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-munich-engineering",
+        "name": "Munich Design Center",
+        "city": "Munich",
+        "country": "Germany",
+        "lat": 48.1351,
+        "lng": 11.582,
+        "type": "engineering",
+        "businessFocus": "Chip Design / R&D for Automotive and Industrial IoT",
+        "established": "2025",
+        "source": "TrendForce / GTAI Press Release",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-nanjing-manufacturing",
+        "name": "TSMC Nanjing",
+        "city": "Nanjing",
+        "country": "China",
+        "lat": 32.0603,
+        "lng": 118.7969,
+        "type": "manufacturing",
+        "businessFocus": "Legacy Manufacturing (16/28nm)",
+        "source": "TSMC 2024 Annual Report",
+        "confidence": "verified"
+      },
+      {
+        "id": "tsm-shanghai-manufacturing",
+        "name": "TSMC China Co. Ltd.",
+        "city": "Shanghai",
+        "country": "China",
+        "lat": 31.2304,
+        "lng": 121.4737,
+        "type": "manufacturing",
+        "businessFocus": "Legacy 8-inch Wafer Manufacturing",
+        "source": "TSMC 2024 Annual Report",
+        "confidence": "unverified"
+      }
+    ]
   }
 ]

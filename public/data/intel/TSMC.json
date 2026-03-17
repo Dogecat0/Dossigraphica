@@ -1,0 +1,392 @@
+{
+    "company": "Taiwan Semiconductor Manufacturing Company Limited",
+    "ticker": "TSM",
+    "website": "https://www.tsmc.com",
+    "sector": "Semiconductors",
+    "description": "TSMC is the world's preeminent dedicated semiconductor contract manufacturer, currently transitioning from a highly concentrated Taiwanese footprint to a decentralized global manufacturing architecture.",
+    "anchorFiling": {
+        "type": "10-K",
+        "date": "2025-04-17",
+        "fiscalPeriod": "FY2024"
+    },
+    "generatedDate": "2026-03-17",
+    "offices": [
+        {
+            "id": "tsm-hsinchu-hq",
+            "name": "Global Headquarters & GIGAFAB",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "type": "headquarters",
+            "businessFocus": "Corporate HQ, Executive Leadership, R&D Vanguard, Advanced Manufacturing (2nm/A14)",
+            "source": "Form 6-K Subsidiary Data / Q4 2025 Earnings Transcript",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-taichung-manufacturing",
+            "name": "Taichung GIGAFAB Cluster",
+            "city": "Taichung",
+            "country": "Taiwan",
+            "lat": 24.1477,
+            "lng": 120.6736,
+            "type": "manufacturing",
+            "businessFocus": "Advanced Manufacturing",
+            "source": "Q4 2025 Earnings Transcript",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-tainan-manufacturing",
+            "name": "Tainan GIGAFAB Cluster",
+            "city": "Tainan",
+            "country": "Taiwan",
+            "lat": 23.1113,
+            "lng": 120.2858,
+            "type": "manufacturing",
+            "businessFocus": "Advanced Manufacturing",
+            "source": "Q4 2025 Earnings Transcript",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-phoenix-manufacturing",
+            "name": "TSMC Arizona (Fabs 1, 2, 3)",
+            "city": "Phoenix",
+            "state": "Arizona",
+            "country": "USA",
+            "lat": 33.4484,
+            "lng": -112.0740,
+            "type": "manufacturing",
+            "businessFocus": "Advanced Manufacturing (4nm, 3nm, 2nm/A16), Onshore Integration",
+            "investment": "$165B",
+            "source": "Q4 2025 Earnings Transcript / TSMC Press Release",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-camas-manufacturing",
+            "name": "TSMC Washington",
+            "city": "Camas",
+            "state": "Washington",
+            "country": "USA",
+            "lat": 45.5826,
+            "lng": -122.4015,
+            "type": "manufacturing",
+            "businessFocus": "Legacy 8-inch Wafer Manufacturing",
+            "source": "TSMC 2024 Annual Report",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-sanjose-regional",
+            "name": "TSMC North America",
+            "city": "San Jose",
+            "state": "California",
+            "country": "USA",
+            "lat": 37.3382,
+            "lng": -121.8863,
+            "type": "regional",
+            "businessFocus": "Regional Sales, Customer Support, Financial Operations",
+            "source": "TSMC Affiliates and Forward Contracts",
+            "confidence": "unverified"
+        },
+        {
+            "id": "tsm-kumamoto-manufacturing",
+            "name": "Japan Advanced Semiconductor Manufacturing (JASM)",
+            "city": "Kumamoto",
+            "country": "Japan",
+            "lat": 32.8031,
+            "lng": 130.7079,
+            "type": "manufacturing",
+            "businessFocus": "Manufacturing (22/28nm, 12/16nm, transitioning to 3nm logic chips)",
+            "source": "Q4 2025 Earnings Transcript",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-dresden-manufacturing",
+            "name": "European Semiconductor Manufacturing Company (ESMC)",
+            "city": "Dresden",
+            "country": "Germany",
+            "lat": 51.0504,
+            "lng": 13.7373,
+            "type": "manufacturing",
+            "businessFocus": "Manufacturing (28/22nm, 16/12nm FinFET) for Automotive/Industrial",
+            "established": "2024",
+            "source": "TrendForce / GTAI Press Release",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-munich-engineering",
+            "name": "Munich Design Center",
+            "city": "Munich",
+            "country": "Germany",
+            "lat": 48.1351,
+            "lng": 11.5820,
+            "type": "engineering",
+            "businessFocus": "Chip Design / R&D for Automotive and Industrial IoT",
+            "established": "2025",
+            "source": "TrendForce / GTAI Press Release",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-nanjing-manufacturing",
+            "name": "TSMC Nanjing",
+            "city": "Nanjing",
+            "country": "China",
+            "lat": 32.0603,
+            "lng": 118.7969,
+            "type": "manufacturing",
+            "businessFocus": "Legacy Manufacturing (16/28nm)",
+            "source": "TSMC 2024 Annual Report",
+            "confidence": "verified"
+        },
+        {
+            "id": "tsm-shanghai-manufacturing",
+            "name": "TSMC China Co. Ltd.",
+            "city": "Shanghai",
+            "country": "China",
+            "lat": 31.2304,
+            "lng": 121.4737,
+            "type": "manufacturing",
+            "businessFocus": "Legacy 8-inch Wafer Manufacturing",
+            "source": "TSMC 2024 Annual Report",
+            "confidence": "unverified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": null,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "North America",
+                "revenue": null,
+                "percentage": 75.00,
+                "yoyGrowth": null,
+                "notes": "Significant dominance driven unequivocally by AI/HPC infrastructure supercycle led by U.S. hyperscalers."
+            },
+            {
+                "region": "Asia Pacific",
+                "revenue": null,
+                "percentage": 9.00,
+                "yoyGrowth": null,
+                "notes": "Stable but declining relative to North American growth. Excludes Japan and China."
+            },
+            {
+                "region": "China",
+                "revenue": null,
+                "percentage": 9.00,
+                "yoyGrowth": null,
+                "notes": "Structurally constrained by U.S. export controls and Beijing domestic substitution policies."
+            },
+            {
+                "region": "Japan",
+                "revenue": null,
+                "percentage": 4.00,
+                "yoyGrowth": null,
+                "notes": "Modest share, highly supported by domestic JASM supply."
+            },
+            {
+                "region": "EMEA",
+                "revenue": null,
+                "percentage": 3.00,
+                "yoyGrowth": null,
+                "notes": "Marginal contribution, highly exposed to automotive cyclicality."
+            }
+        ],
+        "concentrationRisk": "Top two customers represent roughly 35% of total revenue; North American entities command 75% of geographic billing. Creates a massive structural FX mismatch between USD revenues and NTD operations.",
+        "source": "Q4 2025 Earnings Transcript / TSMC 2024 Annual Report"
+    },
+    "supplyChain": [
+        {
+            "entity": "China-based Refining Infrastructure",
+            "role": "raw_material",
+            "city": "Multiple",
+            "country": "China",
+            "lat": 35.8617,
+            "lng": 104.1954,
+            "product": "Rare Earth Elements (Cerium dioxide, Scandium oxide, Neodymium)",
+            "criticality": "critical",
+            "source": "Tom's Hardware / TrendForce"
+        },
+        {
+            "entity": "ASML Holding N.V.",
+            "role": "key_supplier",
+            "city": "Veldhoven",
+            "country": "Netherlands",
+            "lat": 51.4069,
+            "lng": 5.4053,
+            "product": "EUV Lithography Systems",
+            "criticality": "critical",
+            "source": "ResearchGate / 100baggers.club"
+        },
+        {
+            "entity": "Amkor Technology / SPIL",
+            "role": "assembly_test",
+            "city": "Phoenix",
+            "country": "USA",
+            "lat": 33.4484,
+            "lng": -112.0740,
+            "product": "OSAT (Advanced Packaging and Testing)",
+            "criticality": "important",
+            "source": "NVIDIA Blog"
+        },
+        {
+            "entity": "Foxconn / Wistron",
+            "role": "contract_manufacturer",
+            "city": "Houston",
+            "country": "USA",
+            "lat": 29.7604,
+            "lng": -95.3698,
+            "product": "AI Supercomputer Final Assembly",
+            "criticality": "important",
+            "source": "NVIDIA Blog / Reddit Discussion"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "Customer A (Apple Inc.)",
+            "revenueShare": "22%",
+            "hqCity": "Cupertino",
+            "hqCountry": "USA",
+            "lat": 37.3230,
+            "lng": -122.0322,
+            "relationship": "Dominant client for advanced nodes (3nm, upcoming 2nm). Secured over half of 2nm capacity for 2026.",
+            "source": "TSMC 2024 Annual Report, EEWorld"
+        },
+        {
+            "customer": "Customer B (Nvidia Corporation)",
+            "revenueShare": "13%",
+            "hqCity": "Santa Clara",
+            "hqCountry": "USA",
+            "lat": 37.3541,
+            "lng": -121.9552,
+            "relationship": "Overtook Apple as largest real-time customer by late 2025 due to AI accelerator demand.",
+            "source": "Finviz / Wccftech"
+        },
+        {
+            "customer": "Broadcom",
+            "revenueShare": "11-15% (Proj.)",
+            "hqCity": "Palo Alto",
+            "hqCountry": "USA",
+            "lat": 37.4419,
+            "lng": -122.1430,
+            "relationship": "Massive growth vector; custom ASIC chip development for AI applications.",
+            "source": "SmBom / EEWorld"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "Taiwan",
+            "lat": 23.6978,
+            "lng": 120.9605,
+            "riskScore": 5,
+            "riskCategory": "environmental_regulation",
+            "riskLabel": "Seismic Activity & Physical Concentration",
+            "description": "Extreme physical vulnerability housing over 80% of advanced global manufacturing on a seismically active island. Earthquakes in 2024/2025 resulted in NT$3B direct losses.",
+            "impactLevel": "critical",
+            "filingReference": "Form 20-F Risk Factors",
+            "lastUpdated": "2026-03-17"
+        },
+        {
+            "region": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "riskScore": 5,
+            "riskCategory": "trade_restriction",
+            "riskLabel": "Rare Earth Export Controls & '50% Rule'",
+            "description": "Severe disruption to raw material access (Cerium, Scandium). Forced supply chain decoupling and increased input costs due to retaliatory export controls targeting 14nm-and-below nodes.",
+            "impactLevel": "critical",
+            "filingReference": "Mayer Brown Insights / TrendForce",
+            "lastUpdated": "2026-03-17"
+        },
+        {
+            "region": "United States",
+            "lat": 38.9072,
+            "lng": -77.0369,
+            "riskScore": 4,
+            "riskCategory": "tax_policy",
+            "riskLabel": "Tariff Policy & Subsidy Revocation",
+            "description": "Financial destabilization of the $165B Arizona expansion if CHIPS Act tax credits and grants are replaced by punitive tariffs.",
+            "impactLevel": "moderate_critical",
+            "filingReference": "Form 20-F Risk Factors / PIIE",
+            "lastUpdated": "2026-03-17"
+        },
+        {
+            "region": "United States",
+            "lat": 33.4484,
+            "lng": -112.0740,
+            "riskScore": 3,
+            "riskCategory": "labor_regulation",
+            "riskLabel": "Labor Shortages & Cultural Friction",
+            "description": "Elevated operational costs, delayed facility ramps, and lower localized profitability margins due to talent shortages and work culture friction.",
+            "impactLevel": "moderate",
+            "filingReference": "DigiTimes",
+            "lastUpdated": "2026-03-17"
+        },
+        {
+            "region": "Germany",
+            "lat": 51.0504,
+            "lng": 13.7373,
+            "riskScore": 3,
+            "riskCategory": "labor_regulation",
+            "riskLabel": "High Energy Costs & Union Labor Laws",
+            "description": "Margin dilution due to structurally higher wage, mandatory vacation requirements, and utility costs compared to Asian baselines.",
+            "impactLevel": "moderate",
+            "filingReference": "ISDP Brief",
+            "lastUpdated": "2026-03-17"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Phoenix, AZ, USA",
+            "lat": 33.4484,
+            "lng": -112.0740,
+            "description": "$165B planned expansion. Accelerated 2nm mass production pulled forward to late 2027.",
+            "estimatedTimeline": "2024-2028+",
+            "investment": "$165B",
+            "source": "TSMC Press Release / Q4 2025 Earnings",
+            "dateAnnounced": "2025-10-15"
+        },
+        {
+            "type": "expansion",
+            "location": "Kumamoto, Japan",
+            "lat": 32.8031,
+            "lng": 130.7079,
+            "description": "JASM Fab 2 strategic pivot. $17B upgrade to focus on advanced 3nm logic chips.",
+            "estimatedTimeline": "2026-2028",
+            "investment": "$17B",
+            "source": "AI CERTs News",
+            "dateAnnounced": "2026-01-15"
+        },
+        {
+            "type": "expansion",
+            "location": "Dresden, Germany",
+            "lat": 51.0504,
+            "lng": 13.7373,
+            "description": "ESMC structural build phase backed by €5 billion EU state aid.",
+            "estimatedTimeline": "2026-2027",
+            "investment": "€10B Total",
+            "source": "TrendForce / EU Commission Press",
+            "dateAnnounced": "2024-08-01"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Phoenix, AZ, USA",
+            "description": "Operational friction: Power outage severely slashed local quarterly profit by 99% in Q3 2025, underscoring infrastructure fragility.",
+            "source": "DigiTimes"
+        },
+        {
+            "type": "contraction",
+            "location": "Hsinchu Baosha, Taiwan",
+            "description": "Tactical delay of planned 2nm chip production facility from 2025 to 2026 due to sector deceleration outside AI.",
+            "source": "One Financial Markets"
+        },
+        {
+            "type": "contraction",
+            "location": "China",
+            "description": "Structural market decline as domestic fabless designers shift orders to SMIC due to regulatory pressures.",
+            "source": "Economic Times"
+        }
+    ]
+}
