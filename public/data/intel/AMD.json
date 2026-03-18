@@ -1,0 +1,282 @@
+{
+  "company": "Advanced Micro Devices, Inc.",
+  "ticker": "AMD",
+  "website": "https://www.amd.com",
+  "sector": "Semiconductors",
+  "description": "AMD is a global fabless semiconductor company designing advanced microprocessors and AI accelerators, with core executive architecture in North America and a highly decentralized APAC supply chain.",
+  "anchorFiling": {
+    "type": "10-K",
+    "date": "2026-02-04",
+    "fiscalPeriod": "FY2025"
+  },
+  "generatedDate": "2026-03-18",
+  "offices": [
+    {
+      "id": "amd-santa-clara-hq",
+      "name": "Global Headquarters",
+      "city": "Santa Clara",
+      "state": "CA",
+      "country": "USA",
+      "address": "2485 Augustine Drive",
+      "lat": 37.3826,
+      "lng": -121.9626,
+      "type": "headquarters",
+      "businessFocus": "Executive Administration, Corporate Governance, Ecosystem Leadership",
+      "source": "10-K FY2025",
+      "confidence": "verified"
+    },
+    {
+      "id": "amd-austin-regional",
+      "name": "Lone Star Campus",
+      "city": "Austin",
+      "state": "TX",
+      "country": "USA",
+      "lat": 30.2305,
+      "lng": -97.8398,
+      "type": "engineering",
+      "businessFocus": "Microprocessor Design, Software Stack Development, Server Architecture",
+      "source": "Corporate Directory",
+      "confidence": "verified"
+    },
+    {
+      "id": "amd-markham-engineering",
+      "name": "Markham Hub",
+      "city": "Markham",
+      "state": "ON",
+      "country": "Canada",
+      "lat": 43.8427,
+      "lng": -79.3871,
+      "type": "engineering",
+      "businessFocus": "GPU Engineering, Multimedia R&D, Discrete Graphics",
+      "source": "Corporate Directory",
+      "confidence": "verified"
+    },
+    {
+      "id": "amd-penang-engineering",
+      "name": "GBS by the Sea Facility",
+      "city": "Bayan Lepas",
+      "state": "Penang",
+      "country": "Malaysia",
+      "lat": 5.2965,
+      "lng": 100.2847,
+      "type": "engineering",
+      "businessFocus": "Advanced Packaging, 3DIC Architecture, Engineering Lab",
+      "size": "209000 sq ft, 1200+ employees",
+      "source": "Press Release",
+      "confidence": "verified"
+    },
+    {
+      "id": "amd-bengaluru-engineering",
+      "name": "Technostar R&D Campus",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "lat": 12.9716,
+      "lng": 77.5946,
+      "type": "engineering",
+      "businessFocus": "Largest Global Design Center, Sovereign AI Support",
+      "source": "Press Release",
+      "confidence": "verified"
+    },
+    {
+      "id": "amd-dublin-holding",
+      "name": "Xilinx Finance Ireland Ltd.",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "type": "regional",
+      "businessFocus": "Financial, IP Holding Architecture",
+      "source": "10-K FY2025, Exhibit 21",
+      "confidence": "verified"
+    }
+  ],
+  "revenueGeography": {
+    "fiscalYear": "FY2025",
+    "totalRevenue": 34639000000,
+    "currency": "USD",
+    "segments": [
+      {
+        "region": "United States",
+        "revenue": 11363000000,
+        "percentage": 32.8,
+        "yoyGrowth": 30.7,
+        "notes": "Driven heavily by hyperscaler AI GPU deployments (e.g., Meta)."
+      },
+      {
+        "region": "China",
+        "revenue": 7751000000,
+        "percentage": 22.4,
+        "yoyGrowth": 24.4,
+        "notes": "Includes Hong Kong. Growth driven by late-quarter stockpiling prior to anticipated export controls."
+      },
+      {
+        "region": "Taiwan",
+        "revenue": 5186000000,
+        "percentage": 15.0,
+        "yoyGrowth": 57.1,
+        "notes": "Reflects billing locations of ODMs handling AI server integration."
+      },
+      {
+        "region": "Singapore",
+        "revenue": 4284000000,
+        "percentage": 12.4,
+        "yoyGrowth": 18.5,
+        "notes": "Regional supply chain and logistics hub."
+      },
+      {
+        "region": "Other Regions",
+        "revenue": 6055000000,
+        "percentage": 17.5,
+        "yoyGrowth": 53.4,
+        "notes": "Aggregated rest of world sales."
+      }
+    ],
+    "concentrationRisk": "No single customer accounted for at least 10% of consolidated net revenue in FY2025, a shift from historical reliance on console OEMs.",
+    "source": "10-K FY2025"
+  },
+  "supplyChain": [
+    {
+      "entity": "TSMC",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.7733,
+      "lng": 121.0116,
+      "product": "Advanced Wafer Fabrication (4nm/5nm) and CoWoS Packaging",
+      "criticality": "critical",
+      "source": "Annual Global IC Fabs Report"
+    },
+    {
+      "entity": "Samsung Electronics",
+      "role": "key_supplier",
+      "city": "Suwon",
+      "country": "South Korea",
+      "lat": 37.2636,
+      "lng": 127.0286,
+      "product": "HBM3E Advanced Memory Modules",
+      "criticality": "important",
+      "source": "StockTitan News"
+    },
+    {
+      "entity": "Amkor Technology",
+      "role": "assembly_test",
+      "city": "Bayan Lepas",
+      "country": "Malaysia",
+      "lat": 5.2965,
+      "lng": 100.2847,
+      "product": "3DIC Advanced Packaging",
+      "criticality": "important",
+      "source": "Annual Global IC Fabs Report"
+    },
+    {
+      "entity": "Sanmina Corporation",
+      "role": "contract_manufacturer",
+      "city": "San Jose",
+      "country": "USA",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "product": "Data Center Infrastructure / NPI Rack Integration",
+      "criticality": "important",
+      "source": "Sanmina Press Release"
+    }
+  ],
+  "customerConcentration": [
+    {
+      "customer": "Meta",
+      "revenueShare": "Undisclosed",
+      "hqCity": "Menlo Park",
+      "hqCountry": "USA",
+      "lat": 37.4529,
+      "lng": -122.1817,
+      "relationship": "Deployed 6 Gigawatts of AMD GPUs; hyperscale partner",
+      "source": "Press Release 1279"
+    },
+    {
+      "customer": "Sony Group Corporation",
+      "revenueShare": "Historical >10%",
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "Semi-Custom SoC partner for PlayStation consoles",
+      "source": "10-K FY2024 / Market Intel"
+    }
+  ],
+  "geopoliticalRisks": [
+    {
+      "region": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "riskScore": 5,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "US Export Controls on Advanced Semiconductors",
+      "description": "Zeroing out of high-margin Data Center AI revenue (MI-series) post-Q1 2026; complete loss of market access for advanced silicon.",
+      "impactLevel": "critical",
+      "filingReference": "Q4 2025 Earnings Call",
+      "lastUpdated": "2026-02-03"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "riskScore": 5,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Kinetic Conflict / Geopolitical Blockade",
+      "description": "Single point of failure for advanced 4nm/5nm wafer fabrication and CoWoS packaging. A disruption would cease core product output.",
+      "impactLevel": "critical",
+      "filingReference": "Industry Reports / 10-K",
+      "lastUpdated": "2026-03-18"
+    },
+    {
+      "region": "United States",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "riskScore": 3,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Section 301 Tariffs / Trade War Escalation",
+      "description": "Inflationary pressures on imported components impacting gross margins.",
+      "impactLevel": "moderate",
+      "filingReference": "Trade Act Reports",
+      "lastUpdated": "2026-03-18"
+    }
+  ],
+  "expansionSignals": [
+    {
+      "type": "expansion",
+      "location": "Bengaluru, India",
+      "lat": 12.9716,
+      "lng": 77.5946,
+      "description": "Inaugurated largest global design center; expanding sovereign AI infra with TCS via 200MW 'Helios' project.",
+      "estimatedTimeline": "2025-2026",
+      "investment": "$400M",
+      "source": "Press Release 1278",
+      "dateAnnounced": "2026-02-01"
+    },
+    {
+      "type": "expansion",
+      "location": "Bayan Lepas, Malaysia",
+      "lat": 5.2965,
+      "lng": 100.2847,
+      "description": "Inauguration of 209,000 sq ft advanced packaging engineering facility for 1,200+ employees.",
+      "estimatedTimeline": "2025",
+      "investment": "Undisclosed",
+      "source": "Press Release",
+      "dateAnnounced": "2025-01-01"
+    }
+  ],
+  "contractionSignals": [
+    {
+      "type": "contraction",
+      "location": "China",
+      "description": "Total market contraction of high-margin Data Center AI revenue due to U.S. regulatory restrictions. $0 revenue forecasted post-Q1 2026.",
+      "source": "Q4 2025 Earnings Call"
+    },
+    {
+      "type": "contraction",
+      "location": "Secaucus, NJ, USA",
+      "description": "Immediate divestiture of capital-intensive physical manufacturing operations acquired from ZT Systems to Sanmina Corporation.",
+      "source": "Press Release 1263"
+    }
+  ]
+}

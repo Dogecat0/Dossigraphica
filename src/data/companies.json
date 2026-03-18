@@ -1,5 +1,93 @@
 [
   {
+    "company": "Advanced Micro Devices, Inc.",
+    "website": "https://www.amd.com",
+    "ticker": "AMD",
+    "sector": "Semiconductors",
+    "description": "AMD is a global fabless semiconductor company designing advanced microprocessors and AI accelerators, with core executive architecture in North America and a highly decentralized APAC supply chain.",
+    "offices": [
+      {
+        "id": "amd-santa-clara-hq",
+        "name": "Global Headquarters",
+        "city": "Santa Clara",
+        "state": "CA",
+        "country": "USA",
+        "address": "2485 Augustine Drive",
+        "lat": 37.3826,
+        "lng": -121.9626,
+        "type": "headquarters",
+        "businessFocus": "Executive Administration, Corporate Governance, Ecosystem Leadership",
+        "source": "10-K FY2025",
+        "confidence": "verified"
+      },
+      {
+        "id": "amd-austin-regional",
+        "name": "Lone Star Campus",
+        "city": "Austin",
+        "state": "TX",
+        "country": "USA",
+        "lat": 30.2305,
+        "lng": -97.8398,
+        "type": "engineering",
+        "businessFocus": "Microprocessor Design, Software Stack Development, Server Architecture",
+        "source": "Corporate Directory",
+        "confidence": "verified"
+      },
+      {
+        "id": "amd-markham-engineering",
+        "name": "Markham Hub",
+        "city": "Markham",
+        "state": "ON",
+        "country": "Canada",
+        "lat": 43.8427,
+        "lng": -79.3871,
+        "type": "engineering",
+        "businessFocus": "GPU Engineering, Multimedia R&D, Discrete Graphics",
+        "source": "Corporate Directory",
+        "confidence": "verified"
+      },
+      {
+        "id": "amd-penang-engineering",
+        "name": "GBS by the Sea Facility",
+        "city": "Bayan Lepas",
+        "state": "Penang",
+        "country": "Malaysia",
+        "lat": 5.2965,
+        "lng": 100.2847,
+        "type": "engineering",
+        "businessFocus": "Advanced Packaging, 3DIC Architecture, Engineering Lab",
+        "size": "209000 sq ft, 1200+ employees",
+        "source": "Press Release",
+        "confidence": "verified"
+      },
+      {
+        "id": "amd-bengaluru-engineering",
+        "name": "Technostar R&D Campus",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "country": "India",
+        "lat": 12.9716,
+        "lng": 77.5946,
+        "type": "engineering",
+        "businessFocus": "Largest Global Design Center, Sovereign AI Support",
+        "source": "Press Release",
+        "confidence": "verified"
+      },
+      {
+        "id": "amd-dublin-holding",
+        "name": "Xilinx Finance Ireland Ltd.",
+        "city": "Dublin",
+        "country": "Ireland",
+        "lat": 53.3498,
+        "lng": -6.2603,
+        "type": "regional",
+        "businessFocus": "Financial, IP Holding Architecture",
+        "source": "10-K FY2025, Exhibit 21",
+        "confidence": "verified"
+      }
+    ]
+  },
+  {
     "company": "Amazon.com, Inc.",
     "website": "https://www.amazon.com",
     "ticker": "AMZN",
