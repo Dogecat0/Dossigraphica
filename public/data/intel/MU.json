@@ -1,0 +1,433 @@
+{
+    "company": "Micron Technology, Inc.",
+    "ticker": "MU",
+    "website": "https://www.micron.com",
+    "sector": "Semiconductors",
+    "description": "Micron is a global leader in memory and storage solutions, operating a highly bifurcated geographic model with R&D and advanced front-end fabrication in the US, high-volume manufacturing in Taiwan and Japan, and back-end assembly across South and Southeast Asia.",
+    "anchorFiling": {
+        "type": "10-Q",
+        "date": "2026-03-19",
+        "fiscalPeriod": "Q2 FY2026"
+    },
+    "generatedDate": "2026-03-22",
+    "offices": [
+        {
+            "id": "mu-boise-hq",
+            "name": "Global Headquarters & Fab 4",
+            "city": "Boise",
+            "state": "Idaho",
+            "country": "USA",
+            "lat": 43.6150,
+            "lng": -116.2023,
+            "type": "headquarters",
+            "businessFocus": "Corporate HQ, R&D, Front-End Manufacturing, 1-gamma (1γ) DRAM development",
+            "source": "Q2 2026 Earnings Call Transcript",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-manassas-fab6",
+            "name": "Fab 6",
+            "city": "Manassas",
+            "state": "Virginia",
+            "country": "USA",
+            "lat": 38.7509,
+            "lng": -77.4753,
+            "type": "manufacturing",
+            "businessFocus": "Front-End Manufacturing, automotive, embedded, and industrial sector legacy nodes",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-clay-megafab",
+            "name": "Clay Megafab",
+            "city": "Clay",
+            "state": "New York",
+            "country": "USA",
+            "lat": 43.1601,
+            "lng": -76.2022,
+            "type": "manufacturing",
+            "businessFocus": "Front-End Manufacturing, AI advanced memory (Under Construction)",
+            "established": "2026",
+            "source": "Press Release (Jan 16, 2026)",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-taichung-fab",
+            "name": "Micron Taiwan (Taichung)",
+            "city": "Taichung",
+            "country": "Taiwan",
+            "lat": 24.1477,
+            "lng": 120.6736,
+            "type": "manufacturing",
+            "businessFocus": "Front-End Manufacturing, Advanced Packaging for HBM",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-taoyuan-fab",
+            "name": "Micron Taiwan (Taoyuan)",
+            "city": "Taoyuan",
+            "country": "Taiwan",
+            "lat": 24.9936,
+            "lng": 121.3010,
+            "type": "manufacturing",
+            "businessFocus": "Front-End Manufacturing",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-tainan-fab",
+            "name": "Micron Taiwan (Tainan)",
+            "city": "Tainan",
+            "country": "Taiwan",
+            "lat": 23.1417,
+            "lng": 120.2513,
+            "type": "manufacturing",
+            "businessFocus": "Front-End Manufacturing",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-tongluo-fab",
+            "name": "Tongluo Facility",
+            "city": "Miaoli County",
+            "country": "Taiwan",
+            "lat": 24.4851,
+            "lng": 120.7852,
+            "type": "manufacturing",
+            "businessFocus": "Front-End Manufacturing",
+            "established": "2026",
+            "source": "Q2 2026 Earnings Call Transcript",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-singapore-fab",
+            "name": "Fab 7 & Fab 10",
+            "city": "Singapore",
+            "country": "Singapore",
+            "lat": 1.3521,
+            "lng": 103.8198,
+            "type": "manufacturing",
+            "businessFocus": "NAND Manufacturing, Advanced Packaging",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-hiroshima-fab",
+            "name": "Hiroshima Fab",
+            "city": "Hiroshima",
+            "country": "Japan",
+            "lat": 34.3853,
+            "lng": 132.4553,
+            "type": "manufacturing",
+            "businessFocus": "DRAM Manufacturing (EUV)",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-penang-fab",
+            "name": "Penang Facility",
+            "city": "Penang",
+            "country": "Malaysia",
+            "lat": 5.4141,
+            "lng": 100.3288,
+            "type": "manufacturing",
+            "businessFocus": "Back-End Assembly & Test",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-muar-fab",
+            "name": "Muar Facility",
+            "city": "Muar",
+            "country": "Malaysia",
+            "lat": 2.0442,
+            "lng": 102.5689,
+            "type": "manufacturing",
+            "businessFocus": "Back-End Assembly & Test",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-xian-fab",
+            "name": "Xi'an Facility",
+            "city": "Xi'an",
+            "country": "China",
+            "lat": 34.3416,
+            "lng": 108.9398,
+            "type": "manufacturing",
+            "businessFocus": "Back-End Assembly & Test",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-gujarat-fab",
+            "name": "Gujarat Facility",
+            "city": "Gujarat",
+            "country": "India",
+            "lat": 23.0225,
+            "lng": 72.5714,
+            "type": "manufacturing",
+            "businessFocus": "Back-End Assembly & Test",
+            "established": "2026",
+            "source": "Corporate Profile",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-austin-rd",
+            "name": "Austin R&D Center",
+            "city": "Austin",
+            "state": "Texas",
+            "country": "USA",
+            "lat": 30.2672,
+            "lng": -97.7431,
+            "type": "engineering",
+            "businessFocus": "R&D, Design Center",
+            "source": "Micron Locations",
+            "confidence": "verified"
+        },
+        {
+            "id": "mu-munich-sales",
+            "name": "Munich Office",
+            "city": "Munich",
+            "country": "Germany",
+            "lat": 48.1351,
+            "lng": 11.5820,
+            "type": "sales",
+            "businessFocus": "Regional Sales",
+            "source": "Unverified function",
+            "confidence": "unverified"
+        },
+        {
+            "id": "mu-italy-sub",
+            "name": "Micron Technology Italia S.r.l.",
+            "city": "Rome",
+            "country": "Italy",
+            "lat": 41.9028,
+            "lng": 12.4964,
+            "type": "regional",
+            "businessFocus": "Regional Subsidiary",
+            "source": "SEC Filings",
+            "confidence": "unverified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": 37378000000,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "United States",
+                "revenue": 7800000000,
+                "percentage": 20.87,
+                "yoyGrowth": null,
+                "notes": "Highest concentration of ultimate corporate buyers (hyperscalers), physically delivered to Asia."
+            },
+            {
+                "region": "Taiwan",
+                "revenue": 2700000000,
+                "percentage": 7.22,
+                "yoyGrowth": null,
+                "notes": "Central hub for global contract manufacturing; physical destination for CMBU products."
+            },
+            {
+                "region": "China",
+                "revenue": 2200000000,
+                "percentage": 5.89,
+                "yoyGrowth": null,
+                "notes": "Constrained by CAC bans but vital for legacy mobile/consumer storage."
+            },
+            {
+                "region": "Japan",
+                "revenue": 987000000,
+                "percentage": 2.64,
+                "yoyGrowth": null,
+                "notes": "Driven by localized OEM integration and automotive."
+            },
+            {
+                "region": "Other Asia Pacific",
+                "revenue": 752000000,
+                "percentage": 2.01,
+                "yoyGrowth": null,
+                "notes": "Tied to SE Asian assembly hubs."
+            },
+            {
+                "region": "Europe",
+                "revenue": 682000000,
+                "percentage": 1.82,
+                "yoyGrowth": null,
+                "notes": "Automotive, industrial machinery, enterprise servers."
+            },
+            {
+                "region": "Hong Kong",
+                "revenue": 340000000,
+                "percentage": 0.91,
+                "yoyGrowth": null,
+                "notes": "Transshipment hub for mainland Chinese manufacturing."
+            }
+        ],
+        "concentrationRisk": "Customer A (likely NVIDIA) represents 17% of total FY25 revenue, driving the massive CMBU expansion.",
+        "source": "10-K FY2025, Note 29"
+    },
+    "supplyChain": [
+        {
+            "entity": "QatarEnergy (Ras Laffan)",
+            "role": "raw_material",
+            "city": "Ras Laffan",
+            "country": "Qatar",
+            "lat": 25.8950,
+            "lng": 51.5436,
+            "product": "Ultra-pure 6N grade Helium",
+            "criticality": "critical",
+            "source": "MarketWatch / Tom's Hardware 2026"
+        },
+        {
+            "entity": "Chinese State Refineries",
+            "role": "raw_material",
+            "city": "Beijing",
+            "country": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "product": "Gallium, Germanium, Neon",
+            "criticality": "important",
+            "source": "Global Policy Watch 2026"
+        },
+        {
+            "entity": "ASML",
+            "role": "key_supplier",
+            "city": "Veldhoven",
+            "country": "Netherlands",
+            "lat": 51.4065,
+            "lng": 5.4053,
+            "product": "EUV Lithography Machinery",
+            "criticality": "critical",
+            "source": "10-K FY2025"
+        },
+        {
+            "entity": "TSMC",
+            "role": "contract_manufacturer",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "product": "CoWoS Advanced Packaging for HBM",
+            "criticality": "critical",
+            "source": "TSMC Investor Relations"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "Customer A (Estimated: NVIDIA)",
+            "revenueShare": "17%",
+            "hqCity": "Santa Clara",
+            "hqCountry": "USA",
+            "lat": 37.3541,
+            "lng": -121.9552,
+            "relationship": "Dominant buyer of HBM and advanced data center DRAM, requires delivery to TSMC for integration.",
+            "source": "10-K FY2025, Note 11"
+        },
+        {
+            "customer": "WT Microelectronics Co., Ltd.",
+            "revenueShare": "Not specified",
+            "hqCity": "Taipei",
+            "hqCountry": "Taiwan",
+            "lat": 25.0330,
+            "lng": 121.5654,
+            "relationship": "Major non-exclusive sales representative and distribution channel for APAC region (excluding Japan).",
+            "source": "WT Microelectronics 2024 Annual Report"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "Taiwan",
+            "lat": 23.6978,
+            "lng": 120.9605,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Cross-strait military escalation",
+            "description": "Immediate loss of >50% of global DRAM capacity; total disruption of TSMC CoWoS packaging required for HBM integration.",
+            "impactLevel": "Critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-19"
+        },
+        {
+            "region": "Qatar",
+            "lat": 25.3548,
+            "lng": 51.1839,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Ras Laffan Helium Supply Shock",
+            "description": "Force majeure on 6N grade helium due to Iranian missile strikes; severe disruption of front-end thermal cooling processes.",
+            "impactLevel": "Critical",
+            "filingReference": "Tom's Hardware / Q2 Earnings Context",
+            "lastUpdated": "2026-03-19"
+        },
+        {
+            "region": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "riskScore": 3,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "CAC Procurement Ban & Export Controls",
+            "description": "Permanent loss of structural market share in consumer memory to domestic players; critical raw material shortages (Gallium/Neon).",
+            "impactLevel": "Moderate",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-19"
+        },
+        {
+            "region": "United States",
+            "lat": 38.9072,
+            "lng": -77.0369,
+            "riskScore": 3,
+            "riskCategory": "trade_restriction",
+            "riskLabel": "Outbound Export Controls targeting AI",
+            "description": "Downstream demand destruction if US clients cannot sell AI servers to Chinese hyperscalers.",
+            "impactLevel": "Moderate",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-19"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Clay, NY, USA",
+            "lat": 43.1601,
+            "lng": -76.2022,
+            "description": "$100B Megafab groundbreaking (largest US semi facility), subsidized by $6.1B CHIPS Act grants.",
+            "estimatedTimeline": "2026+",
+            "investment": "$100B",
+            "source": "CNY Central / Press Release",
+            "dateAnnounced": "2026-01-16"
+        },
+        {
+            "type": "expansion",
+            "location": "Miaoli County, Taiwan",
+            "lat": 24.4851,
+            "lng": 120.7852,
+            "description": "Acquired Tongluo manufacturing site from Powerchip to bypass greenfield delays.",
+            "estimatedTimeline": "Output by FY2028",
+            "investment": "$1.8B",
+            "source": "Q2 2026 Earnings Call Transcript",
+            "dateAnnounced": "2026-03-15"
+        },
+        {
+            "type": "expansion",
+            "location": "Gujarat, India",
+            "lat": 23.0225,
+            "lng": 72.5714,
+            "description": "Inaugurated state-of-the-art semiconductor assembly and test facility.",
+            "estimatedTimeline": "Opened Feb 2026",
+            "investment": "Not specified",
+            "source": "Corporate Profile",
+            "dateAnnounced": "2026-02-01"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Global",
+            "description": "Strategic exit from the Crucial consumer business to dedicate wafer allocation toward high-margin HBM/enterprise.",
+            "source": "Corporate Disclosures late 2025"
+        }
+    ]
+}
