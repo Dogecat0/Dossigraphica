@@ -1,0 +1,372 @@
+{
+    "company": "Intel Corporation",
+    "ticker": "INTC",
+    "website": "https://www.intel.com",
+    "sector": "Semiconductors",
+    "description": "Intel Corporation is a global semiconductor manufacturer executing a massive physical restructuring to consolidate advanced logic fabrication in the United States while managing severe geographic supply chain and geopolitical risks in Asia and the Middle East.",
+    "anchorFiling": {
+        "type": "10-K",
+        "date": "2026-01-23",
+        "fiscalPeriod": "FY2025"
+    },
+    "generatedDate": "2026-03-22",
+    "offices": [
+        {
+            "id": "intc-santa-clara-hq",
+            "name": "Corporate Headquarters & SC2",
+            "city": "Santa Clara",
+            "state": "CA",
+            "country": "USA",
+            "address": "2200 Mission College Blvd",
+            "lat": 37.3876,
+            "lng": -121.9635,
+            "type": "headquarters",
+            "businessFocus": "Global HQ, R&D, Reticle/Masks",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-hillsboro-engineering",
+            "name": "Gordon Moore Park (D1X, MSB2)",
+            "city": "Hillsboro",
+            "state": "OR",
+            "country": "USA",
+            "address": "2501 NW 229th Ave",
+            "lat": 45.5414,
+            "lng": -122.9149,
+            "type": "engineering",
+            "businessFocus": "Primary Technology Development, R&D, High-NA EUV Integration",
+            "source": "Intel Newsroom Updates",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-chandler-manufacturing",
+            "name": "Ocotillo Campus (Fabs 32, 42, 52, 62)",
+            "city": "Chandler",
+            "state": "AZ",
+            "country": "USA",
+            "address": "4500 S Dobson Rd",
+            "lat": 33.2644,
+            "lng": -111.8753,
+            "type": "manufacturing",
+            "businessFocus": "High-Volume Logic Manufacturing (18A node)",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-rio-rancho-manufacturing",
+            "name": "Rio Rancho Campus",
+            "city": "Rio Rancho",
+            "state": "NM",
+            "country": "USA",
+            "lat": 35.2327,
+            "lng": -106.6630,
+            "type": "manufacturing",
+            "businessFocus": "Advanced Packaging (Foveros, EMIB)",
+            "source": "Intel Global Sites",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-new-albany-manufacturing",
+            "name": "Silicon Heartland (Fab 27)",
+            "city": "New Albany",
+            "state": "OH",
+            "country": "USA",
+            "lat": 40.0812,
+            "lng": -82.8088,
+            "type": "manufacturing",
+            "businessFocus": "Future Logic Manufacturing (Delayed to 2030-2032)",
+            "source": "Wikipedia / New Albany Ohio",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-leixlip-manufacturing",
+            "name": "Fab 34",
+            "city": "Leixlip",
+            "country": "Ireland",
+            "lat": 53.3667,
+            "lng": -6.5000,
+            "type": "manufacturing",
+            "businessFocus": "High-Volume Logic Manufacturing (EUV, Intel 4/3)",
+            "source": "Intel Newsroom",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-kiryat-gat-manufacturing",
+            "name": "Kiryat Gat Campus (Fabs 28, 28a, 38)",
+            "city": "Kiryat Gat",
+            "country": "Israel",
+            "lat": 31.6061,
+            "lng": 34.7717,
+            "type": "manufacturing",
+            "businessFocus": "High-Volume Logic Manufacturing",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-kulim-manufacturing",
+            "name": "Kulim ATM",
+            "city": "Kulim",
+            "country": "Malaysia",
+            "lat": 5.3711,
+            "lng": 100.5539,
+            "type": "manufacturing",
+            "businessFocus": "Assembly and Test Manufacturing",
+            "source": "Intel Support Articles",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-penang-manufacturing",
+            "name": "Penang Campus (Pelican)",
+            "city": "Penang",
+            "country": "Malaysia",
+            "lat": 5.4141,
+            "lng": 100.3288,
+            "type": "manufacturing",
+            "businessFocus": "Advanced Packaging, Assembly, Test",
+            "source": "Wikipedia / 10-K FY2025",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-ho-chi-minh-manufacturing",
+            "name": "Saigon Hi-Tech Park",
+            "city": "Ho Chi Minh City",
+            "country": "Vietnam",
+            "lat": 10.8500,
+            "lng": 106.8000,
+            "type": "manufacturing",
+            "businessFocus": "Assembly and Test Manufacturing",
+            "source": "Intel Support Articles",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-chengdu-manufacturing",
+            "name": "Chengdu ATM",
+            "city": "Chengdu",
+            "country": "China",
+            "lat": 30.6586,
+            "lng": 104.0649,
+            "type": "manufacturing",
+            "businessFocus": "Assembly and Test Manufacturing",
+            "source": "Intel Support Articles",
+            "confidence": "verified"
+        },
+        {
+            "id": "intc-san-jose-regional",
+            "name": "Costa Rica Campus",
+            "city": "San Jose",
+            "country": "Costa Rica",
+            "lat": 9.9281,
+            "lng": -84.0907,
+            "type": "regional",
+            "businessFocus": "Corporate Functions, R&D (ATM Closing)",
+            "source": "Tico Times / EE News Europe",
+            "confidence": "verified"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": 52853000000,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "United States",
+                "revenue": 15757000000,
+                "percentage": 29.81,
+                "yoyGrowth": 21.26,
+                "notes": "Surged due to hyperscale cloud expansion and sovereign AI infrastructure."
+            },
+            {
+                "region": "China",
+                "revenue": 12694000000,
+                "percentage": 24.01,
+                "yoyGrowth": -18.27,
+                "notes": "Severe decline driven by US export controls and Chinese import substitution mandates."
+            },
+            {
+                "region": "Singapore",
+                "revenue": 9535000000,
+                "percentage": 18.04,
+                "yoyGrowth": -6.40,
+                "notes": "Reflects broader slowdown in traditional Asian electronics routing."
+            },
+            {
+                "region": "Taiwan",
+                "revenue": 7672000000,
+                "percentage": 14.51,
+                "yoyGrowth": -1.69,
+                "notes": "Billing location for massive ODMs."
+            },
+            {
+                "region": "Other Regions",
+                "revenue": 7195000000,
+                "percentage": 13.63,
+                "yoyGrowth": 9.28,
+                "notes": "Mild diversification in secondary markets."
+            }
+        ],
+        "concentrationRisk": "Top three customers represent 43% of total net revenue.",
+        "source": "10-K FY2025, Regional Reporting Tables"
+    },
+    "supplyChain": [
+        {
+            "entity": "Tosoh Quartz, Inc.",
+            "role": "key_supplier",
+            "city": "Tokyo",
+            "country": "Japan",
+            "lat": 35.6762,
+            "lng": 139.6503,
+            "product": "Quartz components for semiconductor processing",
+            "criticality": "critical",
+            "source": "Intel Newsroom / 2026 EPIC Supplier Award"
+        },
+        {
+            "entity": "ASML",
+            "role": "key_supplier",
+            "city": "Veldhoven",
+            "country": "Netherlands",
+            "lat": 51.4057,
+            "lng": 5.4050,
+            "product": "High-NA EUV lithography scanners",
+            "criticality": "critical",
+            "source": "10-K FY2025, Item 1A"
+        },
+        {
+            "entity": "TSMC",
+            "role": "foundry",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.8138,
+            "lng": 120.9675,
+            "product": "3nm and 2nm advanced logic tiles (Lunar Lake/Arrow Lake)",
+            "criticality": "critical",
+            "source": "10-K FY2025, Item 1A / Stratechery"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "Dell Technologies (Customer A)",
+            "revenueShare": "19%",
+            "hqCity": "Round Rock",
+            "hqCountry": "USA",
+            "lat": 30.5083,
+            "lng": -97.6789,
+            "relationship": "Dominant global enterprise client and standard data center server OEM.",
+            "source": "10-K FY2025 / Tier 2 Intelligence"
+        },
+        {
+            "customer": "Lenovo Group (Customer B/C)",
+            "revenueShare": "12%",
+            "hqCity": "Beijing",
+            "hqCountry": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "relationship": "Primary conduit into the Chinese domestic and enterprise markets; highly exposed to local mandates.",
+            "source": "10-K FY2025 / USCC Annual Report"
+        },
+        {
+            "customer": "HP Inc. (Customer B/C)",
+            "revenueShare": "12%",
+            "hqCity": "Palo Alto",
+            "hqCountry": "USA",
+            "lat": 37.4419,
+            "lng": -122.1430,
+            "relationship": "Major OEM routing through Taiwanese ODMs and Chinese assembly hubs.",
+            "source": "10-K FY2025"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "Taiwan",
+            "lat": 23.6978,
+            "lng": 120.9605,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Military Blockade & TSMC Dependency",
+            "description": "A cross-strait military campaign or blockade would instantly sever Intel's access to TSMC advanced tiles required for flagship PC processor shipments.",
+            "impactLevel": "Critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-22"
+        },
+        {
+            "region": "China",
+            "lat": 39.9042,
+            "lng": 116.4074,
+            "riskScore": 5,
+            "riskCategory": "trade_restriction",
+            "riskLabel": "US Export Controls & State-Mandated Substitution",
+            "description": "US controls block high-margin Gaudi sales, while Beijing's Directive 315 actively forces Chinese agencies to phase out Intel x86 processors.",
+            "impactLevel": "Critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-22"
+        },
+        {
+            "region": "Israel",
+            "lat": 31.6061,
+            "lng": 34.7717,
+            "riskScore": 4,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Kinetic Warfare near Kiryat Gat",
+            "description": "Ongoing regional conflict threatens grid stability, physical plant integrity, and workforce availability (military draft) for Fabs 28, 28a, and 38.",
+            "impactLevel": "Moderate to Critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-22"
+        },
+        {
+            "region": "United States",
+            "lat": 38.9072,
+            "lng": -77.0369,
+            "riskScore": 3,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "CHIPS Act Regulatory Covenants",
+            "description": "Prohibits facility expansion in 'entities of concern' for 10 years and legally restricts dividend payments and stock buybacks.",
+            "impactLevel": "Moderate",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-22"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Chandler, AZ, USA",
+            "lat": 33.2644,
+            "lng": -111.8753,
+            "description": "$32 billion capex buildout for Fab 52 and Fab 62 to ramp Intel 18A process node.",
+            "estimatedTimeline": "2025-2026",
+            "investment": "$32,000,000,000",
+            "source": "10-K FY2025",
+            "dateAnnounced": "2025-12-31"
+        },
+        {
+            "type": "expansion",
+            "location": "Austin, TX, USA",
+            "lat": 30.2672,
+            "lng": -97.7431,
+            "description": "Potential high-level strategic partnership to operate Elon Musk's $20B 'Terafab' for Tesla AI5 and Optimus chip fabrication.",
+            "estimatedTimeline": "2026-2027",
+            "investment": "$20,000,000,000",
+            "source": "Industry Intelligence / March 2026 Announcements",
+            "dateAnnounced": "2026-03-21"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Magdeburg, Germany",
+            "description": "Official cancellation of planned €30 billion mega-fab due to margin compression.",
+            "source": "EE News Europe, July 2025"
+        },
+        {
+            "type": "contraction",
+            "location": "San Jose, Costa Rica",
+            "description": "Total cessation of Assembly and Test Manufacturing (ATM) operations, shifting workloads to Asia.",
+            "source": "Tico Times / EE News Europe"
+        },
+        {
+            "type": "contraction",
+            "location": "Hillsboro, OR, USA",
+            "description": "Elimination of over 3,100 roles at core R&D hubs due to massive foundry segment operating losses.",
+            "source": "KLCC / Forest Grove News Times"
+        }
+    ]
+}
