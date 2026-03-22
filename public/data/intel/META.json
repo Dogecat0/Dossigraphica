@@ -1,0 +1,246 @@
+{
+    "company": "Meta Platforms, Inc.",
+    "ticker": "META",
+    "website": "https://investor.atmeta.com",
+    "sector": "Technology / Interactive Media",
+    "description": "A global technology conglomerate rapidly transitioning from a highly decentralized, human-capital-intensive digital advertising platform to an industrial-scale, localized artificial intelligence utility.",
+    "anchorFiling": {
+        "type": "10-K",
+        "date": "2026-01-29",
+        "fiscalPeriod": "FY2025"
+    },
+    "generatedDate": "2026-03-22",
+    "offices": [
+        {
+            "id": "meta-menlo-park-hq",
+            "name": "Meta Global Headquarters",
+            "city": "Menlo Park",
+            "state": "California",
+            "country": "USA",
+            "address": "1 Meta Way",
+            "lat": 37.4850,
+            "lng": -122.1483,
+            "type": "headquarters",
+            "businessFocus": "Principal executive headquarters, Meta Superintelligence Labs (MSL) operations",
+            "size": "10M sq ft (2M sq ft slated for abandonment)",
+            "source": "10-K FY2025, Item 2",
+            "confidence": "verified"
+        },
+        {
+            "id": "meta-holly-ridge-data-center",
+            "name": "Richland Parish Data Center",
+            "city": "Holly Ridge",
+            "state": "Louisiana",
+            "country": "USA",
+            "lat": 32.4496,
+            "lng": -91.7483,
+            "type": "data_center",
+            "businessFocus": "Hyperscale AI infrastructure, 2GW supercomputing cluster",
+            "size": "4M sq ft (2,250 acres)",
+            "source": "Corporate Press Release",
+            "confidence": "verified"
+        },
+        {
+            "id": "meta-dublin-regional",
+            "name": "Meta Platforms Ireland Limited",
+            "city": "Dublin",
+            "country": "Ireland",
+            "lat": 53.3331,
+            "lng": -6.2489,
+            "type": "regional",
+            "businessFocus": "EMEA Regional Corporate Hub, User Data Management, Ad Revenue nexus",
+            "source": "10-K FY2025, Exhibit 21.1",
+            "confidence": "verified"
+        },
+        {
+            "id": "meta-lulea-data-center",
+            "name": "Luleå Data Center",
+            "city": "Luleå",
+            "country": "Sweden",
+            "lat": 65.5848,
+            "lng": 22.1567,
+            "type": "data_center",
+            "businessFocus": "European Hyperscale Data Center",
+            "source": "Public Filings",
+            "confidence": "verified"
+        },
+        {
+            "id": "meta-singapore-data-center",
+            "name": "Singapore Data Center",
+            "city": "Singapore",
+            "country": "Singapore",
+            "lat": 1.3142,
+            "lng": 103.7027,
+            "type": "data_center",
+            "businessFocus": "APAC Hyperscale Data Center",
+            "source": "Public Filings",
+            "confidence": "verified"
+        },
+        {
+            "id": "meta-sao-paulo-regional",
+            "name": "Facebook Serviços Online Do Brasil Ltda.",
+            "city": "São Paulo",
+            "country": "Brazil",
+            "lat": -23.5505,
+            "lng": -46.6333,
+            "type": "regional",
+            "businessFocus": "LATAM regional operations",
+            "source": "10-K FY2025, Exhibit 21.1",
+            "confidence": "city_center_approximation"
+        }
+    ],
+    "revenueGeography": {
+        "fiscalYear": "FY2025",
+        "totalRevenue": 200966000000,
+        "currency": "USD",
+        "segments": [
+            {
+                "region": "United States & Canada",
+                "revenue": 78870000000,
+                "percentage": 39.24,
+                "yoyGrowth": null,
+                "notes": "Highest ARPU globally; primary driver of margin expansion."
+            },
+            {
+                "region": "Asia-Pacific (APAC)",
+                "revenue": 53820000000,
+                "percentage": 26.78,
+                "yoyGrowth": null,
+                "notes": "Highest user volume; monetizes at significantly lower rates."
+            },
+            {
+                "region": "Europe",
+                "revenue": 46570000000,
+                "percentage": 23.17,
+                "yoyGrowth": null,
+                "notes": "Includes Russia and Turkey. Constrained by DMA/DSA privacy regulations."
+            },
+            {
+                "region": "Rest of World (RoW)",
+                "revenue": 21710000000,
+                "percentage": 10.80,
+                "yoyGrowth": null,
+                "notes": "Sensitive to localized FX volatility against the USD."
+            }
+        ],
+        "concentrationRisk": "No single customer accounted for 10% or more of total revenue; heavily exposed to macro stability of North American and European middle class.",
+        "source": "10-K FY2025, Note Segment Information"
+    },
+    "supplyChain": [
+        {
+            "entity": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+            "role": "foundry",
+            "city": "Hsinchu",
+            "country": "Taiwan",
+            "lat": 24.7731,
+            "lng": 120.9953,
+            "product": "Meta Training and Inference Accelerator (MTIA) custom AI chips",
+            "criticality": "critical",
+            "source": "10-K FY2025, Item 1A"
+        },
+        {
+            "entity": "Goertek",
+            "role": "contract_manufacturer",
+            "city": "Bac Ninh",
+            "country": "Vietnam",
+            "lat": 21.1861,
+            "lng": 106.0763,
+            "product": "Meta Quest VR headsets, electronic components for smart glasses",
+            "criticality": "critical",
+            "source": "Financial Times / Soitec Report (2025)"
+        },
+        {
+            "entity": "EssilorLuxottica",
+            "role": "contract_manufacturer",
+            "city": "Paris",
+            "country": "France",
+            "lat": 48.8286,
+            "lng": 2.3736,
+            "product": "Ray-Ban Meta smart glasses optical frames",
+            "criticality": "important",
+            "source": "Corporate Press Release"
+        }
+    ],
+    "customerConcentration": [
+        {
+            "customer": "Hyper-fragmented SMB & Enterprise Base",
+            "revenueShare": "<10%",
+            "hqCity": "Global",
+            "hqCountry": "Global",
+            "lat": 0.0,
+            "lng": 0.0,
+            "relationship": "Automated ad-auction participants",
+            "source": "10-K FY2025, Item 1A"
+        }
+    ],
+    "geopoliticalRisks": [
+        {
+            "region": "European Union (EEA)",
+            "lat": 50.8503,
+            "lng": 4.3517,
+            "riskScore": 5,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "DMA Non-Compliance & Less Personalized Ads",
+            "description": "Rejection of the 'subscription for no ads' model under the DMA forcing the implementation of degraded targeting efficacy (Less Personalized Ads), materially reducing advertising revenue.",
+            "impactLevel": "critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-22"
+        },
+        {
+            "region": "Taiwan",
+            "lat": 23.6978,
+            "lng": 120.9605,
+            "riskScore": 5,
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "TSMC Single-Point Supply Chain Risk",
+            "description": "Total dependency on TSMC for the fabrication of MTIA custom silicon. A localized military blockade or severe seismic event would halt Meta's $135B AI infrastructure rollout.",
+            "impactLevel": "critical",
+            "filingReference": "10-K FY2025, Item 1A",
+            "lastUpdated": "2026-03-22"
+        },
+        {
+            "region": "European Union (EEA)",
+            "lat": 50.8503,
+            "lng": 4.3517,
+            "riskScore": 3,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "Article 102 TFEU Antitrust Investigation",
+            "description": "Investigation into whether Meta is abusing a dominant position regarding WhatsApp's new AI privacy policy.",
+            "impactLevel": "moderate",
+            "filingReference": "European Commission Announcement (2026)",
+            "lastUpdated": "2026-03-22"
+        }
+    ],
+    "expansionSignals": [
+        {
+            "type": "expansion",
+            "location": "Holly Ridge, LA, USA",
+            "lat": 32.4496,
+            "lng": -91.7483,
+            "description": "Construction of a 2 GW, 4 million sq ft AI infrastructure data center with >$10B capital investment.",
+            "estimatedTimeline": "2026-2030",
+            "investment": "$10,000,000,000+",
+            "source": "Corporate Press Release / Gov. Louisiana",
+            "dateAnnounced": "2025-08-01"
+        },
+        {
+            "type": "expansion",
+            "location": "Menlo Park, CA, USA",
+            "lat": 37.4850,
+            "lng": -122.1483,
+            "description": "Launch of Meta Superintelligence Labs (MSL) operating out of physically segregated office space.",
+            "estimatedTimeline": "2025-2026",
+            "investment": "$14.3B (Scale AI partnership proxy)",
+            "source": "Public domain / Tier-2 Reporting",
+            "dateAnnounced": "2025-06-30"
+        }
+    ],
+    "contractionSignals": [
+        {
+            "type": "contraction",
+            "location": "Global / Bay Area, CA",
+            "description": "Abandonment, sublease, or early termination of 2 million square feet of Bay Area real estate alongside a planned 20% global headcount reduction (~15,800 roles).",
+            "source": "10-K FY2025, Item 2 / Silicon Republic"
+        }
+    ]
+}
