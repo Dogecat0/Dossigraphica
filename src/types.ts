@@ -159,5 +159,68 @@ export interface GeoIntelligence {
     contractionSignals: ContractionSignal[]
 }
 
+/* ===== Cross-Company Analysis Types ===== */
+
+export interface DependencyLink {
+    from: string // Ticker
+    to: string // Ticker or Entity Name
+    type: 'buyer_supplier' | 'shared_dependency' | 'competitor' | 'equipment_provider'
+    description: string
+    strength?: 'critical' | 'important' | 'standard'
+    value?: string // e.g., "22% of revenue"
+}
+
+export interface ChainMatrix {
+    lastUpdated: string
+    version: string
+    dependencies: DependencyLink[]
+}
+
+export interface RegionalRiskScore {
+    region: string
+    lat: number
+    lng: number
+    overallScore: number // 1-10
+    contributingCompanies: {
+        ticker: string
+        riskScore: number
+        impactLevel: string
+        category: string
+    }[]
+    riskDimensions: string[]
+    summary: string
+}
+
+export interface RiskConvergence {
+    lastUpdated: string
+    regions: RegionalRiskScore[]
+}
+
+export interface Chokepoint {
+    id: string
+    name: string
+    type: string
+    location: string
+    lat: number
+    lng: number
+    severity: 'critical' | 'high' | 'medium' | 'low'
+    description: string
+    exposedCompanies: string[] // Tickers
+    mitigationStatus: string
+}
+
+export interface ChokepointAnalysis {
+    lastUpdated: string
+    chokepoints: Chokepoint[]
+}
+
+export type MapEntity = 
+    | { type: 'office', data: Office }
+    | { type: 'risk', data: GeopoliticalRisk }
+    | { type: 'regionalRisk', data: RegionalRiskScore }
+    | { type: 'chokepoint', data: Chokepoint }
+    | { type: 'supplier', data: SupplyChainNode }
+    | { type: 'customer', data: CustomerNode }
+
 /** Layer visibility toggles */
-export type LayerName = 'offices' | 'supplyChain' | 'customers' | 'risks'
+export type LayerName = 'offices' | 'supplyChain' | 'customers' | 'risks' | 'chain' | 'chokepoints'

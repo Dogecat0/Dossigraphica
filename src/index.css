@@ -13,7 +13,7 @@
   --color-ink: #1a1a1a;
   --color-ink-muted: #4a4a4a;
   --color-ink-light: #8a8a8a;
-  
+
   --color-border-ink: #1a1a1a;
   --color-border-muted: rgba(26, 26, 26, 0.15);
 
@@ -37,7 +37,7 @@ body,
   overflow: hidden;
   background-color: var(--color-bg-paper);
   /* Subtle paper texture */
-  background-image: 
+  background-image:
     url("https://www.transparenttextures.com/patterns/felt.png"),
     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.02) 100%);
   color: var(--color-ink);
@@ -46,7 +46,10 @@ body,
 }
 
 /* ===== Typography ===== */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-serif);
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -162,8 +165,13 @@ h1, h2, h3, h4 {
 
 /* ===== Animations ===== */
 @keyframes slide-open {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-slide-open {
@@ -191,6 +199,7 @@ h1, h2, h3, h4 {
   background: var(--color-ink);
   transform: scale(1.3);
 }
+
 /* ===== Intel Nodes (Dossigraphica Style) ===== */
 .intel-node-marker {
   position: absolute;
@@ -220,9 +229,11 @@ h1, h2, h3, h4 {
 .intel-node-tooltip {
   position: absolute;
   top: 50%;
-  left: 28px; /* shifted further out */
+  left: 28px;
+  /* shifted further out */
   transform: translateY(-50%) translateX(10px);
-  background: rgba(253, 252, 240, 0.85); /* var(--color-bg-paper) with opacity for glassmorphism */
+  background: rgba(253, 252, 240, 0.85);
+  /* var(--color-bg-paper) with opacity for glassmorphism */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(26, 26, 26, 0.3);
@@ -282,4 +293,41 @@ h1, h2, h3, h4 {
   line-height: 1.4;
   padding-top: 0.4rem;
   border-top: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+/* ===== Global Layer Overrides ===== */
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(163, 51, 51, 0.7);
+  }
+
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(163, 51, 51, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(163, 51, 51, 0);
+  }
+}
+
+.intel-node-dot.type-chokepoint {
+  width: 20px;
+  height: 20px;
+  background: rgba(239, 68, 68, 0.2);
+  border: 3px solid var(--color-accent-red);
+  box-shadow: 0 0 12px var(--color-accent-red);
+  animation: pulse-red 2.5s infinite;
+}
+
+.intel-node-dot.type-regionalRisk {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  /* Diamond/Square */
+  transform: rotate(45deg);
+  border-width: 2px;
 }

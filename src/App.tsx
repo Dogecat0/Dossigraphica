@@ -1,13 +1,14 @@
 import { useMemo, useCallback, useRef, useEffect, useState } from 'react'
 import GlobeView from './components/Globe'
 import type { GlobeViewHandle } from './components/Globe'
-import OfficePopup from './components/OfficePopup'
+import EntityPopup from './components/EntityPopup'
 import Header from './components/Header'
 import LayerToggle from './components/LayerToggle'
 import IntelPanel from './components/IntelPanel'
+import GlobalPanel from './components/GlobalPanel'
 import companiesData from './data/companies.json'
 import { useGeoIntel } from './useGeoIntel'
-import type { Company, Office, LayerName } from './types'
+import type { Company, Office, LayerName, MapEntity } from './types'
 import { PanelRightClose, PanelRightOpen, X } from 'lucide-react'
 
 const companies = companiesData as Company[]
@@ -15,7 +16,6 @@ const companies = companiesData as Company[]
 export default function App() {
     const {
         selectedCompany,
-        selectedOfficeId,
         setSelectedOfficeId,
         registerFlyToCallback,
         isIntelPanelOpen,
@@ -23,38 +23,75 @@ export default function App() {
         isIntelMinimized,
         setIsIntelMinimized,
         fetchGeoIntelData,
+        fetchGlobalAnalysis,
         geoIntelligence,
+        chainMatrix,
+        riskConvergence,
+        chokepointAnalysis,
         intelLoading,
         intelError,
-        intelMarkdownContent
+        intelMarkdownContent,
+        globalLoading,
+        globalError
     } = useGeoIntel()
 
-    // UI state that doesn't need to be in the global intel store right now
-    const [activeLayers, setActiveLayers] = useState<Set<LayerName>>(new Set(['offices']))
+    const viewMode = selectedCompany ? 'company' : 'global'
+
+    // UI state
+    const [activeLayers, setActiveLayers] = useState<Set<LayerName>>(new Set(['chain', 'risks', 'chokepoints', 'offices']))
+    const [selectedEntity, setSelectedEntity] = useState<MapEntity | null>(null)
+    const [globalTab, setGlobalTab] = useState<'overview' | 'chain' | 'risks' | 'chokepoints'>('overview')
 
     const globeRef = useRef<GlobeViewHandle>(null)
 
-    // Set initial company
+    // Initial data fetch
     useEffect(() => {
-        if (!selectedCompany && companies.length > 0) {
-            useGeoIntel.getState().setSelectedCompany(companies[0])
-        }
-    }, [selectedCompany])
+        fetchGlobalAnalysis()
+    }, [fetchGlobalAnalysis])
 
-    const currentCompany = selectedCompany || companies[0]
-
-    // Fetch Intel data when company changes
+    // Fetch Intel data and adjust layers when company changes
     useEffect(() => {
-        if (currentCompany) {
-            fetchGeoIntelData(currentCompany.ticker)
-            const hq = currentCompany.offices.find(o => o.type === 'headquarters') || currentCompany.offices[0]
+        if (selectedCompany) {
+            fetchGeoIntelData(selectedCompany.ticker)
+            // Auto-switch layers for company view
+            setActiveLayers(new Set(['offices', 'supplyChain', 'customers', 'risks']))
+            setSelectedEntity(null) // Clear selection
+            
+            // Initial fly-to HQ
+            const hq = selectedCompany.offices.find(o => o.type === 'headquarters') || selectedCompany.offices[0]
             if (hq && globeRef.current) {
                 globeRef.current.flyTo(hq.lat, hq.lng, 2.0)
             }
+        } else {
+            // Auto-switch layers for global view
+            setActiveLayers(new Set(['chain', 'risks', 'chokepoints', 'offices']))
+            setSelectedEntity(null)
+            setGlobalTab('overview')
         }
-    }, [currentCompany, fetchGeoIntelData])
+    }, [selectedCompany, fetchGeoIntelData])
 
-    // Register the flyTo callback so the Zustand store can control the globe camera
+    // Handle Global Tab Changes (Dynamic Filtering)
+    const handleGlobalTabChange = useCallback((tab: 'overview' | 'chain' | 'risks' | 'chokepoints') => {
+        setGlobalTab(tab)
+        if (viewMode === 'global') {
+            switch (tab) {
+                case 'overview':
+                    setActiveLayers(new Set(['chain', 'risks', 'chokepoints', 'offices']))
+                    break
+                case 'chain':
+                    setActiveLayers(new Set(['chain', 'offices']))
+                    break
+                case 'risks':
+                    setActiveLayers(new Set(['risks']))
+                    break
+                case 'chokepoints':
+                    setActiveLayers(new Set(['chokepoints']))
+                    break
+            }
+        }
+    }, [viewMode])
+
+    // Register the flyTo callback
     useEffect(() => {
         registerFlyToCallback((lat, lng, altitude) => {
             globeRef.current?.flyTo(lat, lng, altitude)
@@ -62,41 +99,69 @@ export default function App() {
     }, [registerFlyToCallback])
 
     // Flatten offices: merge base company offices with intel offices if available
-    const offices = useMemo((): Office[] => {
-        if (!currentCompany) return []
-        const baseOffices = currentCompany.offices.map((office) => ({
-            ...office,
-            companyId: currentCompany.company,
-        }))
-
-        if (geoIntelligence?.offices) {
-            const intelOffices = geoIntelligence.offices.map((office) => ({
-                ...office,
-                companyId: currentCompany.company,
-            }))
-
-            // simple merge, preferring intel offices
-            const merged = [...intelOffices]
-            baseOffices.forEach(bo => {
-                if (!merged.find(io => io.id === bo.id)) {
-                    merged.push(bo)
+    const allOffices = useMemo((): Office[] => {
+        const result: Office[] = []
+        
+        if (viewMode === 'global') {
+            // Global View: Show only HQs of all companies
+            companies.forEach(comp => {
+                const hq = comp.offices.find(o => o.type === 'headquarters')
+                if (hq) {
+                    result.push({ ...hq, companyId: comp.ticker })
                 }
             })
-            return merged
+            return result
         }
-        return baseOffices
-    }, [currentCompany, geoIntelligence])
 
-    const selectedOffice = useMemo((): Office | null => {
-        if (!selectedOfficeId) return null
-        return offices.find(o => o.id === selectedOfficeId) || null
-    }, [selectedOfficeId, offices])
+        // Company View: Show all offices for selected company ONLY
+        if (selectedCompany) {
+            const compOffices = geoIntelligence?.offices || selectedCompany.offices
+            compOffices.forEach(off => {
+                result.push({
+                    ...off,
+                    companyId: selectedCompany.ticker
+                })
+            })
 
-    const handleOfficeClick = useCallback((office: Office | null) => {
-        setSelectedOfficeId(office?.id || null)
+            // Optional: Show HQs of companies that have a dependency relationship
+            if (chainMatrix) {
+                const relatedTickers = new Set<string>()
+                chainMatrix.dependencies.forEach(dep => {
+                    if (dep.from === selectedCompany.ticker) relatedTickers.add(dep.to)
+                    if (dep.to === selectedCompany.ticker) relatedTickers.add(dep.from)
+                })
+
+                companies.forEach(comp => {
+                    if (relatedTickers.has(comp.ticker) && comp.ticker !== selectedCompany.ticker) {
+                        const hq = comp.offices.find(o => o.type === 'headquarters')
+                        if (hq) result.push({ ...hq, companyId: comp.ticker })
+                    }
+                })
+            }
+        }
+
+        return result
+    }, [viewMode, selectedCompany, geoIntelligence, chainMatrix])
+
+    // Fix EntityPopup company lookup bug (for offices)
+    const popupCompany = useMemo(() => {
+        if (!selectedEntity || selectedEntity.type !== 'office') return null
+        const office = selectedEntity.data as Office
+        if (selectedCompany && office.companyId === selectedCompany.ticker) return selectedCompany
+        return companies.find(c => c.ticker === office.companyId) || null
+    }, [selectedEntity, selectedCompany])
+
+    const handleEntityClick = useCallback((entity: MapEntity | null) => {
+        setSelectedEntity(entity)
+        if (entity && entity.type === 'office') {
+             setSelectedOfficeId((entity.data as Office).id)
+        } else {
+             setSelectedOfficeId(null)
+        }
     }, [setSelectedOfficeId])
 
     const handleClosePopup = useCallback(() => {
+        setSelectedEntity(null)
         setSelectedOfficeId(null)
     }, [setSelectedOfficeId])
 
@@ -126,31 +191,35 @@ export default function App() {
             <div className="relative flex-1 min-w-0 flex flex-col transition-all duration-500 ease-in-out">
                 {/* Header */}
                 <Header
-                    companyName={currentCompany?.company ?? ''}
-                    officeCount={offices.length}
+                    companyName={selectedCompany?.company ?? 'Global Value Chain'}
+                    officeCount={allOffices.length}
                     companies={companies}
-                    hasIntel={!!geoIntelligence && !intelError}
+                    hasIntel={viewMode === 'global' ? !!chainMatrix : (!!geoIntelligence && !intelError)}
                     intelOpen={isIntelPanelOpen}
                     onToggleIntel={handleToggleIntel}
-                    intelLoading={intelLoading}
+                    intelLoading={viewMode === 'company' ? intelLoading : globalLoading}
                 />
 
                 {/* 3D Globe */}
                 <div className="flex-1 relative scene-container">
                     <GlobeView
                         ref={globeRef}
-                        offices={offices}
-                        onOfficeClick={handleOfficeClick}
-                        selectedOffice={selectedOffice}
+                        viewMode={viewMode}
+                        offices={allOffices}
+                        onEntityClick={handleEntityClick}
+                        selectedEntity={selectedEntity}
                         intel={geoIntelligence}
+                        chainMatrix={chainMatrix}
+                        riskConvergence={riskConvergence}
+                        chokepointAnalysis={chokepointAnalysis}
                         activeLayers={activeLayers}
                     />
                 </div>
 
-                {/* Office Popup */}
-                <OfficePopup
-                    office={selectedOffice}
-                    company={currentCompany}
+                {/* Entity Popup */}
+                <EntityPopup
+                    entity={selectedEntity}
+                    company={popupCompany}
                     onClose={handleClosePopup}
                 />
 
@@ -159,7 +228,8 @@ export default function App() {
                     <LayerToggle
                         activeLayers={activeLayers}
                         onToggle={handleLayerToggle}
-                        hasIntel={geoIntelligence !== null}
+                        hasIntel={geoIntelligence !== null || viewMode === 'global'}
+                        viewMode={viewMode}
                     />
                 )}
 
@@ -171,7 +241,7 @@ export default function App() {
                 </div>
             </div>
 
-            {/* Bookmark Strip (Visible when Intel Panel is open but minimized, or just open) */}
+            {/* Bookmark Strip */}
             {isIntelPanelOpen && (
                 <div className="bookmark-strip border-l border-[var(--color-ink)]">
                     <button
@@ -192,20 +262,33 @@ export default function App() {
                 </div>
             )}
 
-            {/* Intel Panel (Dossier) */}
+            {/* Intel Panel / Global Panel */}
             {isIntelPanelOpen && !isIntelMinimized && (
                 <div className="w-[480px] h-full flex flex-col dossier-panel animate-slide-open overflow-hidden">
-                    <IntelPanel
-                        intel={geoIntelligence}
-                        loading={intelLoading}
-                        error={intelError}
-                        markdown={intelMarkdownContent}
-                        onClose={handleToggleIntel}
-                        onNavigate={handleIntelNavigate}
-                    />
+                    {viewMode === 'company' ? (
+                        <IntelPanel
+                            intel={geoIntelligence}
+                            loading={intelLoading}
+                            error={intelError}
+                            markdown={intelMarkdownContent}
+                            onClose={handleToggleIntel}
+                            onNavigate={handleIntelNavigate}
+                        />
+                    ) : (
+                        <GlobalPanel
+                            chainMatrix={chainMatrix}
+                            riskConvergence={riskConvergence}
+                            chokepointAnalysis={chokepointAnalysis}
+                            loading={globalLoading}
+                            error={globalError}
+                            activeTab={globalTab}
+                            onTabChange={handleGlobalTabChange}
+                            onClose={handleToggleIntel}
+                            onNavigate={handleIntelNavigate}
+                        />
+                    )}
                 </div>
             )}
         </div>
     )
 }
-

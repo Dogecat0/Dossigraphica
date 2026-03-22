@@ -1,0 +1,401 @@
+{
+  "lastUpdated": "2026-03-22T15:34:38.226929",
+  "regions": [
+    {
+      "region": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "overallScore": 9.2,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "INTC",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "MU",
+          "riskScore": 3,
+          "impactLevel": "Moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "NVDA",
+          "riskScore": 4,
+          "impactLevel": "Elevated to Critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "trade_restriction"
+        }
+      ],
+      "riskDimensions": [
+        "trade_restriction",
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 8 companies in China."
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "overallScore": 9.8,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "AMZN",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 4,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "GOOGL",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "INTC",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "META",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "MU",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "NVDA",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "environmental_regulation"
+        }
+      ],
+      "riskDimensions": [
+        "environmental_regulation",
+        "geopolitical_conflict"
+      ],
+      "summary": "Aggregated risk from 10 companies in Taiwan."
+    },
+    {
+      "region": "United States",
+      "lat": 33.4484,
+      "lng": -112.074,
+      "overallScore": 7.8,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "GOOGL",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "INTC",
+          "riskScore": 3,
+          "impactLevel": "Moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "environmental_regulation"
+        },
+        {
+          "ticker": "MU",
+          "riskScore": 3,
+          "impactLevel": "Moderate",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "NVDA",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 4,
+          "impactLevel": "moderate_critical",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "labor_regulation"
+        }
+      ],
+      "riskDimensions": [
+        "environmental_regulation",
+        "regulatory_compliance",
+        "tax_policy",
+        "trade_restriction",
+        "labor_regulation"
+      ],
+      "summary": "Aggregated risk from 10 companies in United States."
+    },
+    {
+      "region": "Middle East (UAE/Bahrain)",
+      "lat": 25.2048,
+      "lng": 55.2708,
+      "overallScore": 10,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
+        "geopolitical_conflict"
+      ],
+      "summary": "Aggregated risk from 1 companies in Middle East (UAE/Bahrain)."
+    },
+    {
+      "region": "European Union",
+      "lat": 50.8476,
+      "lng": 4.3572,
+      "overallScore": 8.5,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "GOOGL",
+          "riskScore": 4,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 4 companies in European Union."
+    },
+    {
+      "region": "Netherlands",
+      "lat": 51.4173,
+      "lng": 5.4053,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "environmental_regulation"
+        }
+      ],
+      "riskDimensions": [
+        "environmental_regulation"
+      ],
+      "summary": "Aggregated risk from 1 companies in Netherlands."
+    },
+    {
+      "region": "Malaysia",
+      "lat": 5.2647,
+      "lng": 100.4429,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "tax_policy"
+        }
+      ],
+      "riskDimensions": [
+        "tax_policy"
+      ],
+      "summary": "Aggregated risk from 1 companies in Malaysia."
+    },
+    {
+      "region": "Israel",
+      "lat": 31.6061,
+      "lng": 34.7717,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "INTC",
+          "riskScore": 4,
+          "impactLevel": "Moderate to Critical",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
+        "geopolitical_conflict"
+      ],
+      "summary": "Aggregated risk from 1 companies in Israel."
+    },
+    {
+      "region": "European Union (EEA)",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "META",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "META",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 2 companies in European Union (EEA)."
+    },
+    {
+      "region": "Qatar",
+      "lat": 25.3548,
+      "lng": 51.1839,
+      "overallScore": 10,
+      "contributingCompanies": [
+        {
+          "ticker": "MU",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
+        "geopolitical_conflict"
+      ],
+      "summary": "Aggregated risk from 1 companies in Qatar."
+    },
+    {
+      "region": "France / EU",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "overallScore": 10,
+      "contributingCompanies": [
+        {
+          "ticker": "NVDA",
+          "riskScore": 5,
+          "impactLevel": "Critical",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 1 companies in France / EU."
+    },
+    {
+      "region": "Germany",
+      "lat": 51.0504,
+      "lng": 13.7373,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "labor_regulation"
+        }
+      ],
+      "riskDimensions": [
+        "labor_regulation"
+      ],
+      "summary": "Aggregated risk from 1 companies in Germany."
+    }
+  ]
+}

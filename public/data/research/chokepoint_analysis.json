@@ -1,0 +1,42 @@
+{
+  "lastUpdated": "2026-03-22T15:34:38.227616",
+  "chokepoints": [
+    {
+      "name": "TSMC Hsinchu Hub",
+      "type": "Manufacturing",
+      "location": "Hsinchu, Taiwan",
+      "lat": 24.7731,
+      "lng": 121.0069,
+      "severity": "critical",
+      "description": "Concentration of leading-edge semiconductor manufacturing.",
+      "exposedCompanies": [
+        "AMD",
+        "AVGO",
+        "AMZN",
+        "INTC",
+        "MSFT",
+        "NVDA",
+        "MU",
+        "META"
+      ],
+      "id": "tsmc_hsinchu",
+      "mitigationStatus": "Developing"
+    },
+    {
+      "name": "ASML EUV Monopsony",
+      "type": "Equipment",
+      "location": "Veldhoven, Netherlands",
+      "lat": 51.4173,
+      "lng": 5.4053,
+      "severity": "critical",
+      "description": "Sole provider of EUV lithography systems.",
+      "exposedCompanies": [
+        "MU",
+        "INTC",
+        "TSM"
+      ],
+      "id": "asml_euv",
+      "mitigationStatus": "Developing"
+    }
+  ]
+}

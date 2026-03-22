@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Company, GeoIntelligence } from './types';
+import { ChainMatrix, ChokepointAnalysis, Company, GeoIntelligence, RiskConvergence } from './types';
 import { fetchTextOrThrow, FetchError } from './utils/fetchTextOrThrow';
 
 interface GeoIntelState {
@@ -7,6 +7,13 @@ interface GeoIntelState {
   selectedOfficeId: string | null;
   activeMarkdownSection: string | null;
   geoIntelligence: GeoIntelligence | null;
+
+  // Global Analysis State
+  chainMatrix: ChainMatrix | null;
+  riskConvergence: RiskConvergence | null;
+  chokepointAnalysis: ChokepointAnalysis | null;
+  globalLoading: boolean;
+  globalError: string | null;
 
   // Intel Panel State
   isIntelPanelOpen: boolean;
@@ -26,6 +33,7 @@ interface GeoIntelState {
   
   // Fetch Actions
   fetchGeoIntelData: (companyTicker: string) => Promise<void>;
+  fetchGlobalAnalysis: () => Promise<void>;
 
   // Callback registry for Globe animation
   registerFlyToCallback: (callback: (lat: number, lng: number, altitude: number) => void) => void;
@@ -37,6 +45,12 @@ export const useGeoIntel = create<GeoIntelState>((set, get) => ({
   selectedOfficeId: null,
   activeMarkdownSection: null,
   geoIntelligence: null,
+
+  chainMatrix: null,
+  riskConvergence: null,
+  chokepointAnalysis: null,
+  globalLoading: true,
+  globalError: null,
 
   isIntelPanelOpen: false,
   isIntelMinimized: false,
@@ -84,6 +98,40 @@ export const useGeoIntel = create<GeoIntelState>((set, get) => ({
         intelError: e.message, 
         intelLoading: false 
       });
+    }
+  },
+
+  fetchGlobalAnalysis: async () => {
+    set({ globalLoading: true, globalError: null });
+    const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+    
+    const fetchJson = async <T>(path: string): Promise<T | null> => {
+        try {
+            const text = await fetchTextOrThrow(`${baseUrl}${path}`, 'application/json');
+            return JSON.parse(text) as T;
+        } catch (e) {
+            console.warn(`Failed to fetch global analysis file: ${path}`, e);
+            throw e;
+        }
+    };
+
+    try {
+        const [chain, risk, chokepoints] = await Promise.all([
+            fetchJson<ChainMatrix>('/data/research/chain_matrix.json'),
+            fetchJson<RiskConvergence>('/data/research/risk_convergence.json'),
+            fetchJson<ChokepointAnalysis>('/data/research/chokepoint_analysis.json')
+        ]);
+
+        set({
+            chainMatrix: chain,
+            riskConvergence: risk,
+            chokepointAnalysis: chokepoints,
+            globalLoading: false
+        });
+    } catch (err) {
+        const e = err as Error;
+        console.error("Failed to load global analysis:", e);
+        set({ globalLoading: false, globalError: e.message });
     }
   },
 

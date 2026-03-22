@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react'
 import {
-    X, Building2, DollarSign, Link2, Users, ShieldAlert,
-    TrendingUp, TrendingDown, FileText, MapPin, AlertTriangle, Loader2, ArrowRight
+    Building2, DollarSign, Link2, Users, ShieldAlert,
+    TrendingUp, FileText, MapPin, AlertTriangle, Loader2, ArrowRight
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'

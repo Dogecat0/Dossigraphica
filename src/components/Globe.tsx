@@ -3,44 +3,51 @@ import * as THREE from 'three'
 import Globe from 'react-globe.gl'
 import { fetchTextOrThrow } from '../utils/fetchTextOrThrow'
 import type {
-    Office, OfficeType, RingDatum, ArcDatum,
-    GeoIntelligence, LayerName, SupplyChainNode, CustomerNode, GeopoliticalRisk
+    Office, OfficeType,
+    GeoIntelligence, LayerName, MapEntity,
+    ChainMatrix, RiskConvergence, ChokepointAnalysis
 } from '../types'
 
 const OFFICE_TYPE_COLORS: Record<OfficeType, string> = {
-    headquarters: '#1a1a1a',
-    regional: '#4a4a4a',
-    engineering: '#4a4a4a',
-    satellite: '#8a8a8a',
-    manufacturing: '#a36633',
-    data_center: '#2a5a8a',
-    sales: '#3d6a4a',
-    logistics: '#a33333',
+    headquarters: '#1a1a1a',      // Ink Black - Dominant
+    regional: '#57534e',          // Warm Grey
+    engineering: '#57534e',       // Warm Grey
+    satellite: '#a8a29e',         // Light Warm Grey
+    manufacturing: '#ea580c',     // Industrial Orange - High Visibility
+    data_center: '#0891b2',       // Cyan/Blue - Digital/Cool
+    sales: '#15803d',             // Green - Commercial
+    logistics: '#b91c1c',         // Red - Critical Path
 }
 
 const OFFICE_TYPE_SIZES: Record<OfficeType, number> = {
-    headquarters: 1.5,
-    regional: 0.9,
-    engineering: 0.8,
-    satellite: 0.6,
-    manufacturing: 1.1,
+    headquarters: 1.8,            // Larger
+    regional: 0.8,
+    engineering: 0.7,
+    satellite: 0.4,               // Smaller
+    manufacturing: 1.2,           // Significant
     data_center: 1.0,
-    sales: 0.8,
-    logistics: 0.9,
+    sales: 0.6,
+    logistics: 0.8,
 }
 
 const CRITICALITY_COLORS: Record<string, string> = {
-    critical: '#a33333',
-    important: '#a36633',
-    standard: '#4a4a4a',
+    critical: '#b91c1c',          // Deep Red
+    important: '#ea580c',         // Orange
+    standard: '#57534e',          // Grey
 }
 
+// Risk Gradient: Neutral Yellow -> Deep Burgundy
 const RISK_COLORS: Record<number, string> = {
-    1: '#3d6a4a',
-    2: '#5d8a6a',
-    3: '#b08d57',
-    4: '#a36633',
-    5: '#a33333',
+    1: '#eab308', // Yellow-500
+    2: '#d97706', // Amber-600
+    3: '#f97316', // Orange-500
+    4: '#ea580c', // Orange-600
+    5: '#dc2626', // Red-600
+    6: '#b91c1c', // Red-700
+    7: '#991b1b', // Red-800
+    8: '#7f1d1d', // Red-900
+    9: '#450a0a', // Brown/Red
+    10: '#450a0a',
 }
 
 export interface GlobeViewHandle {
@@ -50,54 +57,54 @@ export interface GlobeViewHandle {
 interface IntelNodeDatum {
     lat: number
     lng: number
-    layerType: 'office' | 'supplyChain' | 'customer' | 'risk'
+    layerType: 'office' | 'supplyChain' | 'customer' | 'risk' | 'chokepoint' | 'regionalRisk'
     label: string
     sublabel: string
     detail: string
     color: string
     id: string
-    rawRef?: any
+    entity: MapEntity
 }
 
 interface GlobeViewProps {
+    viewMode: 'global' | 'company'
     offices: Office[]
-    onOfficeClick: (office: Office | null) => void
-    selectedOffice: Office | null
+    onEntityClick: (entity: MapEntity | null) => void
+    selectedEntity: MapEntity | null
     intel: GeoIntelligence | null
+    chainMatrix: ChainMatrix | null
+    riskConvergence: RiskConvergence | null
+    chokepointAnalysis: ChokepointAnalysis | null
     activeLayers: Set<LayerName>
 }
 
 // Extra datum types for intel layers
-interface SupplyChainRingDatum {
+interface ExtendedRingDatum {
     lat: number; lng: number; color: string; size: number
     isCore: boolean; isSelected: boolean
-    layerType: 'supplyChain'
-    ref: SupplyChainNode
+    layerType: string
+    id: string
+    entity: MapEntity
+    dimmed: boolean
 }
 
-interface CustomerRingDatum {
-    lat: number; lng: number; color: string; size: number
-    isCore: boolean; isSelected: boolean
-    layerType: 'customer'
-    ref: CustomerNode
+interface ExtendedArcDatum {
+    startLat: number; startLng: number
+    endLat: number; endLng: number
+    color: [string, string]
+    stroke: number
+    startId: string
+    endId: string
+    dimmed: boolean
 }
-
-interface RiskRingDatum {
-    lat: number; lng: number; color: string; size: number
-    isCore: boolean; isSelected: boolean
-    layerType: 'risk'
-    ref: GeopoliticalRisk
-}
-
-type AllRingDatum = RingDatum | SupplyChainRingDatum | CustomerRingDatum | RiskRingDatum
 
 const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView(
-    { offices, onOfficeClick, selectedOffice, intel, activeLayers },
+    { viewMode, offices, onEntityClick, selectedEntity, intel, chainMatrix, riskConvergence, chokepointAnalysis, activeLayers },
     ref
 ) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const globeRef = useRef<any>(null)
-
+    const [hoveredEntityId, setHoveredEntityId] = useState<string | null>(null)
 
     useImperativeHandle(ref, () => ({
         flyTo(lat: number, lng: number, altitude: number = 1.8) {
@@ -119,23 +126,34 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         globe.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 0)
     }, [])
 
-    // Fly to selected office
+    // Fly to selected entity
     useEffect(() => {
-        if (selectedOffice && globeRef.current) {
-            globeRef.current.controls().autoRotate = false
-            globeRef.current.pointOfView(
-                { lat: selectedOffice.lat, lng: selectedOffice.lng, altitude: 1.8 },
-                1000
-            )
+        if (selectedEntity) {
+            let lat: number, lng: number;
+            if (selectedEntity.type === 'office') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'risk') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'regionalRisk') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'chokepoint') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'supplier') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'customer') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else return;
+
+            if (globeRef.current) {
+                globeRef.current.controls().autoRotate = false
+                globeRef.current.pointOfView(
+                    { lat, lng, altitude: 1.8 },
+                    1000
+                )
+            }
         }
-    }, [selectedOffice])
+    }, [selectedEntity])
 
     const handleGlobeClick = useCallback(() => {
-        onOfficeClick(null)
+        onEntityClick(null)
         if (globeRef.current) {
             globeRef.current.controls().autoRotate = true
         }
-    }, [onOfficeClick])
+    }, [onEntityClick])
 
     const [countriesLineData, setCountriesLineData] = useState<object[]>([])
 
@@ -154,91 +172,218 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         return () => { mounted = false }
     }, [])
 
+    // Helper: Generate Entity IDs
+    // Offices: use office.id (from App)
+    // Global Layers: use index-based stable IDs (e.g. 'rr-0', 'cp-0')
+    // Intel Layers: use index-based stable IDs (e.g. 'sc-0', 'cu-0')
+
+    // Prepare Adjacency Map for Hover Logic
+    const adjacencyMap = useMemo(() => {
+        const map = new Map<string, Set<string>>()
+        const addLink = (a: string, b: string) => {
+            if (!map.has(a)) map.set(a, new Set())
+            if (!map.has(b)) map.set(b, new Set())
+            map.get(a)!.add(b)
+            map.get(b)!.add(a)
+        }
+
+        // Global Chain
+        if (chainMatrix) {
+            // Need Ticker -> Office ID map
+            const tickerToId = new Map<string, string>()
+            offices.forEach(o => {
+                if (o.type === 'headquarters' && o.companyId) {
+                    tickerToId.set(o.companyId, o.id)
+                }
+            })
+
+            chainMatrix.dependencies.forEach(dep => {
+                const fromId = tickerToId.get(dep.from)
+                const toId = tickerToId.get(dep.to)
+                if (fromId && toId) addLink(fromId, toId)
+            })
+        }
+
+        // Intel Chain (HQ <-> Node)
+        if (intel) {
+            const hq = offices.find(o => o.type === 'headquarters')
+            const hqId = hq?.id || 'hq-fallback'
+
+            // Supply Chain
+            intel.supplyChain.forEach((_, i) => addLink(hqId, `sc-${i}`))
+            // Customers
+            intel.customerConcentration.forEach((_, i) => addLink(hqId, `cu-${i}`))
+        }
+
+        return map
+    }, [chainMatrix, intel, offices])
+
     // ===== Compute rings data combining all active layers =====
-    const ringsData = useMemo((): AllRingDatum[] => {
-        const allRings: AllRingDatum[] = []
+    const ringsData = useMemo((): ExtendedRingDatum[] => {
+        const allRings: ExtendedRingDatum[] = []
+
+        // Helper to check if dimmed
+        const isDimmed = (id: string) => {
+            if (!hoveredEntityId) return false
+            if (hoveredEntityId === id) return false
+            const neighbors = adjacencyMap.get(hoveredEntityId)
+            if (neighbors && neighbors.has(id)) return false
+            return true
+        }
 
         // Office rings
         if (activeLayers.has('offices')) {
             offices.forEach((office) => {
                 const size = OFFICE_TYPE_SIZES[office.type] || 0.5
                 const color = OFFICE_TYPE_COLORS[office.type] || '#6b7280'
-                const isSelected = selectedOffice?.id === office.id
+                const isSelected = selectedEntity?.type === 'office' && (selectedEntity.data as Office).id === office.id
+                const id = office.id
 
                 allRings.push({
                     lat: office.lat, lng: office.lng, color, size,
-                    isSelected: false, isCore: true, officeRef: office,
+                    isSelected: false, isCore: true,
+                    layerType: 'office', id, entity: { type: 'office', data: office },
+                    dimmed: isDimmed(id)
                 })
                 allRings.push({
                     lat: office.lat, lng: office.lng, color, size,
-                    isSelected, isCore: false, officeRef: office,
+                    isSelected, isCore: false,
+                    layerType: 'office', id, entity: { type: 'office', data: office },
+                    dimmed: isDimmed(id)
                 })
             })
         }
 
-        if (!intel) return allRings
+        if (intel) {
+            // Supply chain rings
+            if (activeLayers.has('supplyChain')) {
+                intel.supplyChain.forEach((node, i) => {
+                    const id = `sc-${i}`
+                    const color = CRITICALITY_COLORS[node.criticality] || '#6b7280'
+                    const isSelected = selectedEntity?.type === 'supplier' && selectedEntity.data === node
 
-        // Supply chain rings
-        if (activeLayers.has('supplyChain')) {
-            intel.supplyChain.forEach((node) => {
-                const color = CRITICALITY_COLORS[node.criticality] || '#6b7280'
-                // Core dot
-                allRings.push({
-                    lat: node.lat, lng: node.lng, color, size: 0.8,
-                    isCore: true, isSelected: false,
-                    layerType: 'supplyChain', ref: node,
-                } as SupplyChainRingDatum)
-                // Pulsing ring
-                allRings.push({
-                    lat: node.lat, lng: node.lng, color, size: 0.8,
-                    isCore: false, isSelected: false,
-                    layerType: 'supplyChain', ref: node,
-                } as SupplyChainRingDatum)
-            })
+                    allRings.push({
+                        lat: node.lat, lng: node.lng, color, size: 0.8,
+                        isCore: true, isSelected: false,
+                        layerType: 'supplyChain', id, entity: { type: 'supplier', data: node },
+                        dimmed: isDimmed(id)
+                    })
+                    allRings.push({
+                        lat: node.lat, lng: node.lng, color, size: 0.8,
+                        isCore: false, isSelected, // Pulsing is selection or just ambient? Ambient usually. Selection makes it bright.
+                        layerType: 'supplyChain', id, entity: { type: 'supplier', data: node },
+                        dimmed: isDimmed(id)
+                    })
+                })
+            }
+
+            // Customer rings
+            if (activeLayers.has('customers')) {
+                intel.customerConcentration.forEach((cust, i) => {
+                    const id = `cu-${i}`
+                    const color = '#06b6d4'
+                    const isSelected = selectedEntity?.type === 'customer' && selectedEntity.data === cust
+
+                    allRings.push({
+                        lat: cust.lat, lng: cust.lng, color, size: 0.9,
+                        isCore: true, isSelected: false,
+                        layerType: 'customer', id, entity: { type: 'customer', data: cust },
+                        dimmed: isDimmed(id)
+                    })
+                    allRings.push({
+                        lat: cust.lat, lng: cust.lng, color, size: 0.9,
+                        isCore: false, isSelected,
+                        layerType: 'customer', id, entity: { type: 'customer', data: cust },
+                        dimmed: isDimmed(id)
+                    })
+                })
+            }
+
+            // Risk rings (Intel specific risks)
+            if (activeLayers.has('risks')) {
+                intel.geopoliticalRisks.forEach((risk, i) => {
+                    const id = `rk-${i}`
+                    const color = RISK_COLORS[risk.riskScore] || '#f59e0b'
+                    const isSelected = selectedEntity?.type === 'risk' && selectedEntity.data === risk
+
+                    allRings.push({
+                        lat: risk.lat, lng: risk.lng, color, size: risk.riskScore * 0.8,
+                        isCore: true, isSelected: false,
+                        layerType: 'risk', id, entity: { type: 'risk', data: risk },
+                        dimmed: isDimmed(id)
+                    })
+                    allRings.push({
+                        lat: risk.lat, lng: risk.lng, color, size: risk.riskScore * 0.8,
+                        isCore: false, isSelected,
+                        layerType: 'risk', id, entity: { type: 'risk', data: risk },
+                        dimmed: isDimmed(id)
+                    })
+                })
+            }
         }
 
-        // Customer rings
-        if (activeLayers.has('customers')) {
-            intel.customerConcentration.forEach((cust) => {
-                const color = '#06b6d4'
-                allRings.push({
-                    lat: cust.lat, lng: cust.lng, color, size: 0.9,
-                    isCore: true, isSelected: false,
-                    layerType: 'customer', ref: cust,
-                } as CustomerRingDatum)
-                allRings.push({
-                    lat: cust.lat, lng: cust.lng, color, size: 0.9,
-                    isCore: false, isSelected: false,
-                    layerType: 'customer', ref: cust,
-                } as CustomerRingDatum)
-            })
-        }
+        // Global Analysis Layers - ONLY IN GLOBAL VIEW
+        if (viewMode === 'global') {
+            if (activeLayers.has('risks') && riskConvergence) {
+                riskConvergence.regions.forEach((risk, i) => {
+                    const id = `rr-${i}`
+                    const color = RISK_COLORS[Math.round(risk.overallScore)] || '#f59e0b'
+                    const isSelected = selectedEntity?.type === 'regionalRisk' && selectedEntity.data === risk
 
-        // Risk rings (bigger, threat-colored)
-        if (activeLayers.has('risks')) {
-            intel.geopoliticalRisks.forEach((risk) => {
-                const color = RISK_COLORS[risk.riskScore] || '#f59e0b'
-                allRings.push({
-                    lat: risk.lat, lng: risk.lng, color, size: risk.riskScore * 0.8,
-                    isCore: true, isSelected: false,
-                    layerType: 'risk', ref: risk,
-                } as RiskRingDatum)
-                allRings.push({
-                    lat: risk.lat, lng: risk.lng, color, size: risk.riskScore * 0.8,
-                    isCore: false, isSelected: false,
-                    layerType: 'risk', ref: risk,
-                } as RiskRingDatum)
-            })
+                    allRings.push({
+                        lat: risk.lat, lng: risk.lng, color, size: risk.overallScore * 1.2,
+                        isCore: true, isSelected: false,
+                        layerType: 'regionalRisk', id, entity: { type: 'regionalRisk', data: risk },
+                        dimmed: isDimmed(id)
+                    })
+                    allRings.push({
+                        lat: risk.lat, lng: risk.lng, color, size: risk.overallScore * 1.2,
+                        isCore: false, isSelected,
+                        layerType: 'regionalRisk', id, entity: { type: 'regionalRisk', data: risk },
+                        dimmed: isDimmed(id)
+                    })
+                })
+            }
+
+            if (activeLayers.has('chokepoints') && chokepointAnalysis) {
+                chokepointAnalysis.chokepoints.forEach((cp, i) => {
+                    const id = `cp-${i}`
+                    const color = '#ef4444'
+                    const isSelected = selectedEntity?.type === 'chokepoint' && selectedEntity.data === cp
+
+                    allRings.push({
+                        lat: cp.lat, lng: cp.lng, color, size: 1.5,
+                        isCore: true, isSelected: false,
+                        layerType: 'chokepoint', id, entity: { type: 'chokepoint', data: cp },
+                        dimmed: isDimmed(id)
+                    })
+                    allRings.push({
+                        lat: cp.lat, lng: cp.lng, color, size: 1.5,
+                        isCore: false, isSelected,
+                        layerType: 'chokepoint', id, entity: { type: 'chokepoint', data: cp },
+                        dimmed: isDimmed(id)
+                    })
+                })
+            }
         }
 
         return allRings
-    }, [offices, selectedOffice, intel, activeLayers])
+    }, [offices, selectedEntity, intel, riskConvergence, chokepointAnalysis, activeLayers, viewMode, hoveredEntityId, adjacencyMap])
 
     // ===== Compute arcs combining all active layers =====
-    const arcsData = useMemo((): ArcDatum[] => {
-        const allArcs: ArcDatum[] = []
+    const arcsData = useMemo((): ExtendedArcDatum[] => {
+        const allArcs: ExtendedArcDatum[] = []
+
+        // Helper to check if dimmed
+        const isDimmed = (startId: string, endId: string) => {
+            if (!hoveredEntityId) return false
+            if (hoveredEntityId === startId || hoveredEntityId === endId) return false
+            // If hovering an arc (not implemented yet, but if we did), logic would be here.
+            return true
+        }
 
         // Office arcs: HQ → other offices
+        // Currently offices don't have explicit arcs in design, but let's keep existing logic
         if (activeLayers.has('offices')) {
             const hq = offices.find((o) => o.type === 'headquarters')
             if (hq) {
@@ -252,50 +397,103 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                                 OFFICE_TYPE_COLORS.headquarters + '33',
                                 (OFFICE_TYPE_COLORS[o.type] || '#6b7280') + '33',
                             ],
+                            startId: hq.id, endId: o.id,
+                            dimmed: isDimmed(hq.id, o.id),
+                            stroke: 0.35,
                         })
                     })
             }
         }
 
-        if (!intel) return allArcs
+        if (intel) {
+            const hq = offices.find((o) => o.type === 'headquarters')
+            const hqLat = hq?.lat ?? intel.offices.find(o => o.type === 'headquarters')?.lat ?? 0
+            const hqLng = hq?.lng ?? intel.offices.find(o => o.type === 'headquarters')?.lng ?? 0
+            const hqId = hq?.id || 'hq-fallback'
 
-        // Find HQ for intel arcs
-        const hqOffice = offices.find((o) => o.type === 'headquarters')
-        const hqLat = hqOffice?.lat ?? intel.offices.find(o => o.type === 'headquarters')?.lat ?? 0
-        const hqLng = hqOffice?.lng ?? intel.offices.find(o => o.type === 'headquarters')?.lng ?? 0
+            // Supply chain arcs
+            if (activeLayers.has('supplyChain')) {
+                intel.supplyChain.forEach((node, i) => {
+                    const id = `sc-${i}`
+                    const nodeColor = CRITICALITY_COLORS[node.criticality] || '#57534e'
+                    // Gradient: HQ (Ink) -> Supplier (Criticality Color)
+                    // Start opacity 0.5 -> End opacity 0.8 to emphasize the destination
+                    const startColor = OFFICE_TYPE_COLORS.headquarters + '80' // 50% opacity
+                    const endColor = nodeColor + 'cc' // 80% opacity
 
-        // Supply chain arcs
-        if (activeLayers.has('supplyChain')) {
-            intel.supplyChain.forEach((node) => {
-                const color = CRITICALITY_COLORS[node.criticality] || '#6b7280'
-                allArcs.push({
-                    startLat: hqLat, startLng: hqLng,
-                    endLat: node.lat, endLng: node.lng,
-                    color: [color + '55', color + '22'],
+                    allArcs.push({
+                        startLat: hqLat, startLng: hqLng,
+                        endLat: node.lat, endLng: node.lng,
+                        color: [startColor, endColor],
+                        startId: hqId, endId: id,
+                        dimmed: isDimmed(hqId, id),
+                        stroke: 0.35,
+                    })
                 })
-            })
+            }
+
+            // Customer arcs
+            if (activeLayers.has('customers')) {
+                intel.customerConcentration.forEach((cust, i) => {
+                    const id = `cu-${i}`
+                    // Gradient: HQ (Ink) -> Customer (Cyan)
+                    const startColor = OFFICE_TYPE_COLORS.headquarters + '80'
+                    const endColor = '#06b6d4cc'
+
+                    allArcs.push({
+                        startLat: hqLat, startLng: hqLng,
+                        endLat: cust.lat, endLng: cust.lng,
+                        color: [startColor, endColor],
+                        startId: hqId, endId: id,
+                        stroke: 0.35,
+                        dimmed: false
+                    })
+                })
+            }
         }
 
-        // Customer arcs
-        if (activeLayers.has('customers')) {
-            intel.customerConcentration.forEach((cust) => {
-                allArcs.push({
-                    startLat: hqLat, startLng: hqLng,
-                    endLat: cust.lat, endLng: cust.lng,
-                    color: ['#06b6d455', '#06b6d422'],
-                })
+        // Global Chain Arcs - ONLY IN GLOBAL VIEW (or if chain layer active, which is managed by App)
+        // If viewMode is company, 'chain' might be active to show neighbors, but user asked to reduce noise.
+        // Let's stick to activeLayers. App manages activeLayers based on viewMode.
+        if (activeLayers.has('chain') && chainMatrix) {
+            // Map company ticker to HQ location and ID
+            const tickerToData = new Map<string, { lat: number, lng: number, id: string }>()
+            offices.forEach(o => {
+                if (o.type === 'headquarters' && o.companyId) {
+                    tickerToData.set(o.companyId, { lat: o.lat, lng: o.lng, id: o.id })
+                }
+            })
+
+            chainMatrix.dependencies.forEach(dep => {
+                const fromData = tickerToData.get(dep.from)
+                const toData = tickerToData.get(dep.to)
+
+                if (fromData && toData) {
+                    const isCritical = dep.strength === 'critical';
+                    allArcs.push({
+                        startLat: fromData.lat, startLng: fromData.lng,
+                        endLat: toData.lat, endLng: toData.lng,
+                        color: isCritical
+                            ? ['#ef4444aa', '#ef444455']
+                            : ['#1a1a1a66', '#1a1a1a33'],
+                        startId: fromData.id, endId: toData.id,
+                        dimmed: isDimmed(fromData.id, toData.id),
+                        stroke: 0.35,
+                    })
+                }
             })
         }
 
         return allArcs
-    }, [offices, intel, activeLayers])
+    }, [offices, intel, chainMatrix, activeLayers, hoveredEntityId])
 
     // ===== Compute interactive HTML overlay nodes for intel layers =====
+    // Reusing the same ID scheme
     const htmlNodesData = useMemo((): IntelNodeDatum[] => {
         const nodes: IntelNodeDatum[] = []
 
         if (activeLayers.has('offices')) {
-            offices.forEach((office, i) => {
+            offices.forEach((office) => {
                 nodes.push({
                     lat: office.lat, lng: office.lng,
                     layerType: 'office',
@@ -303,73 +501,118 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                     sublabel: office.country,
                     detail: `${(office.type || '').replace(/_/g, ' ')}`,
                     color: OFFICE_TYPE_COLORS[office.type] || '#1a1a1a',
-                    id: `of-${i}`,
-                    rawRef: office,
+                    id: office.id,
+                    entity: { type: 'office', data: office }
                 })
             })
         }
 
-        if (!intel) return nodes
-
-        if (activeLayers.has('supplyChain')) {
-            intel.supplyChain.forEach((node, i) => {
-                nodes.push({
-                    lat: node.lat, lng: node.lng,
-                    layerType: 'supplyChain',
-                    label: node.entity,
-                    sublabel: `${node.city}, ${node.country}`,
-                    detail: `${node.role.replace(/_/g, ' ')} · ${node.criticality}`,
-                    color: CRITICALITY_COLORS[node.criticality] || '#6b7280',
-                    id: `sc-${i}`,
+        if (intel) {
+            if (activeLayers.has('supplyChain')) {
+                intel.supplyChain.forEach((node, i) => {
+                    nodes.push({
+                        lat: node.lat, lng: node.lng,
+                        layerType: 'supplyChain',
+                        label: node.entity,
+                        sublabel: `${node.city}, ${node.country}`,
+                        detail: `${node.role.replace(/_/g, ' ')} · ${node.criticality}`,
+                        color: CRITICALITY_COLORS[node.criticality] || '#6b7280',
+                        id: `sc-${i}`,
+                        entity: { type: 'supplier', data: node }
+                    })
                 })
-            })
+            }
+
+            if (activeLayers.has('customers')) {
+                intel.customerConcentration.forEach((cust, i) => {
+                    nodes.push({
+                        lat: cust.lat, lng: cust.lng,
+                        layerType: 'customer',
+                        label: cust.customer,
+                        sublabel: `${cust.hqCity}, ${cust.hqCountry}`,
+                        detail: `Revenue share: ${cust.revenueShare}`,
+                        color: '#06b6d4',
+                        id: `cu-${i}`,
+                        entity: { type: 'customer', data: cust }
+                    })
+                })
+            }
+
+            if (activeLayers.has('risks')) {
+                intel.geopoliticalRisks.forEach((risk, i) => {
+                    nodes.push({
+                        lat: risk.lat, lng: risk.lng,
+                        layerType: 'risk',
+                        label: risk.riskLabel,
+                        sublabel: risk.region,
+                        detail: `Risk ${risk.riskScore}/5 · ${risk.impactLevel}`,
+                        color: RISK_COLORS[risk.riskScore] || '#f59e0b',
+                        id: `rk-${i}`,
+                        entity: { type: 'risk', data: risk }
+                    })
+                })
+            }
         }
 
-        if (activeLayers.has('customers')) {
-            intel.customerConcentration.forEach((cust, i) => {
-                nodes.push({
-                    lat: cust.lat, lng: cust.lng,
-                    layerType: 'customer',
-                    label: cust.customer,
-                    sublabel: `${cust.hqCity}, ${cust.hqCountry}`,
-                    detail: `Revenue share: ${cust.revenueShare}`,
-                    color: '#06b6d4',
-                    id: `cu-${i}`,
+        if (viewMode === 'global') {
+            if (activeLayers.has('risks') && riskConvergence) {
+                riskConvergence.regions.forEach((risk, i) => {
+                    nodes.push({
+                        lat: risk.lat, lng: risk.lng,
+                        layerType: 'regionalRisk',
+                        label: `Regional Risk: ${risk.region}`,
+                        sublabel: `${risk.contributingCompanies.length} companies exposed`,
+                        detail: `Aggregate Score: ${risk.overallScore}/10`,
+                        color: RISK_COLORS[Math.round(risk.overallScore)] || '#f59e0b',
+                        id: `rr-${i}`,
+                        entity: { type: 'regionalRisk', data: risk }
+                    })
                 })
-            })
-        }
+            }
 
-        if (activeLayers.has('risks')) {
-            intel.geopoliticalRisks.forEach((risk, i) => {
-                nodes.push({
-                    lat: risk.lat, lng: risk.lng,
-                    layerType: 'risk',
-                    label: risk.riskLabel,
-                    sublabel: risk.region,
-                    detail: `Risk ${risk.riskScore}/5 · ${risk.impactLevel}`,
-                    color: RISK_COLORS[risk.riskScore] || '#f59e0b',
-                    id: `rk-${i}`,
+            if (activeLayers.has('chokepoints') && chokepointAnalysis) {
+                chokepointAnalysis.chokepoints.forEach((cp, i) => {
+                    nodes.push({
+                        lat: cp.lat, lng: cp.lng,
+                        layerType: 'chokepoint',
+                        label: `Chokepoint: ${cp.name}`,
+                        sublabel: cp.location,
+                        detail: `${cp.severity.toUpperCase()} SEVERITY · ${cp.exposedCompanies.length} companies`,
+                        color: '#ef4444',
+                        id: `cp-${i}`,
+                        entity: { type: 'chokepoint', data: cp }
+                    })
                 })
-            })
+            }
         }
 
         return nodes
-    }, [intel, activeLayers, offices])
+    }, [intel, activeLayers, offices, riskConvergence, chokepointAnalysis, viewMode, hoveredEntityId, adjacencyMap])
 
     // Build an HTML element for each intel node overlay
     const handleHtmlElement = useCallback((d: object) => {
         const node = d as IntelNodeDatum
         const wrapper = document.createElement('div')
-        wrapper.className = 'intel-node-marker'
+        wrapper.className = `intel-node-marker type-${node.layerType}`
         wrapper.style.cssText = `--node-color: ${node.color};`
         wrapper.setAttribute('data-id', node.id)
 
-        // Hit target dot
+        // Handle dimming via CSS class managed by re-render? No, htmlElement is called once?
+        // react-globe.gl updates htmlElement when data changes.
+        // But re-creating DOM nodes is expensive.
+        // Better to use `onHtmlElementClick` etc? No.
+        // Actually, let's rely on rings for dimming visual. HTML markers can stay bright or we can add class.
+        // Since we are regenerating the array, `react-globe.gl` might re-render.
+        // But `htmlTransitionDuration={0}` will make it instant.
+
+        // Add dimmed class if needed (not passed in Datum, I missed it).
+        // Let's assume HTML markers are small and don't need dimming as much as rings/arcs.
+        // Or I can add `dimmed` to `IntelNodeDatum`.
+
         const dot = document.createElement('div')
-        dot.className = 'intel-node-dot'
+        dot.className = `intel-node-dot type-${node.layerType}`
         wrapper.appendChild(dot)
 
-        // Tooltip
         const tooltip = document.createElement('div')
         tooltip.className = 'intel-node-tooltip'
         tooltip.innerHTML = `
@@ -382,25 +625,30 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         // Events
         wrapper.addEventListener('click', (e) => {
             e.stopPropagation()
-            if (node.layerType === 'office' && node.rawRef) {
-                onOfficeClick(node.rawRef as Office)
-            }
+            onEntityClick(node.entity)
             if (globeRef.current) {
                 globeRef.current.controls().autoRotate = false
                 globeRef.current.pointOfView({ lat: node.lat, lng: node.lng, altitude: 1.8 }, 1000)
             }
         })
 
+        wrapper.addEventListener('mouseenter', () => {
+            setHoveredEntityId(node.id)
+        })
+
+        wrapper.addEventListener('mouseleave', () => {
+            setHoveredEntityId(null)
+        })
+
         return wrapper
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onOfficeClick])
+    }, [onEntityClick])
 
     return (
         <Globe
             ref={globeRef}
             rendererConfig={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
             globeMaterial={new THREE.MeshStandardMaterial({
-                color: '#eae7d4', // Darker richer parchment base
+                color: '#eae7d4',
                 emissive: '#fdfcf0',
                 emissiveIntensity: 0.1,
                 transparent: true,
@@ -411,7 +659,6 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             showAtmosphere={false}
             backgroundColor="rgba(0,0,0,0)"
 
-            // 1. Landmass as stronger ink dots, with better resolution
             hexPolygonsData={countriesLineData}
             hexPolygonResolution={4}
             hexPolygonMargin={0.5}
@@ -421,36 +668,41 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             onGlobeClick={handleGlobeClick}
 
             arcsData={arcsData}
-            arcColor="color"
+            arcColor={(d: object) => {
+                const arc = d as ExtendedArcDatum
+                if (arc.dimmed) return ['rgba(0,0,0,0.05)', 'rgba(0,0,0,0.05)']
+                return arc.color
+            }}
             arcDashLength={0.5}
             arcDashGap={0.5}
             arcDashAnimateTime={2000}
             arcStroke={0.35}
             arcAltitudeAutoScale={0.5}
+            // arcTransitionDuration={0} // Instant update
 
             ringsData={ringsData}
             ringColor={(d: object) => (t: number) => {
-                const ring = d as AllRingDatum
+                const ring = d as ExtendedRingDatum
+                if (ring.dimmed) return ring.color + '11' // Very faint
                 if (ring.isCore) return ring.color
-                // Muted ink pulses
                 return `${ring.color}${Math.round((1 - t) * 60).toString(16).padStart(2, '0')}`
             }}
             ringAltitude={0.015}
             ringMaxRadius={(d: object) => {
-                const ring = d as AllRingDatum
+                const ring = d as ExtendedRingDatum
                 if (ring.isCore) return ring.size * 0.4
-                if ('layerType' in ring && (ring as RiskRingDatum).layerType === 'risk') {
+                if (ring.layerType === 'risk' || ring.layerType === 'regionalRisk') {
                     return ring.size * 2.5
                 }
                 return ring.size * 1.5
             }}
             ringPropagationSpeed={(d: object) => {
-                const ring = d as AllRingDatum
+                const ring = d as ExtendedRingDatum
                 if (ring.isCore) return 0
                 return 0.4
             }}
             ringRepeatPeriod={(d: object) => {
-                const ring = d as AllRingDatum
+                const ring = d as ExtendedRingDatum
                 if (ring.isCore) return 0
                 return 3000 + Math.random() * 1000
             }}

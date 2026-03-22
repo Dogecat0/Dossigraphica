@@ -74,7 +74,37 @@ export default function Header({
                             </button>
 
                             {dropdownOpen && (
-                                <div className="absolute right-0 top-full mt-1 w-72 bg-[var(--color-bg-paper)] border-2 border-[var(--color-ink)] shadow-[4px_4px_0_var(--color-ink)] z-50">
+                                <div className="absolute right-0 top-full mt-1 w-72 bg-[var(--color-bg-paper)] border-2 border-[var(--color-ink)] shadow-[4px_4px_0_var(--color-ink)] z-50 max-h-[80vh] overflow-y-auto">
+                                    {/* Global View Option */}
+                                    <button
+                                        onClick={() => {
+                                            setSelectedCompany(null)
+                                            setSelectedOfficeId(null)
+                                            setIsIntelPanelOpen(false)
+                                            setDropdownOpen(false)
+                                        }}
+                                        className={`
+                                            w-full text-left px-4 py-3 border-b-2 border-[var(--color-ink)]
+                                            transition-colors cursor-pointer
+                                            ${!selectedCompany 
+                                                ? 'bg-[var(--color-bg-paper-dark)]' 
+                                                : 'hover:bg-[var(--color-ink)] hover:text-white'
+                                            }
+                                        `}
+                                    >
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <p className="text-sm font-serif font-bold">Global Value Chain</p>
+                                                <p className="text-[9px] font-mono uppercase tracking-wider opacity-70">
+                                                    Macro Analysis · Cross-Company
+                                                </p>
+                                            </div>
+                                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 border border-current">
+                                                ALL
+                                            </span>
+                                        </div>
+                                    </button>
+
                                     {companies.map((company) => (
                                         <button
                                             key={company.company}
@@ -134,7 +164,9 @@ export default function Header({
                         ) : (
                             <Brain size={16} />
                         )}
-                        <span className="text-sm uppercase tracking-tight">{intelLoading ? 'Consulting...' : 'View Dossier'}</span>
+                        <span className="text-sm uppercase tracking-tight">
+                            {intelLoading ? 'Consulting...' : (!selectedCompany ? 'Global Dossier' : 'View Dossier')}
+                        </span>
                     </button>
                 </div>
             </div>
