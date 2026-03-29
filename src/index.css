@@ -331,13 +331,39 @@ h4 {
   animation: pulse-red 2.5s infinite;
 }
 
-.intel-node-dot.type-regionalRisk {
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  /* Diamond/Square */
-  transform: rotate(45deg);
-  border-width: 2px;
+/* ===== Regional Risk Shield Icon ===== */
+.intel-node-shield {
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.5))
+         drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  animation: pulse-blue 3s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intel-node-marker:hover .intel-node-shield {
+  filter: drop-shadow(0 0 14px rgba(37, 99, 235, 0.8))
+         drop-shadow(0 0 6px rgba(37, 99, 235, 0.6));
+  transform: scale(1.3);
+}
+
+@keyframes pulse-blue {
+  0% {
+    filter: drop-shadow(0 0 4px rgba(37, 99, 235, 0.4))
+           drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.7))
+           drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(37, 99, 235, 0.4))
+           drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+}
+
+/* Risk dot variant (per-company, blue) */
+.intel-node-dot.type-risk {
+  border-color: rgba(253, 252, 240, 0.85);
 }
 
 /* ===== Summary Stat Bar ===== */
@@ -536,8 +562,8 @@ h4 {
 }
 
 .risk-block.filled {
-  background: var(--color-accent-red);
-  border-color: var(--color-accent-red);
+  background: #2563eb;
+  border-color: #2563eb;
 }
 
 /* ===== Chevron animation ===== */

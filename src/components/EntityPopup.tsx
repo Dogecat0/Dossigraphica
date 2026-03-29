@@ -80,7 +80,7 @@ function RiskContent({ data }: { data: GeopoliticalRisk }) {
     return (
         <>
             <div className="flex items-start gap-3 mb-4">
-                <div className="bg-[var(--color-accent-red)] text-white p-2">
+                <div className="bg-[#2563eb] text-white p-2">
                     <ShieldAlert size={20} />
                 </div>
                 <div>
@@ -109,7 +109,7 @@ function RegionalRiskContent({ data }: { data: RegionalRiskScore }) {
     return (
         <>
              <div className="flex items-start gap-3 mb-4">
-                <div className="bg-[#6a1a1a] text-white p-2">
+                <div className="bg-[#1d4ed8] text-white p-2">
                     <ShieldAlert size={20} />
                 </div>
                 <div>

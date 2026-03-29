@@ -22,23 +22,25 @@ const OFFICE_TYPE_COLORS: Record<OfficeType, string> = {
 
 
 const CRITICALITY_COLORS: Record<string, string> = {
-    critical: '#b91c1c',          // Deep Red
-    important: '#ea580c',         // Orange
-    standard: '#57534e',          // Grey
+    critical: '#92400e',          // Amber-800 — warm earth, distinct from red chokepoints
+    important: '#b45309',         // Amber-700
+    standard: '#78716c',          // Stone-500
 }
 
-// Risk Gradient: Neutral Yellow -> Deep Burgundy
-const RISK_COLORS: Record<number, string> = {
-    1: '#eab308', // Yellow-500
-    2: '#d97706', // Amber-600
-    3: '#f97316', // Orange-500
-    4: '#ea580c', // Orange-600
-    5: '#dc2626', // Red-600
-    6: '#b91c1c', // Red-700
-    7: '#991b1b', // Red-800
-    8: '#7f1d1d', // Red-900
-    9: '#450a0a', // Brown/Red
-    10: '#450a0a',
+// Per-company risk: Cartographic blue (1-5 scale)
+const COMPANY_RISK_COLORS: Record<number, string> = {
+    1: '#93c5fd', // Blue-300 — minor
+    2: '#3b82f6', // Blue-500 — moderate
+    3: '#2563eb', // Blue-600 — elevated
+    4: '#1d4ed8', // Blue-700 — high
+    5: '#1e3a8a', // Blue-900 — critical
+}
+
+// Regional risk: Map 1-10 score to 5 visual tiers for maximum differentiation
+// Tier 1: 1-2, Tier 2: 3-4, Tier 3: 5-6, Tier 4: 7-8, Tier 5: 9-10
+function getRegionalRiskColor(score: number): string {
+    const tier = Math.min(5, Math.ceil(score / 2))
+    return COMPANY_RISK_COLORS[tier] || '#2563eb'
 }
 
 export interface GlobeViewHandle {
@@ -391,7 +393,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         label: risk.riskLabel,
                         sublabel: risk.region,
                         detail: `Risk ${risk.riskScore}/5 · ${risk.impactLevel}`,
-                        color: RISK_COLORS[risk.riskScore] || '#f59e0b',
+                        color: COMPANY_RISK_COLORS[risk.riskScore] || '#7c3aed',
                         id: `rk-${i}`,
                         entity: { type: 'risk', data: risk }
                     })
@@ -408,7 +410,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         label: `Regional Risk: ${risk.region}`,
                         sublabel: `${risk.contributingCompanies.length} companies exposed`,
                         detail: `Aggregate Score: ${risk.overallScore}/10`,
-                        color: RISK_COLORS[Math.round(risk.overallScore)] || '#f59e0b',
+                        color: getRegionalRiskColor(risk.overallScore),
                         id: `rr-${i}`,
                         entity: { type: 'regionalRisk', data: risk }
                     })
@@ -450,9 +452,20 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         const { dx, dy } = getStackOffset(node.stackIndex, node.stackTotal)
         wrapper.style.cssText = `--node-color: ${node.color}; --stack-dx: ${dx}px; --stack-dy: ${dy}px;`
 
-        const dot = document.createElement('div')
-        dot.className = `intel-node-dot type-${node.layerType}`
-        wrapper.appendChild(dot)
+        // Render an SVG shield for regionalRisk, regular dot for everything else
+        if (node.layerType === 'regionalRisk') {
+            const shield = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+            shield.setAttribute('viewBox', '0 0 24 24')
+            shield.setAttribute('width', '22')
+            shield.setAttribute('height', '22')
+            shield.setAttribute('class', 'intel-node-shield')
+            shield.innerHTML = `<path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z" fill="${node.color}" stroke="rgba(253,252,240,0.9)" stroke-width="1.5"/>`
+            wrapper.appendChild(shield)
+        } else {
+            const dot = document.createElement('div')
+            dot.className = `intel-node-dot type-${node.layerType}`
+            wrapper.appendChild(dot)
+        }
 
         // Show count badge on the first node of a stack
         if (node.stackTotal > 1 && node.stackIndex === 0) {

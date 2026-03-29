@@ -14,7 +14,7 @@ const LAYERS: { id: LayerName; label: string; icon: any; color: string; type: 'c
     { id: 'offices', label: 'Offices', icon: Building2, color: '#1a1a1a', type: 'both' },
     { id: 'supplyChain', label: 'Supply Chain', icon: Link2, color: '#a36633', type: 'company' },
     { id: 'customers', label: 'Customers', icon: Users, color: '#2a5a8a', type: 'company' },
-    { id: 'risks', label: 'Geopolitical Risks', icon: ShieldAlert, color: '#a33333', type: 'both' },
+    { id: 'risks', label: 'Geopolitical Risks', icon: ShieldAlert, color: '#2563eb', type: 'both' },
     { id: 'chain', label: 'Global Value Chain', icon: Network, color: '#1a1a1a', type: 'global' },
     { id: 'chokepoints', label: 'Systemic Chokepoints', icon: Target, color: '#ef4444', type: 'global' },
 ]

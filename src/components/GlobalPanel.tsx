@@ -402,7 +402,7 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
                     <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Avg Risk</p>
                     <p className="text-xl font-serif font-bold" style={{ color: getRiskColor(parseFloat(avgRisk)) }}>{avgRisk}/10</p>
                     <div className="stat-fill-bar">
-                        <div className="stat-fill-bar-inner" style={{ width: `${highRiskPct}%` }} />
+                        <div className="stat-fill-bar-inner" style={{ width: `${highRiskPct}%`, background: '#2563eb' }} />
                     </div>
                 </div>
             </div>
@@ -546,9 +546,13 @@ function StatCell({ label, value }: { label: string; value: string }) {
 }
 
 function getRiskColor(score: number): string {
-    if (score >= 8) return '#6a1a1a'
-    if (score >= 6) return '#a33333'
-    if (score >= 4) return '#a36633'
-    if (score >= 2) return '#5d8a6a'
-    return '#3d6a4a'
+    const tier = Math.min(5, Math.ceil(score / 2))
+    const colors: Record<number, string> = {
+        1: '#93c5fd', // Blue-300 — minor
+        2: '#3b82f6', // Blue-500 — moderate
+        3: '#2563eb', // Blue-600 — elevated
+        4: '#1d4ed8', // Blue-700 — high
+        5: '#1e3a8a', // Blue-900 — critical
+    }
+    return colors[tier] || '#2563eb'
 }
