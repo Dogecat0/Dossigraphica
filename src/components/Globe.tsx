@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useMemo, useCallback, useImperativeHandle,
 import * as THREE from 'three'
 import Globe from 'react-globe.gl'
 import { fetchTextOrThrow } from '../utils/fetchTextOrThrow'
+import { assignStackPositions, getStackOffset } from '../utils/nodeGrouping'
 import type {
     Office, OfficeType,
     GeoIntelligence, LayerName, MapEntity,
@@ -19,16 +20,6 @@ const OFFICE_TYPE_COLORS: Record<OfficeType, string> = {
     logistics: '#b91c1c',         // Red - Critical Path
 }
 
-const OFFICE_TYPE_SIZES: Record<OfficeType, number> = {
-    headquarters: 1.8,            // Larger
-    regional: 0.8,
-    engineering: 0.7,
-    satellite: 0.4,               // Smaller
-    manufacturing: 1.2,           // Significant
-    data_center: 1.0,
-    sales: 0.6,
-    logistics: 0.8,
-}
 
 const CRITICALITY_COLORS: Record<string, string> = {
     critical: '#b91c1c',          // Deep Red
@@ -64,6 +55,9 @@ interface IntelNodeDatum {
     color: string
     id: string
     entity: MapEntity
+    stackIndex: number
+    stackTotal: number
+    dimmed: boolean
 }
 
 interface GlobeViewProps {
@@ -79,14 +73,6 @@ interface GlobeViewProps {
 }
 
 // Extra datum types for intel layers
-interface ExtendedRingDatum {
-    lat: number; lng: number; color: string; size: number
-    isCore: boolean; isSelected: boolean
-    layerType: string
-    id: string
-    entity: MapEntity
-    dimmed: boolean
-}
 
 interface ExtendedArcDatum {
     startLat: number; startLng: number
@@ -218,157 +204,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         return map
     }, [chainMatrix, intel, offices])
 
-    // ===== Compute rings data combining all active layers =====
-    const ringsData = useMemo((): ExtendedRingDatum[] => {
-        const allRings: ExtendedRingDatum[] = []
-
-        // Helper to check if dimmed
-        const isDimmed = (id: string) => {
-            if (!hoveredEntityId) return false
-            if (hoveredEntityId === id) return false
-            const neighbors = adjacencyMap.get(hoveredEntityId)
-            if (neighbors && neighbors.has(id)) return false
-            return true
-        }
-
-        // Office rings
-        if (activeLayers.has('offices')) {
-            offices.forEach((office) => {
-                const size = OFFICE_TYPE_SIZES[office.type] || 0.5
-                const color = OFFICE_TYPE_COLORS[office.type] || '#6b7280'
-                const isSelected = selectedEntity?.type === 'office' && (selectedEntity.data as Office).id === office.id
-                const id = office.id
-
-                allRings.push({
-                    lat: office.lat, lng: office.lng, color, size,
-                    isSelected: false, isCore: true,
-                    layerType: 'office', id, entity: { type: 'office', data: office },
-                    dimmed: isDimmed(id)
-                })
-                allRings.push({
-                    lat: office.lat, lng: office.lng, color, size,
-                    isSelected, isCore: false,
-                    layerType: 'office', id, entity: { type: 'office', data: office },
-                    dimmed: isDimmed(id)
-                })
-            })
-        }
-
-        if (intel) {
-            // Supply chain rings
-            if (activeLayers.has('supplyChain')) {
-                intel.supplyChain.forEach((node, i) => {
-                    const id = `sc-${i}`
-                    const color = CRITICALITY_COLORS[node.criticality] || '#6b7280'
-                    const isSelected = selectedEntity?.type === 'supplier' && selectedEntity.data === node
-
-                    allRings.push({
-                        lat: node.lat, lng: node.lng, color, size: 0.8,
-                        isCore: true, isSelected: false,
-                        layerType: 'supplyChain', id, entity: { type: 'supplier', data: node },
-                        dimmed: isDimmed(id)
-                    })
-                    allRings.push({
-                        lat: node.lat, lng: node.lng, color, size: 0.8,
-                        isCore: false, isSelected, // Pulsing is selection or just ambient? Ambient usually. Selection makes it bright.
-                        layerType: 'supplyChain', id, entity: { type: 'supplier', data: node },
-                        dimmed: isDimmed(id)
-                    })
-                })
-            }
-
-            // Customer rings
-            if (activeLayers.has('customers')) {
-                intel.customerConcentration.forEach((cust, i) => {
-                    const id = `cu-${i}`
-                    const color = '#06b6d4'
-                    const isSelected = selectedEntity?.type === 'customer' && selectedEntity.data === cust
-
-                    allRings.push({
-                        lat: cust.lat, lng: cust.lng, color, size: 0.9,
-                        isCore: true, isSelected: false,
-                        layerType: 'customer', id, entity: { type: 'customer', data: cust },
-                        dimmed: isDimmed(id)
-                    })
-                    allRings.push({
-                        lat: cust.lat, lng: cust.lng, color, size: 0.9,
-                        isCore: false, isSelected,
-                        layerType: 'customer', id, entity: { type: 'customer', data: cust },
-                        dimmed: isDimmed(id)
-                    })
-                })
-            }
-
-            // Risk rings (Intel specific risks)
-            if (activeLayers.has('risks')) {
-                intel.geopoliticalRisks.forEach((risk, i) => {
-                    const id = `rk-${i}`
-                    const color = RISK_COLORS[risk.riskScore] || '#f59e0b'
-                    const isSelected = selectedEntity?.type === 'risk' && selectedEntity.data === risk
-
-                    allRings.push({
-                        lat: risk.lat, lng: risk.lng, color, size: risk.riskScore * 0.8,
-                        isCore: true, isSelected: false,
-                        layerType: 'risk', id, entity: { type: 'risk', data: risk },
-                        dimmed: isDimmed(id)
-                    })
-                    allRings.push({
-                        lat: risk.lat, lng: risk.lng, color, size: risk.riskScore * 0.8,
-                        isCore: false, isSelected,
-                        layerType: 'risk', id, entity: { type: 'risk', data: risk },
-                        dimmed: isDimmed(id)
-                    })
-                })
-            }
-        }
-
-        // Global Analysis Layers - ONLY IN GLOBAL VIEW
-        if (viewMode === 'global') {
-            if (activeLayers.has('risks') && riskConvergence) {
-                riskConvergence.regions.forEach((risk, i) => {
-                    const id = `rr-${i}`
-                    const color = RISK_COLORS[Math.round(risk.overallScore)] || '#f59e0b'
-                    const isSelected = selectedEntity?.type === 'regionalRisk' && selectedEntity.data === risk
-
-                    allRings.push({
-                        lat: risk.lat, lng: risk.lng, color, size: risk.overallScore * 1.2,
-                        isCore: true, isSelected: false,
-                        layerType: 'regionalRisk', id, entity: { type: 'regionalRisk', data: risk },
-                        dimmed: isDimmed(id)
-                    })
-                    allRings.push({
-                        lat: risk.lat, lng: risk.lng, color, size: risk.overallScore * 1.2,
-                        isCore: false, isSelected,
-                        layerType: 'regionalRisk', id, entity: { type: 'regionalRisk', data: risk },
-                        dimmed: isDimmed(id)
-                    })
-                })
-            }
-
-            if (activeLayers.has('chokepoints') && chokepointAnalysis) {
-                chokepointAnalysis.chokepoints.forEach((cp, i) => {
-                    const id = `cp-${i}`
-                    const color = '#ef4444'
-                    const isSelected = selectedEntity?.type === 'chokepoint' && selectedEntity.data === cp
-
-                    allRings.push({
-                        lat: cp.lat, lng: cp.lng, color, size: 1.5,
-                        isCore: true, isSelected: false,
-                        layerType: 'chokepoint', id, entity: { type: 'chokepoint', data: cp },
-                        dimmed: isDimmed(id)
-                    })
-                    allRings.push({
-                        lat: cp.lat, lng: cp.lng, color, size: 1.5,
-                        isCore: false, isSelected,
-                        layerType: 'chokepoint', id, entity: { type: 'chokepoint', data: cp },
-                        dimmed: isDimmed(id)
-                    })
-                })
-            }
-        }
-
-        return allRings
-    }, [offices, selectedEntity, intel, riskConvergence, chokepointAnalysis, activeLayers, viewMode, hoveredEntityId, adjacencyMap])
+    // Rings layer fully removed — HTML overlay dots handle all node rendering
 
     // ===== Compute arcs combining all active layers =====
     const arcsData = useMemo((): ExtendedArcDatum[] => {
@@ -488,13 +324,22 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
     }, [offices, intel, chainMatrix, activeLayers, hoveredEntityId])
 
     // ===== Compute interactive HTML overlay nodes for intel layers =====
-    // Reusing the same ID scheme
+    // Helper: check if a node should be dimmed based on hover adjacency
+    const isDimmedNode = useCallback((id: string) => {
+        if (!hoveredEntityId) return false
+        if (hoveredEntityId === id) return false
+        const neighbors = adjacencyMap.get(hoveredEntityId)
+        if (neighbors && neighbors.has(id)) return false
+        return true
+    }, [hoveredEntityId, adjacencyMap])
+
     const htmlNodesData = useMemo((): IntelNodeDatum[] => {
-        const nodes: IntelNodeDatum[] = []
+        // Build raw nodes first (without stack info)
+        const rawNodes: Omit<IntelNodeDatum, 'stackIndex' | 'stackTotal' | 'dimmed'>[] = []
 
         if (activeLayers.has('offices')) {
             offices.forEach((office) => {
-                nodes.push({
+                rawNodes.push({
                     lat: office.lat, lng: office.lng,
                     layerType: 'office',
                     label: office.city,
@@ -510,7 +355,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         if (intel) {
             if (activeLayers.has('supplyChain')) {
                 intel.supplyChain.forEach((node, i) => {
-                    nodes.push({
+                    rawNodes.push({
                         lat: node.lat, lng: node.lng,
                         layerType: 'supplyChain',
                         label: node.entity,
@@ -525,7 +370,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
             if (activeLayers.has('customers')) {
                 intel.customerConcentration.forEach((cust, i) => {
-                    nodes.push({
+                    rawNodes.push({
                         lat: cust.lat, lng: cust.lng,
                         layerType: 'customer',
                         label: cust.customer,
@@ -540,7 +385,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
             if (activeLayers.has('risks')) {
                 intel.geopoliticalRisks.forEach((risk, i) => {
-                    nodes.push({
+                    rawNodes.push({
                         lat: risk.lat, lng: risk.lng,
                         layerType: 'risk',
                         label: risk.riskLabel,
@@ -557,7 +402,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         if (viewMode === 'global') {
             if (activeLayers.has('risks') && riskConvergence) {
                 riskConvergence.regions.forEach((risk, i) => {
-                    nodes.push({
+                    rawNodes.push({
                         lat: risk.lat, lng: risk.lng,
                         layerType: 'regionalRisk',
                         label: `Regional Risk: ${risk.region}`,
@@ -572,7 +417,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
             if (activeLayers.has('chokepoints') && chokepointAnalysis) {
                 chokepointAnalysis.chokepoints.forEach((cp, i) => {
-                    nodes.push({
+                    rawNodes.push({
                         lat: cp.lat, lng: cp.lng,
                         layerType: 'chokepoint',
                         label: `Chokepoint: ${cp.name}`,
@@ -586,32 +431,36 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             }
         }
 
-        return nodes
-    }, [intel, activeLayers, offices, riskConvergence, chokepointAnalysis, viewMode, hoveredEntityId, adjacencyMap])
+        // Assign stack positions for overlapping nodes, then add dimmed state
+        const stacked = assignStackPositions(rawNodes, 0.5)
+        return stacked.map(node => ({
+            ...node,
+            dimmed: isDimmedNode(node.id),
+        }))
+    }, [intel, activeLayers, offices, riskConvergence, chokepointAnalysis, viewMode, isDimmedNode])
 
     // Build an HTML element for each intel node overlay
     const handleHtmlElement = useCallback((d: object) => {
         const node = d as IntelNodeDatum
         const wrapper = document.createElement('div')
-        wrapper.className = `intel-node-marker type-${node.layerType}`
-        wrapper.style.cssText = `--node-color: ${node.color};`
+        wrapper.className = `intel-node-marker type-${node.layerType}${node.dimmed ? ' dimmed' : ''}${node.stackTotal > 1 ? ' stacked' : ''}`
         wrapper.setAttribute('data-id', node.id)
 
-        // Handle dimming via CSS class managed by re-render? No, htmlElement is called once?
-        // react-globe.gl updates htmlElement when data changes.
-        // But re-creating DOM nodes is expensive.
-        // Better to use `onHtmlElementClick` etc? No.
-        // Actually, let's rely on rings for dimming visual. HTML markers can stay bright or we can add class.
-        // Since we are regenerating the array, `react-globe.gl` might re-render.
-        // But `htmlTransitionDuration={0}` will make it instant.
-
-        // Add dimmed class if needed (not passed in Datum, I missed it).
-        // Let's assume HTML markers are small and don't need dimming as much as rings/arcs.
-        // Or I can add `dimmed` to `IntelNodeDatum`.
+        // Apply screen-space pixel offset for stacked (overlapping) nodes
+        const { dx, dy } = getStackOffset(node.stackIndex, node.stackTotal)
+        wrapper.style.cssText = `--node-color: ${node.color}; --stack-dx: ${dx}px; --stack-dy: ${dy}px;`
 
         const dot = document.createElement('div')
         dot.className = `intel-node-dot type-${node.layerType}`
         wrapper.appendChild(dot)
+
+        // Show count badge on the first node of a stack
+        if (node.stackTotal > 1 && node.stackIndex === 0) {
+            const badge = document.createElement('div')
+            badge.className = 'intel-node-count-badge'
+            badge.textContent = `${node.stackTotal}`
+            wrapper.appendChild(badge)
+        }
 
         const tooltip = document.createElement('div')
         tooltip.className = 'intel-node-tooltip'
@@ -679,33 +528,6 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             arcStroke={0.35}
             arcAltitudeAutoScale={0.5}
             // arcTransitionDuration={0} // Instant update
-
-            ringsData={ringsData}
-            ringColor={(d: object) => (t: number) => {
-                const ring = d as ExtendedRingDatum
-                if (ring.dimmed) return ring.color + '11' // Very faint
-                if (ring.isCore) return ring.color
-                return `${ring.color}${Math.round((1 - t) * 60).toString(16).padStart(2, '0')}`
-            }}
-            ringAltitude={0.015}
-            ringMaxRadius={(d: object) => {
-                const ring = d as ExtendedRingDatum
-                if (ring.isCore) return ring.size * 0.4
-                if (ring.layerType === 'risk' || ring.layerType === 'regionalRisk') {
-                    return ring.size * 2.5
-                }
-                return ring.size * 1.5
-            }}
-            ringPropagationSpeed={(d: object) => {
-                const ring = d as ExtendedRingDatum
-                if (ring.isCore) return 0
-                return 0.4
-            }}
-            ringRepeatPeriod={(d: object) => {
-                const ring = d as ExtendedRingDatum
-                if (ring.isCore) return 0
-                return 3000 + Math.random() * 1000
-            }}
 
             htmlElementsData={htmlNodesData}
             htmlElement={handleHtmlElement}

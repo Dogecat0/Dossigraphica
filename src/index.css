@@ -203,19 +203,27 @@ h4 {
 /* ===== Intel Nodes (Dossigraphica Style) ===== */
 .intel-node-marker {
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% + var(--stack-dx, 0px)), calc(-50% + var(--stack-dy, 0px)));
   cursor: pointer;
   pointer-events: auto;
   z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.intel-node-marker.dimmed {
+  opacity: 0.15;
+  pointer-events: none;
 }
 
 .intel-node-dot {
-  width: 14px;
-  height: 14px;
-  background: var(--color-bg-paper);
-  border: 2px solid var(--node-color, var(--color-ink));
+  width: 12px;
+  height: 12px;
+  background: var(--node-color, var(--color-ink));
+  border: 2px solid var(--color-bg-paper);
   border-radius: 50%;
-  box-shadow: 2px 2px 0 var(--node-color, var(--color-ink));
+  box-shadow:
+    0 0 0 1px var(--node-color, var(--color-ink)),
+    1px 2px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -330,4 +338,27 @@ h4 {
   /* Diamond/Square */
   transform: rotate(45deg);
   border-width: 2px;
+}
+
+/* ===== Stacked Node Count Badge ===== */
+.intel-node-count-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: var(--color-ink);
+  color: var(--color-bg-paper);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 15;
 }
