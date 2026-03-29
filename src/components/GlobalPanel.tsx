@@ -215,8 +215,8 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
                     <div className="bg-[var(--color-bg-paper-dark)] p-3 border-l-2 border-[var(--color-ink)] mb-4">
                         <p className="text-[9px] font-mono font-bold uppercase mb-2 opacity-60">Exposed Entities</p>
                         <div className="flex flex-wrap gap-2">
-                            {risk.contributingCompanies.map(c => (
-                                <div key={c.ticker} className="flex items-center gap-1.5">
+                            {risk.contributingCompanies.map((c, idx) => (
+                                <div key={`${c.ticker}-${idx}`} className="flex items-center gap-1.5">
                                     <span className="text-[10px] font-mono font-bold text-[var(--color-ink)]">{c.ticker}</span>
                                     <span className="text-[10px] font-mono text-[var(--color-ink-muted)] opacity-50">({c.riskScore}/5)</span>
                                 </div>
@@ -256,8 +256,8 @@ function ChokepointsTab({ analysis, onNavigate }: { analysis: ChokepointAnalysis
                         {cp.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                        {cp.exposedCompanies.map(t => (
-                            <span key={t} className="text-[9px] font-mono font-bold border border-[var(--color-ink-light)] px-1.5 py-0.5">{t}</span>
+                        {cp.exposedCompanies.map((t, idx) => (
+                            <span key={`${t}-${idx}`} className="text-[9px] font-mono font-bold border border-[var(--color-ink-light)] px-1.5 py-0.5">{t}</span>
                         ))}
                     </div>
                     <button 

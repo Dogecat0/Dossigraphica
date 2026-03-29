@@ -125,8 +125,8 @@ function RegionalRiskContent({ data }: { data: RegionalRiskScore }) {
             <div className="bg-[var(--color-bg-paper-dark)] p-3 border-l-2 border-[var(--color-ink)]">
                 <p className="text-[9px] font-mono font-bold uppercase mb-2 opacity-60">Exposed Entities</p>
                 <div className="flex flex-wrap gap-1">
-                    {data.contributingCompanies.map(c => (
-                        <span key={c.ticker} className="text-[10px] font-mono font-bold border border-[var(--color-ink-light)] px-1">{c.ticker}</span>
+                    {data.contributingCompanies.map((c, idx) => (
+                        <span key={`${c.ticker}-${idx}`} className="text-[10px] font-mono font-bold border border-[var(--color-ink-light)] px-1">{c.ticker}</span>
                     ))}
                 </div>
             </div>
