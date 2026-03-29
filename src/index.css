@@ -340,6 +340,216 @@ h4 {
   border-width: 2px;
 }
 
+/* ===== Summary Stat Bar ===== */
+.stat-summary-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  margin-bottom: 1.5rem;
+}
+
+.stat-summary-bar > div {
+  background: var(--color-bg-paper);
+  padding: 0.75rem 1rem;
+}
+
+.stat-fill-bar {
+  height: 4px;
+  background: var(--color-bg-paper-dark);
+  border: 1px solid var(--color-border-muted);
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.stat-fill-bar-inner {
+  height: 100%;
+  background: var(--color-accent-red);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== Dependency Group (Chain Tab) ===== */
+.dep-group {
+  border: 1px solid var(--color-border-muted);
+  margin-bottom: 0.75rem;
+  background: white;
+}
+
+.dep-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.dep-group-header:hover {
+  background: var(--color-bg-paper-dark);
+}
+
+.dep-group.expanded .dep-group-header {
+  border-bottom-color: var(--color-border-muted);
+}
+
+.dep-group-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dep-group.expanded .dep-group-body {
+  max-height: 2000px;
+}
+
+.dep-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--color-border-muted);
+  font-size: 0.8rem;
+  transition: background 0.15s ease;
+}
+
+.dep-row:last-child {
+  border-bottom: none;
+}
+
+.dep-row:hover {
+  background: var(--color-bg-paper-dark);
+}
+
+.dep-row.is-critical {
+  background: rgba(163, 51, 51, 0.04);
+  border-left: 3px solid var(--color-accent-red);
+  padding-left: calc(1rem - 3px);
+}
+
+.dep-row.is-critical:hover {
+  background: rgba(163, 51, 51, 0.08);
+}
+
+.dep-direction {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-ink-muted);
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  padding-top: 2px;
+}
+
+.dep-direction.outgoing {
+  color: var(--color-accent-blue);
+}
+
+.dep-direction.incoming {
+  color: var(--color-accent-green);
+}
+
+/* ===== Risk Table (Macro Risk Tab) ===== */
+.risk-table-header {
+  display: grid;
+  grid-template-columns: 6px 1fr 52px 80px 70px 28px;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-ink-muted);
+}
+
+.risk-row {
+  display: grid;
+  grid-template-columns: 6px 1fr 52px 80px 70px 28px;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-muted);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.risk-row:hover {
+  background: var(--color-bg-paper-dark);
+}
+
+.risk-row.expanded {
+  background: var(--color-bg-paper-dark);
+  border-bottom-color: transparent;
+}
+
+.risk-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.risk-detail-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--color-bg-paper-dark);
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.risk-detail-panel.expanded {
+  max-height: 600px;
+}
+
+.risk-detail-inner {
+  padding: 1rem 1.25rem;
+}
+
+/* Entity risk blocks — small squares representing score 1-5 */
+.risk-entity-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.risk-entity-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.risk-blocks {
+  display: flex;
+  gap: 1px;
+}
+
+.risk-block {
+  width: 5px;
+  height: 10px;
+  background: var(--color-bg-paper-dark);
+  border: 1px solid var(--color-border-muted);
+}
+
+.risk-block.filled {
+  background: var(--color-accent-red);
+  border-color: var(--color-accent-red);
+}
+
+/* ===== Chevron animation ===== */
+.chevron-icon {
+  transition: transform 0.25s ease;
+  color: var(--color-ink-muted);
+}
+
+.chevron-icon.rotated {
+  transform: rotate(180deg);
+}
+
 /* ===== Stacked Node Count Badge ===== */
 .intel-node-count-badge {
   position: absolute;

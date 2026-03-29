@@ -1,10 +1,10 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import {
     Network, ShieldAlert, Target, Loader2, ArrowRight,
-    Globe, AlertTriangle, MapPin
+    Globe, AlertTriangle, MapPin, ChevronDown
 } from 'lucide-react'
 import type {
-    ChainMatrix, RiskConvergence, ChokepointAnalysis
+    ChainMatrix, RiskConvergence, ChokepointAnalysis, DependencyLink
 } from '../types'
 
 type TabId = 'overview' | 'chain' | 'risks' | 'chokepoints'
@@ -27,6 +27,22 @@ const TABS: { id: TabId; label: string; icon: typeof Globe }[] = [
     { id: 'risks', label: 'Macro Risks', icon: ShieldAlert },
     { id: 'chokepoints', label: 'Chokepoints', icon: Target },
 ]
+
+/** Known tracked tickers in the system */
+const TRACKED_TICKERS = new Set(['AMD', 'AMZN', 'ASML', 'AVGO', 'GOOGL', 'INTC', 'META', 'MSFT', 'MU', 'NVDA', 'TSM'])
+
+/** Abbreviate risk dimension labels for compact display */
+function abbreviateDimension(dim: string): string {
+    const map: Record<string, string> = {
+        trade_restriction: 'TRADE',
+        regulatory_compliance: 'REG.',
+        geopolitical_conflict: 'GEOP.',
+        environmental_regulation: 'ENV.',
+        tax_policy: 'TAX',
+        labor_regulation: 'LABOR',
+    }
+    return map[dim] || dim.replace(/_/g, ' ').substring(0, 6).toUpperCase()
+}
 
 export default function GlobalPanel({
     chainMatrix,
@@ -126,6 +142,10 @@ export default function GlobalPanel({
     )
 }
 
+/* ================================================================
+   OVERVIEW TAB (unchanged)
+   ================================================================ */
+
 function OverviewTab({ chainMatrix, risk, chokepoints }: { chainMatrix: ChainMatrix | null, risk: RiskConvergence | null, chokepoints: ChokepointAnalysis | null }) {
     const aggregateRisk = useMemo(() => {
         if (!risk || risk.regions.length === 0) return '0.0'
@@ -162,79 +182,319 @@ function OverviewTab({ chainMatrix, risk, chokepoints }: { chainMatrix: ChainMat
     )
 }
 
-function ChainTab({ matrix }: { matrix: ChainMatrix | null }) {
-    if (!matrix) return null
-    return (
-        <div className="space-y-6 animate-fade-in">
-            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1">Inter-Company Dependencies</p>
-            <div className="divide-y divide-[var(--color-ink)]">
-                {matrix.dependencies.map((dep, i) => (
-                    <div key={i} className="py-4 flex items-center justify-between group">
-                        <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className="text-sm font-serif font-bold text-[var(--color-ink)]">{dep.from}</span>
-                                <ArrowRight size={12} className="text-[var(--color-ink-muted)]" />
-                                <span className="text-sm font-serif font-bold text-[var(--color-ink)]">{dep.to}</span>
-                            </div>
-                            <p className="text-xs font-serif italic text-[var(--color-ink-muted)]">{dep.description}</p>
-                            <p className="text-[10px] font-mono text-[var(--color-ink-muted)] mt-1 uppercase opacity-60">{dep.type.replace(/_/g, ' ')}</p>
-                        </div>
-                        {dep.strength === 'critical' && (
-                            <span className="text-[9px] font-mono font-bold text-[var(--color-accent-red)] border border-[var(--color-accent-red)] px-1.5 py-0.5">CRITICAL</span>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
+/* ================================================================
+   CHAIN TAB — Grouped by Company with Collapsible Sections
+   ================================================================ */
+
+interface DepGroup {
+    ticker: string
+    outgoing: DependencyLink[]  // this company depends on...
+    incoming: DependencyLink[]  // ...is a customer/supplier to this company
+    criticalCount: number
+    totalCount: number
 }
 
-function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavigate: (lat: number, lng: number) => void }) {
-    if (!risks) return null
+function ChainTab({ matrix }: { matrix: ChainMatrix | null }) {
+    const [expandedGroups, setExpandedGroups] = useState<Set<string>>(() => new Set())
+
+    // Group dependencies by focal company (tracked tickers only)
+    const { groups, totalDeps, criticalDeps } = useMemo(() => {
+        if (!matrix) return { groups: [], totalDeps: 0, criticalDeps: 0 }
+
+        const groupMap = new Map<string, DepGroup>()
+        let critical = 0
+
+        const getOrCreate = (ticker: string): DepGroup => {
+            if (!groupMap.has(ticker)) {
+                groupMap.set(ticker, { ticker, outgoing: [], incoming: [], criticalCount: 0, totalCount: 0 })
+            }
+            return groupMap.get(ticker)!
+        }
+
+        for (const dep of matrix.dependencies) {
+            if (dep.strength === 'critical') critical++
+
+            const fromTracked = TRACKED_TICKERS.has(dep.from)
+            const toTracked = TRACKED_TICKERS.has(dep.to)
+
+            if (fromTracked) {
+                const group = getOrCreate(dep.from)
+                group.outgoing.push(dep)
+                group.totalCount++
+                if (dep.strength === 'critical') group.criticalCount++
+            }
+
+            if (toTracked) {
+                const group = getOrCreate(dep.to)
+                group.incoming.push(dep)
+                group.totalCount++
+                if (dep.strength === 'critical') group.criticalCount++
+            }
+
+            // If neither side is tracked, attribute to 'from'
+            if (!fromTracked && !toTracked) {
+                const group = getOrCreate(dep.from)
+                group.outgoing.push(dep)
+                group.totalCount++
+                if (dep.strength === 'critical') group.criticalCount++
+            }
+        }
+
+        // Sort: most critical first, then by total count
+        const sorted = Array.from(groupMap.values()).sort((a, b) => {
+            if (b.criticalCount !== a.criticalCount) return b.criticalCount - a.criticalCount
+            return b.totalCount - a.totalCount
+        })
+
+        return { groups: sorted, totalDeps: matrix.dependencies.length, criticalDeps: critical }
+    }, [matrix])
+
+    // Auto-expand first group on mount
+    useMemo(() => {
+        if (groups.length > 0 && expandedGroups.size === 0) {
+            setExpandedGroups(new Set([groups[0].ticker]))
+        }
+    }, [groups]) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const toggleGroup = useCallback((ticker: string) => {
+        setExpandedGroups(prev => {
+            const next = new Set(prev)
+            if (next.has(ticker)) next.delete(ticker)
+            else next.add(ticker)
+            return next
+        })
+    }, [])
+
+    if (!matrix) return null
+
+    const criticalPct = totalDeps > 0 ? Math.round((criticalDeps / totalDeps) * 100) : 0
+
     return (
-        <div className="space-y-6 animate-fade-in">
-            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1">Geographic Risk Convergence</p>
-            {risks.regions.map((risk, i) => (
-                <div key={i} className="py-6 border-b border-[var(--color-border-muted)] last:border-none">
-                    <div className="flex items-start justify-between mb-4">
-                        <div>
-                            <h4 className="text-lg font-serif font-bold text-[var(--color-ink)]">{risk.region}</h4>
-                            <div className="flex flex-wrap gap-1 mt-2">
-                                {risk.riskDimensions.map((dim, j) => (
-                                    <span key={j} className="text-[8px] font-mono font-bold bg-[var(--color-ink-light)] text-[var(--color-ink)] px-1.5 py-0.5 uppercase">{dim}</span>
-                                ))}
+        <div className="animate-fade-in">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1 mb-4">
+                Inter-Company Dependencies
+            </p>
+
+            {/* Summary Bar */}
+            <div className="stat-summary-bar">
+                <div>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Total Links</p>
+                    <p className="text-xl font-serif font-bold text-[var(--color-ink)]">{totalDeps}</p>
+                </div>
+                <div>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Critical</p>
+                    <p className="text-xl font-serif font-bold" style={{ color: '#6a1a1a' }}>{criticalDeps}</p>
+                    <div className="stat-fill-bar">
+                        <div className="stat-fill-bar-inner" style={{ width: `${criticalPct}%` }} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Grouped Dependencies */}
+            {groups.map(group => {
+                const isExpanded = expandedGroups.has(group.ticker)
+
+                // Sort: critical outgoing first, then outgoing, then incoming
+                const sortedOutgoing = [...group.outgoing].sort((a, b) => {
+                    if (a.strength === 'critical' && b.strength !== 'critical') return -1
+                    if (b.strength === 'critical' && a.strength !== 'critical') return 1
+                    return 0
+                })
+
+                return (
+                    <div key={group.ticker} className={`dep-group ${isExpanded ? 'expanded' : ''}`}>
+                        <div className="dep-group-header" onClick={() => toggleGroup(group.ticker)}>
+                            <div className="flex items-center gap-3">
+                                <ChevronDown size={14} className={`chevron-icon ${isExpanded ? 'rotated' : ''}`} />
+                                <span className="text-sm font-serif font-bold text-[var(--color-ink)]">{group.ticker}</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <span className="text-[10px] font-mono text-[var(--color-ink-muted)]">
+                                    {group.totalCount} dep{group.totalCount !== 1 ? 's' : ''}
+                                </span>
+                                {group.criticalCount > 0 && (
+                                    <span className="text-[9px] font-mono font-bold text-[var(--color-accent-red)] border border-[var(--color-accent-red)] px-1.5 py-0.5">
+                                        {group.criticalCount} CRIT
+                                    </span>
+                                )}
                             </div>
                         </div>
-                        <div className="text-right">
-                            <div className="text-2xl font-serif font-bold" style={{ color: getRiskColor(risk.overallScore) }}>{risk.overallScore.toFixed(1)}/10</div>
-                            <p className="text-[8px] font-mono uppercase font-bold text-[var(--color-ink-muted)]">Macro Risk Index</p>
-                        </div>
-                    </div>
-                    <p className="text-sm font-serif leading-relaxed text-[var(--color-ink-muted)] mb-4">{risk.summary}</p>
-                    
-                    <div className="bg-[var(--color-bg-paper-dark)] p-3 border-l-2 border-[var(--color-ink)] mb-4">
-                        <p className="text-[9px] font-mono font-bold uppercase mb-2 opacity-60">Exposed Entities</p>
-                        <div className="flex flex-wrap gap-2">
-                            {risk.contributingCompanies.map((c, idx) => (
-                                <div key={`${c.ticker}-${idx}`} className="flex items-center gap-1.5">
-                                    <span className="text-[10px] font-mono font-bold text-[var(--color-ink)]">{c.ticker}</span>
-                                    <span className="text-[10px] font-mono text-[var(--color-ink-muted)] opacity-50">({c.riskScore}/5)</span>
+                        <div className="dep-group-body">
+                            {/* Outgoing: this company depends on... */}
+                            {sortedOutgoing.map((dep, i) => (
+                                <div key={`out-${i}`} className={`dep-row ${dep.strength === 'critical' ? 'is-critical' : ''}`}>
+                                    <span className="dep-direction outgoing" title="Depends on">→</span>
+                                    <div className="flex-1 min-w-0">
+                                        <span className="text-xs font-serif font-bold text-[var(--color-ink)]">{dep.to}</span>
+                                        <p className="text-[11px] font-serif italic text-[var(--color-ink-muted)] leading-snug mt-0.5 truncate" title={dep.description}>
+                                            {dep.description.replace(/^.+depends on .+ for /, '').replace(/^.+ depends on /, '')}
+                                        </p>
+                                    </div>
+                                    {dep.strength === 'critical' && (
+                                        <span className="text-[8px] font-mono font-bold text-[var(--color-accent-red)] flex-shrink-0">CRITICAL</span>
+                                    )}
+                                </div>
+                            ))}
+                            {/* Incoming: customers of this company */}
+                            {group.incoming.map((dep, i) => (
+                                <div key={`in-${i}`} className={`dep-row ${dep.strength === 'critical' ? 'is-critical' : ''}`}>
+                                    <span className="dep-direction incoming" title="Customer / source">◂</span>
+                                    <div className="flex-1 min-w-0">
+                                        <span className="text-xs font-serif font-bold text-[var(--color-ink)]">{dep.from}</span>
+                                        <p className="text-[11px] font-serif italic text-[var(--color-ink-muted)] leading-snug mt-0.5 truncate" title={dep.description}>
+                                            {dep.description}
+                                        </p>
+                                    </div>
+                                    {dep.value && dep.value !== 'Undisclosed' && (
+                                        <span className="text-[9px] font-mono text-[var(--color-ink-muted)] flex-shrink-0">{dep.value}</span>
+                                    )}
                                 </div>
                             ))}
                         </div>
                     </div>
-
-                    <button 
-                        onClick={() => onNavigate(risk.lat, risk.lng)}
-                        className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-3 py-1 hover:bg-[var(--color-ink)] hover:text-white transition-all flex items-center gap-2"
-                    >
-                        INSPECT REGION <ArrowRight size={10} />
-                    </button>
-                </div>
-            ))}
+                )
+            })}
         </div>
     )
 }
+
+/* ================================================================
+   RISKS TAB — Compact Sorted Table with Expandable Detail Rows
+   ================================================================ */
+
+function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavigate: (lat: number, lng: number) => void }) {
+    const [expandedRegion, setExpandedRegion] = useState<string | null>(null)
+
+    // Sort regions by overallScore descending
+    const sortedRegions = useMemo(() => {
+        if (!risks) return []
+        return [...risks.regions].sort((a, b) => b.overallScore - a.overallScore)
+    }, [risks])
+
+    const avgRisk = useMemo(() => {
+        if (sortedRegions.length === 0) return '0.0'
+        const avg = sortedRegions.reduce((sum, r) => sum + r.overallScore, 0) / sortedRegions.length
+        return avg.toFixed(1)
+    }, [sortedRegions])
+
+    const toggleRegion = useCallback((region: string) => {
+        setExpandedRegion(prev => prev === region ? null : region)
+    }, [])
+
+    if (!risks) return null
+
+    const highRiskCount = sortedRegions.filter(r => r.overallScore >= 8).length
+    const highRiskPct = sortedRegions.length > 0 ? Math.round((highRiskCount / sortedRegions.length) * 100) : 0
+
+    return (
+        <div className="animate-fade-in">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1 mb-4">
+                Geographic Risk Convergence
+            </p>
+
+            {/* Summary Bar */}
+            <div className="stat-summary-bar">
+                <div>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Regions</p>
+                    <p className="text-xl font-serif font-bold text-[var(--color-ink)]">{sortedRegions.length}</p>
+                </div>
+                <div>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Avg Risk</p>
+                    <p className="text-xl font-serif font-bold" style={{ color: getRiskColor(parseFloat(avgRisk)) }}>{avgRisk}/10</p>
+                    <div className="stat-fill-bar">
+                        <div className="stat-fill-bar-inner" style={{ width: `${highRiskPct}%` }} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Column Headers */}
+            <div className="risk-table-header">
+                <span></span>
+                <span>Region</span>
+                <span>Score</span>
+                <span>Risk Type</span>
+                <span>Entities</span>
+                <span></span>
+            </div>
+
+            {/* Table Rows */}
+            {sortedRegions.map((risk) => {
+                const isExpanded = expandedRegion === risk.region
+                const dimAbbrevs = risk.riskDimensions.map(abbreviateDimension).join(', ')
+                const entityCount = risk.contributingCompanies.length
+
+                return (
+                    <div key={risk.region}>
+                        {/* Compact Row */}
+                        <div
+                            className={`risk-row ${isExpanded ? 'expanded' : ''}`}
+                            onClick={() => toggleRegion(risk.region)}
+                        >
+                            <div className="risk-indicator" style={{ backgroundColor: getRiskColor(risk.overallScore) }} />
+                            <span className="text-xs font-serif font-bold text-[var(--color-ink)] truncate">{risk.region}</span>
+                            <span className="text-xs font-serif font-bold" style={{ color: getRiskColor(risk.overallScore) }}>
+                                {risk.overallScore.toFixed(1)}
+                            </span>
+                            <span className="text-[9px] font-mono text-[var(--color-ink-muted)] truncate" title={risk.riskDimensions.join(', ')}>
+                                {dimAbbrevs}
+                            </span>
+                            <span className="text-[10px] font-mono text-[var(--color-ink-muted)]">
+                                {entityCount} co{entityCount !== 1 ? 's' : '.'}
+                            </span>
+                            <ChevronDown size={12} className={`chevron-icon ${isExpanded ? 'rotated' : ''}`} />
+                        </div>
+
+                        {/* Expandable Detail Panel */}
+                        <div className={`risk-detail-panel ${isExpanded ? 'expanded' : ''}`}>
+                            <div className="risk-detail-inner">
+                                {/* Dimensions */}
+                                <div className="flex flex-wrap gap-1.5 mb-3">
+                                    {risk.riskDimensions.map((dim, j) => (
+                                        <span key={j} className="text-[8px] font-mono font-bold bg-[var(--color-ink)] text-[var(--color-bg-paper)] px-2 py-0.5 uppercase">
+                                            {dim.replace(/_/g, ' ')}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Summary */}
+                                <p className="text-sm font-serif italic leading-relaxed text-[var(--color-ink-muted)] mb-4">{risk.summary}</p>
+
+                                {/* Entity Risk Grid — visual blocks */}
+                                <div className="border-l-2 border-[var(--color-ink)] pl-3 mb-4">
+                                    <p className="text-[9px] font-mono font-bold uppercase mb-2 text-[var(--color-ink-muted)]">Exposed Entities</p>
+                                    <div className="risk-entity-grid">
+                                        {risk.contributingCompanies.map((c, idx) => (
+                                            <div key={`${c.ticker}-${idx}`} className="risk-entity-item">
+                                                <span className="text-[10px] font-mono font-bold text-[var(--color-ink)] w-10">{c.ticker}</span>
+                                                <div className="risk-blocks">
+                                                    {[1, 2, 3, 4, 5].map(level => (
+                                                        <div key={level} className={`risk-block ${level <= c.riskScore ? 'filled' : ''}`} />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Navigate Button */}
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); onNavigate(risk.lat, risk.lng) }}
+                                    className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-3 py-1 hover:bg-[var(--color-ink)] hover:text-white transition-all flex items-center gap-2"
+                                >
+                                    INSPECT REGION <ArrowRight size={10} />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    )
+}
+
+/* ================================================================
+   CHOKEPOINTS TAB (unchanged)
+   ================================================================ */
 
 function ChokepointsTab({ analysis, onNavigate }: { analysis: ChokepointAnalysis | null, onNavigate: (lat: number, lng: number) => void }) {
     if (!analysis) return null
@@ -271,6 +531,10 @@ function ChokepointsTab({ analysis, onNavigate }: { analysis: ChokepointAnalysis
         </div>
     )
 }
+
+/* ================================================================
+   SHARED COMPONENTS
+   ================================================================ */
 
 function StatCell({ label, value }: { label: string; value: string }) {
     return (
