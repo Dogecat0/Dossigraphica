@@ -308,7 +308,7 @@
             "riskCategory": "geopolitical_conflict",
             "riskLabel": "Kinetic Warfare near Kiryat Gat",
             "description": "Ongoing regional conflict threatens grid stability, physical plant integrity, and workforce availability (military draft) for Fabs 28, 28a, and 38.",
-            "impactLevel": "Moderate to Critical",
+            "impactLevel": "Critical",
             "filingReference": "10-K FY2025, Item 1A",
             "lastUpdated": "2026-03-22"
         },
