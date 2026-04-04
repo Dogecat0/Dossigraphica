@@ -312,7 +312,7 @@
             "riskCategory": "regulatory_compliance",
             "riskLabel": "SAMR Retaliatory Probe & Design-Out Mandates",
             "description": "SAMR investigation into Mellanox acquisition terms; state-directed mandates to exclude US silicon from infrastructure tenders.",
-            "impactLevel": "Elevated to Critical",
+            "impactLevel": "critical",
             "filingReference": "10-K FY2026, Item 1A",
             "lastUpdated": "2026-03-15"
         },

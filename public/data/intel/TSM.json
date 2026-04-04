@@ -305,7 +305,7 @@
             "riskCategory": "tax_policy",
             "riskLabel": "Tariff Policy & Subsidy Revocation",
             "description": "Financial destabilization of the $165B Arizona expansion if CHIPS Act tax credits and grants are replaced by punitive tariffs.",
-            "impactLevel": "moderate_critical",
+            "impactLevel": "high",
             "filingReference": "Form 20-F Risk Factors / PIIE",
             "lastUpdated": "2026-03-17"
         },
