@@ -11,7 +11,7 @@ This updated intelligence briefing details the deployment of a highly optimized,
 Attempting to run complex, multi-model LLM orchestration directly within a Node.js/TypeScript runtime frequently leads to VRAM fragmentation and catastrophic memory leaks. To resolve this, the architecture separates the application into two distinct environments communicating via local REST APIs.
 
 1. **The TypeScript Orchestrator:** The Next.js or Node.js environment acts purely as the central nervous system. It manages the LangGraph Directed Acyclic Graph (DAG), maintains the ResearchState object, coordinates the Ralph Loop (Worker/Quality/Critic), and handles the user interface.  
-2. **The Python Inference Sidecar:** A local FastAPI server running directly on the host machine. This sidecar utilizes enterprise-grade Python inference libraries (such as vLLM or an optimized llama.cpp Python binding). The sidecar acts as an abstraction layer; the TypeScript app simply sends a payload requesting "planning," and the Python sidecar handles loading the correct model into VRAM, executing the prompt, enforcing JSON schemas (via the outlines library), and instantly flushing the VRAM upon completion.
+2. **The Python Inference Sidecar:** A local FastAPI server running directly on the host machine. The sidecar acts as an abstraction layer; the TypeScript app simply sends a payload requesting "planning," and the Python sidecar handles loading the correct model into VRAM, executing the prompt, enforcing JSON schemas (via the outlines library), and instantly flushing the VRAM upon completion.
 
 ## 
 
