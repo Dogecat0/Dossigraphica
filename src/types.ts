@@ -14,17 +14,17 @@ export interface Office {
     id: string
     name: string
     city: string
-    state?: string
+    state?: string | null
     country: string
-    address?: string
+    address?: string | null
     lat: number
     lng: number
     businessFocus: string
-    size?: string
+    size?: string | null
     type: OfficeType
-    established?: string
-    source?: string
-    confidence?: 'verified' | 'unverified' | 'city_center_approximation'
+    established?: string | null
+    source?: string | null
+    confidence?: 'verified' | 'unverified' | 'city_center_approximation' | null
     /** Set at runtime when flattening — the parent company name */
     companyId?: string
 }
@@ -64,17 +64,17 @@ export interface ArcDatum {
 export interface RevenueSegment {
     region: string
     revenue: number | null
-    percentage: number
+    percentage: number | null
     yoyGrowth: number | null
-    notes: string
+    notes: string | null
 }
 
 export interface RevenueGeography {
     fiscalYear: string
-    totalRevenue: number
+    totalRevenue: number | null
     currency: string
     segments: RevenueSegment[]
-    concentrationRisk: string
+    concentrationRisk: string | null
     source: string
 }
 
@@ -83,8 +83,8 @@ export interface SupplyChainNode {
     role: 'foundry' | 'assembly_test' | 'raw_material' | 'logistics' | 'contract_manufacturer' | 'key_supplier' | 'cloud_infrastructure'
     city: string
     country: string
-    lat: number
-    lng: number
+    lat: number | null
+    lng: number | null
     product: string
     criticality: 'critical' | 'important' | 'standard'
     source: string
@@ -95,16 +95,16 @@ export interface CustomerNode {
     revenueShare: string
     hqCity: string
     hqCountry: string
-    lat: number
-    lng: number
+    lat: number | null
+    lng: number | null
     relationship: string
     source: string
 }
 
 export interface GeopoliticalRisk {
     region: string
-    lat: number
-    lng: number
+    lat: number | null
+    lng: number | null
     riskScore: 1 | 2 | 3 | 4 | 5
     riskCategory: string
     riskLabel: string
@@ -117,20 +117,20 @@ export interface GeopoliticalRisk {
 export interface ExpansionSignal {
     type: 'expansion'
     location: string
-    lat?: number
-    lng?: number
+    lat?: number | null
+    lng?: number | null
     description: string
-    estimatedTimeline?: string
-    investment?: string
+    estimatedTimeline?: string | null
+    investment?: string | null
     source: string
-    dateAnnounced?: string
+    dateAnnounced?: string | null
 }
 
 export interface ContractionSignal {
     type: 'contraction'
     location: string
-    lat?: number
-    lng?: number
+    lat?: number | null
+    lng?: number | null
     description: string
     source: string
 }
