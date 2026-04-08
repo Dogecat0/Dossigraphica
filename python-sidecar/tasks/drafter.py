@@ -32,11 +32,23 @@ async def run_drafter(state: ResearchState) -> ResearchState:
     logger.info("Drafting final reports (Multi-Stage).")
     facts_text = "\n".join([f"- {fact}" for fact in state.extracted_facts])
     
-    # 1. Draft the Markdown Report (narrative first helps the model organize thoughts)
+    # 1. Draft the Markdown Report (Narrative Geographic Intelligence Brief)
     md_prompt = (
-        f"Generate a professional deep research report for: {state.user_query}\n\n"
+        f"Act as a Senior Geo-Intelligence Analyst. Generate a professional Markdown Brief for: {state.user_query}\n\n"
         f"FACTS:\n{facts_text}\n\n"
-        "Sections: Executive Summary, Supply Chain, Geopolitical Risk, Strategic Outlook."
+        "Strictly use the following Narrative Framework:\n"
+        "## 1. Geographic Profile Summary\n"
+        "## 2. MODULE A: Corporate Footprint — Offices, Facilities & Subsidiaries\n"
+        "## 3. MODULE B: Revenue Geography — Regional Segment Breakdown\n"
+        "## 4. MODULE C: Supply Chain & Manufacturing Map\n"
+        "## 5. MODULE D: Customer Concentration Geography\n"
+        "## 6. MODULE E: Regulatory & Geopolitical Risk Map\n"
+        "## 7. MODULE F: Strategic Expansion & Contraction Signals\n\n"
+        "Style Guidelines:\n"
+        "- Tone: Professional, objective, institutional, and forensic.\n"
+        "- Precision: Use exact figures from filings. Do not round.\n"
+        "- Citations: Append citations sequentially [1] after every geographic claim.\n"
+        "- Works Cited: Include a numbered list at the end."
     )
     state.final_report_md = await llm.generate_text(md_prompt)
     logger.info("Markdown report completed.")
@@ -50,19 +62,21 @@ async def run_drafter(state: ResearchState) -> ResearchState:
             website: str
             sector: str
             description: str
-            generatedDate: str
+            generatedDate: str # ISO 8601 YYYY-MM-DD
 
         basic_info = await draft_section(
-            f"Extract basic company details for {state.user_query} from these facts:\n{facts_text}",
+            f"Extract basic company details for {state.user_query} from these facts:\n{facts_text}\n\n"
+            "Requirement: description must emphasize global geographic footprint. generatedDate must be YYYY-MM-DD.",
             BasicInfo,
-            "You are a precision data extractor."
+            "You are a precision Geo-Intelligence data extractor."
         )
 
         # B. Anchor Filing
         anchor = await draft_section(
-            f"Identify the primary source filing (e.g. 10-K) from these facts:\n{facts_text}",
+            f"Identify the primary source filing (e.g. 10-K) from these facts:\n{facts_text}\n\n"
+            "Extract: type (10-K/10-Q/8-K), date (YYYY-MM-DD), and fiscalPeriod (e.g. FY2025).",
             AnchorFilingSchema,
-            "Extract anchor filing details."
+            "Extract anchor filing details with ISO dates."
         )
 
         # C. Offices
@@ -70,16 +84,23 @@ async def run_drafter(state: ResearchState) -> ResearchState:
             offices: List[OfficeSchema]
 
         offices_data = await draft_section(
-            f"Extract all physical office locations from these facts:\n{facts_text}",
+            f"Extract all physical office locations (HQ, R&D, manufacturing) from these facts:\n{facts_text}\n\n"
+            "Requirements:\n"
+            "- Coordinates must be decimal degrees.\n"
+            "- id must be slug: {ticker}-{city}-{type}.\n"
+            "- confidence must be 'verified' (Tier 1 source) or 'unverified'.",
             OfficeList,
-            "Extract office locations into the schema."
+            "Extract geographic office data for the globe application."
         )
 
         # D. Revenue Geography
         revenue = await draft_section(
-            f"Extract revenue breakdown by geography from these facts:\n{facts_text}",
+            f"Extract revenue breakdown by geography from these facts:\n{facts_text}\n\n"
+            "Requirements:\n"
+            "- totalRevenue must be a raw number (e.g. 63900000000, not '$63.9B').\n"
+            "- percentage must be a decimal (0.00 to 1.00).",
             RevenueGeographySchema,
-            "Extract revenue geography."
+            "Extract revenue geography with raw numerical precision."
         )
 
         # E. Supply Chain
@@ -87,9 +108,12 @@ async def run_drafter(state: ResearchState) -> ResearchState:
             supply_chain: List[SupplyChainNodeSchema]
 
         sc_data = await draft_section(
-            f"Extract supply chain partners and roles from these facts:\n{facts_text}",
+            f"Extract supply chain partners, foundries, and manufacturing nodes from these facts:\n{facts_text}\n\n"
+            "Requirements:\n"
+            "- Identify 'critical' (single-source) vs 'standard' nodes.\n"
+            "- Include coordinates (decimal degrees) for all nodes.",
             SupplyChainList,
-            "Extract supply chain nodes."
+            "Map the global supply chain infrastructure."
         )
 
         # F. Risks & Signals (Simplified for this stage)
@@ -100,9 +124,13 @@ async def run_drafter(state: ResearchState) -> ResearchState:
             customerConcentration: List[CustomerNodeSchema]
 
         rs_data = await draft_section(
-            f"Extract risks, customers, and expansion/contraction signals:\n{facts_text}",
+            f"Extract risks, customers, and expansion/contraction signals:\n{facts_text}\n\n"
+            "Requirements:\n"
+            "- riskScore: 1 (Minimal) to 5 (Critical).\n"
+            "- riskCategory: trade_restriction, regulatory_compliance, geopolitical_conflict, etc.\n"
+            "- expansionSignals: include investment amount if available.",
             RisksAndSignals,
-            "Extract risks and signals."
+            "Extract geopolitical risks and strategic geographic signals."
         )
 
         # 3. Assemble the final GeoIntelligenceSchema

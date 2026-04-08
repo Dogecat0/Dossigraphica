@@ -115,7 +115,11 @@ class GeopoliticalRiskSchema(BaseModel):
     lat: Optional[float] = Field(None, description="Lat.")
     lng: Optional[float] = Field(None, description="Lng.")
     riskScore: Literal[1, 2, 3, 4, 5] = Field(..., description="1-5 severity score.")
-    riskCategory: str = Field(..., description="Category (e.g., Trade War, Conflict).")
+    riskCategory: Literal[
+        'trade_restriction', 'regulatory_compliance', 'tax_policy', 
+        'geopolitical_conflict', 'currency_exposure', 'environmental_regulation', 
+        'labor_regulation', 'data_privacy', 'sanctions', 'political_instability'
+    ] = Field(..., description="Category of risk.")
     riskLabel: str = Field(..., description="Short title.")
     description: str = Field(..., description="Detailed impact analysis.")
     impactLevel: Literal['minimal', 'low', 'moderate', 'high', 'critical'] = Field(..., description="Business impact level.")
