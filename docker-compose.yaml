@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./searxng-settings.yml:/etc/searxng/settings.yml
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080
+    restart: unless-stopped
+
+  llama-server:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    container_name: llama-server
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface:rw
+    # These are the arguments passed to the llama.cpp server
+    environment:
+      - LLAMA_ARG_HF_REPO=${LLAMA_MODEL_REPO}
+      - LLAMA_ARG_PORT=8081
+      - LLAMA_ARG_HOST=0.0.0.0
+      - LLAMA_ARG_CTX_SIZE=${LLAMA_CTX_SIZE}
+      - LLAMA_ARG_N_GPU_LAYERS=all
+    # This section replaces the '--gpus all' flag
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
