@@ -21,15 +21,17 @@ async def run_reflector(state: ResearchState) -> ResearchState:
     prompt = (
         f"Research Query: {state.user_query}\n\n"
         f"Extracted Facts:\n{facts_text}\n\n"
-        "Evaluate the progress. Does this answer the original query comprehensively? "
-        "Identify specific gaps in the data (e.g., missing revenue breakdowns, unclear supply chain links, outdated risk scores). "
-        "If gaps exist, provide new targeted search queries to fill them. "
-        "If the query is fully answered, set is_complete to True."
+        "Audit the gathered intelligence against these six modules:\n"
+        "1. Corporate Footprint | 2. Revenue Geography | 3. Supply Chain | 4. Customer Concentration | 5. Geopolitical Risk | 6. Strategic Signals\n\n"
+        "Identify forensic gaps (e.g., unverified facility functions, missing regional growth rates, unmapped single points of failure). "
+        "Are there Tier 1 (SEC/Earnings) citations for all major claims? "
+        "If gaps exist, provide targeted search queries. If complete, set is_complete to True."
     )
     
     system_prompt = (
-        "You are an adversarial research auditor. Your job is to find flaws in the current gathered "
-        "intelligence and demand more evidence unless the query is definitively answered."
+        "You are an Adversarial Geo-Intelligence Auditor. Your job is to find flaws in the "
+        "geographic data, identify unverified 'Geo Claims', and demand primary source "
+        "evidence for all physical infrastructure and revenue distribution."
     )
     
     try:

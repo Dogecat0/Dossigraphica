@@ -54,18 +54,25 @@ def chunk_text(text: str, model: str, chunk_size: int, overlap: int) -> list:
 async def squeeze_chunk(chunk: str, query: str) -> list:
     """
     Uses structured output to extract relevant facts from a chunk immediately.
-    This 'squeezes' the data early, preventing context overflow in later stages.
+    Squeezes specifically for Geo-Intelligence: footprint, revenue, supply chain, risk.
     """
     prompt = (
         f"Research Query: {query}\n\n"
         f"Text Chunk Content:\n{chunk}\n\n"
-        "Extract ONLY highly specific facts, statistics, and critical data points "
-        "relevant to the query. Ignore narrative fluff."
+        "Extract highly specific, geographically focused facts for the following modules:\n"
+        "1. Corporate Footprint (HQ, manufacturing, R&D, data centers)\n"
+        "2. Revenue Geography (regional segments, currency exposure)\n"
+        "3. Supply Chain (manufacturing nodes, raw materials, single-point-of-failure partners)\n"
+        "4. Customer Concentration (geographic footprint of revenue base)\n"
+        "5. Geopolitical & Regulatory Risk (export controls, local probes, trade restrictions)\n"
+        "6. Strategic Expansion/Contraction (new site openings, exiting markets)\n\n"
+        "Mandate: Every geographic claim MUST include its specific source or filing context."
     )
     
     system_prompt = (
-        "You are a precision data sieve. Extract critical intelligence into a structured list. "
-        "If the chunk is irrelevant, set is_useful to false."
+        "You are a Senior Geo-Intelligence Analyst. Your task is forensic data extraction. "
+        "Filter for verifiable physical locations, regional revenue figures, and localized risks. "
+        "Ignore general financial metrics and narrative fluff."
     )
     
     try:

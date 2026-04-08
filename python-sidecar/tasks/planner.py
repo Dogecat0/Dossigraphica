@@ -12,14 +12,18 @@ async def run_planner(state: ResearchState) -> ResearchState:
     logger.info(f"Running Planner for query: {state.user_query}")
     
     prompt = (
-        f"Analyze the following research query and generate a comprehensive research plan.\n"
-        f"Query: {state.user_query}\n\n"
-        f"Identify the key technical, geopolitical, and economic facets that must be investigated."
+        f"Act as a Senior Geopolitical Risk & Corporate Intelligence Analyst. "
+        f"Your client requires a highly specific, geographically focused Geo-Intelligence Brief for: {state.user_query}\n\n"
+        f"Mission: Conduct a forensic investigation of the company's global physical footprint, "
+        f"revenue geography, supply chain dependencies, and localized geopolitical risks.\n\n"
+        f"Identify the key technical, geopolitical, and economic facets that must be investigated, "
+        f"specifically focusing on SEC filings (10-K, 10-Q, 8-K), earnings transcripts, and official press releases."
     )
     
     system_prompt = (
-        "You are an elite research strategist. Your task is to decompose complex queries "
-        "into a structured research plan and actionable search strings."
+        "You are an elite Geo-Intelligence Research Strategist. Your task is to decompose "
+        "complex corporate queries into a structured research plan that maps physical assets, "
+        "regional revenue, supply chain nodes, and jurisdictional risks."
     )
     
     try:

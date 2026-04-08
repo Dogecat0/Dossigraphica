@@ -23,13 +23,17 @@ async def run_triage(state: ResearchState) -> ResearchState:
     prompt = (
         f"Analyze these search results for the query: {state.user_query}\n\n"
         f"Search results:\n{snippets_text}\n"
-        "Identify the top 5 most authoritative, relevant, and information-dense URLs "
-        "that are likely to contain primary source data (SEC filings, official press releases, deep industry analysis)."
+        "Identify the top 5 most authoritative sources following this hierarchy:\n"
+        "1. Tier 1 (Highest): SEC Filings (10-K, 10-Q, Exhibit 21), Official Earnings Call Transcripts, Investor Presentations.\n"
+        "2. Tier 2 (High): Bloomberg, WSJ, Reuters, FT.\n"
+        "3. Tier 3 (Medium): Established trade publications.\n\n"
+        "Look specifically for physical locations, regional revenue breakdowns, and supply chain nodes."
     )
     
     system_prompt = (
-        "You are an expert information triagist. Your goal is to separate high-signal authoritative "
-        "sources from SEO spam and redundant news aggregators."
+        "You are an expert Geo-Intelligence Triagist. Your goal is to identify primary source "
+        "data (SEC filings, official press releases) that contains verifiable geographic "
+        "information and localized risk disclosures."
     )
     
     try:

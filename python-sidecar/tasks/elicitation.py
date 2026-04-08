@@ -19,13 +19,16 @@ async def run_elicitation(state: ResearchState) -> ResearchState:
     prompt = (
         f"Original Query: {state.user_query}\n\n"
         f"Current Search Plan:\n{current_queries}\n\n"
-        "Identify blind spots. Are you absolutely certain this covers every geopolitical, financial, and historical angle? "
-        "Provide at least 3 additional, distinct queries to explore tangential or overlooked angles."
+        "Identify blind spots in the Geo-Intelligence narrative. Are you certain you've mapped:\n"
+        "- All primary manufacturing and assembly nodes?\n"
+        "- The exact regional revenue distribution (Americas/EMEA/APAC)?\n"
+        "- Specific jurisdictional regulatory probes or export controls?\n\n"
+        "Provide at least 3 additional queries to explore unverified locations or overlooked regional risks."
     )
     
     system_prompt = (
-        "You are a relentless research director. Review the generated list of search queries "
-        "against the original prompt to identify and correct for lazy investigate heuristics."
+        "You are a relentless Geo-Intelligence Director. Review the search plan "
+        "to ensure absolute forensic coverage of physical infrastructure and geopolitical exposure."
     )
     
     try:
