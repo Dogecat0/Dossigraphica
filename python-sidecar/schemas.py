@@ -56,6 +56,15 @@ class SynthesizerSchema(BaseModel):
     reasoning: str = Field(..., description="High-level analysis of the document's utility and geographic density.")
     extracted_facts: List[FactSchema] = Field(..., description="Dense list of specific categorized facts, numbers, and findings. If none are found, return an empty list.")
 
+# --- Triage Strategy Schema (for Prompt Injection) ---
+
+class TriageStrategySchema(BaseModel):
+    model_config = STRICT_CONFIG
+    authority_hierarchy: dict = Field(..., description="Tiered priority for sources.")
+    max_filing_dates_per_type: int = Field(2, description="Only select the N most recent filing/report dates per document type (e.g., 10-K, 10-Q).")
+    source_penalty_list: List[str] = Field(..., description="Domains or site types to de-prioritize.")
+    diversity_bonus: str = Field(..., description="Instruction to maximize domain and source type variety within the selection budget.")
+    target_date_threshold: str = Field(..., description="Instruction to prioritize data from the current and previous year only.")
 
 # --- Geo-Intelligence Output Schemas (Mirroring TS types - STRICT) ---
 

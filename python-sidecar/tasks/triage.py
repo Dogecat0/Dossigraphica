@@ -1,4 +1,5 @@
-from schemas import ResearchState, TriageSchema
+import json
+from schemas import ResearchState, TriageSchema, GeoIntelligenceSchema, TriageStrategySchema
 from llm import llm, LLAMA_CTX_PER_REQUEST, LLAMA_OUTPUT_RESERVATION
 import logging
 import os
@@ -6,36 +7,57 @@ import asyncio
 
 logger = logging.getLogger(__name__)
 
-# Configurable fallback limit
+# Configurable fallback limit and global extraction cap
 TRIAGE_FALLBACK_LIMIT = int(os.getenv("TRIAGE_FALLBACK_LIMIT", "5"))
+MAX_TOTAL_URLS = 50
 
 async def run_triage(state: ResearchState) -> ResearchState:
     """
-    Evaluates SearXNG snippets to rank top URLs via the LLM.
+    Evaluates Brave search results to rank top URLs via the LLM.
     Executes one inference call PER search query for maximum focus.
     """
     if not state.search_results:
         logger.warning("No search results to triage.")
         return state
 
-    logger.info(f"Triaging {len(state.search_results)} search results across queries.")
+    logger.info(f"Triaging {len(state.search_results)} results. Global cap: {MAX_TOTAL_URLS}")
     
+    # 1. Prepare Injection Schemas
+    # Use f-strings for immediate injection to avoid .format() brace conflicts
+    report_schema = json.dumps(GeoIntelligenceSchema.model_json_schema(), indent=2)
+    
+    # Codify the Strategy into a Data Object
+    strategy = TriageStrategySchema(
+        authority_hierarchy={
+            "tier_1_primary": ["SEC Filings (10-K, 10-Q, 8-K)", "Official Earnings Transcripts", "Investor Presentations"],
+            "tier_2_verified": [
+                "Official Gov/Regulatory Data (.gov, .int, Customs, Trade, Sanctions)",
+                "High-Authority Financial News (WSJ, Bloomberg, Reuters, FT, Digitimes)"
+            ]
+        },
+        max_filing_dates_per_type=2,
+        source_penalty_list=["Reddit", "LinkedIn", "Social Media", "General Blogs"],
+        diversity_bonus="Maximize domain and source type variety. Do not saturate the 50-URL budget with a single domain.",
+        target_date_threshold="Select ONLY the 2 most recent dates for any periodic report, counting back from the date when this query is running."
+    )
+    strategy_json = json.dumps(strategy.model_dump(), indent=2)
+
     system_prompt = (
         "You are an expert Geo-Intelligence Triagist. Your goal is to identify primary source "
-        "data (SEC filings, official press releases) that contains verifiable geographic "
-        "information and localized risk disclosures."
+        "data that contains verifiable geographic information and localized risk disclosures."
     )
     
-    # Base prompt template for per-query triage
+    # 2. Base prompt template using tags for manual replacement to avoid .format() KeyError on JSON braces
     base_prompt_template = (
-        "Analyze these search results for the specific targeted query: {query}\n\n"
-        "Search results:\n{snippets_text}\n\n"
-        "Identify all highly authoritative sources following this hierarchy:\n"
-        "1. Tier 1 (Highest): SEC Filings (10-K, 10-Q, Exhibit 21), Official Earnings Call Transcripts, Investor Presentations.\n"
-        "2. Tier 2 (High): Bloomberg, WSJ, Reuters, FT.\n"
-        "3. Tier 3 (Medium): Established trade publications.\n\n"
-        "Select only the sources that directly satisfy the query and contain verifiable geographic data. "
-        "Return the URLs in order of authority and relevance."
+        "Analyze these search results for the specific targeted query: <QUERY>\n\n"
+        "--- MISSION: SATISFY THIS TARGET REPORT SCHEMA ---\n"
+        f"{report_schema}\n\n"
+        "--- SELECTION RULES (STRICT COMPLIANCE) ---\n"
+        f"{strategy_json}\n\n"
+        "--- SEARCH RESULTS ---\n"
+        "<SNIPPETS_TEXT>\n\n"
+        "Select ONLY the URLs that directly satisfy the query and the Target Report Schema. "
+        "Strictly adhere to the Recency and Hierarchy rules. Return them in order of authority."
     )
 
     # Group snippets by query
@@ -53,20 +75,20 @@ async def run_triage(state: ResearchState) -> ResearchState:
         for i, res in enumerate(results):
             snippets_text += f"[{i}] URL: {res['url']}\nTitle: {res['title']}\nSnippet: {res['content']}\n\n"
         
-        # Calculate available token space
-        test_prompt = base_prompt_template.format(query=query, snippets_text="")
-        messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": test_prompt}]
+        # 1. Calculate tokens based on the *raw* template (with placeholders)
+        messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": base_prompt_template}]
         overhead = llm.estimate_tokens(messages)
         target_tokens = LLAMA_CTX_PER_REQUEST - overhead - LLAMA_OUTPUT_RESERVATION
         
-        # Summarize to fit if necessary
+        # 2. Summarize snippets to fit
         compressed_snippets = await llm.summarize_to_fit(
             snippets_text, 
             target_tokens, 
             system_prompt="You are a research source triagist. Compress search snippets while keeping URLs and authority signals."
         )
 
-        final_prompt = base_prompt_template.format(query=query, snippets_text=compressed_snippets)
+        # 3. Manual Tag Replacement (Robust against JSON braces)
+        final_prompt = base_prompt_template.replace("<QUERY>", query).replace("<SNIPPETS_TEXT>", compressed_snippets)
         
         try:
             triage_output = await llm.generate_structured(
@@ -85,14 +107,23 @@ async def run_triage(state: ResearchState) -> ResearchState:
     triage_results = await asyncio.gather(*triage_tasks)
     
     combined_reasoning = ""
-    unique_urls = set()
+    unique_urls = []
+    seen_urls = set()
+    
+    # 3. Consolidate and Apply Global Optimization Cap
     for urls, reasoning in triage_results:
         for url in urls:
-            unique_urls.add(url)
+            if url not in seen_urls:
+                unique_urls.append(url)
+                seen_urls.add(url)
         combined_reasoning += f"\n### Query Triage\n{reasoning}\n"
     
-    state.scratchpad += combined_reasoning
-    state.urls = list(unique_urls)
+    if len(unique_urls) > MAX_TOTAL_URLS:
+        logger.info(f"Capping unique URLs from {len(unique_urls)} down to {MAX_TOTAL_URLS} for extraction efficiency.")
+        unique_urls = unique_urls[:MAX_TOTAL_URLS]
     
-    logger.info(f"Triage complete. Total unique URLs selected: {len(state.urls)}")
+    state.scratchpad += combined_reasoning
+    state.urls = unique_urls
+    
+    logger.info(f"Triage complete. Total unique URLs selected for extraction: {len(state.urls)}")
     return state
