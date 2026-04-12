@@ -25,33 +25,38 @@ async def run_search(state: ResearchState) -> ResearchState:
     
     unique_results = {} # Use dict to deduplicate by URL easily
     
+    # Semaphore to prevent 429 errors (limit to 5 parallel queries)
+    # 5 is a safe "steady drip" that works across both Brave and Jina tiers.
+    semaphore = asyncio.Semaphore(5)
+    
     async with httpx.AsyncClient(timeout=30.0) as client:
         async def fetch_query(query: str):
-            logger.info(f"Searching for: {query}")
-            try:
-                # Brave Search API: Web Search Endpoint
-                url = "https://api.search.brave.com/res/v1/web/search"
-                headers = {
-                    "Accept": "application/json",
-                    "Accept-Encoding": "gzip",
-                    "X-Subscription-Token": BRAVE_SEARCH_API_KEY
-                }
-                params = {
-                    "q": query,
-                    "count": 10 # Request up to 10 results for better coverage
-                }
-                
-                response = await client.get(url, headers=headers, params=params)
-                response.raise_for_status()
-                data = response.json()
-                
-                # Brave results are nested under web -> results
-                found = data.get("web", {}).get("results", [])
-                logger.info(f"Query '{query}' returned {len(found)} results from Brave.")
-                return found, query
-            except Exception as e:
-                logger.error(f"Error searching for query '{query}': {e}")
-                return [], query
+            async with semaphore:
+                logger.info(f"Searching for: {query}")
+                try:
+                    # Brave Search API: Web Search Endpoint
+                    url = "https://api.search.brave.com/res/v1/web/search"
+                    headers = {
+                        "Accept": "application/json",
+                        "Accept-Encoding": "gzip",
+                        "X-Subscription-Token": BRAVE_SEARCH_API_KEY
+                    }
+                    params = {
+                        "q": query,
+                        "count": 10 # Request up to 10 results for better coverage
+                    }
+                    
+                    response = await client.get(url, headers=headers, params=params)
+                    response.raise_for_status()
+                    data = response.json()
+                    
+                    # Brave results are nested under web -> results
+                    found = data.get("web", {}).get("results", [])
+                    logger.info(f"Query '{query}' returned {len(found)} results from Brave.")
+                    return found, query
+                except Exception as e:
+                    logger.error(f"Error searching for query '{query}': {e}")
+                    return [], query
 
         # Execute all queries concurrently
         search_tasks = [fetch_query(q) for q in state.search_queries]
