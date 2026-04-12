@@ -1,4 +1,4 @@
-from schemas import ResearchState, PlannerSchema
+from schemas import ResearchState, PlannerSchema, INTELLIGENCE_GOALS
 from llm import llm
 import logging
 
@@ -14,10 +14,10 @@ async def run_planner(state: ResearchState) -> ResearchState:
     prompt = (
         f"Act as a Senior Geopolitical Risk & Corporate Intelligence Analyst. "
         f"Your client requires a highly specific, geographically focused Geo-Intelligence Brief for: {state.user_query}\n\n"
-        f"Mission: Conduct a forensic investigation of the company's global physical footprint, "
-        f"revenue geography, supply chain dependencies, and localized geopolitical risks.\n\n"
-        f"Identify the key technical, geopolitical, and economic facets that must be investigated, "
-        f"specifically focusing on SEC filings (10-K, 10-Q, 8-K), earnings transcripts, and official press releases."
+        f"{INTELLIGENCE_GOALS}\n\n"
+        f"Mission: Decompose the request into a forensic research plan that satisfies ALL these modules. "
+        f"Focus on SEC filings (10-K, 10-Q, 8-K), earnings transcripts, and official press releases as primary sources. "
+        f"Generate precise search queries for each module to ensure no geographic nodes or revenue segments are missed."
     )
     
     system_prompt = (

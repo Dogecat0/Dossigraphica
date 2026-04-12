@@ -1,4 +1,4 @@
-from schemas import ResearchState, ElicitationSchema
+from schemas import ResearchState, ElicitationSchema, INTELLIGENCE_GOALS
 from llm import llm
 import logging
 
@@ -9,8 +9,8 @@ async def run_elicitation(state: ResearchState) -> ResearchState:
     The Exhaustive Elicitation loop.
     Evaluates existing queries and demands additional distinct angles.
     """
-    if state.is_exhausted or state.nudge_count >= 3:
-        logger.info("Elicitation already exhausted or circuit breaker hit.")
+    if state.is_exhausted:
+        logger.info("Elicitation already exhausted.")
         return state
 
     logger.info(f"Running Elicitation (Nudge {state.nudge_count + 1})")
@@ -18,12 +18,11 @@ async def run_elicitation(state: ResearchState) -> ResearchState:
     current_queries = "\n".join(state.search_queries)
     prompt = (
         f"Original Query: {state.user_query}\n\n"
+        f"{INTELLIGENCE_GOALS}\n\n"
         f"Current Search Plan:\n{current_queries}\n\n"
-        "Identify blind spots in the Geo-Intelligence narrative. Are you certain you've mapped:\n"
-        "- All primary manufacturing and assembly nodes?\n"
-        "- The exact regional revenue distribution (Americas/EMEA/APAC)?\n"
-        "- Specific jurisdictional regulatory probes or export controls?\n\n"
-        "Provide at least 3 additional queries to explore unverified locations or overlooked regional risks."
+        "Identify blind spots in the Geo-Intelligence narrative. Review the Intelligence Goals above "
+        "and determine which modules or specific data points (e.g. manufacturing sites in specific regions, "
+        "revenue share of a key customer, or specific export control risks) are missing from the current plan."
     )
     
     system_prompt = (
