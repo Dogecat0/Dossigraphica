@@ -7,3 +7,4 @@ openai
 litellm
 httpx
 json-repair
+tqdm
