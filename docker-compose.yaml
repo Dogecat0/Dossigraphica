@@ -1,15 +1,14 @@
-version: '3.8'
 services:
-  searxng:
-    image: searxng/searxng:latest
-    container_name: searxng
-    ports:
-      - "127.0.0.1:8080:8080"
-    volumes:
-      - ./searxng-settings.yml:/etc/searxng/settings.yml
-    environment:
-      - SEARXNG_BASE_URL=http://localhost:8080
-    restart: unless-stopped
+  # searxng:
+  #   image: searxng/searxng:latest
+  #   container_name: searxng
+  #   ports:
+  #     - "127.0.0.1:8080:8080"
+  #   volumes:
+  #     - ./searxng-settings.yml:/etc/searxng/settings.yml
+  #   environment:
+  #     - SEARXNG_BASE_URL=http://localhost:8080
+  #   restart: unless-stopped
 
   llama-server:
     image: ghcr.io/ggml-org/llama.cpp:server-cuda
@@ -21,11 +20,39 @@ services:
       - ~/.cache/huggingface:/root/.cache/huggingface:rw
     # These are the arguments passed to the llama.cpp server
     environment:
-      - LLAMA_ARG_HF_REPO=${LLAMA_MODEL_REPO}
+      # - LLAMA_ARG_HF_REPO=${LLAMA_MODEL_REPO}
+      - LLAMA_ARG_MODEL=${LLAMA_MODEL_FILE}
       - LLAMA_ARG_PORT=8081
       - LLAMA_ARG_HOST=0.0.0.0
       - LLAMA_ARG_CTX_SIZE=${LLAMA_CTX_SIZE}
       - LLAMA_ARG_N_GPU_LAYERS=all
+      - LLAMA_ARG_JINJA=true
+      - LLAMA_ARG_CONT_BATCHING=true
+      - LLAMA_ARG_CONTEXT_SHIFT=false
+      - LLAMA_ARG_MMPROJ_AUTO=false
+      - LLAMA_ARG_REASONING=on
+      - LLAMA_ARG_THINK_BUDGET=-1
+      - LLAMA_ARG_CACHE_TYPE_K=q8_0
+      - LLAMA_ARG_CACHE_TYPE_V=q8_0
+      - LLAMA_ARG_CACHE_PROMPT=true
+      - LLAMA_ARG_CACHE_RAM=0
+      - LLAMA_ARG_CACHE_REUSE=64
+      - LLAMA_ARG_SWA_FULL=true
+      - LLAMA_ARG_FLASH_ATTN=true
+      - LLAMA_ARG_DIO=true
+      # - LLAMA_ARG_SPEC_TYPE=ngram-cache
+      # - LLAMA_ARG_SPEC_NGRAM_SIZE_N=4
+      # - LLAMA_ARG_SPEC_NGRAM_SIZE_M=20
+      # - LLAMA_ARG_DRAFT_MAX=16
+      # - LLAMA_ARG_LOOKUP_CACHE_DYNAMIC=/root/.cache/huggingface/hub/ngram_cache.bin
+      - LLAMA_ARG_N_PARALLEL=${LLAMA_N_PARALLEL}
+      - LLAMA_ARG_KV_UNIFIED=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
     # This section replaces the '--gpus all' flag
     deploy:
       resources:
