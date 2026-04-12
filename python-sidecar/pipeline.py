@@ -52,7 +52,7 @@ async def research_pipeline(query: str):
                 state = await run_elicitation(state)
             state.pipeline_step = "searching"
 
-        # 3. Search (Tavily Discovery)
+        # 3. Search (Brave Discovery)
         if state.pipeline_step == "searching":
             yield json.dumps({
                 "status": "searching", 
@@ -69,7 +69,7 @@ async def research_pipeline(query: str):
             state = await run_triage(state)
             state.pipeline_step = "extracting"
         
-        # 5. Managed Extraction (Tavily)
+        # 5. Managed Extraction (Jina Reader)
         if state.pipeline_step == "extracting":
             yield json.dumps({"status": "extracting", "message": f"Extracting content from {len(state.urls)} URLs...", "progress": 65})
             state = await run_extractor(state)
