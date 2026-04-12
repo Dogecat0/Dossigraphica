@@ -6,22 +6,22 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+BRAVE_SEARCH_API_KEY = os.getenv("BRAVE_SEARCH_API_KEY")
 
 async def run_search(state: ResearchState) -> ResearchState:
     """
-    Calls the Tavily Search API in parallel.
+    Calls the Brave Search API in parallel.
     Returns URLs and snippets for each search query.
     """
     if not state.search_queries:
         logger.warning("No search queries provided to run_search.")
         return state
 
-    if not TAVILY_API_KEY:
-        logger.error("TAVILY_API_KEY environment variable is not set. Cannot perform search.")
+    if not BRAVE_SEARCH_API_KEY:
+        logger.error("BRAVE_SEARCH_API_KEY environment variable is not set. Cannot perform search.")
         return state
 
-    logger.info(f"Running Tavily search for {len(state.search_queries)} queries in parallel.")
+    logger.info(f"Running Brave search for {len(state.search_queries)} queries in parallel.")
     
     unique_results = {} # Use dict to deduplicate by URL easily
     
@@ -29,24 +29,25 @@ async def run_search(state: ResearchState) -> ResearchState:
         async def fetch_query(query: str):
             logger.info(f"Searching for: {query}")
             try:
-                response = await client.post(
-                    "https://api.tavily.com/search",
-                    headers={
-                        "Authorization": f"Bearer {TAVILY_API_KEY}",
-                        "Content-Type": "application/json"
-                    },
-                    json={
-                        "query": query,
-                        "search_depth": "basic",
-                        "max_results": 5,
-                        "include_answer": False,
-                        "include_raw_content": False
-                    }
-                )
+                # Brave Search API: Web Search Endpoint
+                url = "https://api.search.brave.com/res/v1/web/search"
+                headers = {
+                    "Accept": "application/json",
+                    "Accept-Encoding": "gzip",
+                    "X-Subscription-Token": BRAVE_SEARCH_API_KEY
+                }
+                params = {
+                    "q": query,
+                    "count": 10 # Request up to 10 results for better coverage
+                }
+                
+                response = await client.get(url, headers=headers, params=params)
                 response.raise_for_status()
                 data = response.json()
-                found = data.get("results", [])
-                logger.info(f"Query '{query}' returned {len(found)} results.")
+                
+                # Brave results are nested under web -> results
+                found = data.get("web", {}).get("results", [])
+                logger.info(f"Query '{query}' returned {len(found)} results from Brave.")
                 return found, query
             except Exception as e:
                 logger.error(f"Error searching for query '{query}': {e}")
@@ -60,9 +61,10 @@ async def run_search(state: ResearchState) -> ResearchState:
             for res in results:
                 url = res.get("url")
                 if url and url not in unique_results:
+                    # Brave uses 'description' for the snippet
                     unique_results[url] = {
                         "url": url,
-                        "content": res.get("content", ""),
+                        "content": res.get("description", ""),
                         "title": res.get("title", ""),
                         "query": query
                     }
@@ -84,9 +86,9 @@ async def run_search(state: ResearchState) -> ResearchState:
                 "search_results": state.search_results,
                 "urls": state.urls
             }, f, indent=2)
-        logger.info(f"Tavily Search logged for replay: {filepath}")
+        logger.info(f"Brave Search logged for replay: {filepath}")
     except Exception as e:
         logger.error(f"Failed to log SearchData: {e}")
 
-    logger.info(f"Tavily Search finished. Total unique search results in state: {len(state.search_results)}")
+    logger.info(f"Brave Search finished. Total unique search results in state: {len(state.search_results)}")
     return state

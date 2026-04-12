@@ -21,9 +21,11 @@ async def run_test_research(query: str):
     """
     print(f"\n--- [STARTING RESEARCH: {query}] ---\n")
     
-    # Check for TAVILY_API_KEY
-    if not os.getenv("TAVILY_API_KEY"):
-        print("WARNING: TAVILY_API_KEY not found in environment. Extraction phase will fail.")
+    # Check for JINA_API_KEY and BRAVE_SEARCH_API_KEY
+    if not os.getenv("JINA_API_KEY"):
+        print("WARNING: JINA_API_KEY not found in environment. Extraction phase may be throttled.")
+    if not os.getenv("BRAVE_SEARCH_API_KEY"):
+        print("WARNING: BRAVE_SEARCH_API_KEY not found in environment. Search phase will fail.")
 
     start_time = time.perf_counter()
     current_progress = 0
