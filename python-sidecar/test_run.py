@@ -2,9 +2,9 @@ import asyncio
 import json
 import os
 import sys
+import time
 from dotenv import load_dotenv
-import os
-import sys
+from tqdm import tqdm
 
 # Load environment variables from .env in the project root
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
@@ -16,7 +16,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 async def run_test_research(query: str):
     """
-    Consumes the research_pipeline async generator and prints status updates.
+    Consumes the research_pipeline async generator and prints status updates with a progress bar.
+    Tracks total execution time.
     """
     print(f"\n--- [STARTING RESEARCH: {query}] ---\n")
     
@@ -24,36 +25,50 @@ async def run_test_research(query: str):
     if not os.getenv("TAVILY_API_KEY"):
         print("WARNING: TAVILY_API_KEY not found in environment. Extraction phase will fail.")
 
-    try:
-        async for update in research_pipeline(query):
-            data = json.loads(update)
-            status = data.get("status")
-            message = data.get("message")
-            
-            print(f"[{status.upper()}] {message}")
-            
-            if status == "completed":
-                print("\n--- [REPORT PREVIEW] ---\n")
-                report = data.get("report", "")
-                print(report[:500] + "...")
+    start_time = time.perf_counter()
+    current_progress = 0
+    with tqdm(total=100, desc="Initializing Research", bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]") as pbar:
+        try:
+            async for update in research_pipeline(query):
+                data = json.loads(update)
+                status = data.get("status")
+                message = data.get("message")
+                progress = data.get("progress", current_progress)
                 
-                # Save to files
-                with open("test_report.md", "w") as f:
-                    f.write(report)
+                # Update progress bar
+                if progress > current_progress:
+                    pbar.update(progress - current_progress)
+                    current_progress = progress
                 
-                final_data = data.get("data")
-                with open("test_data.json", "w") as f:
-                    json.dump(final_data, f, indent=2)
+                pbar.set_description(f"[{status.upper()}] {message}")
                 
-                print(f"\n[SUCCESS] Full report saved to test_report.md and test_data.json")
+                if status == "completed":
+                    pbar.close()
+                    end_time = time.perf_counter()
+                    duration = end_time - start_time
+                    
+                    print(f"\n\n--- [RESEARCH FINISHED IN {duration:.2f}s] ---\n")
+                    print("--- [REPORT PREVIEW] ---\n")
+                    report = data.get("report", "")
+                    print(report[:500] + "...")
+                    
+                    # Save to files
+                    with open("test_report.md", "w") as f:
+                        f.write(report)
+                    
+                    final_data = data.get("data")
+                    with open("test_data.json", "w") as f:
+                        json.dump(final_data, f, indent=2)
+                    
+                    print(f"\n[SUCCESS] Full report saved to test_report.md and test_data.json")
                 
-                print("\n--- [DATA PREVIEW] ---\n")
-                print(json.dumps(final_data, indent=2)[:500] + "...")
-            elif status == "error":
-                print(f"\nERROR: {data.get('message')}\n")
+                elif status == "error":
+                    pbar.close()
+                    print(f"\nERROR: {data.get('message')}\n")
 
-    except Exception as e:
-        print(f"\nFATAL EXCEPTION: {e}\n")
+        except Exception as e:
+            pbar.close()
+            print(f"\nFATAL EXCEPTION: {e}\n")
 
 if __name__ == "__main__":
     # Example target for validation

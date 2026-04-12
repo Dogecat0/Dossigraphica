@@ -19,6 +19,8 @@ __pycache__
 *.pem
 *.key
 
+.vscode/
+
 /logs/inference/*
 /inference copy/*  
 
