@@ -1,7 +1,5 @@
 from schemas import ResearchState
 from tasks.planner import run_planner
-from tasks.elicitation import run_elicitation
-from tasks.query_triage import run_query_triage
 from tasks.search import run_search
 from tasks.extractor import run_extractor
 from tasks.preprocessor import run_preprocessor
@@ -14,15 +12,12 @@ import os
 
 logger = logging.getLogger(__name__)
 
-# Configurable loop limits
-ELICITATION_MAX_NUDGES = int(os.getenv("ELICITATION_MAX_NUDGES", "20"))
-
 async def research_pipeline(query: str):
     """
     The Pure Python Orchestration Engine.
-    Single-pass pipeline: Plan → Elicitate → Query Triage → Search → Source Triage → Extract → Preprocess → Draft → Deliver.
-    The Elicitation loop guarantees exhaustive query coverage upfront,
-    eliminating the need for a costly reflector feedback loop.
+    Single-pass pipeline: Plan → Search → Source Triage → Extract → Preprocess → Draft → Deliver.
+    The planner deterministically generates queries from schema introspection,
+    eliminating the need for elicitation and query triage stages.
     """
     # Initialize State from logs or scratch
     log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
@@ -34,31 +29,13 @@ async def research_pipeline(query: str):
         logger.info(f"Starting pipeline for: {query}")
 
     try:
-        # 1. Strategy & Planning
+        # 1. Deterministic Planning (Schema Introspection)
         if state.pipeline_step == "init":
-            yield json.dumps({"status": "planning", "message": "Developing research strategy...", "progress": 5})
+            yield json.dumps({"status": "planning", "message": "Generating research queries from schema...", "progress": 5})
             state = await run_planner(state)
-            state.pipeline_step = "elicitation"
-        
-        # 2. Exhaustive Elicitation (Is That All? Protocol)
-        if state.pipeline_step == "elicitation":
-            while not state.is_exhausted and state.nudge_count < ELICITATION_MAX_NUDGES:
-                yield json.dumps({
-                    "status": "elicitation", 
-                    "message": f"Refining search queries (Iteration {state.nudge_count + 1}/{ELICITATION_MAX_NUDGES})...",
-                    "queries": state.search_queries,
-                    "progress": 10 + (state.nudge_count * 2)
-                })
-                state = await run_elicitation(state)
-            state.pipeline_step = "query_triage"
-
-        # 2.5 Query Triage (Brave API Optimization)
-        if state.pipeline_step == "query_triage":
-            yield json.dumps({"status": "query_triage", "message": f"Selecting the top 50 search queries from {len(state.search_queries)} generated...", "progress": 45})
-            state = await run_query_triage(state)
             state.pipeline_step = "searching"
 
-        # 3. Search (Brave Discovery)
+        # 2. Search (Brave Discovery)
         if state.pipeline_step == "searching":
             yield json.dumps({
                 "status": "searching", 
@@ -69,25 +46,25 @@ async def research_pipeline(query: str):
             state = await run_search(state)
             state.pipeline_step = "extracting"
         
-        # 4. Managed Extraction (Jina Reader)
+        # 3. Managed Extraction (Jina Reader)
         if state.pipeline_step == "extracting":
             yield json.dumps({"status": "extracting", "message": f"Extracting content from {len(state.urls)} URLs...", "progress": 65})
             state = await run_extractor(state)
             state.pipeline_step = "preprocessing"
         
-        # 6. Semantic Sieve & Chunking (Preprocessor - Early Squeeze)
+        # 4. Semantic Sieve & Chunking (Preprocessor - Early Squeeze)
         if state.pipeline_step == "preprocessing":
             yield json.dumps({"status": "preprocessing", "message": "Chunking and extracting facts from large documents...", "progress": 72})
             state = await run_preprocessor(state)
             state.pipeline_step = "drafting"
         
-        # 7. Final Handoff (Parallel Drafting)
+        # 5. Final Handoff (Parallel Drafting)
         if state.pipeline_step == "drafting":
             yield json.dumps({"status": "drafting", "message": "Synthesizing final intelligence report...", "progress": 85})
             state = await run_drafter(state)
             state.pipeline_step = "completed"
         
-        # 8. Delivery
+        # 6. Delivery
         yield json.dumps({
             "status": "completed", 
             "message": "Research complete.",

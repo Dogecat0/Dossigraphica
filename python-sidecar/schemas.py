@@ -193,13 +193,13 @@ class GeoIntelligenceSchema(BaseModel):
     description: str = Field(..., description="Business summary.")
     anchorFiling: AnchorFilingSchema = Field(..., description="Primary source filing.")
     generatedDate: str = Field(..., description="Current date.")
-    offices: List[OfficeSchema] = Field(..., description="Global office locations.")
-    revenueGeography: RevenueGeographySchema = Field(..., description="Revenue breakdown.")
-    supplyChain: List[SupplyChainNodeSchema] = Field(..., description="Supply chain map.")
-    customerConcentration: List[CustomerNodeSchema] = Field(..., description="Key customer map.")
-    geopoliticalRisks: List[GeopoliticalRiskSchema] = Field(..., description="Regional risk map.")
-    expansionSignals: List[ExpansionSignalSchema] = Field(..., description="Growth indicators.")
-    contractionSignals: List[ContractionSignalSchema] = Field(..., description="Risk indicators.")
+    offices: List[OfficeSchema] = Field(..., description="Corporate office locations headquarters regional engineering manufacturing sites addresses")
+    revenueGeography: RevenueGeographySchema = Field(..., description="Revenue breakdown by geographic region segment percentage growth year-over-year")
+    supplyChain: List[SupplyChainNodeSchema] = Field(..., description="Supply chain suppliers foundries assembly partners critical vendors logistics")
+    customerConcentration: List[CustomerNodeSchema] = Field(..., description="Top customers revenue share buyer relationships major clients")
+    geopoliticalRisks: List[GeopoliticalRiskSchema] = Field(..., description="Geopolitical risks export controls trade restrictions sanctions regulatory compliance")
+    expansionSignals: List[ExpansionSignalSchema] = Field(..., description="Expansion signals new facilities investments hiring growth announcements")
+    contractionSignals: List[ContractionSignalSchema] = Field(..., description="Contraction signals plant closures layoffs restructuring downsizing")
 
 # --- Intelligence Goals (Reference for Planner, Elicitation & Preprocessor) ---
 

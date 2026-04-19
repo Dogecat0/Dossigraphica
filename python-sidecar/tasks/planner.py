@@ -1,52 +1,84 @@
-import json
-from schemas import ResearchState, PlannerSchema, GeoIntelligenceSchema
-from llm import llm
+import os
 import logging
+from datetime import datetime
+from schemas import ResearchState, GeoIntelligenceSchema
 
 logger = logging.getLogger(__name__)
 
+# Fields from GeoIntelligenceSchema that represent searchable intelligence targets.
+# Metadata fields (company, ticker, website, sector, description, anchorFiling,
+# generatedDate) are excluded — they don't generate useful search queries.
+SEARCHABLE_FIELDS = [
+    "offices",
+    "revenueGeography",
+    "supplyChain",
+    "customerConcentration",
+    "geopoliticalRisks",
+    "expansionSignals",
+    "contractionSignals",
+]
+
+# Relative temporal phrases indexed by lookback depth.
+# These are fiscal-calendar-agnostic — companies have arbitrary fiscal years,
+# so we never hardcode "Q2 2026". Instead, we use relative language that lets
+# the search engine surface the most recent filings naturally.
+_TEMPORAL_ANCHORS = [
+    "latest earnings report/call transcript",
+]
+
+
+def _get_temporal_anchors(lookback: int) -> list[str]:
+    """
+    Return the first `lookback` relative temporal phrases.
+
+    Unlike rigid calendar-quarter labels, these are company-agnostic and
+    work regardless of whether the target's fiscal year starts in January,
+    April, or October.
+    """
+    current_year = datetime.now().year
+    anchors: list[str] = []
+    for i in range(min(lookback, len(_TEMPORAL_ANCHORS))):
+        # Append the current year so the search engine biases toward recency,
+        # but without locking to a specific quarter boundary.
+        anchors.append(f"{_TEMPORAL_ANCHORS[i]} {current_year}")
+    return anchors
+
+
 async def run_planner(state: ResearchState) -> ResearchState:
     """
-    Initiates the Strategy Planner via the reasoning model.
-    Injects the final report schema to ensure search queries are forensic and targeted.
+    Deterministic Programmatic Planner.
+
+    Generates search queries as the Cartesian product of:
+      - GeoIntelligenceSchema searchable field descriptions
+      - Relative temporal anchors (derived from QUARTER_LOOKBACK env var)
+
+    No LLM is used. Query count is bounded:
+      len(SEARCHABLE_FIELDS) × QUARTER_LOOKBACK
     """
-    logger.info(f"Running Planner for query: {state.user_query}")
-    
-    # Generate the JSON schema for the final report to inject into the prompt
-    report_schema = json.dumps(GeoIntelligenceSchema.model_json_schema(), indent=2)
-    
-    prompt = (
-        f"Act as a Senior Geopolitical Risk & Corporate Intelligence Analyst. "
-        f"Your client requires a forensic Geo-Intelligence Brief for: {state.user_query}\n\n"
-        f"--- TARGET REPORT SCHEMA ---\n"
-        f"The final output MUST populate the following data structure:\n"
-        f"{report_schema}\n\n"
-        f"--- MISSION ---\n"
-        f"Decompose the request into a forensic research plan. You must generate precise "
-        f"search queries that target the specific fields, enums, and nested objects defined in the schema above. "
-        f"Focus on SEC filings (10-K, 10-Q, 8-K), earnings transcripts, and official press releases as primary sources. "
-        f"Ensure no geographic nodes, revenue segments, or risk categories are missed."
+    lookback = int(os.getenv("QUARTER_LOOKBACK", "1"))
+    temporal_anchors = _get_temporal_anchors(lookback)
+
+    logger.info(
+        f"Programmatic Planner: {len(SEARCHABLE_FIELDS)} fields × "
+        f"{len(temporal_anchors)} temporal anchor(s) = "
+        f"{len(SEARCHABLE_FIELDS) * len(temporal_anchors)} queries"
     )
-    
-    system_prompt = (
-        "You are an elite Geo-Intelligence Research Strategist. Your task is to decompose "
-        "complex corporate queries into a structured research plan. You generate search "
-        "queries specifically designed to extract data points that satisfy a strict forensic JSON schema."
+
+    queries: list[str] = []
+    for field_name in SEARCHABLE_FIELDS:
+        field_info = GeoIntelligenceSchema.model_fields[field_name]
+        description = field_info.description or field_name
+
+        for anchor in temporal_anchors:
+            query = f"{state.user_query} {description} {anchor}"
+            queries.append(query)
+
+    state.search_queries = queries
+    state.scratchpad += (
+        f"\n## Programmatic Research Plan\n"
+        f"Generated {len(queries)} queries from schema introspection.\n"
+        f"Temporal anchors: {temporal_anchors}\n"
     )
-    
-    try:
-        planner_output = await llm.generate_structured(
-            prompt=prompt,
-            response_model=PlannerSchema,
-            system_prompt=system_prompt
-        )
-        
-        state.scratchpad += f"\n## Research Strategy\n{planner_output.reasoning}\n"
-        state.search_queries = list(set(state.search_queries + planner_output.search_queries))
-        
-        logger.info(f"Planner generated {len(planner_output.search_queries)} queries.")
-        return state
-        
-    except Exception as e:
-        logger.error(f"Error in run_planner: {e}")
-        raise
+
+    logger.info(f"Planner generated {len(queries)} deterministic queries.")
+    return state
