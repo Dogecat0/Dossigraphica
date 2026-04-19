@@ -39,18 +39,6 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
             
         if "PlannerSchema" in filename:
             state.search_queries = data.get("search_queries", [])
-            latest_step_resolved = "elicitation"
-
-        elif "ElicitationSchema" in filename:
-            items = data.get("additional_items", [])
-            if items:
-                state.search_queries.extend(items)
-            state.nudge_count += 1
-            state.is_exhausted = data.get("is_exhausted", False)
-            latest_step_resolved = "query_triage"
-
-        elif "QueryTriageSchema" in filename:
-            state.search_queries = data.get("top_queries", [])
             latest_step_resolved = "searching"
 
         elif "SearchData" in filename:
