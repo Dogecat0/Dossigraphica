@@ -27,7 +27,6 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
         
     files.sort(key=lambda x: x[0])
     
-    triage_urls_buffer = set()
     latest_step_resolved = "init"
     
     for idx, filename in files:
@@ -41,25 +40,23 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
         if "PlannerSchema" in filename:
             state.search_queries = data.get("search_queries", [])
             latest_step_resolved = "elicitation"
-            
+
         elif "ElicitationSchema" in filename:
             items = data.get("additional_items", [])
             if items:
                 state.search_queries.extend(items)
             state.nudge_count += 1
             state.is_exhausted = data.get("is_exhausted", False)
+            latest_step_resolved = "query_triage"
+
+        elif "QueryTriageSchema" in filename:
+            state.search_queries = data.get("top_queries", [])
             latest_step_resolved = "searching"
-            
+
         elif "SearchData" in filename:
             state.search_results = data.get("search_results", [])
             state.urls = data.get("urls", [])
-            latest_step_resolved = "triage"
-            
-        elif "TriageSchema" in filename:
-            for url in data.get("top_urls", []):
-                triage_urls_buffer.add(url)
             latest_step_resolved = "extracting"
-            
         elif "ExtractorData" in filename:
             state.raw_content = data.get("raw_content", [])
             latest_step_resolved = "preprocessing"
@@ -78,9 +75,5 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
                     state.extracted_facts.append(f)
             latest_step_resolved = "drafting"
             
-    # Load the captured buffer
-    if triage_urls_buffer:
-        state.urls = list(triage_urls_buffer)
-        
     state.pipeline_step = latest_step_resolved
     return state

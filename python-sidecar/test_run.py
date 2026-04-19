@@ -21,9 +21,7 @@ async def run_test_research(query: str):
     """
     print(f"\n--- [STARTING RESEARCH: {query}] ---\n")
     
-    # Check for JINA_API_KEY and BRAVE_SEARCH_API_KEY
-    if not os.getenv("JINA_API_KEY"):
-        print("WARNING: JINA_API_KEY not found in environment. Extraction phase may be throttled.")
+    # Check for BRAVE_SEARCH_API_KEY
     if not os.getenv("BRAVE_SEARCH_API_KEY"):
         print("WARNING: BRAVE_SEARCH_API_KEY not found in environment. Search phase will fail.")
 
