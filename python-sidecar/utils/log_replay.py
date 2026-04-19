@@ -44,6 +44,16 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
         elif "SearchData" in filename:
             state.search_results = data.get("search_results", [])
             state.urls = data.get("urls", [])
+            latest_step_resolved = "source_triage"
+        elif "TriageData" in filename:
+            surviving_urls = data.get("surviving_urls", [])
+            if surviving_urls:
+                state.urls = surviving_urls
+                # Filter search_results to match surviving URLs
+                surviving_set = set(surviving_urls)
+                state.search_results = [
+                    r for r in state.search_results if r.get("url") in surviving_set
+                ]
             latest_step_resolved = "extracting"
         elif "ExtractorData" in filename:
             state.raw_content = data.get("raw_content", [])
