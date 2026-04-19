@@ -17,7 +17,7 @@ LLAMA_N_PARALLEL = int(os.getenv("LLAMA_N_PARALLEL", "1"))
 LLAMA_CTX_PER_REQUEST = int(os.getenv("LLAMA_CTX_PER_REQUEST", "8192"))
 LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "2048"))
 # The model name should match LLAMA_ARG_HF_REPO from docker-compose
-LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E2B-it-GGUF:UD-Q8_K_XL")
+LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_M")
 LLAMA_CPP_MODEL = f"openai/{LLAMA_MODEL}"
 
 T = TypeVar("T", bound=BaseModel)

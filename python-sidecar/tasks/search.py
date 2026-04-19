@@ -25,12 +25,15 @@ async def run_search(state: ResearchState) -> ResearchState:
     
     unique_results = {} # Use dict to deduplicate by URL easily
     
-    # Semaphore to prevent 429 errors (limit to 5 parallel queries)
-    # 5 is a safe "steady drip" that works across both Brave and Jina tiers.
-    semaphore = asyncio.Semaphore(5)
+    # Semaphore to prevent 429 errors while respecting limits
+    # We allow higher concurrency here since Brave rate limit is higher (50 QPS)
+    semaphore = asyncio.Semaphore(50)
     
     async with httpx.AsyncClient(timeout=30.0) as client:
-        async def fetch_query(query: str):
+        async def fetch_query(query: str, index: int):
+            # Stagger requests to stay under 50 QPS (1 request every ~0.02s)
+            # We add a slight margin by using 0.025s
+            await asyncio.sleep(index * 0.025)
             async with semaphore:
                 logger.info(f"Searching for: {query}")
                 try:
@@ -58,8 +61,8 @@ async def run_search(state: ResearchState) -> ResearchState:
                     logger.error(f"Error searching for query '{query}': {e}")
                     return [], query
 
-        # Execute all queries concurrently
-        search_tasks = [fetch_query(q) for q in state.search_queries]
+        # Execute all queries concurrently with staggering
+        search_tasks = [fetch_query(q, i) for i, q in enumerate(state.search_queries)]
         all_query_results = await asyncio.gather(*search_tasks)
 
         for results, query in all_query_results:

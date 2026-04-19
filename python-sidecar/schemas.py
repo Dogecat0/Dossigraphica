@@ -46,6 +46,11 @@ class ElicitationSchema(BaseModel):
     additional_items: List[str] = Field(..., description="New queries to fill the identified gaps.")
     is_exhausted: bool = Field(..., description="True if no new angles can possibly be explored.")
 
+class QueryTriageSchema(BaseModel):
+    model_config = STRICT_CONFIG
+    reasoning: str = Field(..., description="Step-by-step logic for grouping and selecting the most precise, non-redundant search queries.")
+    top_queries: List[str] = Field(..., description="A list of up to 50 unique, high-signal search queries that ensure coverage of all intelligence modules.")
+
 class TriageSchema(BaseModel):
     model_config = STRICT_CONFIG
     reasoning: str = Field(..., description="Evaluation of source relevance and authority.")

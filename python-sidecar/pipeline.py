@@ -1,8 +1,8 @@
 from schemas import ResearchState
 from tasks.planner import run_planner
 from tasks.elicitation import run_elicitation
+from tasks.query_triage import run_query_triage
 from tasks.search import run_search
-from tasks.triage import run_triage
 from tasks.extractor import run_extractor
 from tasks.preprocessor import run_preprocessor
 from tasks.drafter import run_drafter
@@ -20,7 +20,7 @@ ELICITATION_MAX_NUDGES = int(os.getenv("ELICITATION_MAX_NUDGES", "20"))
 async def research_pipeline(query: str):
     """
     The Pure Python Orchestration Engine.
-    Single-pass pipeline: Plan → Elicitate → Search → Triage → Extract → Preprocess → Draft → Deliver.
+    Single-pass pipeline: Plan → Elicitate → Query Triage → Search → Source Triage → Extract → Preprocess → Draft → Deliver.
     The Elicitation loop guarantees exhaustive query coverage upfront,
     eliminating the need for a costly reflector feedback loop.
     """
@@ -50,6 +50,12 @@ async def research_pipeline(query: str):
                     "progress": 10 + (state.nudge_count * 2)
                 })
                 state = await run_elicitation(state)
+            state.pipeline_step = "query_triage"
+
+        # 2.5 Query Triage (Brave API Optimization)
+        if state.pipeline_step == "query_triage":
+            yield json.dumps({"status": "query_triage", "message": f"Selecting the top 50 search queries from {len(state.search_queries)} generated...", "progress": 45})
+            state = await run_query_triage(state)
             state.pipeline_step = "searching"
 
         # 3. Search (Brave Discovery)
@@ -61,15 +67,9 @@ async def research_pipeline(query: str):
                 "progress": 50
             })
             state = await run_search(state)
-            state.pipeline_step = "triage"
-        
-        # 4. Triage (LLM Source Ranking)
-        if state.pipeline_step == "triage":
-            yield json.dumps({"status": "triage", "message": "Ranking most authoritative sources...", "progress": 58})
-            state = await run_triage(state)
             state.pipeline_step = "extracting"
         
-        # 5. Managed Extraction (Jina Reader)
+        # 4. Managed Extraction (Jina Reader)
         if state.pipeline_step == "extracting":
             yield json.dumps({"status": "extracting", "message": f"Extracting content from {len(state.urls)} URLs...", "progress": 65})
             state = await run_extractor(state)

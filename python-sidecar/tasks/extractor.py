@@ -6,8 +6,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-JINA_API_KEY = os.getenv("JINA_API_KEY")
-
 async def run_extractor(state: ResearchState) -> ResearchState:
     """
     Managed extraction utilizing the Jina Reader API to grab raw markdown from targets.
@@ -16,9 +14,6 @@ async def run_extractor(state: ResearchState) -> ResearchState:
     if not state.urls:
         logger.warning("No URLs provided to run_extractor.")
         return state
-
-    if not JINA_API_KEY:
-        logger.warning("JINA_API_KEY environment variable not set. Using Jina Reader without a key (lower rate limits).")
 
     logger.info(f"Extracting content from {len(state.urls)} URLs via Jina Reader.")
     
@@ -42,36 +37,28 @@ async def run_extractor(state: ResearchState) -> ResearchState:
     
     try:
         async with httpx.AsyncClient(timeout=60.0) as client:
-            async def fetch_url(url: str):
+            async def fetch_url(url: str, index: int):
+                # Stagger requests to ensure < 20 RPM limit (1 request every ~3s)
+                # We add a slight margin by using 3.1s
+                await asyncio.sleep(index * 3.1)
                 async with semaphore:
                     try:
-                        headers = {
-                            "Accept": "application/json",
-                            "X-With-Links-Summary": "true"
-                        }
-                        if JINA_API_KEY:
-                            headers["Authorization"] = f"Bearer {JINA_API_KEY}"
-                        
                         # Jina Reader API: prepend r.jina.ai to the target URL
                         jina_url = f"https://r.jina.ai/{url}"
-                        response = await client.get(jina_url, headers=headers)
+                        response = await client.get(jina_url)
                         response.raise_for_status()
                         
-                        result = response.json()
-                        if result.get("code") == 200 and result.get("data"):
-                            data = result["data"]
-                            return {
-                                "url": url,
-                                "content": data.get("content", ""),
-                                "title": data.get("title", "")
-                            }
-                        return None
+                        return {
+                            "url": url,
+                            "content": response.text,
+                            "title": ""
+                        }
                     except Exception as e:
                         logger.error(f"Error extracting URL {url} via Jina: {e}")
                         return None
             
-            # Execute all extractions concurrently with semaphore
-            tasks = [fetch_url(u) for u in urls_to_process]
+            # Execute all extractions concurrently with semaphore and staggering
+            tasks = [fetch_url(u, i) for i, u in enumerate(urls_to_process)]
             extraction_results = await asyncio.gather(*tasks)
             
             # Filter out failed extractions
