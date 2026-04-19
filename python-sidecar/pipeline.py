@@ -1,6 +1,7 @@
 from schemas import ResearchState
 from tasks.planner import run_planner
 from tasks.search import run_search
+from tasks.source_triage import run_source_triage
 from tasks.extractor import run_extractor
 from tasks.preprocessor import run_preprocessor
 from tasks.drafter import run_drafter
@@ -44,27 +45,33 @@ async def research_pipeline(query: str):
                 "progress": 50
             })
             state = await run_search(state)
-            state.pipeline_step = "extracting"
+            state.pipeline_step = "source_triage"
         
-        # 3. Managed Extraction (Jina Reader)
+        # 3. LLM Source Triage (SEO Filtering)
+        if state.pipeline_step == "source_triage":
+            yield json.dumps({"status": "source_triage", "message": f"Evaluating {len(state.search_results)} search snippets to discard SEO spam...", "progress": 55})
+            state = await run_source_triage(state)
+            state.pipeline_step = "extracting"
+
+        # 4. Managed Extraction (Jina Reader)
         if state.pipeline_step == "extracting":
             yield json.dumps({"status": "extracting", "message": f"Extracting content from {len(state.urls)} URLs...", "progress": 65})
             state = await run_extractor(state)
             state.pipeline_step = "preprocessing"
         
-        # 4. Semantic Sieve & Chunking (Preprocessor - Early Squeeze)
+        # 5. Semantic Sieve & Chunking (Preprocessor - Early Squeeze)
         if state.pipeline_step == "preprocessing":
             yield json.dumps({"status": "preprocessing", "message": "Chunking and extracting facts from large documents...", "progress": 72})
             state = await run_preprocessor(state)
             state.pipeline_step = "drafting"
         
-        # 5. Final Handoff (Parallel Drafting)
+        # 6. Final Handoff (Parallel Drafting)
         if state.pipeline_step == "drafting":
             yield json.dumps({"status": "drafting", "message": "Synthesizing final intelligence report...", "progress": 85})
             state = await run_drafter(state)
             state.pipeline_step = "completed"
         
-        # 6. Delivery
+        # 7. Delivery
         yield json.dumps({
             "status": "completed", 
             "message": "Research complete.",

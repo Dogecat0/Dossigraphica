@@ -39,37 +39,16 @@ class PlannerSchema(BaseModel):
     reasoning: str = Field(..., description="Step-by-step internal logic for the research plan.")
     search_queries: List[str] = Field(..., description="Array of precise search strings to explore all facets of the query.")
 
-class ElicitationSchema(BaseModel):
+class SingleTriageSchema(BaseModel):
+    """Binary outcome schema for evaluating a single URL's authority."""
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Logic behind the elicitation and identification of blind spots.")
-    critique: str = Field(..., description="Analysis of missing angles in the current search plan.")
-    additional_items: List[str] = Field(..., description="New queries to fill the identified gaps.")
-    is_exhausted: bool = Field(..., description="True if no new angles can possibly be explored.")
-
-class QueryTriageSchema(BaseModel):
-    model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Step-by-step logic for grouping and selecting the most precise, non-redundant search queries.")
-    top_queries: List[str] = Field(..., description="A list of up to 50 unique, high-signal search queries that ensure coverage of all intelligence modules.")
-
-class TriageSchema(BaseModel):
-    model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Evaluation of source relevance and authority.")
-    top_urls: List[str] = Field(..., description="List of the most useful URLs for the research.")
+    reasoning: str = Field(..., description="Brief justification for the boolean decision.")
+    is_authoritative: bool = Field(..., description="True if the source is high-signal, credible, and NOT SEO spam.")
 
 class SynthesizerSchema(BaseModel):
     model_config = STRICT_CONFIG
     reasoning: str = Field(..., description="High-level analysis of the document's utility and geographic density.")
     extracted_facts: List[FactSchema] = Field(..., description="Dense list of specific categorized facts, numbers, and findings. If none are found, return an empty list.")
-
-# --- Triage Strategy Schema (for Prompt Injection) ---
-
-class TriageStrategySchema(BaseModel):
-    model_config = STRICT_CONFIG
-    authority_hierarchy: dict = Field(..., description="Tiered priority for sources.")
-    max_filing_dates_per_type: int = Field(2, description="Only select the N most recent filing/report dates per document type (e.g., 10-K, 10-Q).")
-    source_penalty_list: List[str] = Field(..., description="Domains or site types to de-prioritize.")
-    diversity_bonus: str = Field(..., description="Instruction to maximize domain and source type variety within the selection budget.")
-    target_date_threshold: str = Field(..., description="Instruction to prioritize data from the current and previous year only.")
 
 # --- Geo-Intelligence Output Schemas (Mirroring TS types - STRICT) ---
 
