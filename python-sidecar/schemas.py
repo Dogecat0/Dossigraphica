@@ -11,7 +11,7 @@ class FactSchema(BaseModel):
     model_config = STRICT_CONFIG
     reasoning: str = Field(..., description="Brief logical justification for why this specific fact was extracted and its relevance.")
     content: str = Field(..., description="The factual statement or data point.")
-    category: Literal['CORPORATE', 'OFFICES', 'REVENUE', 'SUPPLY_CHAIN', 'CUSTOMERS', 'RISKS', 'SIGNALS'] = Field(..., description="The intelligence module this fact belongs to.")
+    category: Literal['CORPORATE', 'OFFICES', 'REVENUE', 'SUPPLY_CHAIN', 'CUSTOMERS', 'RISKS', 'SIGNALS', 'UNKNOWN'] = Field(..., description="The intelligence module this fact belongs to.")
 
 class InternalFact(FactSchema):
     """Internal state fact with programmatic metadata."""
@@ -26,6 +26,8 @@ class ResearchState(BaseModel):
     search_queries: List[str] = []
     search_results: List[dict] = []
     raw_content: List[dict] = []
+    enrichment_queries: List[str] = []
+    blocked_domains: set[str] = Field(default_factory=set, description="Domains that returned HTTP 451 from Jina, skipped in subsequent extractions.")
     nudge_count: int = 0
     is_exhausted: bool = False
     is_complete: bool = False
@@ -56,64 +58,64 @@ class OfficeSchema(BaseModel):
     model_config = STRICT_CONFIG
     id: str = Field(..., description="Unique ID for the office.")
     name: str = Field(..., description="Descriptive name of the office.")
-    city: str | None = Field(None, description="City location.")
-    state: str | None = Field(None, description="State/Province.")
-    country: str | None = Field(None, description="Country location.")
-    address: str | None = Field(None, description="Full street address.")
-    lat: float | None = Field(None, description="Latitude coordinate.")
-    lng: float | None = Field(None, description="Longitude coordinate.")
+    city: str | None = Field(..., description="City location.")
+    state: str | None = Field(..., description="State/Province.")
+    country: str | None = Field(..., description="Country location.")
+    address: str | None = Field(..., description="Full street address.")
+    lat: float | None = Field(..., description="Latitude coordinate.")
+    lng: float | None = Field(..., description="Longitude coordinate.")
     businessFocus: str = Field(..., description="Primary business activity at this site.")
-    size: str | None = Field(None, description="Approximate headcount or square footage.")
+    size: str | None = Field(..., description="Approximate headcount or square footage.")
     type: Literal['headquarters', 'regional', 'engineering', 'satellite', 'manufacturing', 'data_center', 'sales', 'logistics'] = Field(..., description="Office category.")
-    established: str | None = Field(None, description="Year established.")
-    source: str | None = Field(None, description="URL or filing where this location was found.")
-    confidence: Literal['verified', 'unverified', 'city_center_approximation'] | None = Field(None, description="Data accuracy label.")
+    established: str | None = Field(..., description="Year established.")
+    sources: List[str] = Field(..., description="List of source URLs or filings. Empty list if none.")
+    confidence: Literal['verified', 'unverified', 'city_center_approximation', 'unknown'] | None = Field(..., description="Data accuracy label.")
 
 class RevenueSegmentSchema(BaseModel):
     model_config = STRICT_CONFIG
     region: str = Field(..., description="Geographic or business segment name.")
-    revenue: float | None = Field(None, description="Revenue in USD millions.")
-    percentage: float | None = Field(None, description="Percentage of total revenue.")
-    yoyGrowth: float | None = Field(None, description="Year-over-year growth percentage.")
-    notes: str | None = Field(None, description="Contextual notes about this segment.")
+    revenue: float | None = Field(..., description="Revenue in USD millions.")
+    percentage: float | None = Field(..., description="Percentage of total revenue.")
+    yoyGrowth: float | None = Field(..., description="Year-over-year growth percentage.")
+    notes: str | None = Field(..., description="Contextual notes about this segment.")
 
 class RevenueGeographySchema(BaseModel):
     model_config = STRICT_CONFIG
     fiscalYear: str = Field(..., description="Reporting year.")
-    totalRevenue: float | None = Field(None, description="Total company revenue.")
+    totalRevenue: float | None = Field(..., description="Total company revenue.")
     currency: str = Field(..., description="Reporting currency (e.g., USD).")
     segments: List[RevenueSegmentSchema] = Field(..., description="Breakdown by geography or division.")
-    concentrationRisk: str | None = Field(None, description="Notes on dependency on specific regions.")
-    source: str = Field(..., description="Source filing reference.")
+    concentrationRisk: str | None = Field(..., description="Notes on dependency on specific regions.")
+    sources: List[str] = Field(..., description="List of source filing references. Empty list if none.")
 
 class SupplyChainNodeSchema(BaseModel):
     model_config = STRICT_CONFIG
     entity: str = Field(..., description="Name of the supplier or partner.")
     role: Literal['foundry', 'assembly_test', 'raw_material', 'logistics', 'contract_manufacturer', 'key_supplier', 'cloud_infrastructure'] = Field(..., description="Role in the supply chain.")
-    city: str | None = Field(None, description="Location city.")
-    country: str | None = Field(None, description="Location country.")
-    lat: float | None = Field(None, description="Latitude.")
-    lng: float | None = Field(None, description="Longitude.")
+    city: str | None = Field(..., description="Location city.")
+    country: str | None = Field(..., description="Location country.")
+    lat: float | None = Field(..., description="Latitude.")
+    lng: float | None = Field(..., description="Longitude.")
     product: str = Field(..., description="Specific product or service provided.")
     criticality: Literal['critical', 'important', 'standard'] = Field(..., description="Importance to the company.")
-    source: str = Field(..., description="Source reference.")
+    sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
 
 class CustomerNodeSchema(BaseModel):
     model_config = STRICT_CONFIG
     customer: str = Field(..., description="Major customer name.")
-    revenueShare: str | None = Field(None, description="Estimated percentage of revenue.")
-    hqCity: str | None = Field(None, description="HQ city.")
-    hqCountry: str | None = Field(None, description="HQ country.")
-    lat: float | None = Field(None, description="Lat.")
-    lng: float | None = Field(None, description="Lng.")
+    revenueShare: str | None = Field(..., description="Estimated percentage of revenue.")
+    hqCity: str | None = Field(..., description="HQ city.")
+    hqCountry: str | None = Field(..., description="HQ country.")
+    lat: float | None = Field(..., description="Lat.")
+    lng: float | None = Field(..., description="Lng.")
     relationship: str = Field(..., description="Nature of relationship.")
-    source: str = Field(..., description="Source reference.")
+    sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
 
 class GeopoliticalRiskSchema(BaseModel):
     model_config = STRICT_CONFIG
     region: str = Field(..., description="Affected region.")
-    lat: float | None = Field(None, description="Lat.")
-    lng: float | None = Field(None, description="Lng.")
+    lat: float | None = Field(..., description="Lat.")
+    lng: float | None = Field(..., description="Lng.")
     riskScore: Literal[1, 2, 3, 4, 5] = Field(..., description="1-5 severity score.")
     riskCategory: Literal[
         'trade_restriction', 'regulatory_compliance', 'tax_policy', 
@@ -123,35 +125,35 @@ class GeopoliticalRiskSchema(BaseModel):
     riskLabel: str = Field(..., description="Short title.")
     description: str = Field(..., description="Detailed impact analysis.")
     impactLevel: Literal['minimal', 'low', 'moderate', 'high', 'critical'] = Field(..., description="Business impact level.")
-    filingReference: str = Field(..., description="SEC filing or official source.")
-    lastUpdated: str = Field(..., description="Date of update.")
+    filingReference: str | None = Field(..., description="SEC filing or official source.")
+    lastUpdated: str | None = Field(..., description="Date of update.")
 
 class ExpansionSignalSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: Literal['expansion'] = Field(..., description="Signal type.")
     location: str = Field(..., description="Location city/country.")
-    lat: float | None = Field(None, description="Lat.")
-    lng: float | None = Field(None, description="Lng.")
+    lat: float | None = Field(..., description="Lat.")
+    lng: float | None = Field(..., description="Lng.")
     description: str = Field(..., description="Details of the expansion.")
-    estimatedTimeline: str | None = Field(None, description="Projected completion.")
-    investment: str | None = Field(None, description="USD amount if known.")
-    source: str = Field(..., description="Source reference.")
-    dateAnnounced: str | None = Field(None, description="Date of news.")
+    estimatedTimeline: str | None = Field(..., description="Projected completion.")
+    investment: str | None = Field(..., description="USD amount if known.")
+    sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
+    dateAnnounced: str | None = Field(..., description="Date of news.")
 
 class ContractionSignalSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: Literal['contraction'] = Field(..., description="Signal type.")
     location: str = Field(..., description="Location.")
-    lat: float | None = Field(None, description="Lat.")
-    lng: float | None = Field(None, description="Lng.")
+    lat: float | None = Field(..., description="Lat.")
+    lng: float | None = Field(..., description="Lng.")
     description: str = Field(..., description="Details of closures or layoffs.")
-    source: str = Field(..., description="Source reference.")
+    sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
 
 class AnchorFilingSchema(BaseModel):
     model_config = STRICT_CONFIG
-    type: str = Field(..., description="Filing type (e.g., 10-K).")
-    date: str = Field(..., description="Filing date.")
-    fiscalPeriod: str = Field(..., description="Reporting period.")
+    type: str | None = Field(..., description="Filing type (e.g., 10-K).")
+    date: str | None = Field(..., description="Filing date.")
+    fiscalPeriod: str | None = Field(..., description="Reporting period.")
 
 class MarkdownSectionSchema(BaseModel):
     model_config = STRICT_CONFIG
@@ -166,9 +168,9 @@ class SummarySchema(BaseModel):
 class GeoIntelligenceSchema(BaseModel):
     model_config = STRICT_CONFIG
     company: str = Field(..., description="Company name.")
-    ticker: str = Field(..., description="Stock ticker.")
-    website: str = Field(..., description="Official URL.")
-    sector: str = Field(..., description="Industry sector.")
+    ticker: str | None = Field(..., description="Stock ticker.")
+    website: str | None = Field(..., description="Official URL.")
+    sector: str | None = Field(..., description="Industry sector.")
     description: str = Field(..., description="Business summary.")
     anchorFiling: AnchorFilingSchema = Field(..., description="Primary source filing.")
     generatedDate: str = Field(..., description="Current date.")
@@ -179,36 +181,3 @@ class GeoIntelligenceSchema(BaseModel):
     geopoliticalRisks: List[GeopoliticalRiskSchema] = Field(..., description="Geopolitical risks export controls trade restrictions sanctions regulatory compliance")
     expansionSignals: List[ExpansionSignalSchema] = Field(..., description="Expansion signals new facilities investments hiring growth announcements")
     contractionSignals: List[ContractionSignalSchema] = Field(..., description="Contraction signals plant closures layoffs restructuring downsizing")
-
-# --- Intelligence Goals (Reference for Planner, Elicitation & Preprocessor) ---
-
-INTELLIGENCE_GOALS = """
-Your goal is to populate a forensic Geo-Intelligence Brief. You must target the following modules:
-
-1. CORPORATE FOOTPRINT:
-   - Identify all physical office locations (HQ, Regional, Engineering, Manufacturing, Data Centers).
-   - For each office, find: City, Country, Business Focus (e.g. R&D), Type, and Year Established.
-   - Seek primary source evidence for coordinates (lat/lng).
-
-2. REVENUE GEOGRAPHY:
-   - Find the exact revenue breakdown by region (e.g. Taiwan, China, USA, Korea, Netherlands).
-   - Extract Total Revenue, Currency, and YoY growth percentages for each segment.
-   - Identify 'Concentration Risk' - heavy dependency on specific jurisdictional revenues.
-
-3. SUPPLY CHAIN MAP:
-   - Identify critical foundries, assembly/test sites, and raw material suppliers.
-   - Map their physical locations (City/Country) and their role (e.g. key supplier, logistics hub).
-   - Determine 'Criticality' (critical/important/standard) to the company's operations.
-
-4. CUSTOMER CONCENTRATION:
-   - Identify major customers (e.g. Intel, TSMC, Samsung) and their revenue share.
-   - Find customer HQ locations to map the geographic flow of products.
-
-5. GEOPOLITICAL RISKS:
-   - Identify specific risks: export controls, trade restrictions, regulatory probes, sanctions, or tax policies.
-   - Categorize by region and assign a 1-5 severity score based on business impact.
-
-6. STRATEGIC SIGNALS:
-   - Expansion: New plant openings, major R&D investments, or headcount growth in specific regions.
-   - Contraction: Plant closures, layoffs, or regional exits.
-"""
