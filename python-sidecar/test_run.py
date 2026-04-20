@@ -35,12 +35,34 @@ async def run_test_research(query: str):
                 message = data.get("message")
                 progress = data.get("progress", current_progress)
                 
-                # Update progress bar
-                if progress > current_progress:
-                    pbar.update(progress - current_progress)
-                    current_progress = progress
+                # Dynamic Total Discovery
+                llm_data = data.get("llm", {})
+                io_data = data.get("io", {})
+                llm_total = llm_data.get("total", 0)
+                io_total = io_data.get("total", 0)
+                llm_comp = llm_data.get("completed", 0)
+                io_comp = io_data.get("completed", 0)
                 
-                pbar.set_description(f"[{status.upper()}] {message}")
+                new_total = llm_total + io_total
+                new_n = llm_comp + io_comp
+                
+                if new_total > pbar.total:
+                    pbar.total = new_total
+                
+                if new_n > pbar.n:
+                    pbar.update(new_n - pbar.n)
+                
+                # Granular absolute reporting
+                llm_line = f"LLM: {llm_comp}/{llm_total}" if llm_total > 0 else ""
+                io_line = f"IO: {io_comp}/{io_total}" if io_total > 0 else ""
+                stats = f" [{llm_line} | {io_line}]" if llm_line or io_line else ""
+                
+                # Phase Roadmap
+                p_curr = data.get("phase_current", 0)
+                p_total = data.get("phase_total", 0)
+                phase_label = f"{p_curr}/{p_total} " if p_total > 0 else ""
+                
+                pbar.set_description(f"[{phase_label}{status.upper()}]{stats} {message}")
                 
                 if status == "completed":
                     pbar.close()
