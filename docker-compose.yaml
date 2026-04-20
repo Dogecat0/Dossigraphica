@@ -20,8 +20,9 @@ services:
       - ~/.cache/huggingface:/root/.cache/huggingface:rw
     # These are the arguments passed to the llama.cpp server
     environment:
-      # - LLAMA_ARG_HF_REPO=${LLAMA_MODEL_REPO}
-      - LLAMA_ARG_MODEL=${LLAMA_MODEL_FILE}
+      - HF_TOKEN=${HF_TOKEN}
+      - LLAMA_ARG_HF_REPO=${LLAMA_MODEL_REPO}
+      # - LLAMA_ARG_MODEL=${LLAMA_MODEL_FILE}
       - LLAMA_ARG_PORT=8081
       - LLAMA_ARG_HOST=0.0.0.0
       - LLAMA_ARG_CTX_SIZE=${LLAMA_CTX_SIZE}

@@ -8,3 +8,5 @@ litellm
 httpx
 json-repair
 tqdm
+jsonref
+tenacity
