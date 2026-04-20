@@ -2,6 +2,7 @@ import os
 import glob
 import json
 import re
+import logging
 from schemas import ResearchState
 
 def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
@@ -10,6 +11,19 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
     interruption point, allowing the loop to continue without re-querying.
     """
     state = ResearchState(user_query=query, pipeline_step="init")
+
+    # Load persisted domain blocklist (stored at sidecar root, survives log wipes)
+    blocklist_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "blocked_domains.json")
+    if os.path.exists(blocklist_path):
+        try:
+            with open(blocklist_path, "r") as f:
+                state.blocked_domains = set(json.load(f))
+            if state.blocked_domains:
+                logging.getLogger(__name__).info(
+                    f"Loaded {len(state.blocked_domains)} blocked domains from disk: {state.blocked_domains}"
+                )
+        except Exception:
+            pass  # Non-critical: start with empty set on corruption
     
     if not os.path.exists(log_dir):
         return state
@@ -71,7 +85,15 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
                         source_url=fact_dict.get("source_url", "")
                     )
                     state.extracted_facts.append(f)
-            latest_step_resolved = "drafting"
+            latest_step_resolved = "entity_assembly"
+
+        elif "EntityAssemblyData" in filename:
+            state.enrichment_queries = data.get("enrichment_queries", [])
+            if state.enrichment_queries:
+                latest_step_resolved = "enrichment_searching"
+            else:
+                latest_step_resolved = "drafting"
             
     state.pipeline_step = latest_step_resolved
+
     return state
