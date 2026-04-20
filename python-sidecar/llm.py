@@ -5,20 +5,38 @@ from pydantic import BaseModel, Field
 from typing import Type, TypeVar, Optional, List, Any
 import logging
 import json
+import jsonref
 from json_repair import repair_json
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception_type,
+    before_sleep_log
+)
+from pydantic import ValidationError
+from litellm.exceptions import (
+    RateLimitError,
+    ServiceUnavailableError,
+    APIConnectionError,
+    InternalServerError,
+    Timeout
+)
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+logging.basicConfig(level=getattr(logging, LOG_LEVEL, logging.INFO))
 logger = logging.getLogger(__name__)
 
 # Environment variables for configuration
 LLAMA_CPP_URL = os.getenv("LLAMA_CPP_URL", "http://localhost:8081/v1/")
 LLAMA_N_PARALLEL = int(os.getenv("LLAMA_N_PARALLEL", "1"))
 LLAMA_CTX_PER_REQUEST = int(os.getenv("LLAMA_CTX_PER_REQUEST", "8192"))
-LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "2048"))
+LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
 # The model name should match LLAMA_ARG_HF_REPO from docker-compose
 LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_M")
 LLAMA_CPP_MODEL = f"openai/{LLAMA_MODEL}"
+LLAMA_SAFETY_BUFFER = 5
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -53,20 +71,31 @@ class LLMClient:
                         max_idx = idx
         self.inference_counter = max_idx
         
+        # Suppress LiteLLM internal logging (completion messages, etc.) unless there is an error
+        logging.getLogger("LiteLLM").setLevel(logging.WARNING)
         litellm.set_verbose = False
+        
         if not os.getenv("OPENAI_API_KEY"):
             os.environ["OPENAI_API_KEY"] = "sk-no-key-required"
         logger.info(f"Initialized LLMClient with base_url={base_url}, model={model}, parallel_limit={LLAMA_N_PARALLEL}, ctx_limit={LLAMA_CTX_PER_REQUEST}")
 
+    def get_safe_input_limit(self) -> int:
+        """Absolute maximum input tokens allowed after reservation and safety buffer."""
+        return LLAMA_CTX_PER_REQUEST - LLAMA_OUTPUT_RESERVATION - LLAMA_SAFETY_BUFFER
+
     def _construct_messages(self, prompt: str, system_prompt: str, response_model: Type[BaseModel]) -> List[dict]:
-        schema_json = json.dumps(response_model.model_json_schema(), indent=2)
+        raw_schema = response_model.model_json_schema()
+        deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
+        deref_schema.pop("$defs", None)
+        schema_json = json.dumps(deref_schema, indent=2)
         strict_system_prompt = (
             f"{system_prompt}\n\n"
             f"STRICT INSTRUCTIONS:\n"
             f"1. You MUST respond with ONLY a valid JSON object.\n"
             f"2. You MUST include ALL required fields from the schema below.\n"
             f"3. You MUST NOT add any extra fields or rename keys.\n"
-            f"4. Do NOT include markdown code blocks or preamble text.\n\n"
+            f"4. If you do not have data for a required property, you MUST explicitly output that property with a `null` value. NEVER omit a key.\n"
+            f"5. Do NOT include markdown code blocks or preamble text.\n\n"
             f"REQUIRED SCHEMA:\n{schema_json}"
         )
         return [
@@ -121,10 +150,25 @@ class LLMClient:
                 with open(reasoning_path, "w") as f:
                     f.write(f"# Reasoning - {base_name}\n\n{parsed_json['reasoning']}\n")
             
-            logger.info(f"Inference logged: {base_name} (Split into MD/JSON)")
+            logger.debug(f"Inference logged: {base_name} (Split into MD/JSON)")
         except Exception as e:
             logger.error(f"Failed to log inference files: {e}")
 
+    @retry(
+        stop=stop_after_attempt(5),
+        wait=wait_exponential(multiplier=2, min=15, max=120),
+        retry=(
+            retry_if_exception_type(RateLimitError) |
+            retry_if_exception_type(ServiceUnavailableError) |
+            retry_if_exception_type(APIConnectionError) |
+            retry_if_exception_type(InternalServerError) |
+            retry_if_exception_type(Timeout) |
+            retry_if_exception_type(ValidationError) |
+            retry_if_exception_type(ValueError)
+        ),
+        before_sleep=before_sleep_log(logger, logging.WARNING),
+        reraise=True
+    )
     async def generate_structured(
         self, 
         prompt: str, 
@@ -134,19 +178,38 @@ class LLMClient:
         messages = self._construct_messages(prompt, system_prompt, response_model)
         total_tokens = self.estimate_tokens(messages)
 
-        if total_tokens + LLAMA_OUTPUT_RESERVATION > LLAMA_CTX_PER_REQUEST:
-            logger.warning(f"Context Overflow Imminent: Request ({total_tokens}) + Reservation ({LLAMA_OUTPUT_RESERVATION}) > Limit ({LLAMA_CTX_PER_REQUEST})")
+        limit = self.get_safe_input_limit()
+        if total_tokens > limit:
+            logger.warning(
+                f"Context Overflow Imminent: Request({total_tokens}) > Safe Limit({limit}) "
+                f"[Hard Limit: {LLAMA_CTX_PER_REQUEST - LLAMA_OUTPUT_RESERVATION}]"
+            )
         
         async with self.semaphore:
             try:
-                logger.info(f"LLM Call: {response_model.__name__} | Tokens: {total_tokens}/{LLAMA_CTX_PER_REQUEST}")
+                # Use strict JSON Schema formatting for litellm -> llama.cpp
+                # This explicitly forces strict=True so the grammar generator rejects extra fields.
+                raw_schema = response_model.model_json_schema()
+                deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
+                deref_schema.pop("$defs", None)
+                
+                response_format = {
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": response_model.__name__,
+                        "strict": True,
+                        "schema": deref_schema
+                    }
+                }
+
+                logger.debug(f"LLM Call: {response_model.__name__} | Tokens: {total_tokens}/{LLAMA_CTX_PER_REQUEST}")
                 
                 response = await litellm.acompletion(
                     model=self.model,
                     messages=messages,
                     api_base=self.base_url,
                     temperature=0.1,
-                    response_format=response_model,
+                    response_format=response_format,
                     max_tokens=LLAMA_OUTPUT_RESERVATION
                 )
                 
@@ -154,7 +217,7 @@ class LLMClient:
                 if not content:
                     raise ValueError("LLM returned empty content.")
 
-                logger.info(f"Raw content length: {len(content)}")
+                logger.debug(f"Raw content length: {len(content)}")
                 
                 # Log the inference
                 await self._log_inference(messages, response_model, content)
@@ -163,11 +226,17 @@ class LLMClient:
                     repaired = repair_json(content)
                     return response_model.model_validate_json(repaired)
                 except Exception as e:
+                    # Log the internal failure but raise ValidationError so tenacity catches it
                     logger.error(f"Pydantic Validation Failure: {e}. Content: {content}")
-                    raise
+                    raise ValidationError.from_exception_data(title=response_model.__name__, line_errors=[]) from e
 
+            except (RateLimitError, ServiceUnavailableError, APIConnectionError, InternalServerError, Timeout, ValueError, ValidationError) as e:
+                # Log error and re-raise for tenacity
+                logger.error(f"Structured Generation attempt failed: {type(e).__name__}: {e}")
+                raise
             except Exception as e:
-                logger.error(f"Structured Generation Error: {e}")
+                # For non-retryable exceptions, log and abort
+                logger.critical(f"Unrecoverable Structured Generation Error: {type(e).__name__}: {e}")
                 raise
 
     def estimate_tokens(self, messages: List[dict]) -> int:
@@ -178,7 +247,10 @@ class LLMClient:
         """Calculates how many tokens are left for a chunk given a prompt template and schema."""
         messages = self._construct_messages(user_prompt_template.format(chunk=""), system_prompt, response_model)
         overhead = self.estimate_tokens(messages)
-        safe_size = LLAMA_CTX_PER_REQUEST - overhead - LLAMA_OUTPUT_RESERVATION
+        
+        # The safe size is the remaining space within the safe input limit after accounting for overhead.
+        safe_size = self.get_safe_input_limit() - overhead
+        
         return max(512, safe_size)
 
     async def summarize_to_fit(self, content: str, target_tokens: int, system_prompt: str = "You are a data compression specialist.") -> str:
