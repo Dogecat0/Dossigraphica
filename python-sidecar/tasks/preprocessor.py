@@ -1,8 +1,9 @@
 import logging
 import asyncio
+from typing import AsyncGenerator, Union, List
 import os
 import litellm
-from schemas import ResearchState, SynthesizerSchema, InternalFact, INTELLIGENCE_GOALS
+from schemas import ResearchState, SynthesizerSchema, InternalFact
 from llm import llm
 
 logger = logging.getLogger(__name__)
@@ -14,14 +15,15 @@ LLAMA_N_PARALLEL = int(os.getenv("LLAMA_N_PARALLEL", "1"))
 # Standard extraction prompts used for overhead calculation
 EXTRACTION_SYSTEM_PROMPT = (
     "You are a Senior Geo-Intelligence Analyst. Your task is exhaustive forensic data extraction. "
-    "Your goal is to extract EVERY possible geographic fact, location, revenue figure, and localized risk. "
-    "Be greedy: if a sentence contains a physical site, a regional percentage, or a local regulation, extract it. "
-    "Categorize each fact strictly. Do not include metadata (URLs, citations) in the content."
+    "Categorize each fact strictly. Do not include metadata (URLs, citations) in the content.\n\n"
+    "STRICT ANTI-HALLUCINATION MANDATE:\n"
+    "- NEVER use generic placeholders like 'Customer A', 'Supplier 1', 'Unknown Facility', or 'Unnamed Region'.\n"
+    "- If a specific, proper name for an entity is not found in the text, OMIT it entirely. Do not guess.\n"
+    "- High precision is mandatory. Only extract named entities with verifiable properties."
 )
 
 EXTRACTION_USER_TEMPLATE = (
     "Research Objective: {query}\n\n"
-    "Intelligence Requirements:\n" + INTELLIGENCE_GOALS + "\n\n"
     "Text Chunk Content:\n{chunk}\n\n"
     "Extract ALL specific, geographically focused facts that satisfy the Intelligence Requirements. Assign each to one category:\n"
     "- CORPORATE: Basic info, filing types/dates, website, sector.\n"
@@ -100,66 +102,96 @@ async def squeeze_chunk(chunk: str, query: str, source_url: str = "") -> list:
         logger.error(f"Error in early semantic squeeze: {e}")
         return []
 
-async def run_preprocessor(state: ResearchState) -> ResearchState:
+async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | None = None) -> AsyncGenerator[Union[dict, ResearchState], None]:
     """
-    Refined Preprocessor:
-    1. Dynamic Safe Chunking (based on longest query).
-    2. Early Semantic Squeeze (using Targeted Search Queries).
-    3. State Update & Deduplication.
+    Pipelinable Semantic Sieve: Consumes content from a queue (produced by extractor) 
+    and handles chunking + LLM fact extraction on the fly.
     """
-    if not state.raw_content:
-        return state
-
-    # Find the longest query among the sources to calculate a conservative safe chunk size
-    # This prevents context overflow even if different sources have different query lengths.
-    queries = [s.get("query") for s in state.raw_content if s.get("query")]
-    reference_query = max(queries, key=len) if queries else state.user_query
-
+    # Dynamically calculate the largest safe chunk size for this specific LLM
+    # Use user_query as a safe default for overhead calculation
     safe_chunk_size = llm.calculate_safe_chunk_size(
         EXTRACTION_SYSTEM_PROMPT, 
-        EXTRACTION_USER_TEMPLATE.format(query=reference_query, chunk="{chunk}"), 
+        EXTRACTION_USER_TEMPLATE.format(query=state.user_query, chunk="{chunk}"), 
         SynthesizerSchema
     )
     
-    logger.info(f"Preprocessing {len(state.raw_content)} sources. Safe Chunk Size: {safe_chunk_size} (Reference Query: '{reference_query[:50]}...')")
+    logger.info(f"Pipelined Preprocessor started. Safe Chunk Size: {safe_chunk_size}")
 
     all_extracted_facts = []
-    
-    async def process_source(source: dict):
-        content = source.get("content", "")
-        url = source.get("url", "")
-        # Use the specific query that found this source
-        targeted_query = source.get("query") or state.user_query
-        
-        # 1. Precision Chunking (Overlap 10%)
-        overlap = int(safe_chunk_size * 0.1)
-        chunks = chunk_text(content, llm.model, safe_chunk_size, overlap)
-        
-        if len(chunks) > 1:
-            logger.info(f"Source {url} precision-split into {len(chunks)} chunks.")
-        
-        async def process_chunk(i, chunk):
-            facts = await squeeze_chunk(chunk, targeted_query, url)
-            if facts:
-                logger.info(f"Squeezed {len(facts)} facts from {url} using query '{targeted_query}' (Part {i+1}/{len(chunks)})")
-                return facts
-            return []
+    semaphore = asyncio.Semaphore(LLAMA_N_PARALLEL)
+    pulse_queue = asyncio.Queue()
+    pending_tasks = set()
 
-        results = await asyncio.gather(*(process_chunk(i, chunk) for i, chunk in enumerate(chunks)))
-        for facts in results:
+    async def process_chunk(chunk: str, query: str, url: str):
+        async with semaphore:
+            facts = await squeeze_chunk(chunk, query, url)
             if facts:
                 all_extracted_facts.extend(facts)
+            await pulse_queue.put({
+                "status": "preprocessing",
+                "unit": "llm",
+                "message": f"Preprocessing: Squeezing chunk facts"
+            })
 
-    # Process all sources in parallel
-    await asyncio.gather(*(process_source(source) for source in state.raw_content))
-    
-    # 3. Update State (Deduplicate based on content)
+    async def process_item(item: dict):
+        """Internal helper for concurrent LLM extraction of an entire source."""
+        content = item.get("content", "")
+        url = item.get("url", "")
+        query = item.get("query") or state.user_query
+        overlap = int(safe_chunk_size * 0.1)
+        
+        chunks = chunk_text(content, llm.model, safe_chunk_size, overlap)
+        
+        # Discover units immediately for tracking
+        await pulse_queue.put({
+            "status": "preprocessing",
+            "units_discovered": len(chunks),
+            "message": f"Preprocessing: Discovered {len(chunks)} chunks for {url}"
+        })
+
+        for chunk in chunks:
+            task = asyncio.create_task(process_chunk(chunk, query, url))
+            pending_tasks.add(task)
+            task.add_done_callback(pending_tasks.discard)
+
+    async def run_consumer():
+        try:
+            if content_queue:
+                # Pipelined Mode: Consume from Queue
+                while True:
+                    item = await content_queue.get()
+                    if item is None: # Sentinel
+                        break
+                    await process_item(item)
+            else:
+                # Legacy Mode: Process state.raw_content
+                for item in state.raw_content:
+                    await process_item(item)
+                    
+            if pending_tasks:
+                await asyncio.gather(*pending_tasks)
+        except Exception as e:
+            logger.error(f"Error in preprocessor consumer: {e}")
+        finally:
+            await pulse_queue.put(None)
+
+    consumer_task = asyncio.create_task(run_consumer())
+
+    while True:
+        pulse = await pulse_queue.get()
+        if pulse is None:
+            break
+        yield pulse
+
+    await consumer_task
+
+    # Final Deduplication and Aggregation
     unique_facts = {}
     for f in (state.extracted_facts + all_extracted_facts):
         unique_facts[f.content] = f
     
     state.extracted_facts = list(unique_facts.values())
-    state.raw_content = [] 
+    state.raw_content = [] # Clear raw content to save memory
     
-    logger.info(f"Preprocessing complete. Total unique facts: {len(state.extracted_facts)}")
-    return state
+    logger.info(f"Pipelined Preprocessing complete. Total unique facts: {len(state.extracted_facts)}")
+    yield state
