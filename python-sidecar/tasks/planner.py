@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 # Fields from GeoIntelligenceSchema that represent searchable intelligence targets.
 # Metadata fields (company, ticker, website, sector, description, anchorFiling,
-# generatedDate) are excluded — they don't generate useful search queries.
+# generatedDate) are excluded.
 SEARCHABLE_FIELDS = [
     "offices",
     "revenueGeography",
@@ -18,30 +18,26 @@ SEARCHABLE_FIELDS = [
     "contractionSignals",
 ]
 
-# Relative temporal phrases indexed by lookback depth.
-# These are fiscal-calendar-agnostic — companies have arbitrary fiscal years,
-# so we never hardcode "Q2 2026". Instead, we use relative language that lets
-# the search engine surface the most recent filings naturally.
-_TEMPORAL_ANCHORS = [
-    "latest earnings report/call transcript",
-]
-
-
-def _get_temporal_anchors(lookback: int) -> list[str]:
+def _get_rigid_quarters_block(lookback: int) -> str:
     """
-    Return the first `lookback` relative temporal phrases.
-
-    Unlike rigid calendar-quarter labels, these are company-agnostic and
-    work regardless of whether the target's fiscal year starts in January,
-    April, or October.
+    Generate a space-separated string of rigid quarters (e.g. "Q2-2026 Q1-2026 Q4-2025")
+    mapping backward from the current date.
     """
-    current_year = datetime.now().year
-    anchors: list[str] = []
-    for i in range(min(lookback, len(_TEMPORAL_ANCHORS))):
-        # Append the current year so the search engine biases toward recency,
-        # but without locking to a specific quarter boundary.
-        anchors.append(f"{_TEMPORAL_ANCHORS[i]} {current_year}")
-    return anchors
+    if lookback == 0:
+        return "latest earnings report"
+    now = datetime.now()
+    year = now.year
+    quarter = (now.month - 1) // 3 + 1
+    
+    quarters = []
+    for _ in range(lookback):
+        quarters.append(f"Q{quarter}-{year}")
+        quarter -= 1
+        if quarter == 0:
+            quarter = 4
+            year -= 1
+            
+    return " ".join(quarters)
 
 
 async def run_planner(state: ResearchState) -> ResearchState:
@@ -56,12 +52,11 @@ async def run_planner(state: ResearchState) -> ResearchState:
       len(SEARCHABLE_FIELDS) × QUARTER_LOOKBACK
     """
     lookback = int(os.getenv("QUARTER_LOOKBACK", "1"))
-    temporal_anchors = _get_temporal_anchors(lookback)
+    quarters_block = _get_rigid_quarters_block(lookback)
 
     logger.info(
-        f"Programmatic Planner: {len(SEARCHABLE_FIELDS)} fields × "
-        f"{len(temporal_anchors)} temporal anchor(s) = "
-        f"{len(SEARCHABLE_FIELDS) * len(temporal_anchors)} queries"
+        f"Programmatic Planner: {len(SEARCHABLE_FIELDS)} fields. "
+        f"Temporal block: {quarters_block}"
     )
 
     queries: list[str] = []
@@ -69,15 +64,15 @@ async def run_planner(state: ResearchState) -> ResearchState:
         field_info = GeoIntelligenceSchema.model_fields[field_name]
         description = field_info.description or field_name
 
-        for anchor in temporal_anchors:
-            query = f"{state.user_query} {description} {anchor}"
-            queries.append(query)
+        # Single query per field containing all requested time markers
+        query = f"{state.user_query} {description} {quarters_block}"
+        queries.append(query)
 
     state.search_queries = queries
     state.scratchpad += (
         f"\n## Programmatic Research Plan\n"
         f"Generated {len(queries)} queries from schema introspection.\n"
-        f"Temporal anchors: {temporal_anchors}\n"
+        f"Rigid Quarters: {quarters_block}\n"
     )
 
     logger.info(f"Planner generated {len(queries)} deterministic queries.")

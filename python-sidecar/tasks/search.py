@@ -35,7 +35,7 @@ async def run_search(state: ResearchState) -> ResearchState:
             # We add a slight margin by using 0.025s
             await asyncio.sleep(index * 0.025)
             async with semaphore:
-                logger.info(f"Searching for: {query}")
+                logger.debug(f"Searching for: {query}")
                 try:
                     # Brave Search API: Web Search Endpoint
                     url = "https://api.search.brave.com/res/v1/web/search"
@@ -46,7 +46,7 @@ async def run_search(state: ResearchState) -> ResearchState:
                     }
                     params = {
                         "q": query,
-                        "count": 10 # Request up to 10 results for better coverage
+                        "count": 20 # Request up to 20 results for better coverage
                     }
                     
                     response = await client.get(url, headers=headers, params=params)
