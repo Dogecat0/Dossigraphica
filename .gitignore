@@ -24,3 +24,5 @@ __pycache__
 /logs/inference/*
 /inference copy/*  
 
+test_data.json
+test_report.md
