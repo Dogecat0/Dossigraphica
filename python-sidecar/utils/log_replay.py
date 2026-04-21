@@ -93,7 +93,19 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
                 latest_step_resolved = "enrichment_searching"
             else:
                 latest_step_resolved = "drafting"
-            
+
+        elif "EnrichmentCompleteData" in filename:
+            # Canonical post-enrichment checkpoint written by pipeline.py after
+            # pipeline_sieve(6) completes.  Unambiguously signals the enrichment
+            # sub-loop is done and the next step is drafting.
+            latest_step_resolved = "drafting"
+
+        elif "MarkdownSectionSchema" in filename:
+            # Fallback: MarkdownSectionSchema logs are only written by the drafter,
+            # which only runs after the enrichment loop has fully completed.
+            # This handles legacy log directories that pre-date EnrichmentCompleteData.
+            latest_step_resolved = "drafting"
+
     state.pipeline_step = latest_step_resolved
 
     return state

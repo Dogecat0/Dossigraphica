@@ -197,18 +197,7 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
         # ------------------------------------------------------------------
         # 1. Start JSON Drafting: module-level functions receive explicit args
         # ------------------------------------------------------------------
-        json_tasks = {
-            "basic": get_basic(),
-            "anchor": get_anchor(),
-            "offices": get_offices(state.extracted_facts, state.user_query),
-            "revenue": get_revenue(),
-            "supply": get_supply_chain(state.extracted_facts, state.user_query),
-            "risks": get_risks_signals(state.extracted_facts, state.user_query)
-        }
-        
-        json_results = {}
-        total_steps = 13 # 6 JSON + 7 MD sections
-        completed = 0
+        total_steps = 13  # 6 JSON + 7 MD sections
 
         # Yield discovery pulse
         yield {
@@ -217,25 +206,47 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             "message": f"Drafting: Initializing {total_steps} intelligence synthesis modules."
         }
 
-        for future in asyncio.as_completed(json_tasks.values()):
-            # Find which task finished (not strictly necessary but good for messaging)
-            res = await future
-            completed += 1
-            # We map results back by checking types or using a different wrapper
-            if isinstance(res, BasicInfo): json_results["b"] = res
-            elif isinstance(res, AnchorFilingSchema): json_results["anc"] = res
-            elif isinstance(res, OfficeList): json_results["o"] = res
-            elif isinstance(res, RevenueGeographySchema): json_results["rev"] = res
-            elif isinstance(res, SupplyChainList): json_results["sc"] = res
-            elif isinstance(res, RisksAndSignals): json_results["rs"] = res
+        # ------------------------------------------------------------------
+        # Phase 1: JSON Drafting (6 parallel tasks)
+        #
+        # asyncio.as_completed() yields *new* wrapper coroutines, so the
+        # original future objects cannot be used as dict keys for back-
+        # mapping results. Instead, we wrap each task to push (key, result)
+        # pairs through a queue, preserving both identity and progress.
+        # ------------------------------------------------------------------
+        json_progress_queue: asyncio.Queue = asyncio.Queue()
 
+        async def _json_task(key: str, coro):
+            result = await coro
+            await json_progress_queue.put((key, result))
+
+        json_coros = [
+            _json_task("b",   get_basic()),
+            _json_task("anc", get_anchor()),
+            _json_task("o",   get_offices(state.extracted_facts, state.user_query)),
+            _json_task("rev", get_revenue()),
+            _json_task("sc",  get_supply_chain(state.extracted_facts, state.user_query)),
+            _json_task("rs",  get_risks_signals(state.extracted_facts, state.user_query)),
+        ]
+
+        gather_task = asyncio.ensure_future(asyncio.gather(*json_coros))
+
+        json_results = {}
+        for _ in range(len(json_coros)):
+            key, result = await json_progress_queue.get()
+            json_results[key] = result
             yield {
                 "status": "drafting",
                 "unit": "llm",
-                "message": f"Drafting: Assembling structured intelligence"
+                "message": "Drafting: Assembling structured intelligence"
             }
 
-        b, anc, o, rev, sc, rs = json_results["b"], json_results["anc"], json_results["o"], json_results["rev"], json_results["sc"], json_results["rs"]
+        await gather_task  # propagate any exceptions
+
+        b, anc, o, rev, sc, rs = (
+            json_results["b"], json_results["anc"], json_results["o"],
+            json_results["rev"], json_results["sc"], json_results["rs"]
+        )
 
         final_json_obj = GeoIntelligenceSchema(
             company=b.company, ticker=b.ticker, website=b.website, sector=b.sector, description=b.description,
@@ -245,7 +256,9 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
         )
         state.final_report_json = final_json_obj.model_dump()
 
-        # 2. Start MD Drafting
+        # ------------------------------------------------------------------
+        # Phase 2: MD Drafting (7 parallel tasks, order-preserving)
+        # ------------------------------------------------------------------
         async def draft_md_section(title: str, json_data: any, instructions: str) -> str:
             prompt = f"Generate '{title}' section.\n\nDATA:\n{json.dumps(json_data, indent=2)}\n\nINSTRUCTIONS:\n{instructions}\n\nReturn markdown content."
             res = await llm.generate_structured(prompt, MarkdownSectionSchema, "You are a professional Geo-Intelligence Analyst.")
@@ -260,24 +273,27 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             ("## 6. MODULE E: Regulatory Risk", {"risks": [rk.model_dump() for rk in rs.geopoliticalRisks]}, "Analyze risks."),
             ("## 7. MODULE F: Strategic Signals", {"expansion": [ex.model_dump() for ex in rs.expansionSignals], "contraction": [co.model_dump() for co in rs.contractionSignals]}, "Detail shifts.")
         ]
-        
-        md_tasks = [draft_md_section(*args) for args in md_task_definitions]
-        md_sections = [""] * 7 # Maintain order
-        
-        # To maintain order but yield progress, we map futures
-        indexed_tasks = {asyncio.ensure_future(task): i for i, task in enumerate(md_tasks)}
-        
-        for future in asyncio.as_completed(indexed_tasks.keys()):
-            content = await future
-            idx = indexed_tasks[future]
+
+        md_progress_queue: asyncio.Queue = asyncio.Queue()
+        md_sections = [""] * len(md_task_definitions)
+
+        async def _md_task(index: int, title: str, json_data, instructions: str):
+            content = await draft_md_section(title, json_data, instructions)
+            await md_progress_queue.put((index, content))
+
+        md_coros = [_md_task(i, *args) for i, args in enumerate(md_task_definitions)]
+        md_gather = asyncio.ensure_future(asyncio.gather(*md_coros))
+
+        for _ in range(len(md_coros)):
+            idx, content = await md_progress_queue.get()
             md_sections[idx] = content
-            completed += 1
-            
             yield {
                 "status": "drafting",
                 "unit": "llm",
-                "message": f"Drafting: Finalizing narrative sections"
+                "message": "Drafting: Finalizing narrative sections"
             }
+
+        await md_gather  # propagate any exceptions
 
         state.final_report_md = "\n\n".join(md_sections)
         logger.info("Markdown report assembled.")

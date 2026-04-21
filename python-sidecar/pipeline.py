@@ -50,6 +50,38 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     state = reconstruct_state_from_logs(query, log_dir)
     
     tracker = TaskTracker()
+    
+    # --- State Reconstruction for Progress Tracking ---
+    # If we resumed past init, we should artificially seed the tracker
+    # so the front-end (or test_run.py) correctly displays the massive amount
+    # of work that led to this checkpoint rather than starting from 0.
+    if state.pipeline_step != "init":
+        tracker.llm_total += 1 ; tracker.llm_completed += 1 # Planner
+        tracker.io_total += 1 ; tracker.io_completed += 1 # Primary Search
+        
+        tracker.llm_total += len(state.search_results) 
+        tracker.llm_completed += len(state.search_results) # Triage
+        
+        # Determine how many Extraction and Preprocessing chunks succeeded 
+        # by simply counting what exists in the logs director
+        if os.path.exists(log_dir):
+            import glob
+            chunk_files = glob.glob(os.path.join(log_dir, "*_SynthesizerSchema_output.json"))
+            num_chunks = len(chunk_files)
+            tracker.llm_total += num_chunks ; tracker.llm_completed += num_chunks # Sieve
+            
+            # Count the Extractor data to approximate IO steps
+            ext_files = glob.glob(os.path.join(log_dir, "*_ExtractorData_output.json"))
+            if ext_files:
+                approx_io = len(state.urls) 
+                tracker.io_total += approx_io ; tracker.io_completed += approx_io
+                
+        if state.pipeline_step in ["enrichment_searching", "enrichment_extracting", "drafting"]:
+            tracker.llm_total += 3 ; tracker.llm_completed += 3 # Entity assembly is exactly 3 LLM calls
+            
+            if hasattr(state, "enrichment_queries") and state.enrichment_queries:
+                tracker.io_total += 1 ; tracker.io_completed += 1 # Enrichment Search
+    # --------------------------------------------------
     phase_total = 8
 
     async def flow(task_generator: AsyncGenerator[Union[dict, ResearchState], None], phase_idx: int) -> AsyncGenerator[str, None]:
@@ -223,6 +255,20 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         if state.pipeline_step == "enrichment_extracting":
             tracker.io_total += len(state.urls)
             async for update in pipeline_sieve(6, is_enrichment=True): yield update
+            
+            # Store post-enrichment checkpoint for replay
+            try:
+                from llm import llm
+                async with llm.counter_lock:
+                    llm.inference_counter += 1
+                    current_index = llm.inference_counter
+                filepath = os.path.join(llm.log_dir, f"{current_index:04d}_EnrichmentCompleteData_output.json")
+                with open(filepath, "w") as f:
+                    json.dump({"status": "enrichment_loop_completed"}, f, indent=2)
+                logger.info(f"Enrichment checkpoint logged for replay: {filepath}")
+            except Exception as e:
+                logger.error(f"Failed to log EnrichmentCompleteData: {e}")
+
             state.pipeline_step = "drafting"
 
         # 8. Final Handoff (Parallel Drafting)
