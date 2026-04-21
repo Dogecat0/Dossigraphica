@@ -24,5 +24,9 @@ __pycache__
 /logs/inference/*
 /archive/*  
 
-test_data*.json
-test_report*.md
+# Test files
+/test_data/*
+
+
+# Docs
+/docs/*
