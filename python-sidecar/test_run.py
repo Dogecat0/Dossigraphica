@@ -14,6 +14,16 @@ from pipeline import research_pipeline
 # Ensure we can import from tasks/ and other local files
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+
+from litellm.llms.custom_httpx.async_client_cleanup import (
+    close_litellm_async_clients,
+    register_async_client_cleanup,
+)
+
+# Register atexit handler as a safety net; the explicit await in the finally
+# block below is the primary cleanup path.
+register_async_client_cleanup()
+
 async def run_test_research(query: str):
     """
     Consumes the research_pipeline async generator and prints status updates with a progress bar.
@@ -46,7 +56,8 @@ async def run_test_research(query: str):
                 new_total = llm_total + io_total
                 new_n = llm_comp + io_comp
                 
-                if new_total > pbar.total:
+                # Sync total exactly on resume and throughout
+                if new_total > 0 and new_total != pbar.total:
                     pbar.total = new_total
                 
                 if new_n > pbar.n:
@@ -91,6 +102,10 @@ async def run_test_research(query: str):
         except Exception as e:
             pbar.close()
             print(f"\nFATAL EXCEPTION: {e}\n")
+        finally:
+            # Tear down litellm's async HTTP sessions to prevent
+            # 'Unclosed client session' / 'coroutine was never awaited' warnings.
+            await close_litellm_async_clients()
 
 if __name__ == "__main__":
     # Example target for validation
