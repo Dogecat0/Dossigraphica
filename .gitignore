@@ -18,3 +18,15 @@ __pycache__
 .DS_Store
 *.pem
 *.key
+
+.vscode/
+
+/logs/inference/*
+/archive/*  
+
+# Test files
+/test_data/*
+
+
+# Docs
+/docs/*
