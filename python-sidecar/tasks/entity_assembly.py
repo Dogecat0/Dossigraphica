@@ -18,7 +18,14 @@ import logging
 import os
 
 from schemas import ResearchState
-from tasks.drafter import get_offices, get_supply_chain, get_risks_signals
+from tasks.drafter import (
+    get_offices,
+    get_supply_chain,
+    get_geopolitical_risks,
+    get_expansion_signals,
+    get_contraction_signals,
+    get_customer_concentration,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +72,39 @@ def _build_customer_queries(customers, user_query: str) -> list[str]:
     return queries
 
 
+def _build_risk_queries(risks, user_query: str) -> list[str]:
+    """Generate enrichment queries for geopolitical risks missing coordinates."""
+    queries: list[str] = []
+    for r in risks:
+        if r.lat is None or r.lng is None:
+            queries.append(
+                f"{user_query} {r.riskLabel} {r.region} specific city location coordinates"
+            )
+    return queries
+
+
+def _build_expansion_queries(signals, user_query: str) -> list[str]:
+    """Generate enrichment queries for expansion signals missing coordinates."""
+    queries: list[str] = []
+    for s in signals:
+        if s.lat is None or s.lng is None:
+            queries.append(
+                f"{user_query} expansion {s.description[:50]} {s.location} specific city location coordinates"
+            )
+    return queries
+
+
+def _build_contraction_queries(signals, user_query: str) -> list[str]:
+    """Generate enrichment queries for contraction signals missing coordinates."""
+    queries: list[str] = []
+    for s in signals:
+        if s.lat is None or s.lng is None:
+            queries.append(
+                f"{user_query} contraction {s.description[:50]} {s.location} specific city location coordinates"
+            )
+    return queries
+
+
 async def run_entity_assembly(state: ResearchState) -> ResearchState:
     """
     Pre-assemble Pydantic models to programmatically detect missing
@@ -79,18 +119,25 @@ async def run_entity_assembly(state: ResearchState) -> ResearchState:
         f"Entity assembly: inspecting {len(state.extracted_facts)} facts for geographic gaps."
     )
 
-    # Run the three assembly functions in parallel against current facts
-    office_result, sc_result, rs_result = await asyncio.gather(
+    # Run the modular assembly functions in parallel against current facts
+    
+    office_res, sc_res, risk_res, exp_res, con_res, cust_res = await asyncio.gather(
         get_offices(state.extracted_facts, state.user_query),
         get_supply_chain(state.extracted_facts, state.user_query),
-        get_risks_signals(state.extracted_facts, state.user_query),
+        get_geopolitical_risks(state.extracted_facts, state.user_query),
+        get_expansion_signals(state.extracted_facts, state.user_query),
+        get_contraction_signals(state.extracted_facts, state.user_query),
+        get_customer_concentration(state.extracted_facts, state.user_query),
     )
 
     # Programmatic gap detection
     gap_queries: list[str] = []
-    gap_queries.extend(_build_office_queries(office_result.offices, state.user_query))
-    gap_queries.extend(_build_supply_chain_queries(sc_result.supply_chain, state.user_query))
-    gap_queries.extend(_build_customer_queries(rs_result.customerConcentration, state.user_query))
+    gap_queries.extend(_build_office_queries(office_res.offices, state.user_query))
+    gap_queries.extend(_build_supply_chain_queries(sc_res.supply_chain, state.user_query))
+    gap_queries.extend(_build_customer_queries(cust_res.customerConcentration, state.user_query))
+    gap_queries.extend(_build_risk_queries(risk_res.geopoliticalRisks, state.user_query))
+    gap_queries.extend(_build_expansion_queries(exp_res.expansionSignals, state.user_query))
+    gap_queries.extend(_build_contraction_queries(con_res.contractionSignals, state.user_query))
 
     # Deduplicate while preserving order
     seen: set[str] = set()

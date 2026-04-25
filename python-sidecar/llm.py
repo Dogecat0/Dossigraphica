@@ -36,7 +36,7 @@ LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
 # The model name should match LLAMA_ARG_HF_REPO from docker-compose
 LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_M")
 LLAMA_CPP_MODEL = f"openai/{LLAMA_MODEL}"
-LLAMA_SAFETY_BUFFER = 5
+LLAMA_SAFETY_BUFFER = 128
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -255,6 +255,8 @@ class LLMClient:
 
     async def summarize_to_fit(self, content: str, target_tokens: int, system_prompt: str = "You are a data compression specialist.") -> str:
         """Recursively summarizes content using Map-Reduce parallelization until it fits."""
+        # Use a single user message to estimate the content's token footprint.
+        # This includes a small role/message overhead which keeps us conservative.
         current_tokens = self.estimate_tokens([{"role": "user", "content": content}])
         
         if current_tokens <= target_tokens:

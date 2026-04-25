@@ -20,20 +20,32 @@ T = TypeVar("T", bound=BaseModel)
 
 class OfficeList(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str | None = Field(..., description="Analysis of office distribution and site criticality.")
+    reasoning: str = Field(..., description="Analysis of office distribution and site criticality.")
     offices: List[OfficeSchema]
 
 class SupplyChainList(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str | None = Field(..., description="Strategy for mapping dependencies and risk nodes.")
+    reasoning: str = Field(..., description="Strategy for mapping dependencies and risk nodes.")
     supply_chain: List[SupplyChainNodeSchema]
 
-class RisksAndSignals(BaseModel):
+class RiskList(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str | None = Field(..., description="Evaluation of regional stability and strategic indicators.")
+    reasoning: str = Field(..., description="Evaluation of regional stability and regulatory trends.")
     geopoliticalRisks: List[GeopoliticalRiskSchema]
+
+class ExpansionList(BaseModel):
+    model_config = STRICT_CONFIG
+    reasoning: str = Field(..., description="Analysis of growth signals and infrastructure investment.")
     expansionSignals: List[ExpansionSignalSchema]
+
+class ContractionList(BaseModel):
+    model_config = STRICT_CONFIG
+    reasoning: str = Field(..., description="Analysis of restructuring signals and site closures.")
     contractionSignals: List[ContractionSignalSchema]
+
+class CustomerList(BaseModel):
+    model_config = STRICT_CONFIG
+    reasoning: str = Field(..., description="Evaluation of revenue dependency and major buyer relationships.")
     customerConcentration: List[CustomerNodeSchema]
 
 async def draft_section(prompt: str, response_model: Type[T], system_prompt: str) -> T:
@@ -92,9 +104,15 @@ async def get_offices(facts: List, user_query: str) -> OfficeList:
     res = await draft_section(_fill(base_prompt, facts=facts_text), OfficeList, sys_prompt)
 
     for o in res.offices:
-        if (o.lat is None or o.lng is None) and o.country:
-            c = geocoder.get_country_coords(o.country)
-            if c: o.lat, o.lng, o.confidence = c["lat"], c["lng"], 'city_center_approximation'
+        if (o.lat is None or o.lng is None) and (o.city or o.country):
+            location_str = f"{o.city}, {o.country}" if o.city and o.country else (o.city or o.country)
+            c = await geocoder.get_coords_async(city=o.city, country=o.country)
+            if c:
+                o.lat, o.lng = c["lat"], c["lng"]
+                if "confidence" in c:
+                    o.confidence = c["confidence"]
+                elif o.confidence is None:
+                    o.confidence = 'city_center_approximation'
     return res
 
 
@@ -108,36 +126,75 @@ async def get_supply_chain(facts: List, user_query: str) -> SupplyChainList:
     res = await draft_section(_fill(base_prompt, facts=facts_text), SupplyChainList, sys_prompt)
 
     for n in res.supply_chain:
-        if (n.lat is None or n.lng is None) and n.country:
-            c = geocoder.get_country_coords(n.country)
-            if c: n.lat, n.lng = c["lat"], c["lng"]
+        if (n.lat is None or n.lng is None) and (n.city or n.country):
+            location_str = f"{n.city}, {n.country}" if n.city and n.country else (n.city or n.country)
+            c = await geocoder.get_coords_async(city=n.city, country=n.country)
+            if c:
+                n.lat, n.lng = c["lat"], c["lng"]
     return res
 
 
-async def get_risks_signals(facts: List, user_query: str) -> RisksAndSignals:
-    """Extract risks, customers, and expansion/contraction signals."""
-    template = "Extract risks, customers, and signals for __QUERY__:\n__FACTS__\n\nRequirements:\n- riskScore: 1-5.\n- expansionSignals: include investment amount if available."
-    sys_prompt = "Extract risks and customers. MANDATE: NEVER use placeholders like 'Customer A'; only extract specific named entities."
+async def get_geopolitical_risks(facts: List, user_query: str) -> RiskList:
+    """Extract and geocode geopolitical risks."""
+    template = "Extract geopolitical risks for __QUERY__:\n__FACTS__\n\nRequirements:\n- riskScore: 1-5.\n- Extract 'city' and 'country' separately where possible to enable structured geocoding."
+    sys_prompt = "Extract risks. MANDATE: NEVER use placeholders; only extract specific named entities and regions."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['RISKS', 'SIGNALS', 'CUSTOMERS'], base_prompt, sys_prompt, RisksAndSignals)
-    res = await draft_section(_fill(base_prompt, facts=facts_text), RisksAndSignals, sys_prompt)
+    facts_text = await get_fact_subset(facts, ['RISKS'], base_prompt, sys_prompt, RiskList)
+    res = await draft_section(_fill(base_prompt, facts=facts_text), RiskList, sys_prompt)
 
     for r in res.geopoliticalRisks:
-        if (r.lat is None or r.lng is None) and r.region:
-            c = geocoder.get_country_coords(r.region)
+        if (r.lat is None or r.lng is None) and (r.city or r.country or r.region):
+            c = await geocoder.get_coords_async(location_string=r.region, city=r.city, country=r.country)
             if c: r.lat, r.lng = c["lat"], c["lng"]
+    return res
+
+
+async def get_expansion_signals(facts: List, user_query: str) -> ExpansionList:
+    """Extract and geocode expansion signals."""
+    template = "Extract expansion signals for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- include investment amount if available.\n- Extract 'city' and 'country' separately to enable structured geocoding."
+    sys_prompt = "Extract expansion signals. MANDATE: NEVER use placeholders; only extract specific named entities and sites."
+
+    base_prompt = _fill(template, query=user_query)
+    facts_text = await get_fact_subset(facts, ['SIGNALS'], base_prompt, sys_prompt, ExpansionList)
+    res = await draft_section(_fill(base_prompt, facts=facts_text), ExpansionList, sys_prompt)
+
     for e in res.expansionSignals:
-        if (e.lat is None or e.lng is None) and e.location:
-            c = geocoder.get_country_coords(e.location)
+        if (e.lat is None or e.lng is None) and (e.city or e.country or e.location):
+            c = await geocoder.get_coords_async(location_string=e.location, city=e.city, country=e.country)
             if c: e.lat, e.lng = c["lat"], c["lng"]
+    return res
+
+
+async def get_contraction_signals(facts: List, user_query: str) -> ContractionList:
+    """Extract and geocode contraction signals."""
+    template = "Extract contraction signals (layoffs, closures) for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- Extract 'city' and 'country' separately to enable structured geocoding."
+    sys_prompt = "Extract contraction signals. MANDATE: NEVER use placeholders; only extract specific named entities and sites."
+
+    base_prompt = _fill(template, query=user_query)
+    facts_text = await get_fact_subset(facts, ['SIGNALS'], base_prompt, sys_prompt, ContractionList)
+    res = await draft_section(_fill(base_prompt, facts=facts_text), ContractionList, sys_prompt)
+
     for cn in res.contractionSignals:
-        if (cn.lat is None or cn.lng is None) and cn.location:
-            c = geocoder.get_country_coords(cn.location)
-            if c: cn.lat, cn.lng = c["lat"], c["lng"]
+        if (cn.lat is None or cn.lng is None) and (cn.city or cn.country or cn.location):
+            c = await geocoder.get_coords_async(location_string=cn.location, city=cn.city, country=cn.country)
+            if c: cn.lat, cn.lng = c["lat"], cn.lng
+    return res
+
+
+async def get_customer_concentration(facts: List, user_query: str) -> CustomerList:
+    """Extract and geocode customer concentration."""
+    template = "Extract major customers and revenue dependencies for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- Provide HQ city/country details to enable accurate geocoding."
+    sys_prompt = "Extract customers. MANDATE: NEVER use placeholders; only extract specific named buyers."
+
+    base_prompt = _fill(template, query=user_query)
+    facts_text = await get_fact_subset(facts, ['CUSTOMERS'], base_prompt, sys_prompt, CustomerList)
+    res = await draft_section(_fill(base_prompt, facts=facts_text), CustomerList, sys_prompt)
+
     for cust in res.customerConcentration:
-        if (cust.lat is None or cust.lng is None) and cust.hqCountry:
-            c = geocoder.get_country_coords(cust.hqCountry)
+        if (cust.lat is None or cust.lng is None) and (cust.hqCity or cust.hqCountry):
+            location_str = f"{cust.hqCity}, {cust.hqCountry}" if cust.hqCity and cust.hqCountry else (cust.hqCity or cust.hqCountry)
+            c = await geocoder.get_coords_async(city=cust.hqCity, country=cust.hqCountry)
             if c: cust.lat, cust.lng = c["lat"], c["lng"]
     return res
 
@@ -226,7 +283,10 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             _json_task("o",   get_offices(state.extracted_facts, state.user_query)),
             _json_task("rev", get_revenue()),
             _json_task("sc",  get_supply_chain(state.extracted_facts, state.user_query)),
-            _json_task("rs",  get_risks_signals(state.extracted_facts, state.user_query)),
+            _json_task("risk", get_geopolitical_risks(state.extracted_facts, state.user_query)),
+            _json_task("exp", get_expansion_signals(state.extracted_facts, state.user_query)),
+            _json_task("con", get_contraction_signals(state.extracted_facts, state.user_query)),
+            _json_task("cust", get_customer_concentration(state.extracted_facts, state.user_query)),
         ]
 
         gather_task = asyncio.ensure_future(asyncio.gather(*json_coros))
@@ -243,16 +303,17 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
 
         await gather_task  # propagate any exceptions
 
-        b, anc, o, rev, sc, rs = (
+        b, anc, o, rev, sc, risk, exp, con, cust = (
             json_results["b"], json_results["anc"], json_results["o"],
-            json_results["rev"], json_results["sc"], json_results["rs"]
+            json_results["rev"], json_results["sc"], json_results["risk"],
+            json_results["exp"], json_results["con"], json_results["cust"]
         )
 
         final_json_obj = GeoIntelligenceSchema(
             company=b.company, ticker=b.ticker, website=b.website, sector=b.sector, description=b.description,
             generatedDate=b.generatedDate, anchorFiling=anc, offices=o.offices, revenueGeography=rev,
-            supplyChain=sc.supply_chain, customerConcentration=rs.customerConcentration, geopoliticalRisks=rs.geopoliticalRisks,
-            expansionSignals=rs.expansionSignals, contractionSignals=rs.contractionSignals
+            supplyChain=sc.supply_chain, customerConcentration=cust.customerConcentration, geopoliticalRisks=risk.geopoliticalRisks,
+            expansionSignals=exp.expansionSignals, contractionSignals=con.contractionSignals
         )
         state.final_report_json = final_json_obj.model_dump()
 
@@ -269,9 +330,9 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             ("## 2. MODULE A: Corporate Footprint", {"offices": [off.model_dump() for off in o.offices]}, "Detail physical locations."),
             ("## 3. MODULE B: Revenue Geography", rev.model_dump(), "Analyze regional revenue."),
             ("## 4. MODULE C: Supply Chain Map", {"supply_chain": [s.model_dump() for s in sc.supply_chain]}, "Map key nodes."),
-            ("## 5. MODULE D: Customer concentration", {"customers": [c.model_dump() for c in rs.customerConcentration]}, "Map revenue dependencies."),
-            ("## 6. MODULE E: Regulatory Risk", {"risks": [rk.model_dump() for rk in rs.geopoliticalRisks]}, "Analyze risks."),
-            ("## 7. MODULE F: Strategic Signals", {"expansion": [ex.model_dump() for ex in rs.expansionSignals], "contraction": [co.model_dump() for co in rs.contractionSignals]}, "Detail shifts.")
+            ("## 5. MODULE D: Customer concentration", {"customers": [c.model_dump() for c in cust.customerConcentration]}, "Map revenue dependencies."),
+            ("## 6. MODULE E: Regulatory Risk", {"risks": [rk.model_dump() for rk in risk.geopoliticalRisks]}, "Analyze risks."),
+            ("## 7. MODULE F: Strategic Signals", {"expansion": [ex.model_dump() for ex in exp.expansionSignals], "contraction": [co.model_dump() for co in con.contractionSignals]}, "Detail shifts.")
         ]
 
         md_progress_queue: asyncio.Queue = asyncio.Queue()
