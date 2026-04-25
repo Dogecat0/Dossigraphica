@@ -114,6 +114,8 @@ class CustomerNodeSchema(BaseModel):
 class GeopoliticalRiskSchema(BaseModel):
     model_config = STRICT_CONFIG
     region: str = Field(..., description="Affected region.")
+    city: str | None = Field(None, description="Affected city (if specific).")
+    country: str | None = Field(None, description="Affected country.")
     lat: float | None = Field(..., description="Lat.")
     lng: float | None = Field(..., description="Lng.")
     riskScore: Literal[1, 2, 3, 4, 5] = Field(..., description="1-5 severity score.")
@@ -131,6 +133,8 @@ class GeopoliticalRiskSchema(BaseModel):
 class ExpansionSignalSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: Literal['expansion'] = Field(..., description="Signal type.")
+    city: str | None = Field(None, description="Expansion city.")
+    country: str | None = Field(None, description="Expansion country.")
     location: str = Field(..., description="Location city/country.")
     lat: float | None = Field(..., description="Lat.")
     lng: float | None = Field(..., description="Lng.")
@@ -143,6 +147,8 @@ class ExpansionSignalSchema(BaseModel):
 class ContractionSignalSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: Literal['contraction'] = Field(..., description="Signal type.")
+    city: str | None = Field(None, description="Contraction city.")
+    country: str | None = Field(None, description="Contraction country.")
     location: str = Field(..., description="Location.")
     lat: float | None = Field(..., description="Lat.")
     lng: float | None = Field(..., description="Lng.")
