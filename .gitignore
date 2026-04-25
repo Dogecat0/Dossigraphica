@@ -26,7 +26,8 @@ __pycache__
 
 # Test files
 /test_data/*
-
+test_*.md
+test_*.json
 
 # Docs
 /docs/*
