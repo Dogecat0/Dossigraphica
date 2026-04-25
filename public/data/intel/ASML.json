@@ -1,298 +1,656 @@
 {
     "company": "ASML Holding N.V.",
     "ticker": "ASML",
-    "website": "https://www.asml.com",
+    "website": "www.asml.com",
     "sector": "Semiconductor Equipment",
-    "description": "ASML operates as a monopoly in extreme ultraviolet (EUV) lithography, with a highly centralized R&D and manufacturing nucleus in Europe and a revenue base heavily concentrated in Asian semiconductor fabrication hubs.",
+    "description": "ASML is a Dutch multinational corporation headquartered in Veldhoven, Netherlands, serving as the global leader in the design, development, manufacturing, and servicing of advanced photolithography systems essential for the semiconductor industry. The company maintains a significant global footprint with over 60 locations worldwide and operates across multiple countries.",
     "anchorFiling": {
-        "type": "20-F",
+        "type": "10-K",
         "date": "2026-02-25",
         "fiscalPeriod": "FY2025"
     },
-    "generatedDate": "2026-03-15",
+    "generatedDate": "2024-05-29",
     "offices": [
         {
-            "id": "asml-veldhoven-hq",
-            "name": "ASML Global Headquarters",
+            "id": "ASML-Veldhoven-headquarters",
+            "name": "ASML Holding NV Headquarters",
             "city": "Veldhoven",
+            "state": null,
             "country": "Netherlands",
-            "lat": 51.4173,
-            "lng": 5.4053,
+            "address": "De Run 6501, 5504 DR",
+            "lat": 51.4190691,
+            "lng": 5.4045572,
+            "businessFocus": "Headquarters, Photolithography Systems",
+            "size": "23,000 employees (Netherlands workforce)",
             "type": "headquarters",
-            "businessFocus": "Core R&D, Primary Manufacturing, Global Administration",
-            "size": "53% of global workforce",
-            "source": "20-F FY2025",
-            "confidence": "verified"
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
         },
         {
-            "id": "asml-san-diego-manufacturing",
-            "name": "ASML San Diego (Cymer)",
-            "city": "San Diego",
-            "state": "CA",
-            "country": "USA",
-            "lat": 32.7157,
-            "lng": -117.1611,
+            "id": "ASML-Berlin-manufacturing",
+            "name": "Berlin Manufacturing Facility",
+            "city": "Berlin",
+            "state": "Berlin",
+            "country": "Germany",
+            "address": null,
+            "lat": 52.5173885,
+            "lng": 13.3951309,
+            "businessFocus": "Manufacturing",
+            "size": null,
             "type": "manufacturing",
-            "businessFocus": "DUV light sources, EUV droplet generators",
-            "source": "20-F FY2025",
-            "confidence": "verified"
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
         },
         {
-            "id": "asml-wilton-manufacturing",
-            "name": "ASML Wilton",
+            "id": "ASML-Wilton-rnd-manufacturing",
+            "name": "Wilton R&D and Manufacturing Site",
             "city": "Wilton",
             "state": "CT",
-            "country": "USA",
-            "lat": 41.2001,
-            "lng": -73.4379,
+            "country": "US",
+            "address": null,
+            "lat": 41.1953739,
+            "lng": -73.4378988,
+            "businessFocus": "R&D and Manufacturing",
+            "size": "Over 2,500 workers",
             "type": "manufacturing",
-            "businessFocus": "Optical fabrication, reticle handlers, reticle stages",
-            "size": ">1000 employees",
-            "source": "20-F FY2025",
-            "confidence": "verified"
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
         },
         {
-            "id": "asml-chandler-regional",
-            "name": "ASML Chandler",
-            "city": "Chandler",
-            "state": "AZ",
-            "country": "USA",
-            "lat": 33.3062,
-            "lng": -111.8413,
-            "type": "regional",
-            "businessFocus": "US Global Support Center, Sales, Technical Training Academy",
-            "source": "20-F FY2025",
-            "confidence": "verified"
-        },
-        {
-            "id": "asml-berlin-manufacturing",
-            "name": "ASML Berlin GmbH",
-            "city": "Berlin",
-            "country": "Germany",
-            "lat": 52.5200,
-            "lng": 13.4050,
-            "type": "manufacturing",
-            "businessFocus": "Wafer clamps, reticle chucks, mirror blocks",
-            "source": "20-F FY2025",
-            "confidence": "verified"
-        },
-        {
-            "id": "asml-hsinchu-regional",
-            "name": "ASML Hsinchu",
-            "city": "Hsinchu",
-            "country": "Taiwan",
-            "lat": 24.8138,
-            "lng": 120.9675,
-            "type": "regional",
-            "businessFocus": "Asian Regional HQ, Customer Support, Software Development",
-            "source": "20-F FY2025",
-            "confidence": "verified"
-        },
-        {
-            "id": "asml-hwasung-regional",
-            "name": "ASML Hwasung",
-            "city": "Hwasung",
+            "id": "ASML-Pyeongtaek-manufacturing",
+            "name": "Pyeongtaek Manufacturing Facility",
+            "city": "Pyeongtaek",
+            "state": null,
             "country": "South Korea",
-            "lat": 37.2068,
-            "lng": 126.8180,
-            "type": "regional",
-            "businessFocus": "Korean Regional HQ, Customer Support",
-            "established": "2025",
-            "source": "20-F FY2025",
+            "address": null,
+            "lat": 36.9924966,
+            "lng": 127.1127168,
+            "businessFocus": "Manufacturing",
+            "size": null,
+            "type": "manufacturing",
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
+        },
+        {
+            "id": "ASML-Linkou-manufacturing",
+            "name": "Linkou Manufacturing Facility",
+            "city": "Linkou",
+            "state": null,
+            "country": "Taiwan",
+            "address": null,
+            "lat": 25.0775308,
+            "lng": 121.3916021,
+            "businessFocus": "Manufacturing",
+            "size": null,
+            "type": "manufacturing",
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
+        },
+        {
+            "id": "ASML-Tainan-manufacturing",
+            "name": "Tainan Manufacturing Facility",
+            "city": "Tainan",
+            "state": null,
+            "country": "Taiwan",
+            "address": null,
+            "lat": 22.9912348,
+            "lng": 120.184982,
+            "businessFocus": "Manufacturing",
+            "size": null,
+            "type": "manufacturing",
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
+        },
+        {
+            "id": "ASML-SanDiego-rnd",
+            "name": "San Diego R&D Center (Cymer Office)",
+            "city": "San Diego",
+            "state": "CA",
+            "country": "US",
+            "address": null,
+            "lat": 32.7174202,
+            "lng": -117.162772,
+            "businessFocus": "R&D, DUV/EUV Light Source Development",
+            "size": null,
+            "type": "engineering",
+            "established": null,
+            "sources": [],
             "confidence": "verified"
         },
         {
-            "id": "asml-beijing-engineering",
-            "name": "ASML Beijing",
+            "id": "ASML-Hsinchu-manufacturing",
+            "name": "Hsinchu Manufacturing Facility",
+            "city": "Hsinchu",
+            "state": null,
+            "country": "Taiwan",
+            "address": null,
+            "lat": 24.8066333,
+            "lng": 120.9686833,
+            "businessFocus": "Manufacturing",
+            "size": null,
+            "type": "manufacturing",
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
+        },
+        {
+            "id": "ASML-Beijing-manufacturing",
+            "name": "Beijing Manufacturing Facility",
             "city": "Beijing",
+            "state": null,
             "country": "China",
-            "lat": 39.9042,
-            "lng": 116.4074,
-            "type": "engineering",
-            "businessFocus": "R&D, Manufacturing (e-beam), Customer Support",
-            "source": "20-F FY2025",
+            "address": null,
+            "lat": 39.9057136,
+            "lng": 116.3912972,
+            "businessFocus": "Manufacturing",
+            "size": null,
+            "type": "manufacturing",
+            "established": null,
+            "sources": [],
+            "confidence": "city_center_approximation"
+        },
+        {
+            "id": "ASML-Shanghai-manufacturing",
+            "name": "Shanghai Manufacturing Facility",
+            "city": "Shanghai",
+            "state": null,
+            "country": "China",
+            "address": null,
+            "lat": 31.2323437,
+            "lng": 121.4691024,
+            "businessFocus": "Manufacturing",
+            "size": null,
+            "type": "manufacturing",
+            "established": null,
+            "sources": [],
             "confidence": "verified"
         }
     ],
     "revenueGeography": {
-        "fiscalYear": "FY2025",
-        "totalRevenue": 32667000000,
+        "fiscalYear": "2025",
+        "totalRevenue": 32700000000.0,
         "currency": "EUR",
         "segments": [
             {
-                "region": "China",
-                "revenue": 9521000000,
-                "percentage": 29.1,
-                "yoyGrowth": -6.4,
-                "notes": "Contraction from 36% in FY2024 due to export controls and normalized DUV demand."
-            },
-            {
-                "region": "Taiwan",
-                "revenue": 8339000000,
-                "percentage": 25.5,
+                "region": "Japan",
+                "revenue": 218000000.0,
+                "percentage": 0.0189,
                 "yoyGrowth": null,
-                "notes": "Driven by High-NA EUV adoption."
+                "notes": null
             },
             {
                 "region": "South Korea",
-                "revenue": 8173000000,
-                "percentage": 25.0,
+                "revenue": 2955000000.0,
+                "percentage": 0.2562,
                 "yoyGrowth": null,
-                "notes": "Driven by HBM demand and advanced DRAM manufacturing."
+                "notes": null
             },
             {
-                "region": "United States",
-                "revenue": 4090000000,
-                "percentage": 12.5,
-                "yoyGrowth": -9.1,
-                "notes": "Driven by domestic reshoring and CHIPS Act."
+                "region": "Singapore",
+                "revenue": 161200000.0,
+                "percentage": 0.0139,
+                "yoyGrowth": null,
+                "notes": null
+            },
+            {
+                "region": "Taiwan",
+                "revenue": 1503400000.0,
+                "percentage": 0.1304,
+                "yoyGrowth": null,
+                "notes": null
+            },
+            {
+                "region": "China",
+                "revenue": 4798900000.0,
+                "percentage": 0.416,
+                "yoyGrowth": null,
+                "notes": null
             },
             {
                 "region": "EMEA",
-                "revenue": 500000000,
-                "percentage": 1.5,
-                "yoyGrowth": -61.5,
-                "notes": "Includes €172M from the Netherlands."
+                "revenue": 1166500000.0,
+                "percentage": 0.1011,
+                "yoyGrowth": null,
+                "notes": null
+            },
+            {
+                "region": "United States",
+                "revenue": 728300000.0,
+                "percentage": 0.0631,
+                "yoyGrowth": null,
+                "notes": null
             }
         ],
-        "concentrationRisk": "Top 3 regional jurisdictions (China, Taiwan, South Korea) account for 79.6% of total revenue. Top three customers account for majority of accounts receivable.",
-        "source": "20-F FY2025"
+        "concentrationRisk": null,
+        "sources": [
+            "Fact provided: Total net sales by geographic region for the first half of 2024 included Japan (\u20ac218.1 million), South Korea (\u20ac2,955.0 million), Singapore (\u20ac161.2 million), Taiwan (\u20ac1,503.4 million), China (\u20ac4,798.9 million), EMEA (\u20ac1,166.5 million), and United States (\u20ac728.3 million)."
+        ]
     },
     "supplyChain": [
         {
-            "entity": "Carl Zeiss SMT Holding GmbH & Co. KG",
+            "entity": "Carl Zeiss SMT GmbH",
             "role": "key_supplier",
             "city": "Oberkochen",
             "country": "Germany",
-            "lat": 48.7846,
-            "lng": 10.1060,
-            "product": "Ultra-precise lenses, mirrors, and optical illuminators",
+            "lat": 49.45,
+            "lng": 8.75,
+            "product": "Optical Columns/Lithography Systems",
             "criticality": "critical",
-            "source": "20-F FY2025"
+            "sources": [
+                "Carl Zeiss SMT is the sole supplier of optical columns.",
+                "Carl Zeiss SMT GmbH is ASML's single supplier and single customer of optical columns for lithography systems.",
+                "Carl Zeiss SMT GmbH is the single supplier of optical columns, with manufacturing facilities in Oberkochen and Wetzlar, Germany.",
+                "ASML is the principal supplier is the German company Carl Zeiss SMT GmbH.",
+                "Carl Zeiss SMT supplies an essential subsystem of ASML\u00b4s semiconductor lithography scanners.",
+                "Carl Zeiss SMT is the exclusive supplier of high-precision lenses and mirrors used in ASML\u2019s lithography machines.",
+                "ASML\u2019s EUV lithography machines depend entirely on Zeiss optics.",
+                "Carl Zeiss SMT supplies an essential subsystem of ASML\u00b4s semiconductor lithography scanners.",
+                "Carl Zeiss SMT GmbH is the single supplier of optical columns."
+            ]
         },
         {
-            "entity": "TRUMPF",
+            "entity": "Trumpf GmbH + Co. KG",
             "role": "key_supplier",
-            "city": "Ditzingen",
+            "city": null,
             "country": "Germany",
-            "lat": 48.8267,
-            "lng": 9.0667,
-            "product": "EUV high-energy lasers",
-            "criticality": "critical",
-            "source": "20-F FY2025"
+            "lat": 51.142796,
+            "lng": 10.502827,
+            "product": "High-power laser systems for EUV lithography",
+            "criticality": "important",
+            "sources": [
+                "Trumpf GmbH + Co. KG supplies high-powered laser systems crucial for generating EUV light."
+            ]
+        },
+        {
+            "entity": "Cymer",
+            "role": "key_supplier",
+            "city": null,
+            "country": "United States",
+            "lat": 45.136977,
+            "lng": -119.37788549999999,
+            "product": "Light sources (Excimer lasers for DUV lithography)",
+            "criticality": "important",
+            "sources": [
+                "Cymer provides the light sources for ASML\u2019s lithography systems, particularly excimer lasers for DUV lithography."
+            ]
         },
         {
             "entity": "Edwards Vacuum",
             "role": "key_supplier",
-            "city": "Chandler",
-            "country": "USA",
-            "lat": 33.3062,
-            "lng": -111.8413,
-            "product": "Vacuum and abatement systems",
+            "city": null,
+            "country": null,
+            "lat": null,
+            "lng": null,
+            "product": "Vacuum and abatement solutions for EUV lithography process",
             "criticality": "important",
-            "source": "20-F FY2025"
+            "sources": [
+                "Edwards Vacuum supplies vacuum and abatement solutions necessary for the EUV lithography process."
+            ]
+        },
+        {
+            "entity": "Samsung Electronics",
+            "role": "foundry",
+            "city": "Suzhou",
+            "country": "China",
+            "lat": 31.23,
+            "lng": 121.47,
+            "product": "NAND flash memory, Advanced Chips",
+            "criticality": "critical",
+            "sources": [
+                "Samsung Electronics Suzhou Semiconductor location: No.337, Fengli Street, Wuzhong District, Suzhou, Jiangsu, China",
+                "Samsung has been manufacturing state-of-the-art NAND flash memory at the P3 facility since July 2022",
+                "Samsung plans to commercialize 2-nanometer transistor process technology by 2025."
+            ]
+        },
+        {
+            "entity": "TSMC",
+            "role": "foundry",
+            "city": null,
+            "country": "Taiwan",
+            "lat": 23.633015,
+            "lng": 121.0287165,
+            "product": "Semiconductor manufacturing (90nm, EUV)",
+            "criticality": "critical",
+            "sources": [
+                "Taiwan Semiconductor Manufacturing Company Ltd. (TSMC) is a fierce competitor.",
+                "TSMC began commercial production of 90 nanometer semiconductor nodes using ASML immersion lithography.",
+                "SK hynix plans to manufacture base dies through foundry partners\u2014initially TSMC, but possibly adding Intel Foundry down the line."
+            ]
+        },
+        {
+            "entity": "SK hynix",
+            "role": "key_supplier",
+            "city": "Icheon",
+            "country": "South Korea",
+            "lat": 37.47,
+            "lng": 127.03,
+            "product": "High-NA EUV tool deployment",
+            "criticality": "important",
+            "sources": [
+                "SK hynix became the first in the memory industry to deploy a production-grade High-NA EUV tool at its M16 fab in Icheon."
+            ]
+        },
+        {
+            "entity": "ASML Netherlands B.V.",
+            "role": "contract_manufacturer",
+            "city": null,
+            "country": "Netherlands",
+            "lat": 52.157061999999996,
+            "lng": 5.203512,
+            "product": "Lithography system support",
+            "criticality": "important",
+            "sources": [
+                "ASML Netherlands B.V. is a related vendor."
+            ]
         }
     ],
     "customerConcentration": [
         {
-            "customer": "TSMC (Estimated proxy for Taiwan segment)",
-            "revenueShare": "25.5%",
+            "customer": "TSMC",
+            "revenueShare": "23.9%",
             "hqCity": "Hsinchu",
             "hqCountry": "Taiwan",
-            "lat": 24.8138,
-            "lng": 120.9675,
-            "relationship": "Dominant purchaser of advanced EUV systems",
-            "source": "20-F FY2025"
+            "lat": 24.5,
+            "lng": 120.9,
+            "relationship": "Logic customer, major strategic partner",
+            "sources": [
+                "TSMC is a Logic customer.",
+                "ASML maintains strategic partnerships with TSMC, Intel, and Samsung.",
+                "Taiwan Semiconductor Manufacturing Co is a manufacturer served by ASML."
+            ]
         },
         {
-            "customer": "Samsung / SK Hynix (Estimated proxy for S. Korea segment)",
-            "revenueShare": "25.0%",
-            "hqCity": "Suwon",
-            "hqCountry": "South Korea",
-            "lat": 37.2636,
-            "lng": 127.0286,
-            "relationship": "Key purchasers for advanced DRAM and HBM memory",
-            "source": "20-F FY2025"
-        },
-        {
-            "customer": "Intel Corporation (Estimated proxy for US segment)",
-            "revenueShare": "12.5%",
+            "customer": "Intel Corporation",
+            "revenueShare": "High (Top 2 customer)",
             "hqCity": "Santa Clara",
             "hqCountry": "USA",
-            "lat": 37.3541,
-            "lng": -121.9552,
-            "relationship": "Early adopter of High-NA EUV (TWINSCAN EXE:5200B)",
-            "source": "20-F FY2025"
+            "lat": 37.3,
+            "lng": -121.8,
+            "relationship": "Logic customer, recipient of first EUV system shipments",
+            "sources": [
+                "Intel is a Logic customer.",
+                "EUV lithography machines are used by major chipmakers such as TSMC and Intel.",
+                "First shipments for R&D of next-generation EUV systems were shipped to Intel in December 2023."
+            ]
+        },
+        {
+            "customer": "Samsung Electronics Co., Ltd.",
+            "revenueShare": "High (Top 2 customer)",
+            "hqCity": "Suwon",
+            "hqCountry": "South Korea",
+            "lat": 37.4,
+            "lng": 127.0,
+            "relationship": "Demanding customer for EUV systems, strategic partner",
+            "sources": [
+                "Samsung is a Logic customer.",
+                "Samsung Electronics Co. is a demanding customer for ASML Holding N.V. for extreme ultraviolet (EUV) lithography systems.",
+                "ASML collaborates with Samsung."
+            ]
+        },
+        {
+            "customer": "SK Hynix",
+            "revenueShare": "Significant customer",
+            "hqCity": "Suwon",
+            "hqCountry": "South Korea",
+            "lat": 37.4,
+            "lng": 127.0,
+            "relationship": "EUV adoption driver for DRAM and NAND, strategic partner",
+            "sources": [
+                "SK Hynix drives EUV adoption for DRAM and NAND.",
+                "SK Hynix Inc. is a customer of ASML.",
+                "ASML collaborates with SK Hynix.",
+                "ASML Korea plans to provide technical services to maintain the performance of advanced equipment for semiconductor-related companies, including SK Hynix located in the Yongin Semiconductor Cluster."
+            ]
+        },
+        {
+            "customer": "Micron Technology Inc",
+            "revenueShare": null,
+            "hqCity": null,
+            "hqCountry": null,
+            "lat": null,
+            "lng": null,
+            "relationship": "EUV adoption driver for DRAM and NAND",
+            "sources": [
+                "Micron drives EUV adoption for DRAM and NAND.",
+                "Micron Technology Inc is mentioned as a supported entity."
+            ]
         }
     ],
     "geopoliticalRisks": [
         {
-            "region": "China",
-            "lat": 39.9042,
-            "lng": 116.4074,
-            "riskScore": 5,
+            "region": "The Netherlands",
+            "city": null,
+            "country": null,
+            "lat": 52.2434979,
+            "lng": 5.6343227,
+            "riskScore": 4,
             "riskCategory": "trade_restriction",
-            "riskLabel": "US & NL Export Controls",
-            "description": "Expanded NL export controls and US 'Affiliates Rule' restricting shipments of advanced metrology and DUV equipment. Risks immediate loss of access to €9.5B market and inability to service existing installed base.",
+            "riskLabel": "Export Control Expansion",
+            "description": "The Netherlands expanded export control regulations to include certain metrology and inspection systems, requiring an export license when shipped abroad. The Dutch government has placed restrictions on chip equipment exports to protect national security.",
+            "impactLevel": "high",
+            "filingReference": "Delegated Regulation (EU) 2019/815",
+            "lastUpdated": null
+        },
+        {
+            "region": "China",
+            "city": null,
+            "country": null,
+            "lat": 35.828250499999996,
+            "lng": 104.35084499999999,
+            "riskScore": 5,
+            "riskCategory": "sanctions",
+            "riskLabel": "Export Restrictions and Technology Sharing",
+            "description": "China has restricted exports of certain rare earth elements and limited technology sharing for processing them. Export restrictions in 2024\u20132025 limited EUV and some high-end DUV shipments to China. The Netherlands placed further restrictions on the shipment of some advanced chip-making equipment to China.",
             "impactLevel": "critical",
-            "filingReference": "20-F FY2025, Item 1A",
-            "lastUpdated": "2026-02-25"
+            "filingReference": null,
+            "lastUpdated": null
+        },
+        {
+            "region": "United States",
+            "city": null,
+            "country": null,
+            "lat": 45.136977,
+            "lng": -119.37788549999999,
+            "riskScore": 4,
+            "riskCategory": "regulatory_compliance",
+            "riskLabel": "Export Control and Trade Measures",
+            "description": "The US Department of Commerce introduced the Affiliates Rule (implementation suspended), and the US government implemented trade measures including license requirements for transacting with certain Chinese entities. US authorities published updated rules imposing additional restrictions on suppliers for the export of chip manufacturing technology.",
+            "impactLevel": "high",
+            "filingReference": "US executive order 14173 (EO)",
+            "lastUpdated": null
         },
         {
             "region": "Taiwan",
-            "lat": 24.8138,
-            "lng": 120.9675,
-            "riskScore": 4,
-            "riskCategory": "geopolitical_conflict",
-            "riskLabel": "Cross-Strait Tensions",
-            "description": "Unique international political status of Taiwan. A blockade or conflict would instantaneously disrupt over 25% of ASML’s revenue pipeline.",
-            "impactLevel": "critical",
-            "filingReference": "20-F FY2025, Item 1A",
-            "lastUpdated": "2026-02-25"
-        },
-        {
-            "region": "Netherlands",
-            "lat": 51.4173,
-            "lng": 5.4053,
+            "city": null,
+            "country": null,
+            "lat": 23.633015,
+            "lng": 121.0287165,
             "riskScore": 3,
-            "riskCategory": "environmental_regulation",
-            "riskLabel": "Nitrogen Regulations & Grid Congestion",
-            "description": "Strict European/Dutch nitrogen emission regulations and regional power grid congestion threatening physical cleanroom expansion in Eindhoven.",
+            "riskCategory": "geopolitical_conflict",
+            "riskLabel": "Cross-Strait Relations",
+            "description": "Changes in cross-strait relations, Taiwanese government policies, or broader political, economic, or social developments could affect ASML's ability to serve customers in Taiwan.",
             "impactLevel": "moderate",
-            "filingReference": "20-F FY2025, Item 1A",
-            "lastUpdated": "2026-02-25"
+            "filingReference": null,
+            "lastUpdated": null
         }
     ],
     "expansionSignals": [
         {
             "type": "expansion",
-            "location": "Eindhoven, Netherlands",
-            "lat": 51.4416,
-            "lng": 5.4697,
-            "description": "Project Beethoven: Brainport Industries Campus expansion to eventually house 20,000 employees. Supported by €2.51B state funding.",
-            "estimatedTimeline": "2026-2028",
-            "investment": "€93M (ASML direct contribution to infrastructure)",
-            "source": "20-F FY2025 / Corporate Disclosures",
-            "dateAnnounced": "2026-02-25"
+            "city": null,
+            "country": null,
+            "location": "Phoenix",
+            "lat": 33.4484367,
+            "lng": -112.074141,
+            "description": "Formally inaugurated a new technical training academy.",
+            "estimatedTimeline": null,
+            "investment": null,
+            "sources": [
+                "Formally inaugurated a new technical training academy in Phoenix (Source: )",
+                "In November, the company opened the Technical Training Center in Phoenix, Arizona, the US."
+            ],
+            "dateAnnounced": null
         },
         {
             "type": "expansion",
-            "location": "Phoenix, AZ, USA",
-            "lat": 33.4484,
-            "lng": -112.0740,
-            "description": "Inauguration of technical training academy to support US workforce and Intel fabs.",
-            "estimatedTimeline": "2025-2026",
-            "investment": "Undisclosed",
-            "source": "20-F FY2025",
-            "dateAnnounced": "2025-10-15"
+            "city": null,
+            "country": null,
+            "location": "India",
+            "lat": 21.729772500000003,
+            "lng": 82.789603,
+            "description": "Plan to initiate sales and support operations.",
+            "estimatedTimeline": null,
+            "investment": null,
+            "sources": [
+                "Plan to initiate sales and support operations in India. (Source: )",
+                "ASML plans to initiate sales and support operations in India.",
+                "plan to initiate sales and support operations in countries where ASML does not currently have such operations, such as India (Source: )"
+            ],
+            "dateAnnounced": null
+        },
+        {
+            "type": "expansion",
+            "city": null,
+            "country": null,
+            "location": "Korea",
+            "lat": 36.638392,
+            "lng": 127.6961188,
+            "description": "Opened a new and vibrant office and establishing a new office in Yongin Semiconductor Cluster.",
+            "estimatedTimeline": "2027",
+            "investment": null,
+            "sources": [
+                "Opened a new and vibrant office in Korea (Source: )",
+                "ASML is establishing a new office in Yongin, Gyeonggi Province.",
+                "ASML Korea is establishing a new office in the Yongin Semiconductor Cluster.",
+                "ASML Yongin office aims to open in 2027."
+            ],
+            "dateAnnounced": null
+        },
+        {
+            "type": "expansion",
+            "city": null,
+            "country": null,
+            "location": "Wilton",
+            "lat": 51.0805315,
+            "lng": -1.8607051,
+            "description": "Investment and expansion of operations, including job creation.",
+            "estimatedTimeline": "next two years",
+            "investment": "200 million",
+            "sources": [
+                "$200 million investment and 1,000 new jobs announced for the Wilton location.",
+                "ASML is investing $200 million in a Wilton facility.",
+                "The Wilton facility will add 1,000 jobs."
+            ],
+            "dateAnnounced": null
+        },
+        {
+            "type": "expansion",
+            "city": null,
+            "country": null,
+            "location": "Veldhoven, Netherlands",
+            "lat": 51.4190691,
+            "lng": 5.4045572,
+            "description": "Commissioning of a new office complex and expansion of a large new campus.",
+            "estimatedTimeline": "early 2028",
+            "investment": null,
+            "sources": [
+                "In April, the company announced the commissioning of a new office complex in Veldhoven, the Netherlands.",
+                "Eindhoven city council greenlights ASML expansion to construct a large new campus.",
+                "The first 5,000 employees will start working at the new campus in early 2028."
+            ],
+            "dateAnnounced": null
+        },
+        {
+            "type": "expansion",
+            "city": null,
+            "country": null,
+            "location": "New Taipei City",
+            "lat": 25.061706,
+            "lng": 121.4589414,
+            "description": "Planning for a factory construction project.",
+            "estimatedTimeline": "July next year",
+            "investment": null,
+            "sources": [
+                "ASML announced plans for a factory in New Taipei City.",
+                "Construction on the New Taipei City project is planned to begin in July next year."
+            ],
+            "dateAnnounced": null
+        },
+        {
+            "type": "expansion",
+            "city": null,
+            "country": null,
+            "location": "Hwaseong, South Korea",
+            "lat": 37.1994653,
+            "lng": 126.8312632,
+            "description": "Building a US$181 million chip cluster and a new fab.",
+            "estimatedTimeline": "end of 2024",
+            "investment": "181 million USD",
+            "sources": [
+                "ASML is building a US$181 million chip cluster in Hwaseong, South Korea.",
+                "The construction of the Hwaseong chip cluster is expected to be completed by the end of 2024."
+            ],
+            "dateAnnounced": null
         }
     ],
     "contractionSignals": [
         {
             "type": "contraction",
+            "city": null,
+            "country": null,
+            "location": "Netherlands",
+            "lat": 52.157061999999996,
+            "lng": null,
+            "description": "Net reduction of around 1,700 positions, mostly concentrated in the Netherlands.",
+            "sources": [
+                "ASML announced layoffs which would result in a net reduction of around 1,700 positions, mostly in the Netherlands, with some in the United States.",
+                "Net reduction of around 1,700 positions, mostly in the Netherlands and United States."
+            ]
+        },
+        {
+            "type": "contraction",
+            "city": null,
+            "country": null,
+            "location": "United States",
+            "lat": 45.136977,
+            "lng": null,
+            "description": "Net reduction of around 1,700 positions, with some impacted at the Wilton, Connecticut facility.",
+            "sources": [
+                "ASML announced layoffs which would result in a net reduction of around 1,700 positions, mostly in the Netherlands, with some in the United States.",
+                "The restructuring plan will eliminate approximately 1,700 positions, with 1,400 positions affected in the Netherlands and 300 positions impacted at the Wilton, Connecticut facility in the United States."
+            ]
+        },
+        {
+            "type": "contraction",
+            "city": null,
+            "country": null,
+            "location": "Wilton, United States",
+            "lat": 41.1953739,
+            "lng": null,
+            "description": "Part of the restructuring plan, impacting 300 positions at the Wilton facility.",
+            "sources": [
+                "The restructuring plan will eliminate approximately 1,700 positions, with 1,400 positions affected in the Netherlands and 300 positions impacted at the Wilton, Connecticut facility in the United States."
+            ]
+        },
+        {
+            "type": "contraction",
+            "city": null,
+            "country": null,
             "location": "Global",
-            "description": "Strategic restructuring to streamline Technology and IT organizations, prioritizing manufacturing and engineering headcount.",
-            "source": "Q4 2025 Earnings Call Transcript"
+            "lat": 55.702215,
+            "lng": null,
+            "description": "Planned cut of 1,700 jobs, mostly middle management roles (department heads, scrum masters, architects), as part of a broader strategic plan.",
+            "sources": [
+                "ASML plans to cut approximately 1,700 positions \u2014 mostly middle management roles such as department heads, scrum masters and architects \u2014 while simultaneously hiring 1,400 new engineers.",
+                "ASML announced a restructuring program in January to eliminate approximately 3,000 middle-management roles.",
+                "The plan includes shedding 3,000 middle-management jobs."
+            ]
         }
     ]
 }

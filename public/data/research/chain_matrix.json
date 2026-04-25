@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-22T15:34:38.225853",
+  "lastUpdated": "2026-04-25T18:43:51.110146",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -100,51 +100,107 @@
     },
     {
       "from": "ASML",
-      "to": "Carl Zeiss SMT Holding GmbH & Co. KG",
+      "to": "Carl Zeiss SMT GmbH",
       "type": "buyer_supplier",
-      "description": "ASML depends on Carl Zeiss SMT Holding GmbH & Co. KG for Ultra-precise lenses, mirrors, and optical illuminators",
+      "description": "ASML depends on Carl Zeiss SMT GmbH for Optical Columns/Lithography Systems",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "TRUMPF",
+      "to": "Trumpf GmbH + Co. KG",
       "type": "buyer_supplier",
-      "description": "ASML depends on TRUMPF for EUV high-energy lasers",
-      "strength": "critical",
+      "description": "ASML depends on Trumpf GmbH + Co. KG for High-power laser systems for EUV lithography",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "ASML",
+      "to": "Cymer",
+      "type": "buyer_supplier",
+      "description": "ASML depends on Cymer for Light sources (Excimer lasers for DUV lithography)",
+      "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
       "to": "Edwards Vacuum",
       "type": "buyer_supplier",
-      "description": "ASML depends on Edwards Vacuum for Vacuum and abatement systems",
+      "description": "ASML depends on Edwards Vacuum for Vacuum and abatement solutions for EUV lithography process",
       "strength": "important",
       "value": "key_supplier"
     },
     {
-      "from": "Estimated proxy for Taiwan segment",
-      "to": "ASML",
+      "from": "ASML",
+      "to": "Samsung Electronics",
       "type": "buyer_supplier",
-      "description": "Estimated proxy for Taiwan segment is a major customer of ASML",
+      "description": "ASML depends on Samsung Electronics for NAND flash memory, Advanced Chips",
       "strength": "critical",
-      "value": "25.5%"
+      "value": "foundry"
     },
     {
-      "from": "Estimated proxy for S. Korea segment",
-      "to": "ASML",
+      "from": "ASML",
+      "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Estimated proxy for S. Korea segment is a major customer of ASML",
+      "description": "ASML depends on TSMC for Semiconductor manufacturing (90nm, EUV)",
       "strength": "critical",
-      "value": "25.0%"
+      "value": "foundry"
     },
     {
-      "from": "Estimated proxy for US segment",
+      "from": "ASML",
+      "to": "SK hynix",
+      "type": "buyer_supplier",
+      "description": "ASML depends on SK hynix for High-NA EUV tool deployment",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "ASML",
+      "to": "ASML Netherlands B.V.",
+      "type": "buyer_supplier",
+      "description": "ASML depends on ASML Netherlands B.V. for Lithography system support",
+      "strength": "important",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "TSM",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "Estimated proxy for US segment is a major customer of ASML",
+      "description": "TSMC is a major customer of ASML",
       "strength": "critical",
-      "value": "12.5%"
+      "value": "23.9%"
+    },
+    {
+      "from": "INTC",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Intel Corporation is a major customer of ASML",
+      "strength": "important",
+      "value": "High (Top 2 customer)"
+    },
+    {
+      "from": "005930.KS",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Samsung Electronics Co., Ltd. is a major customer of ASML",
+      "strength": "important",
+      "value": "High (Top 2 customer)"
+    },
+    {
+      "from": "000660.KS",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "SK Hynix is a major customer of ASML",
+      "strength": "important",
+      "value": "Significant customer"
+    },
+    {
+      "from": "Micron Technology Inc",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Micron Technology Inc is a major customer of ASML",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "AVGO",

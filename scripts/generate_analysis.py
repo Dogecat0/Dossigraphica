@@ -203,7 +203,7 @@ def generate_chokepoint_analysis(all_intel):
     # 1. TSMC Hsinchu
     for intel in all_intel:
         for sc in intel.get('supplyChain', []):
-            if "TSMC" in sc['entity'] and "Hsinchu" in sc['city']:
+            if "TSMC" in sc['entity'] and sc.get('city') and "Hsinchu" in sc['city']:
                 cp = chokepoints_map["tsmc_hsinchu"]
                 cp["name"] = "TSMC Hsinchu Hub"
                 cp["type"] = "Manufacturing"

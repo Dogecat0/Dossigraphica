@@ -1,0 +1,110 @@
+{
+  "wilton, united states": {
+    "lat": 41.1953739,
+    "lng": -73.4378988,
+    "display_name": "Wilton, Western Connecticut Planning Region, Connecticut, 06897, United States",
+    "confidence": "city_center_approximation"
+  },
+  "global": {
+    "lat": 55.702215,
+    "lng": 12.5592485,
+    "display_name": "Global Biodiversity Information Facility, Universitetsparken, N\u00f8rrebro, K\u00f8benhavn, K\u00f8benhavns Kommune, Region Hovedstaden, 2200, Danmark",
+    "confidence": "verified"
+  },
+  "the netherlands": {
+    "lat": 52.2434979,
+    "lng": 5.6343227,
+    "display_name": "Nederland",
+    "confidence": "city_center_approximation"
+  },
+  "phoenix": {
+    "lat": 33.4484367,
+    "lng": -112.074141,
+    "display_name": "Phoenix, Maricopa County, Arizona, United States",
+    "confidence": "verified"
+  },
+  "korea": {
+    "lat": 36.638392,
+    "lng": 127.6961188,
+    "display_name": "\ub300\ud55c\ubbfc\uad6d",
+    "confidence": "city_center_approximation"
+  },
+  "wilton": {
+    "lat": 51.0805315,
+    "lng": -1.8607051,
+    "display_name": "Wilton, Wiltshire, England, United Kingdom",
+    "confidence": "city_center_approximation"
+  },
+  "veldhoven, netherlands": {
+    "lat": 51.4190691,
+    "lng": 5.4045572,
+    "display_name": "Veldhoven, Noord-Brabant, Nederland",
+    "confidence": "city_center_approximation"
+  },
+  "new taipei city": {
+    "lat": 25.061706,
+    "lng": 121.4589414,
+    "display_name": "\u65b0\u5317\u7522\u696d\u5712\u5340, 37, \u4e94\u5de5\u8def, \u65b0\u838a\u5317\u5074\u77e5\u8b58\u7522\u696d\u5712\u5340, \u798f\u57fa\u91cc, \u65b0\u838a\u5340, \u982d\u524d, \u65b0\u5317\u5e02, 24888, \u81fa\u7063",
+    "confidence": "city_center_approximation"
+  },
+  "hwaseong, south korea": {
+    "lat": 37.1994653,
+    "lng": 126.8312632,
+    "display_name": "\ud654\uc131\uc2dc, \uacbd\uae30\ub3c4, \ub300\ud55c\ubbfc\uad6d",
+    "confidence": "city_center_approximation"
+  },
+  "berlin, germany": {
+    "lat": 52.5173885,
+    "lng": 13.3951309,
+    "display_name": "Berlin, Deutschland",
+    "confidence": "city_center_approximation"
+  },
+  "wilton, us": {
+    "lat": 41.1953739,
+    "lng": -73.4378988,
+    "display_name": "Wilton, Western Connecticut Planning Region, Connecticut, 06897, United States",
+    "confidence": "city_center_approximation"
+  },
+  "pyeongtaek, south korea": {
+    "lat": 36.9924966,
+    "lng": 127.1127168,
+    "display_name": "\ud3c9\ud0dd\uc2dc, \uacbd\uae30\ub3c4, \ub300\ud55c\ubbfc\uad6d",
+    "confidence": "city_center_approximation"
+  },
+  "linkou, taiwan": {
+    "lat": 25.0775308,
+    "lng": 121.3916021,
+    "display_name": "\u6797\u53e3\u5340, \u65b0\u5317\u5e02, \u81fa\u7063",
+    "confidence": "city_center_approximation"
+  },
+  "tainan, taiwan": {
+    "lat": 22.9912348,
+    "lng": 120.184982,
+    "display_name": "\u81fa\u5357\u5e02, \u81fa\u7063",
+    "confidence": "city_center_approximation"
+  },
+  "san diego, us": {
+    "lat": 32.7174202,
+    "lng": -117.162772,
+    "display_name": "San Diego, San Diego County, California, United States",
+    "confidence": "verified"
+  },
+  "hsinchu, taiwan": {
+    "lat": 24.8066333,
+    "lng": 120.9686833,
+    "display_name": "\u65b0\u7af9\u5e02, \u81fa\u7063",
+    "confidence": "city_center_approximation"
+  },
+  "beijing, china": {
+    "lat": 39.9057136,
+    "lng": 116.3912972,
+    "display_name": "\u5317\u4eac\u5e02, \u4e2d\u56fd",
+    "confidence": "city_center_approximation"
+  },
+  "shanghai, china": {
+    "lat": 31.2323437,
+    "lng": 121.4691024,
+    "display_name": "\u4e0a\u6d77\u5e02, 200001, \u4e2d\u56fd",
+    "confidence": "verified"
+  }
+}
