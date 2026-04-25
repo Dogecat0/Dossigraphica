@@ -219,7 +219,7 @@ function RevenueTab({ geo }: { geo: GeoIntelligence['revenueGeography'] }) {
                         <tr key={i} className="group hover:bg-[var(--color-bg-paper-dark)] transition-colors">
                             <td className="py-4 font-bold text-[var(--color-ink)]">{seg.region}</td>
                             <td className="py-4 text-right font-mono pr-4"><AnimatedNumber value={seg.revenue} formatter={formatRevenue} /></td>
-                            <td className="py-4 text-right font-mono font-bold text-[var(--color-accent-blue)]"><AnimatedNumber value={seg.percentage} formatter={(val) => `${(val || 0).toFixed(1)}%`} /></td>
+                            <td className="py-4 text-right font-mono font-bold text-[var(--color-accent-blue)]"><AnimatedNumber value={seg.percentage} formatter={(val) => `${((val || 0) * 100).toFixed(1)}%`} /></td>
                         </tr>
                     ))}
                 </tbody>
@@ -257,10 +257,11 @@ function SupplyChainTab({ nodes, onNavigate }: { nodes: SupplyChainNode[]; onNav
                                 <br />Produces: {node.product}
                             </p>
                             <button 
-                                onClick={() => onNavigate(node.lat, node.lng)}
-                                className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-3 py-1 hover:bg-[var(--color-ink)] hover:text-white transition-all flex items-center gap-2"
+                                onClick={() => node.lat && node.lng && onNavigate(node.lat, node.lng)}
+                                className={`text-[10px] font-mono font-bold border border-[var(--color-ink)] px-3 py-1 transition-all flex items-center gap-2 ${node.lat && node.lng ? 'hover:bg-[var(--color-ink)] hover:text-white cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
+                                disabled={!node.lat || !node.lng}
                             >
-                                COORDINATES: {node.lat.toFixed(4)}, {node.lng.toFixed(4)} <ArrowRight size={10} />
+                                COORDINATES: {node.lat != null ? node.lat.toFixed(4) : 'N/A'}, {node.lng != null ? node.lng.toFixed(4) : 'N/A'} <ArrowRight size={10} />
                             </button>
                         </div>
                     </div>
@@ -282,8 +283,9 @@ function CustomersTab({ customers, onNavigate }: { customers: CustomerNode[]; on
                     </div>
                     <p className="text-xs font-serif italic text-[var(--color-ink-muted)] mb-3">{cust.relationship}</p>
                     <button 
-                        onClick={() => onNavigate(cust.lat, cust.lng)}
-                        className="text-[10px] font-mono font-bold text-[var(--color-accent-blue)] flex items-center gap-1 hover:underline"
+                        onClick={() => cust.lat && cust.lng && onNavigate(cust.lat, cust.lng)}
+                        className={`text-[10px] font-mono font-bold text-[var(--color-accent-blue)] flex items-center gap-1 ${cust.lat && cust.lng ? 'hover:underline cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
+                        disabled={!cust.lat || !cust.lng}
                     >
                         <MapPin size={10} /> {cust.hqCity}, {cust.hqCountry}
                     </button>
@@ -317,8 +319,9 @@ function RisksTab({ risks, onNavigate }: { risks: GeopoliticalRisk[]; onNavigate
                     <div className="flex items-center gap-3">
                          <span className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-2 py-0.5 uppercase">{risk.riskCategory.replace(/_/g, ' ')}</span>
                          <button 
-                            onClick={() => onNavigate(risk.lat, risk.lng)}
-                            className="text-[10px] font-mono font-bold text-[var(--color-ink)] hover:underline flex items-center gap-1"
+                            onClick={() => risk.lat && risk.lng && onNavigate(risk.lat, risk.lng)}
+                            className={`text-[10px] font-mono font-bold text-[var(--color-ink)] flex items-center gap-1 ${risk.lat && risk.lng ? 'hover:underline cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
+                            disabled={!risk.lat || !risk.lng}
                         >
                             <MapPin size={10} /> VIEW REGION
                         </button>
@@ -354,7 +357,7 @@ function ExpansionTab({
                                 <p className="text-sm font-serif leading-relaxed text-[var(--color-ink-muted)] mb-2">{sig.description}</p>
                                 {sig.estimatedTimeline && <p className="text-[10px] font-mono font-bold text-[var(--color-ink-muted)]">TIMELINE: {sig.estimatedTimeline}</p>}
                                 {sig.lat && sig.lng && (
-                                    <button onClick={() => onNavigate(sig.lat!, sig.lng!)} className="mt-2 text-[10px] font-mono font-bold hover:underline">LOCATE COORDINATES</button>
+                                    <button onClick={() => onNavigate(sig.lat!, sig.lng!)} className="mt-2 text-[10px] font-mono font-bold hover:underline cursor-pointer">LOCATE COORDINATES</button>
                                 )}
                             </div>
                         ))}
@@ -372,7 +375,7 @@ function ExpansionTab({
                                 <h4 className="text-lg font-serif font-bold text-[var(--color-ink)] mb-1">{sig.location}</h4>
                                 <p className="text-sm font-serif leading-relaxed text-[var(--color-ink-muted)] mb-2">{sig.description}</p>
                                 {sig.lat && sig.lng && (
-                                    <button onClick={() => onNavigate(sig.lat!, sig.lng!)} className="mt-2 text-[10px] font-mono font-bold hover:underline">LOCATE COORDINATES</button>
+                                    <button onClick={() => onNavigate(sig.lat!, sig.lng!)} className="mt-2 text-[10px] font-mono font-bold hover:underline cursor-pointer">LOCATE COORDINATES</button>
                                 )}
                             </div>
                         ))}
