@@ -9,6 +9,7 @@ from utils.geocoder import geocoder
 import logging
 import json
 import asyncio
+from datetime import datetime
 from typing import List, Type, TypeVar, AsyncGenerator, Union
 from pydantic import BaseModel, Field
 
@@ -225,11 +226,10 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             website: str | None
             sector: str | None
             description: str
-            generatedDate: str
 
         # A. Basic Info
         async def get_basic() -> BasicInfo:
-            template = "Extract basic company details for __QUERY__ from these facts:\n__FACTS__\n\nRequirement: description must emphasize global geographic footprint. generatedDate must be YYYY-MM-DD."
+            template = "Extract basic company details for __QUERY__ from these facts:\n__FACTS__\n\nRequirement: description must emphasize global geographic footprint."
             sys_prompt = "You are a precision Geo-Intelligence data extractor."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE', 'REVENUE'], base_prompt, sys_prompt, BasicInfo)
@@ -311,7 +311,7 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
 
         final_json_obj = GeoIntelligenceSchema(
             company=b.company, ticker=b.ticker, website=b.website, sector=b.sector, description=b.description,
-            generatedDate=b.generatedDate, anchorFiling=anc, offices=o.offices, revenueGeography=rev,
+            generatedDate=datetime.now().strftime("%Y-%m-%d"), anchorFiling=anc, offices=o.offices, revenueGeography=rev,
             supplyChain=sc.supply_chain, customerConcentration=cust.customerConcentration, geopoliticalRisks=risk.geopoliticalRisks,
             expansionSignals=exp.expansionSignals, contractionSignals=con.contractionSignals
         )
