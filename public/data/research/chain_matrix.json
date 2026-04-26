@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-25T18:43:51.110146",
+  "lastUpdated": "2026-04-26T21:46:14.990928",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -100,91 +100,83 @@
     },
     {
       "from": "ASML",
-      "to": "Carl Zeiss SMT GmbH",
+      "to": "ASML Berlin",
       "type": "buyer_supplier",
-      "description": "ASML depends on Carl Zeiss SMT GmbH for Optical Columns/Lithography Systems",
+      "description": "ASML depends on ASML Berlin for Wafer tables, wafer clamps, reticle chucks, mirror blocks",
+      "strength": "critical",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "ASML",
+      "to": "imec",
+      "type": "buyer_supplier",
+      "description": "ASML depends on imec for Semiconductor research and development",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "Trumpf GmbH + Co. KG",
+      "to": "Berliner Glas Group",
       "type": "buyer_supplier",
-      "description": "ASML depends on Trumpf GmbH + Co. KG for High-power laser systems for EUV lithography",
-      "strength": "important",
-      "value": "key_supplier"
-    },
-    {
-      "from": "ASML",
-      "to": "Cymer",
-      "type": "buyer_supplier",
-      "description": "ASML depends on Cymer for Light sources (Excimer lasers for DUV lithography)",
-      "strength": "important",
-      "value": "key_supplier"
-    },
-    {
-      "from": "ASML",
-      "to": "Edwards Vacuum",
-      "type": "buyer_supplier",
-      "description": "ASML depends on Edwards Vacuum for Vacuum and abatement solutions for EUV lithography process",
-      "strength": "important",
-      "value": "key_supplier"
-    },
-    {
-      "from": "ASML",
-      "to": "Samsung Electronics",
-      "type": "buyer_supplier",
-      "description": "ASML depends on Samsung Electronics for NAND flash memory, Advanced Chips",
+      "description": "ASML depends on Berliner Glas Group for Optical glass components",
       "strength": "critical",
-      "value": "foundry"
+      "value": "key_supplier"
+    },
+    {
+      "from": "ASML",
+      "to": "Hermes Microvision Inc.",
+      "type": "buyer_supplier",
+      "description": "ASML depends on Hermes Microvision Inc. for E-beam inspection tools",
+      "strength": "critical",
+      "value": "key_supplier"
     },
     {
       "from": "ASML",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "ASML depends on TSMC for Semiconductor manufacturing (90nm, EUV)",
+      "description": "ASML depends on TSMC for Semiconductor manufacturing services",
       "strength": "critical",
       "value": "foundry"
     },
     {
       "from": "ASML",
-      "to": "SK hynix",
+      "to": "INTC",
       "type": "buyer_supplier",
-      "description": "ASML depends on SK hynix for High-NA EUV tool deployment",
-      "strength": "important",
-      "value": "key_supplier"
+      "description": "ASML depends on Intel for Semiconductor manufacturing services",
+      "strength": "critical",
+      "value": "foundry"
     },
     {
       "from": "ASML",
-      "to": "ASML Netherlands B.V.",
+      "to": "Samsung Electronics",
       "type": "buyer_supplier",
-      "description": "ASML depends on ASML Netherlands B.V. for Lithography system support",
-      "strength": "important",
-      "value": "contract_manufacturer"
+      "description": "ASML depends on Samsung Electronics for Semiconductor manufacturing services",
+      "strength": "critical",
+      "value": "foundry"
     },
     {
       "from": "TSM",
       "to": "ASML",
       "type": "buyer_supplier",
       "description": "TSMC is a major customer of ASML",
-      "strength": "critical",
-      "value": "23.9%"
+      "strength": "important",
+      "value": null
     },
     {
       "from": "INTC",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "Intel Corporation is a major customer of ASML",
+      "description": "Intel is a major customer of ASML",
       "strength": "important",
-      "value": "High (Top 2 customer)"
+      "value": null
     },
     {
-      "from": "005930.KS",
+      "from": "Samsung Electronics",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "Samsung Electronics Co., Ltd. is a major customer of ASML",
+      "description": "Samsung Electronics is a major customer of ASML",
       "strength": "important",
-      "value": "High (Top 2 customer)"
+      "value": null
     },
     {
       "from": "000660.KS",
@@ -192,13 +184,21 @@
       "type": "buyer_supplier",
       "description": "SK Hynix is a major customer of ASML",
       "strength": "important",
-      "value": "Significant customer"
+      "value": null
     },
     {
-      "from": "Micron Technology Inc",
+      "from": "Micron Technology",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "Micron Technology Inc is a major customer of ASML",
+      "description": "Micron Technology is a major customer of ASML",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "SMIC",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "SMIC is a major customer of ASML",
       "strength": "important",
       "value": null
     },
@@ -300,51 +300,139 @@
     },
     {
       "from": "INTC",
-      "to": "Tosoh Quartz, Inc.",
-      "type": "buyer_supplier",
-      "description": "INTC depends on Tosoh Quartz, Inc. for Quartz components for semiconductor processing",
-      "strength": "critical",
-      "value": "key_supplier"
-    },
-    {
-      "from": "INTC",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "INTC depends on ASML for High-NA EUV lithography scanners",
+      "description": "INTC depends on ASML Holding N.V. for Extreme Ultraviolet (EUV) lithography equipment",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "INTC",
-      "to": "TSM",
+      "to": "Apollo Global Management",
       "type": "buyer_supplier",
-      "description": "INTC depends on TSMC for 3nm and 2nm advanced logic tiles (Lunar Lake/Arrow Lake)",
+      "description": "INTC depends on Apollo Global Management for Financial joint venture partner for Ireland Fab 34",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "INTC",
+      "to": "Bechtel",
+      "type": "buyer_supplier",
+      "description": "INTC depends on Bechtel for Design and build partner for Ohio manufacturing facilities",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "INTC",
+      "to": "Intel Fab 34",
+      "type": "buyer_supplier",
+      "description": "INTC depends on Intel Fab 34 for Intel 4 and Intel 3 process technology manufacturing",
       "strength": "critical",
       "value": "foundry"
     },
     {
-      "from": "Customer A",
+      "from": "INTC",
+      "to": "Intel Ocotillo Campus",
+      "type": "buyer_supplier",
+      "description": "INTC depends on Intel Ocotillo Campus for Intel 18A and 20A process technology manufacturing",
+      "strength": "critical",
+      "value": "foundry"
+    },
+    {
+      "from": "INTC",
+      "to": "Intel Penang Facility",
+      "type": "buyer_supplier",
+      "description": "INTC depends on Intel Penang Facility for Semiconductor assembly and test services",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "INTC",
+      "to": "SpaceX",
+      "type": "buyer_supplier",
+      "description": "INTC depends on SpaceX for TeraFab project semiconductor supply partnership",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "INTC",
+      "to": "Tesla",
+      "type": "buyer_supplier",
+      "description": "INTC depends on Tesla for TeraFab project semiconductor supply partnership",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "Dell Technologies",
       "to": "INTC",
       "type": "buyer_supplier",
-      "description": "Customer A is a major customer of INTC",
+      "description": "Dell Technologies is a major customer of INTC",
       "strength": "critical",
       "value": "19%"
     },
     {
-      "from": "Customer B/C",
+      "from": "Lenovo",
       "to": "INTC",
       "type": "buyer_supplier",
-      "description": "Customer B/C is a major customer of INTC",
+      "description": "Lenovo is a major customer of INTC",
       "strength": "critical",
-      "value": "12%"
+      "value": "11%"
     },
     {
-      "from": "Customer B/C",
+      "from": "HP Inc.",
       "to": "INTC",
       "type": "buyer_supplier",
-      "description": "Customer B/C is a major customer of INTC",
-      "strength": "critical",
-      "value": "12%"
+      "description": "HP Inc. is a major customer of INTC",
+      "strength": "important",
+      "value": "10%"
+    },
+    {
+      "from": "U.S. Department of Defense",
+      "to": "INTC",
+      "type": "buyer_supplier",
+      "description": "U.S. Department of Defense is a major customer of INTC",
+      "strength": "important",
+      "value": "$3.5 billion in grants"
+    },
+    {
+      "from": "GOOGL",
+      "to": "INTC",
+      "type": "buyer_supplier",
+      "description": "Google is a major customer of INTC",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NVDA",
+      "to": "INTC",
+      "type": "buyer_supplier",
+      "description": "NVIDIA is a major customer of INTC",
+      "strength": "important",
+      "value": "$5.0 billion investment"
+    },
+    {
+      "from": "Tesla",
+      "to": "INTC",
+      "type": "buyer_supplier",
+      "description": "Tesla is a major customer of INTC",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "SpaceX",
+      "to": "INTC",
+      "type": "buyer_supplier",
+      "description": "SpaceX is a major customer of INTC",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "MSFT",
+      "to": "INTC",
+      "type": "buyer_supplier",
+      "description": "Microsoft is a major customer of INTC",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "META",
