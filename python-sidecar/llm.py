@@ -1,5 +1,6 @@
 import os
 import asyncio
+from datetime import datetime
 import litellm
 from pydantic import BaseModel, Field
 from typing import Type, TypeVar, Optional, List, Any
@@ -36,7 +37,7 @@ LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
 # The model name should match LLAMA_ARG_HF_REPO from docker-compose
 LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_M")
 LLAMA_CPP_MODEL = f"openai/{LLAMA_MODEL}"
-LLAMA_SAFETY_BUFFER = 128
+LLAMA_SAFETY_BUFFER = 64
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -88,8 +89,10 @@ class LLMClient:
         deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
         deref_schema.pop("$defs", None)
         schema_json = json.dumps(deref_schema, indent=2)
+        now = datetime.now().isoformat()
         strict_system_prompt = (
             f"{system_prompt}\n\n"
+            f"CURRENT_TIME: {now}\n\n"
             f"STRICT INSTRUCTIONS:\n"
             f"1. You MUST respond with ONLY a valid JSON object.\n"
             f"2. You MUST include ALL required fields from the schema below.\n"
@@ -177,13 +180,6 @@ class LLMClient:
     ) -> T:
         messages = self._construct_messages(prompt, system_prompt, response_model)
         total_tokens = self.estimate_tokens(messages)
-
-        limit = self.get_safe_input_limit()
-        if total_tokens > limit:
-            logger.warning(
-                f"Context Overflow Imminent: Request({total_tokens}) > Safe Limit({limit}) "
-                f"[Hard Limit: {LLAMA_CTX_PER_REQUEST - LLAMA_OUTPUT_RESERVATION}]"
-            )
         
         async with self.semaphore:
             try:
