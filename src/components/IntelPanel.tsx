@@ -53,7 +53,7 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
     const handleNavigate = useCallback((lat: number, lng: number) => {
         onNavigate(lat, lng)
     }, [onNavigate])
-    
+
     const availableTabs = useMemo(() => {
         let tabs = [...TABS]
         if (!markdown) {
@@ -72,14 +72,14 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
 
     if (error) return (
         <div className="flex-1 flex flex-col items-center justify-center p-12 text-center bg-[var(--color-bg-paper)]">
-             <div className="w-16 h-16 border-2 border-[var(--color-accent-red)] flex items-center justify-center mb-6">
-                  <AlertTriangle size={32} className="text-[var(--color-accent-red)]" />
-             </div>
-             <h2 className="text-xl font-serif font-bold text-[var(--color-ink)] mb-2">Record Not Found</h2>
-             <p className="text-sm font-mono text-[var(--color-ink-muted)] mb-6">{error}</p>
-             <button onClick={onClose} className="border border-[var(--color-ink)] px-6 py-2 font-serif font-bold hover:bg-[var(--color-ink)] hover:text-white transition-colors">
-                 RETURN TO MAP
-             </button>
+            <div className="w-16 h-16 border-2 border-[var(--color-accent-red)] flex items-center justify-center mb-6">
+                <AlertTriangle size={32} className="text-[var(--color-accent-red)]" />
+            </div>
+            <h2 className="text-xl font-serif font-bold text-[var(--color-ink)] mb-2">Record Not Found</h2>
+            <p className="text-sm font-mono text-[var(--color-ink-muted)] mb-6">{error}</p>
+            <button onClick={onClose} className="border border-[var(--color-ink)] px-6 py-2 font-serif font-bold hover:bg-[var(--color-ink)] hover:text-white transition-colors">
+                RETURN TO MAP
+            </button>
         </div>
     )
 
@@ -103,10 +103,8 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
                         <p className="text-[10px] font-mono text-[var(--color-ink-muted)]">SEC {intel.anchorFiling.type} · {intel.anchorFiling.fiscalPeriod}</p>
                     </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4 text-[11px] font-serif italic text-[var(--color-ink-muted)]">
-                    <span>ESTABLISHED: {intel.offices[0]?.established || 'UNKNOWN'}</span>
-                    <span>·</span>
                     <span>STATUS: ACTIVE / VERIFIED</span>
                 </div>
             </div>
@@ -134,14 +132,14 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
                     {activeTab === 'risks' && <RisksTab risks={intel.geopoliticalRisks} onNavigate={handleNavigate} />}
                     {activeTab === 'expansion' && <ExpansionTab expansions={intel.expansionSignals} contractions={intel.contractionSignals} onNavigate={handleNavigate} />}
                     {activeTab === 'research' && markdown && <ResearchTab markdown={markdown} onNavigate={handleNavigate} />}
-                    
+
                     {/* Dossier Footer */}
                     <div className="mt-12 pt-6 border-t border-[var(--color-ink-muted)]/30 text-center">
                         <p className="text-[10px] font-mono text-[var(--color-ink-muted)] uppercase tracking-widest">
                             End of Document · Printed {intel.generatedDate}
                         </p>
                         <div className="flex justify-center gap-1 mt-2">
-                             {[...Array(5)].map((_, i) => <div key={i} className="w-1 h-1 rounded-full bg-[var(--color-ink-light)]" />)}
+                            {[...Array(5)].map((_, i) => <div key={i} className="w-1 h-1 rounded-full bg-[var(--color-ink-light)]" />)}
                         </div>
                     </div>
                 </div>
@@ -183,7 +181,7 @@ function OverviewTab({ intel }: { intel: GeoIntelligence }) {
             {intel.revenueGeography.concentrationRisk && (
                 <section className="border-2 border-[var(--color-accent-red)] p-4 relative">
                     <div className="absolute top-0 right-4 -translate-y-1/2 bg-[var(--color-bg-paper)] px-2">
-                         <AlertTriangle size={16} className="text-[var(--color-accent-red)]" />
+                        <AlertTriangle size={16} className="text-[var(--color-accent-red)]" />
                     </div>
                     <p className="text-[10px] font-mono font-bold text-[var(--color-accent-red)] uppercase mb-2">Strategic Advisory / Warning</p>
                     <p className="text-sm font-serif italic font-semibold leading-relaxed text-[var(--color-ink)]">
@@ -256,7 +254,7 @@ function SupplyChainTab({ nodes, onNavigate }: { nodes: SupplyChainNode[]; onNav
                                 Strategic Role: <span className="text-[var(--color-ink)] font-bold">{node.role.replace(/_/g, ' ')}</span>
                                 <br />Produces: {node.product}
                             </p>
-                            <button 
+                            <button
                                 onClick={() => node.lat && node.lng && onNavigate(node.lat, node.lng)}
                                 className={`text-[10px] font-mono font-bold border border-[var(--color-ink)] px-3 py-1 transition-all flex items-center gap-2 ${node.lat && node.lng ? 'hover:bg-[var(--color-ink)] hover:text-white cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
                                 disabled={!node.lat || !node.lng}
@@ -282,7 +280,7 @@ function CustomersTab({ customers, onNavigate }: { customers: CustomerNode[]; on
                         <span className="text-[10px] font-mono font-bold bg-[var(--color-ink)] text-white px-2 py-0.5">{cust.revenueShare}</span>
                     </div>
                     <p className="text-xs font-serif italic text-[var(--color-ink-muted)] mb-3">{cust.relationship}</p>
-                    <button 
+                    <button
                         onClick={() => cust.lat && cust.lng && onNavigate(cust.lat, cust.lng)}
                         className={`text-[10px] font-mono font-bold text-[var(--color-accent-blue)] flex items-center gap-1 ${cust.lat && cust.lng ? 'hover:underline cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
                         disabled={!cust.lat || !cust.lng}
@@ -317,8 +315,8 @@ function RisksTab({ risks, onNavigate }: { risks: GeopoliticalRisk[]; onNavigate
                     </div>
                     <p className="text-sm font-serif leading-relaxed text-[var(--color-ink-muted)] mb-4">{risk.description}</p>
                     <div className="flex items-center gap-3">
-                         <span className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-2 py-0.5 uppercase">{risk.riskCategory.replace(/_/g, ' ')}</span>
-                         <button 
+                        <span className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-2 py-0.5 uppercase">{risk.riskCategory.replace(/_/g, ' ')}</span>
+                        <button
                             onClick={() => risk.lat && risk.lng && onNavigate(risk.lat, risk.lng)}
                             className={`text-[10px] font-mono font-bold text-[var(--color-ink)] flex items-center gap-1 ${risk.lat && risk.lng ? 'hover:underline cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
                             disabled={!risk.lat || !risk.lng}
@@ -397,7 +395,7 @@ function ResearchTab({ markdown, onNavigate }: { markdown: string; onNavigate: (
                     h3: ({ children }) => <h3 className="text-lg font-serif italic font-bold text-[var(--color-ink)] mt-6 mb-3">{children}</h3>,
                     p: ({ children }) => <p className="text-base leading-relaxed text-[var(--color-ink-muted)] mb-5">{children}</p>,
                     ul: ({ children }) => <ul className="list-disc pl-5 mb-5 text-base text-[var(--color-ink-muted)] space-y-2">{children}</ul>,
-                    ol: ({ children }) => <ol className="list-decimal pl-5 mb-5 text-base text-[var(--color-ink-muted)] space-y-2">{children}?</ol>,
+                    ol: ({ children }) => <ol className="list-decimal pl-5 mb-5 text-base text-[var(--color-ink-muted)] space-y-2">{children}</ol>,
                     li: ({ children }) => <li>{children}</li>,
                     a: ({ children, href }) => {
                         if (href && href.startsWith('geo:')) {
@@ -438,4 +436,3 @@ function StatCell({ label, value }: { label: string; value: string }) {
         </div>
     )
 }
-
