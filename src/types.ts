@@ -20,9 +20,7 @@ export interface Office {
     lat: number
     lng: number
     businessFocus: string
-    size?: string | null
     type: OfficeType
-    established?: string | null
     source?: string | null
     confidence?: 'verified' | 'unverified' | 'city_center_approximation' | null
     /** Set at runtime when flattening — the parent company name */
@@ -92,9 +90,9 @@ export interface SupplyChainNode {
 
 export interface CustomerNode {
     customer: string
-    revenueShare: string
-    hqCity: string
-    hqCountry: string
+    revenueShare: string | null
+    hqCity: string | null
+    hqCountry: string | null
     lat: number | null
     lng: number | null
     relationship: string
@@ -214,7 +212,7 @@ export interface ChokepointAnalysis {
     chokepoints: Chokepoint[]
 }
 
-export type MapEntity = 
+export type MapEntity =
     | { type: 'office', data: Office }
     | { type: 'risk', data: GeopoliticalRisk }
     | { type: 'regionalRisk', data: RegionalRiskScore }
