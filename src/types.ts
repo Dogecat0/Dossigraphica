@@ -112,27 +112,6 @@ export interface GeopoliticalRisk {
     lastUpdated: string
 }
 
-export interface ExpansionSignal {
-    type: 'expansion'
-    location: string
-    lat?: number | null
-    lng?: number | null
-    description: string
-    estimatedTimeline?: string | null
-    investment?: string | null
-    source: string
-    dateAnnounced?: string | null
-}
-
-export interface ContractionSignal {
-    type: 'contraction'
-    location: string
-    lat?: number | null
-    lng?: number | null
-    description: string
-    source: string
-}
-
 export interface AnchorFiling {
     type: string
     date: string
@@ -153,8 +132,6 @@ export interface GeoIntelligence {
     supplyChain: SupplyChainNode[]
     customerConcentration: CustomerNode[]
     geopoliticalRisks: GeopoliticalRisk[]
-    expansionSignals: ExpansionSignal[]
-    contractionSignals: ContractionSignal[]
 }
 
 /* ===== Cross-Company Analysis Types ===== */

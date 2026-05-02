@@ -94,21 +94,3 @@ Intel faces a complex and evolving regulatory landscape characterized by geopoli
 
 *   **Compliance and Operational Continuity:** Beyond geopolitical threats, Intel must navigate localized regulatory environments, such as China's stringent data privacy laws. The company's withdrawal from the Russian market due to the ongoing war in Ukraine serves as a precedent for how geopolitical conflicts can force immediate and costly operational shifts, impacting both regional revenue and supply chain integrity.
 
-## 7. Strategic Signals
-
-Intel is currently undergoing a significant structural realignment, characterized by a shift from aggressive global footprint expansion to a more disciplined, capital-efficient model. This transition is marked by a clear dichotomy between the consolidation of legacy operations and the prioritization of core manufacturing and AI-focused investments.
-
-### 7.1 Strategic Contraction and Consolidation
-Intel has initiated a broad retrenchment strategy to stabilize its financial position. Key indicators of this contraction include:
-
-*   **Project Cancellations:** The company has abandoned major fabrication and assembly projects in Magdeburg, Germany; Wrocław, Poland; and Kiryat Gat, Israel, signaling a retreat from ambitious international capacity growth.
-*   **Workforce Reductions:** Significant layoffs have been executed across major US hubs, including Hillsboro (2,400 workers), San Jose (1,350 workers), and Chandler (700 workers), alongside smaller reductions in New Mexico and Texas. Additionally, assembly and test operations in San José, Costa Rica, are being shuttered.
-*   **Operational Streamlining:** The Shannon, Ireland R&D facility is slated for closure, with operations consolidating into the Leixlip campus to improve organizational synergy.
-
-### 7.2 Targeted Expansion and Core Focus
-Despite the contraction, Intel continues to deploy capital into high-priority areas that support its long-term foundry and AI ambitions:
-
-*   **Foundry Consolidation:** Intel has repurchased the 49% minority equity interest in the Fab 34 joint venture in Leixlip, Ireland, for $14.2B, asserting full control over its critical European manufacturing asset.
-*   **Advanced Manufacturing:** The Ocotillo campus in Chandler, Arizona, remains a cornerstone of the company's strategy, with Fab 52 now fully operational and ramping up for Intel 18A production.
-*   **AI Ecosystem Investment:** Intel is actively diversifying its technological portfolio, evidenced by a $15 million investment in AI chip startup SambaNova Systems, increasing its ownership stake to 9%.
-*   **Delayed Scaling:** While the Ohio One project remains a long-term objective, the timeline has been pushed to 2030-2031, reflecting a cautious approach to capital expenditure in the face of current market volatility.

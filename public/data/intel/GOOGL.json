@@ -221,43 +221,5 @@
       "filingReference": "10-K FY2025, Item 1A",
       "lastUpdated": "2026-02-05"
     }
-  ],
-  "expansionSignals": [
-    {
-      "type": "expansion",
-      "location": "Global / US HQ",
-      "lat": 37.4221,
-      "lng": -122.0841,
-      "description": "Acquisition of Wiz ($32B) to integrate enterprise security into Google Cloud.",
-      "estimatedTimeline": "March 2026",
-      "investment": "$32,000,000,000",
-      "source": "10-K FY2025 / M&A Announcements",
-      "dateAnnounced": "2025-10-01"
-    },
-    {
-      "type": "expansion",
-      "location": "Texas, USA",
-      "lat": 31.9686,
-      "lng": -99.9018,
-      "description": "Acquisition of Intersect ($4.75B) for sovereign energy generation (3.6 GW capacity).",
-      "estimatedTimeline": "2026",
-      "investment": "$4,750,000,000",
-      "source": "10-K FY2025",
-      "dateAnnounced": "2025-12-01"
-    }
-  ],
-  "contractionSignals": [
-    {
-      "type": "contraction",
-      "location": "Global",
-      "description": "Rolling workforce reductions targeting Platforms, Devices (Pixel, Nest, Fitbit), AR, and Google Assistant divisions.",
-      "source": "10-K FY2025 / Q1 2026 PR"
-    },
-    {
-      "type": "contraction",
-      "location": "Sweden",
-      "description": "1,900 industry-wide regional cuts reflecting footprint adjustments.",
-      "source": "Tier 2 Regional Labor Disclosures 2026"
-    }
   ]
 }

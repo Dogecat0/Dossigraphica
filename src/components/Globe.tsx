@@ -119,11 +119,11 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         if (selectedEntity) {
             let lat: number, lng: number;
             if (selectedEntity.type === 'office') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
-            else if (selectedEntity.type === 'risk') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'risk') { lat = selectedEntity.data.lat ?? 0; lng = selectedEntity.data.lng ?? 0; }
             else if (selectedEntity.type === 'regionalRisk') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
             else if (selectedEntity.type === 'chokepoint') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
-            else if (selectedEntity.type === 'supplier') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
-            else if (selectedEntity.type === 'customer') { lat = selectedEntity.data.lat; lng = selectedEntity.data.lng; }
+            else if (selectedEntity.type === 'supplier') { lat = selectedEntity.data.lat ?? 0; lng = selectedEntity.data.lng ?? 0; }
+            else if (selectedEntity.type === 'customer') { lat = selectedEntity.data.lat ?? 0; lng = selectedEntity.data.lng ?? 0; }
             else return;
 
             if (globeRef.current) {
@@ -261,7 +261,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
                     allArcs.push({
                         startLat: hqLat, startLng: hqLng,
-                        endLat: node.lat, endLng: node.lng,
+                        endLat: node.lat ?? 0, endLng: node.lng ?? 0,
                         color: [startColor, endColor],
                         startId: hqId, endId: id,
                         dimmed: isDimmed(hqId, id),
@@ -280,7 +280,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
                     allArcs.push({
                         startLat: hqLat, startLng: hqLng,
-                        endLat: cust.lat, endLng: cust.lng,
+                        endLat: cust.lat ?? 0, endLng: cust.lng ?? 0,
                         color: [startColor, endColor],
                         startId: hqId, endId: id,
                         stroke: 0.35,
@@ -358,7 +358,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             if (activeLayers.has('supplyChain')) {
                 intel.supplyChain.forEach((node, i) => {
                     rawNodes.push({
-                        lat: node.lat, lng: node.lng,
+                        lat: node.lat ?? 0, lng: node.lng ?? 0,
                         layerType: 'supplyChain',
                         label: node.entity,
                         sublabel: `${node.city}, ${node.country}`,
@@ -373,7 +373,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             if (activeLayers.has('customers')) {
                 intel.customerConcentration.forEach((cust, i) => {
                     rawNodes.push({
-                        lat: cust.lat, lng: cust.lng,
+                        lat: cust.lat ?? 0, lng: cust.lng ?? 0,
                         layerType: 'customer',
                         label: cust.customer,
                         sublabel: `${cust.hqCity}, ${cust.hqCountry}`,
@@ -388,7 +388,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             if (activeLayers.has('risks')) {
                 intel.geopoliticalRisks.forEach((risk, i) => {
                     rawNodes.push({
-                        lat: risk.lat, lng: risk.lng,
+                        lat: risk.lat ?? 0, lng: risk.lng ?? 0,
                         layerType: 'risk',
                         label: risk.riskLabel,
                         sublabel: risk.region,

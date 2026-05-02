@@ -1,375 +1,332 @@
 {
-    "company": "NVIDIA Corporation",
-    "ticker": "NVDA",
-    "website": "https://www.nvidia.com",
-    "sector": "Technology / Semiconductors",
-    "description": "A sovereign-level infrastructure architect orchestrating the physical and digital substrates of the global AI economy through advanced GPUs, high-performance networking, and full-stack AI computing platforms.",
-    "anchorFiling": {
-        "type": "10-K",
-        "date": "2026-02-25",
-        "fiscalPeriod": "FY2026"
+  "company": "NVIDIA Corporation",
+  "ticker": "NVDA",
+  "website": "https://www.nvidia.com",
+  "sector": "Technology / Semiconductors",
+  "description": "A sovereign-level infrastructure architect orchestrating the physical and digital substrates of the global AI economy through advanced GPUs, high-performance networking, and full-stack AI computing platforms.",
+  "anchorFiling": {
+    "type": "10-K",
+    "date": "2026-02-25",
+    "fiscalPeriod": "FY2026"
+  },
+  "generatedDate": "2026-03-15",
+  "offices": [
+    {
+      "id": "nvda-santa-clara-hq",
+      "name": "NVIDIA Global Headquarters",
+      "city": "Santa Clara",
+      "state": "California",
+      "country": "USA",
+      "address": null,
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "type": "headquarters",
+      "businessFocus": "Global HQ, Corporate R&D, Core Data Center, Executive Leadership",
+      "size": "3,000,000 sq ft",
+      "established": "1993",
+      "source": "10-K FY2026, Item 2",
+      "confidence": "verified"
     },
-    "generatedDate": "2026-03-15",
-    "offices": [
-        {
-            "id": "nvda-santa-clara-hq",
-            "name": "NVIDIA Global Headquarters",
-            "city": "Santa Clara",
-            "state": "California",
-            "country": "USA",
-            "address": null,
-            "lat": 37.3541,
-            "lng": -121.9552,
-            "type": "headquarters",
-            "businessFocus": "Global HQ, Corporate R&D, Core Data Center, Executive Leadership",
-            "size": "3,000,000 sq ft",
-            "established": "1993",
-            "source": "10-K FY2026, Item 2",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-austin-regional",
-            "name": "NVIDIA Austin",
-            "city": "Austin",
-            "state": "Texas",
-            "country": "USA",
-            "lat": 30.2672,
-            "lng": -97.7431,
-            "type": "regional",
-            "businessFocus": "CPU/System Architecture R&D",
-            "source": "NVIDIA Americas Locations",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-yokneam-regional",
-            "name": "NVIDIA Yokneam",
-            "city": "Yokneam",
-            "country": "Israel",
-            "lat": 32.6598,
-            "lng": 35.1054,
-            "type": "regional",
-            "businessFocus": "High-Performance Networking R&D, InfiniBand",
-            "source": "Corporate Disclosures, Israel Operations",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-beersheba-rd",
-            "name": "NVIDIA Be'er Sheva (Gav-Yam)",
-            "city": "Be'er Sheva",
-            "country": "Israel",
-            "lat": 31.2518,
-            "lng": 34.7913,
-            "type": "engineering",
-            "businessFocus": "Advanced Networking R&D",
-            "size": "3,000 sq meters",
-            "established": "2026",
-            "source": "Corporate Press Releases",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-kiryat-tivon-campus",
-            "name": "Kiryat Tivon Mega-Campus",
-            "city": "Kiryat Tivon",
-            "country": "Israel",
-            "lat": 32.7151,
-            "lng": 35.1325,
-            "type": "regional",
-            "businessFocus": "Massive R&D Campus",
-            "size": "160,000 sq meters / 10,000 headcount",
-            "established": "2031",
-            "source": "Corporate Press Releases",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-bengaluru-engineering",
-            "name": "NVIDIA Bengaluru",
-            "city": "Bengaluru",
-            "state": "Karnataka",
-            "country": "India",
-            "lat": 12.9716,
-            "lng": 77.5946,
-            "type": "engineering",
-            "businessFocus": "Software & CUDA Engineering R&D",
-            "source": "NVIDIA Locations & Regional Offices",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-hsinchu-regional",
-            "name": "NVIDIA Hsinchu",
-            "city": "Hsinchu City",
-            "country": "Taiwan",
-            "lat": 24.8138,
-            "lng": 120.9675,
-            "type": "regional",
-            "businessFocus": "R&D Hub, Foundational Supply Chain Coordination",
-            "source": "NVIDIA Asia & Japan Locations",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-singapore-regional",
-            "name": "NVIDIA Singapore Pte Ltd",
-            "city": "Singapore",
-            "country": "Singapore",
-            "lat": 1.3521,
-            "lng": 103.8198,
-            "type": "regional",
-            "businessFocus": "Invoicing, Billing Hub, Logistics Coordination",
-            "source": "10-K FY2026, Exhibit 21",
-            "confidence": "verified"
-        },
-        {
-            "id": "nvda-london-engineering",
-            "name": "NVIDIA UK R&D Hub",
-            "city": "London",
-            "country": "UK",
-            "lat": 51.5074,
-            "lng": -0.1278,
-            "type": "engineering",
-            "businessFocus": "R&D Hub, Sovereign AI & Quantum Supercomputing",
-            "source": "NVIDIA Locations & Regional Offices",
-            "confidence": "verified"
-        }
-    ],
-    "revenueGeography": {
-        "fiscalYear": "FY2026",
-        "totalRevenue": 215938000000,
-        "currency": "USD",
-        "segments": [
-            {
-                "region": "United States",
-                "revenue": 149617000000,
-                "percentage": 69.28,
-                "yoyGrowth": 93.10,
-                "notes": "Driven by multi-year capital expenditure cycles of US-based hyperscale CSPs."
-            },
-            {
-                "region": "Taiwan",
-                "revenue": 42345000000,
-                "percentage": 19.61,
-                "yoyGrowth": 79.43,
-                "notes": "76% of this is attributed to US and European end-customers. Taiwan acts as an integration and ODM hub."
-            },
-            {
-                "region": "China",
-                "revenue": 19677000000,
-                "percentage": 9.11,
-                "yoyGrowth": -21.44,
-                "notes": "Revenue contraction due to US export controls and Chinese design-out directives."
-            },
-            {
-                "region": "Other Countries",
-                "revenue": 4299000000,
-                "percentage": 1.99,
-                "yoyGrowth": -1.56,
-                "notes": "Relatively flat growth curve in emerging markets."
-            }
-        ],
-        "concentrationRisk": "Top two customers represent 36% of net revenue ($77.7B combined).",
-        "source": "10-K FY2026"
+    {
+      "id": "nvda-austin-regional",
+      "name": "NVIDIA Austin",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "USA",
+      "lat": 30.2672,
+      "lng": -97.7431,
+      "type": "regional",
+      "businessFocus": "CPU/System Architecture R&D",
+      "source": "NVIDIA Americas Locations",
+      "confidence": "verified"
     },
-    "supplyChain": [
-        {
-            "entity": "Taiwan Semiconductor Manufacturing Company (TSMC)",
-            "role": "foundry",
-            "city": "Hsinchu",
-            "country": "Taiwan",
-            "lat": 24.7731,
-            "lng": 121.0069,
-            "product": "Wafer fabrication, Advanced Packaging (CoWoS)",
-            "criticality": "critical",
-            "source": "10-K FY2026, Supply Chain Disclosures"
-        },
-        {
-            "entity": "Samsung Electronics Co., Ltd.",
-            "role": "foundry",
-            "city": "Suwon",
-            "country": "South Korea",
-            "lat": 37.2636,
-            "lng": 127.0286,
-            "product": "Wafer fabrication, HBM Memory",
-            "criticality": "important",
-            "source": "10-K FY2026, Supply Chain Disclosures"
-        },
-        {
-            "entity": "SK Hynix Inc.",
-            "role": "key_supplier",
-            "city": "Icheon",
-            "country": "South Korea",
-            "lat": 37.2792,
-            "lng": 127.4429,
-            "product": "HBM Memory (HBM3/HBM3E)",
-            "criticality": "critical",
-            "source": "10-K FY2026, Supply Chain Disclosures"
-        },
-        {
-            "entity": "Micron Technology, Inc.",
-            "role": "key_supplier",
-            "city": "Boise",
-            "country": "USA",
-            "lat": 43.615,
-            "lng": -116.2023,
-            "product": "HBM Memory",
-            "criticality": "important",
-            "source": "10-K FY2026, Supply Chain Disclosures"
-        },
-        {
-            "entity": "TSMC (US Facility)",
-            "role": "foundry",
-            "city": "Phoenix",
-            "country": "USA",
-            "lat": 33.4484,
-            "lng": -112.074,
-            "product": "Volume production of NVIDIA Blackwell chips",
-            "criticality": "important",
-            "source": "Corporate Press Releases"
-        },
-        {
-            "entity": "Amkor / SPIL",
-            "role": "assembly_test",
-            "city": "Peoria",
-            "country": "USA",
-            "lat": 33.5806,
-            "lng": -112.2374,
-            "product": "Advanced Packaging",
-            "criticality": "important",
-            "source": "Corporate Press Releases"
-        },
-        {
-            "entity": "Foxconn",
-            "role": "contract_manufacturer",
-            "city": "Houston",
-            "country": "USA",
-            "lat": 29.7604,
-            "lng": -95.3698,
-            "product": "AI supercomputer manufacturing (242,287 sq ft facility)",
-            "criticality": "important",
-            "source": "Corporate Press Releases"
-        },
-        {
-            "entity": "Wistron",
-            "role": "contract_manufacturer",
-            "city": "Dallas",
-            "country": "USA",
-            "lat": 32.7767,
-            "lng": -96.797,
-            "product": "AI server manufacturing",
-            "criticality": "important",
-            "source": "Corporate Press Releases"
-        }
+    {
+      "id": "nvda-yokneam-regional",
+      "name": "NVIDIA Yokneam",
+      "city": "Yokneam",
+      "country": "Israel",
+      "lat": 32.6598,
+      "lng": 35.1054,
+      "type": "regional",
+      "businessFocus": "High-Performance Networking R&D, InfiniBand",
+      "source": "Corporate Disclosures, Israel Operations",
+      "confidence": "verified"
+    },
+    {
+      "id": "nvda-beersheba-rd",
+      "name": "NVIDIA Be'er Sheva (Gav-Yam)",
+      "city": "Be'er Sheva",
+      "country": "Israel",
+      "lat": 31.2518,
+      "lng": 34.7913,
+      "type": "engineering",
+      "businessFocus": "Advanced Networking R&D",
+      "size": "3,000 sq meters",
+      "established": "2026",
+      "source": "Corporate Press Releases",
+      "confidence": "verified"
+    },
+    {
+      "id": "nvda-kiryat-tivon-campus",
+      "name": "Kiryat Tivon Mega-Campus",
+      "city": "Kiryat Tivon",
+      "country": "Israel",
+      "lat": 32.7151,
+      "lng": 35.1325,
+      "type": "regional",
+      "businessFocus": "Massive R&D Campus",
+      "size": "160,000 sq meters / 10,000 headcount",
+      "established": "2031",
+      "source": "Corporate Press Releases",
+      "confidence": "verified"
+    },
+    {
+      "id": "nvda-bengaluru-engineering",
+      "name": "NVIDIA Bengaluru",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "lat": 12.9716,
+      "lng": 77.5946,
+      "type": "engineering",
+      "businessFocus": "Software & CUDA Engineering R&D",
+      "source": "NVIDIA Locations & Regional Offices",
+      "confidence": "verified"
+    },
+    {
+      "id": "nvda-hsinchu-regional",
+      "name": "NVIDIA Hsinchu",
+      "city": "Hsinchu City",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "type": "regional",
+      "businessFocus": "R&D Hub, Foundational Supply Chain Coordination",
+      "source": "NVIDIA Asia & Japan Locations",
+      "confidence": "verified"
+    },
+    {
+      "id": "nvda-singapore-regional",
+      "name": "NVIDIA Singapore Pte Ltd",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "type": "regional",
+      "businessFocus": "Invoicing, Billing Hub, Logistics Coordination",
+      "source": "10-K FY2026, Exhibit 21",
+      "confidence": "verified"
+    },
+    {
+      "id": "nvda-london-engineering",
+      "name": "NVIDIA UK R&D Hub",
+      "city": "London",
+      "country": "UK",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "type": "engineering",
+      "businessFocus": "R&D Hub, Sovereign AI & Quantum Supercomputing",
+      "source": "NVIDIA Locations & Regional Offices",
+      "confidence": "verified"
+    }
+  ],
+  "revenueGeography": {
+    "fiscalYear": "FY2026",
+    "totalRevenue": 215938000000,
+    "currency": "USD",
+    "segments": [
+      {
+        "region": "United States",
+        "revenue": 149617000000,
+        "percentage": 69.28,
+        "yoyGrowth": 93.10,
+        "notes": "Driven by multi-year capital expenditure cycles of US-based hyperscale CSPs."
+      },
+      {
+        "region": "Taiwan",
+        "revenue": 42345000000,
+        "percentage": 19.61,
+        "yoyGrowth": 79.43,
+        "notes": "76% of this is attributed to US and European end-customers. Taiwan acts as an integration and ODM hub."
+      },
+      {
+        "region": "China",
+        "revenue": 19677000000,
+        "percentage": 9.11,
+        "yoyGrowth": -21.44,
+        "notes": "Revenue contraction due to US export controls and Chinese design-out directives."
+      },
+      {
+        "region": "Other Countries",
+        "revenue": 4299000000,
+        "percentage": 1.99,
+        "yoyGrowth": -1.56,
+        "notes": "Relatively flat growth curve in emerging markets."
+      }
     ],
-    "customerConcentration": [
-        {
-            "customer": "Customer One (Identified via intelligence as Microsoft)",
-            "revenueShare": "22%",
-            "hqCity": "Redmond",
-            "hqCountry": "USA",
-            "lat": 47.674,
-            "lng": -122.1215,
-            "relationship": "Hyperscale Cloud Service Provider (Azure), major CapEx cycle for OpenAI infrastructure.",
-            "source": "10-K FY2026 / Industry Analysis"
-        },
-        {
-            "customer": "Customer Two (Identified via intelligence as Meta Platforms)",
-            "revenueShare": "14%",
-            "hqCity": "Menlo Park",
-            "hqCountry": "USA",
-            "lat": 37.4529,
-            "lng": -122.1817,
-            "relationship": "Social infrastructure, large-scale Llama foundation model training.",
-            "source": "10-K FY2026 / Industry Analysis"
-        }
-    ],
-    "geopoliticalRisks": [
-        {
-            "region": "France / EU",
-            "lat": 48.8566,
-            "lng": 2.3522,
-            "riskScore": 5,
-            "riskCategory": "regulatory_compliance",
-            "riskLabel": "Antitrust Charges & Market Abuse",
-            "description": "French authorities preparing formal statement of objections over CUDA software lock-in and CoreWeave equity investments. Fines could reach 10% of global revenue (~$21.5B).",
-            "impactLevel": "Critical",
-            "filingReference": "10-K FY2026, Item 1A / Maginative",
-            "lastUpdated": "2026-03-15"
-        },
-        {
-            "region": "United States",
-            "lat": 38.8951,
-            "lng": -77.0364,
-            "riskScore": 5,
-            "riskCategory": "trade_restriction",
-            "riskLabel": "Sudden BIS Export Controls & DOJ Probes",
-            "description": "Sudden BIS license requirements stranded $4.5B in H20 inventory. DOJ/FTC investigating AI monopolistic synergies.",
-            "impactLevel": "Critical",
-            "filingReference": "10-K FY2026, Item 1A",
-            "lastUpdated": "2026-03-15"
-        },
-        {
-            "region": "China",
-            "lat": 39.9042,
-            "lng": 116.4074,
-            "riskScore": 4,
-            "riskCategory": "regulatory_compliance",
-            "riskLabel": "SAMR Retaliatory Probe & Design-Out Mandates",
-            "description": "SAMR investigation into Mellanox acquisition terms; state-directed mandates to exclude US silicon from infrastructure tenders.",
-            "impactLevel": "critical",
-            "filingReference": "10-K FY2026, Item 1A",
-            "lastUpdated": "2026-03-15"
-        },
-        {
-            "region": "Taiwan",
-            "lat": 23.6978,
-            "lng": 120.9605,
-            "riskScore": 5,
-            "riskCategory": "geopolitical_conflict",
-            "riskLabel": "Foundry Single Point of Failure",
-            "description": "Extreme reliance on TSMC and localized ODMs. A blockade or kinetic event would invalidate $95.2B in manufacturing commitments.",
-            "impactLevel": "Critical",
-            "filingReference": "10-K FY2026, Item 1A",
-            "lastUpdated": "2026-03-15"
-        }
-    ],
-    "expansionSignals": [
-        {
-            "type": "expansion",
-            "location": "United States (Various)",
-            "lat": 39.8283,
-            "lng": -98.5795,
-            "description": "Joint Mega-Project with OpenAI to deploy at least 10 GW of NVIDIA systems, investing up to $100B in physical datacenters.",
-            "estimatedTimeline": "2026-2030",
-            "investment": "$100B",
-            "source": "Corporate Press Releases / Q1 2026 disclosures",
-            "dateAnnounced": "2026-02-01"
-        },
-        {
-            "type": "expansion",
-            "location": "United Kingdom",
-            "lat": 55.3781,
-            "lng": -3.436,
-            "description": "Sovereign AI infrastructure deployment in UK, investing £11B in data centers and deploying 120,000 Blackwell Ultra GPUs.",
-            "estimatedTimeline": "By end of 2026",
-            "investment": "£11B",
-            "source": "Corporate Press Releases",
-            "dateAnnounced": "2026-01-15"
-        },
-        {
-            "type": "expansion",
-            "location": "Amsterdam, Netherlands (Nebius Group)",
-            "lat": 52.3676,
-            "lng": 4.9041,
-            "description": "Strategic partnership and $2B equity investment to deploy 5+ GW of capacity with Nebius Group by 2030.",
-            "estimatedTimeline": "2026-2030",
-            "investment": "$2B",
-            "source": "Corporate Press Releases",
-            "dateAnnounced": "2026-03-01"
-        }
-    ],
-    "contractionSignals": [
-        {
-            "type": "contraction",
-            "location": "China",
-            "description": "Company explicitly not assuming any Data Center compute revenue from China for Q1 FY2027, structurally writing off the geography.",
-            "source": "Q4 FY2026 Earnings Commentary"
-        }
-    ]
+    "concentrationRisk": "Top two customers represent 36% of net revenue ($77.7B combined).",
+    "source": "10-K FY2026"
+  },
+  "supplyChain": [
+    {
+      "entity": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.7731,
+      "lng": 121.0069,
+      "product": "Wafer fabrication, Advanced Packaging (CoWoS)",
+      "criticality": "critical",
+      "source": "10-K FY2026, Supply Chain Disclosures"
+    },
+    {
+      "entity": "Samsung Electronics Co., Ltd.",
+      "role": "foundry",
+      "city": "Suwon",
+      "country": "South Korea",
+      "lat": 37.2636,
+      "lng": 127.0286,
+      "product": "Wafer fabrication, HBM Memory",
+      "criticality": "important",
+      "source": "10-K FY2026, Supply Chain Disclosures"
+    },
+    {
+      "entity": "SK Hynix Inc.",
+      "role": "key_supplier",
+      "city": "Icheon",
+      "country": "South Korea",
+      "lat": 37.2792,
+      "lng": 127.4429,
+      "product": "HBM Memory (HBM3/HBM3E)",
+      "criticality": "critical",
+      "source": "10-K FY2026, Supply Chain Disclosures"
+    },
+    {
+      "entity": "Micron Technology, Inc.",
+      "role": "key_supplier",
+      "city": "Boise",
+      "country": "USA",
+      "lat": 43.615,
+      "lng": -116.2023,
+      "product": "HBM Memory",
+      "criticality": "important",
+      "source": "10-K FY2026, Supply Chain Disclosures"
+    },
+    {
+      "entity": "TSMC (US Facility)",
+      "role": "foundry",
+      "city": "Phoenix",
+      "country": "USA",
+      "lat": 33.4484,
+      "lng": -112.074,
+      "product": "Volume production of NVIDIA Blackwell chips",
+      "criticality": "important",
+      "source": "Corporate Press Releases"
+    },
+    {
+      "entity": "Amkor / SPIL",
+      "role": "assembly_test",
+      "city": "Peoria",
+      "country": "USA",
+      "lat": 33.5806,
+      "lng": -112.2374,
+      "product": "Advanced Packaging",
+      "criticality": "important",
+      "source": "Corporate Press Releases"
+    },
+    {
+      "entity": "Foxconn",
+      "role": "contract_manufacturer",
+      "city": "Houston",
+      "country": "USA",
+      "lat": 29.7604,
+      "lng": -95.3698,
+      "product": "AI supercomputer manufacturing (242,287 sq ft facility)",
+      "criticality": "important",
+      "source": "Corporate Press Releases"
+    },
+    {
+      "entity": "Wistron",
+      "role": "contract_manufacturer",
+      "city": "Dallas",
+      "country": "USA",
+      "lat": 32.7767,
+      "lng": -96.797,
+      "product": "AI server manufacturing",
+      "criticality": "important",
+      "source": "Corporate Press Releases"
+    }
+  ],
+  "customerConcentration": [
+    {
+      "customer": "Customer One (Identified via intelligence as Microsoft)",
+      "revenueShare": "22%",
+      "hqCity": "Redmond",
+      "hqCountry": "USA",
+      "lat": 47.674,
+      "lng": -122.1215,
+      "relationship": "Hyperscale Cloud Service Provider (Azure), major CapEx cycle for OpenAI infrastructure.",
+      "source": "10-K FY2026 / Industry Analysis"
+    },
+    {
+      "customer": "Customer Two (Identified via intelligence as Meta Platforms)",
+      "revenueShare": "14%",
+      "hqCity": "Menlo Park",
+      "hqCountry": "USA",
+      "lat": 37.4529,
+      "lng": -122.1817,
+      "relationship": "Social infrastructure, large-scale Llama foundation model training.",
+      "source": "10-K FY2026 / Industry Analysis"
+    }
+  ],
+  "geopoliticalRisks": [
+    {
+      "region": "France / EU",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "riskScore": 5,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Antitrust Charges & Market Abuse",
+      "description": "French authorities preparing formal statement of objections over CUDA software lock-in and CoreWeave equity investments. Fines could reach 10% of global revenue (~$21.5B).",
+      "impactLevel": "Critical",
+      "filingReference": "10-K FY2026, Item 1A / Maginative",
+      "lastUpdated": "2026-03-15"
+    },
+    {
+      "region": "United States",
+      "lat": 38.8951,
+      "lng": -77.0364,
+      "riskScore": 5,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Sudden BIS Export Controls & DOJ Probes",
+      "description": "Sudden BIS license requirements stranded $4.5B in H20 inventory. DOJ/FTC investigating AI monopolistic synergies.",
+      "impactLevel": "Critical",
+      "filingReference": "10-K FY2026, Item 1A",
+      "lastUpdated": "2026-03-15"
+    },
+    {
+      "region": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "SAMR Retaliatory Probe & Design-Out Mandates",
+      "description": "SAMR investigation into Mellanox acquisition terms; state-directed mandates to exclude US silicon from infrastructure tenders.",
+      "impactLevel": "critical",
+      "filingReference": "10-K FY2026, Item 1A",
+      "lastUpdated": "2026-03-15"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "riskScore": 5,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Foundry Single Point of Failure",
+      "description": "Extreme reliance on TSMC and localized ODMs. A blockade or kinetic event would invalidate $95.2B in manufacturing commitments.",
+      "impactLevel": "Critical",
+      "filingReference": "10-K FY2026, Item 1A",
+      "lastUpdated": "2026-03-15"
+    }
+  ]
 }

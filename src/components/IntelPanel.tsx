@@ -1,17 +1,17 @@
 import { useState, useCallback, useMemo } from 'react'
 import {
     Building2, DollarSign, Link2, Users, ShieldAlert,
-    TrendingUp, FileText, MapPin, AlertTriangle, Loader2, ArrowRight
+    FileText, MapPin, AlertTriangle, Loader2, ArrowRight
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import type {
     GeoIntelligence, SupplyChainNode,
-    CustomerNode, GeopoliticalRisk, ExpansionSignal, ContractionSignal
+    CustomerNode, GeopoliticalRisk
 } from '../types'
 import AnimatedNumber from './AnimatedNumber'
 
-type TabId = 'overview' | 'revenue' | 'supply' | 'customers' | 'risks' | 'expansion' | 'research'
+type TabId = 'overview' | 'revenue' | 'supply' | 'customers' | 'risks' | 'research'
 
 interface IntelPanelProps {
     intel: GeoIntelligence | null
@@ -28,7 +28,6 @@ const TABS: { id: TabId; label: string; icon: typeof Building2 }[] = [
     { id: 'supply', label: 'Supply Chain', icon: Link2 },
     { id: 'customers', label: 'Customers', icon: Users },
     { id: 'risks', label: 'Risks', icon: ShieldAlert },
-    { id: 'expansion', label: 'Signals', icon: TrendingUp },
     { id: 'research', label: 'Research', icon: FileText },
 ]
 
@@ -130,7 +129,6 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
                     {activeTab === 'supply' && <SupplyChainTab nodes={intel.supplyChain} onNavigate={handleNavigate} />}
                     {activeTab === 'customers' && <CustomersTab customers={intel.customerConcentration} onNavigate={handleNavigate} />}
                     {activeTab === 'risks' && <RisksTab risks={intel.geopoliticalRisks} onNavigate={handleNavigate} />}
-                    {activeTab === 'expansion' && <ExpansionTab expansions={intel.expansionSignals} contractions={intel.contractionSignals} onNavigate={handleNavigate} />}
                     {activeTab === 'research' && markdown && <ResearchTab markdown={markdown} onNavigate={handleNavigate} />}
 
                     {/* Dossier Footer */}
@@ -326,60 +324,6 @@ function RisksTab({ risks, onNavigate }: { risks: GeopoliticalRisk[]; onNavigate
                     </div>
                 </div>
             ))}
-        </div>
-    )
-}
-
-function ExpansionTab({
-    expansions,
-    contractions,
-    onNavigate,
-}: {
-    expansions: ExpansionSignal[]
-    contractions: ContractionSignal[]
-    onNavigate: (lat: number, lng: number) => void
-}) {
-    return (
-        <div className="space-y-10 animate-fade-in">
-            {expansions.length > 0 && (
-                <section>
-                    <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-[var(--color-accent-green)] mb-4 border-b border-[var(--color-accent-green)] pb-1">Expansion Forecast</h3>
-                    <div className="space-y-6">
-                        {expansions.map((sig, i) => (
-                            <div key={i} className="relative pl-6 border-l-2 border-[var(--color-accent-green)]">
-                                <div className="absolute top-0 left-0 -translate-x-1/2 w-2 h-2 bg-[var(--color-accent-green)] rounded-full" />
-                                <div className="flex justify-between items-start mb-1">
-                                    <h4 className="text-lg font-serif font-bold text-[var(--color-ink)]">{sig.location}</h4>
-                                    {sig.investment && <span className="text-xs font-mono font-bold text-[var(--color-accent-green)]">{sig.investment}</span>}
-                                </div>
-                                <p className="text-sm font-serif leading-relaxed text-[var(--color-ink-muted)] mb-2">{sig.description}</p>
-                                {sig.estimatedTimeline && <p className="text-[10px] font-mono font-bold text-[var(--color-ink-muted)]">TIMELINE: {sig.estimatedTimeline}</p>}
-                                {sig.lat && sig.lng && (
-                                    <button onClick={() => onNavigate(sig.lat!, sig.lng!)} className="mt-2 text-[10px] font-mono font-bold hover:underline cursor-pointer">LOCATE COORDINATES</button>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            )}
-
-            {contractions.length > 0 && (
-                <section>
-                    <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-[var(--color-accent-red)] mb-4 border-b border-[var(--color-accent-red)] pb-1">Retraction / Disinvestment</h3>
-                    <div className="space-y-6">
-                        {contractions.map((sig, i) => (
-                            <div key={i} className="relative pl-6 border-l-2 border-[var(--color-accent-red)]">
-                                <div className="absolute top-0 left-0 -translate-x-1/2 w-2 h-2 bg-[var(--color-accent-red)] rounded-full" />
-                                <h4 className="text-lg font-serif font-bold text-[var(--color-ink)] mb-1">{sig.location}</h4>
-                                <p className="text-sm font-serif leading-relaxed text-[var(--color-ink-muted)] mb-2">{sig.description}</p>
-                                {sig.lat && sig.lng && (
-                                    <button onClick={() => onNavigate(sig.lat!, sig.lng!)} className="mt-2 text-[10px] font-mono font-bold hover:underline cursor-pointer">LOCATE COORDINATES</button>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            )}
         </div>
     )
 }

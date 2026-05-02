@@ -2,7 +2,7 @@
 Entity Assembly — Programmatic gap detection for geographic intelligence.
 
 Runs the same structural LLM extraction used by the drafter (get_offices,
-get_supply_chain, get_risks_signals) against the current fact pool,
+get_supply_chain, get_geopolitical_risks, get_customer_concentration) against the current fact pool,
 then inspects the Pydantic objects for missing critical geographic data
 (addresses, coordinates, cities). Gaps are converted to targeted search
 strings appended to ``state.enrichment_queries``.
@@ -22,8 +22,6 @@ from tasks.drafter import (
     get_offices,
     get_supply_chain,
     get_geopolitical_risks,
-    get_expansion_signals,
-    get_contraction_signals,
     get_customer_concentration,
 )
 
@@ -90,38 +88,6 @@ def _build_risk_queries(risks, user_query: str) -> list[str]:
     return queries
 
 
-def _build_expansion_queries(signals, user_query: str) -> list[str]:
-    """Generate enrichment queries for expansion signals missing coordinates, investment, or date."""
-    queries: list[str] = []
-    for s in signals:
-        missing_coords = s.lat is None or s.lng is None
-        missing_investment = not s.investment
-        missing_date = not s.dateAnnounced
-        
-        if missing_coords or missing_investment or missing_date:
-            requirements = []
-            if missing_coords: requirements.append("exact location coordinates")
-            if missing_investment: requirements.append("investment amount USD")
-            if missing_date: requirements.append("announcement date")
-            
-            req_str = " and ".join(requirements)
-            queries.append(
-                f"{user_query} expansion {s.location} {s.description[:50]} {req_str}"
-            )
-    return queries
-
-
-def _build_contraction_queries(signals, user_query: str) -> list[str]:
-    """Generate enrichment queries for contraction signals missing coordinates."""
-    queries: list[str] = []
-    for s in signals:
-        if s.lat is None or s.lng is None:
-            queries.append(
-                f"{user_query} contraction {s.description[:50]} {s.location} specific city location coordinates"
-            )
-    return queries
-
-
 async def run_entity_assembly(state: ResearchState) -> ResearchState:
     """
     Pre-assemble Pydantic models to programmatically detect missing
@@ -138,12 +104,10 @@ async def run_entity_assembly(state: ResearchState) -> ResearchState:
 
     # Run the modular assembly functions in parallel against current facts
     
-    office_res, sc_res, risk_res, exp_res, con_res, cust_res = await asyncio.gather(
+    office_res, sc_res, risk_res, cust_res = await asyncio.gather(
         get_offices(state.extracted_facts, state.user_query),
         get_supply_chain(state.extracted_facts, state.user_query),
         get_geopolitical_risks(state.extracted_facts, state.user_query),
-        get_expansion_signals(state.extracted_facts, state.user_query),
-        get_contraction_signals(state.extracted_facts, state.user_query),
         get_customer_concentration(state.extracted_facts, state.user_query),
     )
 
@@ -153,8 +117,6 @@ async def run_entity_assembly(state: ResearchState) -> ResearchState:
     gap_queries.extend(_build_supply_chain_queries(sc_res.supply_chain, state.user_query))
     gap_queries.extend(_build_customer_queries(cust_res.customerConcentration, state.user_query))
     gap_queries.extend(_build_risk_queries(risk_res.geopoliticalRisks, state.user_query))
-    gap_queries.extend(_build_expansion_queries(exp_res.expansionSignals, state.user_query))
-    gap_queries.extend(_build_contraction_queries(con_res.contractionSignals, state.user_query))
 
     # Deduplicate while preserving order
     seen: set[str] = set()

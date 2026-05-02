@@ -240,43 +240,5 @@
       "filingReference": "Trade Act Reports",
       "lastUpdated": "2026-03-18"
     }
-  ],
-  "expansionSignals": [
-    {
-      "type": "expansion",
-      "location": "Bengaluru, India",
-      "lat": 12.9716,
-      "lng": 77.5946,
-      "description": "Inaugurated largest global design center; expanding sovereign AI infra with TCS via 200MW 'Helios' project.",
-      "estimatedTimeline": "2025-2026",
-      "investment": "$400M",
-      "source": "Press Release 1278",
-      "dateAnnounced": "2026-02-01"
-    },
-    {
-      "type": "expansion",
-      "location": "Bayan Lepas, Malaysia",
-      "lat": 5.2965,
-      "lng": 100.2847,
-      "description": "Inauguration of 209,000 sq ft advanced packaging engineering facility for 1,200+ employees.",
-      "estimatedTimeline": "2025",
-      "investment": "Undisclosed",
-      "source": "Press Release",
-      "dateAnnounced": "2025-01-01"
-    }
-  ],
-  "contractionSignals": [
-    {
-      "type": "contraction",
-      "location": "China",
-      "description": "Total market contraction of high-margin Data Center AI revenue due to U.S. regulatory restrictions. $0 revenue forecasted post-Q1 2026.",
-      "source": "Q4 2025 Earnings Call"
-    },
-    {
-      "type": "contraction",
-      "location": "Secaucus, NJ, USA",
-      "description": "Immediate divestiture of capital-intensive physical manufacturing operations acquired from ZT Systems to Sanmina Corporation.",
-      "source": "Press Release 1263"
-    }
   ]
 }

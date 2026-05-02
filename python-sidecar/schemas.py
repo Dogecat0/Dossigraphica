@@ -11,7 +11,7 @@ class FactSchema(BaseModel):
     model_config = STRICT_CONFIG
     reasoning: str = Field(..., description="Brief logical justification for why this specific fact was extracted and its relevance.")
     content: str = Field(..., description="The factual statement or data point.")
-    category: Literal['CORPORATE', 'OFFICES', 'REVENUE', 'SUPPLY_CHAIN', 'CUSTOMERS', 'RISKS', 'SIGNALS', 'UNKNOWN'] = Field(..., description="The intelligence module this fact belongs to.")
+    category: Literal['CORPORATE', 'OFFICES', 'REVENUE', 'SUPPLY_CHAIN', 'CUSTOMERS', 'RISKS', 'UNKNOWN'] = Field(..., description="The intelligence module this fact belongs to.")
 
 class InternalFact(FactSchema):
     """Internal state fact with programmatic metadata."""
@@ -126,27 +126,6 @@ class GeopoliticalRiskSchema(BaseModel):
     filingReference: str | None = Field(..., description="SEC filing or official source.")
     lastUpdated: str | None = Field(..., description="Date of update.")
 
-class ExpansionSignalSchema(BaseModel):
-    model_config = STRICT_CONFIG
-    type: Literal['expansion'] = Field(..., description="Signal type.")
-    location: str = Field(..., description="Specific geographic location (e.g., 'City, Country'). Do NOT just provide a city name.")
-    lat: float | None = Field(..., description="Lat.")
-    lng: float | None = Field(..., description="Lng.")
-    description: str = Field(..., description="Details of the expansion.")
-    estimatedTimeline: str | None = Field(..., description="Projected completion.")
-    investment: str | None = Field(..., description="USD amount (e.g. '$10B') if known. This is a critical signal.")
-    sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
-    dateAnnounced: str | None = Field(..., description="Date of news (YYYY-MM-DD). Required for chronological tracking.")
-
-class ContractionSignalSchema(BaseModel):
-    model_config = STRICT_CONFIG
-    type: Literal['contraction'] = Field(..., description="Signal type.")
-    location: str = Field(..., description="Specific geographic location (e.g., 'City, Country').")
-    lat: float | None = Field(..., description="Lat.")
-    lng: float | None = Field(..., description="Lng.")
-    description: str = Field(..., description="Details of closures or layoffs.")
-    sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
-
 class AnchorFilingSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: str | None = Field(..., description="Filing type (e.g., 10-K).")
@@ -177,5 +156,4 @@ class GeoIntelligenceSchema(BaseModel):
     supplyChain: List[SupplyChainNodeSchema] = Field(..., description="Supply chain suppliers foundries assembly partners critical vendors logistics")
     customerConcentration: List[CustomerNodeSchema] = Field(..., description="Top customers revenue share buyer relationships major clients")
     geopoliticalRisks: List[GeopoliticalRiskSchema] = Field(..., description="Geopolitical risks export controls trade restrictions sanctions regulatory compliance")
-    expansionSignals: List[ExpansionSignalSchema] = Field(..., description="Expansion signals new facilities investments hiring growth announcements")
-    contractionSignals: List[ContractionSignalSchema] = Field(..., description="Contraction signals plant closures layoffs restructuring downsizing")
+

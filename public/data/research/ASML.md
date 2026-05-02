@@ -93,25 +93,3 @@ Beyond international trade, ASML faces domestic regulatory challenges in its hom
 
 Rising global protectionism and the proliferation of trade barriers continue to impact the broader semiconductor equipment market. These macroeconomic pressures, characterized by tariff volatility and geopolitical instability, complicate long-term financial forecasting and have necessitated a more conservative approach to gross margin guidance. ASML continues to monitor these developments closely to mitigate potential disruptions to its global supply chain.
 
-## 7. Strategic Signals
-
-ASML is currently navigating a complex strategic pivot, balancing aggressive regional infrastructure investments with a significant internal workforce consolidation. The following table summarizes the key expansionary and contractionary signals observed over the past 24 months.
-
-### Summary of Strategic Shifts
-
-| Type | Location | Description | Date | Investment |
-| :--- | :--- | :--- | :--- | :--- |
-| Expansion | Phoenix, USA | Technical Training Center for 1,000+ engineers | 2025-11-20 | $15M |
-| Expansion | Eindhoven, NL | Project Beethoven infrastructure investment | 2024-03-28 | $2.7B |
-| Expansion | Paris, France | Strategic investment in Mistral AI | 2025-09-01 | $1.5B |
-| Expansion | Veldhoven, NL | New office complex commissioning | 2025-04-01 | N/A |
-| Contraction | Veldhoven, NL | Reduction of 1,700 positions (Tech/IT) | 2026-01-28 | N/A |
-| Contraction | United States | Workforce reduction as part of global cuts | 2026-01-28 | N/A |
-
-### Analysis of Strategic Direction
-
-**Regional Infrastructure vs. Operational Efficiency:**
-ASML’s expansion strategy remains heavily focused on securing long-term operational capacity. The $2.7 billion 'Project Beethoven' in the Netherlands and the establishment of a dedicated training hub in Phoenix, Arizona, underscore a commitment to domesticating supply chain support and addressing talent shortages. These moves are designed to insulate the company from geopolitical volatility and ensure the availability of specialized labor.
-
-**Workforce Realignment:**
-Conversely, the January 2026 announcement of a 1,700-position reduction signals a shift toward organizational agility. By streamlining Technology and IT departments, ASML is likely attempting to optimize its cost structure following a period of rapid growth. This contraction, while impacting both the Netherlands and the United States, suggests that the company is prioritizing the efficiency of its core engineering and software operations over headcount expansion in non-critical administrative or legacy IT functions.

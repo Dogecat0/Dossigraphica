@@ -36,8 +36,7 @@ EXTRACTION_USER_TEMPLATE = (
     "- REVENUE: Regional segments, revenue totals, currency exposure, YoY growth.\n"
     "- SUPPLY_CHAIN: Foundry names, assembly sites, raw materials, logistics hubs.\n"
     "- CUSTOMERS: Major client names and their HQ locations.\n"
-    "- RISKS: Export controls, trade restrictions, regulatory probes, tax policies.\n"
-    "- SIGNALS: New site openings, plant closures, layoffs, major investments.\n\n"
+    "- RISKS: Export controls, trade restrictions, regulatory probes, tax policies.\n\n"
     "Mandate: Be exhaustive. Extract as many distinct facts as possible."
 )
 
