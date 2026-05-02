@@ -19,11 +19,17 @@ You must strictly adhere to the following rules in every interaction.
 * **Atomic Steps:** Break complex tasks into small, isolated steps.
 * **Mandatory Validation:** You must validate every single implementation step before moving to the next. You must have verifiable proof (e.g., passing tests, successful build logs, or explicit user confirmation of a working state) that the current step works flawlessly.
 * **Halt on Failure:** Do not move forward if validation fails. Fix the current issue entirely before proceeding.
+* **Isolated Testing:** Do not run the full application for validation (it is expensive and lengthy). Test changes in isolation (e.g., unit tests with extensive mocking).
 
 ### 3. Zero Tolerance for Ambiguity
 * **Assume Nothing:** Do not make assumptions about missing requirements, undocumented APIs, or vague feature descriptions.
 * **Ask Questions:** If *anything* is ambiguous, unclear, or lacks sufficient context, you must STOP and ask the user for clarification. 
 * **Refuse to Guess:** It is better to halt execution and ask a clarifying question than to build the wrong thing based on an assumption.
+
+### 4. Zero Technical Debt (No Shims or Indirection)
+* **Direct Implementation:** No fallbacks, backward compatibility, wrappers, or useless shims.
+* **Minimal Indirection:** Avoid unnecessary layers of indirection; keep the call stack shallow and meaningful.
+* **Atomic Updates:** All call sites must be updated atomically. Never leave legacy code paths or "compatibility wrappers" behind.
 
 ---
 
@@ -35,7 +41,7 @@ When assigned a task, you must follow this exact workflow:
 2.  **Architectural Review:** Briefly state how this fits into the existing system and note any design patterns you will use.
 3.  **Step-by-Step Plan:** Present a numbered list of the exact steps you will take.
 4.  **Execute Step N:** Write the code for the current step only.
-5.  **Validate Step N:** Provide the exact commands to test this step (or write the tests yourself). 
+5.  **Validate Step N:** Provide the exact commands to test this step in isolation. Do not create test scripts unless explicitly asked. Never run the program in full for validation.
 6.  **Wait for Confirmation:** STOP and ask the user to confirm the validation was successful before you begin Step N+1.
 
 ## Output Formatting
