@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-04-26T21:46:14.991847",
+  "lastUpdated": "2026-05-02T13:23:41.262889",
   "regions": [
     {
       "region": "China",
       "lat": 39.9042,
       "lng": 116.4074,
-      "overallScore": 8.9,
+      "overallScore": 9.1,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -24,18 +24,6 @@
           "riskScore": 5,
           "impactLevel": "critical",
           "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "INTC",
-          "riskScore": 5,
-          "impactLevel": "critical",
-          "category": "trade_restriction"
-        },
-        {
-          "ticker": "INTC",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "data_privacy"
         },
         {
           "ticker": "MSFT",
@@ -64,16 +52,15 @@
       ],
       "riskDimensions": [
         "regulatory_compliance",
-        "data_privacy",
         "trade_restriction"
       ],
-      "summary": "Aggregated risk from 9 companies in China."
+      "summary": "Aggregated risk from 7 companies in China."
     },
     {
       "region": "Taiwan",
       "lat": 23.6978,
       "lng": 120.9605,
-      "overallScore": 9.8,
+      "overallScore": 10,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -97,12 +84,6 @@
           "ticker": "GOOGL",
           "riskScore": 5,
           "impactLevel": "critical",
-          "category": "geopolitical_conflict"
-        },
-        {
-          "ticker": "INTC",
-          "riskScore": 4,
-          "impactLevel": "high",
           "category": "geopolitical_conflict"
         },
         {
@@ -134,7 +115,7 @@
         "environmental_regulation",
         "geopolitical_conflict"
       ],
-      "summary": "Aggregated risk from 9 companies in Taiwan."
+      "summary": "Aggregated risk from 8 companies in Taiwan."
     },
     {
       "region": "United States",
@@ -164,12 +145,6 @@
           "ticker": "GOOGL",
           "riskScore": 5,
           "impactLevel": "critical",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "INTC",
-          "riskScore": 4,
-          "impactLevel": "high",
           "category": "regulatory_compliance"
         },
         {
@@ -210,13 +185,13 @@
         }
       ],
       "riskDimensions": [
-        "tax_policy",
-        "trade_restriction",
         "environmental_regulation",
+        "labor_regulation",
+        "trade_restriction",
         "regulatory_compliance",
-        "labor_regulation"
+        "tax_policy"
       ],
-      "summary": "Aggregated risk from 11 companies in United States."
+      "summary": "Aggregated risk from 10 companies in United States."
     },
     {
       "region": "Middle East (UAE/Bahrain)",
@@ -325,42 +300,6 @@
         "tax_policy"
       ],
       "summary": "Aggregated risk from 1 companies in Malaysia."
-    },
-    {
-      "region": "Israel",
-      "lat": 31.0461,
-      "lng": 34.8516,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "INTC",
-          "riskScore": 4,
-          "impactLevel": "high",
-          "category": "geopolitical_conflict"
-        }
-      ],
-      "riskDimensions": [
-        "geopolitical_conflict"
-      ],
-      "summary": "Aggregated risk from 1 companies in Israel."
-    },
-    {
-      "region": "Ukraine",
-      "lat": 48.3794,
-      "lng": 31.1656,
-      "overallScore": 6.0,
-      "contributingCompanies": [
-        {
-          "ticker": "INTC",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "geopolitical_conflict"
-        }
-      ],
-      "riskDimensions": [
-        "geopolitical_conflict"
-      ],
-      "summary": "Aggregated risk from 1 companies in Ukraine."
     },
     {
       "region": "European Union (EEA)",
