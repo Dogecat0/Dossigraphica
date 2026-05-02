@@ -53,21 +53,28 @@ def _build_supply_chain_queries(supply_chain, user_query: str) -> list[str]:
         if missing_city or missing_coords:
             location_hint = n.country or ""
             queries.append(
-                f"{user_query} {n.entity} {n.role} {location_hint} exact city address coordinates"
+                f"{n.entity} {n.role} {location_hint} exact city address coordinates"
             )
     return queries
 
 
 def _build_customer_queries(customers, user_query: str) -> list[str]:
-    """Generate enrichment queries for customers missing HQ city or coords."""
+    """Generate enrichment queries for customers missing HQ city, coords, or revenue share."""
     queries: list[str] = []
     for c in customers:
         missing_hq = not c.hqCity
         missing_coords = c.lat is None or c.lng is None
-        if missing_hq or missing_coords:
+        missing_revenue = not c.revenueShare
+        
+        if missing_hq or missing_coords or missing_revenue:
+            requirements = []
+            if missing_hq or missing_coords: requirements.append("headquarters city and coordinates")
+            if missing_revenue: requirements.append("percentage revenue share")
+            
+            req_str = " and ".join(requirements)
             country_hint = c.hqCountry or ""
             queries.append(
-                f"{user_query} {c.customer} {country_hint} headquarters city address coordinates"
+                f"{c.customer} {country_hint} {req_str}"
             )
     return queries
 
@@ -84,12 +91,22 @@ def _build_risk_queries(risks, user_query: str) -> list[str]:
 
 
 def _build_expansion_queries(signals, user_query: str) -> list[str]:
-    """Generate enrichment queries for expansion signals missing coordinates."""
+    """Generate enrichment queries for expansion signals missing coordinates, investment, or date."""
     queries: list[str] = []
     for s in signals:
-        if s.lat is None or s.lng is None:
+        missing_coords = s.lat is None or s.lng is None
+        missing_investment = not s.investment
+        missing_date = not s.dateAnnounced
+        
+        if missing_coords or missing_investment or missing_date:
+            requirements = []
+            if missing_coords: requirements.append("exact location coordinates")
+            if missing_investment: requirements.append("investment amount USD")
+            if missing_date: requirements.append("announcement date")
+            
+            req_str = " and ".join(requirements)
             queries.append(
-                f"{user_query} expansion {s.description[:50]} {s.location} specific city location coordinates"
+                f"{user_query} expansion {s.location} {s.description[:50]} {req_str}"
             )
     return queries
 

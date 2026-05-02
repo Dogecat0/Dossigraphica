@@ -65,16 +65,14 @@ class OfficeSchema(BaseModel):
     lat: float | None = Field(..., description="Latitude coordinate.")
     lng: float | None = Field(..., description="Longitude coordinate.")
     businessFocus: str = Field(..., description="Primary business activity at this site.")
-    size: str | None = Field(..., description="Approximate headcount or square footage.")
     type: Literal['headquarters', 'regional', 'engineering', 'satellite', 'manufacturing', 'data_center', 'sales', 'logistics'] = Field(..., description="Office category.")
-    established: str | None = Field(..., description="Year established.")
     sources: List[str] = Field(..., description="List of source URLs or filings. Empty list if none.")
     confidence: Literal['verified', 'unverified', 'city_center_approximation', 'unknown'] | None = Field(..., description="Data accuracy label.")
 
 class RevenueSegmentSchema(BaseModel):
     model_config = STRICT_CONFIG
-    region: str = Field(..., description="Geographic or business segment name.")
-    revenue: float | None = Field(..., description="Revenue in USD millions.")
+    region: str = Field(..., description="Geographic segment (country, continent, region) name by revenue or divisions.")
+    revenue: float | None = Field(..., description="Revenue in USD millions or billions.")
     percentage: float | None = Field(..., description="Percentage of total revenue.")
     yoyGrowth: float | None = Field(..., description="Year-over-year growth percentage.")
     notes: str | None = Field(..., description="Contextual notes about this segment.")
@@ -84,7 +82,7 @@ class RevenueGeographySchema(BaseModel):
     fiscalYear: str = Field(..., description="Reporting year.")
     totalRevenue: float | None = Field(..., description="Total company revenue.")
     currency: str = Field(..., description="Reporting currency (e.g., USD).")
-    segments: List[RevenueSegmentSchema] = Field(..., description="Breakdown by geography or division.")
+    segments: List[RevenueSegmentSchema] = Field(..., description="Breakdown by geography segment.")
     concentrationRisk: str | None = Field(..., description="Notes on dependency on specific regions.")
     sources: List[str] = Field(..., description="List of source filing references. Empty list if none.")
 
@@ -97,7 +95,7 @@ class SupplyChainNodeSchema(BaseModel):
     lat: float | None = Field(..., description="Latitude.")
     lng: float | None = Field(..., description="Longitude.")
     product: str = Field(..., description="Specific product or service provided.")
-    criticality: Literal['critical', 'important', 'standard'] = Field(..., description="Importance to the company.")
+    criticality: Literal['critical', 'important', 'standard'] = Field(..., description="Supplychain criticality - impact of losing this supplier on the company.")
     sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
 
 class CustomerNodeSchema(BaseModel):
@@ -113,9 +111,7 @@ class CustomerNodeSchema(BaseModel):
 
 class GeopoliticalRiskSchema(BaseModel):
     model_config = STRICT_CONFIG
-    region: str = Field(..., description="Affected region.")
-    city: str | None = Field(None, description="Affected city (if specific).")
-    country: str | None = Field(None, description="Affected country.")
+    region: str = Field(..., description="Affected region (e.g., 'Taiwan', 'China', 'United States').")
     lat: float | None = Field(..., description="Lat.")
     lng: float | None = Field(..., description="Lng.")
     riskScore: Literal[1, 2, 3, 4, 5] = Field(..., description="1-5 severity score.")
@@ -133,23 +129,19 @@ class GeopoliticalRiskSchema(BaseModel):
 class ExpansionSignalSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: Literal['expansion'] = Field(..., description="Signal type.")
-    city: str | None = Field(None, description="Expansion city.")
-    country: str | None = Field(None, description="Expansion country.")
-    location: str = Field(..., description="Location city/country.")
+    location: str = Field(..., description="Specific geographic location (e.g., 'City, Country'). Do NOT just provide a city name.")
     lat: float | None = Field(..., description="Lat.")
     lng: float | None = Field(..., description="Lng.")
     description: str = Field(..., description="Details of the expansion.")
     estimatedTimeline: str | None = Field(..., description="Projected completion.")
-    investment: str | None = Field(..., description="USD amount if known.")
+    investment: str | None = Field(..., description="USD amount (e.g. '$10B') if known. This is a critical signal.")
     sources: List[str] = Field(..., description="List of source URLs. Empty list if none.")
-    dateAnnounced: str | None = Field(..., description="Date of news.")
+    dateAnnounced: str | None = Field(..., description="Date of news (YYYY-MM-DD). Required for chronological tracking.")
 
 class ContractionSignalSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: Literal['contraction'] = Field(..., description="Signal type.")
-    city: str | None = Field(None, description="Contraction city.")
-    country: str | None = Field(None, description="Contraction country.")
-    location: str = Field(..., description="Location.")
+    location: str = Field(..., description="Specific geographic location (e.g., 'City, Country').")
     lat: float | None = Field(..., description="Lat.")
     lng: float | None = Field(..., description="Lng.")
     description: str = Field(..., description="Details of closures or layoffs.")
@@ -159,7 +151,7 @@ class AnchorFilingSchema(BaseModel):
     model_config = STRICT_CONFIG
     type: str | None = Field(..., description="Filing type (e.g., 10-K).")
     date: str | None = Field(..., description="Filing date.")
-    fiscalPeriod: str | None = Field(..., description="Reporting period.")
+    fiscalPeriod: str | None = Field(..., description="Reporting period based on the information from the anchored filing.")
 
 class MarkdownSectionSchema(BaseModel):
     model_config = STRICT_CONFIG
