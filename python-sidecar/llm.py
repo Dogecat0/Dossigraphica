@@ -29,15 +29,44 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 logging.basicConfig(level=getattr(logging, LOG_LEVEL, logging.INFO))
 logger = logging.getLogger(__name__)
 
-# Environment variables for configuration
+# Provider configuration
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "local").lower()
+
+# Local Llama.cpp configuration
 LLAMA_CPP_URL = os.getenv("LLAMA_CPP_URL", "http://localhost:8081/v1/")
 LLAMA_N_PARALLEL = int(os.getenv("LLAMA_N_PARALLEL", "1"))
 LLAMA_CTX_PER_REQUEST = int(os.getenv("LLAMA_CTX_PER_REQUEST", "8192"))
-LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
-# The model name should match LLAMA_ARG_HF_REPO from docker-compose
 LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_M")
-LLAMA_CPP_MODEL = f"openai/{LLAMA_MODEL}"
+
+# Gemini configuration
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini/gemini-3.1-flash-lite-preview")
+GEMINI_N_PARALLEL = int(os.getenv("GEMINI_N_PARALLEL", "10"))
+GEMINI_CTX_PER_REQUEST = int(os.getenv("GEMINI_CTX_PER_REQUEST", "32768")) # 1M default for Flash
+
+# Output and safety configuration
+LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
 LLAMA_SAFETY_BUFFER = 64
+LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
+
+
+
+# Active configuration selection
+if LLM_PROVIDER == "gemini":
+    ACTIVE_MODEL = GEMINI_MODEL
+    ACTIVE_BASE_URL = None
+    ACTIVE_N_PARALLEL = GEMINI_N_PARALLEL
+    ACTIVE_CTX_LIMIT = GEMINI_CTX_PER_REQUEST
+    if GEMINI_API_KEY:
+        os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
+    logger.info(f"LLM Provider: GEMINI (model={ACTIVE_MODEL})")
+else:
+    ACTIVE_MODEL = f"openai/{LLAMA_MODEL}"
+    ACTIVE_BASE_URL = LLAMA_CPP_URL
+    ACTIVE_N_PARALLEL = LLAMA_N_PARALLEL
+    ACTIVE_CTX_LIMIT = LLAMA_CTX_PER_REQUEST
+    logger.info(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
+
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -51,10 +80,10 @@ class LLMClient:
     Uses strict response_format and forces schema adherence via prompts.
     Centralized semaphore enforces LLAMA_N_PARALLEL across all tasks.
     """
-    def __init__(self, base_url: str = LLAMA_CPP_URL, model: str = LLAMA_CPP_MODEL):
+    def __init__(self, base_url: str = ACTIVE_BASE_URL, model: str = ACTIVE_MODEL):
         self.base_url = base_url
         self.model = model
-        self.semaphore = asyncio.Semaphore(LLAMA_N_PARALLEL)
+        self.semaphore = asyncio.Semaphore(ACTIVE_N_PARALLEL)
         self.counter_lock = asyncio.Lock()
         self.inference_counter = 0
         self.log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
@@ -76,13 +105,19 @@ class LLMClient:
         logging.getLogger("LiteLLM").setLevel(logging.WARNING)
         litellm.set_verbose = False
         
-        if not os.getenv("OPENAI_API_KEY"):
+        if not os.getenv("OPENAI_API_KEY") and not ACTIVE_BASE_URL:
+            # Only set dummy key if not using a custom base_url (local llama.cpp needs it sometimes but Gemini doesn't)
+            # Actually Gemini needs GEMINI_API_KEY which we already set.
+            pass
+        elif not os.getenv("OPENAI_API_KEY"):
             os.environ["OPENAI_API_KEY"] = "sk-no-key-required"
-        logger.info(f"Initialized LLMClient with base_url={base_url}, model={model}, parallel_limit={LLAMA_N_PARALLEL}, ctx_limit={LLAMA_CTX_PER_REQUEST}")
+            
+        logger.info(f"Initialized LLMClient with provider={LLM_PROVIDER}, model={model}, parallel_limit={ACTIVE_N_PARALLEL}, ctx_limit={ACTIVE_CTX_LIMIT}")
 
     def get_safe_input_limit(self) -> int:
         """Absolute maximum input tokens allowed after reservation and safety buffer."""
-        return LLAMA_CTX_PER_REQUEST - LLAMA_OUTPUT_RESERVATION - LLAMA_SAFETY_BUFFER
+        return ACTIVE_CTX_LIMIT - LLAMA_OUTPUT_RESERVATION - LLAMA_SAFETY_BUFFER
+
 
     def _construct_messages(self, prompt: str, system_prompt: str, response_model: Type[BaseModel]) -> List[dict]:
         raw_schema = response_model.model_json_schema()
@@ -189,22 +224,31 @@ class LLMClient:
                 deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
                 deref_schema.pop("$defs", None)
                 
-                response_format = {
-                    "type": "json_schema",
-                    "json_schema": {
-                        "name": response_model.__name__,
-                        "strict": True,
-                        "schema": deref_schema
+                if LLM_PROVIDER == "gemini":
+                    # LiteLLM Gemini specific format
+                    response_format = {
+                        "type": "json_object",
+                        "response_schema": deref_schema
                     }
-                }
+                else:
+                    # OpenAI-compatible json_schema with strict=True (forces grammar on llama.cpp)
+                    response_format = {
+                        "type": "json_schema",
+                        "json_schema": {
+                            "name": response_model.__name__,
+                            "strict": True,
+                            "schema": deref_schema
+                        }
+                    }
 
-                logger.debug(f"LLM Call: {response_model.__name__} | Tokens: {total_tokens}/{LLAMA_CTX_PER_REQUEST}")
+
+                logger.debug(f"LLM Call: {response_model.__name__} | Tokens: {total_tokens}/{ACTIVE_CTX_LIMIT} | Temp: {LLM_TEMPERATURE}")
                 
                 response = await litellm.acompletion(
                     model=self.model,
                     messages=messages,
                     api_base=self.base_url,
-                    temperature=0.1,
+                    temperature=LLM_TEMPERATURE,
                     response_format=response_format,
                     max_tokens=LLAMA_OUTPUT_RESERVATION
                 )
@@ -259,7 +303,7 @@ class LLMClient:
             return content
 
         # Determine safe chunk size for a summary request
-        summary_template = "The following content is too long. Summarize it into high-density facts:\n{chunk}"
+        summary_template = "Following content is too long. Summarize it into high-density facts, keep all information, only condense the language used:\n{chunk}"
         safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
         
         logger.info(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")

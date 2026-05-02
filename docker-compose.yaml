@@ -8,6 +8,8 @@ services:
     volumes:
       - ~/.cache/huggingface:/root/.cache/huggingface:rw
     # These are the arguments passed to the llama.cpp server
+    env_file:
+      - .env
     environment:
       - HF_TOKEN=${HF_TOKEN}
       - LLAMA_ARG_HF_REPO=${LLAMA_MODEL_REPO}
