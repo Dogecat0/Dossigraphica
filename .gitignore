@@ -31,3 +31,9 @@ test_*.json
 
 # Docs
 /docs/*
+python-sidecar/tasks/extractor.py
+.gitignore
+python-sidecar/geocoder_cache.json
+python-sidecar/blocked_domains.json
+python-sidecar/search_cache.json
+python-sidecar/jina_cache.json
