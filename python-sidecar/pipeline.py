@@ -13,6 +13,9 @@ import asyncio
 import os
 from typing import AsyncGenerator, Union
 
+from llm import LLM_OUTPUT_MODE
+from schemas import PlannerSchema, SingleTriageSchema, SynthesizerSchema, GeoIntelligenceSchema
+
 logger = logging.getLogger(__name__)
 
 class TaskTracker:
@@ -21,7 +24,15 @@ class TaskTracker:
         self.llm_completed = 0
         self.llm_total = 0
         self.io_completed = 0
+        self.io_completed = 0
         self.io_total = 0
+        
+    def get_llm_multiplier(self, schema_cls=None) -> int:
+        if LLM_OUTPUT_MODE == "one-shot":
+            return 1
+        if schema_cls:
+            return len(schema_cls.model_fields)
+        return 2 # default fallback for 2-field schemas like SynthesizerSchema, PlannerSchema
 
     def as_dict(self):
         return {
@@ -56,11 +67,12 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     # so the front-end (or test_run.py) correctly displays the massive amount
     # of work that led to this checkpoint rather than starting from 0.
     if state.pipeline_step != "init":
-        tracker.llm_total += 1 ; tracker.llm_completed += 1 # Planner
+        tracker.llm_total += tracker.get_llm_multiplier(PlannerSchema) ; tracker.llm_completed += tracker.get_llm_multiplier(PlannerSchema) # Planner
         tracker.io_total += 1 ; tracker.io_completed += 1 # Primary Search
         
-        tracker.llm_total += len(state.search_results) 
-        tracker.llm_completed += len(state.search_results) # Triage
+        triage_multiplier = tracker.get_llm_multiplier(SingleTriageSchema)
+        tracker.llm_total += len(state.search_results) * triage_multiplier
+        tracker.llm_completed += len(state.search_results) * triage_multiplier # Triage
         
         # Determine how many Extraction and Preprocessing chunks succeeded 
         # by simply counting what exists in the logs director
@@ -68,7 +80,8 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             import glob
             chunk_files = glob.glob(os.path.join(log_dir, "*_SynthesizerSchema_output.json"))
             num_chunks = len(chunk_files)
-            tracker.llm_total += num_chunks ; tracker.llm_completed += num_chunks # Sieve
+            sieve_multiplier = tracker.get_llm_multiplier(SynthesizerSchema)
+            tracker.llm_total += num_chunks * sieve_multiplier ; tracker.llm_completed += num_chunks * sieve_multiplier # Sieve
             
             # Count the Extractor data to approximate IO steps
             ext_files = glob.glob(os.path.join(log_dir, "*_ExtractorData_output.json"))
@@ -77,7 +90,8 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 tracker.io_total += approx_io ; tracker.io_completed += approx_io
                 
         if state.pipeline_step in ["enrichment_searching", "enrichment_extracting", "drafting"]:
-            tracker.llm_total += 3 ; tracker.llm_completed += 3 # Entity assembly is exactly 3 LLM calls
+            assembly_calls = 3 * tracker.get_llm_multiplier() # Assuming Assembly uses ~2 field schemas
+            tracker.llm_total += assembly_calls ; tracker.llm_completed += assembly_calls # Entity assembly
             
             if hasattr(state, "enrichment_queries") and state.enrichment_queries:
                 tracker.io_total += 1 ; tracker.io_completed += 1 # Enrichment Search
@@ -161,7 +175,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                         if "units_discovered" in update:
                             disc_type = update.get("unit_type", "llm")
                             if disc_type == "llm":
-                                tracker.llm_total += update["units_discovered"]
+                                tracker.llm_total += update["units_discovered"] * tracker.get_llm_multiplier()
                             elif disc_type == "io":
                                 tracker.io_total += update["units_discovered"]
                         else:
@@ -192,10 +206,10 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     try:
         # 1. Deterministic Planning
         if state.pipeline_step == "init":
-            tracker.llm_total += 1
+            tracker.llm_total += tracker.get_llm_multiplier(PlannerSchema)
             yield json.dumps({"status": "planning", "phase_current": 1, "phase_total": 9, "message": "Generating research queries...", **tracker.as_dict()})
             state = await run_planner(state)
-            tracker.llm_completed += 1
+            tracker.llm_completed += tracker.get_llm_multiplier(PlannerSchema)
             state.pipeline_step = "searching"
 
         # 2. Search (Brave Discovery)
@@ -216,7 +230,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         # 3. Triage & Managed Extraction & Sieve (Overlapped)
         if state.pipeline_step == "source_triage" or state.pipeline_step == "extracting":
             state.pipeline_step = "extracting"
-            tracker.llm_total += len(state.search_results)
+            tracker.llm_total += len(state.search_results) * tracker.get_llm_multiplier(SingleTriageSchema)
             async for update in pipeline_sieve(3, is_enrichment=False): yield update
             state.pipeline_step = "entity_assembly"
 
@@ -275,7 +289,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         if state.pipeline_step == "drafting":
             async for update in flow(run_drafter(state), 7):
                 if "units_discovered" in (u := json.loads(update)):
-                    tracker.llm_total += u["units_discovered"]
+                    tracker.llm_total += u["units_discovered"] * tracker.get_llm_multiplier()
                     continue
                 yield update
             state.pipeline_step = "completed"
