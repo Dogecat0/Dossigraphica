@@ -6,9 +6,12 @@ import time
 from typing import AsyncGenerator, Union
 from urllib.parse import urlparse
 from schemas import ResearchState
+from utils.io_cache import DiskCache
 import logging
 
 logger = logging.getLogger(__name__)
+
+_jina_cache = DiskCache("jina_cache.json")
 
 # Persistent blocklist: stored at sidecar root (outside logs/ so it survives log wipes)
 BLOCKLIST_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "blocked_domains.json")
@@ -69,7 +72,13 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
         async with httpx.AsyncClient(timeout=60.0) as client:
             async def fetch_url(url: str, index: int) -> dict | None:
                 nonlocal last_start_time
-                
+
+                # Cache check — skip HTTP entirely if content is already stored
+                cached = _jina_cache.get(url)
+                if cached is not None:
+                    logger.info(f"Jina cache HIT: {url}")
+                    return {"url": url, "content": cached["content"], "title": cached.get("title", "")}
+
                 async with semaphore:
                     # Adaptive Pacing: Ensure JINA_STAGGER_SEC passes between STARTS.
                     # Placing this INSIDE the semaphore prevents 'bursting' when slots open up.
@@ -87,7 +96,9 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
                             jina_url = f"https://r.jina.ai/{url}"
                             response = await client.get(jina_url)
                             response.raise_for_status()
-                            return {"url": url, "content": response.text, "title": ""}
+                            result = {"url": url, "content": response.text, "title": ""}
+                            _jina_cache.set(url, {"content": response.text, "title": ""})
+                            return result
                         except httpx.HTTPStatusError as e:
                             if e.response.status_code == 451:
                                 # Domain blocked by Jina (Legal) — remember and persist if new
