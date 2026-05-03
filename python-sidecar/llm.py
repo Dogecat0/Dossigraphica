@@ -7,11 +7,13 @@ from typing import Type, TypeVar, Optional, List, Any, Dict
 import logging
 import json
 import jsonref
+import re
 from json_repair import repair_json
 from tenacity import (
     retry,
     stop_after_attempt,
     wait_exponential,
+    wait_none,
     retry_if_exception_type,
     before_sleep_log
 )
@@ -42,6 +44,14 @@ def before_sleep_log_model(logger_obj, log_level):
             )
     return log_it
 
+_backoff = wait_exponential(multiplier=2, min=10, max=60)
+
+def _wait_if_not_timeout(retry_state):
+    """Timeout → immediate retry; all other transient errors → exponential backoff."""
+    if isinstance(retry_state.outcome.exception(), Timeout):
+        return 0
+    return _backoff(retry_state)
+
 # Provider configuration
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "local").lower()
 
@@ -69,6 +79,7 @@ LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
 LLAMA_SAFETY_BUFFER = 64
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
 LLM_OUTPUT_MODE = os.getenv("LLM_OUTPUT_MODE", "multi-shot").lower()
+LLM_REQUEST_TIMEOUT = int(os.getenv("LLM_REQUEST_TIMEOUT", "30"))
 
 
 # Active configuration selection
@@ -79,7 +90,7 @@ if LLM_PROVIDER == "gemini":
     ACTIVE_CTX_LIMIT = GEMINI_CTX_PER_REQUEST
     if GEMINI_API_KEY:
         os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
-    logger.info(f"LLM Provider: GEMINI (model={ACTIVE_MODEL})")
+    logger.debug(f"LLM Provider: GEMINI (model={ACTIVE_MODEL})")
 elif LLM_PROVIDER == "featherless":
     ACTIVE_MODEL = f"openai/{FEATHERLESS_MODEL}"
     ACTIVE_BASE_URL = FEATHERLESS_BASE_URL
@@ -87,13 +98,13 @@ elif LLM_PROVIDER == "featherless":
     ACTIVE_CTX_LIMIT = FEATHERLESS_CTX_PER_REQUEST
     if FEATHERLESS_API_KEY:
         os.environ["OPENAI_API_KEY"] = FEATHERLESS_API_KEY
-    logger.info(f"LLM Provider: FEATHERLESS (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
+    logger.debug(f"LLM Provider: FEATHERLESS (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
 else:
     ACTIVE_MODEL = f"openai/{LLAMA_MODEL}"
     ACTIVE_BASE_URL = LLAMA_CPP_URL
     ACTIVE_N_PARALLEL = LLAMA_N_PARALLEL
     ACTIVE_CTX_LIMIT = LLAMA_CTX_PER_REQUEST
-    logger.info(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
+    logger.debug(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
 
 
 T = TypeVar("T", bound=BaseModel)
@@ -115,6 +126,7 @@ class LLMClient:
         self.counter_lock = asyncio.Lock()
         self.inference_counter = 0
         self.log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
+        self.progress_queue = None
         os.makedirs(self.log_dir, exist_ok=True)
         
         # Initialize inference counter from existing logs so replay won't overwrite
@@ -149,7 +161,7 @@ class LLMClient:
                 }
             })
             
-        logger.info(f"Initialized LLMClient with provider={LLM_PROVIDER}, model={model}, parallel_limit={ACTIVE_N_PARALLEL}, ctx_limit={ACTIVE_CTX_LIMIT}")
+        logger.debug(f"Initialized LLMClient with provider={LLM_PROVIDER}, model={model}, parallel_limit={ACTIVE_N_PARALLEL}, ctx_limit={ACTIVE_CTX_LIMIT}")
 
     def get_safe_input_limit(self) -> int:
         """Absolute maximum input tokens allowed after reservation and safety buffer."""
@@ -288,7 +300,7 @@ class LLMClient:
 
     @retry(
         stop=stop_after_attempt(10),
-        wait=wait_exponential(multiplier=2, min=15, max=120),
+        wait=_wait_if_not_timeout,
         retry=(
             retry_if_exception_type(RateLimitError) |
             retry_if_exception_type(ServiceUnavailableError) |
@@ -302,8 +314,6 @@ class LLMClient:
         reraise=True
     )
     async def _generate_single_field(self, messages: List[dict], response_model: Type[BaseModel], current_index: int, step_suffix: str, log_model_name: str = None) -> BaseModel:
-        total_tokens = self.estimate_tokens(messages)
-        
         async with self.semaphore:
             try:
                 # Manually dereference schema
@@ -312,7 +322,7 @@ class LLMClient:
                 deref_schema.pop("$defs", None)
                 deref_schema["required"] = list(response_model.model_fields.keys())
                 
-                logger.debug(f"LLM Call: {response_model.__name__} | Tokens: {total_tokens}/{ACTIVE_CTX_LIMIT} | Temp: {LLM_TEMPERATURE}")
+                logger.debug(f"LLM Call: {response_model.__name__} | model={self.model}")
                 
                 kwargs = {
                     "model": self.model,
@@ -320,6 +330,7 @@ class LLMClient:
                     "api_base": self.base_url,
                     "temperature": LLM_TEMPERATURE,
                     "max_tokens": LLAMA_OUTPUT_RESERVATION,
+                    "timeout": LLM_REQUEST_TIMEOUT,
                     "add_function_to_prompt": False,
                     "num_retries": 0,
                     "stream": True
@@ -378,6 +389,18 @@ class LLMClient:
                             
                             if delta_text:
                                 content += delta_text
+                                # Client-side runaway and repetition detection
+                                if len(content) > LLAMA_OUTPUT_RESERVATION * 6:
+                                    raise ValueError("Runaway generation detected: output exceeded maximum expected character limit.")
+                                
+                                tail = content[-250:]
+                                if len(tail) >= 100:
+                                    # Detects repeating sequences of 10-60 chars (at least 4 times)
+                                    # We exclude JSON structure chars {}[]" to avoid false positives on empty nested schemas/lists.
+                                    match = re.search(r"([^\{\}\[\]\"]{10,60}?)\1{3,}$", tail)
+                                    if match and re.search(r"[a-zA-Z]", match.group(1)):
+                                        raise ValueError("Dynamic text repetition loop detected in output stream.")
+
                                 # Print delta to screen if enabled (Note: outputs will interlace if running parallel requests)
                                 if print_stream:
                                     print(delta_text, end="", flush=True)
@@ -393,29 +416,8 @@ class LLMClient:
                         # Prefer tool call arguments if present
                         content = tool_calls[0].function.arguments
                 
-                # Final check: if LiteLLM didn't parse but the content looks like a tool call, 
-                # we'll let repair_json handle it.
                 if not content:
                     raise ValueError("LLM returned empty content and no tool calls.")
-
-                logger.debug(f"Raw content length: {len(content)}")
-                
-                # Log the inference
-                name_for_logging = log_model_name or response_model.__name__
-                await self._log_inference(current_index, messages, name_for_logging, content, step_suffix)
-                
-                try:
-                    # Deterministic architectural handler for non-standard Hermes/tool-call syntax
-                    if content.startswith("call:"):
-                        content = self._parse_unquoted_custom_syntax(content, deref_schema)
-                        return response_model.model_validate_json(content)
-
-                    # Coerce minor JSON format errors
-                    content = repair_json(content)
-                    return response_model.model_validate_json(content)
-                except Exception as e:
-                    logger.error(f"Pydantic Validation Failure: {e}. Content: {content}")
-                    raise ValidationError.from_exception_data(title=response_model.__name__, line_errors=[]) from e
 
             except (RateLimitError, ServiceUnavailableError, APIConnectionError, InternalServerError, Timeout, ValueError, ValidationError) as e:
                 logger.error(f"Structured Generation attempt failed for model '{self.model}': {type(e).__name__}: {e}")
@@ -423,6 +425,24 @@ class LLMClient:
             except Exception as e:
                 logger.critical(f"Unrecoverable Structured Generation Error for model '{self.model}': {type(e).__name__}: {e}")
                 raise
+
+        # --- Semaphore released: log and parse outside the concurrency gate ---
+        name_for_logging = log_model_name or response_model.__name__
+        await self._log_inference(current_index, messages, name_for_logging, content, step_suffix)
+
+        try:
+            if content.startswith("call:"):
+                content = self._parse_unquoted_custom_syntax(content, deref_schema)
+                return response_model.model_validate_json(content)
+
+            content = repair_json(content)
+            return response_model.model_validate_json(content)
+        except Exception as e:
+            logger.error(f"Pydantic Validation Failure: {e}. Content: {content}")
+            raise ValidationError.from_exception_data(title=response_model.__name__, line_errors=[]) from e
+        finally:
+            if self.progress_queue:
+                self.progress_queue.put_nowait(True)
 
 
     async def generate_structured(
@@ -498,7 +518,7 @@ class LLMClient:
         summary_template = "Following content is too long. Summarize it into high-density facts, keep all information, only condense the language used:\n{chunk}"
         safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
         
-        logger.info(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")
+        logger.debug(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")
 
         # Split content into chunks
         try:
