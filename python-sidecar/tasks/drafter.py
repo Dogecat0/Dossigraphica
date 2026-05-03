@@ -171,7 +171,7 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
         yield state
         return
 
-    logger.info(f"Drafting final reports in parallel.")
+    logger.debug(f"Drafting final reports in parallel.")
     
     try:
         # A. JSON Definitions (Basic, Anchor, Offices, Revenue, Supply, Risks)
@@ -252,7 +252,6 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             json_results[key] = result
             yield {
                 "status": "drafting",
-                "unit": "llm",
                 "message": "Drafting: Assembling structured intelligence"
             }
 
@@ -303,14 +302,13 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             md_sections[idx] = content
             yield {
                 "status": "drafting",
-                "unit": "llm",
                 "message": "Drafting: Finalizing narrative sections"
             }
 
         await md_gather  # propagate any exceptions
 
         state.final_report_md = "\n\n".join(md_sections)
-        logger.info("Markdown report assembled.")
+        logger.debug("Markdown report assembled.")
 
     except Exception as e:
         logger.error(f"Error in parallel drafting: {e}")

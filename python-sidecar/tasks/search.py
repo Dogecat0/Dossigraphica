@@ -23,7 +23,7 @@ async def run_search(state: ResearchState) -> ResearchState:
         logger.error("BRAVE_SEARCH_API_KEY environment variable is not set. Cannot perform search.")
         return state
 
-    logger.info(f"Running Brave search for {len(state.search_queries)} queries in parallel.")
+    logger.debug(f"Running Brave search for {len(state.search_queries)} queries in parallel.")
     
     unique_results = {} # Use dict to deduplicate by URL easily
     
@@ -36,7 +36,7 @@ async def run_search(state: ResearchState) -> ResearchState:
             cache_key = query.strip().lower()
             cached = _search_cache.get(cache_key)
             if cached is not None:
-                logger.info(f"Search cache HIT for query: '{query}' ({len(cached)} results)")
+                logger.debug(f"Search cache HIT for query: '{query}' ({len(cached)} results)")
                 return cached, query
 
             # Stagger requests to stay under 50 QPS (1 request every ~0.02s)
@@ -63,7 +63,7 @@ async def run_search(state: ResearchState) -> ResearchState:
 
                     # Brave results are nested under web -> results
                     found = data.get("web", {}).get("results", [])
-                    logger.info(f"Query '{query}' returned {len(found)} results from Brave.")
+                    logger.debug(f"Query '{query}' returned {len(found)} results from Brave.")
                     _search_cache.set(cache_key, found)
                     return found, query
                 except Exception as e:
@@ -103,9 +103,9 @@ async def run_search(state: ResearchState) -> ResearchState:
                 "search_results": state.search_results,
                 "urls": state.urls
             }, f, indent=2)
-        logger.info(f"Brave Search logged for replay: {filepath}")
+        logger.debug(f"Brave Search logged for replay: {filepath}")
     except Exception as e:
         logger.error(f"Failed to log SearchData: {e}")
 
-    logger.info(f"Brave Search finished. Total unique search results in state: {len(state.search_results)}")
+    logger.debug(f"Brave Search finished. Total unique search results in state: {len(state.search_results)}")
     return state

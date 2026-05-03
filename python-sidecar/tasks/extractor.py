@@ -44,7 +44,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
         yield state
         return
 
-    logger.info("Extracting content from URLs via Jina Reader.")
+    logger.debug("Extracting content from URLs via Jina Reader.")
 
     # Create a mapping of URL -> Query for lookups
     url_query_map = {res["url"]: res.get("query") for res in state.search_results}
@@ -76,7 +76,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
                 # Cache check — skip HTTP entirely if content is already stored
                 cached = _jina_cache.get(url)
                 if cached is not None:
-                    logger.info(f"Jina cache HIT: {url}")
+                    logger.debug(f"Jina cache HIT: {url}")
                     return {"url": url, "content": cached["content"], "title": cached.get("title", "")}
 
                 async with semaphore:
@@ -200,7 +200,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
             
             # Post-cleanup and logging
             found_results = [r for r in extraction_results if r and r.get("content")]
-            logger.info(f"Jina successfully extracted {len(found_results)} sources.")
+            logger.debug(f"Jina successfully extracted {len(found_results)} sources.")
             
             state.raw_content = [
                 {
@@ -218,7 +218,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
                 filepath = os.path.join(llm.log_dir, f"{current_index:04d}_ExtractorData_output.json")
                 with open(filepath, "w") as f:
                     json.dump({"raw_content": state.raw_content}, f, indent=2)
-                logger.info(f"Jina Extract logged for replay: {filepath}")
+                logger.debug(f"Jina Extract logged for replay: {filepath}")
             except Exception as log_err:
                 logger.error(f"Failed to log ExtractorData: {log_err}")
 

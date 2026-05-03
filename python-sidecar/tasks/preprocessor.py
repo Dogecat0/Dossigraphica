@@ -118,7 +118,7 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
         SynthesizerSchema
     )
     
-    logger.info(f"Pipelined Preprocessor started. Safe Chunk Size: {safe_chunk_size}")
+    logger.debug(f"Pipelined Preprocessor started. Safe Chunk Size: {safe_chunk_size}")
 
     all_extracted_facts = []
     pulse_queue = asyncio.Queue()
@@ -130,7 +130,6 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
             all_extracted_facts.extend(facts)
         await pulse_queue.put({
             "status": "preprocessing",
-            "unit": "llm",
             "message": f"Preprocessing: Squeezing chunk facts"
         })
 
@@ -194,5 +193,5 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
     state.extracted_facts = list(unique_facts.values())
     state.raw_content = [] # Clear raw content to save memory
     
-    logger.info(f"Pipelined Preprocessing complete. Total unique facts: {len(state.extracted_facts)}")
+    logger.debug(f"Pipelined Preprocessing complete. Total unique facts: {len(state.extracted_facts)}")
     yield state

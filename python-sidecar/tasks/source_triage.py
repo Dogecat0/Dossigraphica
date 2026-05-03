@@ -34,7 +34,7 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
         ]
         skipped = initial_total - len(state.search_results)
         if skipped:
-            logger.info(f"Source triage bypassed {skipped} URLs from blocked domains.")
+            logger.debug(f"Source triage bypassed {skipped} URLs from blocked domains.")
 
     if not state.search_results:
         logger.warning("No search results to triage after filtering blocked domains.")
@@ -44,7 +44,7 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
         return
 
     total = len(state.search_results)
-    logger.info(f"Source triage starting: {total} URLs to evaluate.")
+    logger.debug(f"Source triage starting: {total} URLs to evaluate.")
 
     async def evaluate_single(result: dict) -> dict | None:
         """Evaluate a single search result; returns it if authoritative, else None."""
@@ -76,12 +76,12 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
                 system_prompt=system_prompt,
             )
             if verdict.is_authoritative:
-                logger.info(f"  PASS: {url}")
+                logger.debug(f"  PASS: {url}")
                 if url_queue:
                     await url_queue.put({"url": url})
                 return result
             else:
-                logger.info(f"  REJECT: {url} — {verdict.reasoning[:80]}")
+                logger.debug(f"  REJECT: {url} — {verdict.reasoning[:80]}")
                 return None
         except Exception as e:
             logger.error(f"  ERROR triaging {url}: {e}. Keeping URL as fallback.")
@@ -117,7 +117,6 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
         # Yield absolute unit pulse
         yield {
             "status": "source_triage",
-            "unit": "llm",
             "message": f"Source Triage: Evaluating search results"
         }
 
@@ -125,7 +124,7 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
     state.search_results = surviving_results
     state.urls = [r["url"] for r in surviving_results]
 
-    logger.info(f"Source triage complete: {len(surviving_results)}/{total} URLs survived.")
+    logger.debug(f"Source triage complete: {len(surviving_results)}/{total} URLs survived.")
     if url_queue:
         await url_queue.put(None)
 
@@ -143,7 +142,7 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
                 "total_evaluated": total,
                 "total_survived": len(surviving_results),
             }, f, indent=2)
-        logger.info(f"Triage data logged for replay: {filepath}")
+        logger.debug(f"Triage data logged for replay: {filepath}")
     except Exception as e:
         logger.error(f"Failed to log TriageData: {e}")
 

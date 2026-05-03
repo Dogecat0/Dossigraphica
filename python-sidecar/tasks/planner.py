@@ -73,5 +73,5 @@ async def run_planner(state: ResearchState) -> ResearchState:
         f"Rigid Quarters: {quarters_block}\n"
     )
 
-    logger.info(f"Planner generated {len(queries)} deterministic queries.")
+    logger.debug(f"Planner generated {len(queries)} deterministic queries.")
     return state

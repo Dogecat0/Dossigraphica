@@ -37,7 +37,7 @@ async def run_test_research(query: str):
 
     start_time = time.perf_counter()
     current_progress = 0
-    with tqdm(total=100, desc="Initializing Research", bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]") as pbar:
+    with tqdm(total=100, desc="Initializing Research", bar_format="{desc} | {n_fmt}/{total_fmt} [{elapsed}, {rate_fmt}{postfix}]") as pbar:
         try:
             async for update in research_pipeline(query):
                 data = json.loads(update)
@@ -64,16 +64,35 @@ async def run_test_research(query: str):
                     pbar.update(new_n - pbar.n)
                 
                 # Granular absolute reporting
-                llm_line = f"LLM: {llm_comp}/{llm_total}" if llm_total > 0 else ""
-                io_line = f"IO: {io_comp}/{io_total}" if io_total > 0 else ""
-                stats = f" [{llm_line} | {io_line}]" if llm_line or io_line else ""
+                # Pad numbers to 3 digits for alignment stability
+                llm_line = f"L:{llm_comp:>3}/{llm_total:<3}" if llm_total > 0 else " " * 10
+                io_line = f"I:{io_comp:>2}/{io_total:<2}" if io_total > 0 else " " * 7
+                
+                eta_sec = data.get("eta_seconds")
+                if eta_sec is not None:
+                    m, s = divmod(eta_sec, 60)
+                    eta_str = f" E:{m:>2}m{s:>2}s" if m > 0 else f" E:{s:>2}s"
+                else:
+                    eta_str = " " * 8
+                    
+                stats = f" [{llm_line} {io_line}{eta_str}]" if llm_line or io_line else ""
                 
                 # Phase Roadmap
                 p_curr = data.get("phase_current", 0)
                 p_total = data.get("phase_total", 0)
                 phase_label = f"{p_curr}/{p_total} " if p_total > 0 else ""
+
+                # Build a clean, high-density status line
+                p_perc = (new_n / new_total * 100) if new_total > 0 else 0
                 
-                pbar.set_description(f"[{phase_label}{status.upper()}]{stats} {message}")
+                # Truncate message to avoid terminal wrapping
+                max_msg = 35
+                if len(message) > max_msg:
+                    message = message[:max_msg-3] + "..."
+                    
+                status_label = f"[{phase_label}{status.upper()}]"
+                desc = f"{status_label:<30} {p_perc:3.0f}% |{stats} {message}"
+                pbar.set_description(desc)
                 
                 if status == "completed":
                     pbar.close()
@@ -105,7 +124,9 @@ async def run_test_research(query: str):
         finally:
             # Tear down litellm's async HTTP sessions to prevent
             # 'Unclosed client session' / 'coroutine was never awaited' warnings.
+            print("\n[SHUTTING DOWN] Closing active connections...")
             await close_litellm_async_clients()
+            print("[CLEANUP COMPLETE]")
 
 if __name__ == "__main__":
     # Example target for validation
