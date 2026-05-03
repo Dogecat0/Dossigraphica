@@ -5,7 +5,7 @@ import logging
 from typing import AsyncGenerator, Union
 from urllib.parse import urlparse
 from schemas import ResearchState, SingleTriageSchema
-from llm import llm, LLAMA_N_PARALLEL
+from llm import llm
 
 logger = logging.getLogger(__name__)
 
@@ -46,13 +46,6 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
     total = len(state.search_results)
     logger.info(f"Source triage starting: {total} URLs to evaluate.")
 
-    # ------------------------------------------------------------------
-    # Semaphore: slightly higher than LLAMA_N_PARALLEL to keep the
-    # llama.cpp queue saturated without over-committing memory.
-    # The LLMClient's own semaphore is the true bottleneck guard.
-    # ------------------------------------------------------------------
-    triage_semaphore = asyncio.Semaphore(LLAMA_N_PARALLEL)
-
     async def evaluate_single(result: dict) -> dict | None:
         """Evaluate a single search result; returns it if authoritative, else None."""
         url = result.get("url", "")
@@ -76,24 +69,23 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
             "Be aggressive: when in doubt, reject."
         )
 
-        async with triage_semaphore:
-            try:
-                verdict = await llm.generate_structured(
-                    prompt=prompt,
-                    response_model=SingleTriageSchema,
-                    system_prompt=system_prompt,
-                )
-                if verdict.is_authoritative:
-                    logger.info(f"  PASS: {url}")
-                    if url_queue:
-                        await url_queue.put({"url": url})
-                    return result
-                else:
-                    logger.info(f"  REJECT: {url} — {verdict.reasoning[:80]}")
-                    return None
-            except Exception as e:
-                logger.error(f"  ERROR triaging {url}: {e}. Keeping URL as fallback.")
+        try:
+            verdict = await llm.generate_structured(
+                prompt=prompt,
+                response_model=SingleTriageSchema,
+                system_prompt=system_prompt,
+            )
+            if verdict.is_authoritative:
+                logger.info(f"  PASS: {url}")
+                if url_queue:
+                    await url_queue.put({"url": url})
                 return result
+            else:
+                logger.info(f"  REJECT: {url} — {verdict.reasoning[:80]}")
+                return None
+        except Exception as e:
+            logger.error(f"  ERROR triaging {url}: {e}. Keeping URL as fallback.")
+            return result
 
     # ------------------------------------------------------------------
     # Concurrent map: evaluate all search results in parallel

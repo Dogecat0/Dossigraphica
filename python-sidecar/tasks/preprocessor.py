@@ -10,7 +10,6 @@ logger = logging.getLogger(__name__)
 
 # Load dynamic context size from environment
 LLAMA_CTX_PER_REQUEST = int(os.getenv("LLAMA_CTX_PER_REQUEST", "8192"))
-LLAMA_N_PARALLEL = int(os.getenv("LLAMA_N_PARALLEL", "1"))
 
 # Standard extraction prompts used for overhead calculation
 EXTRACTION_SYSTEM_PROMPT = (
@@ -122,20 +121,18 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
     logger.info(f"Pipelined Preprocessor started. Safe Chunk Size: {safe_chunk_size}")
 
     all_extracted_facts = []
-    semaphore = asyncio.Semaphore(LLAMA_N_PARALLEL)
     pulse_queue = asyncio.Queue()
     pending_tasks = set()
 
     async def process_chunk(chunk: str, query: str, url: str):
-        async with semaphore:
-            facts = await squeeze_chunk(chunk, query, url)
-            if facts:
-                all_extracted_facts.extend(facts)
-            await pulse_queue.put({
-                "status": "preprocessing",
-                "unit": "llm",
-                "message": f"Preprocessing: Squeezing chunk facts"
-            })
+        facts = await squeeze_chunk(chunk, query, url)
+        if facts:
+            all_extracted_facts.extend(facts)
+        await pulse_queue.put({
+            "status": "preprocessing",
+            "unit": "llm",
+            "message": f"Preprocessing: Squeezing chunk facts"
+        })
 
     async def process_item(item: dict):
         """Internal helper for concurrent LLM extraction of an entire source."""
