@@ -11,6 +11,7 @@ import logging
 import json
 import asyncio
 import os
+import time
 from typing import AsyncGenerator, Union
 
 from llm import LLM_OUTPUT_MODE
@@ -24,8 +25,9 @@ class TaskTracker:
         self.llm_completed = 0
         self.llm_total = 0
         self.io_completed = 0
-        self.io_completed = 0
         self.io_total = 0
+        self._init_time = time.time()
+        self._initial_llm_completed = 0
         
     def get_llm_multiplier(self, schema_cls=None) -> int:
         if LLM_OUTPUT_MODE == "one-shot":
@@ -35,6 +37,15 @@ class TaskTracker:
         return 2 # default fallback for 2-field schemas like SynthesizerSchema, PlannerSchema
 
     def as_dict(self):
+        new_llm = self.llm_completed - self._initial_llm_completed
+        elapsed = time.time() - self._init_time
+        
+        eta_seconds = None
+        # Require a tiny sample size of 2 completions before guessing ETA to avoid wild initial swings
+        if new_llm >= 2:
+            rate = elapsed / new_llm
+            eta_seconds = int(rate * (self.llm_total - self.llm_completed))
+
         return {
             "llm": {
                 "completed": self.llm_completed,
@@ -45,7 +56,9 @@ class TaskTracker:
                 "completed": self.io_completed,
                 "total": self.io_total,
                 "remaining": self.io_total - self.io_completed
-            }
+            },
+            "elapsed_seconds": int(elapsed),
+            "eta_seconds": eta_seconds
         }
 
 async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
@@ -61,6 +74,9 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     state = reconstruct_state_from_logs(query, log_dir)
     
     tracker = TaskTracker()
+    
+    from llm import llm
+    llm.progress_queue = asyncio.Queue()
     
     # --- State Reconstruction for Progress Tracking ---
     # If we resumed past init, we should artificially seed the tracker
@@ -95,29 +111,83 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             
             if hasattr(state, "enrichment_queries") and state.enrichment_queries:
                 tracker.io_total += 1 ; tracker.io_completed += 1 # Enrichment Search
+                
+    tracker._initial_llm_completed = tracker.llm_completed
     # --------------------------------------------------
     phase_total = 8
 
     async def flow(task_generator: AsyncGenerator[Union[dict, ResearchState], None], phase_idx: int) -> AsyncGenerator[str, None]:
         """Helper to stream granular units and capture the final state."""
         nonlocal state
-        async for item in task_generator:
-            if isinstance(item, ResearchState):
-                state = item
-            else:
-                unit_type = item.get("unit", "llm")
-                if unit_type == "llm":
-                    tracker.llm_completed += 1
-                else:
-                    tracker.io_completed += 1
+        
+        # Multiplex between task generator and global LLM pulse queue
+        gen_iter = task_generator.__aiter__()
+        
+        while not llm.progress_queue.empty():
+            try:
+                llm.progress_queue.get_nowait()
+            except asyncio.QueueEmpty:
+                break
                 
-                # Global tracking metadata
-                item.update(tracker.as_dict())
-                item.update({
-                    "phase_current": phase_idx,
-                    "phase_total": phase_total
-                })
-                yield json.dumps(item)
+        pending = {
+            asyncio.create_task(gen_iter.__anext__()): "gen",
+            asyncio.create_task(llm.progress_queue.get()): "llm_pulse"
+        }
+        
+        try:
+            while pending:
+                done, _ = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+                for future in done:
+                    label = pending.pop(future)
+                    try:
+                        item = future.result()
+                        
+                        if label == "gen":
+                            if isinstance(item, ResearchState):
+                                state = item
+                            else:
+                                # Discovery pulse handling
+                                if "units_discovered" in item:
+                                    disc_type = item.get("unit_type", "llm")
+                                    if disc_type == "llm":
+                                        tracker.llm_total += item["units_discovered"] * tracker.get_llm_multiplier()
+                                    elif disc_type == "io":
+                                        tracker.io_total += item["units_discovered"]
+                                else:
+                                    unit_type = item.get("unit", "None")
+                                    if unit_type == "io": tracker.io_completed += 1
+                                    # Note: 'llm' unit is ignored here as it's handled by 'llm_pulse' label
+                                
+                                item.update(tracker.as_dict())
+                                item.update({"phase_current": phase_idx, "phase_total": phase_total})
+                                yield json.dumps(item)
+                            
+                            # Keep polling generator
+                            pending[asyncio.create_task(gen_iter.__anext__())] = "gen"
+                            
+                        elif label == "llm_pulse":
+                            tracker.llm_completed += 1
+                            update = {"status": "synthesizing", "message": "Synthesizing..."}
+                            update.update(tracker.as_dict())
+                            update.update({"phase_current": phase_idx, "phase_total": phase_total})
+                            yield json.dumps(update)
+                            
+                            # Keep polling pulse queue
+                            pending[asyncio.create_task(llm.progress_queue.get())] = "llm_pulse"
+                            
+                    except StopAsyncIteration:
+                        continue
+                    except Exception as e:
+                        if label != "llm_pulse": # Pulse queue shouldn't fail, but generator might
+                            logger.error(f"Error in flow phase {phase_idx} ({label}): {e}")
+                        continue
+        finally:
+            # Interrupt Trap: Cancel all inflight requests
+            for task in pending:
+                if not task.done():
+                    task.cancel()
+            if pending:
+                await asyncio.gather(*pending, return_exceptions=True)
 
     async def pipeline_sieve(phase_idx: int, is_enrichment: bool = False) -> AsyncGenerator[str, None]:
         """Manages the parallel execution of extraction and preprocessing."""
@@ -149,6 +219,13 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         # Note: We need to pull from BOTH concurrently.
         # However, preprocessor_gen won't finish until extractor_gen puts the sentinel.
         
+        # Drain any stale pulses from previous serial phases
+        while not llm.progress_queue.empty():
+            try:
+                llm.progress_queue.get_nowait()
+            except asyncio.QueueEmpty:
+                break
+                
         # Capture updates and yield them
         ext_iter = extractor_gen.__aiter__()
         pre_iter = preprocessor_gen.__aiter__()
@@ -156,52 +233,74 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         # Use a task-based approach to pull from generators
         pending = {
             asyncio.create_task(preprocessor_gen.__anext__()): "pre",
-            asyncio.create_task(extractor_gen.__anext__()): "ext"
+            asyncio.create_task(extractor_gen.__anext__()): "ext",
+            asyncio.create_task(llm.progress_queue.get()): "llm_pulse"
         }
         if triage_gen is not None:
             pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
 
-        while pending:
-            done, _ = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
-            for future in done:
-                label = pending.pop(future)
-                try:
-                    update = future.result()
-                    
-                    if isinstance(update, ResearchState):
-                        state = update
-                    else:
-                        # Discovery pulse handling: Preprocessor discovered units
-                        if "units_discovered" in update:
-                            disc_type = update.get("unit_type", "llm")
-                            if disc_type == "llm":
-                                tracker.llm_total += update["units_discovered"] * tracker.get_llm_multiplier()
-                            elif disc_type == "io":
-                                tracker.io_total += update["units_discovered"]
+        try:
+            while pending:
+                done, _ = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+                for future in done:
+                    label = pending.pop(future)
+                    try:
+                        update = future.result()
+                        
+                        if label == "llm_pulse":
+                            tracker.llm_completed += 1
+                            update = {"status": "synthesizing", "message": "Synthesizing..."}
+                        elif isinstance(update, ResearchState):
+                            state = update
+                            # Re-poll based on label
+                            if label == "ext":
+                                pending[asyncio.create_task(extractor_gen.__anext__())] = "ext"
+                            elif label == "pre":
+                                pending[asyncio.create_task(preprocessor_gen.__anext__())] = "pre"
+                            elif label == "tri" and triage_gen is not None:
+                                pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
+                            continue
                         else:
-                            unit_type = update.get("unit", "llm")
-                            if unit_type == "llm": tracker.llm_completed += 1
-                            else: tracker.io_completed += 1
+                            # Discovery pulse handling: Preprocessor discovered units
+                            if "units_discovered" in update:
+                                disc_type = update.get("unit_type", "llm")
+                                if disc_type == "llm":
+                                    tracker.llm_total += update["units_discovered"] * tracker.get_llm_multiplier()
+                                elif disc_type == "io":
+                                    tracker.io_total += update["units_discovered"]
+                            else:
+                                unit_type = update.get("unit", "None")
+                                if unit_type == "llm": tracker.llm_completed += 1
+                                elif unit_type == "io": tracker.io_completed += 1
                         
                         update.update(tracker.as_dict())
                         update.update({"phase_current": phase_idx, "phase_total": phase_total})
                         yield json.dumps(update)
-                    
-                    # Keep polling the same generator
-                    if label == "ext":
-                        pending[asyncio.create_task(extractor_gen.__anext__())] = "ext"
-                    elif label == "pre":
-                        pending[asyncio.create_task(preprocessor_gen.__anext__())] = "pre"
-                    elif label == "tri" and triage_gen is not None:
-                        pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
                         
-                except StopAsyncIteration:
-                    # Generator finished naturally, no need to push sentinel here because
-                    # triage -> extractor -> preprocessor push their own queue sentinels.
-                    continue
-                except Exception as e:
-                    logger.error(f"Error in parallel phase {phase_idx} ({label}): {e}")
-                    continue
+                        # Keep polling the same generator/queue
+                        if label == "ext":
+                            pending[asyncio.create_task(extractor_gen.__anext__())] = "ext"
+                        elif label == "pre":
+                            pending[asyncio.create_task(preprocessor_gen.__anext__())] = "pre"
+                        elif label == "tri" and triage_gen is not None:
+                            pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
+                        elif label == "llm_pulse":
+                            pending[asyncio.create_task(llm.progress_queue.get())] = "llm_pulse"
+                            
+                    except StopAsyncIteration:
+                        # Generator finished naturally, no need to push sentinel here because
+                        # triage -> extractor -> preprocessor push their own queue sentinels.
+                        continue
+                    except Exception as e:
+                        logger.error(f"Error in parallel phase {phase_idx} ({label}): {e}")
+                        continue
+        finally:
+            # Interrupt Trap: Cancel all inflight requests
+            for task in pending:
+                if not task.done():
+                    task.cancel()
+            if pending:
+                await asyncio.gather(*pending, return_exceptions=True)
 
     try:
         # 1. Deterministic Planning
@@ -247,7 +346,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             if state.enrichment_queries:
                 state.pipeline_step = "enrichment_searching"
             else:
-                logger.info("No geographic gaps detected. Skipping enrichment loop.")
+                logger.debug("No geographic gaps detected. Skipping enrichment loop.")
                 state.pipeline_step = "drafting"
 
         # 6. Enrichment Search
@@ -279,7 +378,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 filepath = os.path.join(llm.log_dir, f"{current_index:04d}_EnrichmentCompleteData_output.json")
                 with open(filepath, "w") as f:
                     json.dump({"status": "enrichment_loop_completed"}, f, indent=2)
-                logger.info(f"Enrichment checkpoint logged for replay: {filepath}")
+                logger.debug(f"Enrichment checkpoint logged for replay: {filepath}")
             except Exception as e:
                 logger.error(f"Failed to log EnrichmentCompleteData: {e}")
 
@@ -305,7 +404,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             **tracker.as_dict()
         })
         
-        logger.info(f"Pipeline finished for: {query}")
+        logger.debug(f"Pipeline finished for: {query}")
 
     except Exception as e:
         logger.error(f"Pipeline failed: {e}")
