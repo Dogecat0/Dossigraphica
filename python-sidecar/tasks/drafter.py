@@ -39,18 +39,18 @@ class CustomerList(BaseModel):
     reasoning: str = Field(..., description="Evaluation of revenue dependency and major buyer relationships.")
     customerConcentration: List[CustomerNodeSchema]
 
-async def draft_section(prompt: str, response_model: Type[T], system_prompt: str) -> T:
+async def draft_section(prompt: str, response_model: Type[T], system_prompt: str, facts: str = None) -> T:
     """Helper to draft a single section with retries."""
     return await llm.generate_structured(
         prompt=prompt,
         response_model=response_model,
-        system_prompt=system_prompt
+        system_prompt=system_prompt,
+        facts=facts
     )
 
-async def get_fact_subset(facts: List[InternalFact], categories: List[str], prompt_template: str, system_prompt: str, response_model: Type[BaseModel]) -> str:
+async def get_fact_subset(facts: List[InternalFact], categories: List[str]) -> str:
     """
     Filters facts by category and returns a grouped formatted string. 
-    Summarizes if too large using safe string replacement (no braces).
     """
     output = []
     for cat in categories:
@@ -59,17 +59,7 @@ async def get_fact_subset(facts: List[InternalFact], categories: List[str], prom
         output.append(f"### {cat}:\n")
         output.extend([f"- {fact.content} (Source: {fact.source_url})\n" for fact in filtered])
             
-    full_facts_text = "".join(output) if output else "No specific facts found for these categories."
-    
-    # Calculate available token space for facts using the centralized safe size logic.
-    # This accounts for the safety buffer and the response_model schema tokens.
-    target_tokens = llm.calculate_safe_chunk_size(
-        system_prompt=system_prompt,
-        user_prompt_template=prompt_template.replace("__FACTS__", "{chunk}"),
-        response_model=response_model
-    )
-    
-    return await llm.summarize_to_fit(full_facts_text, target_tokens, system_prompt="You are a data compression specialist.")
+    return "".join(output) if output else ""
 # -----------------------------------------------------------------------
 # Module-level assembly functions.
 # Accept explicit (facts, user_query) so they can be reused by both
@@ -90,8 +80,8 @@ async def get_offices(facts: List, user_query: str) -> OfficeList:
     sys_prompt = f"Extract geographic office data for {user_query}. MANDATE: Prioritize the parent company's primary footprint. Include major subsidiaries only if they are globally significant. NEVER use placeholders like 'Office A'; only extract specific named sites."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['OFFICES', 'CORPORATE'], base_prompt, sys_prompt, OfficeList)
-    res = await draft_section(_fill(base_prompt, facts=facts_text), OfficeList, sys_prompt)
+    facts_text = await get_fact_subset(facts, ['OFFICES', 'CORPORATE'])
+    res = await draft_section(base_prompt, OfficeList, sys_prompt, facts=facts_text)
 
     for o in res.offices:
         if (o.lat is None or o.lng is None) and (o.city or o.country):
@@ -112,8 +102,8 @@ async def get_supply_chain(facts: List, user_query: str) -> SupplyChainList:
     sys_prompt = f"Map supply chain infrastructure for {user_query}. MANDATE: Prioritize direct suppliers to the parent company. Include subsidiary-specific suppliers only if they are critical to the broader group. NEVER use placeholders like 'Supplier 1'; only extract specific named partners."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['SUPPLY_CHAIN'], base_prompt, sys_prompt, SupplyChainList)
-    res = await draft_section(_fill(base_prompt, facts=facts_text), SupplyChainList, sys_prompt)
+    facts_text = await get_fact_subset(facts, ['SUPPLY_CHAIN'])
+    res = await draft_section(base_prompt, SupplyChainList, sys_prompt, facts=facts_text)
 
     for n in res.supply_chain:
         if (n.lat is None or n.lng is None) and (n.city or n.country):
@@ -130,8 +120,8 @@ async def get_geopolitical_risks(facts: List, user_query: str) -> RiskList:
     sys_prompt = f"Extract risks for {user_query}. MANDATE: Focus on risks affecting the parent entity and its primary revenue streams. NEVER use placeholders; only extract specific named entities and regions/countries."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['RISKS'], base_prompt, sys_prompt, RiskList)
-    res = await draft_section(_fill(base_prompt, facts=facts_text), RiskList, sys_prompt)
+    facts_text = await get_fact_subset(facts, ['RISKS'])
+    res = await draft_section(base_prompt, RiskList, sys_prompt, facts=facts_text)
 
     for r in res.geopoliticalRisks:
         if (r.lat is None or r.lng is None) and r.region:
@@ -146,8 +136,8 @@ async def get_customer_concentration(facts: List, user_query: str) -> CustomerLi
     sys_prompt = "Extract customers. MANDATE: NEVER use placeholders; only extract specific named buyers and their financial share if available."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['CUSTOMERS'], base_prompt, sys_prompt, CustomerList)
-    res = await draft_section(_fill(base_prompt, facts=facts_text), CustomerList, sys_prompt)
+    facts_text = await get_fact_subset(facts, ['CUSTOMERS'])
+    res = await draft_section(base_prompt, CustomerList, sys_prompt, facts=facts_text)
 
     for cust in res.customerConcentration:
         if (cust.lat is None or cust.lng is None) and (cust.hqCity or cust.hqCountry):
@@ -189,24 +179,24 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             template = "Extract basic company details for __QUERY__ from these facts:\n__FACTS__\n\nRequirement: description must emphasize global geographic footprint."
             sys_prompt = "You are a precision Geo-Intelligence data extractor."
             base_prompt = _fill(template, query=state.user_query)
-            facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE', 'REVENUE'], base_prompt, sys_prompt, BasicInfo)
-            return await draft_section(_fill(base_prompt, facts=facts_text), BasicInfo, sys_prompt)
+            facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE', 'REVENUE'])
+            return await draft_section(base_prompt, BasicInfo, sys_prompt, facts=facts_text)
 
         # B. Anchor Filing
         async def get_anchor() -> AnchorFilingSchema:
             template = "Identify the primary source filing (e.g. 10-K) from these facts for __QUERY__:\n__FACTS__\n\nExtract: type (10-K/10-Q/8-K), date (YYYY-MM-DD), and fiscalPeriod."
             sys_prompt = "Extract anchor filing details with ISO dates."
             base_prompt = _fill(template, query=state.user_query)
-            facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE'], base_prompt, sys_prompt, AnchorFilingSchema)
-            return await draft_section(_fill(base_prompt, facts=facts_text), AnchorFilingSchema, sys_prompt)
+            facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE'])
+            return await draft_section(base_prompt, AnchorFilingSchema, sys_prompt, facts=facts_text)
 
         # C. Revenue Geography
         async def get_revenue() -> RevenueGeographySchema:
             template = "Extract revenue breakdown by geography for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- totalRevenue must be a raw number (e.g. 63900000000, not '$63.9B').\n- percentage must be a decimal (0.00 to 1.00)."
             sys_prompt = "Extract revenue geography with raw numerical precision."
             base_prompt = _fill(template, query=state.user_query)
-            facts_text = await get_fact_subset(state.extracted_facts, ['REVENUE'], base_prompt, sys_prompt, RevenueGeographySchema)
-            return await draft_section(_fill(base_prompt, facts=facts_text), RevenueGeographySchema, sys_prompt)
+            facts_text = await get_fact_subset(state.extracted_facts, ['REVENUE'])
+            return await draft_section(base_prompt, RevenueGeographySchema, sys_prompt, facts=facts_text)
 
         # ------------------------------------------------------------------
         # 1. Start JSON Drafting: module-level functions receive explicit args

@@ -3,7 +3,7 @@ import asyncio
 from datetime import datetime
 import litellm
 from pydantic import BaseModel, Field, create_model
-from typing import Type, TypeVar, Optional, List, Any, Dict
+from typing import Type, TypeVar, Optional, List, Any, Dict, get_origin, get_args
 import logging
 import json
 import jsonref
@@ -25,6 +25,7 @@ from litellm.exceptions import (
     InternalServerError,
     Timeout
 )
+from .schemas import STRICT_CONFIG
 
 # Configure logging
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
@@ -110,6 +111,7 @@ else:
 T = TypeVar("T", bound=BaseModel)
 
 class SummarySchema(BaseModel):
+    model_config = STRICT_CONFIG
     reasoning: str = Field(..., description="Analysis of the source material before summarization.")
     summary: str = Field(..., description="A high-density summary of the provided information, preserving all exact numbers, coordinates, and citations.")
 
@@ -241,7 +243,7 @@ class LLMClient:
             f"1. You MUST respond with ONLY a valid JSON object.\n"
             f"2. You MUST NOT add any extra fields or rename keys.\n"
             f"3. All keys and string values MUST be enclosed in double quotes (\"). This is MANDATORY, especially if the text contains commas or periods.\n"
-            f"4. If a property is nullable and you have no data, output `null`. If a property is required and NOT nullable, you MUST provide a valid value.\n"
+            f"4. If a property is nullable and you have no data, output the keyword `null` (WITHOUT double quotes). If a property is required and NOT nullable, you MUST provide a valid value.\n"
             f"{call_instruction}"
             f"Do NOT include markdown code blocks or preamble text.\n\n"
             f"REQUIRED SCHEMA:\n{schema_json}"
@@ -359,7 +361,7 @@ class LLMClient:
                     kwargs["response_format"] = {
                         "type": "json_schema",
                         "json_schema": {
-                            "name": field_model.__name__,
+                            "name": response_model.__name__,
                             "strict": True,
                             "schema": deref_schema
                         }
@@ -439,52 +441,110 @@ class LLMClient:
             return response_model.model_validate_json(content)
         except Exception as e:
             logger.error(f"Pydantic Validation Failure: {e}. Content: {content}")
-            raise ValidationError.from_exception_data(title=response_model.__name__, line_errors=[]) from e
-        finally:
-            if self.progress_queue:
-                self.progress_queue.put_nowait(True)
+            raise
+        # Pulse emission removed from here and moved to callers to avoid double-counting on retries.
+        pass
 
 
     async def generate_structured(
         self, 
         prompt: str, 
         response_model: Type[T], 
-        system_prompt: str = "You are a professional research agent."
+        system_prompt: str = "You are a professional research agent.",
+        facts: str = None
     ) -> T:
         async with self.counter_lock:
             self.inference_counter += 1
             current_index = self.inference_counter
 
+        def _get_target_tokens(model):
+            return self.calculate_safe_chunk_size(system_prompt, prompt.replace("__FACTS__", "{chunk}"), model)
+
         if LLM_OUTPUT_MODE == "one-shot":
-            messages = self._construct_messages(prompt, system_prompt, response_model)
-            return await self._generate_single_field(messages, response_model, current_index, "")
+            if facts:
+                target_tokens = _get_target_tokens(response_model)
+                summary = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=system_prompt)
+                final_prompt = prompt.replace("__FACTS__", summary)
+            else:
+                final_prompt = prompt
+                
+            messages = self._construct_messages(final_prompt, system_prompt, response_model)
+            try:
+                res = await self._generate_single_field(messages, response_model, current_index, "")
+            finally:
+                if self.progress_queue:
+                    self.progress_queue.put_nowait(True)
+            return res
 
         # Multi-shot generation
         current_output = {}
         for i, (field_name, field_info) in enumerate(response_model.model_fields.items(), start=1):
-            # Create a dynamic Pydantic model for just this field
             annotation = field_info.annotation
             FieldModel = create_model(field_name, **{field_name: (annotation, Field(..., description=field_info.description))})
             
-            # Append context to the prompt
+            field_facts = ""
+            if facts:
+                # --- Entity-Level Decomposition for Lists of Models ---
+                origin = get_origin(annotation)
+                args = get_args(annotation)
+                if origin is list and args and isinstance(args[0], type) and issubclass(args[0], BaseModel):
+                    logger.debug(f"Decomposing list field '{field_name}' into entity-level tasks.")
+                    
+                    # 1. Discovery Phase
+                    DiscoveryModel = create_model("Discovery", 
+                        reasoning=(str, Field(..., description="Logic for identifying unique entities.")),
+                        entities=(List[str], Field(..., description=f"List of unique entities/items discovered for {field_name}."))
+                    )
+                    discovery_template = f"Identify all unique entities or specific items for the field '{field_name}' from the provided facts. Focus on: {field_info.description}\n\nFACTS:\n__FACTS__"
+                    discovery_target = self.calculate_safe_chunk_size(system_prompt, discovery_template.replace("__FACTS__", "{chunk}"), DiscoveryModel)
+                    discovery_facts = await self.summarize_to_fit(facts, discovery_target, system_prompt, focus=f"Entities for {field_name}")
+                    
+                    discovery_res = await self.generate_structured(
+                        prompt=discovery_template.replace("__FACTS__", discovery_facts),
+                        response_model=DiscoveryModel,
+                        system_prompt=system_prompt
+                    )
+                    
+                    # 2. Population Phase
+                    entities = []
+                    for j, entity_id in enumerate(discovery_res.entities, start=1):
+                        entity_summary = await self.summarize_to_fit(facts, _get_target_tokens(args[0]), system_prompt, focus=entity_id)
+                        entity_item = await self.generate_structured(
+                            prompt=f"Extract full details for the specific entity '{entity_id}' using these facts:\n{entity_summary}",
+                            response_model=args[0],
+                            system_prompt=system_prompt
+                        )
+                        entities.append(entity_item)
+                    
+                    current_output[field_name] = entities
+                    continue # Field completed via decomposition
+                
+                # --- Standard Targeted Summary for non-list fields ---
+                target_tokens = _get_target_tokens(FieldModel)
+                field_facts = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=field_info.description)
+            
+            # Standard multi-shot generation
+            field_prompt = prompt.replace("__FACTS__", field_facts) if facts else prompt
             multi_shot_prompt = (
-                f"{prompt}\n\n"
+                f"{field_prompt}\n\n"
                 f"--- MULTI-SHOT GENERATION PROGRESS ---\n"
                 f"We are generating the final JSON object field by field.\n"
                 f"Current output so far:\n```json\n{json.dumps(current_output, indent=2)}\n```\n\n"
                 f"Your task is to generate the next field: `{field_name}`."
             )
             
-            # The LLM receives the full schema for context in the prompt, while the tool is focused on FieldModel.
             messages = self._construct_messages(multi_shot_prompt, system_prompt, response_model, function_name=field_name)
-            
-            partial_result = await self._generate_single_field(
-                messages, 
-                FieldModel, 
-                current_index, 
-                f"_{i:02d}",
-                log_model_name=response_model.__name__
-            )
+            try:
+                partial_result = await self._generate_single_field(
+                    messages, 
+                    FieldModel, 
+                    current_index, 
+                    f"_{i:02d}",
+                    log_model_name=response_model.__name__
+                )
+            finally:
+                if self.progress_queue:
+                    self.progress_queue.put_nowait(True)
             
             field_value = getattr(partial_result, field_name)
             current_output[field_name] = field_value
@@ -505,7 +565,7 @@ class LLMClient:
         
         return max(512, safe_size)
 
-    async def summarize_to_fit(self, content: str, target_tokens: int, system_prompt: str = "You are a data compression specialist.") -> str:
+    async def summarize_to_fit(self, content: str, target_tokens: int, system_prompt: str = "You are a data compression specialist.", focus: str = None) -> str:
         """Recursively summarizes content using Map-Reduce parallelization until it fits."""
         # Use a single user message to estimate the content's token footprint.
         # This includes a small role/message overhead which keeps us conservative.
@@ -515,7 +575,11 @@ class LLMClient:
             return content
 
         # Determine safe chunk size for a summary request
-        summary_template = "Following content is too long. Summarize it into high-density facts, keep all information, only condense the language used:\n{chunk}"
+        if focus:
+            summary_template = f"Following content is too long. Summarize it into high-density facts, prioritizing information related to: {focus}. Keep all relevant information, only condense the language used:\n{{chunk}}"
+        else:
+            summary_template = "Following content is too long. Summarize it into high-density facts, keep all information, only condense the language used:\n{chunk}"
+            
         safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
         
         logger.debug(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")
@@ -542,6 +606,6 @@ class LLMClient:
         combined_summary = "\n\n".join(summaries)
         
         # Recursive reduce
-        return await self.summarize_to_fit(combined_summary, target_tokens, system_prompt)
+        return await self.summarize_to_fit(combined_summary, target_tokens, system_prompt, focus=focus)
 
 llm = LLMClient()

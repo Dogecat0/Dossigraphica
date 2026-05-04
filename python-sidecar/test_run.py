@@ -37,7 +37,19 @@ async def run_test_research(query: str):
 
     start_time = time.perf_counter()
     current_progress = 0
-    with tqdm(total=100, desc="Initializing Research", bar_format="{desc} | {n_fmt}/{total_fmt} [{elapsed}, {rate_fmt}{postfix}]") as pbar:
+
+    # Get terminal width for full-width reporting, fallback to 100
+    try:
+        term_width = os.get_terminal_size().columns
+    except OSError:
+        term_width = 100
+
+    with tqdm(
+        total=100, 
+        desc="Initializing Research", 
+        bar_format="{desc} {percentage:3.0f}% | {n_fmt}/{total_fmt} [{elapsed}]{postfix}",
+        ncols=term_width
+    ) as pbar:
         try:
             async for update in research_pipeline(query):
                 data = json.loads(update)
@@ -65,17 +77,17 @@ async def run_test_research(query: str):
                 
                 # Granular absolute reporting
                 # Pad numbers to 3 digits for alignment stability
-                llm_line = f"L:{llm_comp:>3}/{llm_total:<3}" if llm_total > 0 else " " * 10
-                io_line = f"I:{io_comp:>2}/{io_total:<2}" if io_total > 0 else " " * 7
+                llm_line = f"L:{llm_comp:>3}/{llm_total:<3}" if llm_total > 0 else None
+                io_line = f"I:{io_comp:>2}/{io_total:<2}" if io_total > 0 else None
                 
+                eta_str = None
                 eta_sec = data.get("eta_seconds")
                 if eta_sec is not None:
                     m, s = divmod(eta_sec, 60)
-                    eta_str = f" E:{m:>2}m{s:>2}s" if m > 0 else f" E:{s:>2}s"
-                else:
-                    eta_str = " " * 8
-                    
-                stats = f" [{llm_line} {io_line}{eta_str}]" if llm_line or io_line else ""
+                    eta_str = f"E:{m:>2}m{s:02d}s" if m > 0 else f"E:{s:>2}s"
+                
+                stat_parts = [p for p in [llm_line, io_line, eta_str] if p]
+                stats = f"[{' '.join(stat_parts)}]" if stat_parts else ""
                 
                 # Phase Roadmap
                 p_curr = data.get("phase_current", 0)
@@ -85,14 +97,19 @@ async def run_test_research(query: str):
                 # Build a clean, high-density status line
                 p_perc = (new_n / new_total * 100) if new_total > 0 else 0
                 
-                # Truncate message to avoid terminal wrapping
-                max_msg = 35
+                # Dynamic Message Truncation based on terminal width
+                # Overhead = desc(22) + % (5) + | (3) + counts/time (approx 25) + stats(len)
+                overhead = 22 + 5 + 3 + 25 + len(stats) + 5
+                max_msg = max(20, term_width - overhead)
+                
                 if len(message) > max_msg:
                     message = message[:max_msg-3] + "..."
+                else:
+                    message = message.ljust(max_msg)
                     
                 status_label = f"[{phase_label}{status.upper()}]"
-                desc = f"{status_label:<30} {p_perc:3.0f}% |{stats} {message}"
-                pbar.set_description(desc)
+                pbar.desc = f"{status_label:<22}"
+                pbar.set_postfix_str(f" {stats} {message}")
                 
                 if status == "completed":
                     pbar.close()
