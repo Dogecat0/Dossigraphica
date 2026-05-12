@@ -1,225 +1,338 @@
 {
   "company": "Alphabet Inc.",
   "ticker": "GOOGL",
-  "website": "https://abc.xyz",
-  "sector": "Technology / Communication Services",
-  "description": "A global technology conglomerate with a massive footprint spanning sovereign-level infrastructure, characterized by highly concentrated corporate hubs and geographically dispersed, energy-intensive data centers powering global search, cloud, and generative AI.",
+  "website": null,
+  "sector": "Technology",
+  "description": "Alphabet Inc. is a US-based global conglomerate that operates as a parent company for major technology entities including Google and Waymo. With a massive workforce of nearly 200,000 employees and annual revenues exceeding $400 billion, the company maintains a pervasive global geographic footprint, delivering digital services, search infrastructure, and autonomous driving technologies to markets worldwide.",
   "anchorFiling": {
-    "type": "10-K",
-    "date": "2026-02-05",
-    "fiscalPeriod": "FY2025"
+    "reasoning": "The Q1 2026 earnings release is the most recent primary source filing for Alphabet, as it covers the latest fiscal period and was published on April 29, 2026.",
+    "type": "Earnings Release",
+    "date": "2026-04-29",
+    "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-03-12",
+  "generatedDate": "2026-05-12",
   "offices": [
     {
-      "id": "googl-mountain-view-hq",
-      "name": "Googleplex & Bay View",
+      "id": "GOOGL-MOUNTAINVIEW-HEADQUARTERS",
+      "name": "Googleplex",
       "city": "Mountain View",
-      "state": "CA",
-      "country": "USA",
-      "lat": 37.4221,
-      "lng": -122.0841,
+      "state": "California",
+      "country": "United States",
+      "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043",
+      "lat": 37.422,
+      "lng": -122.084,
+      "businessFocus": "Corporate Headquarters",
       "type": "headquarters",
-      "businessFocus": "Global Headquarters, Executive Management, Core Product R&D",
-      "source": "10-K FY2025, Item 2",
+      "sources": [
+        "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/GOOG-10-Q-Q3-2025.pdf",
+        "https://en.wikipedia.org/wiki/Alphabet_Inc."
+      ],
       "confidence": "verified"
     },
     {
-      "id": "googl-new-york-regional",
-      "name": "St. John's Terminal & Chelsea",
-      "city": "New York City",
-      "state": "NY",
-      "country": "USA",
-      "lat": 40.7420,
-      "lng": -74.0048,
-      "type": "regional",
-      "businessFocus": "Major Regional Corporate Hub, Financial Market Operations",
-      "source": "10-K FY2025, Item 2",
+      "id": "GOOGL-NEWYORK-INFRASTRUCTURE",
+      "name": "Google New York Infrastructure",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "address": "111 Eighth Avenue, New York, NY",
+      "lat": 40.742,
+      "lng": -74.003,
+      "businessFocus": "Infrastructure and Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alphabet_Inc."
+      ],
       "confidence": "verified"
     },
     {
-      "id": "googl-london-regional",
-      "name": "Pancras Square",
+      "id": "GOOGL-LONDON-INFRASTRUCTURE",
+      "name": "Google King's Cross",
       "city": "London",
-      "country": "UK",
-      "lat": 51.5333,
-      "lng": -0.1262,
-      "type": "regional",
-      "businessFocus": "EMEA Regional Headquarters, Sales, Strategic Partnerships",
-      "source": "10-K FY2025, Item 2",
-      "confidence": "verified"
-    },
-    {
-      "id": "googl-dublin-regional",
-      "name": "Gordon House & Docks",
-      "city": "Dublin",
-      "country": "Ireland",
-      "lat": 53.3394,
-      "lng": -6.2366,
-      "type": "regional",
-      "businessFocus": "EU Operations, Tax Hub, Corporate Governance",
-      "source": "10-K FY2025, Item 2",
-      "confidence": "verified"
-    },
-    {
-      "id": "googl-singapore-hq",
-      "name": "Google Singapore",
-      "city": "Singapore",
-      "country": "Singapore",
-      "lat": 1.2760,
-      "lng": 103.7997,
-      "type": "headquarters",
-      "businessFocus": "APAC Regional Headquarters",
-      "source": "10-K FY2025, Item 2",
-      "confidence": "verified"
-    },
-    {
-      "id": "googl-midlothian-dc",
-      "name": "Ellis County Campus",
-      "city": "Midlothian",
-      "state": "TX",
-      "country": "USA",
-      "lat": 32.4824,
-      "lng": -96.9958,
-      "type": "data_center",
-      "businessFocus": "Cloud Infrastructure, Data Center",
-      "source": "10-K FY2025, Item 2",
-      "confidence": "verified"
-    },
-    {
-      "id": "googl-visakhapatnam-dc",
-      "name": "Visakhapatnam AI Hub",
-      "city": "Visakhapatnam",
-      "state": "Andhra Pradesh",
-      "country": "India",
-      "lat": 17.6868,
-      "lng": 83.2185,
-      "type": "data_center",
-      "businessFocus": "AI and Cloud Infrastructure Hub",
-      "size": "$15B Investment",
-      "source": "Press Release / Form 10-K FY2025",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "King's Cross, London",
+      "lat": 51.532,
+      "lng": -0.124,
+      "businessFocus": "Infrastructure and Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Alphabet_Inc."
+      ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "FY2025",
-    "totalRevenue": 402960000000,
+    "reasoning": "The revenue breakdown by geography is based on the most recent quarterly filing for Alphabet (Q1 2026), which provides specific revenue figures for the United States, EMEA, APAC, and Other Americas. The total revenue for Q1 2026 is reported as $109.896 billion.",
+    "fiscalYear": "2026",
+    "totalRevenue": 109896000000.0,
     "currency": "USD",
     "segments": [
       {
         "region": "United States",
-        "revenue": 194230000000,
-        "percentage": 48.2,
-        "yoyGrowth": 14.0,
-        "notes": "Financial bedrock, highest ARPU globally."
+        "revenue": 53975000000.0,
+        "percentage": 0.4911,
+        "yoyGrowth": 0.23,
+        "notes": "Q1 2026 revenue"
       },
       {
         "region": "EMEA",
-        "revenue": 117150000000,
-        "percentage": 29.0,
-        "yoyGrowth": 14.7,
-        "notes": "12.0% growth in constant currency; faces structural headwinds."
+        "revenue": 31468000000.0,
+        "percentage": 0.2864,
+        "yoyGrowth": 0.21,
+        "notes": "Q1 2026 revenue"
       },
       {
         "region": "APAC",
-        "revenue": 67680000000,
-        "percentage": 16.8,
-        "yoyGrowth": 19.1,
-        "notes": "Most dynamic growth vector; 20.0% growth in constant currency."
+        "revenue": 18288000000.0,
+        "percentage": 0.1664,
+        "yoyGrowth": 0.23,
+        "notes": "Q1 2026 revenue"
       },
       {
         "region": "Other Americas",
-        "revenue": 23900000000,
-        "percentage": 6.0,
-        "yoyGrowth": 17.1,
-        "notes": "21.0% growth in constant currency; extreme FX volatility."
+        "revenue": 6345000000.0,
+        "percentage": 0.0577,
+        "yoyGrowth": 0.21,
+        "notes": "Q1 2026 revenue"
       }
     ],
-    "concentrationRisk": "No single direct customer accounts for 10% or more of direct revenues, but distribution relies heavily on key hardware partners.",
-    "source": "10-K FY2025"
+    "concentrationRisk": "Alphabet maintains a significant concentration of revenue in the United States, which accounts for nearly half of its total quarterly revenue.",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000043/googexhibit991q12026.htm",
+      "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/2026q1-alphabet-earnings-release.pdf"
+    ]
   },
   "supplyChain": [
     {
-      "entity": "Foxconn & FIH Mobile",
-      "role": "contract_manufacturer",
-      "city": "Bac Giang",
-      "country": "Vietnam",
-      "lat": 21.2731,
-      "lng": 106.1946,
-      "product": "Pixel Smartphone NPI & Mass Assembly",
-      "criticality": "important",
-      "source": "Supply Chain Disclosures FY2025"
+      "entity": "NVIDIA",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.3688,
+      "lng": -121.9703,
+      "product": "GPUs and AI accelerators",
+      "criticality": "critical",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/",
+        "https://blog.google/inside-google/message-ceo/alphabet-earnings-q3-2025/"
+      ]
     },
     {
-      "entity": "TSMC (Fab 18)",
-      "role": "foundry",
-      "city": "Tainan",
-      "country": "Taiwan",
-      "lat": 23.1095,
-      "lng": 120.2858,
-      "product": "Tensor G5 SoC (3nm N3P) & Nvidia GPUs",
+      "entity": "Magna International",
+      "role": "contract_manufacturer",
+      "city": "Aurora",
+      "country": "Canada",
+      "lat": 44.0065,
+      "lng": -79.4504,
+      "product": "Autonomous vehicle assembly",
       "criticality": "critical",
-      "source": "10-K FY2025 / Tier 2 Reporting"
+      "sources": [
+        "https://en.wikipedia.org/wiki/Waymo",
+        "https://waymo.com/about/"
+      ]
+    },
+    {
+      "entity": "Walmart",
+      "role": "logistics",
+      "city": "Bentonville",
+      "country": "United States",
+      "lat": 36.3729,
+      "lng": -94.2088,
+      "product": "Delivery partnership for Wing",
+      "criticality": "standard",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/"
+      ]
+    },
+    {
+      "entity": "DoorDash",
+      "role": "logistics",
+      "city": "San Francisco",
+      "country": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "product": "Delivery partnership for Wing",
+      "criticality": "standard",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/"
+      ]
+    },
+    {
+      "entity": "Broadcom",
+      "role": "key_supplier",
+      "city": "Palo Alto",
+      "country": "United States",
+      "lat": 37.4419,
+      "lng": -122.143,
+      "product": "Compute capacity infrastructure",
+      "criticality": "important",
+      "sources": [
+        "https://venturebeat.com/technology/anthropic-says-it-hit-a-30-billion-revenue-run-rate-after-crazy-80x-growth"
+      ]
+    },
+    {
+      "entity": "Jaguar Land Rover",
+      "role": "key_supplier",
+      "city": "Coventry",
+      "country": "United Kingdom",
+      "lat": 52.4068,
+      "lng": -1.5197,
+      "product": "Electric vehicles for Waymo",
+      "criticality": "important",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Waymo"
+      ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Apple Inc.",
-      "revenueShare": "Unquantified precisely, yields ~28% of US search queries",
-      "hqCity": "Cupertino",
-      "hqCountry": "USA",
-      "lat": 37.3230,
-      "lng": -122.0322,
-      "relationship": "Exclusive default search engine on iOS/Safari via $20B annual agreement",
-      "source": "DOJ Antitrust Litigation Disclosures 2025"
+      "customer": "Anthropic",
+      "revenueShare": "tens of billions of dollars",
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Strategic cloud infrastructure and computing partner",
+      "sources": [
+        "https://simplywall.st/stocks/us/media/nasdaq-googl/alphabet/past",
+        "https://blog.google/inside-google/message-ceo/alphabet-earnings-q3-2025/"
+      ]
     },
     {
-      "customer": "Samsung Electronics",
-      "revenueShare": "Unquantified precisely, part of ~19.4% US query share from OEMs",
-      "hqCity": "Seoul",
-      "hqCountry": "South Korea",
-      "lat": 37.5665,
-      "lng": 126.9780,
-      "relationship": "MADA and RSA agreements for Android pre-installation",
-      "source": "DOJ Antitrust Litigation Disclosures 2025"
+      "customer": "Apple",
+      "revenueShare": null,
+      "hqCity": "Cupertino",
+      "hqCountry": "United States",
+      "lat": 37.323,
+      "lng": -122.0322,
+      "relationship": "Preferred cloud provider and AI model development partner",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q4-2025/"
+      ]
+    },
+    {
+      "customer": "Bosch",
+      "revenueShare": null,
+      "hqCity": "Gerlingen",
+      "hqCountry": "Germany",
+      "lat": 48.8033,
+      "lng": 9.0533,
+      "relationship": "Gemini Enterprise customer",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/",
+        "https://www.alpha-sense.com/earnings/goog/"
+      ]
+    },
+    {
+      "customer": "Citi Wealth",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "Gemini Enterprise customer",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/"
+      ]
+    },
+    {
+      "customer": "Merck",
+      "revenueShare": null,
+      "hqCity": "Rahway",
+      "hqCountry": "United States",
+      "lat": 40.6084,
+      "lng": -74.2776,
+      "relationship": "Gemini Enterprise customer",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/"
+      ]
+    },
+    {
+      "customer": "Mars, Incorporated",
+      "revenueShare": null,
+      "hqCity": "McLean",
+      "hqCountry": "United States",
+      "lat": 38.9339,
+      "lng": -77.1773,
+      "relationship": "Gemini Enterprise customer",
+      "sources": [
+        "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/"
+      ]
+    },
+    {
+      "customer": "US Department of Defense",
+      "revenueShare": null,
+      "hqCity": "Arlington",
+      "hqCountry": "United States",
+      "lat": 38.871,
+      "lng": -77.0559,
+      "relationship": "Cloud and AI services for classified military work",
+      "sources": [
+        "https://www.bloomberg.com/profile/company/GOOGL:US"
+      ]
     }
   ],
   "geopoliticalRisks": [
     {
       "region": "United States",
-      "lat": 38.8951,
-      "lng": -77.0364,
+      "lat": 37.0902,
+      "lng": -95.7129,
       "riskScore": 5,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "DOJ Antitrust Final Judgment",
-      "description": "Dec 2025 ruling striking down exclusive default search agreements and mandating proprietary search index data sharing.",
+      "riskLabel": "Antitrust Litigation",
+      "description": "Ongoing DOJ antitrust investigations and rulings regarding search distribution agreements and advertising technology dominance pose significant threats to core revenue streams.",
       "impactLevel": "critical",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-02-05"
+      "filingReference": "GOOG-10-Q-Q3-2025",
+      "lastUpdated": "2025-09-30"
     },
     {
       "region": "European Union",
-      "lat": 50.8476,
-      "lng": 4.3572,
-      "riskScore": 4,
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "riskScore": 5,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "EC AdTech Antitrust Probe",
-      "description": "Probe into AdTech pricing with threats of structural separation; potential multi-billion Euro fines and AI copyright mandates.",
+      "riskLabel": "EU Digital Markets Act and AdTech Fines",
+      "description": "Alphabet is designated as a gatekeeper under the EU Digital Markets Act and faces multi-billion euro fines for self-preferencing in advertising technology.",
       "impactLevel": "critical",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-02-05"
+      "filingReference": "GOOG-10-Q-Q3-2025",
+      "lastUpdated": "2025-09-30"
     },
     {
-      "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
-      "riskScore": 5,
+      "region": "Russia",
+      "lat": 61.524,
+      "lng": 105.3188,
+      "riskScore": 4,
+      "riskCategory": "sanctions",
+      "riskLabel": "Bankruptcy and Asset Seizure",
+      "description": "Alphabet's Russian subsidiary filed for bankruptcy following the seizure of bank accounts by authorities, with ongoing legal matters regarding civil judgments and penalties.",
+      "impactLevel": "high",
+      "filingReference": "GOOG-10-Q-Q3-2025",
+      "lastUpdated": "2025-09-30"
+    },
+    {
+      "region": "Iran",
+      "lat": 32.4279,
+      "lng": 53.688,
+      "riskScore": 3,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "TSMC Hyper-concentration",
-      "description": "Absolute reliance on TSMC for Tensor G5 and Nvidia GPUs. A kinetic event would halt hardware and cloud infrastructure scaling.",
-      "impactLevel": "critical",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-02-05"
+      "riskLabel": "Supply Chain Disruption",
+      "description": "Escalating conflict involving Iran poses risks to AI infrastructure supply chains, potentially increasing capital expenditure requirements.",
+      "impactLevel": "moderate",
+      "filingReference": "CNBC-2026-04-29",
+      "lastUpdated": "2026-04-29"
+    },
+    {
+      "region": "Global",
+      "lat": 0.0,
+      "lng": 0.0,
+      "riskScore": 3,
+      "riskCategory": "currency_exposure",
+      "riskLabel": "International Market Volatility",
+      "description": "Alphabet's heavy reliance on international sales exposes the company to currency fluctuations and varied market dynamics across foreign jurisdictions.",
+      "impactLevel": "moderate",
+      "filingReference": "NASDAQ-2026-Deep-Dive",
+      "lastUpdated": "2026-05-12"
     }
   ]
 }

@@ -2,234 +2,368 @@
   "company": "Microsoft Corporation",
   "ticker": "MSFT",
   "website": "https://www.microsoft.com",
-  "sector": "Technology / Software & Infrastructure",
-  "description": "Microsoft is a global technology and sovereign digital infrastructure provider, primarily driven by its Azure hyperscale cloud network, enterprise AI software, and geographically dispersed research and development hubs.",
+  "sector": "Technology",
+  "description": "Microsoft is a global technology leader headquartered in Redmond, Washington, operating a massive international infrastructure that includes extensive data center networks, such as the Fairwater facility in Wisconsin, and a workforce of approximately 228,000 employees deployed across the globe to support its cloud, software, and AI-focused platforms.",
   "anchorFiling": {
-    "type": "10-Q",
-    "date": "2026-01-28",
-    "fiscalPeriod": "Q2 FY2026"
+    "reasoning": "The Q3 2026 earnings release on April 29, 2026, is the most recent primary source filing for Microsoft, representing the latest fiscal period (Q3 2026) available in the provided facts.",
+    "type": "Earnings Release",
+    "date": "2026-04-29",
+    "fiscalPeriod": "Q3 2026"
   },
-  "generatedDate": "2026-03-14",
+  "generatedDate": "2026-05-12",
   "offices": [
     {
-      "id": "msft-redmond-hq",
-      "name": "Microsoft Global Headquarters",
+      "id": "MSFT-REDMOND-HEADQUARTERS",
+      "name": "Microsoft Corporate Headquarters",
       "city": "Redmond",
       "state": "Washington",
-      "country": "USA",
-      "lat": 47.6396,
-      "lng": -122.1284,
+      "country": "United States",
+      "address": "One Microsoft Way, Redmond, WA 98052-6399",
+      "lat": 47.6423,
+      "lng": -122.1273,
+      "businessFocus": "Corporate Headquarters and R&D",
       "type": "headquarters",
-      "businessFocus": "Executive Leadership, Core Engineering, Cloud Administration",
-      "size": "500 acres, 125+ buildings",
-      "source": "10-K FY2025",
+      "sources": [
+        "Microsoft Corporate Filings"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "msft-silicon-valley-engineering",
-      "name": "Silicon Valley Campus",
-      "city": "Mountain View",
-      "state": "California",
-      "country": "USA",
-      "lat": 37.4090,
-      "lng": -122.0628,
-      "type": "engineering",
-      "businessFocus": "Major R&D Center",
-      "source": "10-K FY2025",
-      "confidence": "verified"
-    },
-    {
-      "id": "msft-dublin-regional",
-      "name": "Microsoft Ireland Operations",
-      "city": "Dublin",
-      "country": "Ireland",
-      "lat": 53.2680,
-      "lng": -6.1950,
-      "type": "regional",
-      "businessFocus": "Financial Flows, International Tax Optimization, IP Localization",
-      "source": "10-K FY2025, Exhibit 21",
-      "confidence": "verified"
-    },
-    {
-      "id": "msft-hyderabad-engineering",
-      "name": "India Development Centre (IDC)",
-      "city": "Hyderabad",
-      "state": "Telangana",
-      "country": "India",
-      "lat": 17.4300,
-      "lng": 78.3420,
-      "type": "engineering",
-      "businessFocus": "Major R&D Center, Sovereign Cloud Infrastructure",
-      "source": "Microsoft News India Press Release",
-      "confidence": "verified"
-    },
-    {
-      "id": "msft-mt-pleasant-data-center",
-      "name": "Fairwater AI Datacenter",
+      "id": "MSFT-MOUNT-PLEASANT-DATA_CENTER",
+      "name": "Fairwater AI Datacenter Campus",
       "city": "Mount Pleasant",
       "state": "Wisconsin",
-      "country": "USA",
-      "lat": 42.7161,
-      "lng": -87.9542,
+      "country": "United States",
+      "address": "Mount Pleasant, WI",
+      "lat": 42.725,
+      "lng": -87.915,
+      "businessFocus": "AI Infrastructure and Datacenter",
       "type": "data_center",
-      "businessFocus": "AI Hyperscale Datacenter, GPU Clusters, Liquid Cooling",
-      "size": "315 acres, 1.2M sq ft",
-      "source": "Tom's Hardware / Tech Press",
+      "sources": [
+        "Microsoft Corporate Filings"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "msft-atlanta-data-center",
-      "name": "East US 3 Region",
-      "city": "Atlanta",
-      "state": "Georgia",
-      "country": "USA",
-      "lat": 33.7490,
-      "lng": -84.3880,
-      "type": "data_center",
-      "businessFocus": "Datacenter / Cloud Region",
-      "source": "Microsoft Corporate Blog",
+      "id": "MSFT-SINGAPORE-REGIONAL",
+      "name": "Microsoft Singapore Operations Center",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "80 Raffles Place, Singapore",
+      "lat": 1.2833,
+      "lng": 103.8519,
+      "businessFocus": "Regional Operations and Sales",
+      "type": "regional",
+      "sources": [
+        "Microsoft Corporate Filings"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MSFT-NEW-YORK-SATELLITE",
+      "name": "Microsoft Experience Center New York",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "address": "677 Fifth Avenue, New York, NY",
+      "lat": 40.7607,
+      "lng": -73.9765,
+      "businessFocus": "Retail and Experience Center",
+      "type": "satellite",
+      "sources": [
+        "Microsoft Corporate Filings"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MSFT-DUBLIN-REGIONAL",
+      "name": "Microsoft Ireland Operations Center",
+      "city": "Dublin",
+      "state": null,
+      "country": "Ireland",
+      "address": "Dublin, Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "businessFocus": "Regional Operations",
+      "type": "regional",
+      "sources": [
+        "Microsoft Corporate Filings"
+      ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "Q2 FY2026",
-    "totalRevenue": 81300000000,
+    "reasoning": "The revenue breakdown for Microsoft (MSFT) is based on the most recent fiscal year 2025 annual report (Form 10-K), which provides the most comprehensive and audited geographic revenue data. While quarterly data for FY2026 is available, it does not provide a geographic breakdown, so the FY2025 annual figures are used as the latest reliable anchor for geographic segmentation.",
+    "fiscalYear": "2025",
+    "totalRevenue": 281724000000.0,
     "currency": "USD",
     "segments": [
       {
-        "region": "International",
-        "revenue": null,
-        "percentage": null,
+        "region": "United States",
+        "revenue": 144546000000.0,
+        "percentage": 0.513,
         "yoyGrowth": null,
-        "notes": "Exact revenue by region is abstracted. A 2% favorable foreign currency impact was noted. Geographically, 103,000 of 228,000 employees are international, proxying substantial ex-US revenue generation."
+        "notes": "Revenue from the United States for fiscal year 2025."
       },
       {
-        "region": "Intelligent Cloud",
-        "revenue": 32900000000,
-        "percentage": 40.47,
-        "yoyGrowth": 29.0,
-        "notes": "Geographically shifting toward sovereign clouds due to data residency laws in EMEA and APAC."
+        "region": "Other Countries",
+        "revenue": 137178000000.0,
+        "percentage": 0.487,
+        "yoyGrowth": null,
+        "notes": "Revenue from outside the United States for fiscal year 2025."
       }
     ],
-    "concentrationRisk": "Approximately 45% of Microsoft's commercial remaining performance obligation (RPO) is tied to OpenAI contracts.",
-    "source": "10-Q Q2 FY2026, Earnings Transcript"
+    "concentrationRisk": "Microsoft maintains a balanced revenue distribution between the United States and international markets, with the U.S. accounting for approximately 51.3% of total revenue in fiscal year 2025.",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "https://www.microsoft.com/investor/reports/ar25/index.html"
+    ]
   },
   "supplyChain": [
     {
-      "entity": "China Domestic Mining/Processing",
-      "role": "raw_material",
-      "city": "Beijing",
-      "country": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
-      "product": "Rare-Earth Elements (Samarium, Terbium)",
+      "entity": "OpenAI",
+      "role": "key_supplier",
+      "city": "San Francisco",
+      "country": "USA",
+      "lat": 37.7765,
+      "lng": -122.4169,
+      "product": "AI foundational models and IP",
       "criticality": "critical",
-      "source": "MERICS / Geopolitical Intelligence"
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+      ]
     },
     {
-      "entity": "Nvidia",
+      "entity": "NVIDIA",
       "role": "key_supplier",
       "city": "Santa Clara",
       "country": "USA",
-      "lat": 37.3712,
-      "lng": -121.9650,
-      "product": "GB200 and GB300 GPUs",
+      "lat": 37.3688,
+      "lng": -121.9703,
+      "product": "H100, GB200, and GB300 GPUs",
       "criticality": "critical",
-      "source": "10-Q Q2 FY2026 Earnings Transcript"
-    },
-    {
-      "entity": "TSMC",
-      "role": "foundry",
-      "city": "Hsinchu",
-      "country": "Taiwan",
-      "lat": 24.7735,
-      "lng": 120.9976,
-      "product": "Advanced AI Silicon Fabrication",
-      "criticality": "critical",
-      "source": "Industry Disclosures"
+      "sources": [
+        "https://simplywall.st/stocks/us/software/nasdaq-msft/microsoft/past",
+        "https://www.theaiconsultingnetwork.com/blog/microsoft-fairwater-worlds-most-powerful-ai-data-center-wisconsin-cre-investors-2026"
+      ]
     },
     {
       "entity": "Foxconn",
       "role": "contract_manufacturer",
       "city": "New Taipei City",
       "country": "Taiwan",
-      "lat": 24.9680,
-      "lng": 121.4390,
-      "product": "Consumer Xbox Consoles, AI Server Final Assembly",
+      "lat": 24.9668,
+      "lng": 121.3933,
+      "product": "Data center infrastructure and hardware assembly",
       "criticality": "important",
-      "source": "Wikipedia / Manufacturing Digital"
+      "sources": [
+        "https://rcedc.org/expansion-of-microsoft-datacenter-in-racine-county/"
+      ]
+    },
+    {
+      "entity": "CoreWeave",
+      "role": "cloud_infrastructure",
+      "city": "Roseland",
+      "country": "USA",
+      "lat": 40.8034,
+      "lng": -74.2876,
+      "product": "Computing capacity leasing",
+      "criticality": "important",
+      "sources": [
+        "https://www.cnbc.com/2026/01/28/microsoft-msft-q2-earnings-report-2026.html"
+      ]
+    },
+    {
+      "entity": "Cisco",
+      "role": "key_supplier",
+      "city": "San Jose",
+      "country": "USA",
+      "lat": 37.406,
+      "lng": -121.931,
+      "product": "Acacia optics and 8223 routers",
+      "criticality": "important",
+      "sources": [
+        "https://www.linkedin.com/posts/satyanadella_today-we-announced-our-new-fairwater-datacenter-activity-7394420047294648321-RQ77"
+      ]
+    },
+    {
+      "entity": "Walsh Construction",
+      "role": "logistics",
+      "city": "Chicago",
+      "country": "USA",
+      "lat": 41.8781,
+      "lng": -87.6298,
+      "product": "Data center construction services",
+      "criticality": "standard",
+      "sources": [
+        "https://www.datacenterdynamics.com/en/news/microsoft-breaks-ground-on-1bn-data-center-in-wisconsin/"
+      ]
+    },
+    {
+      "entity": "AMD",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "USA",
+      "lat": 37.3748,
+      "lng": -121.975,
+      "product": "Custom silicon and AI collaboration",
+      "criticality": "important",
+      "sources": [
+        "https://simplywall.st/stocks/us/software/nasdaq-msft/microsoft/past"
+      ]
+    },
+    {
+      "entity": "Nebius",
+      "role": "cloud_infrastructure",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "lat": 52.3676,
+      "lng": 4.9041,
+      "product": "Computing capacity leasing",
+      "criticality": "standard",
+      "sources": [
+        "https://www.cnbc.com/2026/01/28/microsoft-msft-q2-earnings-report-2026.html"
+      ]
     }
   ],
   "customerConcentration": [
     {
       "customer": "OpenAI",
-      "revenueShare": "45% of Commercial RPO ($126B)",
+      "revenueShare": "45% of commercial remaining performance obligation",
       "hqCity": "San Francisco",
-      "hqCountry": "USA",
-      "lat": 37.7631,
-      "lng": -122.4168,
-      "relationship": "Exclusive cloud provider, AI model integration partner",
-      "source": "10-Q Q2 FY2026 Earnings Transcript"
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Strategic AI partner and major cloud services customer",
+      "sources": [
+        "https://www.cnbc.com/2026/01/28/microsoft-msft-q2-earnings-report-2026.html"
+      ]
     },
     {
-      "customer": "Government of India",
-      "revenueShare": "Undisclosed",
-      "hqCity": "New Delhi",
-      "hqCountry": "India",
-      "lat": 28.6139,
-      "lng": 77.2090,
-      "relationship": "Digital welfare infrastructure integration (e-Shram, NCS), covering over 310 million citizens",
-      "source": "Microsoft News Asia"
+      "customer": "Anthropic",
+      "revenueShare": "30 billion USD in planned cloud services",
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Cloud services customer",
+      "sources": [
+        "https://www.cnbc.com/2026/01/28/microsoft-msft-q2-earnings-report-2026.html"
+      ]
+    },
+    {
+      "customer": "Accenture",
+      "revenueShare": null,
+      "hqCity": "Dublin",
+      "hqCountry": "Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "relationship": "Enterprise customer utilizing Copilot and cloud services",
+      "sources": [
+        "https://www.microsoft.com/en-us/investor/default",
+        "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3"
+      ]
+    },
+    {
+      "customer": "Siemens",
+      "revenueShare": null,
+      "hqCity": "Munich",
+      "hqCountry": "Germany",
+      "lat": 48.1351,
+      "lng": 11.582,
+      "relationship": "Enterprise customer utilizing AI and cloud services",
+      "sources": [
+        "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3"
+      ]
+    },
+    {
+      "customer": "Dell Technologies Inc.",
+      "revenueShare": null,
+      "hqCity": "Round Rock",
+      "hqCountry": "United States",
+      "lat": 30.5083,
+      "lng": -97.6789,
+      "relationship": "OEM partner licensing Windows and software",
+      "sources": [
+        "https://www.trefis.com/data/companies/MSFT",
+        "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+      ]
+    },
+    {
+      "customer": "HP Inc.",
+      "revenueShare": null,
+      "hqCity": "Palo Alto",
+      "hqCountry": "United States",
+      "lat": 37.4419,
+      "lng": -122.143,
+      "relationship": "OEM partner licensing Windows and software",
+      "sources": [
+        "https://www.trefis.com/data/companies/MSFT",
+        "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm"
+      ]
     }
   ],
   "geopoliticalRisks": [
     {
-      "region": "European Union",
-      "lat": 50.8476,
-      "lng": 4.3572,
-      "riskScore": 5,
-      "riskCategory": "regulatory_compliance",
-      "riskLabel": "DMA & DSA Enforcement",
-      "description": "European Commission enforcing Digital Markets Act. Potential fines up to 10% of global revenue for structural non-compliance, equating to over $28B based on FY25 revenues.",
-      "impactLevel": "critical",
-      "filingReference": "European Business Magazine / Tech Enforcement Tracking",
-      "lastUpdated": "2026-03-14"
-    },
-    {
       "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
+      "lat": 35.8617,
+      "lng": 104.1954,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "Rare-Earth Element Export Controls",
-      "description": "Beijing strictly regulating export of REEs critical to PCBs and specialized cooling fan motors.",
-      "impactLevel": "critical",
-      "filingReference": "MERICS Report",
-      "lastUpdated": "2026-03-14"
-    },
-    {
-      "region": "United States",
-      "lat": 38.8951,
-      "lng": -77.0364,
-      "riskScore": 4,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "100% Tariffs on Chinese Imports",
-      "description": "Incoming US administration threatens 100% tariffs, forcing rapid, capital-intensive unwinding of MSFT's Chinese manufacturing base.",
+      "riskLabel": "Export Controls and Trade Retaliation",
+      "description": "Expanded US export controls on semiconductors and AI technology, combined with potential Chinese retaliatory measures, threaten Microsoft's supply chain and market access in China.",
       "impactLevel": "high",
-      "filingReference": "Industry Trade Press",
-      "lastUpdated": "2026-03-14"
+      "filingReference": "https://www.morganlewis.com/pubs/2026/01/us-international-trade-and-investment-key-shifts-in-2025-and-what-businesses-should-know-for-2026",
+      "lastUpdated": "2026-05-12"
     },
     {
       "region": "United States",
-      "lat": 47.6396,
-      "lng": -122.1284,
-      "riskScore": 5,
-      "riskCategory": "environmental_regulation",
-      "riskLabel": "Seismic Activity at Core Hubs",
-      "description": "Redmond HQ and Silicon Valley campuses exist in seismically active regions; single points of failure for corporate governance.",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "IRS Transfer Pricing Dispute",
+      "description": "The IRS is seeking $28.9 billion in additional tax payments plus penalties and interest related to intercompany transfer pricing for tax years 2004-2013.",
       "impactLevel": "critical",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-03-14"
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "lastUpdated": "2026-05-12"
+    },
+    {
+      "region": "European Union",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Antitrust and Digital Markets Act Scrutiny",
+      "description": "Microsoft faces ongoing antitrust investigations and compliance requirements under the EU Digital Markets Act and Digital Services Act regarding cloud practices and product bundling.",
+      "impactLevel": "high",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "lastUpdated": "2026-05-12"
+    },
+    {
+      "region": "Global",
+      "lat": 0.0,
+      "lng": 0.0,
+      "riskScore": 3,
+      "riskCategory": "data_privacy",
+      "riskLabel": "GDPR and Data Privacy Enforcement",
+      "description": "Microsoft and its subsidiary LinkedIn face ongoing legal challenges and potential fines related to GDPR violations in the EU.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "lastUpdated": "2026-05-12"
+    },
+    {
+      "region": "Middle East",
+      "lat": 29.2985,
+      "lng": 42.551,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Regional Conflict and Infrastructure Risk",
+      "description": "Ongoing conflicts in the Israel-Hamas region and geopolitical tensions in the Gulf pose risks to regional trade, supply chain continuity, and AI infrastructure projects.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+      "lastUpdated": "2026-05-12"
     }
   ]
 }
