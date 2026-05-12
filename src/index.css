@@ -598,3 +598,39 @@ h4 {
   pointer-events: none;
   z-index: 15;
 }
+/* ===== Research Report Markdown Styles ===== */
+.research-prose-archivist table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  background: white;
+  border: 1px solid var(--color-ink);
+}
+
+.research-prose-archivist th {
+  background: var(--color-ink);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.research-prose-archivist td {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border-muted);
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+.research-prose-archivist tr:nth-child(even) {
+  background: var(--color-bg-paper-dark);
+}
+
+.research-prose-archivist tr:hover {
+  background: rgba(42, 90, 138, 0.05); /* Very light blue tint */
+}

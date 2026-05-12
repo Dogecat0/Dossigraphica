@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 import type {
     GeoIntelligence, SupplyChainNode,
     CustomerNode, GeopoliticalRisk
@@ -332,6 +333,7 @@ function ResearchTab({ markdown, onNavigate }: { markdown: string; onNavigate: (
     return (
         <div className="animate-fade-in research-prose-archivist font-serif">
             <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}
                 components={{
                     h1: ({ children }) => <h1 className="text-3xl font-serif font-bold text-[var(--color-ink)] mt-10 mb-6 border-b-2 border-[var(--color-ink)] pb-2">{children}</h1>,
