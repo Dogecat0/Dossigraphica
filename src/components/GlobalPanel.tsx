@@ -107,12 +107,12 @@ export default function GlobalPanel({
             </div>
 
             {/* Index Tabs */}
-            <div className="flex flex-wrap px-8 mt-4">
+            <div className="flex flex-nowrap overflow-x-auto px-8 mt-4 pb-[2px]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {TABS.map(tab => (
                     <button
                         key={tab.id}
                         onClick={() => onTabChange(tab.id as TabId)}
-                        className={`index-tab ${activeTab === tab.id ? 'active' : ''}`}
+                        className={`index-tab shrink-0 whitespace-nowrap ${activeTab === tab.id ? 'active' : ''}`}
                     >
                         {tab.label}
                     </button>

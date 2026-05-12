@@ -109,13 +109,13 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
                 </div>
             </div>
 
-            {/* Index Tabs (Flat Multi-row) */}
-            <div className="flex flex-wrap px-8 mt-4">
+            {/* Index Tabs (Single Row) */}
+            <div className="flex flex-nowrap overflow-x-auto px-8 mt-4 pb-[2px]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {availableTabs.map(tab => (
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id as TabId)}
-                        className={`index-tab ${activeTab === tab.id ? 'active' : ''}`}
+                        className={`index-tab shrink-0 whitespace-nowrap ${activeTab === tab.id ? 'active' : ''}`}
                     >
                         {tab.label}
                     </button>

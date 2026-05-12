@@ -92,7 +92,19 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 ) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const globeRef = useRef<any>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
     const [hoveredEntityId, setHoveredEntityId] = useState<string | null>(null)
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+
+    useEffect(() => {
+        if (!containerRef.current) return
+        const observer = new ResizeObserver((entries) => {
+            const { width, height } = entries[0].contentRect
+            setDimensions({ width, height })
+        })
+        observer.observe(containerRef.current)
+        return () => observer.disconnect()
+    }, [])
 
     useImperativeHandle(ref, () => ({
         flyTo(lat: number, lng: number, altitude: number = 1.8) {
@@ -506,9 +518,13 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
     }, [onEntityClick])
 
     return (
-        <Globe
-            ref={globeRef}
-            rendererConfig={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        <div ref={containerRef} className="w-full h-full">
+            {dimensions.width > 0 && (
+                <Globe
+                    ref={globeRef}
+                    width={dimensions.width}
+                    height={dimensions.height}
+                    rendererConfig={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
             globeMaterial={new THREE.MeshStandardMaterial({
                 color: '#eae7d4',
                 emissive: '#fdfcf0',
@@ -549,7 +565,9 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
             animateIn={true}
             waitForGlobeReady={true}
-        />
+                />
+            )}
+        </div>
     )
 })
 

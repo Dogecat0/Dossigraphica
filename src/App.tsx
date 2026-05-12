@@ -264,7 +264,7 @@ export default function App() {
 
             {/* Intel Panel / Global Panel */}
             {isIntelPanelOpen && !isIntelMinimized && (
-                <div className="w-[480px] h-full flex flex-col dossier-panel animate-slide-open overflow-hidden">
+                <div className="w-[640px] h-full flex flex-col dossier-panel animate-slide-open overflow-hidden">
                     {viewMode === 'company' ? (
                         <IntelPanel
                             intel={geoIntelligence}
