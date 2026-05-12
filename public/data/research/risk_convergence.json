@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-12T14:32:37.707659",
+  "lastUpdated": "2026-05-12T14:57:06.775532",
   "regions": [
     {
       "region": "China",
@@ -57,8 +57,8 @@
         }
       ],
       "riskDimensions": [
-        "regulatory_compliance",
-        "trade_restriction"
+        "trade_restriction",
+        "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 8 companies in China."
     },
@@ -106,8 +106,8 @@
         }
       ],
       "riskDimensions": [
-        "environmental_regulation",
-        "geopolitical_conflict"
+        "geopolitical_conflict",
+        "environmental_regulation"
       ],
       "summary": "Aggregated risk from 6 companies in Taiwan."
     },
@@ -173,10 +173,10 @@
         }
       ],
       "riskDimensions": [
-        "regulatory_compliance",
+        "trade_restriction",
         "labor_regulation",
         "tax_policy",
-        "trade_restriction"
+        "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 9 companies in United States."
     },
