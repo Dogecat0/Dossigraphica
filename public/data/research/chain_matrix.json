@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-02T13:23:41.261655",
+  "lastUpdated": "2026-05-12T14:32:37.706290",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -52,51 +52,107 @@
     },
     {
       "from": "AMZN",
-      "to": "Foxconn Technology Group",
+      "to": "Cerebras Systems",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Foxconn Technology Group for Echo smart speakers, Kindle e-readers",
+      "description": "AMZN depends on Cerebras Systems for Low-latency AI silicon",
       "strength": "critical",
-      "value": "contract_manufacturer"
+      "value": "key_supplier"
     },
     {
       "from": "AMZN",
-      "to": "Foxconn / Quanta",
+      "to": "Anthropic, PBC",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Foxconn / Quanta for Advanced consumer electronics assembly",
-      "strength": "important",
-      "value": "contract_manufacturer"
-    },
-    {
-      "from": "AMZN",
-      "to": "TSM",
-      "type": "buyer_supplier",
-      "description": "AMZN depends on TSMC for Custom AI Silicon (Trainium, Graviton)",
+      "description": "AMZN depends on Anthropic, PBC for AI cloud services and models",
       "strength": "critical",
-      "value": "foundry"
+      "value": "key_supplier"
     },
     {
       "from": "AMZN",
-      "to": "Marvell Technology / Alchip",
+      "to": "Rivian Automotive, Inc.",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Marvell Technology / Alchip for Custom AI product design, Trainium accelerator architecture",
+      "description": "AMZN depends on Rivian Automotive, Inc. for Electric delivery vehicles",
       "strength": "important",
       "value": "key_supplier"
     },
     {
-      "from": "US, Germany, UK",
-      "to": "AMZN",
+      "from": "AMZN",
+      "to": "Citibank, N.A.",
       "type": "buyer_supplier",
-      "description": "US, Germany, UK is a major customer of AMZN",
-      "strength": "critical",
-      "value": "80.7%"
+      "description": "AMZN depends on Citibank, N.A. for Administrative agent for credit agreements",
+      "strength": "important",
+      "value": "key_supplier"
     },
     {
-      "from": "Enterprise Cloud",
+      "from": "AMZN",
+      "to": "Globalstar",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Globalstar for Satellite services for Amazon Leo",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "United States Postal Service",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on United States Postal Service for Last-mile delivery services",
+      "strength": "standard",
+      "value": "logistics"
+    },
+    {
+      "from": "OpenAI",
       "to": "AMZN",
       "type": "buyer_supplier",
-      "description": "Enterprise Cloud is a major customer of AMZN",
+      "description": "OpenAI is a major customer of AMZN",
       "strength": "critical",
-      "value": "18.1%"
+      "value": "$100 billion commitment"
+    },
+    {
+      "from": "Anthropic",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Anthropic is a major customer of AMZN",
+      "strength": "critical",
+      "value": "$25 billion investment"
+    },
+    {
+      "from": "AAPL",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Apple is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Delta Air Lines",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Delta Air Lines is a major customer of AMZN",
+      "strength": "important",
+      "value": "Meaningful revenue commitment"
+    },
+    {
+      "from": "AT&T",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "AT&T is a major customer of AMZN",
+      "strength": "important",
+      "value": "Meaningful revenue commitment"
+    },
+    {
+      "from": "Vodafone",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Vodafone is a major customer of AMZN",
+      "strength": "important",
+      "value": "Meaningful revenue commitment"
+    },
+    {
+      "from": "JetBlue",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "JetBlue is a major customer of AMZN",
+      "strength": "important",
+      "value": "Meaningful revenue commitment"
     },
     {
       "from": "ASML",
@@ -268,35 +324,107 @@
     },
     {
       "from": "GOOGL",
-      "to": "Foxconn & FIH Mobile",
+      "to": "NVDA",
       "type": "buyer_supplier",
-      "description": "GOOGL depends on Foxconn & FIH Mobile for Pixel Smartphone NPI & Mass Assembly",
-      "strength": "important",
+      "description": "GOOGL depends on NVIDIA for GPUs and AI accelerators",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "GOOGL",
+      "to": "Magna International",
+      "type": "buyer_supplier",
+      "description": "GOOGL depends on Magna International for Autonomous vehicle assembly",
+      "strength": "critical",
       "value": "contract_manufacturer"
     },
     {
       "from": "GOOGL",
-      "to": "TSMC (Fab 18)",
+      "to": "Walmart",
       "type": "buyer_supplier",
-      "description": "GOOGL depends on TSMC (Fab 18) for Tensor G5 SoC (3nm N3P) & Nvidia GPUs",
-      "strength": "critical",
-      "value": "foundry"
+      "description": "GOOGL depends on Walmart for Delivery partnership for Wing",
+      "strength": "standard",
+      "value": "logistics"
+    },
+    {
+      "from": "GOOGL",
+      "to": "DoorDash",
+      "type": "buyer_supplier",
+      "description": "GOOGL depends on DoorDash for Delivery partnership for Wing",
+      "strength": "standard",
+      "value": "logistics"
+    },
+    {
+      "from": "GOOGL",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "GOOGL depends on Broadcom for Compute capacity infrastructure",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "GOOGL",
+      "to": "Jaguar Land Rover",
+      "type": "buyer_supplier",
+      "description": "GOOGL depends on Jaguar Land Rover for Electric vehicles for Waymo",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "Anthropic",
+      "to": "GOOGL",
+      "type": "buyer_supplier",
+      "description": "Anthropic is a major customer of GOOGL",
+      "strength": "important",
+      "value": "tens of billions of dollars"
     },
     {
       "from": "AAPL",
       "to": "GOOGL",
       "type": "buyer_supplier",
-      "description": "Apple Inc. is a major customer of GOOGL",
-      "strength": "critical",
-      "value": "Unquantified precisely, yields ~28% of US search queries"
+      "description": "Apple is a major customer of GOOGL",
+      "strength": "important",
+      "value": null
     },
     {
-      "from": "Samsung Electronics",
+      "from": "Bosch",
       "to": "GOOGL",
       "type": "buyer_supplier",
-      "description": "Samsung Electronics is a major customer of GOOGL",
-      "strength": "critical",
-      "value": "Unquantified precisely, part of ~19.4% US query share from OEMs"
+      "description": "Bosch is a major customer of GOOGL",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Citi Wealth",
+      "to": "GOOGL",
+      "type": "buyer_supplier",
+      "description": "Citi Wealth is a major customer of GOOGL",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Merck",
+      "to": "GOOGL",
+      "type": "buyer_supplier",
+      "description": "Merck is a major customer of GOOGL",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Mars, Incorporated",
+      "to": "GOOGL",
+      "type": "buyer_supplier",
+      "description": "Mars, Incorporated is a major customer of GOOGL",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "US Department of Defense",
+      "to": "GOOGL",
+      "type": "buyer_supplier",
+      "description": "US Department of Defense is a major customer of GOOGL",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "META",
@@ -332,35 +460,67 @@
     },
     {
       "from": "MSFT",
-      "to": "China Domestic Mining/Processing",
+      "to": "OpenAI",
       "type": "buyer_supplier",
-      "description": "MSFT depends on China Domestic Mining/Processing for Rare-Earth Elements (Samarium, Terbium)",
-      "strength": "critical",
-      "value": "raw_material"
-    },
-    {
-      "from": "MSFT",
-      "to": "Nvidia",
-      "type": "buyer_supplier",
-      "description": "MSFT depends on Nvidia for GB200 and GB300 GPUs",
+      "description": "MSFT depends on OpenAI for AI foundational models and IP",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "MSFT",
-      "to": "TSM",
+      "to": "NVDA",
       "type": "buyer_supplier",
-      "description": "MSFT depends on TSMC for Advanced AI Silicon Fabrication",
+      "description": "MSFT depends on NVIDIA for H100, GB200, and GB300 GPUs",
       "strength": "critical",
-      "value": "foundry"
+      "value": "key_supplier"
     },
     {
       "from": "MSFT",
       "to": "Foxconn",
       "type": "buyer_supplier",
-      "description": "MSFT depends on Foxconn for Consumer Xbox Consoles, AI Server Final Assembly",
+      "description": "MSFT depends on Foxconn for Data center infrastructure and hardware assembly",
       "strength": "important",
       "value": "contract_manufacturer"
+    },
+    {
+      "from": "MSFT",
+      "to": "CoreWeave",
+      "type": "buyer_supplier",
+      "description": "MSFT depends on CoreWeave for Computing capacity leasing",
+      "strength": "important",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "MSFT",
+      "to": "Cisco",
+      "type": "buyer_supplier",
+      "description": "MSFT depends on Cisco for Acacia optics and 8223 routers",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MSFT",
+      "to": "Walsh Construction",
+      "type": "buyer_supplier",
+      "description": "MSFT depends on Walsh Construction for Data center construction services",
+      "strength": "standard",
+      "value": "logistics"
+    },
+    {
+      "from": "MSFT",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "MSFT depends on AMD for Custom silicon and AI collaboration",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MSFT",
+      "to": "Nebius",
+      "type": "buyer_supplier",
+      "description": "MSFT depends on Nebius for Computing capacity leasing",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
     },
     {
       "from": "OpenAI",
@@ -368,15 +528,47 @@
       "type": "buyer_supplier",
       "description": "OpenAI is a major customer of MSFT",
       "strength": "critical",
-      "value": "45% of Commercial RPO ($126B)"
+      "value": "45% of commercial remaining performance obligation"
     },
     {
-      "from": "Government of India",
+      "from": "Anthropic",
       "to": "MSFT",
       "type": "buyer_supplier",
-      "description": "Government of India is a major customer of MSFT",
+      "description": "Anthropic is a major customer of MSFT",
+      "strength": "critical",
+      "value": "30 billion USD in planned cloud services"
+    },
+    {
+      "from": "Accenture",
+      "to": "MSFT",
+      "type": "buyer_supplier",
+      "description": "Accenture is a major customer of MSFT",
       "strength": "important",
-      "value": "Undisclosed"
+      "value": null
+    },
+    {
+      "from": "Siemens",
+      "to": "MSFT",
+      "type": "buyer_supplier",
+      "description": "Siemens is a major customer of MSFT",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Dell Technologies Inc.",
+      "to": "MSFT",
+      "type": "buyer_supplier",
+      "description": "Dell Technologies Inc. is a major customer of MSFT",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HP Inc.",
+      "to": "MSFT",
+      "type": "buyer_supplier",
+      "description": "HP Inc. is a major customer of MSFT",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "MU",
