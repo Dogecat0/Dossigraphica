@@ -1,6 +1,6 @@
 # Dossigraphica: Geographic Intelligence Dashboard
 
-**Dossigraphica** is a high-fidelity Geographic Intelligence (GEOINT) visualization platform designed for corporate analysis. It provides a "Parchment and Ink" styled 3D interface to explore the global footprint, supply chain dependencies, and geopolitical risk profiles of major multinational corporations.
+**[Dossigraphica](https://zhicheng-wang.com/Dossigraphica/)** is a high-fidelity Geographic Intelligence (GEOINT) visualization platform designed for corporate analysis. It provides a "Parchment and Ink" styled 3D interface to explore the global footprint, supply chain dependencies, and geopolitical risk profiles of major multinational corporations.
 
 It features a local-first, autonomous Geo-Intelligence research agent pipeline. A user submits a query, and the pipeline searches the web, extracts content, and reasons over it to produce structured intelligence briefs and Markdown narratives, streamed via SSE (ready for UI integration).
 
