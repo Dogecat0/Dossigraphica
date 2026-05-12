@@ -25,7 +25,7 @@ from litellm.exceptions import (
     InternalServerError,
     Timeout
 )
-from .schemas import STRICT_CONFIG
+from schemas import STRICT_CONFIG
 
 # Configure logging
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()

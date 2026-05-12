@@ -79,6 +79,7 @@ class RevenueSegmentSchema(BaseModel):
 
 class RevenueGeographySchema(BaseModel):
     model_config = STRICT_CONFIG
+    reasoning: str = Field(..., description="Internal logic for selecting the reporting period and reconciling discrepancies between latest available data, prioritizing the most recent reporting period rather than data from previous period.")
     fiscalYear: str = Field(..., description="Reporting year.")
     totalRevenue: float | None = Field(..., description="Total company revenue.")
     currency: str = Field(..., description="Reporting currency (e.g., USD).")
@@ -128,9 +129,10 @@ class GeopoliticalRiskSchema(BaseModel):
 
 class AnchorFilingSchema(BaseModel):
     model_config = STRICT_CONFIG
-    type: str | None = Field(..., description="Filing type (e.g., 10-K).")
-    date: str | None = Field(..., description="Filing date.")
-    fiscalPeriod: str | None = Field(..., description="Reporting period based on the information from the anchored filing.")
+    reasoning: str = Field(..., description="Internal logic for selecting this specific filing as the anchor, for instance if we need to prioritize an earnings release/transcript over an older 10-Q/10-K.")
+    type: str = Field(..., description="Filing type (e.g., 10-K, 10-Q, 8-K, Earnings Release, Earnings Transcript).")
+    date: str = Field(..., description="Filing date (YYYY-MM-DD).")
+    fiscalPeriod: str = Field(..., description="Reporting period (e.g., Q1 2026).")
 
 class MarkdownSectionSchema(BaseModel):
     model_config = STRICT_CONFIG

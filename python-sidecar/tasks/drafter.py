@@ -184,16 +184,26 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
 
         # B. Anchor Filing
         async def get_anchor() -> AnchorFilingSchema:
-            template = "Identify the primary source filing (e.g. 10-K) from these facts for __QUERY__:\n__FACTS__\n\nExtract: type (10-K/10-Q/8-K), date (YYYY-MM-DD), and fiscalPeriod."
-            sys_prompt = "Extract anchor filing details with ISO dates."
+            template = (
+                "Identify the most recent primary source filing for __QUERY__ from these facts:\n__FACTS__\n\n"
+                "MANDATE: Prioritize the LATEST fiscal period found in the facts. "
+                "If a 10-K or 10-Q for the most recent period is not available, you MUST use the Earnings Release or Earnings Transcript for that period as the anchor."
+            )
+            sys_prompt = "Extract anchor filing details. Prioritize the most recent reporting period regardless of document type (10-K, 10-Q, 8-K, Earnings Release, or Transcript)."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE'])
             return await draft_section(base_prompt, AnchorFilingSchema, sys_prompt, facts=facts_text)
 
         # C. Revenue Geography
         async def get_revenue() -> RevenueGeographySchema:
-            template = "Extract revenue breakdown by geography for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- totalRevenue must be a raw number (e.g. 63900000000, not '$63.9B').\n- percentage must be a decimal (0.00 to 1.00)."
-            sys_prompt = "Extract revenue geography with raw numerical precision."
+            template = (
+                "Extract revenue breakdown by geography for __QUERY__ from these facts:\n__FACTS__\n\n"
+                "Requirements:\n"
+                "- MANDATE: Prioritize consistency with the LATEST reporting period rather than data from any previous period.\n"
+                "- totalRevenue must be a raw number (e.g. 63900000000, not '$63.9B').\n"
+                "- percentage must be a decimal (0.00 to 1.00)."
+            )
+            sys_prompt = "Extract revenue geography with raw numerical precision. Prioritize the most recent quarterly data to match the latest anchor filing."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(state.extracted_facts, ['REVENUE'])
             return await draft_section(base_prompt, RevenueGeographySchema, sys_prompt, facts=facts_text)
