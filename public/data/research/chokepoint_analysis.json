@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-12T14:57:06.776114",
+  "lastUpdated": "2026-05-18T22:41:01.662133",
   "chokepoints": [
     {
       "name": "TSMC Hsinchu Hub",
@@ -10,12 +10,12 @@
       "severity": "critical",
       "description": "Concentration of leading-edge semiconductor manufacturing.",
       "exposedCompanies": [
-        "ASML",
-        "AMD",
+        "MSFT",
         "META",
-        "AVGO",
         "MU",
-        "NVDA"
+        "NVDA",
+        "AVGO",
+        "AMD"
       ],
       "id": "tsmc_hsinchu",
       "mitigationStatus": "Developing"
@@ -25,13 +25,13 @@
       "type": "Equipment",
       "location": "Veldhoven, Netherlands",
       "lat": 51.412,
-      "lng": 5.461,
+      "lng": 5.455,
       "severity": "critical",
       "description": "Sole provider of EUV lithography systems.",
       "exposedCompanies": [
+        "GOOGL",
         "MU",
-        "TSM",
-        "ASML"
+        "TSM"
       ],
       "id": "asml_euv",
       "mitigationStatus": "Developing"

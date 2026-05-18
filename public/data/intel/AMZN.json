@@ -1,20 +1,20 @@
 {
   "company": "Amazon.com, Inc.",
   "ticker": "AMZN",
-  "website": "www.amazon.com/ir",
-  "sector": "Consumer Cyclical",
-  "description": "Amazon.com, Inc. is a leading global online retailer and technology company that operates through a vast international network, with significant business segments in North America, various international markets including Germany, the United Kingdom, and Japan, and a global cloud computing infrastructure via Amazon Web Services (AWS).",
+  "website": "https://www.amazon.com",
+  "sector": "Consumer Discretionary",
+  "description": "Amazon is a global technology and e-commerce leader with a massive geographic footprint, operating extensive retail, cloud computing (AWS), and logistics networks across North America, international markets, and digital infrastructure worldwide.",
   "anchorFiling": {
-    "reasoning": "The most recent financial reporting period for Amazon is Q1 2026, which was announced via an earnings release on April 29, 2026.",
+    "reasoning": "The most recent financial reporting period for Amazon (AMZN) is Q1 2026, as confirmed by multiple sources citing the earnings release date of April 29, 2026.",
     "type": "Earnings Release",
     "date": "2026-04-29",
     "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-05-12",
+  "generatedDate": "2026-05-18",
   "offices": [
     {
       "id": "AMZN-SEATTLE-HEADQUARTERS",
-      "name": "Amazon Global Headquarters",
+      "name": "Amazon Corporate Headquarters",
       "city": "Seattle",
       "state": "Washington",
       "country": "United States",
@@ -24,7 +24,8 @@
       "businessFocus": "Corporate Headquarters",
       "type": "headquarters",
       "sources": [
-        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf"
+        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
+        "https://www.aboutamazon.com/workplace/corporate-offices"
       ],
       "confidence": "verified"
     },
@@ -35,25 +36,26 @@
       "state": "Virginia",
       "country": "United States",
       "address": "Arlington, Virginia",
-      "lat": 38.858,
-      "lng": -77.055,
+      "lat": 38.8582,
+      "lng": -77.0502,
       "businessFocus": "Corporate Headquarters",
       "type": "headquarters",
       "sources": [
-        "https://www.aboutamazon.com/workplace/corporate-offices"
+        "https://www.aboutamazon.com/workplace/corporate-offices",
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm"
       ],
       "confidence": "verified"
     },
     {
-      "id": "AMZN-LONDON-REGIONAL",
-      "name": "Amazon UK Headquarters",
-      "city": "London",
-      "state": null,
-      "country": "United Kingdom",
-      "address": "1 Principal Place, Shoreditch, London",
-      "lat": 51.521,
-      "lng": -0.081,
-      "businessFocus": "Regional Corporate Office",
+      "id": "AMZN-BELLEVUE-OFFICE",
+      "name": "Bellevue Campus (Sonic and Dynamo)",
+      "city": "Bellevue",
+      "state": "Washington",
+      "country": "United States",
+      "address": "Bellevue, Washington",
+      "lat": 47.6101,
+      "lng": -122.2015,
+      "businessFocus": "Corporate Operations",
       "type": "regional",
       "sources": [
         "https://www.aboutamazon.com/workplace/corporate-offices"
@@ -61,7 +63,23 @@
       "confidence": "verified"
     },
     {
-      "id": "AMZN-HYDERABAD-ENGINEERING",
+      "id": "AMZN-LONDON-OFFICE",
+      "name": "Amazon UK Headquarters",
+      "city": "London",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "1 Principal Place, Shoreditch, London",
+      "lat": 51.5215,
+      "lng": -0.0805,
+      "businessFocus": "UK Corporate Headquarters",
+      "type": "regional",
+      "sources": [
+        "https://www.aboutamazon.com/workplace/corporate-offices"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-HYDERABAD-OFFICE",
       "name": "Amazon Hyderabad Campus",
       "city": "Hyderabad",
       "state": "Telangana",
@@ -69,15 +87,15 @@
       "address": "Hyderabad, India",
       "lat": 17.385,
       "lng": 78.4867,
-      "businessFocus": "Corporate and Engineering",
-      "type": "engineering",
+      "businessFocus": "Corporate Operations and Engineering",
+      "type": "regional",
       "sources": [
         "https://www.aboutamazon.com/workplace/corporate-offices"
       ],
       "confidence": "verified"
     },
     {
-      "id": "AMZN-CINCINNATI-LOGISTICS",
+      "id": "AMZN-HEBRON-LOGISTICS",
       "name": "Amazon Air Cargo Hub",
       "city": "Hebron",
       "state": "Kentucky",
@@ -91,162 +109,160 @@
         "https://logisticsviewpoints.com/2025/09/29/amazon-supply-chain-innovative-world/"
       ],
       "confidence": "verified"
-    },
-    {
-      "id": "AMZN-NEWYORK-REGIONAL",
-      "name": "JFK27 Office",
-      "city": "New York City",
-      "state": "New York",
-      "country": "United States",
-      "address": "Midtown Manhattan, New York City",
-      "lat": 40.7549,
-      "lng": -73.984,
-      "businessFocus": "Corporate Office",
-      "type": "regional",
-      "sources": [
-        "https://www.aboutamazon.com/workplace/corporate-offices"
-      ],
-      "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "reasoning": "The data is extracted from Amazon's Q1 2026 earnings report. Total revenue is $181.52 billion. Segment revenue for North America, International, and AWS are provided for Q1 2026. Percentages are calculated based on the total revenue of $181.52 billion.",
+    "reasoning": "The data is extracted from Amazon's Q1 2026 earnings report, which is the most recent available period. Total revenue of $181.5 billion is used as the anchor. Segment revenues for North America, International, and AWS are sourced directly from the Q1 2026 results. Percentages are calculated based on the total revenue of $181.5 billion.",
     "fiscalYear": "2026",
-    "totalRevenue": 181520000000.0,
+    "totalRevenue": 181500000000.0,
     "currency": "USD",
     "segments": [
       {
         "region": "North America",
         "revenue": 104100000000.0,
         "percentage": 0.5735,
-        "yoyGrowth": 0.12,
+        "yoyGrowth": 12.0,
         "notes": "Includes United States, Canada, and Mexico."
       },
       {
         "region": "International",
         "revenue": 39800000000.0,
         "percentage": 0.2193,
-        "yoyGrowth": 0.19,
-        "notes": "Primary operations in Germany, the United Kingdom, and Japan."
+        "yoyGrowth": 19.0,
+        "notes": "Includes primary operations in Germany, the United Kingdom, and Japan."
       },
       {
-        "region": "AWS",
+        "region": "Amazon Web Services (AWS)",
         "revenue": 37600000000.0,
-        "percentage": 0.2071,
-        "yoyGrowth": 0.28,
-        "notes": "Global cloud infrastructure services."
+        "percentage": 0.2072,
+        "yoyGrowth": 28.0,
+        "notes": "Cloud computing services segment."
       }
     ],
-    "concentrationRisk": "Amazon's revenue is heavily concentrated in the North American market, which accounts for over 57% of total net sales.",
+    "concentrationRisk": "Amazon's revenue is heavily concentrated in the North American market, which accounts for over 57% of total net sales. International operations and AWS provide diversification, but the company remains sensitive to foreign exchange fluctuations in key markets like Germany, the UK, and Japan.",
     "sources": [
       "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/",
-      "https://www.cnbc.com/2026/04/29/amazon-amzn-q1-earnings-report-2026.html",
       "https://www.digitalcommerce360.com/article/amazon-sales/"
     ]
   },
   "supplyChain": [
     {
-      "entity": "Cerebras Systems",
+      "entity": "Rivian Automotive, Inc.",
       "role": "key_supplier",
-      "city": "Sunnyvale",
-      "country": "United States",
-      "lat": 37.3688,
-      "lng": -122.0363,
-      "product": "Low-latency AI silicon",
+      "city": "Irvine",
+      "country": "USA",
+      "lat": 33.6846,
+      "lng": -117.8265,
+      "product": "Electric delivery vans",
       "criticality": "critical",
       "sources": [
-        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html"
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm"
       ]
     },
     {
       "entity": "Anthropic, PBC",
       "role": "key_supplier",
       "city": "San Francisco",
-      "country": "United States",
+      "country": "USA",
       "lat": 37.7749,
       "lng": -122.4194,
-      "product": "AI cloud services and models",
+      "product": "AI model training and compute infrastructure",
       "criticality": "critical",
       "sources": [
-        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf"
+        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
+        "https://sacra.com/c/anthropic/"
       ]
     },
     {
-      "entity": "Rivian Automotive, Inc.",
+      "entity": "Cerebras Systems",
       "role": "key_supplier",
-      "city": "Irvine",
-      "country": "United States",
-      "lat": 33.6846,
-      "lng": -117.8265,
-      "product": "Electric delivery vehicles",
+      "city": "Sunnyvale",
+      "country": "USA",
+      "lat": 37.3688,
+      "lng": -122.0363,
+      "product": "Low-latency AI silicon",
       "criticality": "important",
       "sources": [
-        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf"
+        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html"
       ]
     },
     {
-      "entity": "Citibank, N.A.",
+      "entity": "Winn-Dixie",
       "role": "key_supplier",
-      "city": "New York",
-      "country": "United States",
-      "lat": 40.7128,
-      "lng": -74.006,
-      "product": "Administrative agent for credit agreements",
-      "criticality": "important",
-      "sources": [
-        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf"
-      ]
-    },
-    {
-      "entity": "Globalstar",
-      "role": "key_supplier",
-      "city": "Covington",
-      "country": "United States",
-      "lat": 30.4833,
-      "lng": -90.1092,
-      "product": "Satellite services for Amazon Leo",
-      "criticality": "critical",
-      "sources": [
-        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
-      ]
-    },
-    {
-      "entity": "United States Postal Service",
-      "role": "logistics",
-      "city": "Washington",
-      "country": "United States",
-      "lat": 38.8951,
-      "lng": -77.0364,
-      "product": "Last-mile delivery services",
+      "city": "Jacksonville",
+      "country": "USA",
+      "lat": 30.3322,
+      "lng": -81.6557,
+      "product": "Grocery delivery partnership",
       "criticality": "standard",
       "sources": [
-        "https://www.businessreport.com/article/roundup-amazon-wholesale-prices-foreign-threat-response"
+        "https://www.digitalcommerce360.com/article/amazon-sales/"
+      ]
+    },
+    {
+      "entity": "Cargill Ocean Transportation",
+      "role": "logistics",
+      "city": "Minneapolis",
+      "country": "USA",
+      "lat": 44.9778,
+      "lng": -93.265,
+      "product": "Freight shipping and logistics",
+      "criticality": "important",
+      "sources": [
+        "https://aws.amazon.com/blogs/supply-chain/"
       ]
     }
   ],
   "customerConcentration": [
     {
       "customer": "OpenAI",
-      "revenueShare": "$100 billion commitment",
+      "revenueShare": "$138 billion total commitment",
       "hqCity": "San Francisco",
       "hqCountry": "United States",
       "lat": 37.7749,
       "lng": -122.4194,
       "relationship": "Strategic cloud services customer and AI partner",
       "sources": [
-        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html"
+        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html",
+        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
       ]
     },
     {
       "customer": "Anthropic",
-      "revenueShare": "$25 billion investment",
+      "revenueShare": null,
       "hqCity": "San Francisco",
       "hqCountry": "United States",
       "lat": 37.7749,
       "lng": -122.4194,
-      "relationship": "Strategic cloud services customer and AI partner",
+      "relationship": "Strategic AI partner and AWS customer",
       "sources": [
-        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html"
+        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/",
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm"
+      ]
+    },
+    {
+      "customer": "Meta",
+      "revenueShare": null,
+      "hqCity": "Menlo Park",
+      "hqCountry": "United States",
+      "lat": 37.4538,
+      "lng": -122.1822,
+      "relationship": "AWS infrastructure and AI partner",
+      "sources": [
+        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
+      ]
+    },
+    {
+      "customer": "Delta Air Lines",
+      "revenueShare": null,
+      "hqCity": "Atlanta",
+      "hqCountry": "United States",
+      "lat": 33.749,
+      "lng": -84.388,
+      "relationship": "AWS and Amazon Leo satellite connectivity customer",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
+        "https://www.alpha-sense.com/earnings/amzn/"
       ]
     },
     {
@@ -256,59 +272,22 @@
       "hqCountry": "United States",
       "lat": 37.323,
       "lng": -122.0322,
-      "relationship": "Satellite connectivity partner for iPhone and Apple Watch",
+      "relationship": "Strategic partner for satellite connectivity",
       "sources": [
         "https://www.cnbc.com/2026/04/29/amazon-amzn-q1-earnings-report-2026.html",
         "https://www.alpha-sense.com/earnings/amzn/"
       ]
     },
     {
-      "customer": "Delta Air Lines",
-      "revenueShare": "Meaningful revenue commitment",
-      "hqCity": "Atlanta",
+      "customer": "Uber",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
       "hqCountry": "United States",
-      "lat": 33.749,
-      "lng": -84.388,
-      "relationship": "AWS customer and satellite service partner",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS infrastructure and AI model training customer",
       "sources": [
-        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/",
-        "https://www.alpha-sense.com/earnings/amzn/"
-      ]
-    },
-    {
-      "customer": "AT&T",
-      "revenueShare": "Meaningful revenue commitment",
-      "hqCity": "Dallas",
-      "hqCountry": "United States",
-      "lat": 32.7767,
-      "lng": -96.797,
-      "relationship": "Satellite service partner",
-      "sources": [
-        "https://www.alpha-sense.com/earnings/amzn/"
-      ]
-    },
-    {
-      "customer": "Vodafone",
-      "revenueShare": "Meaningful revenue commitment",
-      "hqCity": "Newbury",
-      "hqCountry": "United Kingdom",
-      "lat": 51.4055,
-      "lng": -1.3245,
-      "relationship": "Satellite service partner",
-      "sources": [
-        "https://www.alpha-sense.com/earnings/amzn/"
-      ]
-    },
-    {
-      "customer": "JetBlue",
-      "revenueShare": "Meaningful revenue commitment",
-      "hqCity": "Long Island City",
-      "hqCountry": "United States",
-      "lat": 40.7447,
-      "lng": -73.9485,
-      "relationship": "Satellite service partner",
-      "sources": [
-        "https://www.alpha-sense.com/earnings/amzn/"
+        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
       ]
     }
   ],
@@ -320,22 +299,10 @@
       "riskScore": 5,
       "riskCategory": "regulatory_compliance",
       "riskLabel": "Antitrust Litigation",
-      "description": "The FTC and state Attorneys General have filed lawsuits alleging monopolistic practices in online retail and marketplace services, posing a critical threat to business structure.",
-      "impactLevel": "critical",
-      "filingReference": "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
-      "lastUpdated": "2026-05-12"
-    },
-    {
-      "region": "China",
-      "lat": 35.8617,
-      "lng": 104.1954,
-      "riskScore": 4,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "Foreign Investment Restrictions",
-      "description": "Strict licensing requirements for IT infrastructure and data centers force reliance on third-party partners, limiting operational control.",
+      "description": "The FTC and state Attorneys General have filed lawsuits alleging Amazon maintains monopolies in online superstores and marketplace services through anticompetitive practices.",
       "impactLevel": "high",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
-      "lastUpdated": "2026-05-12"
+      "filingReference": "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
+      "lastUpdated": "2024-09-30"
     },
     {
       "region": "India",
@@ -344,22 +311,34 @@
       "riskScore": 4,
       "riskCategory": "tax_policy",
       "riskLabel": "Cloud Services Tax Dispute",
-      "description": "The Indian tax authority asserts that cloud services fees paid to the U.S. are taxable, leading to ongoing legal disputes and potential financial liabilities.",
-      "impactLevel": "high",
+      "description": "The Indian tax authority asserts that tax applies to cloud services fees paid to Amazon in the U.S., a matter currently being contested in Indian courts.",
+      "impactLevel": "moderate",
       "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
-      "lastUpdated": "2026-05-12"
+      "lastUpdated": "2023-12-31"
     },
     {
-      "region": "European Union",
-      "lat": 50.8503,
-      "lng": 4.3517,
+      "region": "Luxembourg",
+      "lat": 49.8153,
+      "lng": 6.1296,
       "riskScore": 4,
-      "riskCategory": "regulatory_compliance",
-      "riskLabel": "GDPR and Competition Fines",
-      "description": "Significant fines imposed by the Luxembourg National Commission for Data Protection and the Italian Competition Authority highlight ongoing regulatory pressure in Europe.",
-      "impactLevel": "high",
+      "riskCategory": "data_privacy",
+      "riskLabel": "GDPR Compliance Fine",
+      "description": "The Luxembourg National Commission for Data Protection (CNPD) imposed a \u20ac746 million fine regarding GDPR compliance.",
+      "impactLevel": "moderate",
       "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
-      "lastUpdated": "2026-05-12"
+      "lastUpdated": "2023-12-31"
+    },
+    {
+      "region": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
+      "riskScore": 4,
+      "riskCategory": "political_instability",
+      "riskLabel": "Regulatory Licensing Restrictions",
+      "description": "PRC regulations restrict foreign investment in internet, IT infrastructure, data centers, and retail, forcing Amazon to use third-party contractual relationships.",
+      "impactLevel": "high",
+      "filingReference": "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
+      "lastUpdated": "2024-09-30"
     },
     {
       "region": "Strait of Hormuz",
@@ -367,11 +346,23 @@
       "lng": 56.25,
       "riskScore": 3,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Logistics Disruption",
-      "description": "Regional conflict involving Iran has disrupted transit, leading to increased fuel and logistics costs for global operations.",
+      "riskLabel": "Supply Chain Transit Disruptions",
+      "description": "Transit disruptions due to regional conflict have increased operating costs for fulfillment and supply chains.",
       "impactLevel": "moderate",
       "filingReference": "https://www.digitalcommerce360.com/article/amazon-sales/",
-      "lastUpdated": "2026-05-12"
+      "lastUpdated": "2026-05-18"
+    },
+    {
+      "region": "Italy",
+      "lat": 41.8719,
+      "lng": 12.5674,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Marketplace Practice Infringements",
+      "description": "The Italian Competition Authority imposed a \u20ac1.13 billion fine for alleged marketplace and logistics practice infringements.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
+      "lastUpdated": "2023-12-31"
     }
   ]
 }

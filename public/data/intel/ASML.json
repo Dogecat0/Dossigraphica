@@ -1,131 +1,229 @@
 {
   "company": "ASML Holding N.V.",
   "ticker": "ASML",
-  "website": null,
+  "website": "https://www.asml.com",
   "sector": "Semiconductor Equipment",
-  "description": "ASML is a Netherlands-based global leader in the semiconductor industry, specializing in the development and manufacturing of advanced photolithography systems. With a dominant 90% market share, the company maintains a vast international footprint, serving major semiconductor manufacturers across Europe, Asia, and North America to enable the production of increasingly complex microchips.",
+  "description": "ASML is a global leader in the semiconductor industry, specializing in the development and manufacturing of advanced lithography systems. Headquartered in Veldhoven, the company maintains a significant international presence with major revenue streams originating from China, Taiwan, South Korea, the United States, and Japan, supporting the global semiconductor supply chain.",
   "anchorFiling": {
-    "type": "6-K",
-    "date": "2026-04-26",
+    "reasoning": "The Q1 2026 financial results published on April 15, 2026, represent the most recent reporting period for ASML, taking precedence over the 2025 Annual Report.",
+    "type": "Earnings Release",
+    "date": "2026-04-15",
     "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-04-26",
+  "generatedDate": "2026-05-18",
   "offices": [
     {
       "id": "ASML-VELDHOVEN-HEADQUARTERS",
-      "name": "ASML Veldhoven Headquarters",
+      "name": "ASML Global Headquarters",
       "city": "Veldhoven",
-      "state": null,
+      "state": "North Brabant",
       "country": "Netherlands",
       "address": "De Run 6501, 5504 DR Veldhoven",
       "lat": 51.412,
-      "lng": 5.461,
-      "businessFocus": "Headquarters, R&D, and Manufacturing",
+      "lng": 5.455,
+      "businessFocus": "Corporate headquarters, R&D, manufacturing, and European support",
       "type": "headquarters",
-      "sources": [],
-      "confidence": "city_center_approximation"
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations/veldhoven",
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+      ],
+      "confidence": "verified"
     },
     {
-      "id": "ASML-BERLIN-MANUFACTURING",
-      "name": "ASML Berlin Optics",
-      "city": "Berlin",
-      "state": null,
-      "country": "Germany",
-      "address": null,
-      "lat": 52.52,
-      "lng": 13.405,
-      "businessFocus": "Optics manufacturing",
+      "id": "ASML-WILTON-MANUFACTURING",
+      "name": "ASML Wilton Facility",
+      "city": "Wilton",
+      "state": "Connecticut",
+      "country": "United States",
+      "address": "77 Danbury Road, Wilton, CT 06897",
+      "lat": 41.203,
+      "lng": -73.438,
+      "businessFocus": "Manufacturing, technology development, and capacity expansion",
       "type": "manufacturing",
-      "sources": [],
-      "confidence": "city_center_approximation"
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations",
+        "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf"
+      ],
+      "confidence": "verified"
     },
     {
-      "id": "ASML-SANDIEGO-ENGINEERING",
-      "name": "ASML San Diego (Cymer)",
+      "id": "ASML-SANDIEGO-MANUFACTURING",
+      "name": "ASML San Diego Facility",
       "city": "San Diego",
       "state": "California",
-      "country": "USA",
-      "address": null,
-      "lat": 32.715,
-      "lng": -117.161,
-      "businessFocus": "EUV light sources",
-      "type": "engineering",
-      "sources": [],
-      "confidence": "city_center_approximation"
+      "country": "United States",
+      "address": "17075 Thornmint Court, San Diego, CA 92127",
+      "lat": 33.015,
+      "lng": -117.085,
+      "businessFocus": "Lithography light source center of excellence (Cymer)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations",
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+      ],
+      "confidence": "verified"
     },
     {
-      "id": "ASML-PHOENIX-SATELLITE",
-      "name": "ASML Phoenix Training Center",
-      "city": "Phoenix",
-      "state": "Arizona",
-      "country": "USA",
-      "address": null,
-      "lat": 33.448,
-      "lng": -112.074,
-      "businessFocus": "Training center",
-      "type": "satellite",
-      "sources": [],
-      "confidence": "city_center_approximation"
+      "id": "ASML-SANJOSE-ENGINEERING",
+      "name": "ASML Silicon Valley Facility",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "address": "80 West Tasman Drive, San Jose, CA 95131",
+      "lat": 37.405,
+      "lng": -121.935,
+      "businessFocus": "Software, R&D, computational applications, and e-beam metrology",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations/silicon-valley"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-LINKOU-MANUFACTURING",
+      "name": "ASML Linkou Factory",
+      "city": "Taoyuan City",
+      "state": "Taiwan",
+      "country": "Taiwan",
+      "address": "Keji 6th Road #59, Hwa-Ya Technology Park, Guishan Dist.",
+      "lat": 25.055,
+      "lng": 121.375,
+      "businessFocus": "Manufacturing and system assembly",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TAINAN-MANUFACTURING",
+      "name": "ASML Tainan Factory",
+      "city": "Tainan City",
+      "state": "Taiwan",
+      "country": "Taiwan",
+      "address": "Dali 1st Road #9, Xinshi Dist.",
+      "lat": 23.085,
+      "lng": 120.275,
+      "businessFocus": "Manufacturing and system assembly",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-HWASEONG-REGIONAL",
+      "name": "ASML South Korea Headquarters",
+      "city": "Hwaseong-si",
+      "state": "Gyeonggi-do",
+      "country": "South Korea",
+      "address": "47, Dongtan-daero 9ga-gil, 18488 Hwaseong-si",
+      "lat": 37.205,
+      "lng": 127.075,
+      "businessFocus": "Regional headquarters and support",
+      "type": "regional",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SHANGHAI-REGIONAL",
+      "name": "ASML China Headquarters",
+      "city": "Shanghai",
+      "state": "Shanghai",
+      "country": "China",
+      "address": "Jinke Road 288, Chamtime Plaza, Pudong New Area",
+      "lat": 31.205,
+      "lng": 121.605,
+      "businessFocus": "Regional headquarters and support",
+      "type": "regional",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
     }
   ],
   "revenueGeography": {
+    "reasoning": "The reporting period selected is the full fiscal year 2025, as it provides the most comprehensive and recent audited geographic revenue breakdown for ASML. Data from 2024 and Q1 2026 were reviewed, but 2025 provides the most complete regional dataset for the latest full fiscal year.",
     "fiscalYear": "2025",
-    "totalRevenue": 32700000000.0,
+    "totalRevenue": 32667300000.0,
     "currency": "EUR",
     "segments": [
       {
         "region": "China",
-        "revenue": 3710000000.0,
-        "percentage": 0.1135,
+        "revenue": 9519700000.0,
+        "percentage": 0.291,
         "yoyGrowth": null,
-        "notes": "Revenue converted from USD to EUR based on provided figures."
+        "notes": "China was the largest geographic market for ASML in 2025."
       },
       {
         "region": "Taiwan",
-        "revenue": 2650000000.0,
-        "percentage": 0.081,
+        "revenue": 8337900000.0,
+        "percentage": 0.255,
         "yoyGrowth": null,
-        "notes": "Revenue converted from USD to EUR based on provided figures."
+        "notes": "Taiwan remains a critical market for advanced lithography systems."
+      },
+      {
+        "region": "South Korea",
+        "revenue": 8159600000.0,
+        "percentage": 0.25,
+        "yoyGrowth": null,
+        "notes": "South Korea is a major hub for memory and logic chip manufacturing."
       },
       {
         "region": "United States",
-        "revenue": 529300000.0,
-        "percentage": 0.0162,
+        "revenue": 4089100000.0,
+        "percentage": 0.125,
         "yoyGrowth": null,
-        "notes": "Revenue converted from USD to EUR based on provided figures."
+        "notes": "Revenue from the United States market."
+      },
+      {
+        "region": "Japan",
+        "revenue": 1420900000.0,
+        "percentage": 0.044,
+        "yoyGrowth": null,
+        "notes": "Revenue from the Japanese market."
+      },
+      {
+        "region": "Rest of World",
+        "revenue": 1140100000.0,
+        "percentage": 0.035,
+        "yoyGrowth": null,
+        "notes": "Calculated as the remainder of total net sales."
       }
     ],
-    "concentrationRisk": "Significant exposure to China, though share decreased from 33% in 2025 to 19% in Q1 2026.",
+    "concentrationRisk": "ASML has significant revenue concentration in Asia, specifically China, Taiwan, and South Korea, which collectively account for approximately 79.6% of total net sales in 2025.",
     "sources": [
-      "Investor10",
-      "Wikipedia"
+      "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
     ]
   },
   "supplyChain": [
     {
-      "entity": "ASML Berlin",
-      "role": "contract_manufacturer",
-      "city": "Berlin",
+      "entity": "Carl Zeiss SMT GmbH",
+      "role": "key_supplier",
+      "city": "Oberkochen",
       "country": "Germany",
-      "lat": 52.52,
-      "lng": 13.405,
-      "product": "Wafer tables, wafer clamps, reticle chucks, mirror blocks",
+      "lat": 48.7833,
+      "lng": 10.0967,
+      "product": "Optical columns, lenses, mirrors, and illuminators",
       "criticality": "critical",
       "sources": [
-        "https://www.asml.com/en/company/about-asml/locations/berlin"
+        "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
       ]
     },
     {
-      "entity": "imec",
+      "entity": "Cymer",
       "role": "key_supplier",
-      "city": "Leuven",
-      "country": "Belgium",
-      "lat": 50.8796,
-      "lng": 4.6875,
-      "product": "Semiconductor research and development",
+      "city": "San Diego",
+      "country": "United States",
+      "lat": 32.7157,
+      "lng": -117.1611,
+      "product": "DUV and EUV light sources",
       "criticality": "critical",
       "sources": [
-        "https://www.asml.com/en/news/press-releases"
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     },
     {
@@ -135,120 +233,79 @@
       "country": "Germany",
       "lat": 52.52,
       "lng": 13.405,
-      "product": "Optical glass components",
-      "criticality": "critical",
+      "product": "Optical components for EUV systems",
+      "criticality": "important",
       "sources": [
-        "https://en.wikipedia.org/wiki/ASML_Holding"
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     },
     {
-      "entity": "Hermes Microvision Inc.",
+      "entity": "imec",
       "role": "key_supplier",
-      "city": "Hsinchu",
-      "country": "Taiwan",
-      "lat": 24.8138,
-      "lng": 120.9675,
-      "product": "E-beam inspection tools",
-      "criticality": "critical",
+      "city": "Leuven",
+      "country": "Belgium",
+      "lat": 50.8796,
+      "lng": 4.7009,
+      "product": "Research and innovation partnership for lithography",
+      "criticality": "important",
       "sources": [
-        "https://en.wikipedia.org/wiki/ASML_Holding"
+        "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
       ]
     },
     {
-      "entity": "TSMC",
-      "role": "foundry",
-      "city": "Hsinchu",
-      "country": "Taiwan",
-      "lat": 24.8138,
-      "lng": 120.9675,
-      "product": "Semiconductor manufacturing services",
-      "criticality": "critical",
+      "entity": "Mistral AI",
+      "role": "key_supplier",
+      "city": "Paris",
+      "country": "France",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "product": "AI software and technology partnership",
+      "criticality": "standard",
       "sources": [
-        "https://www.tsmc.com/english/aboutTSMC"
-      ]
-    },
-    {
-      "entity": "Intel",
-      "role": "foundry",
-      "city": "Santa Clara",
-      "country": "USA",
-      "lat": 37.3541,
-      "lng": -121.9552,
-      "product": "Semiconductor manufacturing services",
-      "criticality": "critical",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Intel"
-      ]
-    },
-    {
-      "entity": "Samsung Electronics",
-      "role": "foundry",
-      "city": "Suwon",
-      "country": "South Korea",
-      "lat": 37.2636,
-      "lng": 127.0286,
-      "product": "Semiconductor manufacturing services",
-      "criticality": "critical",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Samsung_Electronics"
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
       ]
     }
   ],
   "customerConcentration": [
+    {
+      "customer": "Intel Corporation",
+      "revenueShare": null,
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.3947,
+      "lng": -121.977,
+      "relationship": "Major customer, stakeholder, and strategic partner.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/ASML",
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+      ]
+    },
     {
       "customer": "TSMC",
       "revenueShare": null,
       "hqCity": "Hsinchu",
       "hqCountry": "Taiwan",
       "lat": 24.7737,
-      "lng": 121.0122,
-      "relationship": "Major customer and strategic partner for EUV and High-NA EUV lithography equipment.",
+      "lng": 121.0121,
+      "relationship": "Major customer and strategic partner for advanced node production.",
       "sources": [
-        "https://www.tradingview.com/symbols/EURONEXT-ASML/",
-        "https://www.asml.com/en",
-        "https://www.cnbc.com/2026/04/15/asml-q1-2026-earnings-report.html",
-        "https://en.wikipedia.org/wiki/ASML"
+        "https://en.wikipedia.org/wiki/ASML",
+        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
+        "https://futurumgroup.com/insights/asml-q2-fy-2025-earnings-reflect-strong-demand-but-with-future-uncertainty/"
       ]
     },
     {
-      "customer": "Intel",
-      "revenueShare": null,
-      "hqCity": "Santa Clara",
-      "hqCountry": "United States",
-      "lat": 37.392,
-      "lng": -121.965,
-      "relationship": "Major customer and historical investor; utilizes ASML machines for microchip manufacturing.",
-      "sources": [
-        "https://www.asml.com/en/company/about-asml",
-        "https://en.wikipedia.org/wiki/ASML_Holding"
-      ]
-    },
-    {
-      "customer": "Samsung Electronics",
+      "customer": "Samsung",
       "revenueShare": null,
       "hqCity": "Suwon",
       "hqCountry": "South Korea",
       "lat": 37.2636,
       "lng": 127.0286,
-      "relationship": "Major customer utilizing EUV tools for fabrication facilities.",
+      "relationship": "Major customer and foundry partner.",
       "sources": [
-        "https://www.asml.com/en",
         "https://en.wikipedia.org/wiki/ASML",
-        "https://www.perplexity.ai/finance/ASML"
-      ]
-    },
-    {
-      "customer": "SK Hynix",
-      "revenueShare": null,
-      "hqCity": "Icheon",
-      "hqCountry": "South Korea",
-      "lat": 37.2723,
-      "lng": 127.435,
-      "relationship": "Major customer purchasing EUV lithography machines for memory production.",
-      "sources": [
-        "https://www.cnbc.com/2026/04/15/asml-q1-2026-earnings-report.html",
-        "https://www.cnbc.com/2026/01/28/asml-q4-2025-earnings-report.html",
-        "https://www.perplexity.ai/finance/ASML"
+        "https://futurumgroup.com/insights/asml-q2-fy-2025-earnings-reflect-strong-demand-but-with-future-uncertainty/"
       ]
     },
     {
@@ -258,22 +315,9 @@
       "hqCountry": "United States",
       "lat": 43.615,
       "lng": -116.2023,
-      "relationship": "Historical and current major customer.",
+      "relationship": "Major customer and early adopter of ASML systems.",
       "sources": [
-        "https://en.wikipedia.org/wiki/ASML",
-        "https://www.gurufocus.com/stock/ASML/summary"
-      ]
-    },
-    {
-      "customer": "SMIC",
-      "revenueShare": null,
-      "hqCity": "Shanghai",
-      "hqCountry": "China",
-      "lat": 31.2304,
-      "lng": 121.4737,
-      "relationship": "Major Chinese chipmaker relying on ASML's DUV tools.",
-      "sources": [
-        "https://www.cnbc.com/2026/04/07/asml-shares-today-us-chip-export-curbs-china.html"
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     }
   ],
@@ -284,23 +328,35 @@
       "lng": 104.1954,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "Export Controls on Lithography Systems",
-      "description": "US and Dutch export restrictions prohibit the sale and servicing of advanced EUV and certain DUV lithography machines to Chinese customers, significantly impacting ASML's revenue outlook.",
+      "riskLabel": "Export Control Restrictions",
+      "description": "Strict export license requirements for DUV immersion lithography systems and EUV tools, limiting sales to Chinese customers and impacting revenue streams.",
       "impactLevel": "critical",
-      "filingReference": "https://www.asml.com/en/news/press-releases/2026/q4-2025-financial-results",
-      "lastUpdated": "2026-04-26"
+      "filingReference": "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
+      "lastUpdated": "2024-12-02"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "riskScore": 4,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Cross-Strait Instability",
+      "description": "High concentration of semiconductor manufacturing capacity in Taiwan makes ASML's supply chain and customer base vulnerable to regional geopolitical tensions and seismic activity.",
+      "impactLevel": "high",
+      "filingReference": "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
+      "lastUpdated": "2026-01-28"
     },
     {
       "region": "United States",
       "lat": 37.0902,
       "lng": -95.7129,
-      "riskScore": 4,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "MATCH Act and Legislative Restrictions",
-      "description": "Proposed US legislation, such as the MATCH Act, seeks to further restrict the export of DUV lithography machines to China, creating ongoing uncertainty for ASML's global sales strategy.",
-      "impactLevel": "high",
-      "filingReference": "https://www.cnbc.com/2026/04/15/asml-q1-2026-earnings-report.html",
-      "lastUpdated": "2026-04-26"
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "US Executive Order 14173",
+      "description": "Impacts diversity targets and long-term incentive plan structures for US-based employees, requiring operational adjustments to comply with merit-based opportunity mandates.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
+      "lastUpdated": "2025-04-21"
     },
     {
       "region": "Netherlands",
@@ -308,23 +364,23 @@
       "lng": 5.2913,
       "riskScore": 3,
       "riskCategory": "labor_regulation",
-      "riskLabel": "Domestic Policy and Talent Retention",
-      "description": "Potential changes to tax breaks for skilled migrants and domestic infrastructure policies have created friction between ASML and the Dutch government, posing risks to talent acquisition and operational stability.",
+      "riskLabel": "Workforce Reduction",
+      "description": "Planned reduction of approximately 1,700 positions in Technology and IT organizations, primarily in the Netherlands and the US, to optimize operational efficiency.",
       "impactLevel": "moderate",
-      "filingReference": "https://www.silicon.co.uk/cloud/server/the-netherlands-to-spend-billions-to-retain-asml-operations-556732",
-      "lastUpdated": "2026-04-26"
+      "filingReference": "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
+      "lastUpdated": "2026-01-28"
     },
     {
-      "region": "Global",
-      "lat": 55.702215,
-      "lng": 12.5592485,
-      "riskScore": 3,
-      "riskCategory": "political_instability",
-      "riskLabel": "Macroeconomic and Trade Protectionism",
-      "description": "Rising global protectionism and trade tensions, including tariff announcements and geopolitical conflicts, create uncertainty in the semiconductor equipment market and impact ASML's gross margin guidance.",
-      "impactLevel": "moderate",
-      "filingReference": "https://www.asml.com/en/news/press-releases/2025/q1-2025-financial-results",
-      "lastUpdated": "2026-04-26"
+      "region": "South Korea",
+      "lat": 35.9078,
+      "lng": 127.7669,
+      "riskScore": 2,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Local Certification Requirements",
+      "description": "Mandatory certification for heavy lifting tools (500kg+) and compliance with K-REACH environmental regulations for local operations.",
+      "impactLevel": "low",
+      "filingReference": "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
+      "lastUpdated": "2024-12-02"
     }
   ]
 }

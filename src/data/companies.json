@@ -89,14 +89,14 @@
   },
   {
     "company": "Amazon.com, Inc.",
-    "website": "www.amazon.com/ir",
+    "website": "https://www.amazon.com",
     "ticker": "AMZN",
-    "sector": "Consumer Cyclical",
-    "description": "Amazon.com, Inc. is a leading global online retailer and technology company that operates through a vast international network, with significant business segments in North America, various international markets including Germany, the United Kingdom, and Japan, and a global cloud computing infrastructure via Amazon Web Services (AWS).",
+    "sector": "Consumer Discretionary",
+    "description": "Amazon is a global technology and e-commerce leader with a massive geographic footprint, operating extensive retail, cloud computing (AWS), and logistics networks across North America, international markets, and digital infrastructure worldwide.",
     "offices": [
       {
         "id": "AMZN-SEATTLE-HEADQUARTERS",
-        "name": "Amazon Global Headquarters",
+        "name": "Amazon Corporate Headquarters",
         "city": "Seattle",
         "state": "Washington",
         "country": "United States",
@@ -106,7 +106,8 @@
         "businessFocus": "Corporate Headquarters",
         "type": "headquarters",
         "sources": [
-          "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf"
+          "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
+          "https://www.aboutamazon.com/workplace/corporate-offices"
         ],
         "confidence": "verified"
       },
@@ -117,25 +118,26 @@
         "state": "Virginia",
         "country": "United States",
         "address": "Arlington, Virginia",
-        "lat": 38.858,
-        "lng": -77.055,
+        "lat": 38.8582,
+        "lng": -77.0502,
         "businessFocus": "Corporate Headquarters",
         "type": "headquarters",
         "sources": [
-          "https://www.aboutamazon.com/workplace/corporate-offices"
+          "https://www.aboutamazon.com/workplace/corporate-offices",
+          "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm"
         ],
         "confidence": "verified"
       },
       {
-        "id": "AMZN-LONDON-REGIONAL",
-        "name": "Amazon UK Headquarters",
-        "city": "London",
-        "state": null,
-        "country": "United Kingdom",
-        "address": "1 Principal Place, Shoreditch, London",
-        "lat": 51.521,
-        "lng": -0.081,
-        "businessFocus": "Regional Corporate Office",
+        "id": "AMZN-BELLEVUE-OFFICE",
+        "name": "Bellevue Campus (Sonic and Dynamo)",
+        "city": "Bellevue",
+        "state": "Washington",
+        "country": "United States",
+        "address": "Bellevue, Washington",
+        "lat": 47.6101,
+        "lng": -122.2015,
+        "businessFocus": "Corporate Operations",
         "type": "regional",
         "sources": [
           "https://www.aboutamazon.com/workplace/corporate-offices"
@@ -143,7 +145,23 @@
         "confidence": "verified"
       },
       {
-        "id": "AMZN-HYDERABAD-ENGINEERING",
+        "id": "AMZN-LONDON-OFFICE",
+        "name": "Amazon UK Headquarters",
+        "city": "London",
+        "state": null,
+        "country": "United Kingdom",
+        "address": "1 Principal Place, Shoreditch, London",
+        "lat": 51.5215,
+        "lng": -0.0805,
+        "businessFocus": "UK Corporate Headquarters",
+        "type": "regional",
+        "sources": [
+          "https://www.aboutamazon.com/workplace/corporate-offices"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-HYDERABAD-OFFICE",
         "name": "Amazon Hyderabad Campus",
         "city": "Hyderabad",
         "state": "Telangana",
@@ -151,15 +169,15 @@
         "address": "Hyderabad, India",
         "lat": 17.385,
         "lng": 78.4867,
-        "businessFocus": "Corporate and Engineering",
-        "type": "engineering",
+        "businessFocus": "Corporate Operations and Engineering",
+        "type": "regional",
         "sources": [
           "https://www.aboutamazon.com/workplace/corporate-offices"
         ],
         "confidence": "verified"
       },
       {
-        "id": "AMZN-CINCINNATI-LOGISTICS",
+        "id": "AMZN-HEBRON-LOGISTICS",
         "name": "Amazon Air Cargo Hub",
         "city": "Hebron",
         "state": "Kentucky",
@@ -173,87 +191,146 @@
           "https://logisticsviewpoints.com/2025/09/29/amazon-supply-chain-innovative-world/"
         ],
         "confidence": "verified"
-      },
-      {
-        "id": "AMZN-NEWYORK-REGIONAL",
-        "name": "JFK27 Office",
-        "city": "New York City",
-        "state": "New York",
-        "country": "United States",
-        "address": "Midtown Manhattan, New York City",
-        "lat": 40.7549,
-        "lng": -73.984,
-        "businessFocus": "Corporate Office",
-        "type": "regional",
-        "sources": [
-          "https://www.aboutamazon.com/workplace/corporate-offices"
-        ],
-        "confidence": "verified"
       }
     ]
   },
   {
     "company": "ASML Holding N.V.",
-    "website": null,
+    "website": "https://www.asml.com",
     "ticker": "ASML",
     "sector": "Semiconductor Equipment",
-    "description": "ASML is a Netherlands-based global leader in the semiconductor industry, specializing in the development and manufacturing of advanced photolithography systems. With a dominant 90% market share, the company maintains a vast international footprint, serving major semiconductor manufacturers across Europe, Asia, and North America to enable the production of increasingly complex microchips.",
+    "description": "ASML is a global leader in the semiconductor industry, specializing in the development and manufacturing of advanced lithography systems. Headquartered in Veldhoven, the company maintains a significant international presence with major revenue streams originating from China, Taiwan, South Korea, the United States, and Japan, supporting the global semiconductor supply chain.",
     "offices": [
       {
         "id": "ASML-VELDHOVEN-HEADQUARTERS",
-        "name": "ASML Veldhoven Headquarters",
+        "name": "ASML Global Headquarters",
         "city": "Veldhoven",
-        "state": null,
+        "state": "North Brabant",
         "country": "Netherlands",
         "address": "De Run 6501, 5504 DR Veldhoven",
         "lat": 51.412,
-        "lng": 5.461,
-        "businessFocus": "Headquarters, R&D, and Manufacturing",
+        "lng": 5.455,
+        "businessFocus": "Corporate headquarters, R&D, manufacturing, and European support",
         "type": "headquarters",
-        "sources": [],
-        "confidence": "city_center_approximation"
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations/veldhoven",
+          "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+        ],
+        "confidence": "verified"
       },
       {
-        "id": "ASML-BERLIN-MANUFACTURING",
-        "name": "ASML Berlin Optics",
-        "city": "Berlin",
-        "state": null,
-        "country": "Germany",
-        "address": null,
-        "lat": 52.52,
-        "lng": 13.405,
-        "businessFocus": "Optics manufacturing",
+        "id": "ASML-WILTON-MANUFACTURING",
+        "name": "ASML Wilton Facility",
+        "city": "Wilton",
+        "state": "Connecticut",
+        "country": "United States",
+        "address": "77 Danbury Road, Wilton, CT 06897",
+        "lat": 41.203,
+        "lng": -73.438,
+        "businessFocus": "Manufacturing, technology development, and capacity expansion",
         "type": "manufacturing",
-        "sources": [],
-        "confidence": "city_center_approximation"
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations",
+          "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf"
+        ],
+        "confidence": "verified"
       },
       {
-        "id": "ASML-SANDIEGO-ENGINEERING",
-        "name": "ASML San Diego (Cymer)",
+        "id": "ASML-SANDIEGO-MANUFACTURING",
+        "name": "ASML San Diego Facility",
         "city": "San Diego",
         "state": "California",
-        "country": "USA",
-        "address": null,
-        "lat": 32.715,
-        "lng": -117.161,
-        "businessFocus": "EUV light sources",
-        "type": "engineering",
-        "sources": [],
-        "confidence": "city_center_approximation"
+        "country": "United States",
+        "address": "17075 Thornmint Court, San Diego, CA 92127",
+        "lat": 33.015,
+        "lng": -117.085,
+        "businessFocus": "Lithography light source center of excellence (Cymer)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations",
+          "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+        ],
+        "confidence": "verified"
       },
       {
-        "id": "ASML-PHOENIX-SATELLITE",
-        "name": "ASML Phoenix Training Center",
-        "city": "Phoenix",
-        "state": "Arizona",
-        "country": "USA",
-        "address": null,
-        "lat": 33.448,
-        "lng": -112.074,
-        "businessFocus": "Training center",
-        "type": "satellite",
-        "sources": [],
-        "confidence": "city_center_approximation"
+        "id": "ASML-SANJOSE-ENGINEERING",
+        "name": "ASML Silicon Valley Facility",
+        "city": "San Jose",
+        "state": "California",
+        "country": "United States",
+        "address": "80 West Tasman Drive, San Jose, CA 95131",
+        "lat": 37.405,
+        "lng": -121.935,
+        "businessFocus": "Software, R&D, computational applications, and e-beam metrology",
+        "type": "engineering",
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations/silicon-valley"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "ASML-LINKOU-MANUFACTURING",
+        "name": "ASML Linkou Factory",
+        "city": "Taoyuan City",
+        "state": "Taiwan",
+        "country": "Taiwan",
+        "address": "Keji 6th Road #59, Hwa-Ya Technology Park, Guishan Dist.",
+        "lat": 25.055,
+        "lng": 121.375,
+        "businessFocus": "Manufacturing and system assembly",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "ASML-TAINAN-MANUFACTURING",
+        "name": "ASML Tainan Factory",
+        "city": "Tainan City",
+        "state": "Taiwan",
+        "country": "Taiwan",
+        "address": "Dali 1st Road #9, Xinshi Dist.",
+        "lat": 23.085,
+        "lng": 120.275,
+        "businessFocus": "Manufacturing and system assembly",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "ASML-HWASEONG-REGIONAL",
+        "name": "ASML South Korea Headquarters",
+        "city": "Hwaseong-si",
+        "state": "Gyeonggi-do",
+        "country": "South Korea",
+        "address": "47, Dongtan-daero 9ga-gil, 18488 Hwaseong-si",
+        "lat": 37.205,
+        "lng": 127.075,
+        "businessFocus": "Regional headquarters and support",
+        "type": "regional",
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "ASML-SHANGHAI-REGIONAL",
+        "name": "ASML China Headquarters",
+        "city": "Shanghai",
+        "state": "Shanghai",
+        "country": "China",
+        "address": "Jinke Road 288, Chamtime Plaza, Pudong New Area",
+        "lat": 31.205,
+        "lng": 121.605,
+        "businessFocus": "Regional headquarters and support",
+        "type": "regional",
+        "sources": [
+          "https://www.asml.com/company/about-asml/locations"
+        ],
+        "confidence": "verified"
       }
     ]
   },
@@ -352,10 +429,10 @@
   },
   {
     "company": "Alphabet Inc.",
-    "website": null,
+    "website": "https://www.abc.xyz",
     "ticker": "GOOGL",
     "sector": "Technology",
-    "description": "Alphabet Inc. is a US-based global conglomerate that operates as a parent company for major technology entities including Google and Waymo. With a massive workforce of nearly 200,000 employees and annual revenues exceeding $400 billion, the company maintains a pervasive global geographic footprint, delivering digital services, search infrastructure, and autonomous driving technologies to markets worldwide.",
+    "description": "Alphabet Inc. is a multinational technology conglomerate holding company that operates a vast global footprint, providing services and infrastructure across the United States, EMEA, Asia Pacific, and other regions of the Americas, with significant revenue streams generated internationally.",
     "offices": [
       {
         "id": "GOOGL-MOUNTAINVIEW-HEADQUARTERS",
@@ -366,43 +443,139 @@
         "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043",
         "lat": 37.422,
         "lng": -122.084,
-        "businessFocus": "Corporate Headquarters",
+        "businessFocus": "Corporate Headquarters and R&D",
         "type": "headquarters",
         "sources": [
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/GOOG-10-Q-Q3-2025.pdf",
-          "https://en.wikipedia.org/wiki/Alphabet_Inc."
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/GOOG-10-K-2025.pdf",
+          "https://about.google/company-info/locations/"
         ],
         "confidence": "verified"
       },
       {
-        "id": "GOOGL-NEWYORK-INFRASTRUCTURE",
-        "name": "Google New York Infrastructure",
-        "city": "New York",
-        "state": "New York",
+        "id": "GOOGL-SANFRANCISCO-OFFICE",
+        "name": "Google San Francisco",
+        "city": "San Francisco",
+        "state": "California",
         "country": "United States",
-        "address": "111 Eighth Avenue, New York, NY",
-        "lat": 40.742,
-        "lng": -74.003,
-        "businessFocus": "Infrastructure and Engineering",
-        "type": "engineering",
+        "address": "1 Market St, San Francisco, CA 94105",
+        "lat": 37.793,
+        "lng": -122.393,
+        "businessFocus": "Sales and Engineering",
+        "type": "regional",
         "sources": [
-          "https://en.wikipedia.org/wiki/Alphabet_Inc."
+          "https://about.google/company-info/locations/"
         ],
         "confidence": "verified"
       },
       {
-        "id": "GOOGL-LONDON-INFRASTRUCTURE",
-        "name": "Google King's Cross",
+        "id": "GOOGL-SAOPAULO-OFFICE",
+        "name": "Google São Paulo",
+        "city": "São Paulo",
+        "state": "São Paulo",
+        "country": "Brazil",
+        "address": "Av. Brig. Faria Lima, 3477 - Vila Olímpia, São Paulo - SP, 04538-132",
+        "lat": -23.586,
+        "lng": -46.682,
+        "businessFocus": "Regional Sales and Operations",
+        "type": "regional",
+        "sources": [
+          "https://about.google/company-info/locations/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "GOOGL-DUBLIN-OFFICE",
+        "name": "Google Dublin",
+        "city": "Dublin",
+        "state": null,
+        "country": "Ireland",
+        "address": "4 Barrow St, Grand Canal Dock, Dublin 4, D04 V4X7",
+        "lat": 53.338,
+        "lng": -6.233,
+        "businessFocus": "EMEA Headquarters",
+        "type": "regional",
+        "sources": [
+          "https://about.google/company-info/locations/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "GOOGL-LONDON-OFFICE",
+        "name": "Google London",
         "city": "London",
         "state": null,
         "country": "United Kingdom",
-        "address": "King's Cross, London",
-        "lat": 51.532,
-        "lng": -0.124,
-        "businessFocus": "Infrastructure and Engineering",
+        "address": "1-13 St Giles High St, London WC2H 8AG",
+        "lat": 51.516,
+        "lng": -0.128,
+        "businessFocus": "Regional Sales and Engineering",
+        "type": "regional",
+        "sources": [
+          "https://about.google/company-info/locations/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "GOOGL-MUNICH-OFFICE",
+        "name": "Google Munich",
+        "city": "Munich",
+        "state": "Bavaria",
+        "country": "Germany",
+        "address": "Erika-Mann-Straße 33, 80636 München",
+        "lat": 48.148,
+        "lng": 11.515,
+        "businessFocus": "Safety Engineering",
         "type": "engineering",
         "sources": [
-          "https://en.wikipedia.org/wiki/Alphabet_Inc."
+          "https://about.google/company-info/locations/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "GOOGL-ZURICH-OFFICE",
+        "name": "Google Zurich",
+        "city": "Zürich",
+        "state": null,
+        "country": "Switzerland",
+        "address": "Brandschenkestrasse 110, 8002 Zürich",
+        "lat": 47.365,
+        "lng": 8.525,
+        "businessFocus": "Engineering and R&D",
+        "type": "engineering",
+        "sources": [
+          "https://about.google/company-info/locations/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "GOOGL-BANGALORE-OFFICE",
+        "name": "Google Bangalore",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "country": "India",
+        "address": "Mahadevapura Village, Krishnarajapuram, Hobli, Bengaluru East, Bengaluru, Karnataka 560037",
+        "lat": 12.99,
+        "lng": 77.69,
+        "businessFocus": "Engineering and Cloud Operations",
+        "type": "engineering",
+        "sources": [
+          "https://about.google/company-info/locations/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "GOOGL-SYDNEY-OFFICE",
+        "name": "Google Sydney",
+        "city": "Sydney",
+        "state": "New South Wales",
+        "country": "Australia",
+        "address": "One Darling Island Rd, Pyrmont NSW 2009",
+        "lat": -33.868,
+        "lng": 151.195,
+        "businessFocus": "Regional Sales and Engineering",
+        "type": "regional",
+        "sources": [
+          "https://about.google/company-info/locations/"
         ],
         "confidence": "verified"
       }
@@ -495,89 +668,105 @@
     ]
   },
   {
-    "company": "Microsoft Corporation",
+    "company": "Microsoft",
     "website": "https://www.microsoft.com",
     "ticker": "MSFT",
     "sector": "Technology",
-    "description": "Microsoft is a global technology leader headquartered in Redmond, Washington, operating a massive international infrastructure that includes extensive data center networks, such as the Fairwater facility in Wisconsin, and a workforce of approximately 228,000 employees deployed across the globe to support its cloud, software, and AI-focused platforms.",
+    "description": "Microsoft is a global technology leader with a massive international footprint, generating significant revenue across the Americas, EMEA, and Asia-Pacific regions, supported by a vast cloud infrastructure and strategic global acquisitions.",
     "offices": [
       {
         "id": "MSFT-REDMOND-HEADQUARTERS",
         "name": "Microsoft Corporate Headquarters",
         "city": "Redmond",
         "state": "Washington",
-        "country": "United States",
+        "country": "USA",
         "address": "One Microsoft Way, Redmond, WA 98052-6399",
         "lat": 47.6423,
         "lng": -122.1273,
         "businessFocus": "Corporate Headquarters and R&D",
         "type": "headquarters",
         "sources": [
-          "Microsoft Corporate Filings"
-        ],
-        "confidence": "verified"
-      },
-      {
-        "id": "MSFT-MOUNT-PLEASANT-DATA_CENTER",
-        "name": "Fairwater AI Datacenter Campus",
-        "city": "Mount Pleasant",
-        "state": "Wisconsin",
-        "country": "United States",
-        "address": "Mount Pleasant, WI",
-        "lat": 42.725,
-        "lng": -87.915,
-        "businessFocus": "AI Infrastructure and Datacenter",
-        "type": "data_center",
-        "sources": [
-          "Microsoft Corporate Filings"
-        ],
-        "confidence": "verified"
-      },
-      {
-        "id": "MSFT-SINGAPORE-REGIONAL",
-        "name": "Microsoft Singapore Operations Center",
-        "city": "Singapore",
-        "state": null,
-        "country": "Singapore",
-        "address": "80 Raffles Place, Singapore",
-        "lat": 1.2833,
-        "lng": 103.8519,
-        "businessFocus": "Regional Operations and Sales",
-        "type": "regional",
-        "sources": [
-          "Microsoft Corporate Filings"
-        ],
-        "confidence": "verified"
-      },
-      {
-        "id": "MSFT-NEW-YORK-SATELLITE",
-        "name": "Microsoft Experience Center New York",
-        "city": "New York",
-        "state": "New York",
-        "country": "United States",
-        "address": "677 Fifth Avenue, New York, NY",
-        "lat": 40.7607,
-        "lng": -73.9765,
-        "businessFocus": "Retail and Experience Center",
-        "type": "satellite",
-        "sources": [
-          "Microsoft Corporate Filings"
+          "Microsoft 10-K Filing"
         ],
         "confidence": "verified"
       },
       {
         "id": "MSFT-DUBLIN-REGIONAL",
-        "name": "Microsoft Ireland Operations Center",
+        "name": "One Microsoft Place",
         "city": "Dublin",
         "state": null,
         "country": "Ireland",
-        "address": "Dublin, Ireland",
-        "lat": 53.3498,
-        "lng": -6.2603,
-        "businessFocus": "Regional Operations",
+        "address": "One Microsoft Place, South County Business Park, Leopardstown, Dublin 18",
+        "lat": 53.2694,
+        "lng": -6.1856,
+        "businessFocus": "EMEA Regional Operations",
         "type": "regional",
         "sources": [
-          "Microsoft Corporate Filings"
+          "Microsoft Corporate Site"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MSFT-READING-REGIONAL",
+        "name": "Thames Valley Park",
+        "city": "Reading",
+        "state": "Berkshire",
+        "country": "UK",
+        "address": "Thames Valley Park, Reading, RG6 1WG",
+        "lat": 51.455,
+        "lng": -0.935,
+        "businessFocus": "UK Regional Operations",
+        "type": "regional",
+        "sources": [
+          "Microsoft Corporate Site"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MSFT-TOKYO-REGIONAL",
+        "name": "Shinagawa Grand Central Tower",
+        "city": "Tokyo",
+        "state": null,
+        "country": "Japan",
+        "address": "2-16-3 Konan, Minato-ku, Tokyo",
+        "lat": 35.628,
+        "lng": 139.741,
+        "businessFocus": "Japan Regional Operations",
+        "type": "regional",
+        "sources": [
+          "Microsoft Corporate Site"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MSFT-LEEDS-DATA_CENTER",
+        "name": "Skelton Grange Data Center",
+        "city": "Leeds",
+        "state": "West Yorkshire",
+        "country": "UK",
+        "address": "Skelton Grange Road, Leeds",
+        "lat": 53.775,
+        "lng": -1.485,
+        "businessFocus": "Hyperscale Cloud Infrastructure",
+        "type": "data_center",
+        "sources": [
+          "Microsoft Corporate Site"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MSFT-BEIJING-REGIONAL",
+        "name": "Microsoft Beijing Campus",
+        "city": "Beijing",
+        "state": null,
+        "country": "China",
+        "address": "5 Danling Street, Haidian District, Beijing",
+        "lat": 39.981,
+        "lng": 116.315,
+        "businessFocus": "Regional Operations and R&D",
+        "type": "regional",
+        "sources": [
+          "Microsoft Corporate Site"
         ],
         "confidence": "verified"
       }
