@@ -31,6 +31,14 @@ const TABS: { id: TabId; label: string; icon: typeof Globe }[] = [
 /** Known tracked tickers in the system */
 const TRACKED_TICKERS = new Set(['AMD', 'AMZN', 'ASML', 'AVGO', 'GOOGL', 'INTC', 'META', 'MSFT', 'MU', 'NVDA', 'TSM'])
 
+const RISK_COLORS: Record<number, string> = {
+    1: '#e4dcc4', // Muted sage/gold
+    2: '#c5a880', // Brushed Gold
+    3: '#ad8755', // Deeper Gold/Bronze
+    4: '#c2593f', // Rust Orange
+    5: '#8f331d', // Deep Blood Rust
+}
+
 /** Abbreviate risk dimension labels for compact display */
 function abbreviateDimension(dim: string): string {
     const map: Record<string, string> = {
@@ -83,10 +91,10 @@ export default function GlobalPanel({
     return (
         <div className="flex-1 flex flex-col h-full bg-[var(--color-bg-paper)]">
             {/* Dossier Header */}
-            <div className="px-8 py-8 border-b-2 border-[var(--color-ink)]">
+            <div className="px-8 py-8 border-b border-[var(--color-border-muted)]">
                 <div className="flex items-start justify-between mb-4">
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--color-ink-muted)] mb-1">
+                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--color-accent-gold)] font-bold mb-1">
                             Strategic Global Analysis
                         </p>
                         <h2 className="text-3xl font-serif font-bold text-[var(--color-ink)] leading-none">
@@ -95,11 +103,11 @@ export default function GlobalPanel({
                     </div>
                     <div className="text-right">
                         <p className="text-[10px] font-mono font-bold text-[var(--color-ink)]">DOC. GVC-2026-B</p>
-                        <p className="text-[10px] font-mono text-[var(--color-ink-muted)]">REV: {chainMatrix?.version || '1.0'}</p>
+                        <p className="text-[10px] font-mono text-[var(--color-ink-light)] font-bold font-mono">REV: {chainMatrix?.version || '1.0'}</p>
                     </div>
                 </div>
                 
-                <div className="flex items-center gap-4 text-[11px] font-serif italic text-[var(--color-ink-muted)]">
+                <div className="flex items-center gap-4 text-[11px] font-serif italic text-[var(--color-ink-light)]">
                     <span>COVERAGE: 11 KEY ENTITIES</span>
                     <span>·</span>
                     <span>UPDATED: {chainMatrix?.lastUpdated || 'RECENT'}</span>
@@ -128,12 +136,12 @@ export default function GlobalPanel({
                     {activeTab === 'chokepoints' && <ChokepointsTab analysis={chokepointAnalysis} onNavigate={handleNavigate} />}
                     
                     {/* Dossier Footer */}
-                    <div className="mt-12 pt-6 border-t border-[var(--color-ink-muted)]/30 text-center">
-                        <p className="text-[10px] font-mono text-[var(--color-ink-muted)] uppercase tracking-widest">
+                    <div className="mt-12 pt-6 border-t border-[var(--color-border-muted)] text-center">
+                        <p className="text-[10px] font-mono text-[var(--color-ink-light)] uppercase tracking-widest">
                             End of Global Intelligence Summary
                         </p>
                         <div className="flex justify-center gap-1 mt-2">
-                             {[...Array(5)].map((_, i) => <div key={i} className="w-1 h-1 rounded-full bg-[var(--color-ink-light)]" />)}
+                             {[...Array(5)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-gold)]/40" />)}
                         </div>
                     </div>
                 </div>
@@ -143,7 +151,7 @@ export default function GlobalPanel({
 }
 
 /* ================================================================
-   OVERVIEW TAB (unchanged)
+   OVERVIEW TAB
    ================================================================ */
 
 function OverviewTab({ chainMatrix, risk, chokepoints }: { chainMatrix: ChainMatrix | null, risk: RiskConvergence | null, chokepoints: ChokepointAnalysis | null }) {
@@ -156,25 +164,25 @@ function OverviewTab({ chainMatrix, risk, chokepoints }: { chainMatrix: ChainMat
     return (
         <div className="space-y-8 animate-fade-in">
             <section>
-                <h3 className="text-sm font-mono font-bold uppercase tracking-widest text-[var(--color-ink)] mb-3 border-b border-[var(--color-ink)] pb-1">Executive Summary</h3>
+                <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-[var(--color-accent-gold)] mb-3 border-b border-[var(--color-border-muted)] pb-1">Executive Summary</h3>
                 <p className="text-base font-serif leading-relaxed text-[var(--color-ink-muted)] first-letter:text-4xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:text-[var(--color-ink)]">
                     The semiconductor and AI infrastructure value chain represents the most concentrated and geopolitically sensitive network in the modern industrial era. This dossier aggregates systemic linkages, geographic risk concentrations, and critical chokepoints across the 11 dominant entities currently mapping the sector's trajectory from lithography to deployment.
                 </p>
             </section>
 
-            <div className="grid grid-cols-2 gap-px bg-[var(--color-ink)] border border-[var(--color-ink)]">
+            <div className="grid grid-cols-2 gap-4">
                 <StatCell label="Total Dependencies" value={String(chainMatrix?.dependencies.length || 0)} />
                 <StatCell label="Risk Regions" value={String(risk?.regions.length || 0)} />
                 <StatCell label="Systemic Chokepoints" value={String(chokepoints?.chokepoints.length || 0)} />
                 <StatCell label="Aggregate Risk Index" value={`${aggregateRisk} / 10`} />
             </div>
 
-            <section className="bg-[var(--color-ink)] text-[var(--color-bg-paper)] p-6">
-                <div className="flex items-center gap-3 mb-4">
-                    <AlertTriangle size={20} className="text-[var(--color-accent-red)]" />
-                    <p className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold text-white">Systemic Warning</p>
+            <section className="bg-[rgba(194,89,63,0.04)] border border-[var(--color-accent-red)]/40 rounded p-5 relative shadow-executive">
+                <div className="absolute top-0 right-4 -translate-y-1/2 bg-[var(--color-bg-paper)] px-2 flex items-center gap-1">
+                    <AlertTriangle size={14} className="text-[var(--color-accent-red)]" />
                 </div>
-                <p className="text-sm font-serif italic leading-relaxed text-white/90">
+                <p className="text-[10px] font-mono font-bold text-[var(--color-accent-red)] uppercase mb-2 tracking-wider">Systemic Warning</p>
+                <p className="text-sm font-serif italic leading-relaxed text-[var(--color-ink)]">
                     High concentration in advanced manufacturing nodes (Taiwan) and specialized equipment (Netherlands) creates a "single point of failure" environment for the entire AI economy.
                 </p>
             </section>
@@ -271,19 +279,19 @@ function ChainTab({ matrix }: { matrix: ChainMatrix | null }) {
 
     return (
         <div className="animate-fade-in">
-            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1 mb-4">
+            <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1 mb-4">
                 Inter-Company Dependencies
             </p>
 
             {/* Summary Bar */}
             <div className="stat-summary-bar">
                 <div>
-                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Total Links</p>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-light)] font-bold">Total Links</p>
                     <p className="text-xl font-serif font-bold text-[var(--color-ink)]">{totalDeps}</p>
                 </div>
                 <div>
-                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Critical</p>
-                    <p className="text-xl font-serif font-bold" style={{ color: '#6a1a1a' }}>{criticalDeps}</p>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-light)] font-bold">Critical</p>
+                    <p className="text-xl font-serif font-bold text-[var(--color-accent-red)]">{criticalDeps}</p>
                     <div className="stat-fill-bar">
                         <div className="stat-fill-bar-inner" style={{ width: `${criticalPct}%` }} />
                     </div>
@@ -309,11 +317,11 @@ function ChainTab({ matrix }: { matrix: ChainMatrix | null }) {
                                 <span className="text-sm font-serif font-bold text-[var(--color-ink)]">{group.ticker}</span>
                             </div>
                             <div className="flex items-center gap-3">
-                                <span className="text-[10px] font-mono text-[var(--color-ink-muted)]">
+                                <span className="text-[10px] font-mono text-[var(--color-ink-light)] font-bold">
                                     {group.totalCount} dep{group.totalCount !== 1 ? 's' : ''}
                                 </span>
                                 {group.criticalCount > 0 && (
-                                    <span className="text-[9px] font-mono font-bold text-[var(--color-accent-red)] border border-[var(--color-accent-red)] px-1.5 py-0.5">
+                                    <span className="text-[9px] font-mono font-bold text-[var(--color-accent-red)] border border-[var(--color-accent-red)] bg-[rgba(194,89,63,0.03)] px-1.5 py-0.5 rounded">
                                         {group.criticalCount} CRIT
                                     </span>
                                 )}
@@ -346,7 +354,7 @@ function ChainTab({ matrix }: { matrix: ChainMatrix | null }) {
                                         </p>
                                     </div>
                                     {dep.value && dep.value !== 'Undisclosed' && (
-                                        <span className="text-[9px] font-mono text-[var(--color-ink-muted)] flex-shrink-0">{dep.value}</span>
+                                        <span className="text-[9px] font-mono text-[var(--color-ink-light)] font-bold flex-shrink-0">{dep.value}</span>
                                     )}
                                 </div>
                             ))}
@@ -388,21 +396,21 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
 
     return (
         <div className="animate-fade-in">
-            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1 mb-4">
+            <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1 mb-4">
                 Geographic Risk Convergence
             </p>
 
             {/* Summary Bar */}
             <div className="stat-summary-bar">
                 <div>
-                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Regions</p>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-light)] font-bold">Regions</p>
                     <p className="text-xl font-serif font-bold text-[var(--color-ink)]">{sortedRegions.length}</p>
                 </div>
                 <div>
-                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] font-bold">Avg Risk</p>
+                    <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-light)] font-bold">Avg Risk</p>
                     <p className="text-xl font-serif font-bold" style={{ color: getRiskColor(parseFloat(avgRisk)) }}>{avgRisk}/10</p>
                     <div className="stat-fill-bar">
-                        <div className="stat-fill-bar-inner" style={{ width: `${highRiskPct}%`, background: '#2563eb' }} />
+                        <div className="stat-fill-bar-inner" style={{ width: `${highRiskPct}%`, background: 'var(--color-accent-blue)' }} />
                     </div>
                 </div>
             </div>
@@ -435,10 +443,10 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
                             <span className="text-xs font-serif font-bold" style={{ color: getRiskColor(risk.overallScore) }}>
                                 {risk.overallScore.toFixed(1)}
                             </span>
-                            <span className="text-[9px] font-mono text-[var(--color-ink-muted)] truncate" title={risk.riskDimensions.join(', ')}>
+                            <span className="text-[9px] font-mono text-[var(--color-ink-light)] font-bold truncate" title={risk.riskDimensions.join(', ')}>
                                 {dimAbbrevs}
                             </span>
-                            <span className="text-[10px] font-mono text-[var(--color-ink-muted)]">
+                            <span className="text-[10px] font-mono text-[var(--color-ink-light)] font-bold">
                                 {entityCount} co{entityCount !== 1 ? 's' : '.'}
                             </span>
                             <ChevronDown size={12} className={`chevron-icon ${isExpanded ? 'rotated' : ''}`} />
@@ -450,7 +458,7 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
                                 {/* Dimensions */}
                                 <div className="flex flex-wrap gap-1.5 mb-3">
                                     {risk.riskDimensions.map((dim, j) => (
-                                        <span key={j} className="text-[8px] font-mono font-bold bg-[var(--color-ink)] text-[var(--color-bg-paper)] px-2 py-0.5 uppercase">
+                                        <span key={j} className="text-[8px] font-mono font-bold bg-[var(--color-accent-blue)] text-white px-2 py-0.5 rounded uppercase">
                                             {dim.replace(/_/g, ' ')}
                                         </span>
                                     ))}
@@ -460,16 +468,23 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
                                 <p className="text-sm font-serif italic leading-relaxed text-[var(--color-ink-muted)] mb-4">{risk.summary}</p>
 
                                 {/* Entity Risk Grid — visual blocks */}
-                                <div className="border-l-2 border-[var(--color-ink)] pl-3 mb-4">
-                                    <p className="text-[9px] font-mono font-bold uppercase mb-2 text-[var(--color-ink-muted)]">Exposed Entities</p>
+                                <div className="border-l-2 border-[var(--color-accent-gold)] pl-3 mb-4">
+                                    <p className="text-[9px] font-mono font-bold uppercase mb-2 text-[var(--color-ink-light)]">Exposed Entities</p>
                                     <div className="risk-entity-grid">
                                         {risk.contributingCompanies.map((c, idx) => (
                                             <div key={`${c.ticker}-${idx}`} className="risk-entity-item">
                                                 <span className="text-[10px] font-mono font-bold text-[var(--color-ink)] w-10">{c.ticker}</span>
                                                 <div className="risk-blocks">
-                                                    {[1, 2, 3, 4, 5].map(level => (
-                                                        <div key={level} className={`risk-block ${level <= c.riskScore ? 'filled' : ''}`} />
-                                                    ))}
+                                                    {[1, 2, 3, 4, 5].map(level => {
+                                                        const isFilled = level <= c.riskScore
+                                                        return (
+                                                            <div
+                                                                key={level}
+                                                                className={`risk-block ${isFilled ? 'filled' : ''}`}
+                                                                style={isFilled ? { background: RISK_COLORS[c.riskScore], borderColor: RISK_COLORS[c.riskScore] } : {}}
+                                                            />
+                                                        )
+                                                    })}
                                                 </div>
                                             </div>
                                         ))}
@@ -479,7 +494,7 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
                                 {/* Navigate Button */}
                                 <button
                                     onClick={(e) => { e.stopPropagation(); onNavigate(risk.lat, risk.lng) }}
-                                    className="text-[10px] font-mono font-bold border border-[var(--color-ink)] px-3 py-1 hover:bg-[var(--color-ink)] hover:text-white transition-all flex items-center gap-2"
+                                    className="text-[10px] font-mono font-bold border border-[var(--color-border-muted)] rounded px-3 py-1.5 hover:bg-[var(--color-ink)] hover:text-white hover:border-[var(--color-ink)] transition-all flex items-center gap-2 cursor-pointer"
                                 >
                                     INSPECT REGION <ArrowRight size={10} />
                                 </button>
@@ -493,41 +508,43 @@ function RisksTab({ risks, onNavigate }: { risks: RiskConvergence | null, onNavi
 }
 
 /* ================================================================
-   CHOKEPOINTS TAB (unchanged)
+   CHOKEPOINTS TAB
    ================================================================ */
 
 function ChokepointsTab({ analysis, onNavigate }: { analysis: ChokepointAnalysis | null, onNavigate: (lat: number, lng: number) => void }) {
     if (!analysis) return null
     return (
         <div className="space-y-6 animate-fade-in">
-            <p className="text-[10px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] border-b border-[var(--color-ink)] pb-1">Systemic Chokepoint Registry</p>
-            {analysis.chokepoints.map((cp, i) => (
-                <div key={i} className="dossier-card mb-6 group border-l-4 border-[var(--color-accent-red)]">
-                    <div className="flex justify-between items-start mb-2">
-                        <h4 className="text-lg font-serif font-bold text-[var(--color-ink)]">{cp.name}</h4>
-                        <span className={`text-[9px] font-mono font-bold px-2 py-0.5 bg-[var(--color-accent-red)] text-white`}>
-                            {cp.severity.toUpperCase()}
-                        </span>
+            <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1">Systemic Chokepoint Registry</p>
+            <div className="space-y-4">
+                {analysis.chokepoints.map((cp, i) => (
+                    <div key={i} className="bg-white border border-[var(--color-border-muted)] border-l-4 border-l-[var(--color-accent-red)] rounded shadow-executive hover:border-l-[var(--color-accent-red)] hover:border-[var(--color-accent-gold)] p-5 transition-all mb-4">
+                        <div className="flex justify-between items-start mb-2">
+                            <h4 className="text-lg font-serif font-bold text-[var(--color-ink)]">{cp.name}</h4>
+                            <span className="text-[9px] font-mono font-bold px-2 py-0.5 bg-[var(--color-accent-red)] text-white rounded">
+                                {cp.severity.toUpperCase()}
+                            </span>
+                        </div>
+                        <p className="text-xs font-mono text-[var(--color-ink-light)] mb-3 flex items-center gap-1">
+                            <MapPin size={10} className="text-[var(--color-accent-gold)]" /> {cp.location}
+                        </p>
+                        <p className="text-sm font-serif italic text-[var(--color-ink-muted)] leading-relaxed mb-4">
+                            {cp.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {cp.exposedCompanies.map((t, idx) => (
+                                <span key={`${t}-${idx}`} className="text-[9px] font-mono font-bold border border-[var(--color-border-muted)] text-[var(--color-ink-light)] px-1.5 py-0.5 rounded">{t}</span>
+                            ))}
+                        </div>
+                        <button 
+                            onClick={() => onNavigate(cp.lat, cp.lng)}
+                            className="text-[10px] font-mono font-bold text-[var(--color-accent-red)] hover:text-[var(--color-accent-gold)] flex items-center gap-1.5 cursor-pointer"
+                        >
+                            <MapPin size={10} className="text-[var(--color-accent-gold)]" /> LOCATE CHOKEPOINT
+                        </button>
                     </div>
-                    <p className="text-xs font-mono text-[var(--color-ink-muted)] mb-3 flex items-center gap-1">
-                        <MapPin size={10} /> {cp.location}
-                    </p>
-                    <p className="text-sm font-serif italic text-[var(--color-ink-muted)] leading-relaxed mb-4">
-                        {cp.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                        {cp.exposedCompanies.map((t, idx) => (
-                            <span key={`${t}-${idx}`} className="text-[9px] font-mono font-bold border border-[var(--color-ink-light)] px-1.5 py-0.5">{t}</span>
-                        ))}
-                    </div>
-                    <button 
-                        onClick={() => onNavigate(cp.lat, cp.lng)}
-                        className="text-[10px] font-mono font-bold text-[var(--color-accent-red)] hover:underline flex items-center gap-1"
-                    >
-                        <MapPin size={10} /> LOCATE CHOKEPOINT
-                    </button>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     )
 }
@@ -538,21 +555,14 @@ function ChokepointsTab({ analysis, onNavigate }: { analysis: ChokepointAnalysis
 
 function StatCell({ label, value }: { label: string; value: string }) {
     return (
-        <div className="bg-[var(--color-bg-paper)] p-4 flex flex-col justify-center">
-            <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-muted)] mb-1 font-bold">{label}</p>
-            <p className="text-xl font-serif font-bold text-[var(--color-ink)]">{value}</p>
+        <div className="bg-white border border-[var(--color-border-muted)] rounded shadow-executive p-4 flex flex-col justify-center hover:border-[var(--color-accent-gold)] transition-colors">
+            <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-light)] mb-1 font-bold">{label}</p>
+            <p className="text-2xl font-serif font-bold text-[var(--color-ink)]">{value}</p>
         </div>
     )
 }
 
 function getRiskColor(score: number): string {
     const tier = Math.min(5, Math.ceil(score / 2))
-    const colors: Record<number, string> = {
-        1: '#93c5fd', // Blue-300 — minor
-        2: '#3b82f6', // Blue-500 — moderate
-        3: '#2563eb', // Blue-600 — elevated
-        4: '#1d4ed8', // Blue-700 — high
-        5: '#1e3a8a', // Blue-900 — critical
-    }
-    return colors[tier] || '#2563eb'
+    return RISK_COLORS[tier] || '#c2593f'
 }

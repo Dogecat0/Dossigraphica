@@ -44,6 +44,15 @@ export default function App() {
 
     const globeRef = useRef<GlobeViewHandle>(null)
 
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768)
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     // Initial data fetch
     useEffect(() => {
         fetchGlobalAnalysis()
@@ -242,8 +251,8 @@ export default function App() {
             </div>
 
             {/* Bookmark Strip */}
-            {isIntelPanelOpen && (
-                <div className="bookmark-strip border-l border-[var(--color-ink)]">
+            {isIntelPanelOpen && !isMobile && (
+                <div className="bookmark-strip border-l border-[var(--color-border-muted)]">
                     <button
                         onClick={() => setIsIntelMinimized(!isIntelMinimized)}
                         className="bookmark-icon mt-4"
@@ -263,7 +272,7 @@ export default function App() {
             )}
 
             {/* Intel Panel / Global Panel */}
-            {isIntelPanelOpen && !isIntelMinimized && (
+            {isIntelPanelOpen && (!isIntelMinimized || isMobile) && (
                 <div className="w-[640px] h-full flex flex-col dossier-panel animate-slide-open overflow-hidden">
                     {viewMode === 'company' ? (
                         <IntelPanel

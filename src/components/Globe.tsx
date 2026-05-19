@@ -10,37 +10,37 @@ import type {
 } from '../types'
 
 const OFFICE_TYPE_COLORS: Record<OfficeType, string> = {
-    headquarters: '#1a1a1a',      // Ink Black - Dominant
-    regional: '#57534e',          // Warm Grey
-    engineering: '#57534e',       // Warm Grey
-    satellite: '#a8a29e',         // Light Warm Grey
-    manufacturing: '#ea580c',     // Industrial Orange - High Visibility
-    data_center: '#0891b2',       // Cyan/Blue - Digital/Cool
-    sales: '#15803d',             // Green - Commercial
-    logistics: '#b91c1c',         // Red - Critical Path
+    headquarters: '#121214',      // Midnight Graphite
+    regional: '#76767c',          // Ink Light
+    engineering: '#76767c',       // Ink Light
+    satellite: '#a8a29e',         // Warm grey
+    manufacturing: '#c2593f',     // Critical Rust Orange
+    data_center: '#1f486d',       // Accent Blue
+    sales: '#2e4d3a',             // Forest Sage
+    logistics: '#c2593f',         // Critical Rust Orange
 }
 
 
 const CRITICALITY_COLORS: Record<string, string> = {
-    critical: '#92400e',          // Amber-800 — warm earth, distinct from red chokepoints
-    important: '#b45309',         // Amber-700
-    standard: '#78716c',          // Stone-500
+    critical: '#c2593f',          // Critical Rust Orange
+    important: '#c5a880',         // Brushed Gold
+    standard: '#76767c',          // Ink Light
 }
 
-// Per-company risk: Cartographic blue (1-5 scale)
+// Per-company risk: Gold-to-Rust scale (1-5 scale)
 const COMPANY_RISK_COLORS: Record<number, string> = {
-    1: '#93c5fd', // Blue-300 — minor
-    2: '#3b82f6', // Blue-500 — moderate
-    3: '#2563eb', // Blue-600 — elevated
-    4: '#1d4ed8', // Blue-700 — high
-    5: '#1e3a8a', // Blue-900 — critical
+    1: '#e4dcc4', // Muted sage/gold
+    2: '#c5a880', // Brushed Gold
+    3: '#ad8755', // Deeper Gold/Bronze
+    4: '#c2593f', // Rust Orange
+    5: '#8f331d', // Deep Blood Rust
 }
 
 // Regional risk: Map 1-10 score to 5 visual tiers for maximum differentiation
 // Tier 1: 1-2, Tier 2: 3-4, Tier 3: 5-6, Tier 4: 7-8, Tier 5: 9-10
 function getRegionalRiskColor(score: number): string {
     const tier = Math.min(5, Math.ceil(score / 2))
-    return COMPANY_RISK_COLORS[tier] || '#2563eb'
+    return COMPANY_RISK_COLORS[tier] || '#c2593f'
 }
 
 export interface GlobeViewHandle {
@@ -93,8 +93,26 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const globeRef = useRef<any>(null)
     const containerRef = useRef<HTMLDivElement>(null)
+    const hasInitializedRef = useRef(false)
     const [hoveredEntityId, setHoveredEntityId] = useState<string | null>(null)
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+    const [isVisible, setIsVisible] = useState(false)
+    const [countriesLineData, setCountriesLineData] = useState<object[]>([])
+
+    useEffect(() => {
+        let mounted = true
+        const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+        fetchTextOrThrow(`${baseUrl}/data/countries.json`)
+            .then(res => {
+                if (mounted && res) {
+                    const parsed = JSON.parse(res)
+                    const features = parsed.features || []
+                    setCountriesLineData(features.filter((d: any) => d.properties.ISO_A2 !== 'AQ'))
+                }
+            })
+            .catch(err => console.error("Failed to load country polygons:", err))
+        return () => { mounted = false }
+    }, [])
 
     useEffect(() => {
         if (!containerRef.current) return
@@ -115,15 +133,103 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         },
     }))
 
-    // Initialize globe settings
+    // Initialize globe settings and safe mobile touch controls
+    useEffect(() => {
+        if (hasInitializedRef.current) return
+        
+        const globe = globeRef.current
+        if (!globe) return
+        
+        hasInitializedRef.current = true
+        
+        const controls = globe.controls()
+        controls.autoRotate = true
+        controls.autoRotateSpeed = 0.4
+        controls.enableDamping = true
+        controls.dampingFactor = 0.1
+        controls.enableZoom = true
+        controls.enableRotate = true
+        controls.enablePan = true
+        
+        // Mobile gesture safeguards: ONE finger for rotation, TWO fingers for dolly zoom/pan
+        controls.touches = {
+            ONE: THREE.TOUCH.ROTATE,
+            TWO: THREE.TOUCH.DOLLY_PAN
+        }
+        
+        // Set camera far away instantly (0ms) then zoom in smoothly
+        globe.pointOfView({ lat: 20, lng: 0, altitude: 6.5 }, 0)
+        const timer = setTimeout(() => {
+            if (globeRef.current) {
+                globeRef.current.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 2500)
+            }
+            setIsVisible(true)
+        }, 100)
+
+        return () => clearTimeout(timer)
+    }, [countriesLineData, dimensions])
+
+    // Add luxury gold graticule coordinate gridlines to the globe scene
     useEffect(() => {
         const globe = globeRef.current
         if (!globe) return
-        globe.controls().autoRotate = true
-        globe.controls().autoRotateSpeed = 0.4
-        globe.controls().enableDamping = true
-        globe.controls().dampingFactor = 0.1
-        globe.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 0)
+        const scene = globe.scene()
+        
+        const gridGroup = new THREE.Group()
+        gridGroup.name = 'cartographic-graticule'
+        
+        const radius = 100.08 // Slightly above globe surface (radius 100)
+        const gridColor = new THREE.Color('#c5a880')
+        const gridMaterial = new THREE.LineBasicMaterial({
+            color: gridColor,
+            transparent: true,
+            opacity: 0.15
+        })
+        
+        // Draw latitude lines (parallels)
+        const latitudes = [-75, -60, -45, -30, -15, 0, 15, 30, 45, 60, 75]
+        latitudes.forEach(lat => {
+            const points: THREE.Vector3[] = []
+            const phi = (90 - lat) * Math.PI / 180
+            const y = radius * Math.cos(phi)
+            const rLat = radius * Math.sin(phi)
+            
+            for (let i = 0; i <= 72; i++) {
+                const theta = (i * 5) * Math.PI / 180
+                const x = rLat * Math.sin(theta)
+                const z = rLat * Math.cos(theta)
+                points.push(new THREE.Vector3(x, y, z))
+            }
+            
+            const geometry = new THREE.BufferGeometry().setFromPoints(points)
+            const line = new THREE.Line(geometry, gridMaterial)
+            gridGroup.add(line)
+        })
+        
+        // Draw longitude lines (meridians) every 30 degrees
+        for (let lon = 0; lon < 360; lon += 30) {
+            const points: THREE.Vector3[] = []
+            const theta = lon * Math.PI / 180
+            
+            for (let latDeg = -90; latDeg <= 90; latDeg += 2.5) {
+                const phi = (90 - latDeg) * Math.PI / 180
+                const x = radius * Math.sin(phi) * Math.sin(theta)
+                const y = radius * Math.cos(phi)
+                const z = radius * Math.sin(phi) * Math.cos(theta)
+                points.push(new THREE.Vector3(x, y, z))
+            }
+            
+            const geometry = new THREE.BufferGeometry().setFromPoints(points)
+            const line = new THREE.Line(geometry, gridMaterial)
+            gridGroup.add(line)
+        }
+        
+        scene.add(gridGroup)
+        
+        return () => {
+            scene.remove(gridGroup)
+            gridGroup.clear()
+        }
     }, [])
 
     // Fly to selected entity
@@ -148,29 +254,49 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         }
     }, [selectedEntity])
 
-    const handleGlobeClick = useCallback(() => {
+    // Pause globe rotation on hover and handle robust hover cleanup
+    useEffect(() => {
+        const container = containerRef.current
+        if (!container) return
+
+        const handleMouseEnter = () => {
+            if (globeRef.current) {
+                globeRef.current.controls().autoRotate = false
+            }
+        }
+
+        const handleMouseLeave = () => {
+            // Robust hover cleanup: unconditionally clear any stuck hover states
+            setHoveredEntityId(null)
+
+            // Only resume auto-rotation if no entity popup is active
+            if (globeRef.current && !selectedEntity) {
+                globeRef.current.controls().autoRotate = true
+            }
+        }
+
+        container.addEventListener('mouseenter', handleMouseEnter)
+        container.addEventListener('mouseleave', handleMouseLeave)
+
+        return () => {
+            container.removeEventListener('mouseenter', handleMouseEnter)
+            container.removeEventListener('mouseleave', handleMouseLeave)
+        }
+    }, [selectedEntity])
+
+
+    const handleGlobeClick = useCallback((_coords: any, event: MouseEvent) => {
+        // If the click target is not the canvas (e.g. it is an HTML node marker), ignore it
+        if (event && (event.target as HTMLElement).tagName !== 'CANVAS') {
+            return
+        }
+
         onEntityClick(null)
         if (globeRef.current) {
             globeRef.current.controls().autoRotate = true
         }
     }, [onEntityClick])
 
-    const [countriesLineData, setCountriesLineData] = useState<object[]>([])
-
-    useEffect(() => {
-        let mounted = true
-        const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-        fetchTextOrThrow(`${baseUrl}/data/countries.json`)
-            .then(res => {
-                if (mounted && res) {
-                    const parsed = JSON.parse(res)
-                    const features = parsed.features || []
-                    setCountriesLineData(features.filter((d: any) => d.properties.ISO_A2 !== 'AQ'))
-                }
-            })
-            .catch(err => console.error("Failed to load country polygons:", err))
-        return () => { mounted = false }
-    }, [])
 
     // Helper: Generate Entity IDs
     // Offices: use office.id (from App)
@@ -286,9 +412,9 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             if (activeLayers.has('customers')) {
                 intel.customerConcentration.forEach((cust, i) => {
                     const id = `cu-${i}`
-                    // Gradient: HQ (Ink) -> Customer (Cyan)
+                    // Gradient: HQ (Ink) -> Customer (Forest Sage)
                     const startColor = OFFICE_TYPE_COLORS.headquarters + '80'
-                    const endColor = '#06b6d4cc'
+                    const endColor = '#2e4d3acc'
 
                     allArcs.push({
                         startLat: hqLat, startLng: hqLng,
@@ -324,8 +450,8 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         startLat: fromData.lat, startLng: fromData.lng,
                         endLat: toData.lat, endLng: toData.lng,
                         color: isCritical
-                            ? ['#ef4444aa', '#ef444455']
-                            : ['#1a1a1a66', '#1a1a1a33'],
+                            ? ['#c2593faa', '#c2593f55']
+                            : ['#c5a88066', '#c5a88033'],
                         startId: fromData.id, endId: toData.id,
                         dimmed: isDimmed(fromData.id, toData.id),
                         stroke: 0.35,
@@ -390,7 +516,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         label: cust.customer,
                         sublabel: `${cust.hqCity}, ${cust.hqCountry}`,
                         detail: `Revenue share: ${cust.revenueShare}`,
-                        color: '#06b6d4',
+                        color: '#2e4d3a', // Forest Sage
                         id: `cu-${i}`,
                         entity: { type: 'customer', data: cust }
                     })
@@ -405,7 +531,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         label: risk.riskLabel,
                         sublabel: risk.region,
                         detail: `Risk ${risk.riskScore}/5 · ${risk.impactLevel}`,
-                        color: COMPANY_RISK_COLORS[risk.riskScore] || '#7c3aed',
+                        color: COMPANY_RISK_COLORS[risk.riskScore] || '#ad8755',
                         id: `rk-${i}`,
                         entity: { type: 'risk', data: risk }
                     })
@@ -437,7 +563,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         label: `Chokepoint: ${cp.name}`,
                         sublabel: cp.location,
                         detail: `${cp.severity.toUpperCase()} SEVERITY · ${cp.exposedCompanies.length} companies`,
-                        color: '#ef4444',
+                        color: '#c2593f', // Critical Rust Orange
                         id: `cp-${i}`,
                         entity: { type: 'chokepoint', data: cp }
                     })
@@ -519,20 +645,28 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
     return (
         <div ref={containerRef} className="w-full h-full">
-            {dimensions.width > 0 && (
-                <Globe
-                    ref={globeRef}
-                    width={dimensions.width}
-                    height={dimensions.height}
-                    rendererConfig={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+            {dimensions.width > 0 && countriesLineData.length > 0 && (
+                <div 
+                    className="w-full h-full"
+                    style={{ 
+                        transition: 'opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1)', 
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'scale(1)' : 'scale(0.85)'
+                    }}
+                >
+                    <Globe
+                        ref={globeRef}
+                        width={dimensions.width}
+                        height={dimensions.height}
+                        rendererConfig={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
             globeMaterial={new THREE.MeshStandardMaterial({
-                color: '#eae7d4',
-                emissive: '#fdfcf0',
-                emissiveIntensity: 0.1,
+                color: '#e5dec9', // Antique Warm Parchment
+                emissive: '#e5dec9', // Subtle warm glow
+                emissiveIntensity: 0.05,
                 transparent: true,
-                opacity: 0.95,
+                opacity: 0.98,
                 roughness: 0.85,
-                metalness: 0.05,
+                metalness: 0.02,
             })}
             showAtmosphere={false}
             backgroundColor="rgba(0,0,0,0)"
@@ -540,7 +674,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             hexPolygonsData={countriesLineData}
             hexPolygonResolution={4}
             hexPolygonMargin={0.5}
-            hexPolygonColor={() => 'rgba(26, 26, 26, 0.35)'}
+            hexPolygonColor={() => 'rgba(18, 18, 20, 0.15)'} // Charcoal Ink Landmasses
             hexPolygonAltitude={0.005}
 
             onGlobeClick={handleGlobeClick}
@@ -563,9 +697,10 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             htmlAltitude={0.015}
             htmlTransitionDuration={0}
 
-            animateIn={true}
+            animateIn={false}
             waitForGlobeReady={true}
-                />
+                    />
+                </div>
             )}
         </div>
     )
