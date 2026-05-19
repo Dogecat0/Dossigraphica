@@ -37,3 +37,8 @@ python-sidecar/geocoder_cache.json
 python-sidecar/blocked_domains.json
 python-sidecar/search_cache.json
 python-sidecar/jina_cache.json
+python-sidecar/tinyfish_cache.json
+python-sidecar/tinyfish_search_cache.json
+
+# Antigravity CLI
+.antigravitycli/

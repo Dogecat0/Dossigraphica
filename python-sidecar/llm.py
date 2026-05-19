@@ -23,7 +23,8 @@ from litellm.exceptions import (
     ServiceUnavailableError,
     APIConnectionError,
     InternalServerError,
-    Timeout
+    Timeout,
+    MidStreamFallbackError
 )
 from schemas import STRICT_CONFIG
 
@@ -76,7 +77,12 @@ FEATHERLESS_N_PARALLEL = int(os.getenv("FEATHERLESS_N_PARALLEL", "1"))
 FEATHERLESS_CTX_PER_REQUEST = int(os.getenv("FEATHERLESS_CTX_PER_REQUEST", "32768"))
 
 # Output and safety configuration
+# LLAMA_OUTPUT_RESERVATION is the baseline / local-provider default.
+# GEMINI_OUTPUT_RESERVATION and FEATHERLESS_OUTPUT_RESERVATION override it
+# for their respective providers; each falls back to LLAMA_OUTPUT_RESERVATION.
 LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
+GEMINI_OUTPUT_RESERVATION = int(os.getenv("GEMINI_OUTPUT_RESERVATION", str(LLAMA_OUTPUT_RESERVATION)))
+FEATHERLESS_OUTPUT_RESERVATION = int(os.getenv("FEATHERLESS_OUTPUT_RESERVATION", str(LLAMA_OUTPUT_RESERVATION)))
 LLAMA_SAFETY_BUFFER = 64
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
 LLM_OUTPUT_MODE = os.getenv("LLM_OUTPUT_MODE", "multi-shot").lower()
@@ -89,23 +95,26 @@ if LLM_PROVIDER == "gemini":
     ACTIVE_BASE_URL = None
     ACTIVE_N_PARALLEL = GEMINI_N_PARALLEL
     ACTIVE_CTX_LIMIT = GEMINI_CTX_PER_REQUEST
+    ACTIVE_OUTPUT_RESERVATION = GEMINI_OUTPUT_RESERVATION
     if GEMINI_API_KEY:
         os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
-    logger.debug(f"LLM Provider: GEMINI (model={ACTIVE_MODEL})")
+    logger.debug(f"LLM Provider: GEMINI (model={ACTIVE_MODEL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
 elif LLM_PROVIDER == "featherless":
     ACTIVE_MODEL = f"openai/{FEATHERLESS_MODEL}"
     ACTIVE_BASE_URL = FEATHERLESS_BASE_URL
     ACTIVE_N_PARALLEL = FEATHERLESS_N_PARALLEL
     ACTIVE_CTX_LIMIT = FEATHERLESS_CTX_PER_REQUEST
+    ACTIVE_OUTPUT_RESERVATION = FEATHERLESS_OUTPUT_RESERVATION
     if FEATHERLESS_API_KEY:
         os.environ["OPENAI_API_KEY"] = FEATHERLESS_API_KEY
-    logger.debug(f"LLM Provider: FEATHERLESS (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
+    logger.debug(f"LLM Provider: FEATHERLESS (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
 else:
     ACTIVE_MODEL = f"openai/{LLAMA_MODEL}"
     ACTIVE_BASE_URL = LLAMA_CPP_URL
     ACTIVE_N_PARALLEL = LLAMA_N_PARALLEL
     ACTIVE_CTX_LIMIT = LLAMA_CTX_PER_REQUEST
-    logger.debug(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL})")
+    ACTIVE_OUTPUT_RESERVATION = LLAMA_OUTPUT_RESERVATION
+    logger.debug(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
 
 
 T = TypeVar("T", bound=BaseModel)
@@ -306,6 +315,7 @@ class LLMClient:
         retry=(
             retry_if_exception_type(RateLimitError) |
             retry_if_exception_type(ServiceUnavailableError) |
+            retry_if_exception_type(MidStreamFallbackError) |
             retry_if_exception_type(APIConnectionError) |
             retry_if_exception_type(InternalServerError) |
             retry_if_exception_type(Timeout) |
@@ -331,7 +341,7 @@ class LLMClient:
                     "messages": messages,
                     "api_base": self.base_url,
                     "temperature": LLM_TEMPERATURE,
-                    "max_tokens": LLAMA_OUTPUT_RESERVATION,
+                    "max_tokens": ACTIVE_OUTPUT_RESERVATION,
                     "timeout": LLM_REQUEST_TIMEOUT,
                     "add_function_to_prompt": False,
                     "num_retries": 0,
@@ -421,7 +431,7 @@ class LLMClient:
                 if not content:
                     raise ValueError("LLM returned empty content and no tool calls.")
 
-            except (RateLimitError, ServiceUnavailableError, APIConnectionError, InternalServerError, Timeout, ValueError, ValidationError) as e:
+            except (RateLimitError, ServiceUnavailableError, MidStreamFallbackError, APIConnectionError, InternalServerError, Timeout, ValueError, ValidationError) as e:
                 logger.error(f"Structured Generation attempt failed for model '{self.model}': {type(e).__name__}: {e}")
                 raise
             except Exception as e:
@@ -463,7 +473,10 @@ class LLMClient:
         if LLM_OUTPUT_MODE == "one-shot":
             if facts:
                 target_tokens = _get_target_tokens(response_model)
-                summary = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=system_prompt)
+                # Build a more descriptive focus that includes the schema's purpose
+                model_desc = response_model.model_json_schema().get("description", "")
+                focus_context = f"{system_prompt} (Schema: {response_model.__name__} - {model_desc})"
+                summary = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=focus_context)
                 final_prompt = prompt.replace("__FACTS__", summary)
             else:
                 final_prompt = prompt
@@ -576,10 +589,17 @@ class LLMClient:
 
         # Determine safe chunk size for a summary request
         if focus:
-            summary_template = f"Following content is too long. Summarize it into high-density facts, prioritizing information related to: {focus}. Keep all relevant information, only condense the language used:\n{{chunk}}"
+            summary_template = (
+                f"Following content is too long. Summarize it into high-density facts, prioritizing information related to: {focus}. "
+                "MANDATE: You MUST preserve all exact numerical values, technical metrics, units of measure, specific dates, and proper names. "
+                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
+            )        
         else:
-            summary_template = "Following content is too long. Summarize it into high-density facts, keep all information, only condense the language used:\n{chunk}"
-            
+            summary_template = (
+                f"Following content is too long. Summarize it into high-density facts, prioritizing information related to: {focus}. "
+                "MANDATE: You MUST preserve all exact numerical values, technical metrics, units of measure, specific dates, and proper names. "
+                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
+            )            
         safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
         
         logger.debug(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")

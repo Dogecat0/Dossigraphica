@@ -397,7 +397,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             tracker.complete_llm(tracker.get_llm_multiplier(PlannerSchema), 1)
             state.pipeline_step = "searching"
 
-        # 2. Search (Brave Discovery)
+        # 2. Search
         if state.pipeline_step == "searching":
             tracker.start_phase(2, "searching")
             tracker.add_io_total(1, 2)
@@ -405,7 +405,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 "status": "searching", 
                 "phase_current": 2, 
                 "phase_total": phase_total, 
-                "message": f"Executing {len(state.search_queries)} search queries via Brave Discovery...",
+                "message": f"Executing {len(state.search_queries)} search queries...",
                 "queries": state.search_queries,
                 **tracker.as_dict()
             })

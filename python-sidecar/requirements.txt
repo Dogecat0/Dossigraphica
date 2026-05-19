@@ -10,3 +10,4 @@ json-repair
 tqdm
 jsonref
 tenacity
+botocore
