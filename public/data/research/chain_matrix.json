@@ -1,38 +1,14 @@
 {
-  "lastUpdated": "2026-05-18T22:41:01.660134",
+  "lastUpdated": "2026-05-23T00:28:11.803414",
   "version": "1.0.0",
   "dependencies": [
     {
       "from": "AMD",
-      "to": "TSM",
+      "to": "005930.KS",
       "type": "buyer_supplier",
-      "description": "AMD depends on TSMC for Advanced Wafer Fabrication (4nm/5nm) and CoWoS Packaging",
+      "description": "AMD depends on Samsung for HBM4 and advanced DRAM solutions",
       "strength": "critical",
-      "value": "foundry"
-    },
-    {
-      "from": "AMD",
-      "to": "Samsung Electronics",
-      "type": "buyer_supplier",
-      "description": "AMD depends on Samsung Electronics for HBM3E Advanced Memory Modules",
-      "strength": "important",
       "value": "key_supplier"
-    },
-    {
-      "from": "AMD",
-      "to": "Amkor Technology",
-      "type": "buyer_supplier",
-      "description": "AMD depends on Amkor Technology for 3DIC Advanced Packaging",
-      "strength": "important",
-      "value": "assembly_test"
-    },
-    {
-      "from": "AMD",
-      "to": "Sanmina Corporation",
-      "type": "buyer_supplier",
-      "description": "AMD depends on Sanmina Corporation for Data Center Infrastructure / NPI Rack Integration",
-      "strength": "important",
-      "value": "contract_manufacturer"
     },
     {
       "from": "META",
@@ -40,15 +16,63 @@
       "type": "buyer_supplier",
       "description": "Meta is a major customer of AMD",
       "strength": "important",
-      "value": "Undisclosed"
+      "value": null
     },
     {
-      "from": "Sony Group Corporation",
+      "from": "TCS",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "Sony Group Corporation is a major customer of AMD",
+      "description": "TCS is a major customer of AMD",
       "strength": "important",
-      "value": "Historical >10%"
+      "value": null
+    },
+    {
+      "from": "NAVER Cloud",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "NAVER Cloud is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "AWS",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "AWS is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Google Cloud",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Google Cloud is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Microsoft Azure",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Microsoft Azure is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Tencent",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Tencent is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "OpenAI",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "OpenAI is a major customer of AMD",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "AMZN",
@@ -492,25 +516,9 @@
     },
     {
       "from": "MU",
-      "to": "QatarEnergy (Ras Laffan)",
-      "type": "buyer_supplier",
-      "description": "MU depends on QatarEnergy (Ras Laffan) for Ultra-pure 6N grade Helium",
-      "strength": "critical",
-      "value": "raw_material"
-    },
-    {
-      "from": "MU",
-      "to": "Chinese State Refineries",
-      "type": "buyer_supplier",
-      "description": "MU depends on Chinese State Refineries for Gallium, Germanium, Neon",
-      "strength": "important",
-      "value": "raw_material"
-    },
-    {
-      "from": "MU",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "MU depends on ASML for EUV Lithography Machinery",
+      "description": "MU depends on ASML for EUV lithography equipment",
       "strength": "critical",
       "value": "key_supplier"
     },
@@ -518,31 +526,111 @@
       "from": "MU",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "MU depends on TSMC for CoWoS Advanced Packaging for HBM",
+      "description": "MU depends on TSMC for HBM4E customization and logic die",
       "strength": "critical",
-      "value": "contract_manufacturer"
+      "value": "foundry"
     },
     {
-      "from": "Estimated: NVIDIA",
+      "from": "MU",
+      "to": "Applied Materials",
+      "type": "buyer_supplier",
+      "description": "MU depends on Applied Materials for Semiconductor manufacturing equipment",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Lam Research",
+      "type": "buyer_supplier",
+      "description": "MU depends on Lam Research for Semiconductor manufacturing equipment",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "KLA Corporation",
+      "type": "buyer_supplier",
+      "description": "MU depends on KLA Corporation for Process control and yield management systems",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Memory Japan",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Memory Japan for Memory manufacturing and technology development",
+      "strength": "critical",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Memory Taiwan",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Memory Taiwan for DRAM manufacturing",
+      "strength": "critical",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Technology Singapore",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Technology Singapore for Memory assembly and test",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "Kingston Technology Company, Inc.",
       "to": "MU",
       "type": "buyer_supplier",
-      "description": "Estimated: NVIDIA is a major customer of MU",
+      "description": "Kingston Technology Company, Inc. is a major customer of MU",
+      "strength": "important",
+      "value": "10%"
+    },
+    {
+      "from": "Undisclosed Customer",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Undisclosed Customer is a major customer of MU",
       "strength": "critical",
       "value": "17%"
     },
     {
-      "from": "WT Microelectronics Co., Ltd.",
+      "from": "AAPL",
       "to": "MU",
       "type": "buyer_supplier",
-      "description": "WT Microelectronics Co., Ltd. is a major customer of MU",
+      "description": "Apple Inc. is a major customer of MU",
       "strength": "important",
-      "value": "Not specified"
+      "value": null
+    },
+    {
+      "from": "Dell Technologies Inc.",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Dell Technologies Inc. is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Microsoft Corp.",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Microsoft Corp. is a major customer of MU",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "NVDA",
-      "to": "TSM",
+      "to": "MU",
       "type": "buyer_supplier",
-      "description": "NVDA depends on Taiwan Semiconductor Manufacturing Company (TSMC) for Wafer fabrication, Advanced Packaging (CoWoS)",
+      "description": "NVIDIA is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NVDA",
+      "to": "Taiwan Semiconductor Manufacturing Company Limited (TSMC)",
+      "type": "buyer_supplier",
+      "description": "NVDA depends on Taiwan Semiconductor Manufacturing Company Limited (TSMC) for Semiconductor wafer fabrication",
       "strength": "critical",
       "value": "foundry"
     },
@@ -550,7 +638,7 @@
       "from": "NVDA",
       "to": "005930.KS",
       "type": "buyer_supplier",
-      "description": "NVDA depends on Samsung Electronics Co., Ltd. for Wafer fabrication, HBM Memory",
+      "description": "NVDA depends on Samsung Electronics Co., Ltd. for Semiconductor wafer fabrication and memory",
       "strength": "important",
       "value": "foundry"
     },
@@ -558,103 +646,175 @@
       "from": "NVDA",
       "to": "000660.KS",
       "type": "buyer_supplier",
-      "description": "NVDA depends on SK Hynix Inc. for HBM Memory (HBM3/HBM3E)",
-      "strength": "critical",
+      "description": "NVDA depends on SK Hynix Inc. for Memory components",
+      "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "NVDA",
       "to": "MU",
       "type": "buyer_supplier",
-      "description": "NVDA depends on Micron Technology, Inc. for HBM Memory",
+      "description": "NVDA depends on Micron Technology, Inc. for Memory components",
       "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "NVDA",
-      "to": "TSMC (US Facility)",
+      "to": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
       "type": "buyer_supplier",
-      "description": "NVDA depends on TSMC (US Facility) for Volume production of NVIDIA Blackwell chips",
-      "strength": "important",
-      "value": "foundry"
-    },
-    {
-      "from": "NVDA",
-      "to": "Amkor / SPIL",
-      "type": "buyer_supplier",
-      "description": "NVDA depends on Amkor / SPIL for Advanced Packaging",
+      "description": "NVDA depends on Hon Hai Precision Industry Co., Ltd. (Foxconn) for Assembly, testing, and packaging",
       "strength": "important",
       "value": "assembly_test"
     },
     {
       "from": "NVDA",
-      "to": "Foxconn",
+      "to": "Wistron Corporation",
       "type": "buyer_supplier",
-      "description": "NVDA depends on Foxconn for AI supercomputer manufacturing (242,287 sq ft facility)",
+      "description": "NVDA depends on Wistron Corporation for Assembly, testing, and packaging",
       "strength": "important",
-      "value": "contract_manufacturer"
+      "value": "assembly_test"
     },
     {
       "from": "NVDA",
-      "to": "Wistron",
+      "to": "Fabrinet",
       "type": "buyer_supplier",
-      "description": "NVDA depends on Wistron for AI server manufacturing",
+      "description": "NVDA depends on Fabrinet for Assembly, testing, and packaging",
       "strength": "important",
-      "value": "contract_manufacturer"
+      "value": "assembly_test"
+    },
+    {
+      "from": "NVDA",
+      "to": "Corning",
+      "type": "buyer_supplier",
+      "description": "NVDA depends on Corning for Optical fiber production",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "NVDA",
+      "to": "Hesai Group",
+      "type": "buyer_supplier",
+      "description": "NVDA depends on Hesai Group for Lidar sensors",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "META",
+      "to": "NVDA",
+      "type": "buyer_supplier",
+      "description": "Meta is a major customer of NVDA",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "MSFT",
       "to": "NVDA",
       "type": "buyer_supplier",
       "description": "Microsoft is a major customer of NVDA",
-      "strength": "critical",
-      "value": "22%"
+      "strength": "important",
+      "value": null
     },
     {
-      "from": "META",
+      "from": "AWS",
       "to": "NVDA",
       "type": "buyer_supplier",
-      "description": "Meta Platforms is a major customer of NVDA",
-      "strength": "critical",
-      "value": "14%"
+      "description": "AWS is a major customer of NVDA",
+      "strength": "important",
+      "value": null
     },
     {
-      "from": "TSM",
-      "to": "China-based Refining Infrastructure",
+      "from": "Google Cloud",
+      "to": "NVDA",
       "type": "buyer_supplier",
-      "description": "TSM depends on China-based Refining Infrastructure for Rare Earth Elements (Cerium dioxide, Scandium oxide, Neodymium)",
-      "strength": "critical",
-      "value": "raw_material"
+      "description": "Google Cloud is a major customer of NVDA",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "OpenAI",
+      "to": "NVDA",
+      "type": "buyer_supplier",
+      "description": "OpenAI is a major customer of NVDA",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Anthropic",
+      "to": "NVDA",
+      "type": "buyer_supplier",
+      "description": "Anthropic is a major customer of NVDA",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "TSM",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "TSM depends on ASML Holding N.V. for EUV Lithography Systems",
+      "description": "TSM depends on ASML for EUV photolithography machines",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "TSM",
-      "to": "Amkor Technology / SPIL",
+      "to": "Applied Materials",
       "type": "buyer_supplier",
-      "description": "TSM depends on Amkor Technology / SPIL for OSAT (Advanced Packaging and Testing)",
+      "description": "TSM depends on Applied Materials for Semiconductor production tools",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "ASE Technology",
+      "type": "buyer_supplier",
+      "description": "TSM depends on ASE Technology for Packaging and testing services",
       "strength": "important",
       "value": "assembly_test"
     },
     {
       "from": "TSM",
-      "to": "Foxconn / Wistron",
+      "to": "Sunlit Chemical",
       "type": "buyer_supplier",
-      "description": "TSM depends on Foxconn / Wistron for AI Supercomputer Final Assembly",
+      "description": "TSM depends on Sunlit Chemical for Chemicals for semiconductor manufacturing",
       "strength": "important",
-      "value": "contract_manufacturer"
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "ZEISS",
+      "type": "buyer_supplier",
+      "description": "TSM depends on ZEISS for Lenses for EUV machines",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Shin-Etsu Chemical",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Shin-Etsu Chemical for High-end photoresists",
+      "strength": "critical",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Mirle Automation Corporation",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Mirle Automation Corporation for Intelligent automation systems",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Marketech International Corp",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Marketech International Corp for Facility monitor control systems",
+      "strength": "standard",
+      "value": "key_supplier"
     },
     {
       "from": "AAPL",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Apple Inc. is a major customer of TSM",
+      "description": "Apple is a major customer of TSM",
       "strength": "critical",
       "value": "22%"
     },
@@ -662,17 +822,41 @@
       "from": "NVDA",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Nvidia Corporation is a major customer of TSM",
-      "strength": "critical",
-      "value": "13%"
+      "description": "NVIDIA is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "AMD",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "AMD is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Qualcomm",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Qualcomm is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "INTC",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Intel is a major customer of TSM",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "AVGO",
       "to": "TSM",
       "type": "buyer_supplier",
       "description": "Broadcom is a major customer of TSM",
-      "strength": "critical",
-      "value": "11-15% (Proj.)"
+      "strength": "important",
+      "value": null
     }
   ]
 }

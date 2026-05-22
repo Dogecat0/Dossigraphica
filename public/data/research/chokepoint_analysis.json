@@ -1,21 +1,20 @@
 {
-  "lastUpdated": "2026-05-18T22:41:01.662133",
+  "lastUpdated": "2026-05-23T00:28:11.805319",
   "chokepoints": [
     {
       "name": "TSMC Hsinchu Hub",
       "type": "Manufacturing",
       "location": "Hsinchu, Taiwan",
-      "lat": 24.7731,
-      "lng": 121.0069,
+      "lat": 24.7736,
+      "lng": 121.0122,
       "severity": "critical",
       "description": "Concentration of leading-edge semiconductor manufacturing.",
       "exposedCompanies": [
-        "MSFT",
-        "META",
-        "MU",
         "NVDA",
+        "MU",
         "AVGO",
-        "AMD"
+        "META",
+        "MSFT"
       ],
       "id": "tsmc_hsinchu",
       "mitigationStatus": "Developing"
