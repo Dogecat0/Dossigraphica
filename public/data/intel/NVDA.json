@@ -2,331 +2,404 @@
   "company": "NVIDIA Corporation",
   "ticker": "NVDA",
   "website": "https://www.nvidia.com",
-  "sector": "Technology / Semiconductors",
-  "description": "A sovereign-level infrastructure architect orchestrating the physical and digital substrates of the global AI economy through advanced GPUs, high-performance networking, and full-stack AI computing platforms.",
+  "sector": "Technology",
+  "description": "NVIDIA Corporation is a global leader in accelerated computing and generative AI, specializing in products and platforms for gaming, professional visualization, data centers, and automotive markets. With a vast international presence, the company operates across 38 countries and maintains a significant global footprint, generating over half of its revenue from sales to customers outside of the United States.",
   "anchorFiling": {
-    "type": "10-K",
-    "date": "2026-02-25",
-    "fiscalPeriod": "FY2026"
+    "reasoning": "The most recent financial reporting for NVIDIA is the Q1 2027 earnings release, which occurred on May 20, 2026, superseding the fiscal year 2026 10-K filing.",
+    "type": "Earnings Release",
+    "date": "2026-05-20",
+    "fiscalPeriod": "Q1 2027"
   },
-  "generatedDate": "2026-03-15",
+  "generatedDate": "2026-05-22",
   "offices": [
     {
-      "id": "nvda-santa-clara-hq",
-      "name": "NVIDIA Global Headquarters",
+      "id": "NVDA-SANTACLARA-HEADQUARTERS",
+      "name": "NVIDIA Corporate Headquarters",
       "city": "Santa Clara",
       "state": "California",
-      "country": "USA",
-      "address": null,
-      "lat": 37.3541,
-      "lng": -121.9552,
+      "country": "United States",
+      "address": "2788 San Tomas Expressway, Santa Clara, CA 95051",
+      "lat": 37.3636,
+      "lng": -121.978,
+      "businessFocus": "Corporate headquarters, R&D, and administration",
       "type": "headquarters",
-      "businessFocus": "Global HQ, Corporate R&D, Core Data Center, Executive Leadership",
-      "size": "3,000,000 sq ft",
-      "established": "1993",
-      "source": "10-K FY2026, Item 2",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "https://www.nvidia.com/en-us/contact/"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "nvda-austin-regional",
-      "name": "NVIDIA Austin",
+      "id": "NVDA-AUSTIN-ENGINEERING",
+      "name": "NVIDIA Austin Hub",
       "city": "Austin",
       "state": "Texas",
-      "country": "USA",
-      "lat": 30.2672,
-      "lng": -97.7431,
-      "type": "regional",
-      "businessFocus": "CPU/System Architecture R&D",
-      "source": "NVIDIA Americas Locations",
-      "confidence": "verified"
-    },
-    {
-      "id": "nvda-yokneam-regional",
-      "name": "NVIDIA Yokneam",
-      "city": "Yokneam",
-      "country": "Israel",
-      "lat": 32.6598,
-      "lng": 35.1054,
-      "type": "regional",
-      "businessFocus": "High-Performance Networking R&D, InfiniBand",
-      "source": "Corporate Disclosures, Israel Operations",
-      "confidence": "verified"
-    },
-    {
-      "id": "nvda-beersheba-rd",
-      "name": "NVIDIA Be'er Sheva (Gav-Yam)",
-      "city": "Be'er Sheva",
-      "country": "Israel",
-      "lat": 31.2518,
-      "lng": 34.7913,
+      "country": "United States",
+      "address": "11001 Lakeline Blvd, Bldg 2, Unit 100, Austin, TX 78717",
+      "lat": 30.454,
+      "lng": -97.785,
+      "businessFocus": "Engineering and R&D",
       "type": "engineering",
-      "businessFocus": "Advanced Networking R&D",
-      "size": "3,000 sq meters",
-      "established": "2026",
-      "source": "Corporate Press Releases",
+      "sources": [
+        "https://www.costar.com/article/1276111151/nvidia-stretches-real-estate-growth-with-deal-to-double-austin-texas-hub",
+        "https://maps.apple.com/place?place-id=I78811DD7B085FE3E"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "nvda-kiryat-tivon-campus",
-      "name": "Kiryat Tivon Mega-Campus",
-      "city": "Kiryat Tivon",
-      "country": "Israel",
-      "lat": 32.7151,
-      "lng": 35.1325,
-      "type": "regional",
-      "businessFocus": "Massive R&D Campus",
-      "size": "160,000 sq meters / 10,000 headcount",
-      "established": "2031",
-      "source": "Corporate Press Releases",
-      "confidence": "verified"
-    },
-    {
-      "id": "nvda-bengaluru-engineering",
-      "name": "NVIDIA Bengaluru",
-      "city": "Bengaluru",
-      "state": "Karnataka",
-      "country": "India",
-      "lat": 12.9716,
-      "lng": 77.5946,
+      "id": "NVDA-HILLSBORO-ENGINEERING",
+      "name": "NVIDIA Hillsboro Office",
+      "city": "Hillsboro",
+      "state": "Oregon",
+      "country": "United States",
+      "address": "9030 NE Walker Road, Suite 100, Hillsboro, OR 97006",
+      "lat": 45.534496,
+      "lng": -122.886274,
+      "businessFocus": "Data Center Engineering, AI Infrastructure, ASIC Design",
       "type": "engineering",
-      "businessFocus": "Software & CUDA Engineering R&D",
-      "source": "NVIDIA Locations & Regional Offices",
+      "sources": [
+        "https://commons.wikimedia.org/wiki/File:Nvidia_office_-_Hillsboro,_Oregon.JPG",
+        "https://craft.co/nvidia/locations"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "nvda-hsinchu-regional",
-      "name": "NVIDIA Hsinchu",
-      "city": "Hsinchu City",
-      "country": "Taiwan",
-      "lat": 24.8138,
-      "lng": 120.9675,
-      "type": "regional",
-      "businessFocus": "R&D Hub, Foundational Supply Chain Coordination",
-      "source": "NVIDIA Asia & Japan Locations",
-      "confidence": "verified"
-    },
-    {
-      "id": "nvda-singapore-regional",
-      "name": "NVIDIA Singapore Pte Ltd",
-      "city": "Singapore",
-      "country": "Singapore",
-      "lat": 1.3521,
-      "lng": 103.8198,
-      "type": "regional",
-      "businessFocus": "Invoicing, Billing Hub, Logistics Coordination",
-      "source": "10-K FY2026, Exhibit 21",
-      "confidence": "verified"
-    },
-    {
-      "id": "nvda-london-engineering",
-      "name": "NVIDIA UK R&D Hub",
-      "city": "London",
-      "country": "UK",
-      "lat": 51.5074,
-      "lng": -0.1278,
+      "id": "NVDA-CAMBRIDGE-ENGINEERING",
+      "name": "NVIDIA Cambridge Office",
+      "city": "Cambridge",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "10 Station Road, Cambridge, CB1 2JD",
+      "lat": 52.193,
+      "lng": 0.133,
+      "businessFocus": "Research and development",
       "type": "engineering",
-      "businessFocus": "R&D Hub, Sovereign AI & Quantum Supercomputing",
-      "source": "NVIDIA Locations & Regional Offices",
+      "sources": [
+        "https://www.costar.com/article/95789787/brookgate-lands-nvidia-for-cambridge-office",
+        "https://www.businessweekly.co.uk/posts/us-tech-giant-nvidia-takes-space-at-10-station-road-in-cambridge"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "NVDA-YEREVAN-ENGINEERING",
+      "name": "NVIDIA Yerevan Research Center",
+      "city": "Yerevan",
+      "state": null,
+      "country": "Armenia",
+      "address": null,
+      "lat": 40.181,
+      "lng": 44.513,
+      "businessFocus": "Omniverse and simulation technology research",
+      "type": "engineering",
+      "sources": [
+        "https://massispost.com/2022/04/tech-giant-nvidia-opens-research-center-in-armenia/",
+        "https://asbarez.com/tech-giant-nvidia-to-open-research-center-in-armenia/"
+      ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "FY2026",
-    "totalRevenue": 215938000000,
+    "reasoning": "The latest available annual filing for NVIDIA is for fiscal year 2026, which ended January 25, 2026. Revenue data by customer headquarters is extracted directly from the 2026 annual report (10-K). Percentages are calculated based on the provided regional revenue figures relative to the total revenue of $215.938 billion.",
+    "fiscalYear": "2026",
+    "totalRevenue": 215938000000.0,
     "currency": "USD",
     "segments": [
       {
         "region": "United States",
-        "revenue": 149617000000,
-        "percentage": 69.28,
-        "yoyGrowth": 93.10,
-        "notes": "Driven by multi-year capital expenditure cycles of US-based hyperscale CSPs."
+        "revenue": 149617000000.0,
+        "percentage": 0.6929,
+        "yoyGrowth": null,
+        "notes": "Revenue from United States-headquartered customers."
       },
       {
         "region": "Taiwan",
-        "revenue": 42345000000,
-        "percentage": 19.61,
-        "yoyGrowth": 79.43,
-        "notes": "76% of this is attributed to US and European end-customers. Taiwan acts as an integration and ODM hub."
+        "revenue": 42345000000.0,
+        "percentage": 0.1961,
+        "yoyGrowth": null,
+        "notes": "Revenue from Taiwan-headquartered customers."
       },
       {
-        "region": "China",
-        "revenue": 19677000000,
-        "percentage": 9.11,
-        "yoyGrowth": -21.44,
-        "notes": "Revenue contraction due to US export controls and Chinese design-out directives."
+        "region": "China (including Hong Kong)",
+        "revenue": 19677000000.0,
+        "percentage": 0.0911,
+        "yoyGrowth": null,
+        "notes": "Revenue from China (including Hong Kong)-headquartered customers."
       },
       {
-        "region": "Other Countries",
-        "revenue": 4299000000,
-        "percentage": 1.99,
-        "yoyGrowth": -1.56,
-        "notes": "Relatively flat growth curve in emerging markets."
+        "region": "Other",
+        "revenue": 4299000000.0,
+        "percentage": 0.0199,
+        "yoyGrowth": null,
+        "notes": "Revenue from other countries."
       }
     ],
-    "concentrationRisk": "Top two customers represent 36% of net revenue ($77.7B combined).",
-    "source": "10-K FY2026"
+    "concentrationRisk": "NVIDIA has significant revenue concentration in the United States, which accounted for approximately 69.3% of total revenue in fiscal year 2026 based on customer headquarters.",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+    ]
   },
   "supplyChain": [
     {
-      "entity": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "entity": "Taiwan Semiconductor Manufacturing Company Limited (TSMC)",
       "role": "foundry",
       "city": "Hsinchu",
       "country": "Taiwan",
-      "lat": 24.7731,
-      "lng": 121.0069,
-      "product": "Wafer fabrication, Advanced Packaging (CoWoS)",
+      "lat": 24.7736,
+      "lng": 121.0122,
+      "product": "Semiconductor wafer fabrication",
       "criticality": "critical",
-      "source": "10-K FY2026, Supply Chain Disclosures"
+      "sources": [
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2025/q4/177440d5-3b32-4185-8cc8-95500a9dc783.pdf",
+        "https://en.wikipedia.org/wiki/Nvidia"
+      ]
     },
     {
       "entity": "Samsung Electronics Co., Ltd.",
       "role": "foundry",
       "city": "Suwon",
       "country": "South Korea",
-      "lat": 37.2636,
+      "lat": 37.2635,
       "lng": 127.0286,
-      "product": "Wafer fabrication, HBM Memory",
+      "product": "Semiconductor wafer fabrication and memory",
       "criticality": "important",
-      "source": "10-K FY2026, Supply Chain Disclosures"
+      "sources": [
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2025/q4/177440d5-3b32-4185-8cc8-95500a9dc783.pdf",
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581023000017/nvda-20230129.htm"
+      ]
     },
     {
       "entity": "SK Hynix Inc.",
       "role": "key_supplier",
       "city": "Icheon",
       "country": "South Korea",
-      "lat": 37.2792,
-      "lng": 127.4429,
-      "product": "HBM Memory (HBM3/HBM3E)",
-      "criticality": "critical",
-      "source": "10-K FY2026, Supply Chain Disclosures"
+      "lat": 37.2723,
+      "lng": 127.435,
+      "product": "Memory components",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+      ]
     },
     {
       "entity": "Micron Technology, Inc.",
       "role": "key_supplier",
       "city": "Boise",
-      "country": "USA",
+      "country": "United States",
       "lat": 43.615,
       "lng": -116.2023,
-      "product": "HBM Memory",
+      "product": "Memory components",
       "criticality": "important",
-      "source": "10-K FY2026, Supply Chain Disclosures"
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+      ]
     },
     {
-      "entity": "TSMC (US Facility)",
-      "role": "foundry",
-      "city": "Phoenix",
-      "country": "USA",
-      "lat": 33.4484,
-      "lng": -112.074,
-      "product": "Volume production of NVIDIA Blackwell chips",
-      "criticality": "important",
-      "source": "Corporate Press Releases"
-    },
-    {
-      "entity": "Amkor / SPIL",
+      "entity": "Hon Hai Precision Industry Co., Ltd. (Foxconn)",
       "role": "assembly_test",
-      "city": "Peoria",
-      "country": "USA",
-      "lat": 33.5806,
-      "lng": -112.2374,
-      "product": "Advanced Packaging",
+      "city": "New Taipei City",
+      "country": "Taiwan",
+      "lat": 24.9668,
+      "lng": 121.3933,
+      "product": "Assembly, testing, and packaging",
       "criticality": "important",
-      "source": "Corporate Press Releases"
+      "sources": [
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2025/q4/177440d5-3b32-4185-8cc8-95500a9dc783.pdf"
+      ]
     },
     {
-      "entity": "Foxconn",
-      "role": "contract_manufacturer",
-      "city": "Houston",
-      "country": "USA",
-      "lat": 29.7604,
-      "lng": -95.3698,
-      "product": "AI supercomputer manufacturing (242,287 sq ft facility)",
+      "entity": "Wistron Corporation",
+      "role": "assembly_test",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.0777,
+      "lng": 121.5733,
+      "product": "Assembly, testing, and packaging",
       "criticality": "important",
-      "source": "Corporate Press Releases"
+      "sources": [
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2025/q4/177440d5-3b32-4185-8cc8-95500a9dc783.pdf"
+      ]
     },
     {
-      "entity": "Wistron",
-      "role": "contract_manufacturer",
-      "city": "Dallas",
-      "country": "USA",
-      "lat": 32.7767,
-      "lng": -96.797,
-      "product": "AI server manufacturing",
+      "entity": "Fabrinet",
+      "role": "assembly_test",
+      "city": "George Town",
+      "country": "Cayman Islands",
+      "lat": 19.3133,
+      "lng": -81.2546,
+      "product": "Assembly, testing, and packaging",
       "criticality": "important",
-      "source": "Corporate Press Releases"
+      "sources": [
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2025/q4/177440d5-3b32-4185-8cc8-95500a9dc783.pdf"
+      ]
+    },
+    {
+      "entity": "Corning",
+      "role": "key_supplier",
+      "city": "Corning",
+      "country": "United States",
+      "lat": 42.1439,
+      "lng": -77.0515,
+      "product": "Optical fiber production",
+      "criticality": "important",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nvidia"
+      ]
+    },
+    {
+      "entity": "Hesai Group",
+      "role": "key_supplier",
+      "city": "Shanghai",
+      "country": "China",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "product": "Lidar sensors",
+      "criticality": "standard",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nvidia"
+      ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Customer One (Identified via intelligence as Microsoft)",
-      "revenueShare": "22%",
-      "hqCity": "Redmond",
-      "hqCountry": "USA",
-      "lat": 47.674,
-      "lng": -122.1215,
-      "relationship": "Hyperscale Cloud Service Provider (Azure), major CapEx cycle for OpenAI infrastructure.",
-      "source": "10-K FY2026 / Industry Analysis"
+      "customer": "Meta",
+      "revenueShare": null,
+      "hqCity": "Menlo Park",
+      "hqCountry": "United States",
+      "lat": 37.4848,
+      "lng": -122.1484,
+      "relationship": "Strategic partner for AI infrastructure and major customer for AI chips.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nvidia",
+        "http://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+      ]
     },
     {
-      "customer": "Customer Two (Identified via intelligence as Meta Platforms)",
-      "revenueShare": "14%",
-      "hqCity": "Menlo Park",
-      "hqCountry": "USA",
-      "lat": 37.4529,
-      "lng": -122.1817,
-      "relationship": "Social infrastructure, large-scale Llama foundation model training.",
-      "source": "10-K FY2026 / Industry Analysis"
+      "customer": "Microsoft",
+      "revenueShare": null,
+      "hqCity": "Redmond",
+      "hqCountry": "United States",
+      "lat": 47.674,
+      "lng": -122.1215,
+      "relationship": "Major customer, cloud provider for NVIDIA Omniverse Cloud, and strategic partner for OpenAI workloads.",
+      "sources": [
+        "https://www.cnbc.com/2026/05/20/nvidia-nvda-earnings-report-q1-2027.html",
+        "https://s201.q4cdn.com/141608511/files/doc_financials/2024/ar/NVIDIA-2024-Annual-Report.pdf",
+        "https://www.microsoft.com/investor/reports/ar24/index.html"
+      ]
+    },
+    {
+      "customer": "Amazon Web Services (AWS)",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "Major hyperscale customer and partner for Vera Rubin-based instances.",
+      "sources": [
+        "https://www.cnbc.com/2026/05/20/nvidia-nvda-earnings-report-q1-2027.html",
+        "http://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+      ]
+    },
+    {
+      "customer": "Google Cloud",
+      "revenueShare": null,
+      "hqCity": "Mountain View",
+      "hqCountry": "United States",
+      "lat": 37.422,
+      "lng": -122.0841,
+      "relationship": "Major hyperscale customer and partner for Vera Rubin-based instances.",
+      "sources": [
+        "https://www.cnbc.com/2026/05/20/nvidia-nvda-earnings-report-q1-2027.html",
+        "http://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+      ]
+    },
+    {
+      "customer": "OpenAI",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Major customer building AI data centers using NVIDIA systems; investment and partnership agreement.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Nvidia",
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+      ]
+    },
+    {
+      "customer": "Anthropic",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Key customer for Vera Rubin system; investment and deep technology partnership.",
+      "sources": [
+        "https://www.cnbc.com/2026/05/20/nvidia-nvda-earnings-report-q1-2027.html",
+        "http://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+      ]
     }
   ],
   "geopoliticalRisks": [
     {
-      "region": "France / EU",
-      "lat": 48.8566,
-      "lng": 2.3522,
+      "region": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
       "riskScore": 5,
-      "riskCategory": "regulatory_compliance",
-      "riskLabel": "Antitrust Charges & Market Abuse",
-      "description": "French authorities preparing formal statement of objections over CUDA software lock-in and CoreWeave equity investments. Fines could reach 10% of global revenue (~$21.5B).",
-      "impactLevel": "Critical",
-      "filingReference": "10-K FY2026, Item 1A / Maginative",
-      "lastUpdated": "2026-03-15"
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Export Controls on AI Chips",
+      "description": "U.S. government export restrictions prohibit the sale of advanced AI chips (e.g., H100, H200, B200) to China, effectively foreclosing NVIDIA from the data center computing market in the region.",
+      "impactLevel": "critical",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+      "lastUpdated": "2026-01-25"
     },
     {
       "region": "United States",
-      "lat": 38.8951,
-      "lng": -77.0364,
-      "riskScore": 5,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "Sudden BIS Export Controls & DOJ Probes",
-      "description": "Sudden BIS license requirements stranded $4.5B in H20 inventory. DOJ/FTC investigating AI monopolistic synergies.",
-      "impactLevel": "Critical",
-      "filingReference": "10-K FY2026, Item 1A",
-      "lastUpdated": "2026-03-15"
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "Tariffs and Excise Taxes",
+      "description": "H200 chips shipped under licensing programs are subject to a 25% tariff upon importation into the U.S., and share repurchases are subject to a 1% excise tax under the Inflation Reduction Act.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+      "lastUpdated": "2026-01-25"
     },
     {
-      "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
+      "region": "European Union",
+      "lat": 50.8503,
+      "lng": 4.3517,
       "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "SAMR Retaliatory Probe & Design-Out Mandates",
-      "description": "SAMR investigation into Mellanox acquisition terms; state-directed mandates to exclude US silicon from infrastructure tenders.",
-      "impactLevel": "critical",
-      "filingReference": "10-K FY2026, Item 1A",
-      "lastUpdated": "2026-03-15"
+      "riskLabel": "Antitrust and AI Regulation",
+      "description": "NVIDIA is under investigation by competition regulators in the EU and France regarding GPU sales and market dominance, with potential for onerous obligations under the EU AI Act.",
+      "impactLevel": "high",
+      "filingReference": "https://s201.q4cdn.com/141608511/files/doc_financials/2024/ar/NVIDIA-2024-Annual-Report.pdf",
+      "lastUpdated": "2024-01-29"
     },
     {
-      "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
-      "riskScore": 5,
-      "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Foundry Single Point of Failure",
-      "description": "Extreme reliance on TSMC and localized ODMs. A blockade or kinetic event would invalidate $95.2B in manufacturing commitments.",
-      "impactLevel": "Critical",
-      "filingReference": "10-K FY2026, Item 1A",
-      "lastUpdated": "2026-03-15"
+      "region": "Global",
+      "lat": 55.702215,
+      "lng": 12.5592485,
+      "riskScore": 3,
+      "riskCategory": "political_instability",
+      "riskLabel": "Regional Conflict Impact",
+      "description": "Escalation of conflicts, such as the Iran war, creates business uncertainty that could affect supply chains, product development, and global revenue forecasts.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.cnbc.com/2026/05/20/nvidia-nvda-earnings-report-q1-2027.html",
+      "lastUpdated": "2026-05-20"
+    },
+    {
+      "region": "International",
+      "lat": 50.109346,
+      "lng": 14.3932647,
+      "riskScore": 3,
+      "riskCategory": "tax_policy",
+      "riskLabel": "Multi-Jurisdictional Tax Examinations",
+      "description": "NVIDIA is under tax examination in Germany, Hong Kong, India, Israel, Taiwan, and the U.S. for fiscal years 2014 through 2025, creating potential for tax adjustments.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+      "lastUpdated": "2026-01-25"
     }
   ]
 }

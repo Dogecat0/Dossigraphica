@@ -1,390 +1,386 @@
 {
   "company": "Micron Technology, Inc.",
   "ticker": "MU",
-  "website": "https://www.micron.com",
-  "sector": "Semiconductors",
-  "description": "Micron is a global leader in memory and storage solutions, operating a highly bifurcated geographic model with R&D and advanced front-end fabrication in the US, high-volume manufacturing in Taiwan and Japan, and back-end assembly across South and Southeast Asia.",
+  "website": "https://investors.micron.com/",
+  "sector": "Information Technology",
+  "description": "Micron Technology, Inc. is a leading global semiconductor company headquartered in Boise, Idaho, with a vast international presence that includes manufacturing, research, and operational facilities across the United States, Singapore, and other key global markets, serving a diverse customer base worldwide with advanced memory and storage solutions.",
   "anchorFiling": {
-    "type": "10-Q",
-    "date": "2026-03-19",
-    "fiscalPeriod": "Q2 FY2026"
+    "reasoning": "The most recent financial reporting period for Micron Technology is Q2 2026, which was reported via an earnings release on March 18, 2026. While a 10-Q for Q1 2026 exists, the Q2 2026 earnings release represents a more recent fiscal period.",
+    "type": "Earnings Release",
+    "date": "2026-03-18",
+    "fiscalPeriod": "Q2 2026"
   },
-  "generatedDate": "2026-03-22",
+  "generatedDate": "2026-05-22",
   "offices": [
     {
-      "id": "mu-boise-hq",
-      "name": "Global Headquarters & Fab 4",
+      "id": "MU-BOISE-HEADQUARTERS",
+      "name": "Micron Technology Corporate Headquarters",
       "city": "Boise",
       "state": "Idaho",
-      "country": "USA",
-      "lat": 43.6150,
-      "lng": -116.2023,
+      "country": "United States",
+      "address": "8000 S. Federal Way, Boise, Idaho 83716-9632",
+      "lat": 43.555,
+      "lng": -116.125,
+      "businessFocus": "Corporate headquarters and semiconductor manufacturing",
       "type": "headquarters",
-      "businessFocus": "Corporate HQ, R&D, Front-End Manufacturing, 1-gamma (1γ) DRAM development",
-      "source": "Q2 2026 Earnings Call Transcript",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312522000004/mu-20211202.htm",
+        "https://www.micron.com/about/locations"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "mu-manassas-fab6",
-      "name": "Fab 6",
+      "id": "MU-MANASSAS-MANUFACTURING",
+      "name": "Micron Manassas Facility",
       "city": "Manassas",
       "state": "Virginia",
-      "country": "USA",
-      "lat": 38.7509,
-      "lng": -77.4753,
+      "country": "United States",
+      "address": "9600 Godwin Drive, Manassas, Virginia 20110",
+      "lat": 38.75,
+      "lng": -77.47,
+      "businessFocus": "Semiconductor manufacturing",
       "type": "manufacturing",
-      "businessFocus": "Front-End Manufacturing, automotive, embedded, and industrial sector legacy nodes",
-      "source": "Corporate Profile",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "mu-clay-megafab",
-      "name": "Clay Megafab",
-      "city": "Clay",
-      "state": "New York",
-      "country": "USA",
-      "lat": 43.1601,
-      "lng": -76.2022,
-      "type": "manufacturing",
-      "businessFocus": "Front-End Manufacturing, AI advanced memory (Under Construction)",
-      "established": "2026",
-      "source": "Press Release (Jan 16, 2026)",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-taichung-fab",
-      "name": "Micron Taiwan (Taichung)",
-      "city": "Taichung",
-      "country": "Taiwan",
-      "lat": 24.1477,
-      "lng": 120.6736,
-      "type": "manufacturing",
-      "businessFocus": "Front-End Manufacturing, Advanced Packaging for HBM",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-taoyuan-fab",
-      "name": "Micron Taiwan (Taoyuan)",
-      "city": "Taoyuan",
-      "country": "Taiwan",
-      "lat": 24.9936,
-      "lng": 121.3010,
-      "type": "manufacturing",
-      "businessFocus": "Front-End Manufacturing",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-tainan-fab",
-      "name": "Micron Taiwan (Tainan)",
-      "city": "Tainan",
-      "country": "Taiwan",
-      "lat": 23.1417,
-      "lng": 120.2513,
-      "type": "manufacturing",
-      "businessFocus": "Front-End Manufacturing",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-tongluo-fab",
-      "name": "Tongluo Facility",
-      "city": "Miaoli County",
-      "country": "Taiwan",
-      "lat": 24.4851,
-      "lng": 120.7852,
-      "type": "manufacturing",
-      "businessFocus": "Front-End Manufacturing",
-      "established": "2026",
-      "source": "Q2 2026 Earnings Call Transcript",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-singapore-fab",
-      "name": "Fab 7 & Fab 10",
-      "city": "Singapore",
-      "country": "Singapore",
-      "lat": 1.3521,
-      "lng": 103.8198,
-      "type": "manufacturing",
-      "businessFocus": "NAND Manufacturing, Advanced Packaging",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-hiroshima-fab",
-      "name": "Hiroshima Fab",
-      "city": "Hiroshima",
-      "country": "Japan",
-      "lat": 34.3853,
-      "lng": 132.4553,
-      "type": "manufacturing",
-      "businessFocus": "DRAM Manufacturing (EUV)",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-penang-fab",
-      "name": "Penang Facility",
-      "city": "Penang",
-      "country": "Malaysia",
-      "lat": 5.4141,
-      "lng": 100.3288,
-      "type": "manufacturing",
-      "businessFocus": "Back-End Assembly & Test",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-muar-fab",
-      "name": "Muar Facility",
-      "city": "Muar",
-      "country": "Malaysia",
-      "lat": 2.0442,
-      "lng": 102.5689,
-      "type": "manufacturing",
-      "businessFocus": "Back-End Assembly & Test",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-xian-fab",
-      "name": "Xi'an Facility",
-      "city": "Xi'an",
+      "id": "MU-SHANGHAI-ENGINEERING",
+      "name": "Micron Shanghai Office",
+      "city": "Shanghai",
+      "state": null,
       "country": "China",
-      "lat": 34.3416,
-      "lng": 108.9398,
-      "type": "manufacturing",
-      "businessFocus": "Back-End Assembly & Test",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-gujarat-fab",
-      "name": "Gujarat Facility",
-      "city": "Gujarat",
-      "country": "India",
-      "lat": 23.0225,
-      "lng": 72.5714,
-      "type": "manufacturing",
-      "businessFocus": "Back-End Assembly & Test",
-      "established": "2026",
-      "source": "Corporate Profile",
-      "confidence": "verified"
-    },
-    {
-      "id": "mu-austin-rd",
-      "name": "Austin R&D Center",
-      "city": "Austin",
-      "state": "Texas",
-      "country": "USA",
-      "lat": 30.2672,
-      "lng": -97.7431,
+      "address": "Xinglian Science and Technology Park 11-18F Building #1, No.1535 Hong Mei Road, Shanghai 200233",
+      "lat": 31.15,
+      "lng": 121.4,
+      "businessFocus": "Sales and engineering support",
       "type": "engineering",
-      "businessFocus": "R&D, Design Center",
-      "source": "Micron Locations",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "mu-munich-sales",
-      "name": "Munich Office",
-      "city": "Munich",
-      "country": "Germany",
-      "lat": 48.1351,
-      "lng": 11.5820,
-      "type": "sales",
-      "businessFocus": "Regional Sales",
-      "source": "Unverified function",
-      "confidence": "unverified"
+      "id": "MU-BENGALURU-ENGINEERING",
+      "name": "Micron Bengaluru Office",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "address": "Cessna Business Park, Kadubeesanahalli Village, Varthur hobli, Outer Ring Road, Bengaluru 560103",
+      "lat": 12.92,
+      "lng": 77.68,
+      "businessFocus": "R&D and engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
     },
     {
-      "id": "mu-italy-sub",
-      "name": "Micron Technology Italia S.r.l.",
-      "city": "Rome",
-      "country": "Italy",
-      "lat": 41.9028,
-      "lng": 12.4964,
-      "type": "regional",
-      "businessFocus": "Regional Subsidiary",
-      "source": "SEC Filings",
-      "confidence": "unverified"
+      "id": "MU-TAIPEI-ENGINEERING",
+      "name": "Micron Taipei Office",
+      "city": "Taipei City",
+      "state": null,
+      "country": "Taiwan",
+      "address": "23F & 24F., No. 170 Jingmao 1st Rd., Nangang Dist., Taipei City 11568",
+      "lat": 25.05,
+      "lng": 121.61,
+      "businessFocus": "Engineering and regional operations",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-MUNICH-SALES",
+      "name": "Micron Munich Office",
+      "city": "Munich",
+      "state": null,
+      "country": "Germany",
+      "address": "Leopoldstrasse 250B, Munich 80807",
+      "lat": 48.18,
+      "lng": 11.59,
+      "businessFocus": "Sales and regional support",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "FY2025",
-    "totalRevenue": 37378000000,
+    "reasoning": "The most recent fiscal data for Micron Technology (MU) is for fiscal year 2025, which ended August 28, 2025. Total revenue for FY2025 is reported as $37.378 billion. Geographic breakdown for 2025 indicates approximately one-third of revenue from customers headquartered outside the U.S. and 80% of revenue from products shipped to locations outside the U.S.",
+    "fiscalYear": "2025",
+    "totalRevenue": 37378000000.0,
     "currency": "USD",
     "segments": [
       {
-        "region": "United States",
-        "revenue": 7800000000,
-        "percentage": 20.87,
+        "region": "United States (Headquartered)",
+        "revenue": 24943126000.0,
+        "percentage": 0.667,
         "yoyGrowth": null,
-        "notes": "Highest concentration of ultimate corporate buyers (hyperscalers), physically delivered to Asia."
+        "notes": "Based on approximately one-third of revenue from customers headquartered outside the U.S."
       },
       {
-        "region": "Taiwan",
-        "revenue": 2700000000,
-        "percentage": 7.22,
+        "region": "International (Headquartered)",
+        "revenue": 12434874000.0,
+        "percentage": 0.333,
         "yoyGrowth": null,
-        "notes": "Central hub for global contract manufacturing; physical destination for CMBU products."
-      },
-      {
-        "region": "China",
-        "revenue": 2200000000,
-        "percentage": 5.89,
-        "yoyGrowth": null,
-        "notes": "Constrained by CAC bans but vital for legacy mobile/consumer storage."
-      },
-      {
-        "region": "Japan",
-        "revenue": 987000000,
-        "percentage": 2.64,
-        "yoyGrowth": null,
-        "notes": "Driven by localized OEM integration and automotive."
-      },
-      {
-        "region": "Other Asia Pacific",
-        "revenue": 752000000,
-        "percentage": 2.01,
-        "yoyGrowth": null,
-        "notes": "Tied to SE Asian assembly hubs."
-      },
-      {
-        "region": "Europe",
-        "revenue": 682000000,
-        "percentage": 1.82,
-        "yoyGrowth": null,
-        "notes": "Automotive, industrial machinery, enterprise servers."
-      },
-      {
-        "region": "Hong Kong",
-        "revenue": 340000000,
-        "percentage": 0.91,
-        "yoyGrowth": null,
-        "notes": "Transshipment hub for mainland Chinese manufacturing."
+        "notes": "Based on approximately one-third of revenue from customers headquartered outside the U.S."
       }
     ],
-    "concentrationRisk": "Customer A (likely NVIDIA) represents 17% of total FY25 revenue, driving the massive CMBU expansion.",
-    "source": "10-K FY2025, Note 29"
+    "concentrationRisk": "Micron has significant geographic concentration in product shipments, with 80% of revenue derived from products shipped to locations outside the United States.",
+    "sources": [
+      "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08",
+      "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+    ]
   },
   "supplyChain": [
-    {
-      "entity": "QatarEnergy (Ras Laffan)",
-      "role": "raw_material",
-      "city": "Ras Laffan",
-      "country": "Qatar",
-      "lat": 25.8950,
-      "lng": 51.5436,
-      "product": "Ultra-pure 6N grade Helium",
-      "criticality": "critical",
-      "source": "MarketWatch / Tom's Hardware 2026"
-    },
-    {
-      "entity": "Chinese State Refineries",
-      "role": "raw_material",
-      "city": "Beijing",
-      "country": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
-      "product": "Gallium, Germanium, Neon",
-      "criticality": "important",
-      "source": "Global Policy Watch 2026"
-    },
     {
       "entity": "ASML",
       "role": "key_supplier",
       "city": "Veldhoven",
       "country": "Netherlands",
-      "lat": 51.4065,
-      "lng": 5.4053,
-      "product": "EUV Lithography Machinery",
+      "lat": 51.425,
+      "lng": 5.465,
+      "product": "EUV lithography equipment",
       "criticality": "critical",
-      "source": "10-K FY2025"
+      "sources": [
+        "https://quartr.com/companies/micron-technology-inc_5199",
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
     },
     {
       "entity": "TSMC",
-      "role": "contract_manufacturer",
+      "role": "foundry",
       "city": "Hsinchu",
       "country": "Taiwan",
-      "lat": 24.8138,
-      "lng": 120.9675,
-      "product": "CoWoS Advanced Packaging for HBM",
+      "lat": 24.776,
+      "lng": 121.023,
+      "product": "HBM4E customization and logic die",
       "criticality": "critical",
-      "source": "TSMC Investor Relations"
+      "sources": [
+        "https://quartr.com/companies/micron-technology-inc_5199"
+      ]
+    },
+    {
+      "entity": "Applied Materials",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.392,
+      "lng": -121.977,
+      "product": "Semiconductor manufacturing equipment",
+      "criticality": "important",
+      "sources": [
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
+    },
+    {
+      "entity": "Lam Research",
+      "role": "key_supplier",
+      "city": "Fremont",
+      "country": "United States",
+      "lat": 37.513,
+      "lng": -121.944,
+      "product": "Semiconductor manufacturing equipment",
+      "criticality": "important",
+      "sources": [
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
+    },
+    {
+      "entity": "KLA Corporation",
+      "role": "key_supplier",
+      "city": "Milpitas",
+      "country": "United States",
+      "lat": 37.422,
+      "lng": -121.906,
+      "product": "Process control and yield management systems",
+      "criticality": "important",
+      "sources": [
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
+    },
+    {
+      "entity": "Micron Memory Japan",
+      "role": "assembly_test",
+      "city": "Higashihiroshima",
+      "country": "Japan",
+      "lat": 34.433,
+      "lng": 132.75,
+      "product": "Memory manufacturing and technology development",
+      "criticality": "critical",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ]
+    },
+    {
+      "entity": "Micron Memory Taiwan",
+      "role": "foundry",
+      "city": "Taichung",
+      "country": "Taiwan",
+      "lat": 24.25,
+      "lng": 120.717,
+      "product": "DRAM manufacturing",
+      "criticality": "critical",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ]
+    },
+    {
+      "entity": "Micron Technology Singapore",
+      "role": "assembly_test",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.445,
+      "lng": 103.79,
+      "product": "Memory assembly and test",
+      "criticality": "important",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Customer A (Estimated: NVIDIA)",
-      "revenueShare": "17%",
-      "hqCity": "Santa Clara",
-      "hqCountry": "USA",
-      "lat": 37.3541,
-      "lng": -121.9552,
-      "relationship": "Dominant buyer of HBM and advanced data center DRAM, requires delivery to TSMC for integration.",
-      "source": "10-K FY2025, Note 11"
+      "customer": "Kingston Technology Company, Inc.",
+      "revenueShare": "10%",
+      "hqCity": "Fountain Valley",
+      "hqCountry": "United States",
+      "lat": 33.709,
+      "lng": -117.955,
+      "relationship": "Major customer with concentration risk",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312522000004/mu-20211202.htm"
+      ]
     },
     {
-      "customer": "WT Microelectronics Co., Ltd.",
-      "revenueShare": "Not specified",
-      "hqCity": "Taipei",
-      "hqCountry": "Taiwan",
-      "lat": 25.0330,
-      "lng": 121.5654,
-      "relationship": "Major non-exclusive sales representative and distribution channel for APAC region (excluding Japan).",
-      "source": "WT Microelectronics 2024 Annual Report"
+      "customer": "Undisclosed Customer",
+      "revenueShare": "17%",
+      "hqCity": null,
+      "hqCountry": null,
+      "lat": null,
+      "lng": null,
+      "relationship": "Major customer within the CMBU segment",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ]
+    },
+    {
+      "customer": "Apple Inc.",
+      "revenueShare": null,
+      "hqCity": "Cupertino",
+      "hqCountry": "United States",
+      "lat": 37.3318,
+      "lng": -122.0312,
+      "relationship": "Major customer integrating memory and storage into mobile devices",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Micron_Technology",
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08",
+        "https://www.biz.uiowa.edu/henry/download/f24_DELL.pdf"
+      ]
+    },
+    {
+      "customer": "Dell Technologies Inc.",
+      "revenueShare": null,
+      "hqCity": "Round Rock",
+      "hqCountry": "United States",
+      "lat": 30.5083,
+      "lng": -97.6789,
+      "relationship": "Major customer utilizing DRAM, NAND, and SSD solutions",
+      "sources": [
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
+    },
+    {
+      "customer": "Microsoft Corp.",
+      "revenueShare": null,
+      "hqCity": "Redmond",
+      "hqCountry": "United States",
+      "lat": 47.674,
+      "lng": -122.1215,
+      "relationship": "Major customer using memory and storage for Azure cloud platform",
+      "sources": [
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
+    },
+    {
+      "customer": "NVIDIA",
+      "revenueShare": null,
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.3688,
+      "lng": -121.9703,
+      "relationship": "Major customer for HBM products and H200 GPU chips",
+      "sources": [
+        "https://www.babson.edu/media/babson/assets/cutler-center/micron-technology.pdf",
+        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+      ]
     }
   ],
   "geopoliticalRisks": [
     {
+      "region": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "riskScore": 5,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "CAC Purchase Restrictions",
+      "description": "The Cyberspace Administration of China (CAC) barred critical information infrastructure operators from purchasing Micron products, significantly impacting revenue streams from mainland China and Hong Kong.",
+      "impactLevel": "high",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "lastUpdated": "2025-11-27"
+    },
+    {
       "region": "Taiwan",
       "lat": 23.6978,
       "lng": 120.9605,
-      "riskScore": 5,
+      "riskScore": 4,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Cross-strait military escalation",
-      "description": "Immediate loss of >50% of global DRAM capacity; total disruption of TSMC CoWoS packaging required for HBM integration.",
-      "impactLevel": "Critical",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-03-19"
+      "riskLabel": "Manufacturing Concentration Risk",
+      "description": "A substantial portion of Micron's manufacturing and operational footprint is located in Taiwan, exposing the company to significant risks from regional geopolitical tensions and potential supply chain disruptions.",
+      "impactLevel": "critical",
+      "filingReference": "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08",
+      "lastUpdated": "2026-05-08"
     },
     {
-      "region": "Qatar",
-      "lat": 25.3548,
-      "lng": 51.1839,
-      "riskScore": 5,
-      "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Ras Laffan Helium Supply Shock",
-      "description": "Force majeure on 6N grade helium due to Iranian missile strikes; severe disruption of front-end thermal cooling processes.",
-      "impactLevel": "Critical",
-      "filingReference": "Tom's Hardware / Q2 Earnings Context",
-      "lastUpdated": "2026-03-19"
+      "region": "United States",
+      "lat": 38.8951,
+      "lng": -77.0364,
+      "riskScore": 3,
+      "riskCategory": "tax_policy",
+      "riskLabel": "OBBBA Tax Code Changes",
+      "description": "The One Big Beautiful Bill Act (OBBBA) enacted July 4, 2025, introduces broad changes to the U.S. tax code effective for 2026 and 2027, creating uncertainty regarding future tax provisions and effective rates.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "lastUpdated": "2025-11-27"
     },
     {
       "region": "China",
       "lat": 39.9042,
       "lng": 116.4074,
-      "riskScore": 3,
+      "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "CAC Procurement Ban & Export Controls",
-      "description": "Permanent loss of structural market share in consumer memory to domestic players; critical raw material shortages (Gallium/Neon).",
-      "impactLevel": "Moderate",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-03-19"
+      "riskLabel": "Patent Litigation with YMTC",
+      "description": "Micron is a party to multiple pending patent infringement complaints filed by Yangtze Memory Technologies Company Ltd. (YMTC) across various jurisdictions including China, the U.S., Germany, and the U.K.",
+      "impactLevel": "high",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "lastUpdated": "2025-11-27"
     },
     {
-      "region": "United States",
-      "lat": 38.9072,
-      "lng": -77.0369,
+      "region": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
       "riskScore": 3,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "Outbound Export Controls targeting AI",
-      "description": "Downstream demand destruction if US clients cannot sell AI servers to Chinese hyperscalers.",
-      "impactLevel": "Moderate",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2026-03-19"
+      "riskCategory": "tax_policy",
+      "riskLabel": "Pillar Two Tax Implementation",
+      "description": "Singapore enacted Pillar Two Model Rules effective in 2026, which offsets benefits from existing Singapore tax incentive arrangements, potentially increasing the effective tax rate for regional operations.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "lastUpdated": "2025-11-27"
     }
   ]
 }

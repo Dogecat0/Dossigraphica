@@ -3,273 +3,346 @@
   "ticker": "TSM",
   "website": "https://www.tsmc.com",
   "sector": "Semiconductors",
-  "description": "TSMC is the world's preeminent dedicated semiconductor contract manufacturer, currently transitioning from a highly concentrated Taiwanese footprint to a decentralized global manufacturing architecture.",
+  "description": "Taiwan Semiconductor Manufacturing Company Limited (TSMC) is the world's largest dedicated semiconductor foundry, headquartered in Hsinchu, Taiwan, with a vast global footprint that includes major manufacturing operations in Taiwan and significant expansion projects in the United States, such as its facility in Phoenix, Arizona, serving a diverse international client base across North America, Europe, and Asia.",
   "anchorFiling": {
-    "type": "10-K",
-    "date": "2025-04-17",
-    "fiscalPeriod": "FY2024"
+    "reasoning": "The most recent historical earnings date for TSM is 2026-04-16, which corresponds to the Q1 2026 reporting period. This is the latest available financial filing event prior to the current date of 2026-05-22.",
+    "type": "Earnings Release",
+    "date": "2026-04-16",
+    "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-03-17",
+  "generatedDate": "2026-05-22",
   "offices": [
     {
-      "id": "tsm-hsinchu-hq",
-      "name": "Global Headquarters & GIGAFAB",
+      "id": "TSM-HSINCHU-headquarters",
+      "name": "TSMC Headquarters",
       "city": "Hsinchu",
+      "state": "Taiwan",
       "country": "Taiwan",
-      "lat": 24.8138,
-      "lng": 120.9675,
+      "address": "8, Li-Hsin Rd. 6, Hsinchu Science Park, Hsinchu 300-096, Taiwan, R.O.C.",
+      "lat": 24.773,
+      "lng": 121.012,
+      "businessFocus": "Corporate headquarters and semiconductor manufacturing",
       "type": "headquarters",
-      "businessFocus": "Corporate HQ, Executive Leadership, R&D Vanguard, Advanced Manufacturing (2nm/A14)",
-      "source": "Form 6-K Subsidiary Data / Q4 2025 Earnings Transcript",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "tsm-taichung-manufacturing",
-      "name": "Taichung GIGAFAB Cluster",
-      "city": "Taichung",
+      "id": "TSM-HSINCHU-engineering",
+      "name": "TSMC Global R&D Center",
+      "city": "Hsinchu",
+      "state": "Taiwan",
       "country": "Taiwan",
-      "lat": 24.1477,
-      "lng": 120.6736,
-      "type": "manufacturing",
-      "businessFocus": "Advanced Manufacturing",
-      "source": "Q4 2025 Earnings Transcript",
+      "address": "168, Kehuan Rd., Hsinchu Science Park, Hsinchu 308-001, Taiwan, R.O.C.",
+      "lat": 24.775,
+      "lng": 121.015,
+      "businessFocus": "Advanced semiconductor research and development",
+      "type": "engineering",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "tsm-tainan-manufacturing",
-      "name": "Tainan GIGAFAB Cluster",
-      "city": "Tainan",
-      "country": "Taiwan",
-      "lat": 23.1113,
-      "lng": 120.2858,
-      "type": "manufacturing",
-      "businessFocus": "Advanced Manufacturing",
-      "source": "Q4 2025 Earnings Transcript",
-      "confidence": "verified"
-    },
-    {
-      "id": "tsm-phoenix-manufacturing",
-      "name": "TSMC Arizona (Fabs 1, 2, 3)",
+      "id": "TSM-PHOENIX-manufacturing",
+      "name": "TSMC Arizona Corporation",
       "city": "Phoenix",
       "state": "Arizona",
-      "country": "USA",
-      "lat": 33.4484,
-      "lng": -112.0740,
+      "country": "United States",
+      "address": "5088 W. Innovation Circle, Phoenix, AZ 85083, U.S.A.",
+      "lat": 33.815,
+      "lng": -112.155,
+      "businessFocus": "Advanced semiconductor manufacturing",
       "type": "manufacturing",
-      "businessFocus": "Advanced Manufacturing (4nm, 3nm, 2nm/A16), Onshore Integration",
-      "investment": "$165B",
-      "source": "Q4 2025 Earnings Transcript / TSMC Press Release",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "tsm-camas-manufacturing",
-      "name": "TSMC Washington",
-      "city": "Camas",
-      "state": "Washington",
-      "country": "USA",
-      "lat": 45.5826,
-      "lng": -122.4015,
-      "type": "manufacturing",
-      "businessFocus": "Legacy 8-inch Wafer Manufacturing",
-      "source": "TSMC 2024 Annual Report",
-      "confidence": "verified"
-    },
-    {
-      "id": "tsm-sanjose-regional",
-      "name": "TSMC North America",
-      "city": "San Jose",
-      "state": "California",
-      "country": "USA",
-      "lat": 37.3382,
-      "lng": -121.8863,
-      "type": "regional",
-      "businessFocus": "Regional Sales, Customer Support, Financial Operations",
-      "source": "TSMC Affiliates and Forward Contracts",
-      "confidence": "unverified"
-    },
-    {
-      "id": "tsm-kumamoto-manufacturing",
-      "name": "Japan Advanced Semiconductor Manufacturing (JASM)",
-      "city": "Kumamoto",
+      "id": "TSM-KIKUYO-manufacturing",
+      "name": "Japan Advanced Semiconductor Manufacturing, Inc. (JASM)",
+      "city": "Kikuyo",
+      "state": "Kumamoto",
       "country": "Japan",
-      "lat": 32.8031,
-      "lng": 130.7079,
+      "address": "4106-1, Haramizu, Kikuyo-machi, Kikuchi-gun, Kumamoto, 869-1102, Japan",
+      "lat": 32.875,
+      "lng": 130.825,
+      "businessFocus": "Semiconductor manufacturing",
       "type": "manufacturing",
-      "businessFocus": "Manufacturing (22/28nm, 12/16nm, transitioning to 3nm logic chips)",
-      "source": "Q4 2025 Earnings Transcript",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "tsm-dresden-manufacturing",
-      "name": "European Semiconductor Manufacturing Company (ESMC)",
+      "id": "TSM-DRESDEN-manufacturing",
+      "name": "European Semiconductor Manufacturing Company (ESMC) GmbH",
       "city": "Dresden",
+      "state": "Saxony",
       "country": "Germany",
-      "lat": 51.0504,
-      "lng": 13.7373,
+      "address": "World Trade Center, Rosenstrasse 32, 01067 Dresden, Germany",
+      "lat": 51.045,
+      "lng": 13.735,
+      "businessFocus": "Specialty semiconductor manufacturing",
       "type": "manufacturing",
-      "businessFocus": "Manufacturing (28/22nm, 16/12nm FinFET) for Automotive/Industrial",
-      "established": "2024",
-      "source": "TrendForce / GTAI Press Release",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "tsm-munich-engineering",
-      "name": "Munich Design Center",
-      "city": "Munich",
-      "country": "Germany",
-      "lat": 48.1351,
-      "lng": 11.5820,
-      "type": "engineering",
-      "businessFocus": "Chip Design / R&D for Automotive and Industrial IoT",
-      "established": "2025",
-      "source": "TrendForce / GTAI Press Release",
-      "confidence": "verified"
-    },
-    {
-      "id": "tsm-nanjing-manufacturing",
-      "name": "TSMC Nanjing",
+      "id": "TSM-NANJING-manufacturing",
+      "name": "TSMC Nanjing Company Limited",
       "city": "Nanjing",
+      "state": "Jiangsu",
       "country": "China",
-      "lat": 32.0603,
-      "lng": 118.7969,
+      "address": "Pukou Economic Development Zone, Nanjing, Jiangsu Province, China",
+      "lat": 32.06,
+      "lng": 118.63,
+      "businessFocus": "Semiconductor manufacturing",
       "type": "manufacturing",
-      "businessFocus": "Legacy Manufacturing (16/28nm)",
-      "source": "TSMC 2024 Annual Report",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ],
       "confidence": "verified"
-    },
-    {
-      "id": "tsm-shanghai-manufacturing",
-      "name": "TSMC China Co. Ltd.",
-      "city": "Shanghai",
-      "country": "China",
-      "lat": 31.2304,
-      "lng": 121.4737,
-      "type": "manufacturing",
-      "businessFocus": "Legacy 8-inch Wafer Manufacturing",
-      "source": "TSMC 2024 Annual Report",
-      "confidence": "unverified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "FY2025",
-    "totalRevenue": null,
+    "reasoning": "The most recent comprehensive geographic revenue breakdown for TSMC is provided in the 2024 Annual Report. While Q1 2026 revenue data is available, it does not provide a geographic split, so the 2024 annual figures are used as the most reliable anchor for regional concentration.",
+    "fiscalYear": "2024",
+    "totalRevenue": 89000000000.0,
     "currency": "USD",
     "segments": [
       {
         "region": "North America",
-        "revenue": null,
-        "percentage": 75.00,
+        "revenue": 62300000000.0,
+        "percentage": 0.7,
         "yoyGrowth": null,
-        "notes": "Significant dominance driven unequivocally by AI/HPC infrastructure supercycle led by U.S. hyperscalers."
-      },
-      {
-        "region": "Asia Pacific",
-        "revenue": null,
-        "percentage": 9.00,
-        "yoyGrowth": null,
-        "notes": "Stable but declining relative to North American growth. Excludes Japan and China."
+        "notes": "Based on 2024 annual report geographic revenue distribution."
       },
       {
         "region": "China",
-        "revenue": null,
-        "percentage": 9.00,
+        "revenue": 9790000000.0,
+        "percentage": 0.11,
         "yoyGrowth": null,
-        "notes": "Structurally constrained by U.S. export controls and Beijing domestic substitution policies."
+        "notes": "Based on 2024 annual report geographic revenue distribution."
+      },
+      {
+        "region": "Asia Pacific (excluding China and Japan)",
+        "revenue": 8900000000.0,
+        "percentage": 0.1,
+        "yoyGrowth": null,
+        "notes": "Based on 2024 annual report geographic revenue distribution."
       },
       {
         "region": "Japan",
-        "revenue": null,
-        "percentage": 4.00,
+        "revenue": 4450000000.0,
+        "percentage": 0.05,
         "yoyGrowth": null,
-        "notes": "Modest share, highly supported by domestic JASM supply."
+        "notes": "Based on 2024 annual report geographic revenue distribution."
       },
       {
         "region": "EMEA",
-        "revenue": null,
-        "percentage": 3.00,
+        "revenue": 3560000000.0,
+        "percentage": 0.04,
         "yoyGrowth": null,
-        "notes": "Marginal contribution, highly exposed to automotive cyclicality."
+        "notes": "Based on 2024 annual report geographic revenue distribution."
       }
     ],
-    "concentrationRisk": "Top two customers represent roughly 35% of total revenue; North American entities command 75% of geographic billing. Creates a massive structural FX mismatch between USD revenues and NTD operations.",
-    "source": "Q4 2025 Earnings Transcript / TSMC 2024 Annual Report"
+    "concentrationRisk": "TSMC exhibits significant geographic concentration, with 70% of its net revenue derived from North American customers as of 2024.",
+    "sources": [
+      "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+    ]
   },
   "supplyChain": [
     {
-      "entity": "China-based Refining Infrastructure",
-      "role": "raw_material",
-      "city": "Multiple",
-      "country": "China",
-      "lat": 35.8617,
-      "lng": 104.1954,
-      "product": "Rare Earth Elements (Cerium dioxide, Scandium oxide, Neodymium)",
-      "criticality": "critical",
-      "source": "Tom's Hardware / TrendForce"
-    },
-    {
-      "entity": "ASML Holding N.V.",
+      "entity": "ASML",
       "role": "key_supplier",
       "city": "Veldhoven",
       "country": "Netherlands",
-      "lat": 51.4069,
-      "lng": 5.4053,
-      "product": "EUV Lithography Systems",
+      "lat": 51.427,
+      "lng": 5.463,
+      "product": "EUV photolithography machines",
       "criticality": "critical",
-      "source": "ResearchGate / 100baggers.club"
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
     },
     {
-      "entity": "Amkor Technology / SPIL",
+      "entity": "Applied Materials",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "USA",
+      "lat": 37.392,
+      "lng": -121.977,
+      "product": "Semiconductor production tools",
+      "criticality": "critical",
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
+    },
+    {
+      "entity": "ASE Technology",
       "role": "assembly_test",
+      "city": "Kaohsiung",
+      "country": "Taiwan",
+      "lat": 22.627,
+      "lng": 120.301,
+      "product": "Packaging and testing services",
+      "criticality": "important",
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
+    },
+    {
+      "entity": "Sunlit Chemical",
+      "role": "raw_material",
       "city": "Phoenix",
       "country": "USA",
-      "lat": 33.4484,
-      "lng": -112.0740,
-      "product": "OSAT (Advanced Packaging and Testing)",
+      "lat": 33.448,
+      "lng": -112.074,
+      "product": "Chemicals for semiconductor manufacturing",
       "criticality": "important",
-      "source": "NVIDIA Blog"
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf"
+      ]
     },
     {
-      "entity": "Foxconn / Wistron",
-      "role": "contract_manufacturer",
-      "city": "Houston",
-      "country": "USA",
-      "lat": 29.7604,
-      "lng": -95.3698,
-      "product": "AI Supercomputer Final Assembly",
-      "criticality": "important",
-      "source": "NVIDIA Blog / Reddit Discussion"
+      "entity": "ZEISS",
+      "role": "key_supplier",
+      "city": "Oberkochen",
+      "country": "Germany",
+      "lat": 48.785,
+      "lng": 10.095,
+      "product": "Lenses for EUV machines",
+      "criticality": "critical",
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf"
+      ]
+    },
+    {
+      "entity": "Shin-Etsu Chemical",
+      "role": "raw_material",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.676,
+      "lng": 139.65,
+      "product": "High-end photoresists",
+      "criticality": "critical",
+      "sources": [
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf",
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
+      ]
+    },
+    {
+      "entity": "Mirle Automation Corporation",
+      "role": "key_supplier",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.813,
+      "lng": 120.967,
+      "product": "Intelligent automation systems",
+      "criticality": "standard",
+      "sources": [
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
+    },
+    {
+      "entity": "Marketech International Corp",
+      "role": "key_supplier",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "Facility monitor control systems",
+      "criticality": "standard",
+      "sources": [
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Customer A (Apple Inc.)",
+      "customer": "Apple",
       "revenueShare": "22%",
       "hqCity": "Cupertino",
-      "hqCountry": "USA",
-      "lat": 37.3230,
-      "lng": -122.0322,
-      "relationship": "Dominant client for advanced nodes (3nm, upcoming 2nm). Secured over half of 2nm capacity for 2026.",
-      "source": "TSMC 2024 Annual Report, EEWorld"
+      "hqCountry": "United States",
+      "lat": 37.3318,
+      "lng": -122.0312,
+      "relationship": "Primary customer for advanced nodes (5nm, 3nm, 2nm)",
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      ]
     },
     {
-      "customer": "Customer B (Nvidia Corporation)",
-      "revenueShare": "13%",
+      "customer": "NVIDIA",
+      "revenueShare": null,
       "hqCity": "Santa Clara",
-      "hqCountry": "USA",
+      "hqCountry": "United States",
+      "lat": 37.3688,
+      "lng": -121.9703,
+      "relationship": "Top-tier client utilizing sub-7nm advanced process technology",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2025/07/June_and_July_Issue_-20250702_-_Taiwan_and_the_Global_Semiconductor_Supply_Chain.pdf",
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
+    },
+    {
+      "customer": "AMD",
+      "revenueShare": null,
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
       "lat": 37.3541,
       "lng": -121.9552,
-      "relationship": "Overtook Apple as largest real-time customer by late 2025 due to AI accelerator demand.",
-      "source": "Finviz / Wccftech"
+      "relationship": "Fabless client for foundry services",
+      "sources": [
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
+    },
+    {
+      "customer": "Qualcomm",
+      "revenueShare": null,
+      "hqCity": "San Diego",
+      "hqCountry": "United States",
+      "lat": 32.8975,
+      "lng": -117.2057,
+      "relationship": "Fabless client relying on TSMC for chip production",
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
+    },
+    {
+      "customer": "Intel",
+      "revenueShare": null,
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.3875,
+      "lng": -121.9682,
+      "relationship": "Customer for 2nm technology trial and mass production",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
     },
     {
       "customer": "Broadcom",
-      "revenueShare": "11-15% (Proj.)",
+      "revenueShare": null,
       "hqCity": "Palo Alto",
-      "hqCountry": "USA",
-      "lat": 37.4419,
-      "lng": -122.1430,
-      "relationship": "Massive growth vector; custom ASIC chip development for AI applications.",
-      "source": "SmBom / EEWorld"
+      "hqCountry": "United States",
+      "lat": 37.4042,
+      "lng": -122.1451,
+      "relationship": "Fabless client for foundry services",
+      "sources": [
+        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+      ]
     }
   ],
   "geopoliticalRisks": [
@@ -278,60 +351,48 @@
       "lat": 23.6978,
       "lng": 120.9605,
       "riskScore": 5,
-      "riskCategory": "environmental_regulation",
-      "riskLabel": "Seismic Activity & Physical Concentration",
-      "description": "Extreme physical vulnerability housing over 80% of advanced global manufacturing on a seismically active island. Earthquakes in 2024/2025 resulted in NT$3B direct losses.",
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Taiwan Strait Conflict",
+      "description": "Potential military conflict in the Taiwan Strait poses an existential threat to TSMC's production, with estimated global financial impacts ranging from US$600 billion to US$1 trillion annually.",
       "impactLevel": "critical",
-      "filingReference": "Form 20-F Risk Factors",
-      "lastUpdated": "2026-03-17"
+      "filingReference": "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+      "lastUpdated": "2026-05-22"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "riskScore": 4,
+      "riskCategory": "environmental_regulation",
+      "riskLabel": "Carbon Fees and Energy Costs",
+      "description": "TSMC faces rising operational costs due to new carbon fees starting in 2026 and a 25% increase in electricity tariffs, alongside physical risks from drought and earthquakes.",
+      "impactLevel": "moderate",
+      "filingReference": "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
+      "lastUpdated": "2026-05-22"
+    },
+    {
+      "region": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "riskScore": 5,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "U.S. Export Controls",
+      "description": "Strict U.S. export control measures, including the FDPR and AI Diffusion Rule, restrict TSMC's ability to ship advanced chips to China and other restricted entities.",
+      "impactLevel": "high",
+      "filingReference": "https://globaltaiwan.org/2025/03/how-taiwans-chip-industry-navigates-us-industrial-policy-and-export-controls/",
+      "lastUpdated": "2026-05-22"
     },
     {
       "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
-      "riskScore": 5,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "Rare Earth Export Controls & '50% Rule'",
-      "description": "Severe disruption to raw material access (Cerium, Scandium). Forced supply chain decoupling and increased input costs due to retaliatory export controls targeting 14nm-and-below nodes.",
-      "impactLevel": "critical",
-      "filingReference": "Mayer Brown Insights / TrendForce",
-      "lastUpdated": "2026-03-17"
-    },
-    {
-      "region": "United States",
-      "lat": 38.9072,
-      "lng": -77.0369,
+      "lat": 35.8617,
+      "lng": 104.1954,
       "riskScore": 4,
-      "riskCategory": "tax_policy",
-      "riskLabel": "Tariff Policy & Subsidy Revocation",
-      "description": "Financial destabilization of the $165B Arizona expansion if CHIPS Act tax credits and grants are replaced by punitive tariffs.",
-      "impactLevel": "high",
-      "filingReference": "Form 20-F Risk Factors / PIIE",
-      "lastUpdated": "2026-03-17"
-    },
-    {
-      "region": "United States",
-      "lat": 33.4484,
-      "lng": -112.0740,
-      "riskScore": 3,
-      "riskCategory": "labor_regulation",
-      "riskLabel": "Labor Shortages & Cultural Friction",
-      "description": "Elevated operational costs, delayed facility ramps, and lower localized profitability margins due to talent shortages and work culture friction.",
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "China Blocking Statute",
+      "description": "China's 2021 blocking statute allows Chinese entities to seek civil remedies against companies complying with foreign (U.S.) export laws, creating a legal conflict for TSMC.",
       "impactLevel": "moderate",
-      "filingReference": "DigiTimes",
-      "lastUpdated": "2026-03-17"
-    },
-    {
-      "region": "Germany",
-      "lat": 51.0504,
-      "lng": 13.7373,
-      "riskScore": 3,
-      "riskCategory": "labor_regulation",
-      "riskLabel": "High Energy Costs & Union Labor Laws",
-      "description": "Margin dilution due to structurally higher wage, mandatory vacation requirements, and utility costs compared to Asian baselines.",
-      "impactLevel": "moderate",
-      "filingReference": "ISDP Brief",
-      "lastUpdated": "2026-03-17"
+      "filingReference": "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
+      "lastUpdated": "2026-05-22"
     }
   ]
 }

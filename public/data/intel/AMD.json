@@ -1,244 +1,188 @@
 {
   "company": "Advanced Micro Devices, Inc.",
   "ticker": "AMD",
-  "website": "https://www.amd.com",
+  "website": "ir.amd.com",
   "sector": "Semiconductors",
-  "description": "AMD is a global fabless semiconductor company designing advanced microprocessors and AI accelerators, with core executive architecture in North America and a highly decentralized APAC supply chain.",
+  "description": "Advanced Micro Devices, Inc. is a global semiconductor company that designs and develops high-performance computing and visualization products, maintaining a significant international presence through its diverse portfolio of processors, graphics cards, and data center solutions serving markets across North America, Europe, and Asia.",
   "anchorFiling": {
-    "type": "10-K",
-    "date": "2026-02-04",
-    "fiscalPeriod": "FY2025"
+    "reasoning": "The user requested the most recent primary source filing for AMD's Q1 2026 results. The facts confirm AMD reported these results on May 5, 2026, via an earnings release.",
+    "type": "Earnings Release",
+    "date": "2026-05-05",
+    "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-03-18",
+  "generatedDate": "2026-05-22",
   "offices": [
     {
-      "id": "amd-santa-clara-hq",
-      "name": "Global Headquarters",
+      "id": "AMD-SANTACLARA-HEADQUARTERS",
+      "name": "AMD Corporate Headquarters",
       "city": "Santa Clara",
-      "state": "CA",
-      "country": "USA",
-      "address": "2485 Augustine Drive",
-      "lat": 37.3826,
-      "lng": -121.9626,
+      "state": "California",
+      "country": "United States",
+      "address": "Santa Clara, California",
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "businessFocus": "Corporate headquarters and executive management",
       "type": "headquarters",
-      "businessFocus": "Executive Administration, Corporate Governance, Ecosystem Leadership",
-      "source": "10-K FY2025",
-      "confidence": "verified"
-    },
-    {
-      "id": "amd-austin-regional",
-      "name": "Lone Star Campus",
-      "city": "Austin",
-      "state": "TX",
-      "country": "USA",
-      "lat": 30.2305,
-      "lng": -97.8398,
-      "type": "engineering",
-      "businessFocus": "Microprocessor Design, Software Stack Development, Server Architecture",
-      "source": "Corporate Directory",
-      "confidence": "verified"
-    },
-    {
-      "id": "amd-markham-engineering",
-      "name": "Markham Hub",
-      "city": "Markham",
-      "state": "ON",
-      "country": "Canada",
-      "lat": 43.8427,
-      "lng": -79.3871,
-      "type": "engineering",
-      "businessFocus": "GPU Engineering, Multimedia R&D, Discrete Graphics",
-      "source": "Corporate Directory",
-      "confidence": "verified"
-    },
-    {
-      "id": "amd-penang-engineering",
-      "name": "GBS by the Sea Facility",
-      "city": "Bayan Lepas",
-      "state": "Penang",
-      "country": "Malaysia",
-      "lat": 5.2965,
-      "lng": 100.2847,
-      "type": "engineering",
-      "businessFocus": "Advanced Packaging, 3DIC Architecture, Engineering Lab",
-      "size": "209000 sq ft, 1200+ employees",
-      "source": "Press Release",
-      "confidence": "verified"
-    },
-    {
-      "id": "amd-bengaluru-engineering",
-      "name": "Technostar R&D Campus",
-      "city": "Bengaluru",
-      "state": "Karnataka",
-      "country": "India",
-      "lat": 12.9716,
-      "lng": 77.5946,
-      "type": "engineering",
-      "businessFocus": "Largest Global Design Center, Sovereign AI Support",
-      "source": "Press Release",
-      "confidence": "verified"
-    },
-    {
-      "id": "amd-dublin-holding",
-      "name": "Xilinx Finance Ireland Ltd.",
-      "city": "Dublin",
-      "country": "Ireland",
-      "lat": 53.3498,
-      "lng": -6.2603,
-      "type": "regional",
-      "businessFocus": "Financial, IP Holding Architecture",
-      "source": "10-K FY2025, Exhibit 21",
+      "sources": [
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "FY2025",
-    "totalRevenue": 34639000000,
+    "reasoning": "The provided source material for AMD's Q1 2026 financial results explicitly states that the report does not contain a breakdown of revenue by geographic region. Therefore, the segments list is empty.",
+    "fiscalYear": "2026",
+    "totalRevenue": 10250000000.0,
     "currency": "USD",
-    "segments": [
-      {
-        "region": "United States",
-        "revenue": 11363000000,
-        "percentage": 32.8,
-        "yoyGrowth": 30.7,
-        "notes": "Driven heavily by hyperscaler AI GPU deployments (e.g., Meta)."
-      },
-      {
-        "region": "China",
-        "revenue": 7751000000,
-        "percentage": 22.4,
-        "yoyGrowth": 24.4,
-        "notes": "Includes Hong Kong. Growth driven by late-quarter stockpiling prior to anticipated export controls."
-      },
-      {
-        "region": "Taiwan",
-        "revenue": 5186000000,
-        "percentage": 15.0,
-        "yoyGrowth": 57.1,
-        "notes": "Reflects billing locations of ODMs handling AI server integration."
-      },
-      {
-        "region": "Singapore",
-        "revenue": 4284000000,
-        "percentage": 12.4,
-        "yoyGrowth": 18.5,
-        "notes": "Regional supply chain and logistics hub."
-      },
-      {
-        "region": "Other Regions",
-        "revenue": 6055000000,
-        "percentage": 17.5,
-        "yoyGrowth": 53.4,
-        "notes": "Aggregated rest of world sales."
-      }
-    ],
-    "concentrationRisk": "No single customer accounted for at least 10% of consolidated net revenue in FY2025, a shift from historical reliance on console OEMs.",
-    "source": "10-K FY2025"
+    "segments": [],
+    "concentrationRisk": "The provided financial reports for AMD Q1 2026 do not disclose geographic revenue concentration.",
+    "sources": [
+      "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html",
+      "https://www.jonpeddie.com/news/amd-reports-fouth-quarter-revenue-up-40-y-y-to-10-3-billion/",
+      "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+    ]
   },
   "supplyChain": [
     {
-      "entity": "TSMC",
-      "role": "foundry",
-      "city": "Hsinchu",
-      "country": "Taiwan",
-      "lat": 24.7733,
-      "lng": 121.0116,
-      "product": "Advanced Wafer Fabrication (4nm/5nm) and CoWoS Packaging",
-      "criticality": "critical",
-      "source": "Annual Global IC Fabs Report"
-    },
-    {
-      "entity": "Samsung Electronics",
+      "entity": "Samsung",
       "role": "key_supplier",
       "city": "Suwon",
       "country": "South Korea",
       "lat": 37.2636,
       "lng": 127.0286,
-      "product": "HBM3E Advanced Memory Modules",
-      "criticality": "important",
-      "source": "StockTitan News"
-    },
-    {
-      "entity": "Amkor Technology",
-      "role": "assembly_test",
-      "city": "Bayan Lepas",
-      "country": "Malaysia",
-      "lat": 5.2965,
-      "lng": 100.2847,
-      "product": "3DIC Advanced Packaging",
-      "criticality": "important",
-      "source": "Annual Global IC Fabs Report"
-    },
-    {
-      "entity": "Sanmina Corporation",
-      "role": "contract_manufacturer",
-      "city": "San Jose",
-      "country": "USA",
-      "lat": 37.3382,
-      "lng": -121.8863,
-      "product": "Data Center Infrastructure / NPI Rack Integration",
-      "criticality": "important",
-      "source": "Sanmina Press Release"
+      "product": "HBM4 and advanced DRAM solutions",
+      "criticality": "critical",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
     }
   ],
   "customerConcentration": [
     {
       "customer": "Meta",
-      "revenueShare": "Undisclosed",
+      "revenueShare": null,
       "hqCity": "Menlo Park",
-      "hqCountry": "USA",
-      "lat": 37.4529,
-      "lng": -122.1817,
-      "relationship": "Deployed 6 Gigawatts of AMD GPUs; hyperscale partner",
-      "source": "Press Release 1279"
+      "hqCountry": "United States",
+      "lat": 37.4848,
+      "lng": -122.1484,
+      "relationship": "Multiyear deal to deploy up to 6 gigawatts of AMD Instinct GPUs for AI data centers.",
+      "sources": [
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html",
+        "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+      ]
     },
     {
-      "customer": "Sony Group Corporation",
-      "revenueShare": "Historical >10%",
-      "hqCity": "Tokyo",
-      "hqCountry": "Japan",
-      "lat": 35.6762,
-      "lng": 139.6503,
-      "relationship": "Semi-Custom SoC partner for PlayStation consoles",
-      "source": "10-K FY2024 / Market Intel"
+      "customer": "Tata Consultancy Services (TCS)",
+      "revenueShare": null,
+      "hqCity": "Mumbai",
+      "hqCountry": "India",
+      "lat": 19.076,
+      "lng": 72.8777,
+      "relationship": "Co-developing AMD Helios-based rack-scale AI infrastructure in India.",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
+    },
+    {
+      "customer": "NAVER Cloud",
+      "revenueShare": null,
+      "hqCity": "Seongnam",
+      "hqCountry": "South Korea",
+      "lat": 37.3861,
+      "lng": 127.1213,
+      "relationship": "Collaborating to deploy AMD Instinct GPUs and EPYC CPUs for AI infrastructure in Korea.",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
+    },
+    {
+      "customer": "AWS",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "sources": [
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
+    },
+    {
+      "customer": "Google Cloud",
+      "revenueShare": null,
+      "hqCity": "Mountain View",
+      "hqCountry": "United States",
+      "lat": 37.3861,
+      "lng": -122.0839,
+      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "sources": [
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
+    },
+    {
+      "customer": "Microsoft Azure",
+      "revenueShare": null,
+      "hqCity": "Redmond",
+      "hqCountry": "United States",
+      "lat": 47.674,
+      "lng": -122.1215,
+      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "sources": [
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
+    },
+    {
+      "customer": "Tencent",
+      "revenueShare": null,
+      "hqCity": "Shenzhen",
+      "hqCountry": "China",
+      "lat": 22.5431,
+      "lng": 114.0579,
+      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "sources": [
+        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+      ]
+    },
+    {
+      "customer": "OpenAI",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Signed up for shipments of the Helios rack-scale system.",
+      "sources": [
+        "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+      ]
     }
   ],
   "geopoliticalRisks": [
     {
-      "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
+      "region": "Global",
+      "lat": 0.0,
+      "lng": 0.0,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "US Export Controls on Advanced Semiconductors",
-      "description": "Zeroing out of high-margin Data Center AI revenue (MI-series) post-Q1 2026; complete loss of market access for advanced silicon.",
-      "impactLevel": "critical",
-      "filingReference": "Q4 2025 Earnings Call",
-      "lastUpdated": "2026-02-03"
+      "riskLabel": "Export and Trade Regulations",
+      "description": "AMD identifies export regulations, import tariffs, and trade protection measures as material factors that could negatively impact its financial results and global distribution capabilities.",
+      "impactLevel": "high",
+      "filingReference": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+      "lastUpdated": "2026-05-05"
     },
     {
-      "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
-      "riskScore": 5,
+      "region": "Iran",
+      "lat": 32.4279,
+      "lng": 53.688,
+      "riskScore": 4,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Kinetic Conflict / Geopolitical Blockade",
-      "description": "Single point of failure for advanced 4nm/5nm wafer fabrication and CoWoS packaging. A disruption would cease core product output.",
-      "impactLevel": "critical",
-      "filingReference": "Industry Reports / 10-K",
-      "lastUpdated": "2026-03-18"
-    },
-    {
-      "region": "United States",
-      "lat": 38.9072,
-      "lng": -77.0369,
-      "riskScore": 3,
-      "riskCategory": "trade_restriction",
-      "riskLabel": "Section 301 Tariffs / Trade War Escalation",
-      "description": "Inflationary pressures on imported components impacting gross margins.",
+      "riskLabel": "Supply Chain Disruption",
+      "description": "The ongoing war in Iran is creating significant supply chain challenges for the semiconductor industry, potentially affecting AMD's manufacturing and logistics operations.",
       "impactLevel": "moderate",
-      "filingReference": "Trade Act Reports",
-      "lastUpdated": "2026-03-18"
+      "filingReference": "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html",
+      "lastUpdated": "2026-05-05"
     }
   ]
 }
