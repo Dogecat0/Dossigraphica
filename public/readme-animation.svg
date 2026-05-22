@@ -1,0 +1,473 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%" style="border-radius: 8px; overflow: hidden; background: #080a0d;">
+  <style>
+    /* Styling & Core Design System */
+    :root {
+      --bg-dark: #080a0d;
+      --bg-grid: #0d1117;
+      --grid-dot: rgba(9, 211, 172, 0.08);
+      --border-accent: rgba(230, 197, 148, 0.15);
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Card Shading and Fills */
+      --card-stroke: #040507;
+      --shadow-color: rgba(2, 4, 6, 0.75);
+    }
+
+    /* Base Grid Styles */
+    .bg-canvas { fill: var(--bg-dark); }
+    .grid-bg { fill: url(#dotGrid); }
+
+    /* SVG Base Font Styling */
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      fill: #ffffff;
+    }
+
+    /* ==================== KEYFRAME ANIMATIONS ==================== */
+    /* Smooth floating for fanning cards */
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* Pulsing and scaling floor shadows in sync with floating height */
+    @keyframes pulseShadow {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(0.76); opacity: 0.3; }
+    }
+
+    /* Bobbing & rotating for top cube */
+    @keyframes bobCube {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(6deg); }
+    }
+
+    /* Bobbing & rotating for cylinder */
+    @keyframes bobCylinder {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-10deg); }
+    }
+
+    /* Staggered bobbing for green prisms */
+    @keyframes bobPrism1 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(5deg); }
+    }
+    @keyframes bobPrism2 {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(-5deg); }
+    }
+
+    /* Floating for golden cube */
+    @keyframes bobGoldCube {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-5px) rotate(8deg); }
+    }
+
+    /* Fluid bobbing for glassy foreground sphere */
+    @keyframes bobSphere {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ==================== ANIMATION ASSIGNMENTS ==================== */
+    /* Staggered floating delays to create an undulating curve wave */
+    .card-float-1 { animation: floatCard 6s ease-in-out infinite; animation-delay: 0s; }
+    .card-float-2 { animation: floatCard 6s ease-in-out infinite; animation-delay: 0.5s; }
+    .card-float-3 { animation: floatCard 6s ease-in-out infinite; animation-delay: 1.0s; }
+    .card-float-4 { animation: floatCard 6s ease-in-out infinite; animation-delay: 1.5s; }
+    .card-float-5 { animation: floatCard 6s ease-in-out infinite; animation-delay: 2.0s; }
+    .card-float-6 { animation: floatCard 6s ease-in-out infinite; animation-delay: 2.5s; }
+
+    /* Staggered shadow pulsing exactly matching card delays & centers */
+    .shadow-pulse-1 { transform-origin: 38px 15px; animation: pulseShadow 6s ease-in-out infinite; animation-delay: 0s; }
+    .shadow-pulse-2 { transform-origin: 38px 15px; animation: pulseShadow 6s ease-in-out infinite; animation-delay: 0.5s; }
+    .shadow-pulse-3 { transform-origin: 38px 15px; animation: pulseShadow 6s ease-in-out infinite; animation-delay: 1.0s; }
+    .shadow-pulse-4 { transform-origin: 38px 15px; animation: pulseShadow 6s ease-in-out infinite; animation-delay: 1.5s; }
+    .shadow-pulse-5 { transform-origin: 38px 15px; animation: pulseShadow 6s ease-in-out infinite; animation-delay: 2.0s; }
+    .shadow-pulse-6 { transform-origin: 38px 15px; animation: pulseShadow 6s ease-in-out infinite; animation-delay: 2.5s; }
+
+    /* Primtive animations */
+    .cube-float { animation: bobCube 5s ease-in-out infinite; }
+    .cube-shadow-pulse { transform-origin: 0px 0px; animation: pulseShadow 5s ease-in-out infinite; }
+
+    .cylinder-float { transform-origin: 0px 0px; animation: bobCylinder 5.5s ease-in-out infinite; }
+
+    .prism-float-1 { transform-origin: 0px 0px; animation: bobPrism1 4.8s ease-in-out infinite; }
+    .prism-float-2 { transform-origin: 0px 0px; animation: bobPrism2 4.5s ease-in-out infinite; }
+
+    .gold-cube-float { animation: bobGoldCube 4.2s ease-in-out infinite; }
+    .gold-cube-shadow-pulse { transform-origin: 0px 0px; animation: pulseShadow 4.2s ease-in-out infinite; }
+
+    .sphere-float { animation: bobSphere 5s ease-in-out infinite; }
+    .sphere-shadow-pulse { transform-origin: 0px 0px; animation: pulseShadow 5s ease-in-out infinite; }
+  </style>
+
+  <!-- Definitions for Patterns and Gradients -->
+  <defs>
+    <!-- Blueprint Dot Matrix Grid Pattern -->
+    <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="var(--grid-dot)" />
+    </pattern>
+
+    <!-- Floor Drop Shadow Filter -->
+    <filter id="floorShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+
+    <!-- GRADIENTS FOR THE 3D ISOMETRIC CARDS -->
+    <!-- Card 1: Pink to Orange (GEO) -->
+    <linearGradient id="card1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0844" />
+      <stop offset="100%" stop-color="#ffb199" />
+    </linearGradient>
+    <linearGradient id="card1Side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cc0636" />
+      <stop offset="100%" stop-color="#cc8d7a" />
+    </linearGradient>
+
+    <!-- Card 2: Orange to Gold -->
+    <linearGradient id="card2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f12711" />
+      <stop offset="100%" stop-color="#f5af19" />
+    </linearGradient>
+    <linearGradient id="card2Side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c11f0d" />
+      <stop offset="100%" stop-color="#c48c14" />
+    </linearGradient>
+
+    <!-- Card 3: Hot Pink to Purple -->
+    <linearGradient id="card3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f857a6" />
+      <stop offset="100%" stop-color="#ff5858" />
+    </linearGradient>
+    <linearGradient id="card3Side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c64584" />
+      <stop offset="100%" stop-color="#cc4646" />
+    </linearGradient>
+
+    <!-- Card 4: Vibrant Amber-Orange (INTEL) -->
+    <linearGradient id="card4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e65c00" />
+      <stop offset="100%" stop-color="#f9d423" />
+    </linearGradient>
+    <linearGradient id="card4Side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b84a00" />
+      <stop offset="100%" stop-color="#c7aa1c" />
+    </linearGradient>
+
+    <!-- Card 5: Emerald Green to Teal -->
+    <linearGradient id="card5Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11998e" />
+      <stop offset="100%" stop-color="#38ef7d" />
+    </linearGradient>
+    <linearGradient id="card5Side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d7a71" />
+      <stop offset="100%" stop-color="#2cbf64" />
+    </linearGradient>
+
+    <!-- Card 6: Teal to Light Mint (GRAPH) -->
+    <linearGradient id="card6Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0575e6" />
+      <stop offset="100%" stop-color="#00f2fe" />
+    </linearGradient>
+    <linearGradient id="card6Side" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#045db8" />
+      <stop offset="100%" stop-color="#00c1cb" />
+    </linearGradient>
+
+    <!-- Sphere Gradient -->
+    <radialGradient id="sphereGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffb300" />
+      <stop offset="40%" stop-color="#ff6f00" />
+      <stop offset="100%" stop-color="#b33f00" />
+    </radialGradient>
+
+    <!-- Floating Cylinder Gradient -->
+    <linearGradient id="cylinderCap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+    <linearGradient id="cylinderSide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#0d9488" />
+    </linearGradient>
+
+    <!-- Floating Cube Gradient -->
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891b2" />
+      <stop offset="100%" stop-color="#0e7490" />
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+
+    <!-- Floating Prisms/Cones -->
+    <linearGradient id="prismTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2ecc71" />
+      <stop offset="100%" stop-color="#27ae60" />
+    </linearGradient>
+    <linearGradient id="prismSide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#27ae60" />
+      <stop offset="100%" stop-color="#1e8449" />
+    </linearGradient>
+
+    <!-- Small Golden Cube Gradient -->
+    <linearGradient id="goldCubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f39c12" />
+      <stop offset="100%" stop-color="#e67e22" />
+    </linearGradient>
+    <linearGradient id="goldCubeSide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d35400" />
+      <stop offset="100%" stop-color="#b33f00" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="420" class="bg-canvas" />
+  <rect width="800" height="420" class="grid-bg" />
+
+  <!-- Subtly Elegant Border Frame -->
+  <rect x="10" y="10" width="780" height="400" fill="none" stroke="rgba(230, 197, 148, 0.1)" stroke-width="1" />
+
+  <!-- ==================== SCENE COMPOSITION ==================== -->
+  <g id="isometricScene">
+    
+    <!-- ==================== STAGE 1: FLOOR CAST SHADOWS ==================== -->
+    <g id="floorShadows">
+      <!-- Shadow Card 1 -->
+      <g transform="translate(130, 310)">
+        <g class="shadow-pulse-1">
+          <ellipse cx="38" cy="15" rx="42" ry="12" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Card 2 -->
+      <g transform="translate(225, 270)">
+        <g class="shadow-pulse-2">
+          <ellipse cx="38" cy="15" rx="42" ry="12" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Card 3 -->
+      <g transform="translate(310, 250)">
+        <g class="shadow-pulse-3">
+          <ellipse cx="38" cy="15" rx="42" ry="12" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Card 4 -->
+      <g transform="translate(415, 255)">
+        <g class="shadow-pulse-4">
+          <ellipse cx="38" cy="15" rx="42" ry="12" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Card 5 -->
+      <g transform="translate(500, 275)">
+        <g class="shadow-pulse-5">
+          <ellipse cx="38" cy="15" rx="42" ry="12" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Card 6 -->
+      <g transform="translate(595, 315)">
+        <g class="shadow-pulse-6">
+          <ellipse cx="38" cy="15" rx="42" ry="12" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      
+      <!-- Shadow Top Floating Cube -->
+      <g transform="translate(340, 240)">
+        <g class="cube-shadow-pulse">
+          <ellipse cx="0" cy="0" rx="14" ry="5" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Sphere -->
+      <g transform="translate(595, 345)">
+        <g class="sphere-shadow-pulse">
+          <ellipse cx="0" cy="0" rx="28" ry="10" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+      <!-- Shadow Small Golden Cube -->
+      <g transform="translate(490, 315)">
+        <g class="gold-cube-shadow-pulse">
+          <ellipse cx="0" cy="0" rx="8" ry="3" fill="var(--shadow-color)" filter="url(#floorShadow)" />
+        </g>
+      </g>
+    </g>
+
+    <!-- ==================== STAGE 2: 3D ISOMETRIC FANNING CARDS ==================== -->
+    <g id="isometricCards">
+      
+      <!-- CARD 3 (Left-facing, Tilted Right-Forward, Furthest Back Left) -->
+      <g class="card-float-3">
+        <g id="card3" transform="translate(310, 95) skewY(26.5) scale(0.9, 1)">
+          <!-- 3D Thickness Edge (Left & Bottom) -->
+          <rect x="-4" y="4" width="76" height="120" rx="8" fill="url(#card3Side)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Front Card Face -->
+          <rect x="0" y="0" width="76" height="120" rx="8" fill="url(#card3Grad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Card Inner Details (Minimalist grid lines & accent) -->
+          <line x1="8" y1="12" x2="32" y2="12" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" stroke-linecap="round" />
+          <rect x="52" y="8" width="16" height="10" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- CARD 2 (Left-facing, Tilted Right-Forward, Mid Left) -->
+      <g class="card-float-2">
+        <g id="card2" transform="translate(225, 110) skewY(26.5) scale(0.9, 1)">
+          <!-- 3D Thickness Edge -->
+          <rect x="-4" y="4" width="76" height="120" rx="8" fill="url(#card2Side)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Front Card Face -->
+          <rect x="0" y="0" width="76" height="120" rx="8" fill="url(#card2Grad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Card Inner Details -->
+          <circle cx="18" cy="18" r="8" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" />
+          <rect x="52" y="8" width="16" height="10" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- CARD 1 (Left-facing, Tilted Right-Forward, Foreground Left) -->
+      <g class="card-float-1">
+        <g id="card1" transform="translate(130, 140) skewY(26.5) scale(0.9, 1)">
+          <!-- 3D Thickness Edge -->
+          <rect x="-4" y="4" width="76" height="120" rx="8" fill="url(#card1Side)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Front Card Face -->
+          <rect x="0" y="0" width="76" height="120" rx="8" fill="url(#card1Grad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Folder Accent tab -->
+          <rect x="52" y="8" width="16" height="10" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1.5" />
+          <!-- Mini Document Lines -->
+          <line x1="8" y1="18" x2="24" y2="18" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" stroke-linecap="round" />
+          <rect x="8" y="26" width="6" height="10" rx="1" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" />
+          <!-- Label: GEO -->
+          <text x="8" y="106" class="card-label">GEO</text>
+        </g>
+      </g>
+
+      <!-- CARD 4 (Right-facing, Tilted Left-Forward, Furthest Back Right) -->
+      <g class="card-float-4">
+        <g id="card4" transform="translate(415, 115) skewY(-26.5) scale(0.9, 1)">
+          <!-- 3D Thickness Edge (Right & Bottom) -->
+          <rect x="4" y="4" width="76" height="120" rx="8" fill="url(#card4Side)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Front Card Face -->
+          <rect x="0" y="0" width="76" height="120" rx="8" fill="url(#card4Grad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Card Inner Details -->
+          <rect x="8" y="8" width="16" height="10" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
+          <line x1="50" y1="12" x2="68" y2="12" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" stroke-linecap="round" />
+          <!-- Label: INTEL -->
+          <text x="8" y="106" class="card-label">INTEL</text>
+        </g>
+      </g>
+
+      <!-- CARD 5 (Right-facing, Tilted Left-Forward, Mid Right) -->
+      <g class="card-float-5">
+        <g id="card5" transform="translate(500, 130) skewY(-26.5) scale(0.9, 1)">
+          <!-- 3D Thickness Edge -->
+          <rect x="4" y="4" width="76" height="120" rx="8" fill="url(#card5Side)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Front Card Face -->
+          <rect x="0" y="0" width="76" height="120" rx="8" fill="url(#card5Grad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Card Inner Details -->
+          <circle cx="38" cy="40" r="18" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" />
+          <circle cx="38" cy="40" r="8" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" />
+          <rect x="8" y="8" width="16" height="10" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- CARD 6 (Right-facing, Tilted Left-Forward, Foreground Right) -->
+      <g class="card-float-6">
+        <g id="card6" transform="translate(595, 160) skewY(-26.5) scale(0.9, 1)">
+          <!-- 3D Thickness Edge -->
+          <rect x="4" y="4" width="76" height="120" rx="8" fill="url(#card6Side)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Front Card Face -->
+          <rect x="0" y="0" width="76" height="120" rx="8" fill="url(#card6Grad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Card Inner Details -->
+          <circle cx="58" cy="18" r="8" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" />
+          <!-- Custom D Spine / Curved White S Line -->
+          <path d="M 56 16 C 56 12, 60 12, 60 16 C 60 20, 56 20, 56 24 C 56 28, 60 28, 60 24" fill="none" stroke="#ffffff" stroke-width="1.75" stroke-linecap="round" />
+          <rect x="8" y="8" width="16" height="10" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
+          <!-- Label: GRAPH -->
+          <text x="8" y="106" class="card-label">GRAPH</text>
+        </g>
+      </g>
+
+    </g>
+
+    <!-- ==================== STAGE 3: 3D FLOATING PRIMITIVES ==================== -->
+    <g id="floatingPrimitives">
+      
+      <!-- Top Central 3D Cube -->
+      <g class="cube-float">
+        <g id="topCube" transform="translate(340, 65)">
+          <!-- Top Face -->
+          <polygon points="0,-12 14,-5 0,2 -14,-5" fill="url(#cubeTop)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Left Face -->
+          <polygon points="-14,-5 0,2 0,14 -14,7" fill="url(#cubeLeft)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Right Face -->
+          <polygon points="0,2 14,-5 14,7 0,14" fill="url(#cubeRight)" stroke="var(--card-stroke)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- Right 3D Cylinder -->
+      <g class="cylinder-float">
+        <g id="rightCylinder" transform="translate(520, 135) rotate(15)">
+          <!-- Cylinder Side Body -->
+          <path d="M -10 -5 L -10 15 A 10 4 0 0 0 10 15 L 10 -5 Z" fill="url(#cylinderSide)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Cylinder Top Cap -->
+          <ellipse cx="0" cy="-5" rx="10" ry="4" fill="url(#cylinderCap)" stroke="var(--card-stroke)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- Green Prism 1 (Pointing to Card 1, Left) -->
+      <g class="prism-float-1">
+        <g id="prism1" transform="translate(205, 175) rotate(-35)">
+          <!-- Bottom/Left prism face -->
+          <polygon points="-12,0 0,-15 0,15" fill="url(#prismSide)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Bottom/Right prism face -->
+          <polygon points="0,15 0,-15 12,0" fill="url(#prismTop)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Front prism face -->
+          <polygon points="0,-15 12,0 -12,0" fill="url(#prismTop)" stroke="var(--card-stroke)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- Green Prism 2 (Pointing to Card 4, Right) -->
+      <g class="prism-float-2">
+        <g id="prism2" transform="translate(390, 185) rotate(45)">
+          <!-- Bottom/Left prism face -->
+          <polygon points="-12,0 0,-15 0,15" fill="url(#prismSide)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Bottom/Right prism face -->
+          <polygon points="0,15 0,-15 12,0" fill="url(#prismTop)" stroke="var(--card-stroke)" stroke-width="1.5" />
+          <!-- Front prism face -->
+          <polygon points="0,-15 12,0 -12,0" fill="url(#prismTop)" stroke="var(--card-stroke)" stroke-width="1.5" />
+        </g>
+      </g>
+
+      <!-- Small Golden 3D Cube (Resting / Hovering over base of Card 5/6) -->
+      <g class="gold-cube-float">
+        <g id="smallGoldCube" transform="translate(490, 295)">
+          <!-- Top Face -->
+          <polygon points="0,-6 7,-3 0,1 -7,-3" fill="url(#goldCubeTop)" stroke="var(--card-stroke)" stroke-width="1.25" />
+          <!-- Left Face -->
+          <polygon points="-7,-3 0,1 0,8 -7,4" fill="url(#goldCubeSide)" stroke="var(--card-stroke)" stroke-width="1.25" />
+          <!-- Right Face -->
+          <polygon points="0,1 7,-3 7,4 0,8" fill="url(#goldCubeSide)" stroke="var(--card-stroke)" stroke-width="1.25" />
+        </g>
+      </g>
+
+      <!-- High-Gloss Specular 3D Sphere (Foreground Bottom-Right) -->
+      <g class="sphere-float">
+        <g id="fgSphere">
+          <!-- Sphere Base -->
+          <circle cx="595" cy="310" r="22" fill="url(#sphereGrad)" stroke="var(--card-stroke)" stroke-width="2.5" />
+          <!-- Curvy branding line ("S" logo line) -->
+          <path d="M 589 316 C 589 308, 601 308, 601 313 C 601 318, 589 318, 589 308" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+          <!-- Specular Highlight -->
+          <path d="M 583 296 A 14 14 0 0 1 601 294 A 20 20 0 0 0 583 296" fill="#ffffff" opacity="0.6" />
+        </g>
+      </g>
+
+    </g>
+  </g>
+</svg>
