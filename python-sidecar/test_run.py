@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import shutil
 import sys
 import time
 from dotenv import load_dotenv
@@ -29,6 +30,21 @@ async def run_test_research(query: str):
     Consumes the research_pipeline async generator and prints status updates with a progress bar.
     Tracks total execution time.
     """
+    log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
+    if os.path.isdir(log_dir):
+        log_count = len(os.listdir(log_dir))
+        if log_count > 0:
+            try:
+                choice = input(f"\nLog directory has {log_count} files ({log_dir}). Clean? [Y/n]: ").strip().lower()
+            except (EOFError, KeyboardInterrupt):
+                choice = "n"
+            if choice in ("", "y", "yes"):
+                shutil.rmtree(log_dir)
+                os.makedirs(log_dir)
+                print(f"  Cleared {log_count} files from log directory.")
+            else:
+                print("  Keeping existing logs.")
+
     print(f"\n--- [STARTING RESEARCH: {query}] ---\n")
     
     # Check for BRAVE_SEARCH_API_KEY
@@ -36,9 +52,11 @@ async def run_test_research(query: str):
         print("WARNING: BRAVE_SEARCH_API_KEY not found in environment. Search phase will fail.")
 
     start_time = time.perf_counter()
-    current_progress = 0
 
     # Get terminal width for full-width reporting, fallback to 100
+    RESIZE_COOLDOWN = 1.0
+    last_seen_cols = None
+    resize_last_change = 0.0
     try:
         term_width = os.get_terminal_size().columns
     except OSError:
@@ -54,8 +72,20 @@ async def run_test_research(query: str):
             async for update in research_pipeline(query):
                 data = json.loads(update)
                 status = data.get("status")
+
+                # Responsive terminal width with 1s debounce
+                now = time.perf_counter()
+                try:
+                    cols = os.get_terminal_size().columns
+                except OSError:
+                    cols = term_width
+                if cols != last_seen_cols:
+                    last_seen_cols = cols
+                    resize_last_change = now
+                if cols != term_width and now - resize_last_change >= RESIZE_COOLDOWN:
+                    term_width = cols
+                    pbar.ncols = term_width
                 message = data.get("message")
-                progress = data.get("progress", current_progress)
                 
                 # Dynamic Total Discovery
                 llm_data = data.get("llm", {})
