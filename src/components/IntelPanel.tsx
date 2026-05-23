@@ -193,6 +193,10 @@ function OverviewTab({ intel }: { intel: GeoIntelligence }) {
 }
 
 function RevenueTab({ geo }: { geo: GeoIntelligence['revenueGeography'] }) {
+    const absoluteSegments = geo.segments.filter(seg => seg.revenue !== null);
+    const shareOnlySegments = geo.segments.filter(seg => seg.revenue === null);
+    const hasMixedSegments = absoluteSegments.length > 0 && shareOnlySegments.length > 0;
+
     return (
         <div className="space-y-8 animate-fade-in">
             <section className="border-b border-[var(--color-accent-gold)]/40 pb-4">
@@ -203,24 +207,76 @@ function RevenueTab({ geo }: { geo: GeoIntelligence['revenueGeography'] }) {
                 </div>
             </section>
 
-            <table className="w-full font-serif border-collapse">
-                <thead>
-                    <tr className="border-b border-[var(--color-accent-gold)]/40 text-left">
-                        <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] pr-4">Regional Segment</th>
-                        <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right pr-4">Revenue</th>
-                        <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right">Share</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-[var(--color-border-muted)]">
-                    {geo.segments.map((seg, i) => (
-                        <tr key={i} className="group hover:bg-[var(--color-bg-paper-dark)] transition-colors">
-                            <td className="py-4 font-bold text-[var(--color-ink)]">{seg.region}</td>
-                            <td className="py-4 text-right font-mono pr-4 text-[var(--color-ink-muted)]"><AnimatedNumber value={seg.revenue} formatter={formatRevenue} /></td>
-                            <td className="py-4 text-right font-mono font-bold text-[var(--color-accent-blue)]"><AnimatedNumber value={seg.percentage} formatter={(val) => `${((val || 0) * 100).toFixed(1)}%`} /></td>
+            {hasMixedSegments ? (
+                <>
+                    {/* Operational Segment Breakdown */}
+                    <div className="space-y-4">
+                        <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1">
+                            Operational Segment Breakdown
+                        </h4>
+                        <table className="w-full font-serif border-collapse">
+                            <thead>
+                                <tr className="border-b border-[var(--color-accent-gold)]/40 text-left">
+                                    <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] pr-4">Segment</th>
+                                    <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right pr-4">Revenue</th>
+                                    <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right">Share</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[var(--color-border-muted)]">
+                                {absoluteSegments.map((seg, i) => (
+                                    <tr key={i} className="group hover:bg-[var(--color-bg-paper-dark)] transition-colors">
+                                        <td className="py-4 font-bold text-[var(--color-ink)]">{seg.region}</td>
+                                        <td className="py-4 text-right font-mono pr-4 text-[var(--color-ink-muted)]"><AnimatedNumber value={seg.revenue} formatter={formatRevenue} /></td>
+                                        <td className="py-4 text-right font-mono font-bold text-[var(--color-accent-blue)]"><AnimatedNumber value={seg.percentage} formatter={(val) => `${((val || 0) * 100).toFixed(1)}%`} /></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Geographic Store Revenue Share */}
+                    <div className="space-y-4 pt-4">
+                        <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1">
+                            Geographic Store Revenue Share
+                        </h4>
+                        <table className="w-full font-serif border-collapse">
+                            <thead>
+                                <tr className="border-b border-[var(--color-accent-gold)]/40 text-left">
+                                    <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] pr-4">Country / Region</th>
+                                    <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right">Revenue Share</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[var(--color-border-muted)]">
+                                {shareOnlySegments.map((seg, i) => (
+                                    <tr key={i} className="group hover:bg-[var(--color-bg-paper-dark)] transition-colors">
+                                        <td className="py-4 font-bold text-[var(--color-ink)]">{seg.region}</td>
+                                        <td className="py-4 text-right font-mono font-bold text-[var(--color-accent-blue)]"><AnimatedNumber value={seg.percentage} formatter={(val) => `${((val || 0) * 100).toFixed(1)}%`} /></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
+            ) : (
+                <table className="w-full font-serif border-collapse">
+                    <thead>
+                        <tr className="border-b border-[var(--color-accent-gold)]/40 text-left">
+                            <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] pr-4">Regional Segment</th>
+                            <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right pr-4">Revenue</th>
+                            <th className="py-2 text-[10px] font-mono uppercase font-bold text-[var(--color-ink-light)] text-right">Share</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="divide-y divide-[var(--color-border-muted)]">
+                        {geo.segments.map((seg, i) => (
+                            <tr key={i} className="group hover:bg-[var(--color-bg-paper-dark)] transition-colors">
+                                <td className="py-4 font-bold text-[var(--color-ink)]">{seg.region}</td>
+                                <td className="py-4 text-right font-mono pr-4 text-[var(--color-ink-muted)]"><AnimatedNumber value={seg.revenue} formatter={formatRevenue} /></td>
+                                <td className="py-4 text-right font-mono font-bold text-[var(--color-accent-blue)]"><AnimatedNumber value={seg.percentage} formatter={(val) => `${((val || 0) * 100).toFixed(1)}%`} /></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
 
             {geo.concentrationRisk && (
                 <div className="p-6 bg-[rgba(194,89,63,0.04)] border-l-4 border-[var(--color-accent-red)] rounded shadow-executive">
