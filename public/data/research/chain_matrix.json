@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-23T16:11:11.511518",
+  "lastUpdated": "2026-05-23T19:44:54.428923",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -292,17 +292,9 @@
     },
     {
       "from": "AMZN",
-      "to": "Rivian Automotive, Inc.",
+      "to": "NVDA",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Rivian Automotive, Inc. for Electric delivery vans",
-      "strength": "critical",
-      "value": "key_supplier"
-    },
-    {
-      "from": "AMZN",
-      "to": "Anthropic, PBC",
-      "type": "buyer_supplier",
-      "description": "AMZN depends on Anthropic, PBC for AI model training and compute infrastructure",
+      "description": "AMZN depends on NVIDIA Corporation for GPUs for AI infrastructure (one million+ GPUs deployed starting 2026)",
       "strength": "critical",
       "value": "key_supplier"
     },
@@ -310,33 +302,409 @@
       "from": "AMZN",
       "to": "Cerebras Systems",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Cerebras Systems for Low-latency AI silicon",
+      "description": "AMZN depends on Cerebras Systems for AI inference chips for Amazon Bedrock",
       "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "AMZN",
-      "to": "Winn-Dixie",
+      "to": "Anthropic",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Winn-Dixie for Grocery delivery partnership",
+      "description": "AMZN depends on Anthropic for AI models (Claude) trained on AWS Trainium chips; commercial arrangement with AWS",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "OpenAI",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on OpenAI for Core AI workloads on AWS infrastructure ($50B investment + $38B seven-year agreement)",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "Rivian Automotive",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Rivian Automotive for Electric delivery vehicles",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "United States Postal Service (USPS)",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on United States Postal Service (USPS) for Last-mile delivery services (30% of US deliveries in 2020)",
+      "strength": "important",
+      "value": "logistics"
+    },
+    {
+      "from": "AMZN",
+      "to": "United Parcel Service (UPS)",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on United Parcel Service (UPS) for Last-mile delivery services (14% of US deliveries in 2020)",
+      "strength": "important",
+      "value": "logistics"
+    },
+    {
+      "from": "AMZN",
+      "to": "STACK Infrastructure",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on STACK Infrastructure for Data center development and construction",
+      "strength": "critical",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "AMZN",
+      "to": "Southwestern Electric Power Company (SWEPCO)",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Southwestern Electric Power Company (SWEPCO) for Electrical power infrastructure for data centers",
+      "strength": "critical",
+      "value": "raw_material"
+    },
+    {
+      "from": "AMZN",
+      "to": "Amazon Robotics (formerly Kiva Systems)",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Amazon Robotics (formerly Kiva Systems) for Warehouse automation robots",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "TSMC (Taiwan Semiconductor Manufacturing Company)",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on TSMC (Taiwan Semiconductor Manufacturing Company) for Semiconductor fabrication for custom AI chips (via Anthropic/Broadcom collaboration)",
+      "strength": "critical",
+      "value": "foundry"
+    },
+    {
+      "from": "AMZN",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Broadcom Inc. for Custom AI chip design (TPU-based compute for Anthropic); networking chips",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "Whole Foods Market",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Whole Foods Market for Grocery retail locations and distribution (527 locations)",
+      "strength": "important",
+      "value": "logistics"
+    },
+    {
+      "from": "AMZN",
+      "to": "Sellen Construction",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Sellen Construction for Construction services for Bellevue 600 office",
+      "strength": "standard",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "AMZN",
+      "to": "NBBJ",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on NBBJ for Architecture services for Bellevue 600",
       "strength": "standard",
       "value": "key_supplier"
     },
     {
       "from": "AMZN",
-      "to": "Cargill Ocean Transportation",
+      "to": "Magnusson Klemencic Associates",
       "type": "buyer_supplier",
-      "description": "AMZN depends on Cargill Ocean Transportation for Freight shipping and logistics",
-      "strength": "important",
-      "value": "logistics"
+      "description": "AMZN depends on Magnusson Klemencic Associates for Structural engineering for Bellevue 600",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "Vulcan Real Estate",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Vulcan Real Estate for Real estate development (Sonic tower lease)",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "AMZN",
+      "to": "Accenture",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Accenture for AWS Partner with 30+ competencies, operating in Mexico",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Deloitte",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Deloitte for AWS Partner in Thailand and global system integrator",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "NTT DATA",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on NTT DATA for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Fujitsu",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Fujitsu for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "SoftwareOne",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on SoftwareOne for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "True IDC",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on True IDC for AWS Partner and data center services in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Com7",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Com7 for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "G-Able Public Company Limited",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on G-Able Public Company Limited for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Yip in Tsoi & Co., Ltd.",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Yip in Tsoi & Co., Ltd. for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "SiS Distribution",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on SiS Distribution for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Metro Systems",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Metro Systems for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "MFEC",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on MFEC for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Inteltion",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Inteltion for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "DailiTech",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on DailiTech for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Dakok",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Dakok for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "National Telecom Public Company Limited",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on National Telecom Public Company Limited for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "NTT (Thailand) Ltd.",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on NTT (Thailand) Ltd. for AWS Partner in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "2C2P",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on 2C2P for AWS ISV in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Amity",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Amity for AWS ISV in Thailand",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Escala 24x7",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Escala 24x7 for AWS Partner in Mexico",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Nyx Technologies",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Nyx Technologies for AWS Partner in Mexico",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "XalDigital",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on XalDigital for AWS Partner in Mexico",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "SAP SE",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on SAP SE for Zero-copy data integration with Amazon Athena; AWS partnership",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Palantir Technologies",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Palantir Technologies for AWS cloud infrastructure customer ($5.6B commitment)",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "S&P Global",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on S&P Global for AWS preferred cloud provider ($1.0B five-year commitment)",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "GoDaddy",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on GoDaddy for AWS cloud infrastructure customer (majority of infrastructure migrated to AWS)",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Redfin",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Redfin for AWS cloud infrastructure customer (website and mobile apps hosted on AWS)",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "AppFolio",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on AppFolio for AWS EC2 cloud infrastructure customer",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Dropbox",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Dropbox for AWS datacenter services for additional storage needs",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "LexisNexis (RELX)",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on LexisNexis (RELX) for AWS cloud architecture for database services",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Amdocs",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Amdocs for AWS strategic cloud partner",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Genesys",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Genesys for AWS partner influencing deals",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "DXC Technology",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on DXC Technology for AWS partnership strengthened",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
+    },
+    {
+      "from": "AMZN",
+      "to": "Asana",
+      "type": "buyer_supplier",
+      "description": "AMZN depends on Asana for AWS Marketplace AI Agents storefront",
+      "strength": "standard",
+      "value": "cloud_infrastructure"
     },
     {
       "from": "OpenAI",
       "to": "AMZN",
       "type": "buyer_supplier",
       "description": "OpenAI is a major customer of AMZN",
-      "strength": "critical",
-      "value": "$138 billion total commitment"
+      "strength": "important",
+      "value": null
     },
     {
       "from": "Anthropic",
@@ -363,10 +731,10 @@
       "value": null
     },
     {
-      "from": "AAPL",
+      "from": "NVDA",
       "to": "AMZN",
       "type": "buyer_supplier",
-      "description": "Apple is a major customer of AMZN",
+      "description": "NVIDIA is a major customer of AMZN",
       "strength": "important",
       "value": null
     },
@@ -375,6 +743,806 @@
       "to": "AMZN",
       "type": "buyer_supplier",
       "description": "Uber is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Visa",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Visa is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NBA",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "NBA is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "BlackRock",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "BlackRock is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Lyft",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Lyft is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "United Airlines",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "United Airlines is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "DoorDash",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "DoorDash is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Salesforce",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Salesforce is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "U.S. Air Force",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "U.S. Air Force is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Adobe",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Adobe is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Thomson Reuters",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Thomson Reuters is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "AT&T",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "AT&T is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "S&P Global",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "S&P Global is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "National Bank of Canada",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "National Bank of Canada is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "LSEG",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "LSEG is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Choice Hotels",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Choice Hotels is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Accenture",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Accenture is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Indeed",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Indeed is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HSBC",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "HSBC is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "CrowdStrike",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "CrowdStrike is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "U.S. Army",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "U.S. Army is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Intuit",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Intuit is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "PayPal",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "PayPal is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Norwegian Cruise Line Holdings",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Norwegian Cruise Line Holdings is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Northrop Grumman",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Northrop Grumman is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Medtronic",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Medtronic is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "The Guardian Life Insurance Company of America",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "The Guardian Life Insurance Company of America is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Reddit",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Reddit is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Japan Airlines",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Japan Airlines is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Baker Hughes",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Baker Hughes is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "The Hertz Corporation",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "The Hertz Corporation is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Redfin",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Redfin is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Chime",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Chime is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Asana",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Asana is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Deloitte",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Deloitte is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "SAP",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "SAP is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Robinhood",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Robinhood is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Palantir Technologies",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Palantir Technologies is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Dentsu Digital",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Dentsu Digital is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "AppFolio",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "AppFolio is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Fortinet",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Fortinet is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Trellix",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Trellix is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "123RF",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "123RF is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Envato",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Envato is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Pattern",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Pattern is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Ativion",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Ativion is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "U.S. Bank",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "U.S. Bank is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Fox Corporation",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Fox Corporation is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Southwest Airlines",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Southwest Airlines is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Bloomberg",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Bloomberg is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Cerebras",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Cerebras is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "DTCC",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "DTCC is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Nokia",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Nokia is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Fundamental",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Fundamental is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "National Geographic Society",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "National Geographic Society is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NEURA Robotics",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "NEURA Robotics is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "DXC Technology",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "DXC Technology is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "PGA TOUR",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "PGA TOUR is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "O2 Telef\u00f3nica",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "O2 Telef\u00f3nica is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NTT DOCOMO",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "NTT DOCOMO is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Veolia",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Veolia is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Evri Group",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Evri Group is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Telenor",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Telenor is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "ModMed",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "ModMed is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Yotta Data Services",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Yotta Data Services is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Parrot Analytics",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Parrot Analytics is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "TGS",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "TGS is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Vodafone",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Vodafone is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "DP World Tour",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "DP World Tour is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "AAPL",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Apple is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "JetBlue",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "JetBlue is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Airbnb",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Airbnb is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Netflix",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Netflix is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Disney+",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Disney+ is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Hulu",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Hulu is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "CIA",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "CIA is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Workday",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Workday is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NatWest",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "NatWest is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Perplexity AI",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Perplexity AI is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "ADP",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "ADP is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Amdocs",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Amdocs is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Bridgewater Associates",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Bridgewater Associates is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Broadridge",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Broadridge is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Clariant",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Clariant is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Dana-Farber Cancer Institute",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Dana-Farber Cancer Institute is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Druva",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Druva is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Genesys",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Genesys is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Genomics England",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Genomics England is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "GoDaddy",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "GoDaddy is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "KT Corporation",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "KT Corporation is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Lonely Planet",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Lonely Planet is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "LexisNexis",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "LexisNexis is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Netsmart",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Netsmart is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Pfizer",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Pfizer is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Ricoh",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Ricoh is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Rocket Companies",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Rocket Companies is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Siemens",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Siemens is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Hugging Face",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Hugging Face is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Qualtrics",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Qualtrics is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Snap",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Snap is a major customer of AMZN",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Project Nimbus",
+      "to": "AMZN",
+      "type": "buyer_supplier",
+      "description": "Project Nimbus is a major customer of AMZN",
       "strength": "important",
       "value": null
     },

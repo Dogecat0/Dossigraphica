@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-05-23T16:11:11.513412",
+  "lastUpdated": "2026-05-23T19:44:54.431102",
   "regions": [
     {
       "region": "China",
       "lat": 35.8617,
       "lng": 104.1954,
-      "overallScore": 8.5,
+      "overallScore": 8.7,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -27,9 +27,9 @@
         },
         {
           "ticker": "AMZN",
-          "riskScore": 4,
-          "impactLevel": "high",
-          "category": "political_instability"
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "trade_restriction"
         },
         {
           "ticker": "ASML",
@@ -83,8 +83,8 @@
       "riskDimensions": [
         "regulatory_compliance",
         "trade_restriction",
-        "sanctions",
-        "political_instability"
+        "political_instability",
+        "sanctions"
       ],
       "summary": "Aggregated risk from 12 companies in China."
     },
@@ -92,7 +92,7 @@
       "region": "Taiwan",
       "lat": 23.6978,
       "lng": 120.9605,
-      "overallScore": 8.8,
+      "overallScore": 8.7,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -105,6 +105,12 @@
           "riskScore": 3,
           "impactLevel": "moderate",
           "category": "trade_restriction"
+        },
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "geopolitical_conflict"
         },
         {
           "ticker": "ASML",
@@ -148,7 +154,7 @@
         "trade_restriction",
         "environmental_regulation"
       ],
-      "summary": "Aggregated risk from 8 companies in Taiwan."
+      "summary": "Aggregated risk from 9 companies in Taiwan."
     },
     {
       "region": "United States",
@@ -171,7 +177,7 @@
         {
           "ticker": "AMZN",
           "riskScore": 5,
-          "impactLevel": "high",
+          "impactLevel": "critical",
           "category": "regulatory_compliance"
         },
         {
@@ -218,9 +224,9 @@
         }
       ],
       "riskDimensions": [
+        "trade_restriction",
         "tax_policy",
-        "regulatory_compliance",
-        "trade_restriction"
+        "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 10 companies in United States."
     },
@@ -228,10 +234,16 @@
       "region": "Russia",
       "lat": 55.7558,
       "lng": 37.6173,
-      "overallScore": 7.0,
+      "overallScore": 6.7,
       "contributingCompanies": [
         {
           "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "AMZN",
           "riskScore": 3,
           "impactLevel": "moderate",
           "category": "sanctions"
@@ -247,7 +259,7 @@
         "geopolitical_conflict",
         "sanctions"
       ],
-      "summary": "Aggregated risk from 2 companies in Russia."
+      "summary": "Aggregated risk from 3 companies in Russia."
     },
     {
       "region": "European Union",
@@ -259,6 +271,12 @@
           "ticker": "AMD",
           "riskScore": 3,
           "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "high",
           "category": "regulatory_compliance"
         },
         {
@@ -289,7 +307,7 @@
       "riskDimensions": [
         "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 5 companies in European Union."
+      "summary": "Aggregated risk from 6 companies in European Union."
     },
     {
       "region": "Xinjiang, China",
@@ -311,32 +329,74 @@
     },
     {
       "region": "Israel",
-      "lat": 31.0461,
-      "lng": 34.8516,
-      "overallScore": 4.0,
+      "lat": 31.05,
+      "lng": 34.85,
+      "overallScore": 6.0,
       "contributingCompanies": [
         {
           "ticker": "AMD",
           "riskScore": 2,
           "impactLevel": "low",
           "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "geopolitical_conflict"
         }
       ],
       "riskDimensions": [
         "geopolitical_conflict"
       ],
-      "summary": "Aggregated risk from 1 companies in Israel."
+      "summary": "Aggregated risk from 2 companies in Israel."
     },
     {
-      "region": "India",
-      "lat": 20.5937,
-      "lng": 78.9629,
+      "region": "Luxembourg",
+      "lat": 49.82,
+      "lng": 6.13,
       "overallScore": 8.0,
       "contributingCompanies": [
         {
           "ticker": "AMZN",
           "riskScore": 4,
-          "impactLevel": "moderate",
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 1 companies in Luxembourg."
+    },
+    {
+      "region": "Italy",
+      "lat": 41.87,
+      "lng": 12.57,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 1 companies in Italy."
+    },
+    {
+      "region": "India",
+      "lat": 20.59,
+      "lng": 78.96,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "high",
           "category": "tax_policy"
         }
       ],
@@ -346,27 +406,99 @@
       "summary": "Aggregated risk from 1 companies in India."
     },
     {
-      "region": "Luxembourg",
-      "lat": 49.8153,
-      "lng": 6.1296,
-      "overallScore": 8.0,
+      "region": "United Kingdom",
+      "lat": 55.38,
+      "lng": -3.44,
+      "overallScore": 6.0,
       "contributingCompanies": [
         {
           "ticker": "AMZN",
-          "riskScore": 4,
+          "riskScore": 3,
           "impactLevel": "moderate",
-          "category": "data_privacy"
+          "category": "regulatory_compliance"
         }
       ],
       "riskDimensions": [
-        "data_privacy"
+        "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 1 companies in Luxembourg."
+      "summary": "Aggregated risk from 1 companies in United Kingdom."
     },
     {
-      "region": "Strait of Hormuz",
-      "lat": 26.5667,
-      "lng": 56.25,
+      "region": "Canada",
+      "lat": 56.13,
+      "lng": -106.35,
+      "overallScore": 4.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "environmental_regulation"
+        }
+      ],
+      "riskDimensions": [
+        "environmental_regulation"
+      ],
+      "summary": "Aggregated risk from 1 companies in Canada."
+    },
+    {
+      "region": "Japan",
+      "lat": 36.2,
+      "lng": 138.25,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "currency_exposure"
+        }
+      ],
+      "riskDimensions": [
+        "currency_exposure"
+      ],
+      "summary": "Aggregated risk from 1 companies in Japan."
+    },
+    {
+      "region": "Germany",
+      "lat": 51.17,
+      "lng": 10.45,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 1 companies in Germany."
+    },
+    {
+      "region": "France",
+      "lat": 46.6,
+      "lng": 1.89,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "tax_policy"
+        }
+      ],
+      "riskDimensions": [
+        "tax_policy"
+      ],
+      "summary": "Aggregated risk from 1 companies in France."
+    },
+    {
+      "region": "Middle East",
+      "lat": 26.0,
+      "lng": 53.0,
       "overallScore": 6.0,
       "contributingCompanies": [
         {
@@ -379,25 +511,7 @@
       "riskDimensions": [
         "geopolitical_conflict"
       ],
-      "summary": "Aggregated risk from 1 companies in Strait of Hormuz."
-    },
-    {
-      "region": "Italy",
-      "lat": 41.8719,
-      "lng": 12.5674,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AMZN",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "regulatory_compliance"
-        }
-      ],
-      "riskDimensions": [
-        "regulatory_compliance"
-      ],
-      "summary": "Aggregated risk from 1 companies in Italy."
+      "summary": "Aggregated risk from 1 companies in Middle East."
     },
     {
       "region": "Netherlands",
@@ -479,9 +593,9 @@
         }
       ],
       "riskDimensions": [
+        "political_instability",
         "tax_policy",
-        "sanctions",
-        "political_instability"
+        "sanctions"
       ],
       "summary": "Aggregated risk from 3 companies in Global."
     },

@@ -1817,104 +1817,198 @@
     "company": "Amazon.com, Inc.",
     "website": "https://www.amazon.com",
     "ticker": "AMZN",
-    "sector": "Consumer Discretionary",
-    "description": "Amazon is a global technology and e-commerce leader with a massive geographic footprint, operating extensive retail, cloud computing (AWS), and logistics networks across North America, international markets, and digital infrastructure worldwide.",
+    "sector": "Technology",
+    "description": "Amazon.com, Inc. is an American multinational technology company headquartered in Seattle, Washington, with a vast global geographic footprint. Its operations span three segments: North America, International, and Amazon Web Services (AWS). AWS operates 114 Availability Zones across 36 geographic regions worldwide, serving customers globally. The company employs approximately 1.576 million people (Q4 2025) and has a presence in numerous countries through its e-commerce, cloud computing, digital streaming, and artificial intelligence businesses. Key global initiatives include Project Kuiper (a LEO satellite network with 250+ satellites in space, targeting commercial services in Q3 2026), the Amazon Leo satellite constellation (20+ launches planned in 2026, over 30 in 2027), and Zoox autonomous vehicle operations with 350K+ riders. The company holds significant international investments including Anthropic and Rivian, and has made major acquisitions such as MGM Holdings and One Medical.",
     "offices": [
       {
         "id": "AMZN-SEATTLE-HEADQUARTERS",
-        "name": "Amazon Corporate Headquarters",
+        "name": "Amazon Global Headquarters (Principal Executive Offices)",
         "city": "Seattle",
         "state": "Washington",
-        "country": "United States",
-        "address": "410 Terry Avenue North, Seattle, Washington 98109-5210",
-        "lat": 47.6205,
-        "lng": -122.3367,
-        "businessFocus": "Corporate Headquarters",
+        "country": "USA",
+        "address": "410 Terry Avenue North, Seattle, WA 98109-5210",
+        "lat": 47.6233,
+        "lng": -122.3375,
+        "businessFocus": "Corporate headquarters, executive management, corporate functions",
         "type": "headquarters",
         "sources": [
-          "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
-          "https://www.aboutamazon.com/workplace/corporate-offices"
+          "https://www.amazon.com"
         ],
         "confidence": "verified"
       },
       {
         "id": "AMZN-ARLINGTON-HEADQUARTERS",
-        "name": "Amazon HQ2",
+        "name": "Amazon HQ2 (Arlington)",
         "city": "Arlington",
         "state": "Virginia",
-        "country": "United States",
-        "address": "Arlington, Virginia",
-        "lat": 38.8582,
-        "lng": -77.0502,
-        "businessFocus": "Corporate Headquarters",
+        "country": "USA",
+        "address": "525 14th Street South, Arlington, VA",
+        "lat": 38.8575,
+        "lng": -77.0375,
+        "businessFocus": "Corporate headquarters, executive offices, technology development",
         "type": "headquarters",
         "sources": [
-          "https://www.aboutamazon.com/workplace/corporate-offices",
-          "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm"
+          "https://www.amazon.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "AMZN-BELLEVUE-OFFICE",
-        "name": "Bellevue Campus (Sonic and Dynamo)",
-        "city": "Bellevue",
+        "id": "AMZN-SEATTLE-DOPPLER",
+        "name": "Doppler Building",
+        "city": "Seattle",
         "state": "Washington",
-        "country": "United States",
-        "address": "Bellevue, Washington",
-        "lat": 47.6101,
-        "lng": -122.2015,
-        "businessFocus": "Corporate Operations",
+        "country": "USA",
+        "address": "2021 7th Avenue, Seattle, WA",
+        "lat": 47.6145,
+        "lng": -122.3385,
+        "businessFocus": "Corporate offices, engineering",
         "type": "regional",
         "sources": [
-          "https://www.aboutamazon.com/workplace/corporate-offices"
+          "https://www.amazon.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "AMZN-LONDON-OFFICE",
+        "id": "AMZN-SEATTLE-SPHERES",
+        "name": "The Spheres",
+        "city": "Seattle",
+        "state": "Washington",
+        "country": "USA",
+        "address": "2111 7th Avenue, Seattle, WA",
+        "lat": 47.6155,
+        "lng": -122.3388,
+        "businessFocus": "Corporate offices, employee workspace, botanical conservatory",
+        "type": "regional",
+        "sources": [
+          "https://www.amazon.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-BELLEVUE-REGIONAL",
+        "name": "Amazon Bellevue Campus - Sonic Building",
+        "city": "Bellevue",
+        "state": "Washington",
+        "country": "USA",
+        "address": "555 108th Ave NE, Bellevue, WA",
+        "lat": 47.6185,
+        "lng": -122.1955,
+        "businessFocus": "Corporate offices, engineering, technology development",
+        "type": "regional",
+        "sources": [
+          "https://www.amazon.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-NASHVILLE-REGIONAL",
+        "name": "Amazon Operations Center of Excellence (Nashville)",
+        "city": "Nashville",
+        "state": "Tennessee",
+        "country": "USA",
+        "address": "101 Platform Way N, Nashville, TN 37203",
+        "lat": 36.1627,
+        "lng": -86.7816,
+        "businessFocus": "Operations center of excellence, Eastern US Retail HQ",
+        "type": "regional",
+        "sources": [
+          "https://www.amazon.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-LUXEMBOURG-HEADQUARTERS",
+        "name": "Amazon European Headquarters",
+        "city": "Luxembourg City",
+        "state": null,
+        "country": "Luxembourg",
+        "address": "38 Avenue John F. Kennedy, L-1855 Luxembourg",
+        "lat": 49.6346,
+        "lng": 6.1704,
+        "businessFocus": "European headquarters, corporate functions, Amazon EU S.à r.l.",
+        "type": "headquarters",
+        "sources": [
+          "https://www.amazon.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-LONDON-HEADQUARTERS",
         "name": "Amazon UK Headquarters",
         "city": "London",
         "state": null,
         "country": "United Kingdom",
-        "address": "1 Principal Place, Shoreditch, London",
-        "lat": 51.5215,
-        "lng": -0.0805,
-        "businessFocus": "UK Corporate Headquarters",
-        "type": "regional",
+        "address": "Principal Place, Shoreditch, London",
+        "lat": 51.5244,
+        "lng": -0.0778,
+        "businessFocus": "UK headquarters, corporate functions, technology",
+        "type": "headquarters",
         "sources": [
-          "https://www.aboutamazon.com/workplace/corporate-offices"
+          "https://www.amazon.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "AMZN-HYDERABAD-OFFICE",
-        "name": "Amazon Hyderabad Campus",
+        "id": "AMZN-HYDERABAD-REGIONAL",
+        "name": "Amazon India Campus (Hyderabad)",
         "city": "Hyderabad",
         "state": "Telangana",
         "country": "India",
-        "address": "Hyderabad, India",
-        "lat": 17.385,
-        "lng": 78.4867,
-        "businessFocus": "Corporate Operations and Engineering",
+        "address": "Nanakramguda, Hyderabad, Telangana, India",
+        "lat": 17.4245,
+        "lng": 78.3485,
+        "businessFocus": "Technology development, corporate operations, largest global campus",
         "type": "regional",
         "sources": [
-          "https://www.aboutamazon.com/workplace/corporate-offices"
+          "https://www.amazon.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "AMZN-HEBRON-LOGISTICS",
-        "name": "Amazon Air Cargo Hub",
-        "city": "Hebron",
-        "state": "Kentucky",
-        "country": "United States",
-        "address": "Cincinnati/Northern Kentucky Airport",
-        "lat": 39.0488,
-        "lng": -84.6678,
-        "businessFocus": "Air Cargo Logistics",
-        "type": "logistics",
+        "id": "AMZN-SHREVEPORT-DATA_CENTER",
+        "name": "Amazon Louisiana Data Centers - Resilient Tech Park",
+        "city": "Shreveport",
+        "state": "Louisiana",
+        "country": "USA",
+        "address": "7340 Greenwood Rd, Shreveport, LA",
+        "lat": 32.445,
+        "lng": -93.825,
+        "businessFocus": "Data center operations, cloud infrastructure",
+        "type": "data_center",
         "sources": [
-          "https://logisticsviewpoints.com/2025/09/29/amazon-supply-chain-innovative-world/"
+          "https://www.amazon.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-BLANCHARD-DATA_CENTER",
+        "name": "Amazon Louisiana Data Centers - Blanchard Campus",
+        "city": "Blanchard",
+        "state": "Louisiana",
+        "country": "USA",
+        "address": "Blanchard Latex Rd/State Line Rd, Blanchard, LA",
+        "lat": 32.58,
+        "lng": -93.89,
+        "businessFocus": "Data center operations, cloud infrastructure",
+        "type": "data_center",
+        "sources": [
+          "https://www.amazon.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMZN-BENTON-DATA_CENTER",
+        "name": "Amazon Louisiana Data Centers - Benton Site",
+        "city": "Benton",
+        "state": "Louisiana",
+        "country": "USA",
+        "address": "Hwy 3 north of Benton, LA",
+        "lat": 32.71,
+        "lng": -93.74,
+        "businessFocus": "Data center operations, cloud infrastructure",
+        "type": "data_center",
+        "sources": [
+          "https://www.amazon.com"
         ],
         "confidence": "verified"
       }

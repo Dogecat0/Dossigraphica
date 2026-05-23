@@ -2,117 +2,211 @@
   "company": "Amazon.com, Inc.",
   "ticker": "AMZN",
   "website": "https://www.amazon.com",
-  "sector": "Consumer Discretionary",
-  "description": "Amazon is a global technology and e-commerce leader with a massive geographic footprint, operating extensive retail, cloud computing (AWS), and logistics networks across North America, international markets, and digital infrastructure worldwide.",
+  "sector": "Technology",
+  "description": "Amazon.com, Inc. is an American multinational technology company headquartered in Seattle, Washington, with a vast global geographic footprint. Its operations span three segments: North America, International, and Amazon Web Services (AWS). AWS operates 114 Availability Zones across 36 geographic regions worldwide, serving customers globally. The company employs approximately 1.576 million people (Q4 2025) and has a presence in numerous countries through its e-commerce, cloud computing, digital streaming, and artificial intelligence businesses. Key global initiatives include Project Kuiper (a LEO satellite network with 250+ satellites in space, targeting commercial services in Q3 2026), the Amazon Leo satellite constellation (20+ launches planned in 2026, over 30 in 2027), and Zoox autonomous vehicle operations with 350K+ riders. The company holds significant international investments including Anthropic and Rivian, and has made major acquisitions such as MGM Holdings and One Medical.",
   "anchorFiling": {
-    "reasoning": "The most recent financial reporting period for Amazon (AMZN) is Q1 2026, as confirmed by multiple sources citing the earnings release date of April 29, 2026.",
+    "reason": "Most recent reporting period is Q1 2026. No 10-Q for Q1 2026 is mentioned, so the Q1 2026 earnings release dated April 29, 2026 is the most recent primary source filing available for Amazon.",
     "type": "Earnings Release",
     "date": "2026-04-29",
     "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-05-18",
+  "generatedDate": "2026-05-23",
   "offices": [
     {
       "id": "AMZN-SEATTLE-HEADQUARTERS",
-      "name": "Amazon Corporate Headquarters",
+      "name": "Amazon Global Headquarters (Principal Executive Offices)",
       "city": "Seattle",
       "state": "Washington",
-      "country": "United States",
-      "address": "410 Terry Avenue North, Seattle, Washington 98109-5210",
-      "lat": 47.6205,
-      "lng": -122.3367,
-      "businessFocus": "Corporate Headquarters",
+      "country": "USA",
+      "address": "410 Terry Avenue North, Seattle, WA 98109-5210",
+      "lat": 47.6233,
+      "lng": -122.3375,
+      "businessFocus": "Corporate headquarters, executive management, corporate functions",
       "type": "headquarters",
       "sources": [
-        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
-        "https://www.aboutamazon.com/workplace/corporate-offices"
+        "https://www.amazon.com"
       ],
       "confidence": "verified"
     },
     {
       "id": "AMZN-ARLINGTON-HEADQUARTERS",
-      "name": "Amazon HQ2",
+      "name": "Amazon HQ2 (Arlington)",
       "city": "Arlington",
       "state": "Virginia",
-      "country": "United States",
-      "address": "Arlington, Virginia",
-      "lat": 38.8582,
-      "lng": -77.0502,
-      "businessFocus": "Corporate Headquarters",
+      "country": "USA",
+      "address": "525 14th Street South, Arlington, VA",
+      "lat": 38.8575,
+      "lng": -77.0375,
+      "businessFocus": "Corporate headquarters, executive offices, technology development",
       "type": "headquarters",
       "sources": [
-        "https://www.aboutamazon.com/workplace/corporate-offices",
-        "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000004/amzn-20221231.htm"
+        "https://www.amazon.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "AMZN-BELLEVUE-OFFICE",
-      "name": "Bellevue Campus (Sonic and Dynamo)",
-      "city": "Bellevue",
+      "id": "AMZN-SEATTLE-DOPPLER",
+      "name": "Doppler Building",
+      "city": "Seattle",
       "state": "Washington",
-      "country": "United States",
-      "address": "Bellevue, Washington",
-      "lat": 47.6101,
-      "lng": -122.2015,
-      "businessFocus": "Corporate Operations",
+      "country": "USA",
+      "address": "2021 7th Avenue, Seattle, WA",
+      "lat": 47.6145,
+      "lng": -122.3385,
+      "businessFocus": "Corporate offices, engineering",
       "type": "regional",
       "sources": [
-        "https://www.aboutamazon.com/workplace/corporate-offices"
+        "https://www.amazon.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "AMZN-LONDON-OFFICE",
+      "id": "AMZN-SEATTLE-SPHERES",
+      "name": "The Spheres",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "USA",
+      "address": "2111 7th Avenue, Seattle, WA",
+      "lat": 47.6155,
+      "lng": -122.3388,
+      "businessFocus": "Corporate offices, employee workspace, botanical conservatory",
+      "type": "regional",
+      "sources": [
+        "https://www.amazon.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-BELLEVUE-REGIONAL",
+      "name": "Amazon Bellevue Campus - Sonic Building",
+      "city": "Bellevue",
+      "state": "Washington",
+      "country": "USA",
+      "address": "555 108th Ave NE, Bellevue, WA",
+      "lat": 47.6185,
+      "lng": -122.1955,
+      "businessFocus": "Corporate offices, engineering, technology development",
+      "type": "regional",
+      "sources": [
+        "https://www.amazon.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-NASHVILLE-REGIONAL",
+      "name": "Amazon Operations Center of Excellence (Nashville)",
+      "city": "Nashville",
+      "state": "Tennessee",
+      "country": "USA",
+      "address": "101 Platform Way N, Nashville, TN 37203",
+      "lat": 36.1627,
+      "lng": -86.7816,
+      "businessFocus": "Operations center of excellence, Eastern US Retail HQ",
+      "type": "regional",
+      "sources": [
+        "https://www.amazon.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-LUXEMBOURG-HEADQUARTERS",
+      "name": "Amazon European Headquarters",
+      "city": "Luxembourg City",
+      "state": null,
+      "country": "Luxembourg",
+      "address": "38 Avenue John F. Kennedy, L-1855 Luxembourg",
+      "lat": 49.6346,
+      "lng": 6.1704,
+      "businessFocus": "European headquarters, corporate functions, Amazon EU S.\u00e0 r.l.",
+      "type": "headquarters",
+      "sources": [
+        "https://www.amazon.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-LONDON-HEADQUARTERS",
       "name": "Amazon UK Headquarters",
       "city": "London",
       "state": null,
       "country": "United Kingdom",
-      "address": "1 Principal Place, Shoreditch, London",
-      "lat": 51.5215,
-      "lng": -0.0805,
-      "businessFocus": "UK Corporate Headquarters",
-      "type": "regional",
+      "address": "Principal Place, Shoreditch, London",
+      "lat": 51.5244,
+      "lng": -0.0778,
+      "businessFocus": "UK headquarters, corporate functions, technology",
+      "type": "headquarters",
       "sources": [
-        "https://www.aboutamazon.com/workplace/corporate-offices"
+        "https://www.amazon.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "AMZN-HYDERABAD-OFFICE",
-      "name": "Amazon Hyderabad Campus",
+      "id": "AMZN-HYDERABAD-REGIONAL",
+      "name": "Amazon India Campus (Hyderabad)",
       "city": "Hyderabad",
       "state": "Telangana",
       "country": "India",
-      "address": "Hyderabad, India",
-      "lat": 17.385,
-      "lng": 78.4867,
-      "businessFocus": "Corporate Operations and Engineering",
+      "address": "Nanakramguda, Hyderabad, Telangana, India",
+      "lat": 17.4245,
+      "lng": 78.3485,
+      "businessFocus": "Technology development, corporate operations, largest global campus",
       "type": "regional",
       "sources": [
-        "https://www.aboutamazon.com/workplace/corporate-offices"
+        "https://www.amazon.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "AMZN-HEBRON-LOGISTICS",
-      "name": "Amazon Air Cargo Hub",
-      "city": "Hebron",
-      "state": "Kentucky",
-      "country": "United States",
-      "address": "Cincinnati/Northern Kentucky Airport",
-      "lat": 39.0488,
-      "lng": -84.6678,
-      "businessFocus": "Air Cargo Logistics",
-      "type": "logistics",
+      "id": "AMZN-SHREVEPORT-DATA_CENTER",
+      "name": "Amazon Louisiana Data Centers - Resilient Tech Park",
+      "city": "Shreveport",
+      "state": "Louisiana",
+      "country": "USA",
+      "address": "7340 Greenwood Rd, Shreveport, LA",
+      "lat": 32.445,
+      "lng": -93.825,
+      "businessFocus": "Data center operations, cloud infrastructure",
+      "type": "data_center",
       "sources": [
-        "https://logisticsviewpoints.com/2025/09/29/amazon-supply-chain-innovative-world/"
+        "https://www.amazon.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-BLANCHARD-DATA_CENTER",
+      "name": "Amazon Louisiana Data Centers - Blanchard Campus",
+      "city": "Blanchard",
+      "state": "Louisiana",
+      "country": "USA",
+      "address": "Blanchard Latex Rd/State Line Rd, Blanchard, LA",
+      "lat": 32.58,
+      "lng": -93.89,
+      "businessFocus": "Data center operations, cloud infrastructure",
+      "type": "data_center",
+      "sources": [
+        "https://www.amazon.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMZN-BENTON-DATA_CENTER",
+      "name": "Amazon Louisiana Data Centers - Benton Site",
+      "city": "Benton",
+      "state": "Louisiana",
+      "country": "USA",
+      "address": "Hwy 3 north of Benton, LA",
+      "lat": 32.71,
+      "lng": -93.74,
+      "businessFocus": "Data center operations, cloud infrastructure",
+      "type": "data_center",
+      "sources": [
+        "https://www.amazon.com"
       ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "reasoning": "The data is extracted from Amazon's Q1 2026 earnings report, which is the most recent available period. Total revenue of $181.5 billion is used as the anchor. Segment revenues for North America, International, and AWS are sourced directly from the Q1 2026 results. Percentages are calculated based on the total revenue of $181.5 billion.",
+    "reason": "Extracting Amazon (AMZN) revenue geography. The most recent quarterly data is Q1 2026 (ended March 31, 2026) with total net sales of $181.5B. Using Q1 2026 segment breakdown: North America $104.1B (57%), International $39.8B (22%), AWS $37.6B (21%). Also including country-specific store revenue share data (US 69.3%, Germany 6.5%, UK 5.8%, Japan 4.8%, Other 13.6%) as supplementary geographic context. Currency is USD.",
     "fiscalYear": "2026",
     "totalRevenue": 181500000000.0,
     "currency": "USD",
@@ -120,112 +214,640 @@
       {
         "region": "North America",
         "revenue": 104100000000.0,
-        "percentage": 0.5735,
+        "percentage": 0.57,
         "yoyGrowth": 12.0,
-        "notes": "Includes United States, Canada, and Mexico."
+        "notes": "Q1 2026 net sales"
       },
       {
         "region": "International",
         "revenue": 39800000000.0,
-        "percentage": 0.2193,
+        "percentage": 0.22,
         "yoyGrowth": 19.0,
-        "notes": "Includes primary operations in Germany, the United Kingdom, and Japan."
+        "notes": "Q1 2026 net sales; +11% ex-FX"
       },
       {
-        "region": "Amazon Web Services (AWS)",
+        "region": "AWS",
         "revenue": 37600000000.0,
-        "percentage": 0.2072,
+        "percentage": 0.21,
         "yoyGrowth": 28.0,
-        "notes": "Cloud computing services segment."
+        "notes": "Amazon Web Services Q1 2026 net sales"
+      },
+      {
+        "region": "United States",
+        "revenue": null,
+        "percentage": 0.693,
+        "yoyGrowth": null,
+        "notes": "Country-specific store revenue share (latest available)"
+      },
+      {
+        "region": "Germany",
+        "revenue": null,
+        "percentage": 0.065,
+        "yoyGrowth": null,
+        "notes": "Country-specific store revenue share (latest available)"
+      },
+      {
+        "region": "United Kingdom",
+        "revenue": null,
+        "percentage": 0.058,
+        "yoyGrowth": null,
+        "notes": "Country-specific store revenue share (latest available)"
+      },
+      {
+        "region": "Japan",
+        "revenue": null,
+        "percentage": 0.048,
+        "yoyGrowth": null,
+        "notes": "Country-specific store revenue share (latest available)"
+      },
+      {
+        "region": "Other",
+        "revenue": null,
+        "percentage": 0.136,
+        "yoyGrowth": null,
+        "notes": "Country-specific store revenue share (latest available)"
       }
     ],
-    "concentrationRisk": "Amazon's revenue is heavily concentrated in the North American market, which accounts for over 57% of total net sales. International operations and AWS provide diversification, but the company remains sensitive to foreign exchange fluctuations in key markets like Germany, the UK, and Japan.",
+    "concentrationRisk": "North America (including US) represents the dominant revenue region at 57% of total net sales in Q1 2026, with the US alone accounting for approximately 69.3% of store revenue share. AWS contributes 21% of total revenue and is a significant growth driver at +28% YoY.",
     "sources": [
-      "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/",
-      "https://www.digitalcommerce360.com/article/amazon-sales/"
+      "Amazon Q1 2026 earnings release",
+      "Amazon Q4 2025 earnings release",
+      "Amazon FY2025 annual report"
     ]
   },
   "supplyChain": [
     {
-      "entity": "Rivian Automotive, Inc.",
+      "entity": "NVIDIA Corporation",
       "role": "key_supplier",
-      "city": "Irvine",
-      "country": "USA",
-      "lat": 33.6846,
-      "lng": -117.8265,
-      "product": "Electric delivery vans",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.3956,
+      "lng": -121.9706,
+      "product": "GPUs for AI infrastructure (one million+ GPUs deployed starting 2026)",
       "criticality": "critical",
-      "sources": [
-        "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm"
-      ]
-    },
-    {
-      "entity": "Anthropic, PBC",
-      "role": "key_supplier",
-      "city": "San Francisco",
-      "country": "USA",
-      "lat": 37.7749,
-      "lng": -122.4194,
-      "product": "AI model training and compute infrastructure",
-      "criticality": "critical",
-      "sources": [
-        "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
-        "https://sacra.com/c/anthropic/"
-      ]
+      "sources": []
     },
     {
       "entity": "Cerebras Systems",
       "role": "key_supplier",
       "city": "Sunnyvale",
-      "country": "USA",
+      "country": "United States",
       "lat": 37.3688,
       "lng": -122.0363,
-      "product": "Low-latency AI silicon",
+      "product": "AI inference chips for Amazon Bedrock",
       "criticality": "important",
-      "sources": [
-        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html"
-      ]
+      "sources": []
     },
     {
-      "entity": "Winn-Dixie",
+      "entity": "Anthropic",
       "role": "key_supplier",
-      "city": "Jacksonville",
-      "country": "USA",
-      "lat": 30.3322,
-      "lng": -81.6557,
-      "product": "Grocery delivery partnership",
-      "criticality": "standard",
-      "sources": [
-        "https://www.digitalcommerce360.com/article/amazon-sales/"
-      ]
+      "city": "San Francisco",
+      "country": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "product": "AI models (Claude) trained on AWS Trainium chips; commercial arrangement with AWS",
+      "criticality": "critical",
+      "sources": []
     },
     {
-      "entity": "Cargill Ocean Transportation",
-      "role": "logistics",
-      "city": "Minneapolis",
-      "country": "USA",
-      "lat": 44.9778,
-      "lng": -93.265,
-      "product": "Freight shipping and logistics",
+      "entity": "OpenAI",
+      "role": "key_supplier",
+      "city": "San Francisco",
+      "country": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "product": "Core AI workloads on AWS infrastructure ($50B investment + $38B seven-year agreement)",
+      "criticality": "critical",
+      "sources": []
+    },
+    {
+      "entity": "Rivian Automotive",
+      "role": "key_supplier",
+      "city": "Irvine",
+      "country": "United States",
+      "lat": 33.6846,
+      "lng": -117.8265,
+      "product": "Electric delivery vehicles",
       "criticality": "important",
-      "sources": [
-        "https://aws.amazon.com/blogs/supply-chain/"
-      ]
+      "sources": []
+    },
+    {
+      "entity": "United States Postal Service (USPS)",
+      "role": "logistics",
+      "city": "Washington",
+      "country": "United States",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "product": "Last-mile delivery services (30% of US deliveries in 2020)",
+      "criticality": "important",
+      "sources": []
+    },
+    {
+      "entity": "United Parcel Service (UPS)",
+      "role": "logistics",
+      "city": "Atlanta",
+      "country": "United States",
+      "lat": 33.7488,
+      "lng": -84.3877,
+      "product": "Last-mile delivery services (14% of US deliveries in 2020)",
+      "criticality": "important",
+      "sources": []
+    },
+    {
+      "entity": "STACK Infrastructure",
+      "role": "contract_manufacturer",
+      "city": "Denver",
+      "country": "United States",
+      "lat": 39.7392,
+      "lng": -104.9903,
+      "product": "Data center development and construction",
+      "criticality": "critical",
+      "sources": []
+    },
+    {
+      "entity": "Southwestern Electric Power Company (SWEPCO)",
+      "role": "raw_material",
+      "city": "Shreveport",
+      "country": "United States",
+      "lat": 32.5252,
+      "lng": -93.7502,
+      "product": "Electrical power infrastructure for data centers",
+      "criticality": "critical",
+      "sources": []
+    },
+    {
+      "entity": "Amazon Robotics (formerly Kiva Systems)",
+      "role": "key_supplier",
+      "city": "North Reading",
+      "country": "United States",
+      "lat": 42.5751,
+      "lng": -71.0784,
+      "product": "Warehouse automation robots",
+      "criticality": "critical",
+      "sources": []
+    },
+    {
+      "entity": "TSMC (Taiwan Semiconductor Manufacturing Company)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "Semiconductor fabrication for custom AI chips (via Anthropic/Broadcom collaboration)",
+      "criticality": "critical",
+      "sources": []
+    },
+    {
+      "entity": "Broadcom Inc.",
+      "role": "key_supplier",
+      "city": "San Jose",
+      "country": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "product": "Custom AI chip design (TPU-based compute for Anthropic); networking chips",
+      "criticality": "important",
+      "sources": []
+    },
+    {
+      "entity": "Whole Foods Market",
+      "role": "logistics",
+      "city": "Austin",
+      "country": "United States",
+      "lat": 30.2672,
+      "lng": -97.7431,
+      "product": "Grocery retail locations and distribution (527 locations)",
+      "criticality": "important",
+      "sources": []
+    },
+    {
+      "entity": "Sellen Construction",
+      "role": "contract_manufacturer",
+      "city": "Seattle",
+      "country": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "product": "Construction services for Bellevue 600 office",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "NBBJ",
+      "role": "key_supplier",
+      "city": "Seattle",
+      "country": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "product": "Architecture services for Bellevue 600",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Magnusson Klemencic Associates",
+      "role": "key_supplier",
+      "city": "Seattle",
+      "country": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "product": "Structural engineering for Bellevue 600",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Vulcan Real Estate",
+      "role": "key_supplier",
+      "city": "Seattle",
+      "country": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "product": "Real estate development (Sonic tower lease)",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Accenture",
+      "role": "cloud_infrastructure",
+      "city": "Dublin",
+      "country": "Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "product": "AWS Partner with 30+ competencies, operating in Mexico",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Deloitte",
+      "role": "cloud_infrastructure",
+      "city": "New York",
+      "country": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "product": "AWS Partner in Thailand and global system integrator",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "NTT DATA",
+      "role": "cloud_infrastructure",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Fujitsu",
+      "role": "cloud_infrastructure",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "SoftwareOne",
+      "role": "cloud_infrastructure",
+      "city": "Stans",
+      "country": "Switzerland",
+      "lat": 46.9581,
+      "lng": 8.366,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "True IDC",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner and data center services in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Com7",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "G-Able Public Company Limited",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Yip in Tsoi & Co., Ltd.",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "SiS Distribution",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Metro Systems",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "MFEC",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Inteltion",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "DailiTech",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Dakok",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "National Telecom Public Company Limited",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "NTT (Thailand) Ltd.",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS Partner in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "2C2P",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS ISV in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Amity",
+      "role": "cloud_infrastructure",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "lat": 13.7563,
+      "lng": 100.5018,
+      "product": "AWS ISV in Thailand",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Escala 24x7",
+      "role": "cloud_infrastructure",
+      "city": "Mexico City",
+      "country": "Mexico",
+      "lat": 19.4326,
+      "lng": -99.1332,
+      "product": "AWS Partner in Mexico",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Nyx Technologies",
+      "role": "cloud_infrastructure",
+      "city": "Mexico City",
+      "country": "Mexico",
+      "lat": 19.4326,
+      "lng": -99.1332,
+      "product": "AWS Partner in Mexico",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "XalDigital",
+      "role": "cloud_infrastructure",
+      "city": "Mexico City",
+      "country": "Mexico",
+      "lat": 19.4326,
+      "lng": -99.1332,
+      "product": "AWS Partner in Mexico",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "SAP SE",
+      "role": "cloud_infrastructure",
+      "city": "Walldorf",
+      "country": "Germany",
+      "lat": 49.3075,
+      "lng": 8.6428,
+      "product": "Zero-copy data integration with Amazon Athena; AWS partnership",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Palantir Technologies",
+      "role": "cloud_infrastructure",
+      "city": "Denver",
+      "country": "United States",
+      "lat": 39.7392,
+      "lng": -104.9903,
+      "product": "AWS cloud infrastructure customer ($5.6B commitment)",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "S&P Global",
+      "role": "cloud_infrastructure",
+      "city": "New York",
+      "country": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "product": "AWS preferred cloud provider ($1.0B five-year commitment)",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "GoDaddy",
+      "role": "cloud_infrastructure",
+      "city": "Tempe",
+      "country": "United States",
+      "lat": 33.4255,
+      "lng": -111.94,
+      "product": "AWS cloud infrastructure customer (majority of infrastructure migrated to AWS)",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Redfin",
+      "role": "cloud_infrastructure",
+      "city": "Seattle",
+      "country": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "product": "AWS cloud infrastructure customer (website and mobile apps hosted on AWS)",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "AppFolio",
+      "role": "cloud_infrastructure",
+      "city": "Santa Barbara",
+      "country": "United States",
+      "lat": 34.4208,
+      "lng": -119.6982,
+      "product": "AWS EC2 cloud infrastructure customer",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Dropbox",
+      "role": "cloud_infrastructure",
+      "city": "San Francisco",
+      "country": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "product": "AWS datacenter services for additional storage needs",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "LexisNexis (RELX)",
+      "role": "cloud_infrastructure",
+      "city": "London",
+      "country": "United Kingdom",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "product": "AWS cloud architecture for database services",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Amdocs",
+      "role": "cloud_infrastructure",
+      "city": "Chesterfield",
+      "country": "United States",
+      "lat": 38.6631,
+      "lng": -90.5771,
+      "product": "AWS strategic cloud partner",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Genesys",
+      "role": "cloud_infrastructure",
+      "city": "Daly City",
+      "country": "United States",
+      "lat": 37.6879,
+      "lng": -122.4702,
+      "product": "AWS partner influencing deals",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "DXC Technology",
+      "role": "cloud_infrastructure",
+      "city": "Ashburn",
+      "country": "United States",
+      "lat": 39.0438,
+      "lng": -77.4874,
+      "product": "AWS partnership strengthened",
+      "criticality": "standard",
+      "sources": []
+    },
+    {
+      "entity": "Asana",
+      "role": "cloud_infrastructure",
+      "city": "San Francisco",
+      "country": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "product": "AWS Marketplace AI Agents storefront",
+      "criticality": "standard",
+      "sources": []
     }
   ],
   "customerConcentration": [
     {
       "customer": "OpenAI",
-      "revenueShare": "$138 billion total commitment",
+      "revenueShare": null,
       "hqCity": "San Francisco",
       "hqCountry": "United States",
       "lat": 37.7749,
       "lng": -122.4194,
-      "relationship": "Strategic cloud services customer and AI partner",
-      "sources": [
-        "https://www.cnbc.com/2026/04/29/aws-earnings-q1-2026.html",
-        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
-      ]
+      "relationship": "AWS customer - committed to consume approximately 2 GW of Trainium capacity through AWS infrastructure beginning ramp in 2027",
+      "sources": []
     },
     {
       "customer": "Anthropic",
@@ -234,23 +856,18 @@
       "hqCountry": "United States",
       "lat": 37.7749,
       "lng": -122.4194,
-      "relationship": "Strategic AI partner and AWS customer",
-      "sources": [
-        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/",
-        "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm"
-      ]
+      "relationship": "AWS customer and strategic partner - secured up to 5 GW of current and future generations of Amazon's Trainium chips; Amazon invested $1.25B (Q3 2023), $2.75B (Q1 2024), $1.3B (Q4 2024) in convertible notes; Project Rainier collaboration",
+      "sources": []
     },
     {
       "customer": "Meta",
       "revenueShare": null,
       "hqCity": "Menlo Park",
       "hqCountry": "United States",
-      "lat": 37.4538,
-      "lng": -122.1822,
-      "relationship": "AWS infrastructure and AI partner",
-      "sources": [
-        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
-      ]
+      "lat": 37.4529,
+      "lng": -122.1818,
+      "relationship": "AWS customer - signed agreement to deploy tens of millions of AWS Graviton cores for agentic AI workloads",
+      "sources": []
     },
     {
       "customer": "Delta Air Lines",
@@ -259,24 +876,18 @@
       "hqCountry": "United States",
       "lat": 33.749,
       "lng": -84.388,
-      "relationship": "AWS and Amazon Leo satellite connectivity customer",
-      "sources": [
-        "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000121/amzn-20250930xex991.htm",
-        "https://www.alpha-sense.com/earnings/amzn/"
-      ]
+      "relationship": "AWS customer - announced agreement to bring free, high-speed Amazon Leo-powered Wi-Fi to hundreds of aircraft beginning in 2028",
+      "sources": []
     },
     {
-      "customer": "Apple",
+      "customer": "NVIDIA",
       "revenueShare": null,
-      "hqCity": "Cupertino",
+      "hqCity": "Santa Clara",
       "hqCountry": "United States",
-      "lat": 37.323,
-      "lng": -122.0322,
-      "relationship": "Strategic partner for satellite connectivity",
-      "sources": [
-        "https://www.cnbc.com/2026/04/29/amazon-amzn-q1-earnings-report-2026.html",
-        "https://www.alpha-sense.com/earnings/amzn/"
-      ]
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
     },
     {
       "customer": "Uber",
@@ -285,84 +896,1190 @@
       "hqCountry": "United States",
       "lat": 37.7749,
       "lng": -122.4194,
-      "relationship": "AWS infrastructure and AI model training customer",
-      "sources": [
-        "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/"
-      ]
+      "relationship": "AWS customer - partnered to put Graviton4 chips on millions of daily rides and deliveries, leveraging Trainium3 for AI models; also agreement to bring Zoox robotaxis to Uber app",
+      "sources": []
+    },
+    {
+      "customer": "Visa",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "NBA",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "BlackRock",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Lyft",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "United Airlines",
+      "revenueShare": null,
+      "hqCity": "Chicago",
+      "hqCountry": "United States",
+      "lat": 41.8781,
+      "lng": -87.6298,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "DoorDash",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Salesforce",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "U.S. Air Force",
+      "revenueShare": null,
+      "hqCity": "Washington",
+      "hqCountry": "United States",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Adobe",
+      "revenueShare": null,
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Thomson Reuters",
+      "revenueShare": null,
+      "hqCity": "Toronto",
+      "hqCountry": "Canada",
+      "lat": 43.6532,
+      "lng": -79.3832,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "AT&T",
+      "revenueShare": null,
+      "hqCity": "Dallas",
+      "hqCountry": "United States",
+      "lat": 32.7767,
+      "lng": -96.797,
+      "relationship": "AWS customer - new AWS agreement announced; also Amazon Leo customer",
+      "sources": []
+    },
+    {
+      "customer": "S&P Global",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "National Bank of Canada",
+      "revenueShare": null,
+      "hqCity": "Montreal",
+      "hqCountry": "Canada",
+      "lat": 45.5017,
+      "lng": -73.5673,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "London Stock Exchange Group (LSEG)",
+      "revenueShare": null,
+      "hqCity": "London",
+      "hqCountry": "United Kingdom",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Choice Hotels",
+      "revenueShare": null,
+      "hqCity": "Rockville",
+      "hqCountry": "United States",
+      "lat": 39.084,
+      "lng": -77.1528,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Accenture",
+      "revenueShare": null,
+      "hqCity": "Dublin",
+      "hqCountry": "Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "Indeed",
+      "revenueShare": null,
+      "hqCity": "Austin",
+      "hqCountry": "United States",
+      "lat": 30.2672,
+      "lng": -97.7431,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "HSBC",
+      "revenueShare": null,
+      "hqCity": "London",
+      "hqCountry": "United Kingdom",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "CrowdStrike",
+      "revenueShare": null,
+      "hqCity": "Austin",
+      "hqCountry": "United States",
+      "lat": 30.2672,
+      "lng": -97.7431,
+      "relationship": "AWS customer - new AWS agreement announced",
+      "sources": []
+    },
+    {
+      "customer": "U.S. Army",
+      "revenueShare": null,
+      "hqCity": "Washington",
+      "hqCountry": "United States",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Intuit",
+      "revenueShare": null,
+      "hqCity": "Mountain View",
+      "hqCountry": "United States",
+      "lat": 37.3861,
+      "lng": -122.0839,
+      "relationship": "AWS customer - signed new AWS agreement; also uses Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "PayPal",
+      "revenueShare": null,
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Norwegian Cruise Line Holdings",
+      "revenueShare": null,
+      "hqCity": "Miami",
+      "hqCountry": "United States",
+      "lat": 25.7617,
+      "lng": -80.1918,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Northrop Grumman",
+      "revenueShare": null,
+      "hqCity": "Falls Church",
+      "hqCountry": "United States",
+      "lat": 38.8822,
+      "lng": -77.1711,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Medtronic",
+      "revenueShare": null,
+      "hqCity": "Dublin",
+      "hqCountry": "Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "The Guardian Life Insurance Company of America",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Reddit",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Japan Airlines",
+      "revenueShare": null,
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Baker Hughes",
+      "revenueShare": null,
+      "hqCity": "Houston",
+      "hqCountry": "United States",
+      "lat": 29.7604,
+      "lng": -95.3698,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "The Hertz Corporation",
+      "revenueShare": null,
+      "hqCity": "Estero",
+      "hqCountry": "United States",
+      "lat": 26.4381,
+      "lng": -81.8068,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Redfin",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Chime",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Asana",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - signed new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Deloitte",
+      "revenueShare": null,
+      "hqCity": "London",
+      "hqCountry": "United Kingdom",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "SAP",
+      "revenueShare": null,
+      "hqCity": "Walldorf",
+      "hqCountry": "Germany",
+      "lat": 49.3043,
+      "lng": 8.642,
+      "relationship": "AWS customer using Amazon Nova foundation models; GROW with SAP on AWS",
+      "sources": []
+    },
+    {
+      "customer": "Robinhood",
+      "revenueShare": null,
+      "hqCity": "Menlo Park",
+      "hqCountry": "United States",
+      "lat": 37.4529,
+      "lng": -122.1818,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Palantir Technologies",
+      "revenueShare": null,
+      "hqCity": "Denver",
+      "hqCountry": "United States",
+      "lat": 39.7392,
+      "lng": -104.9903,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Dentsu Digital",
+      "revenueShare": null,
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "AppFolio",
+      "revenueShare": null,
+      "hqCity": "Santa Barbara",
+      "hqCountry": "United States",
+      "lat": 34.4208,
+      "lng": -119.6982,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Fortinet",
+      "revenueShare": null,
+      "hqCity": "Sunnyvale",
+      "hqCountry": "United States",
+      "lat": 37.3688,
+      "lng": -122.0363,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Trellix",
+      "revenueShare": null,
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "123RF",
+      "revenueShare": null,
+      "hqCity": "Dallas",
+      "hqCountry": "United States",
+      "lat": 32.7767,
+      "lng": -96.797,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Envato",
+      "revenueShare": null,
+      "hqCity": "Melbourne",
+      "hqCountry": "Australia",
+      "lat": -37.8136,
+      "lng": 144.9631,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Pattern",
+      "revenueShare": null,
+      "hqCity": "Lehi",
+      "hqCountry": "United States",
+      "lat": 40.3916,
+      "lng": -111.8508,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "Ativion",
+      "revenueShare": null,
+      "hqCity": "Exton",
+      "hqCountry": "United States",
+      "lat": 40.0293,
+      "lng": -75.6249,
+      "relationship": "AWS customer using Amazon Nova foundation models",
+      "sources": []
+    },
+    {
+      "customer": "U.S. Bank",
+      "revenueShare": null,
+      "hqCity": "Minneapolis",
+      "hqCountry": "United States",
+      "lat": 44.9778,
+      "lng": -93.265,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Fox Corporation",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Southwest Airlines",
+      "revenueShare": null,
+      "hqCity": "Dallas",
+      "hqCountry": "United States",
+      "lat": 32.7767,
+      "lng": -96.797,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Bloomberg",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Cerebras",
+      "revenueShare": null,
+      "hqCity": "Sunnyvale",
+      "hqCountry": "United States",
+      "lat": 37.3688,
+      "lng": -122.0363,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "DTCC",
+      "revenueShare": null,
+      "hqCity": "Jersey City",
+      "hqCountry": "United States",
+      "lat": 40.7282,
+      "lng": -74.0776,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Nokia",
+      "revenueShare": null,
+      "hqCity": "Espoo",
+      "hqCountry": "Finland",
+      "lat": 60.2055,
+      "lng": 24.6559,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Fundamental",
+      "revenueShare": null,
+      "hqCity": null,
+      "hqCountry": null,
+      "lat": null,
+      "lng": null,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "National Geographic Society",
+      "revenueShare": null,
+      "hqCity": "Washington",
+      "hqCountry": "United States",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "NEURA Robotics",
+      "revenueShare": null,
+      "hqCity": "Metzingen",
+      "hqCountry": "Germany",
+      "lat": 48.537,
+      "lng": 9.283,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "DXC Technology",
+      "revenueShare": null,
+      "hqCity": "Ashburn",
+      "hqCountry": "United States",
+      "lat": 39.0438,
+      "lng": -77.4874,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "PGA TOUR",
+      "revenueShare": null,
+      "hqCity": "Ponte Vedra Beach",
+      "hqCountry": "United States",
+      "lat": 30.2396,
+      "lng": -81.3857,
+      "relationship": "AWS customer - announced new AWS agreement; also uses Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "O2 Telef\u00f3nica",
+      "revenueShare": null,
+      "hqCity": "Munich",
+      "hqCountry": "Germany",
+      "lat": 48.1351,
+      "lng": 11.582,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "NTT DOCOMO",
+      "revenueShare": null,
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Veolia",
+      "revenueShare": null,
+      "hqCity": "Paris",
+      "hqCountry": "France",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Evri Group",
+      "revenueShare": null,
+      "hqCity": "Leeds",
+      "hqCountry": "United Kingdom",
+      "lat": 53.8008,
+      "lng": -1.5491,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Telenor",
+      "revenueShare": null,
+      "hqCity": "Oslo",
+      "hqCountry": "Norway",
+      "lat": 59.9139,
+      "lng": 10.7522,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "ModMed",
+      "revenueShare": null,
+      "hqCity": "Boca Raton",
+      "hqCountry": "United States",
+      "lat": 26.3683,
+      "lng": -80.1289,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Yotta Data Services",
+      "revenueShare": null,
+      "hqCity": "Mumbai",
+      "hqCountry": "India",
+      "lat": 19.076,
+      "lng": 72.8777,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Parrot Analytics",
+      "revenueShare": null,
+      "hqCity": "Auckland",
+      "hqCountry": "New Zealand",
+      "lat": -36.8485,
+      "lng": 174.7633,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "TGS",
+      "revenueShare": null,
+      "hqCity": "Asker",
+      "hqCountry": "Norway",
+      "lat": 59.8333,
+      "lng": 10.4333,
+      "relationship": "AWS customer - announced new AWS agreement",
+      "sources": []
+    },
+    {
+      "customer": "Vodafone",
+      "revenueShare": null,
+      "hqCity": "Newbury",
+      "hqCountry": "United Kingdom",
+      "lat": 51.4015,
+      "lng": -1.3232,
+      "relationship": "AWS customer - announced new customer agreement to extend mobile coverage across Europe and Africa via Amazon Leo",
+      "sources": []
+    },
+    {
+      "customer": "DP World Tour",
+      "revenueShare": null,
+      "hqCity": "Virginia Water",
+      "hqCountry": "United Kingdom",
+      "lat": 51.4025,
+      "lng": -0.565,
+      "relationship": "AWS customer - announced agreement to provide satellite-powered connectivity across 42 professional golf tournaments annually",
+      "sources": []
+    },
+    {
+      "customer": "Apple",
+      "revenueShare": null,
+      "hqCity": "Cupertino",
+      "hqCountry": "United States",
+      "lat": 37.323,
+      "lng": -122.0322,
+      "relationship": "Amazon Leo customer - deep relationship to power satellite services for iPhones and Apple Watches",
+      "sources": []
+    },
+    {
+      "customer": "JetBlue",
+      "revenueShare": null,
+      "hqCity": "Long Island City",
+      "hqCountry": "United States",
+      "lat": 40.7447,
+      "lng": -73.9485,
+      "relationship": "Amazon Leo customer - meaningful revenue commitments",
+      "sources": []
+    },
+    {
+      "customer": "Airbnb",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - company that sprang up on AWS; also uses Amazon's AI chips",
+      "sources": []
+    },
+    {
+      "customer": "Netflix",
+      "revenueShare": null,
+      "hqCity": "Los Gatos",
+      "hqCountry": "United States",
+      "lat": 37.2269,
+      "lng": -121.9747,
+      "relationship": "AWS customer - industry reinvented on AWS (streaming)",
+      "sources": []
+    },
+    {
+      "customer": "Disney+",
+      "revenueShare": null,
+      "hqCity": "Burbank",
+      "hqCountry": "United States",
+      "lat": 34.1808,
+      "lng": -118.309,
+      "relationship": "AWS customer - industry reinvented on AWS (streaming)",
+      "sources": []
+    },
+    {
+      "customer": "Hulu",
+      "revenueShare": null,
+      "hqCity": "Santa Monica",
+      "hqCountry": "United States",
+      "lat": 34.0195,
+      "lng": -118.4912,
+      "relationship": "AWS customer - industry reinvented on AWS (streaming)",
+      "sources": []
+    },
+    {
+      "customer": "CIA",
+      "revenueShare": null,
+      "hqCity": "Langley",
+      "hqCountry": "United States",
+      "lat": 38.9517,
+      "lng": -77.1466,
+      "relationship": "AWS customer - critical government agency that switched to AWS",
+      "sources": []
+    },
+    {
+      "customer": "Workday",
+      "revenueShare": null,
+      "hqCity": "Pleasanton",
+      "hqCountry": "United States",
+      "lat": 37.6624,
+      "lng": -121.8747,
+      "relationship": "AWS customer - reduced inference latency by 80% with Amazon SageMaker",
+      "sources": []
+    },
+    {
+      "customer": "NatWest",
+      "revenueShare": null,
+      "hqCity": "Edinburgh",
+      "hqCountry": "United Kingdom",
+      "lat": 55.9533,
+      "lng": -3.1883,
+      "relationship": "AWS customer - reduced time-to-value for AI from 12-18 months to under seven months using SageMaker",
+      "sources": []
+    },
+    {
+      "customer": "Perplexity AI",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "AWS customer - trains models 40% faster in Amazon SageMaker; also uses Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "ADP",
+      "revenueShare": null,
+      "hqCity": "Roseland",
+      "hqCountry": "United States",
+      "lat": 40.8206,
+      "lng": -74.2938,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Amdocs",
+      "revenueShare": null,
+      "hqCity": "Chesterfield",
+      "hqCountry": "United States",
+      "lat": 38.6631,
+      "lng": -90.5771,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Bridgewater Associates",
+      "revenueShare": null,
+      "hqCity": "Westport",
+      "hqCountry": "United States",
+      "lat": 41.1415,
+      "lng": -73.3579,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Broadridge",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Clariant",
+      "revenueShare": null,
+      "hqCity": "Muttenz",
+      "hqCountry": "Switzerland",
+      "lat": 47.525,
+      "lng": 7.645,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Dana-Farber Cancer Institute",
+      "revenueShare": null,
+      "hqCity": "Boston",
+      "hqCountry": "United States",
+      "lat": 42.3601,
+      "lng": -71.0589,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Druva",
+      "revenueShare": null,
+      "hqCity": "Sunnyvale",
+      "hqCountry": "United States",
+      "lat": 37.3688,
+      "lng": -122.0363,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Genesys",
+      "revenueShare": null,
+      "hqCity": "Menlo Park",
+      "hqCountry": "United States",
+      "lat": 37.4529,
+      "lng": -122.1818,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Genomics England",
+      "revenueShare": null,
+      "hqCity": "London",
+      "hqCountry": "United Kingdom",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "GoDaddy",
+      "revenueShare": null,
+      "hqCity": "Tempe",
+      "hqCountry": "United States",
+      "lat": 33.4255,
+      "lng": -111.94,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "KT Corporation",
+      "revenueShare": null,
+      "hqCity": "Seongnam",
+      "hqCountry": "South Korea",
+      "lat": 37.42,
+      "lng": 127.1269,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Lonely Planet",
+      "revenueShare": null,
+      "hqCity": "Dublin",
+      "hqCountry": "Ireland",
+      "lat": 53.3498,
+      "lng": -6.2603,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "LexisNexis",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Netsmart",
+      "revenueShare": null,
+      "hqCity": "Overland Park",
+      "hqCountry": "United States",
+      "lat": 38.9822,
+      "lng": -94.6708,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Pfizer",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Ricoh",
+      "revenueShare": null,
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "AWS customer using Bedrock; also uses Amazon's AI chips",
+      "sources": []
+    },
+    {
+      "customer": "Rocket Companies",
+      "revenueShare": null,
+      "hqCity": "Detroit",
+      "hqCountry": "United States",
+      "lat": 42.3314,
+      "lng": -83.0458,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Siemens",
+      "revenueShare": null,
+      "hqCity": "Munich",
+      "hqCountry": "Germany",
+      "lat": 48.1351,
+      "lng": 11.582,
+      "relationship": "AWS customer using Bedrock",
+      "sources": []
+    },
+    {
+      "customer": "Hugging Face",
+      "revenueShare": null,
+      "hqCity": "New York",
+      "hqCountry": "United States",
+      "lat": 40.7128,
+      "lng": -74.006,
+      "relationship": "AWS customer using Amazon's AI chips",
+      "sources": []
+    },
+    {
+      "customer": "Qualtrics",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "AWS customer using Amazon's AI chips",
+      "sources": []
+    },
+    {
+      "customer": "Snap",
+      "revenueShare": null,
+      "hqCity": "Santa Monica",
+      "hqCountry": "United States",
+      "lat": 34.0195,
+      "lng": -118.4912,
+      "relationship": "AWS customer using Amazon's AI chips",
+      "sources": []
+    },
+    {
+      "customer": "Israeli Government (Project Nimbus)",
+      "revenueShare": null,
+      "hqCity": "Jerusalem",
+      "hqCountry": "Israel",
+      "lat": 31.7683,
+      "lng": 35.2137,
+      "relationship": "AWS customer - Project Nimbus contract providing cloud computing and AI services to Israel, including Ministry of Defense and Israeli Security Agency",
+      "sources": []
     }
   ],
   "geopoliticalRisks": [
     {
-      "region": "United States",
-      "lat": 37.0902,
-      "lng": -95.7129,
+      "region": "China",
+      "lat": 35.86,
+      "lng": 104.19,
       "riskScore": 5,
-      "riskCategory": "regulatory_compliance",
-      "riskLabel": "Antitrust Litigation",
-      "description": "The FTC and state Attorneys General have filed lawsuits alleging Amazon maintains monopolies in online superstores and marketplace services through anticompetitive practices.",
-      "impactLevel": "high",
-      "filingReference": "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
-      "lastUpdated": "2024-09-30"
-    },
-    {
-      "region": "India",
-      "lat": 20.5937,
-      "lng": 78.9629,
-      "riskScore": 4,
-      "riskCategory": "tax_policy",
-      "riskLabel": "Cloud Services Tax Dispute",
-      "description": "The Indian tax authority asserts that tax applies to cloud services fees paid to Amazon in the U.S., a matter currently being contested in Indian courts.",
-      "impactLevel": "moderate",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
-      "lastUpdated": "2023-12-31"
+      "riskCategory": "trade_restriction",
+      "riskLabel": "US-China Tariff & Trade War Exposure",
+      "description": "China-based sellers account for significant portions of Amazon's third-party seller services and advertising revenues, and China-based suppliers provide significant portions of components and finished goods. US tariffs on China and retaliatory Chinese tariffs create substantial uncertainty. China extended tariffs on critical chemical solvents, sanctioned US firms, and threatened to stop buying US semiconductors. Amazon's forward guidance cites tariff and trade policies as a source of substantial uncertainty.",
+      "impactLevel": "critical",
+      "filingReference": "Amazon 10-K/10-Q filings; Forward guidance",
+      "lastUpdated": "2026-05-23"
     },
     {
       "region": "Luxembourg",
-      "lat": 49.8153,
-      "lng": 6.1296,
+      "lat": 49.82,
+      "lng": 6.13,
       "riskScore": 4,
-      "riskCategory": "data_privacy",
-      "riskLabel": "GDPR Compliance Fine",
-      "description": "The Luxembourg National Commission for Data Protection (CNPD) imposed a \u20ac746 million fine regarding GDPR compliance.",
-      "impactLevel": "moderate",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
-      "lastUpdated": "2023-12-31"
-    },
-    {
-      "region": "China",
-      "lat": 35.8617,
-      "lng": 104.1954,
-      "riskScore": 4,
-      "riskCategory": "political_instability",
-      "riskLabel": "Regulatory Licensing Restrictions",
-      "description": "PRC regulations restrict foreign investment in internet, IT infrastructure, data centers, and retail, forcing Amazon to use third-party contractual relationships.",
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "GDPR Fine & Tax Disputes in Luxembourg",
+      "description": "The Luxembourg National Commission for Data Protection (CNPD) imposed a \u20ac746 million fine on Amazon Europe Core S.\u00e0 r.l. for alleged GDPR violations. Amazon also faces a Luxembourg tax authority dispute where the tax basis of certain intangible assets distributed from Luxembourg to the US in 2021 was denied. The European Commission's state aid decision against Amazon in Luxembourg (~\u20ac250M recovery) is under appeal.",
       "impactLevel": "high",
-      "filingReference": "https://s2.q4cdn.com/299287126/files/doc_financials/2024/q3/76ba648c-eba4-4ec1-b571-4f5993feed2e.pdf",
-      "lastUpdated": "2024-09-30"
-    },
-    {
-      "region": "Strait of Hormuz",
-      "lat": 26.5667,
-      "lng": 56.25,
-      "riskScore": 3,
-      "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Supply Chain Transit Disruptions",
-      "description": "Transit disruptions due to regional conflict have increased operating costs for fulfillment and supply chains.",
-      "impactLevel": "moderate",
-      "filingReference": "https://www.digitalcommerce360.com/article/amazon-sales/",
-      "lastUpdated": "2026-05-18"
+      "filingReference": "Amazon 10-K; CNPD fine July 2021; Luxembourg tax authority September 2022",
+      "lastUpdated": "2026-05-23"
     },
     {
       "region": "Italy",
-      "lat": 41.8719,
-      "lng": 12.5674,
+      "lat": 41.87,
+      "lng": 12.57,
       "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "Marketplace Practice Infringements",
-      "description": "The Italian Competition Authority imposed a \u20ac1.13 billion fine for alleged marketplace and logistics practice infringements.",
+      "riskLabel": "Italian Competition Authority Fine",
+      "description": "The Italian Competition Authority (ICA) imposed a \u20ac1.13 billion fine on Amazon entities for alleged EU competition rule infringements related to marketplace and logistics practices in Italy. Amazon paid the fine and is appealing. Q4 2025 operating income includes a $1.1 billion charge for resolution of tax disputes associated with stores business in Italy and settlement of a lawsuit.",
+      "impactLevel": "high",
+      "filingReference": "Amazon 10-K; ICA fine December 2021",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 5,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "FTC Antitrust Lawsuit & Multiple State Actions",
+      "description": "The FTC and multiple state Attorneys General filed a lawsuit in September 2023 alleging Amazon has monopolies in online superstores and marketplace services. Amazon faces multiple private lawsuits and actions by state Attorneys General (DC, California, Arizona) alleging price fixing, monopolization, and antitrust violations, seeking billions in damages. Open investigations exist in the US and European marketplace for sellers.",
+      "impactLevel": "critical",
+      "filingReference": "Amazon 10-K; FTC lawsuit September 2023",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "India",
+      "lat": 20.59,
+      "lng": 78.96,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "India Tax Dispute on Cloud Services",
+      "description": "The Indian Tax Authority (ITA) determined that tax applies to cloud services fees paid to Amazon in the US. Amazon is contesting this position in Indian courts. Adverse resolution could require significant additional tax payments. India also restricts foreign ownership or control of Indian companies involved in online multi-brand retail trading, affecting Amazon's operations.",
+      "impactLevel": "high",
+      "filingReference": "Amazon 10-K; ITA determination February 2023",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.7,
+      "lng": 120.96,
+      "riskScore": 4,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Semiconductor Supply Chain Risk via Taiwan",
+      "description": "Amazon relies on a limited group of suppliers for semiconductor products including GPUs for AI infrastructure. Taiwan opened its first AI-chip smuggling crackdown, treating forged export paperwork for Nvidia-equipped servers as a smuggling matter. US export controls on advanced semiconductors to China and potential Taiwan Strait disruption pose risks to Amazon's AI infrastructure and hardware supply chains.",
+      "impactLevel": "high",
+      "filingReference": "Amazon 10-K; BIS export controls; Taiwan chip smuggling crackdown",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Israel",
+      "lat": 31.05,
+      "lng": 34.85,
+      "riskScore": 4,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Project Nimbus Contract & Reputational Risk",
+      "description": "Amazon's Project Nimbus contract with Israel (worth $1.2B+) has drawn significant controversy. The contract allegedly prevents Amazon from restricting Israel's use of services even if linked to human rights violations. Amazon suspended an employee who criticized the project. The contract operates under exclusive Israeli jurisdiction, which does not recognize the ICC. Israel faces genocide charges at the ICJ, creating substantial reputational and legal risk.",
+      "impactLevel": "high",
+      "filingReference": "Amazon internal documents; Israeli Ministry of Finance tender documents",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "European Union",
+      "lat": 50.85,
+      "lng": 4.35,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "EU Digital Markets Act & Competition Investigations",
+      "description": "Amazon faces open investigations based on claims that aspects of its operations violate EU competition rules, including in the European marketplace for sellers. The EU's alignment with the US on China is not assured. The EU has enacted global minimum taxes and proposed taxes on online advertising and marketplace service revenues. The European Commission's state aid decision against Amazon in Luxembourg is under appeal.",
+      "impactLevel": "high",
+      "filingReference": "Amazon 10-K; European Commission investigations",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Russia",
+      "lat": 61.52,
+      "lng": 105.32,
+      "riskScore": 3,
+      "riskCategory": "sanctions",
+      "riskLabel": "Sanctions Compliance & OFAC Settlement",
+      "description": "Amazon settled with OFAC for $134,523 for apparent violations of multiple sanctions programs, processing orders for persons in Crimea, Cuba, Iran, Syria, North Korea, and Sudan. The UK broadened its Russian sanctions regime. Sanctions on Russia, China, the Middle East, and Africa continue to evolve. Amazon faces complex multi-jurisdictional sanctions compliance obligations.",
       "impactLevel": "moderate",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/amzn-20231231.htm",
-      "lastUpdated": "2023-12-31"
+      "filingReference": "Amazon 10-K; OFAC enforcement release July 8, 2020",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "United Kingdom",
+      "lat": 55.38,
+      "lng": -3.44,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "UK Regulatory & Piracy Liability Risks",
+      "description": "Sky accused Amazon of not doing enough to prevent piracy of its sports rights via 'jailbroken' Fire Sticks. The UK launched the Office of Trade Sanctions Implementation with new civil enforcement authority. Amazon faces UK tax examinations and potential liabilities. The UK's Payment Systems Regulator is conducting market reviews affecting Amazon's payment services.",
+      "impactLevel": "moderate",
+      "filingReference": "Amazon 10-K; Sky accusation February 2025",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Canada",
+      "lat": 56.13,
+      "lng": -106.35,
+      "riskScore": 2,
+      "riskCategory": "environmental_regulation",
+      "riskLabel": "Canadian Solar Investment & Regulatory Exposure",
+      "description": "Amazon plans to expand into the Canadian market through an investment in a new solar plant in Alberta. Canada released proposed amendments bringing sanctions reporting obligations under the PCMLTFA. Amazon faces Canadian regulatory compliance risks as it expands operations.",
+      "impactLevel": "low",
+      "filingReference": "Amazon expansion announcements; Canadian sanctions amendments July 2024",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Japan",
+      "lat": 36.2,
+      "lng": 138.25,
+      "riskScore": 3,
+      "riskCategory": "currency_exposure",
+      "riskLabel": "Japanese Yen Foreign Exchange Risk",
+      "description": "Amazon's internationally-focused stores' functional currencies include the Japanese Yen. Changes in foreign currency exchange rates reduced International segment net sales by $15.0 billion in 2022 and consolidated net sales by $15.5 billion in 2022. Based on intercompany balances, a 20% adverse FX change would result in losses of $1.2 billion. Amazon is subject to tax examination in Japan.",
+      "impactLevel": "moderate",
+      "filingReference": "Amazon 10-K; FX impact disclosures",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Germany",
+      "lat": 51.17,
+      "lng": 10.45,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "German Regulatory & Tax Exposure",
+      "description": "Amazon is subject to tax examination by authorities in Germany. Nokia filed patent infringement complaints against Amazon in German courts, and a German court ruled Amazon infringed one Nokia patent. Amazon faces German competition and regulatory risks as part of its EU operations.",
+      "impactLevel": "moderate",
+      "filingReference": "Amazon 10-K; Nokia patent litigation",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "France",
+      "lat": 46.6,
+      "lng": 1.89,
+      "riskScore": 3,
+      "riskCategory": "tax_policy",
+      "riskLabel": "French Tax Examination & Digital Services Tax",
+      "description": "Amazon is subject to tax examination by authorities in France. Non-US jurisdictions including France have proposed or enacted taxes on online advertising and marketplace service revenues, which could increase Amazon's tax burden. Amazon faces French regulatory compliance risks.",
+      "impactLevel": "moderate",
+      "filingReference": "Amazon 10-K; French tax examination",
+      "lastUpdated": "2026-05-23"
+    },
+    {
+      "region": "Middle East",
+      "lat": 26.0,
+      "lng": 53.0,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Middle East Conflict & Supply Chain Disruption",
+      "description": "The US and Israel's war on Iran has disrupted transit through the Strait of Hormuz, increasing operating costs for Amazon's fulfillment and supply chains. Sanctions related to the Middle East, especially Iran, are expected to increase. The conflict creates risks for Amazon's international operations and energy costs.",
+      "impactLevel": "moderate",
+      "filingReference": "Amazon forward guidance; geopolitical risk disclosures",
+      "lastUpdated": "2026-05-23"
     }
   ]
 }
