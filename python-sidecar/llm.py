@@ -37,6 +37,7 @@ from provider import (
     LLM_REQUEST_TIMEOUT,
     OUTPUT_RESERVATION,
     SAFETY_BUFFER,
+    DEEPSEEK_THINKING,
     before_sleep_log_model,
     wait_if_not_timeout,
 )
@@ -537,6 +538,10 @@ class LLMClient:
                         "type": "function",
                         "function": {"name": response_model.__name__},
                     }
+                    if DEEPSEEK_THINKING == "disabled":
+                        kwargs["thinking"] = {"type": "disabled"}
+                    else:
+                        kwargs["thinking"] = {"type": "enabled", "effort": DEEPSEEK_THINKING}
                 else:
                     kwargs["response_format"] = {
                         "type": "json_schema",

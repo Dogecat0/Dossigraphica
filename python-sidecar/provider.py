@@ -66,9 +66,10 @@ GEMINI_CTX_PER_REQUEST = int(os.getenv("GEMINI_CTX_PER_REQUEST", "32768"))
 
 # -- DeepSeek ----------------------------------------------------------------
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
+DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
 DEEPSEEK_N_PARALLEL = int(os.getenv("DEEPSEEK_N_PARALLEL", "10"))
 DEEPSEEK_CTX_PER_REQUEST = int(os.getenv("DEEPSEEK_CTX_PER_REQUEST", "65536"))
+DEEPSEEK_THINKING = os.getenv("DEEPSEEK_THINKING", "disabled").lower()  # disabled | low | medium | high
 
 # -- Output / safety --------------------------------------------------------
 # OUTPUT_RESERVATION is the baseline (local-provider) default.
