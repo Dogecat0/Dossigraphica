@@ -24,6 +24,7 @@ from tasks.drafter import (
     get_geopolitical_risks,
     get_customer_concentration,
 )
+from llm import llm
 
 logger = logging.getLogger(__name__)
 
@@ -136,27 +137,6 @@ async def run_entity_assembly(state: ResearchState) -> ResearchState:
         for i, q in enumerate(unique_queries):
             logger.debug(f"  Gap {i+1}: {q}")
 
-    # ------------------------------------------------------------------
-    # Store assembly output for log replay
-    # ------------------------------------------------------------------
-    try:
-        from llm import llm
-
-        async with llm.counter_lock:
-            llm.inference_counter += 1
-            current_index = llm.inference_counter
-
-        filepath = os.path.join(
-            llm.log_dir, f"{current_index:04d}_EntityAssemblyData_output.json"
-        )
-        with open(filepath, "w") as f:
-            json.dump(
-                {"enrichment_queries": state.enrichment_queries},
-                f,
-                indent=2,
-            )
-        logger.info(f"Entity assembly logged for replay: {filepath}")
-    except Exception as e:
-        logger.error(f"Failed to log EntityAssemblyData: {e}")
+    await llm.save_checkpoint("EntityAssemblyData", {"enrichment_queries": state.enrichment_queries})
 
     return state

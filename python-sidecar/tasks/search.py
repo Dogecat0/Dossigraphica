@@ -5,6 +5,7 @@ import json
 from schemas import ResearchState
 from utils.io_cache import DiskCache
 from utils.rate_limiter import MinuteRateLimiter
+from llm import llm
 import logging
 
 logger = logging.getLogger(__name__)
@@ -90,22 +91,10 @@ async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
     state.search_results = list(unique_results.values())
     state.urls = list(unique_results.keys())
     
-    # Store for replay
-    from llm import llm
-    try:
-        async with llm.counter_lock:
-            llm.inference_counter += 1
-            current_index = llm.inference_counter
-            
-        filepath = os.path.join(llm.log_dir, f"{current_index:04d}_SearchData_output.json")
-        with open(filepath, "w") as f:
-            json.dump({
-                "search_results": state.search_results,
-                "urls": state.urls
-            }, f, indent=2)
-        logger.debug(f"TinyFish Search logged for replay: {filepath}")
-    except Exception as e:
-        logger.error(f"Failed to log SearchData: {e}")
+    await llm.save_checkpoint("SearchData", {
+        "search_results": state.search_results,
+        "urls": state.urls
+    })
 
     logger.debug(f"TinyFish Search finished. Total unique search results in state: {len(state.search_results)}")
     return state
@@ -193,22 +182,10 @@ async def run_search(state: ResearchState) -> ResearchState:
     state.search_results = list(unique_results.values())
     state.urls = list(unique_results.keys())
     
-    # Store for replay
-    from llm import llm
-    try:
-        async with llm.counter_lock:
-            llm.inference_counter += 1
-            current_index = llm.inference_counter
-            
-        filepath = os.path.join(llm.log_dir, f"{current_index:04d}_SearchData_output.json")
-        with open(filepath, "w") as f:
-            json.dump({
-                "search_results": state.search_results,
-                "urls": state.urls
-            }, f, indent=2)
-        logger.debug(f"Brave Search logged for replay: {filepath}")
-    except Exception as e:
-        logger.error(f"Failed to log SearchData: {e}")
+    await llm.save_checkpoint("SearchData", {
+        "search_results": state.search_results,
+        "urls": state.urls
+    })
 
     logger.debug(f"Brave Search finished. Total unique search results in state: {len(state.search_results)}")
     return state

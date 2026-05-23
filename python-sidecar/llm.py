@@ -309,6 +309,25 @@ class LLMClient:
         except Exception as e:
             logger.error(f"Failed to log inference files: {e}")
 
+    async def save_checkpoint(self, name: str, data: dict) -> str:
+        """
+        Persist a pipeline checkpoint for state replay.
+        Increments inference_counter atomically so the file prefix
+        matches the log ordering convention.
+        Returns the written file path.
+        """
+        async with self.counter_lock:
+            self.inference_counter += 1
+            current_index = self.inference_counter
+        filepath = os.path.join(self.log_dir, f"{current_index:04d}_{name}_output.json")
+        try:
+            with open(filepath, "w") as f:
+                json.dump(data, f, indent=2)
+            logger.debug(f"Checkpoint saved: {name} → {filepath}")
+        except Exception as e:
+            logger.error(f"Failed to save checkpoint {name}: {e}")
+        return filepath
+
     @retry(
         stop=stop_after_attempt(10),
         wait=_wait_if_not_timeout,

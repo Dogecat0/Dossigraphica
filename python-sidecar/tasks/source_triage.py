@@ -128,23 +128,11 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
     if url_queue:
         await url_queue.put(None)
 
-    # ------------------------------------------------------------------
-    # Store aggregated triage output for log replay
-    # ------------------------------------------------------------------
-    try:
-        async with llm.counter_lock:
-            llm.inference_counter += 1
-            current_index = llm.inference_counter
-        filepath = os.path.join(llm.log_dir, f"{current_index:04d}_TriageData_output.json")
-        with open(filepath, "w") as f:
-            json.dump({
-                "surviving_urls": state.urls,
-                "total_evaluated": total,
-                "total_survived": len(surviving_results),
-            }, f, indent=2)
-        logger.debug(f"Triage data logged for replay: {filepath}")
-    except Exception as e:
-        logger.error(f"Failed to log TriageData: {e}")
+    await llm.save_checkpoint("TriageData", {
+        "surviving_urls": state.urls,
+        "total_evaluated": total,
+        "total_survived": len(surviving_results),
+    })
 
     yield state
 

@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 from schemas import ResearchState
 from utils.io_cache import DiskCache
 from utils.rate_limiter import MinuteRateLimiter
+from llm import llm
 import logging
 
 logger = logging.getLogger(__name__)
@@ -171,8 +172,6 @@ async def _run_tinyfish_extractor(
         yield state
         return
 
-    from llm import llm
-
     extraction_results: list[dict] = []
 
     # Check cache and build the list of URLs that still need fetching
@@ -270,17 +269,7 @@ async def _run_tinyfish_extractor(
         for r in found_results
     ]
 
-    # Store for replay (same pattern as Jina)
-    try:
-        async with llm.counter_lock:
-            llm.inference_counter += 1
-            current_index = llm.inference_counter
-        filepath = os.path.join(llm.log_dir, f"{current_index:04d}_ExtractorData_output.json")
-        with open(filepath, "w") as f:
-            json.dump({"raw_content": state.raw_content}, f, indent=2)
-        logger.debug(f"TinyFish Fetch logged for replay: {filepath}")
-    except Exception as log_err:
-        logger.error(f"Failed to log ExtractorData: {log_err}")
+    await llm.save_checkpoint("ExtractorData", {"raw_content": state.raw_content})
 
     yield state
 
@@ -325,7 +314,6 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
     logger.debug(f"Jina Extraction Pacing: {JINA_RPM} RPM | {JINA_STAGGER_SEC:.2f}s stagger | {JINA_CONCURRENCY} concurrency")
     
     semaphore = asyncio.Semaphore(JINA_CONCURRENCY)
-    from llm import llm
 
     extraction_results = []
     completed = 0
@@ -479,16 +467,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
             ]
 
             # Store for replay
-            try:
-                async with llm.counter_lock:
-                    llm.inference_counter += 1
-                    current_index = llm.inference_counter
-                filepath = os.path.join(llm.log_dir, f"{current_index:04d}_ExtractorData_output.json")
-                with open(filepath, "w") as f:
-                    json.dump({"raw_content": state.raw_content}, f, indent=2)
-                logger.debug(f"Jina Extract logged for replay: {filepath}")
-            except Exception as log_err:
-                logger.error(f"Failed to log ExtractorData: {log_err}")
+            await llm.save_checkpoint("ExtractorData", {"raw_content": state.raw_content})
 
             yield state
 

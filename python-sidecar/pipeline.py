@@ -14,7 +14,7 @@ import os
 import time
 from typing import AsyncGenerator, Union
 
-from llm import LLM_OUTPUT_MODE
+from llm import LLM_OUTPUT_MODE, llm
 from schemas import PlannerSchema, SingleTriageSchema, SynthesizerSchema, GeoIntelligenceSchema
 
 logger = logging.getLogger(__name__)
@@ -146,8 +146,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     state = reconstruct_state_from_logs(query, log_dir)
     
     tracker = TaskTracker()
-    
-    from llm import llm
+
     llm.progress_queue = asyncio.Queue()
     
     # --- State Reconstruction for Progress Tracking ---
@@ -460,18 +459,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             tracker.add_io_total(len(state.urls), 6)
             async for update in pipeline_sieve(6, is_enrichment=True): yield update
             
-            # Store post-enrichment checkpoint for replay
-            try:
-                from llm import llm
-                async with llm.counter_lock:
-                    llm.inference_counter += 1
-                    current_index = llm.inference_counter
-                filepath = os.path.join(llm.log_dir, f"{current_index:04d}_EnrichmentCompleteData_output.json")
-                with open(filepath, "w") as f:
-                    json.dump({"status": "enrichment_loop_completed"}, f, indent=2)
-                logger.debug(f"Enrichment checkpoint logged for replay: {filepath}")
-            except Exception as e:
-                logger.error(f"Failed to log EnrichmentCompleteData: {e}")
+            await llm.save_checkpoint("EnrichmentCompleteData", {"status": "enrichment_loop_completed"})
 
             state.pipeline_step = "drafting"
 
