@@ -25,6 +25,7 @@ from litellm.exceptions import (
     MidStreamFallbackError,
 )
 from schemas import STRICT_CONFIG, SummarySchema
+import checkpoint
 from provider import (
     ACTIVE_MODEL,
     ACTIVE_BASE_URL,
@@ -58,22 +59,10 @@ class LLMClient:
         self.base_url = base_url
         self.model = model
         self.semaphore = asyncio.Semaphore(ACTIVE_N_PARALLEL)
-        self.counter_lock = asyncio.Lock()
-        self.inference_counter = 0
-        self.log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
         self.progress_queue = None
-        os.makedirs(self.log_dir, exist_ok=True)
 
-        # Initialize inference counter from existing logs so replay won't overwrite
-        max_idx = 0
-        if os.path.exists(self.log_dir):
-            for f in os.listdir(self.log_dir):
-                match = re.match(r"^(\d+)_", f)
-                if match:
-                    idx = int(match.group(1))
-                    if idx > max_idx:
-                        max_idx = idx
-        self.inference_counter = max_idx
+        # Shared checkpoint counter + log directory (idempotent init)
+        self.log_dir = checkpoint.init()
 
         # Suppress LiteLLM internal logging unless there is an error
         logging.getLogger("LiteLLM").setLevel(logging.WARNING)
@@ -127,17 +116,7 @@ class LLMClient:
 
     async def save_checkpoint(self, name: str, data: dict) -> str:
         """Persist a pipeline checkpoint for state replay."""
-        async with self.counter_lock:
-            self.inference_counter += 1
-            current_index = self.inference_counter
-        filepath = os.path.join(self.log_dir, f"{current_index:04d}_{name}_output.json")
-        try:
-            with open(filepath, "w") as f:
-                json.dump(data, f, indent=2)
-            logger.debug("Checkpoint saved: %s → %s", name, filepath)
-        except Exception as e:
-            logger.error("Failed to save checkpoint %s: %s", name, e)
-        return filepath
+        return await checkpoint.save_checkpoint(name, data)
 
     # ------------------------------------------------------------------
     # Structured generation
@@ -150,9 +129,7 @@ class LLMClient:
         system_prompt: str = "You are a professional research agent.",
         facts: str = None,
     ) -> T:
-        async with self.counter_lock:
-            self.inference_counter += 1
-            current_index = self.inference_counter
+        current_index = await checkpoint.next_index()
 
         def _get_target_tokens(model):
             return self.calculate_safe_chunk_size(

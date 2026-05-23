@@ -301,10 +301,10 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
 
         if not is_enrichment:
             triage_gen = run_source_triage(state, triage_to_extract_queue, llm)
-            extractor_gen = run_extractor(state, extract_to_pre_queue, triage_to_extract_queue, llm)
+            extractor_gen = run_extractor(state, extract_to_pre_queue, triage_to_extract_queue)
         else:
             triage_gen = None
-            extractor_gen = run_extractor(state, extract_to_pre_queue, None, llm)
+            extractor_gen = run_extractor(state, extract_to_pre_queue, None)
 
         _drain_queue(llm.progress_queue)
 
@@ -348,7 +348,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 "queries": state.search_queries,
                 **tracker.as_dict()
             })
-            state = await run_search(state, llm)
+            state = await run_search(state)
             tracker.complete_io(1, 2)
             state.pipeline_step = "source_triage"
         
@@ -389,7 +389,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 **tracker.as_dict()
             })
             state.search_queries = state.enrichment_queries
-            state = await run_search(state, llm)
+            state = await run_search(state)
             tracker.complete_io(1, 5)
             state.pipeline_step = "enrichment_extracting"
 

@@ -5,7 +5,7 @@ import json
 from schemas import ResearchState
 from utils.io_cache import DiskCache
 from utils.rate_limiter import MinuteRateLimiter
-from llm import LLMClient
+from checkpoint import save_checkpoint
 import logging
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ _tinyfish_search_cache = DiskCache("tinyfish_search_cache.json")
 _tinyfish_search_limiter = MinuteRateLimiter(TINYFISH_SEARCH_RPM)
 
 
-async def _run_tinyfish_search(state: ResearchState, llm: LLMClient) -> ResearchState:
+async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
     """
     Calls the TinyFish Search API in parallel.
     Returns URLs and snippets for each search query.
@@ -91,7 +91,7 @@ async def _run_tinyfish_search(state: ResearchState, llm: LLMClient) -> Research
     state.search_results = list(unique_results.values())
     state.urls = list(unique_results.keys())
     
-    await llm.save_checkpoint("SearchData", {
+    await save_checkpoint("SearchData", {
         "search_results": state.search_results,
         "urls": state.urls
     })
@@ -100,12 +100,12 @@ async def _run_tinyfish_search(state: ResearchState, llm: LLMClient) -> Research
     return state
 
 
-async def run_search(state: ResearchState, llm: LLMClient) -> ResearchState:
+async def run_search(state: ResearchState) -> ResearchState:
     """
     Dispatcher to run search using the configured provider.
     """
     if SEARCH_PROVIDER == "tinyfish":
-        return await _run_tinyfish_search(state, llm)
+        return await _run_tinyfish_search(state)
 
     # Fallback to default Brave Search
     if not state.search_queries:
@@ -182,7 +182,7 @@ async def run_search(state: ResearchState, llm: LLMClient) -> ResearchState:
     state.search_results = list(unique_results.values())
     state.urls = list(unique_results.keys())
     
-    await llm.save_checkpoint("SearchData", {
+    await save_checkpoint("SearchData", {
         "search_results": state.search_results,
         "urls": state.urls
     })
