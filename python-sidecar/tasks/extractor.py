@@ -135,6 +135,7 @@ async def _run_tinyfish_extractor(
     state: ResearchState,
     content_queue: asyncio.Queue | None = None,
     url_queue: asyncio.Queue | None = None,
+    llm: LLMClient = None,
 ) -> AsyncGenerator[Union[dict, ResearchState], None]:
     """
     TinyFish Fetch provider — batched POST replacement for Jina Reader.
@@ -280,7 +281,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
     Yields progress updates and finally the populated state.raw_content.
     """
     if FETCH_PROVIDER == "tinyfish":
-        async for item in _run_tinyfish_extractor(state, content_queue, url_queue):
+        async for item in _run_tinyfish_extractor(state, content_queue, url_queue, llm):
             yield item
         return
 
