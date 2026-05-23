@@ -190,27 +190,34 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     # --------------------------------------------------
     phase_total = 8
 
-    async def flow(task_generator: AsyncGenerator[Union[dict, ResearchState], None], phase_idx: int) -> AsyncGenerator[str, None]:
-        """Helper to stream granular units and capture the final state."""
-        nonlocal state
-        
-        # Multiplex between task generator and global LLM pulse queue
-        gen_iter = task_generator.__aiter__()
-        
-        while not llm.progress_queue.empty():
+    # ------------------------------------------------------------------
+    # Shared async multiplexing helpers
+    # ------------------------------------------------------------------
+
+    def _drain_queue(q: asyncio.Queue) -> None:
+        """Discard any stale items from a queue (non-blocking)."""
+        while not q.empty():
             try:
-                llm.progress_queue.get_nowait()
+                q.get_nowait()
             except asyncio.QueueEmpty:
                 break
-                
-        pending = {
-            asyncio.create_task(gen_iter.__anext__()): "gen",
-            asyncio.create_task(llm.progress_queue.get()): "llm_pulse"
-        }
-        
+
+    async def _multiplex(
+        generators: dict[str, AsyncGenerator],
+        pulse_queue: asyncio.Queue,
+    ) -> AsyncGenerator[tuple[str, any], None]:
+        """
+        Concurrently poll multiple async generators + an LLM progress pulse queue.
+        Yields (label, item) tuples. Stops when only llm_pulse remains.
+        Cancels all pending tasks on exit.
+        """
+        pending: dict[asyncio.Task, str] = {}
+        for label, gen in generators.items():
+            pending[asyncio.create_task(gen.__anext__())] = label
+        pending[asyncio.create_task(pulse_queue.get())] = "llm_pulse"
+
         try:
             while pending:
-                # BREAK CONDITION: If only llm_pulse remains, we are done with the functional generator
                 if len(pending) == 1 and "llm_pulse" in pending.values():
                     break
 
@@ -219,67 +226,79 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                     label = pending.pop(future)
                     try:
                         item = future.result()
-                        
-                        if label == "gen":
-                            if isinstance(item, ResearchState):
-                                state = item
-                            else:
-                                # Discovery pulse handling
-                                if "units_discovered" in item:
-                                    disc_type = item.get("unit_type", "llm")
-                                    if disc_type == "llm":
-                                        tracker.add_llm_total(item["units_discovered"] * tracker.get_llm_multiplier(), phase_idx)
-                                    elif disc_type == "io":
-                                        tracker.add_io_total(item["units_discovered"], phase_idx)
-                                else:
-                                    unit_type = item.get("unit", "None")
-                                    if unit_type == "io": tracker.complete_io(1, phase_idx)
-                                    # Note: 'llm' unit is ignored here as it's handled by 'llm_pulse' label
-                                
-                                item.update(tracker.as_dict())
-                                item.update({"phase_current": phase_idx, "phase_total": phase_total})
-                                yield json.dumps(item)
-                            
-                            # Keep polling generator
-                            pending[asyncio.create_task(gen_iter.__anext__())] = "gen"
-                            
-                        elif label == "llm_pulse":
-                            tracker.complete_llm(1, phase_idx)
-                            update = {"status": "synthesizing", "message": "Synthesizing..."}
-                            update.update(tracker.as_dict())
-                            update.update({"phase_current": phase_idx, "phase_total": phase_total})
-                            yield json.dumps(update)
-                            
-                            # Keep polling pulse queue
-                            pending[asyncio.create_task(llm.progress_queue.get())] = "llm_pulse"
-                            
+                        yield (label, item)
+                        if label == "llm_pulse":
+                            pending[asyncio.create_task(pulse_queue.get())] = "llm_pulse"
+                        else:
+                            pending[asyncio.create_task(generators[label].__anext__())] = label
                     except StopAsyncIteration:
-                        # Functional generator finished, do not re-add to pending.
-                        # The break condition at the top of the loop will catch this.
                         continue
                     except Exception as e:
-                        if label != "llm_pulse": # Pulse queue shouldn't fail, but generator might
-                            logger.error(f"Error in flow phase {phase_idx} ({label}): {e}")
-                        # If the functional generator failed, we don't re-add it.
-                        # The loop will eventually exit when only llm_pulse is left.
+                        logger.error("Generator '%s' failed in multiplex: %s", label, e)
                         continue
         finally:
-            # Interrupt Trap: Cancel all inflight requests
             for task in pending:
                 if not task.done():
                     task.cancel()
             if pending:
                 await asyncio.gather(*pending, return_exceptions=True)
 
+    def _apply_discovery(update: dict, phase_idx: int) -> None:
+        """Apply discovery pulses (units_discovered) to the tracker."""
+        if "units_discovered" in update:
+            disc_type = update.get("unit_type", "llm")
+            if disc_type == "llm":
+                tracker.add_llm_total(
+                    update["units_discovered"] * tracker.get_llm_multiplier(), phase_idx,
+                )
+            elif disc_type == "io":
+                tracker.add_io_total(update["units_discovered"], phase_idx)
+        else:
+            unit_type = update.get("unit", "None")
+            if unit_type == "llm":
+                tracker.complete_llm(1, phase_idx)
+            elif unit_type == "io":
+                tracker.complete_io(1, phase_idx)
+
+    def _enrich_progress(item: dict, phase_idx: int) -> dict:
+        """Attach progress metadata to a status update dict."""
+        item.update(tracker.as_dict())
+        item.update({"phase_current": phase_idx, "phase_total": phase_total})
+        return item
+
+    # ------------------------------------------------------------------
+    # flow: multiplex a single task generator with LLM pulse queue
+    # ------------------------------------------------------------------
+
+    async def flow(
+        task_generator: AsyncGenerator[Union[dict, ResearchState], None], phase_idx: int,
+    ) -> AsyncGenerator[str, None]:
+        nonlocal state
+        _drain_queue(llm.progress_queue)
+
+        async for label, item in _multiplex({"gen": task_generator}, llm.progress_queue):
+            if label == "gen":
+                if isinstance(item, ResearchState):
+                    state = item
+                else:
+                    _apply_discovery(item, phase_idx)
+                    yield json.dumps(_enrich_progress(item, phase_idx))
+            else:  # llm_pulse
+                tracker.complete_llm(1, phase_idx)
+                pulse = {"status": "synthesizing", "message": "Synthesizing..."}
+                yield json.dumps(_enrich_progress(pulse, phase_idx))
+
+    # ------------------------------------------------------------------
+    # pipeline_sieve: multiplex extractor + preprocessor (+ optional triage)
+    # ------------------------------------------------------------------
+
     async def pipeline_sieve(phase_idx: int, is_enrichment: bool = False) -> AsyncGenerator[str, None]:
-        """Manages the parallel execution of extraction and preprocessing."""
         nonlocal state
         triage_to_extract_queue = asyncio.Queue()
         extract_to_pre_queue = asyncio.Queue()
-        
-        # Start the generators
+
         preprocessor_gen = run_preprocessor(state, extract_to_pre_queue, llm)
-        
+
         if not is_enrichment:
             triage_gen = run_source_triage(state, triage_to_extract_queue, llm)
             extractor_gen = run_extractor(state, extract_to_pre_queue, triage_to_extract_queue, llm)
@@ -287,106 +306,25 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             triage_gen = None
             extractor_gen = run_extractor(state, extract_to_pre_queue, None, llm)
 
-        # Helper to consume a generator and push to a unified queue
-        async def wrap_gen(gen, suffix_sentinel=False):
-            async for update in gen:
-                if isinstance(update, ResearchState):
-                    pass # We'll get the final state from the aggregate
-                else:
-                    yield update
-            if suffix_sentinel:
-                await queue.put(None)
+        _drain_queue(llm.progress_queue)
 
-        # Merge generators manually
-        # Note: We need to pull from BOTH concurrently.
-        # However, preprocessor_gen won't finish until extractor_gen puts the sentinel.
-        
-        # Drain any stale pulses from previous serial phases
-        while not llm.progress_queue.empty():
-            try:
-                llm.progress_queue.get_nowait()
-            except asyncio.QueueEmpty:
-                break
-                
-        # Capture updates and yield them
-        ext_iter = extractor_gen.__aiter__()
-        pre_iter = preprocessor_gen.__aiter__()
-        
-        # Use a task-based approach to pull from generators
-        pending = {
-            asyncio.create_task(preprocessor_gen.__anext__()): "pre",
-            asyncio.create_task(extractor_gen.__anext__()): "ext",
-            asyncio.create_task(llm.progress_queue.get()): "llm_pulse"
+        generators = {
+            "pre": preprocessor_gen,
+            "ext": extractor_gen,
         }
         if triage_gen is not None:
-            pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
+            generators["tri"] = triage_gen
 
-        try:
-            while pending:
-                # BREAK CONDITION: If only llm_pulse remains, all parallel generators have finished.
-                if len(pending) == 1 and "llm_pulse" in pending.values():
-                    break
-
-                done, _ = await asyncio.wait(pending.keys(), return_when=asyncio.FIRST_COMPLETED)
-                for future in done:
-                    label = pending.pop(future)
-                    try:
-                        update = future.result()
-                        
-                        if label == "llm_pulse":
-                            tracker.complete_llm(1, phase_idx)
-                            update = {"status": "synthesizing", "message": "Synthesizing..."}
-                        elif isinstance(update, ResearchState):
-                            state = update
-                            # Re-poll based on label
-                            if label == "ext":
-                                pending[asyncio.create_task(extractor_gen.__anext__())] = "ext"
-                            elif label == "pre":
-                                pending[asyncio.create_task(preprocessor_gen.__anext__())] = "pre"
-                            elif label == "tri" and triage_gen is not None:
-                                pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
-                            continue
-                        else:
-                            # Discovery pulse handling: Preprocessor discovered units
-                            if "units_discovered" in update:
-                                disc_type = update.get("unit_type", "llm")
-                                if disc_type == "llm":
-                                    tracker.add_llm_total(update["units_discovered"] * tracker.get_llm_multiplier(), phase_idx)
-                                elif disc_type == "io":
-                                    tracker.add_io_total(update["units_discovered"], phase_idx)
-                            else:
-                                unit_type = update.get("unit", "None")
-                                if unit_type == "llm": tracker.complete_llm(1, phase_idx)
-                                elif unit_type == "io": tracker.complete_io(1, phase_idx)
-                        
-                        update.update(tracker.as_dict())
-                        update.update({"phase_current": phase_idx, "phase_total": phase_total})
-                        yield json.dumps(update)
-                        
-                        # Keep polling the same generator/queue
-                        if label == "ext":
-                            pending[asyncio.create_task(extractor_gen.__anext__())] = "ext"
-                        elif label == "pre":
-                            pending[asyncio.create_task(preprocessor_gen.__anext__())] = "pre"
-                        elif label == "tri" and triage_gen is not None:
-                            pending[asyncio.create_task(triage_gen.__anext__())] = "tri"
-                        elif label == "llm_pulse":
-                            pending[asyncio.create_task(llm.progress_queue.get())] = "llm_pulse"
-                            
-                    except StopAsyncIteration:
-                        # Generator finished, do not re-add.
-                        continue
-                    except Exception as e:
-                        logger.error(f"Error in parallel phase {phase_idx} ({label}): {e}")
-                        # If a generator failed, we don't re-add it.
-                        continue
-        finally:
-            # Interrupt Trap: Cancel all inflight requests
-            for task in pending:
-                if not task.done():
-                    task.cancel()
-            if pending:
-                await asyncio.gather(*pending, return_exceptions=True)
+        async for label, item in _multiplex(generators, llm.progress_queue):
+            if label == "llm_pulse":
+                tracker.complete_llm(1, phase_idx)
+                pulse = {"status": "synthesizing", "message": "Synthesizing..."}
+                yield json.dumps(_enrich_progress(pulse, phase_idx))
+            elif isinstance(item, ResearchState):
+                state = item
+            else:
+                _apply_discovery(item, phase_idx)
+                yield json.dumps(_enrich_progress(item, phase_idx))
 
     try:
         # 1. Deterministic Planning
