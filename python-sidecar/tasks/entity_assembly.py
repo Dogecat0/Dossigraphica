@@ -24,7 +24,7 @@ from tasks.drafter import (
     get_geopolitical_risks,
     get_customer_concentration,
 )
-from llm import llm
+from llm import LLMClient
 
 logger = logging.getLogger(__name__)
 
@@ -89,7 +89,7 @@ def _build_risk_queries(risks, user_query: str) -> list[str]:
     return queries
 
 
-async def run_entity_assembly(state: ResearchState) -> ResearchState:
+async def run_entity_assembly(state: ResearchState, llm: LLMClient) -> ResearchState:
     """
     Pre-assemble Pydantic models to programmatically detect missing
     geographic data. Populate ``state.enrichment_queries`` with targeted
@@ -106,10 +106,10 @@ async def run_entity_assembly(state: ResearchState) -> ResearchState:
     # Run the modular assembly functions in parallel against current facts
     
     office_res, sc_res, risk_res, cust_res = await asyncio.gather(
-        get_offices(state.extracted_facts, state.user_query),
-        get_supply_chain(state.extracted_facts, state.user_query),
-        get_geopolitical_risks(state.extracted_facts, state.user_query),
-        get_customer_concentration(state.extracted_facts, state.user_query),
+        get_offices(state.extracted_facts, state.user_query, llm),
+        get_supply_chain(state.extracted_facts, state.user_query, llm),
+        get_geopolitical_risks(state.extracted_facts, state.user_query, llm),
+        get_customer_concentration(state.extracted_facts, state.user_query, llm),
     )
 
     # Programmatic gap detection

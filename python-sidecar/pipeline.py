@@ -14,7 +14,8 @@ import os
 import time
 from typing import AsyncGenerator, Union
 
-from llm import LLM_OUTPUT_MODE, llm
+from llm import LLMClient
+from provider import LLM_OUTPUT_MODE
 from schemas import PlannerSchema, SingleTriageSchema, SynthesizerSchema, GeoIntelligenceSchema
 
 logger = logging.getLogger(__name__)
@@ -144,7 +145,8 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     """
     log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
     state = reconstruct_state_from_logs(query, log_dir)
-    
+    llm = LLMClient()
+
     tracker = TaskTracker()
 
     llm.progress_queue = asyncio.Queue()
@@ -276,14 +278,14 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         extract_to_pre_queue = asyncio.Queue()
         
         # Start the generators
-        preprocessor_gen = run_preprocessor(state, extract_to_pre_queue)
+        preprocessor_gen = run_preprocessor(state, extract_to_pre_queue, llm)
         
         if not is_enrichment:
-            triage_gen = run_source_triage(state, triage_to_extract_queue)
-            extractor_gen = run_extractor(state, extract_to_pre_queue, triage_to_extract_queue)
+            triage_gen = run_source_triage(state, triage_to_extract_queue, llm)
+            extractor_gen = run_extractor(state, extract_to_pre_queue, triage_to_extract_queue, llm)
         else:
             triage_gen = None
-            extractor_gen = run_extractor(state, extract_to_pre_queue)
+            extractor_gen = run_extractor(state, extract_to_pre_queue, None, llm)
 
         # Helper to consume a generator and push to a unified queue
         async def wrap_gen(gen, suffix_sentinel=False):
@@ -408,7 +410,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 "queries": state.search_queries,
                 **tracker.as_dict()
             })
-            state = await run_search(state)
+            state = await run_search(state, llm)
             tracker.complete_io(1, 2)
             state.pipeline_step = "source_triage"
         
@@ -430,7 +432,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 "message": "Pre-assembling entities to detect geographic data gaps...", 
                 **tracker.as_dict()
             })
-            state = await run_entity_assembly(state)
+            state = await run_entity_assembly(state, llm)
             if state.enrichment_queries:
                 state.pipeline_step = "enrichment_searching"
             else:
@@ -449,7 +451,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 **tracker.as_dict()
             })
             state.search_queries = state.enrichment_queries
-            state = await run_search(state)
+            state = await run_search(state, llm)
             tracker.complete_io(1, 5)
             state.pipeline_step = "enrichment_extracting"
 
@@ -466,7 +468,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         # 8. Final Handoff (Parallel Drafting)
         if state.pipeline_step == "drafting":
             tracker.start_phase(7, "drafting")
-            async for update in flow(run_drafter(state), 7):
+            async for update in flow(run_drafter(state, llm), 7):
                 if "units_discovered" in (u := json.loads(update)):
                     tracker.add_llm_total(u["units_discovered"] * tracker.get_llm_multiplier(), 7)
                     continue

@@ -3,7 +3,7 @@ import asyncio
 from datetime import datetime
 import litellm
 from pydantic import BaseModel, Field, create_model
-from typing import Type, TypeVar, Optional, List, Any, Dict, get_origin, get_args
+from typing import Type, TypeVar, List
 import logging
 import json
 import jsonref
@@ -12,10 +12,8 @@ from json_repair import repair_json
 from tenacity import (
     retry,
     stop_after_attempt,
-    wait_exponential,
-    wait_none,
     retry_if_exception_type,
-    before_sleep_log
+    before_sleep_log,
 )
 from pydantic import ValidationError
 from litellm.exceptions import (
@@ -24,107 +22,37 @@ from litellm.exceptions import (
     APIConnectionError,
     InternalServerError,
     Timeout,
-    MidStreamFallbackError
+    MidStreamFallbackError,
 )
 from schemas import STRICT_CONFIG, SummarySchema
+from provider import (
+    ACTIVE_MODEL,
+    ACTIVE_BASE_URL,
+    ACTIVE_N_PARALLEL,
+    ACTIVE_CTX_LIMIT,
+    ACTIVE_OUTPUT_RESERVATION,
+    LLM_PROVIDER,
+    LLM_TEMPERATURE,
+    LLM_OUTPUT_MODE,
+    LLM_REQUEST_TIMEOUT,
+    OUTPUT_RESERVATION,
+    SAFETY_BUFFER,
+    before_sleep_log_model,
+    wait_if_not_timeout,
+)
 
-# Configure logging
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
-logging.basicConfig(level=getattr(logging, LOG_LEVEL, logging.INFO))
 logger = logging.getLogger(__name__)
 
-def before_sleep_log_model(logger_obj, log_level):
-    def log_it(retry_state):
-        if retry_state.outcome.failed:
-            ex = retry_state.outcome.exception()
-            self_instance = retry_state.args[0]
-            verb, value = "raised", f"{type(ex).__name__}: {ex}"
-            logger_obj.log(
-                log_level,
-                f"Retrying structured generation (attempt {retry_state.attempt_number}) for model '{self_instance.model}' "
-                f"in {retry_state.next_action.sleep} seconds as it {verb} {value}"
-            )
-    return log_it
-
-_backoff = wait_exponential(multiplier=2, min=10, max=60)
-
-def _wait_if_not_timeout(retry_state):
-    """Timeout → immediate retry; all other transient errors → exponential backoff."""
-    if isinstance(retry_state.outcome.exception(), Timeout):
-        return 0
-    return _backoff(retry_state)
-
-# Provider configuration
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "local").lower()
-
-# Local Llama.cpp configuration
-LLAMA_CPP_URL = os.getenv("LLAMA_CPP_URL", "http://localhost:8081/v1/")
-LLAMA_N_PARALLEL = int(os.getenv("LLAMA_N_PARALLEL", "1"))
-LLAMA_CTX_PER_REQUEST = int(os.getenv("LLAMA_CTX_PER_REQUEST", "8192"))
-LLAMA_MODEL = os.getenv("LLAMA_MODEL_REPO", "unsloth/gemma-4-E4B-it-GGUF:UD-Q4_K_M")
-
-# Gemini configuration
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini/gemini-3.1-flash-lite-preview")
-GEMINI_N_PARALLEL = int(os.getenv("GEMINI_N_PARALLEL", "10"))
-GEMINI_CTX_PER_REQUEST = int(os.getenv("GEMINI_CTX_PER_REQUEST", "32768")) # 1M default for Flash
-
-# Featherless configuration
-FEATHERLESS_API_KEY = os.getenv("FEATHERLESS_API_KEY")
-FEATHERLESS_BASE_URL = os.getenv("FEATHERLESS_BASE_URL", "https://api.featherless.ai/v1")
-FEATHERLESS_MODEL = os.getenv("FEATHERLESS_MODEL", "moonshotai/Kimi-K2.6")
-FEATHERLESS_N_PARALLEL = int(os.getenv("FEATHERLESS_N_PARALLEL", "1"))
-FEATHERLESS_CTX_PER_REQUEST = int(os.getenv("FEATHERLESS_CTX_PER_REQUEST", "32768"))
-
-# Output and safety configuration
-# OUTPUT_RESERVATION is the baseline / local-provider default.
-# GEMINI_OUTPUT_RESERVATION and FEATHERLESS_OUTPUT_RESERVATION override it
-# for their respective providers; each falls back to OUTPUT_RESERVATION.
-OUTPUT_RESERVATION = int(os.getenv("OUTPUT_RESERVATION", "4096"))
-GEMINI_OUTPUT_RESERVATION = int(os.getenv("GEMINI_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
-FEATHERLESS_OUTPUT_RESERVATION = int(os.getenv("FEATHERLESS_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
-SAFETY_BUFFER = 64
-LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
-LLM_OUTPUT_MODE = os.getenv("LLM_OUTPUT_MODE", "multi-shot").lower()
-LLM_REQUEST_TIMEOUT = int(os.getenv("LLM_REQUEST_TIMEOUT", "30"))
-
-
-# Active configuration selection
-if LLM_PROVIDER == "gemini":
-    ACTIVE_MODEL = GEMINI_MODEL
-    ACTIVE_BASE_URL = None
-    ACTIVE_N_PARALLEL = GEMINI_N_PARALLEL
-    ACTIVE_CTX_LIMIT = GEMINI_CTX_PER_REQUEST
-    ACTIVE_OUTPUT_RESERVATION = GEMINI_OUTPUT_RESERVATION
-    if GEMINI_API_KEY:
-        os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
-    logger.debug(f"LLM Provider: GEMINI (model={ACTIVE_MODEL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
-elif LLM_PROVIDER == "featherless":
-    ACTIVE_MODEL = f"openai/{FEATHERLESS_MODEL}"
-    ACTIVE_BASE_URL = FEATHERLESS_BASE_URL
-    ACTIVE_N_PARALLEL = FEATHERLESS_N_PARALLEL
-    ACTIVE_CTX_LIMIT = FEATHERLESS_CTX_PER_REQUEST
-    ACTIVE_OUTPUT_RESERVATION = FEATHERLESS_OUTPUT_RESERVATION
-    if FEATHERLESS_API_KEY:
-        os.environ["OPENAI_API_KEY"] = FEATHERLESS_API_KEY
-    logger.debug(f"LLM Provider: FEATHERLESS (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
-else:
-    ACTIVE_MODEL = f"openai/{LLAMA_MODEL}"
-    ACTIVE_BASE_URL = LLAMA_CPP_URL
-    ACTIVE_N_PARALLEL = LLAMA_N_PARALLEL
-    ACTIVE_CTX_LIMIT = LLAMA_CTX_PER_REQUEST
-    ACTIVE_OUTPUT_RESERVATION = OUTPUT_RESERVATION
-    logger.debug(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
-
-
 T = TypeVar("T", bound=BaseModel)
+
 
 class LLMClient:
     """
     Client wrapper for interacting with the LLM.
     Uses strict response_format and forces schema adherence via prompts.
-    Centralized semaphore enforces LLAMA_N_PARALLEL across all tasks.
+    Centralized semaphore enforces the provider's parallel limit across all tasks.
     """
+
     def __init__(self, base_url: str = ACTIVE_BASE_URL, model: str = ACTIVE_MODEL):
         self.base_url = base_url
         self.model = model
@@ -134,53 +62,313 @@ class LLMClient:
         self.log_dir = os.path.join(os.path.dirname(__file__), "logs", "inference")
         self.progress_queue = None
         os.makedirs(self.log_dir, exist_ok=True)
-        
+
         # Initialize inference counter from existing logs so replay won't overwrite
         max_idx = 0
         if os.path.exists(self.log_dir):
             for f in os.listdir(self.log_dir):
-                import re
-                match = re.match(r'^(\d+)_', f)
+                match = re.match(r"^(\d+)_", f)
                 if match:
                     idx = int(match.group(1))
                     if idx > max_idx:
                         max_idx = idx
         self.inference_counter = max_idx
-        
-        # Suppress LiteLLM internal logging (completion messages, etc.) unless there is an error
+
+        # Suppress LiteLLM internal logging unless there is an error
         logging.getLogger("LiteLLM").setLevel(logging.WARNING)
         litellm.set_verbose = False
-        
+
         if not os.getenv("OPENAI_API_KEY") and not ACTIVE_BASE_URL:
-            # Only set dummy key if not using a custom base_url (local llama.cpp needs it sometimes but Gemini doesn't)
-            # Actually Gemini needs GEMINI_API_KEY which we already set.
             pass
         elif not os.getenv("OPENAI_API_KEY"):
             os.environ["OPENAI_API_KEY"] = "sk-no-key-required"
-            
+
         # Force register model capabilities if using Featherless
         if LLM_PROVIDER == "featherless":
             litellm.register_model({
                 self.model: {
                     "supports_function_calling": True,
-                    "supports_parallel_function_calling": False
+                    "supports_parallel_function_calling": False,
                 }
             })
-            
-        logger.debug(f"Initialized LLMClient with provider={LLM_PROVIDER}, model={model}, parallel_limit={ACTIVE_N_PARALLEL}, ctx_limit={ACTIVE_CTX_LIMIT}")
+
+        logger.debug(
+            "Initialized LLMClient provider=%s model=%s parallel_limit=%s ctx_limit=%s",
+            LLM_PROVIDER, model, ACTIVE_N_PARALLEL, ACTIVE_CTX_LIMIT,
+        )
+
+    # ------------------------------------------------------------------
+    # Public helpers
+    # ------------------------------------------------------------------
 
     def get_safe_input_limit(self) -> int:
         """Absolute maximum input tokens allowed after reservation and safety buffer."""
         return ACTIVE_CTX_LIMIT - OUTPUT_RESERVATION - SAFETY_BUFFER
 
+    def estimate_tokens(self, messages: List[dict]) -> int:
+        """Accurate message list token counting using litellm."""
+        return litellm.token_counter(model=self.model, messages=messages)
+
+    def calculate_safe_chunk_size(
+        self, system_prompt: str, user_prompt_template: str, response_model: Type[BaseModel],
+    ) -> int:
+        """How many tokens are left for a chunk given a prompt template and schema."""
+        messages = self._construct_messages(
+            user_prompt_template.format(chunk=""), system_prompt, response_model,
+        )
+        overhead = self.estimate_tokens(messages)
+        safe_size = self.get_safe_input_limit() - overhead
+        return max(512, safe_size)
+
+    # ------------------------------------------------------------------
+    # Checkpoint persistence
+    # ------------------------------------------------------------------
+
+    async def save_checkpoint(self, name: str, data: dict) -> str:
+        """Persist a pipeline checkpoint for state replay."""
+        async with self.counter_lock:
+            self.inference_counter += 1
+            current_index = self.inference_counter
+        filepath = os.path.join(self.log_dir, f"{current_index:04d}_{name}_output.json")
+        try:
+            with open(filepath, "w") as f:
+                json.dump(data, f, indent=2)
+            logger.debug("Checkpoint saved: %s → %s", name, filepath)
+        except Exception as e:
+            logger.error("Failed to save checkpoint %s: %s", name, e)
+        return filepath
+
+    # ------------------------------------------------------------------
+    # Structured generation
+    # ------------------------------------------------------------------
+
+    async def generate_structured(
+        self,
+        prompt: str,
+        response_model: Type[T],
+        system_prompt: str = "You are a professional research agent.",
+        facts: str = None,
+    ) -> T:
+        async with self.counter_lock:
+            self.inference_counter += 1
+            current_index = self.inference_counter
+
+        def _get_target_tokens(model):
+            return self.calculate_safe_chunk_size(
+                system_prompt, prompt.replace("__FACTS__", "{chunk}"), model,
+            )
+
+        if LLM_OUTPUT_MODE == "one-shot":
+            if facts:
+                target_tokens = _get_target_tokens(response_model)
+                model_desc = response_model.model_json_schema().get("description", "")
+                focus_context = f"{system_prompt} (Schema: {response_model.__name__} - {model_desc})"
+                summary = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=focus_context)
+                final_prompt = prompt.replace("__FACTS__", summary)
+            else:
+                final_prompt = prompt
+
+            messages = self._construct_messages(final_prompt, system_prompt, response_model)
+            try:
+                res = await self._generate_single_field(messages, response_model, current_index, "")
+            finally:
+                if self.progress_queue:
+                    self.progress_queue.put_nowait(True)
+            return res
+
+        # Multi-shot generation
+        current_output = {}
+        for i, (field_name, field_info) in enumerate(response_model.model_fields.items(), start=1):
+            annotation = field_info.annotation
+            FieldModel = create_model(
+                field_name,
+                **{field_name: (annotation, Field(..., description=field_info.description))},
+            )
+
+            field_facts = ""
+            if facts:
+                origin = get_origin(annotation)
+                args = get_args(annotation)
+                if origin is list and args and isinstance(args[0], type) and issubclass(args[0], BaseModel):
+                    logger.debug("Decomposing list field '%s' into entity-level tasks.", field_name)
+
+                    DiscoveryModel = create_model(
+                        "Discovery",
+                        reasoning=(str, Field(..., description="Logic for identifying unique entities.")),
+                        entities=(List[str], Field(..., description=f"List of unique entities for {field_name}.")),
+                    )
+                    discovery_template = (
+                        f"Identify all unique entities or specific items for the field '{field_name}' "
+                        f"from the provided facts. Focus on: {field_info.description}\n\nFACTS:\n__FACTS__"
+                    )
+                    discovery_target = self.calculate_safe_chunk_size(
+                        system_prompt,
+                        discovery_template.replace("__FACTS__", "{chunk}"),
+                        DiscoveryModel,
+                    )
+                    discovery_facts = await self.summarize_to_fit(
+                        facts, discovery_target, system_prompt, focus=f"Entities for {field_name}",
+                    )
+                    discovery_res = await self.generate_structured(
+                        prompt=discovery_template.replace("__FACTS__", discovery_facts),
+                        response_model=DiscoveryModel,
+                        system_prompt=system_prompt,
+                    )
+
+                    entities = []
+                    for entity_id in discovery_res.entities:
+                        entity_summary = await self.summarize_to_fit(
+                            facts, _get_target_tokens(args[0]), system_prompt, focus=entity_id,
+                        )
+                        entity_item = await self.generate_structured(
+                            prompt=f"Extract full details for the specific entity '{entity_id}' using these facts:\n{entity_summary}",
+                            response_model=args[0],
+                            system_prompt=system_prompt,
+                        )
+                        entities.append(entity_item)
+
+                    current_output[field_name] = entities
+                    continue
+
+                target_tokens = _get_target_tokens(FieldModel)
+                field_facts = await self.summarize_to_fit(
+                    facts, target_tokens, system_prompt, focus=field_info.description,
+                )
+
+            field_prompt = prompt.replace("__FACTS__", field_facts) if facts else prompt
+            multi_shot_prompt = (
+                f"{field_prompt}\n\n"
+                f"--- MULTI-SHOT GENERATION PROGRESS ---\n"
+                f"We are generating the final JSON object field by field.\n"
+                f"Current output so far:\n```json\n{json.dumps(current_output, indent=2)}\n```\n\n"
+                f"Your task is to generate the next field: `{field_name}`."
+            )
+
+            messages = self._construct_messages(
+                multi_shot_prompt, system_prompt, response_model, function_name=field_name,
+            )
+            try:
+                partial_result = await self._generate_single_field(
+                    messages, FieldModel, current_index, f"_{i:02d}",
+                    log_model_name=response_model.__name__,
+                )
+            finally:
+                if self.progress_queue:
+                    self.progress_queue.put_nowait(True)
+
+            field_value = getattr(partial_result, field_name)
+            current_output[field_name] = field_value
+
+        return response_model(**current_output)
+
+    # ------------------------------------------------------------------
+    # Map-reduce summarization
+    # ------------------------------------------------------------------
+
+    async def summarize_to_fit(
+        self,
+        content: str,
+        target_tokens: int,
+        system_prompt: str = "You are a data compression specialist.",
+        focus: str = None,
+    ) -> str:
+        """Recursively summarizes content using Map-Reduce parallelization until it fits."""
+        current_tokens = self.estimate_tokens([{"role": "user", "content": content}])
+
+        if current_tokens <= target_tokens:
+            return content
+
+        if focus:
+            summary_template = (
+                f"Following content is too long. Summarize it into high-density facts, "
+                f"prioritizing information related to: {focus}. "
+                "MANDATE: You MUST preserve all exact numerical values, technical metrics, "
+                "units of measure, specific dates, and proper names. "
+                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
+            )
+        else:
+            summary_template = (
+                "Following content is too long. Summarize it into high-density facts. "
+                "MANDATE: You MUST preserve all exact numerical values, technical metrics, "
+                "units of measure, specific dates, and proper names. "
+                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
+            )
+
+        safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
+
+        logger.debug(
+            "Map-Reduce Summary: %s tokens -> target %s. Chunking at %s.",
+            current_tokens, target_tokens, safe_chunk_tokens,
+        )
+
+        # Split content into token-aware chunks
+        try:
+            tokens = litellm.encode(model=self.model, text=content)
+            chunks = []
+            for i in range(0, len(tokens), safe_chunk_tokens):
+                chunk_tokens = tokens[i : i + safe_chunk_tokens]
+                chunks.append(litellm.decode(model=self.model, tokens=chunk_tokens))
+        except Exception:
+            char_size = safe_chunk_tokens * 4
+            chunks = [content[i : i + char_size] for i in range(0, len(content), char_size)]
+
+        async def summarize_chunk(chunk_text: str) -> str:
+            prompt = summary_template.format(chunk=chunk_text)
+            res = await self.generate_structured(prompt, SummarySchema, system_prompt)
+            return res.summary
+
+        summaries = await asyncio.gather(*(summarize_chunk(c) for c in chunks))
+        combined_summary = "\n\n".join(summaries)
+
+        return await self.summarize_to_fit(combined_summary, target_tokens, system_prompt, focus=focus)
+
+    # ------------------------------------------------------------------
+    # Internal helpers
+    # ------------------------------------------------------------------
+
+    def _construct_messages(
+        self, prompt: str, system_prompt: str, response_model: Type[BaseModel],
+        function_name: str | None = None,
+    ) -> List[dict]:
+        raw_schema = response_model.model_json_schema()
+        deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
+        deref_schema.pop("$defs", None)
+
+        schema_json = json.dumps(deref_schema, indent=2)
+        now = datetime.now().isoformat()
+
+        call_instruction = (
+            f"5. You MUST call the function `{function_name}` to submit your result.\n"
+            if function_name else ""
+        )
+
+        strict_system_prompt = (
+            f"{system_prompt}\n\n"
+            f"CURRENT_TIME: {now}\n\n"
+            "STRICT INSTRUCTIONS:\n"
+            "1. You MUST respond with ONLY a valid JSON object.\n"
+            "2. You MUST NOT add any extra fields or rename keys.\n"
+            "3. All keys and string values MUST be enclosed in double quotes (\"). "
+            "This is MANDATORY, especially if the text contains commas or periods.\n"
+            "4. If a property is nullable and you have no data, output the keyword `null` "
+            "(WITHOUT double quotes). If a property is required and NOT nullable, "
+            "you MUST provide a valid value.\n"
+            f"{call_instruction}"
+            "Do NOT include markdown code blocks or preamble text.\n\n"
+            f"REQUIRED SCHEMA:\n{schema_json}"
+        )
+        return [
+            {"role": "system", "content": strict_system_prompt},
+            {"role": "user", "content": prompt},
+        ]
+
     def _parse_unquoted_custom_syntax(self, content: str, deref_schema: dict) -> str:
         """
-        Parses Hermes-style unquoted tool calls (e.g. call:Name{key:val,with,commas}) 
+        Parses Hermes-style unquoted tool calls (e.g. call:Name{key:val,with,commas})
         by dynamically anchoring on the known schema keys to avoid splitting on internal commas.
         """
-        import re
-        import json
-        
+        import json as _json
+
         def get_keys(schema):
             keys = set()
             if "properties" in schema:
@@ -194,92 +382,66 @@ class LLMClient:
         schema_keys = list(get_keys(deref_schema))
         if not schema_keys:
             return content
-            
+
         keys_pattern = "|".join(schema_keys)
-        # Lookahead: match everything until the next known key or end of string
         regex = rf"({keys_pattern}):(.*?)(?=,(?:{keys_pattern}):|$)"
-        
+
         match = re.search(r"call:\w+\{(.*)\}", content, re.DOTALL)
         if not match:
             return content
-            
+
         inner = match.group(1)
-        
+
         # Array payload handling (e.g. {extracted_facts:[{...},{...}]})
-        list_match = re.search(r'\[(.*)\]', inner, re.DOTALL)
+        list_match = re.search(r"\[(.*)\]", inner, re.DOTALL)
         if list_match:
-            top_key_match = re.search(r'(\w+):\[', inner)
+            top_key_match = re.search(r"(\w+):\[", inner)
             top_key = top_key_match.group(1) if top_key_match else list(schema_keys)[0]
-            
+
             list_content = list_match.group(1)
-            objects = re.findall(r'\{(.*?)\}', list_content, re.DOTALL)
-            
+            objects = re.findall(r"\{(.*?)\}", list_content, re.DOTALL)
+
             parsed_objects = []
             for obj in objects:
                 fields = re.finditer(regex, obj, re.DOTALL)
-                parsed_obj = {f.group(1): f.group(2).strip().strip('"').strip("'") for f in fields}
+                parsed_obj = {
+                    f.group(1): f.group(2).strip().strip('"').strip("'")
+                    for f in fields
+                }
                 if parsed_obj:
                     parsed_objects.append(parsed_obj)
-            return json.dumps({top_key: parsed_objects})
+            return _json.dumps({top_key: parsed_objects})
         else:
-            # Flat object handling
             fields = re.finditer(regex, inner, re.DOTALL)
-            parsed_obj = {f.group(1): f.group(2).strip().strip('"').strip("'") for f in fields}
-            return json.dumps(parsed_obj) if parsed_obj else content
+            parsed_obj = {
+                f.group(1): f.group(2).strip().strip('"').strip("'")
+                for f in fields
+            }
+            return _json.dumps(parsed_obj) if parsed_obj else content
 
-
-
-    def _construct_messages(self, prompt: str, system_prompt: str, response_model: Type[BaseModel], function_name: str | None = None) -> List[dict]:
-        raw_schema = response_model.model_json_schema()
-        deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
-        deref_schema.pop("$defs", None)
-        
-        schema_json = json.dumps(deref_schema, indent=2)
-        now = datetime.now().isoformat()
-
-        # Instruction for which function to call (only for tool-based providers)
-        call_instruction = f"5. You MUST call the function `{function_name}` to submit your result.\n" if (function_name) else ""
-
-        strict_system_prompt = (
-            f"{system_prompt}\n\n"
-            f"CURRENT_TIME: {now}\n\n"
-            f"STRICT INSTRUCTIONS:\n"
-            f"1. You MUST respond with ONLY a valid JSON object.\n"
-            f"2. You MUST NOT add any extra fields or rename keys.\n"
-            f"3. All keys and string values MUST be enclosed in double quotes (\"). This is MANDATORY, especially if the text contains commas or periods.\n"
-            f"4. If a property is nullable and you have no data, output the keyword `null` (WITHOUT double quotes). If a property is required and NOT nullable, you MUST provide a valid value.\n"
-            f"{call_instruction}"
-            f"Do NOT include markdown code blocks or preamble text.\n\n"
-            f"REQUIRED SCHEMA:\n{schema_json}"
-        )
-        return [
-            {"role": "system", "content": strict_system_prompt},
-            {"role": "user", "content": prompt},
-        ]
-
-    async def _log_inference(self, current_index: int, messages: List[dict], model_name: str, raw_response: str, step_suffix: str = ""):
+    async def _log_inference(
+        self, current_index: int, messages: List[dict], model_name: str,
+        raw_response: str, step_suffix: str = "",
+    ):
         """Logs the raw inputs and outputs to separate, readable files."""
         base_name = f"{current_index:04d}_{model_name}{step_suffix}"
-        
-        # 1. Log Input (Markdown)
+
         input_path = os.path.join(self.log_dir, f"{base_name}_input.md")
         system_prompt = next((m["content"] for m in messages if m["role"] == "system"), "N/A")
         user_prompt = next((m["content"] for m in messages if m["role"] == "user"), "N/A")
-        
+
         input_md = (
             f"# Inference {current_index:04d} - {model_name}{step_suffix}\n\n"
             f"**Model:** `{self.model}`\n\n"
             f"## System Prompt\n\n{system_prompt}\n\n"
             f"## User Prompt\n\n{user_prompt}\n"
         )
-        
-        # 2. Log Output (JSON Indented) and Reasoning (Markdown)
+
         output_path = os.path.join(self.log_dir, f"{base_name}_output.json")
         reasoning_path = os.path.join(self.log_dir, f"{base_name}_reasoning.md")
-        
+
         parsed_json = None
         try:
-            # Try to repair and parse to get a pretty version and extract reasoning
             repaired = repair_json(raw_response)
             parsed_json = json.loads(repaired)
             formatted_output = json.dumps(parsed_json, indent=2)
@@ -287,69 +449,50 @@ class LLMClient:
             formatted_output = raw_response
 
         try:
-            # Write Input MD
             with open(input_path, "w") as f:
                 f.write(input_md)
-            
-            # Write Output JSON
             with open(output_path, "w") as f:
                 f.write(formatted_output)
-            
-            # Write Reasoning MD if available
             if parsed_json and isinstance(parsed_json, dict) and "reasoning" in parsed_json:
                 with open(reasoning_path, "w") as f:
                     f.write(f"# Reasoning - {base_name}\n\n{parsed_json['reasoning']}\n")
-            
-            logger.debug(f"Inference logged: {base_name} (Split into MD/JSON)")
+            logger.debug("Inference logged: %s", base_name)
         except Exception as e:
-            logger.error(f"Failed to log inference files: {e}")
-
-    async def save_checkpoint(self, name: str, data: dict) -> str:
-        """
-        Persist a pipeline checkpoint for state replay.
-        Increments inference_counter atomically so the file prefix
-        matches the log ordering convention.
-        Returns the written file path.
-        """
-        async with self.counter_lock:
-            self.inference_counter += 1
-            current_index = self.inference_counter
-        filepath = os.path.join(self.log_dir, f"{current_index:04d}_{name}_output.json")
-        try:
-            with open(filepath, "w") as f:
-                json.dump(data, f, indent=2)
-            logger.debug(f"Checkpoint saved: {name} → {filepath}")
-        except Exception as e:
-            logger.error(f"Failed to save checkpoint {name}: {e}")
-        return filepath
+            logger.error("Failed to log inference files: %s", e)
 
     @retry(
         stop=stop_after_attempt(10),
-        wait=_wait_if_not_timeout,
+        wait=wait_if_not_timeout,
         retry=(
-            retry_if_exception_type(RateLimitError) |
-            retry_if_exception_type(ServiceUnavailableError) |
-            retry_if_exception_type(MidStreamFallbackError) |
-            retry_if_exception_type(APIConnectionError) |
-            retry_if_exception_type(InternalServerError) |
-            retry_if_exception_type(Timeout) |
-            retry_if_exception_type(ValidationError) |
-            retry_if_exception_type(ValueError)
+            retry_if_exception_type(RateLimitError)
+            | retry_if_exception_type(ServiceUnavailableError)
+            | retry_if_exception_type(MidStreamFallbackError)
+            | retry_if_exception_type(APIConnectionError)
+            | retry_if_exception_type(InternalServerError)
+            | retry_if_exception_type(Timeout)
+            | retry_if_exception_type(ValidationError)
+            | retry_if_exception_type(ValueError)
         ),
         before_sleep=before_sleep_log_model(logger, logging.WARNING),
-        reraise=True
+        reraise=True,
     )
-    async def _generate_single_field(self, messages: List[dict], response_model: Type[BaseModel], current_index: int, step_suffix: str, log_model_name: str = None) -> BaseModel:
+    async def _generate_single_field(
+        self,
+        messages: List[dict],
+        response_model: Type[BaseModel],
+        current_index: int,
+        step_suffix: str,
+        log_model_name: str = None,
+    ) -> BaseModel:
         async with self.semaphore:
             try:
-                # Manually dereference schema
                 raw_schema = response_model.model_json_schema()
                 deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
                 deref_schema.pop("$defs", None)
                 deref_schema["required"] = list(response_model.model_fields.keys())
-                
-                logger.debug(f"LLM Call: {response_model.__name__} | model={self.model}")
-                
+
+                logger.debug("LLM Call: %s | model=%s", response_model.__name__, self.model)
+
                 kwargs = {
                     "model": self.model,
                     "messages": messages,
@@ -359,27 +502,26 @@ class LLMClient:
                     "timeout": LLM_REQUEST_TIMEOUT,
                     "add_function_to_prompt": False,
                     "num_retries": 0,
-                    "stream": True
+                    "stream": True,
                 }
 
                 if LLM_PROVIDER == "gemini":
                     kwargs["response_format"] = {
                         "type": "json_object",
-                        "response_schema": deref_schema
+                        "response_schema": deref_schema,
                     }
                 elif LLM_PROVIDER == "featherless":
-                    # For featherless or non-native models, we use tools but rely on 
                     kwargs["tools"] = [{
                         "type": "function",
                         "function": {
                             "name": response_model.__name__,
                             "description": "Submit structured research data.",
-                            "parameters": deref_schema
-                        }
+                            "parameters": deref_schema,
+                        },
                     }]
                     kwargs["tool_choice"] = {
                         "type": "function",
-                        "function": {"name": response_model.__name__}
+                        "function": {"name": response_model.__name__},
                     }
                 else:
                     kwargs["response_format"] = {
@@ -387,13 +529,12 @@ class LLMClient:
                         "json_schema": {
                             "name": response_model.__name__,
                             "strict": True,
-                            "schema": deref_schema
-                        }
+                            "schema": deref_schema,
+                        },
                     }
 
                 response = await litellm.acompletion(**kwargs)
-                
-                # Handle both Streaming and Static responses
+
                 content = ""
                 if kwargs.get("stream"):
                     print_stream = os.getenv("LLM_DEBUG_STREAM", "false").lower() == "true"
@@ -401,55 +542,58 @@ class LLMClient:
                         if chunk.choices and len(chunk.choices) > 0:
                             delta = chunk.choices[0].delta
                             delta_text = ""
-                            is_reasoning_field = False
-                            
-                            # Support DeepSeek's explicit reasoning_content field
+
                             if getattr(delta, "reasoning_content", None):
                                 delta_text = delta.reasoning_content
-                                is_reasoning_field = True
                             elif delta.content:
                                 delta_text = delta.content
                             elif getattr(delta, "tool_calls", None):
-                                if getattr(delta.tool_calls[0], "function", None) and delta.tool_calls[0].function.arguments:
-                                    delta_text = delta.tool_calls[0].function.arguments
-                            
+                                tc = delta.tool_calls[0]
+                                if getattr(tc, "function", None) and tc.function.arguments:
+                                    delta_text = tc.function.arguments
+
                             if delta_text:
                                 content += delta_text
-                                # Client-side runaway and repetition detection
                                 if len(content) > OUTPUT_RESERVATION * 6:
-                                    raise ValueError("Runaway generation detected: output exceeded maximum expected character limit.")
-                                
+                                    raise ValueError(
+                                        "Runaway generation detected: output exceeded maximum expected character limit."
+                                    )
                                 tail = content[-250:]
                                 if len(tail) >= 100:
-                                    # Detects repeating sequences of 10-60 chars (at least 4 times)
-                                    # We exclude JSON structure chars {}[]" to avoid false positives on empty nested schemas/lists.
                                     match = re.search(r"([^\{\}\[\]\"]{10,60}?)\1{3,}$", tail)
                                     if match and re.search(r"[a-zA-Z]", match.group(1)):
-                                        raise ValueError("Dynamic text repetition loop detected in output stream.")
-
-                                # Print delta to screen if enabled (Note: outputs will interlace if running parallel requests)
+                                        raise ValueError(
+                                            "Dynamic text repetition loop detected in output stream."
+                                        )
                                 if print_stream:
                                     print(delta_text, end="", flush=True)
-                    
+
                     if print_stream:
-                        print() # Ensure newline after stream completes
+                        print()
                 else:
                     message = response.choices[0].message
                     content = message.content or ""
-                    
                     tool_calls = getattr(message, "tool_calls", None)
                     if tool_calls and len(tool_calls) > 0 and tool_calls[0].function:
-                        # Prefer tool call arguments if present
                         content = tool_calls[0].function.arguments
-                
+
                 if not content:
                     raise ValueError("LLM returned empty content and no tool calls.")
 
-            except (RateLimitError, ServiceUnavailableError, MidStreamFallbackError, APIConnectionError, InternalServerError, Timeout, ValueError, ValidationError) as e:
-                logger.error(f"Structured Generation attempt failed for model '{self.model}': {type(e).__name__}: {e}")
+            except (
+                RateLimitError, ServiceUnavailableError, MidStreamFallbackError,
+                APIConnectionError, InternalServerError, Timeout, ValueError, ValidationError,
+            ) as e:
+                logger.error(
+                    "Structured Generation attempt failed for model '%s': %s: %s",
+                    self.model, type(e).__name__, e,
+                )
                 raise
             except Exception as e:
-                logger.critical(f"Unrecoverable Structured Generation Error for model '{self.model}': {type(e).__name__}: {e}")
+                logger.critical(
+                    "Unrecoverable Structured Generation Error for model '%s': %s: %s",
+                    self.model, type(e).__name__, e,
+                )
                 raise
 
         # --- Semaphore released: log and parse outside the concurrency gate ---
@@ -464,182 +608,5 @@ class LLMClient:
             content = repair_json(content)
             return response_model.model_validate_json(content)
         except Exception as e:
-            logger.error(f"Pydantic Validation Failure: {e}. Content: {content}")
+            logger.error("Pydantic Validation Failure: %s. Content: %s", e, content)
             raise
-        # Pulse emission removed from here and moved to callers to avoid double-counting on retries.
-        pass
-
-
-    async def generate_structured(
-        self, 
-        prompt: str, 
-        response_model: Type[T], 
-        system_prompt: str = "You are a professional research agent.",
-        facts: str = None
-    ) -> T:
-        async with self.counter_lock:
-            self.inference_counter += 1
-            current_index = self.inference_counter
-
-        def _get_target_tokens(model):
-            return self.calculate_safe_chunk_size(system_prompt, prompt.replace("__FACTS__", "{chunk}"), model)
-
-        if LLM_OUTPUT_MODE == "one-shot":
-            if facts:
-                target_tokens = _get_target_tokens(response_model)
-                # Build a more descriptive focus that includes the schema's purpose
-                model_desc = response_model.model_json_schema().get("description", "")
-                focus_context = f"{system_prompt} (Schema: {response_model.__name__} - {model_desc})"
-                summary = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=focus_context)
-                final_prompt = prompt.replace("__FACTS__", summary)
-            else:
-                final_prompt = prompt
-                
-            messages = self._construct_messages(final_prompt, system_prompt, response_model)
-            try:
-                res = await self._generate_single_field(messages, response_model, current_index, "")
-            finally:
-                if self.progress_queue:
-                    self.progress_queue.put_nowait(True)
-            return res
-
-        # Multi-shot generation
-        current_output = {}
-        for i, (field_name, field_info) in enumerate(response_model.model_fields.items(), start=1):
-            annotation = field_info.annotation
-            FieldModel = create_model(field_name, **{field_name: (annotation, Field(..., description=field_info.description))})
-            
-            field_facts = ""
-            if facts:
-                # --- Entity-Level Decomposition for Lists of Models ---
-                origin = get_origin(annotation)
-                args = get_args(annotation)
-                if origin is list and args and isinstance(args[0], type) and issubclass(args[0], BaseModel):
-                    logger.debug(f"Decomposing list field '{field_name}' into entity-level tasks.")
-                    
-                    # 1. Discovery Phase
-                    DiscoveryModel = create_model("Discovery", 
-                        reasoning=(str, Field(..., description="Logic for identifying unique entities.")),
-                        entities=(List[str], Field(..., description=f"List of unique entities/items discovered for {field_name}."))
-                    )
-                    discovery_template = f"Identify all unique entities or specific items for the field '{field_name}' from the provided facts. Focus on: {field_info.description}\n\nFACTS:\n__FACTS__"
-                    discovery_target = self.calculate_safe_chunk_size(system_prompt, discovery_template.replace("__FACTS__", "{chunk}"), DiscoveryModel)
-                    discovery_facts = await self.summarize_to_fit(facts, discovery_target, system_prompt, focus=f"Entities for {field_name}")
-                    
-                    discovery_res = await self.generate_structured(
-                        prompt=discovery_template.replace("__FACTS__", discovery_facts),
-                        response_model=DiscoveryModel,
-                        system_prompt=system_prompt
-                    )
-                    
-                    # 2. Population Phase
-                    entities = []
-                    for j, entity_id in enumerate(discovery_res.entities, start=1):
-                        entity_summary = await self.summarize_to_fit(facts, _get_target_tokens(args[0]), system_prompt, focus=entity_id)
-                        entity_item = await self.generate_structured(
-                            prompt=f"Extract full details for the specific entity '{entity_id}' using these facts:\n{entity_summary}",
-                            response_model=args[0],
-                            system_prompt=system_prompt
-                        )
-                        entities.append(entity_item)
-                    
-                    current_output[field_name] = entities
-                    continue # Field completed via decomposition
-                
-                # --- Standard Targeted Summary for non-list fields ---
-                target_tokens = _get_target_tokens(FieldModel)
-                field_facts = await self.summarize_to_fit(facts, target_tokens, system_prompt, focus=field_info.description)
-            
-            # Standard multi-shot generation
-            field_prompt = prompt.replace("__FACTS__", field_facts) if facts else prompt
-            multi_shot_prompt = (
-                f"{field_prompt}\n\n"
-                f"--- MULTI-SHOT GENERATION PROGRESS ---\n"
-                f"We are generating the final JSON object field by field.\n"
-                f"Current output so far:\n```json\n{json.dumps(current_output, indent=2)}\n```\n\n"
-                f"Your task is to generate the next field: `{field_name}`."
-            )
-            
-            messages = self._construct_messages(multi_shot_prompt, system_prompt, response_model, function_name=field_name)
-            try:
-                partial_result = await self._generate_single_field(
-                    messages, 
-                    FieldModel, 
-                    current_index, 
-                    f"_{i:02d}",
-                    log_model_name=response_model.__name__
-                )
-            finally:
-                if self.progress_queue:
-                    self.progress_queue.put_nowait(True)
-            
-            field_value = getattr(partial_result, field_name)
-            current_output[field_name] = field_value
-            
-        return response_model(**current_output)
-
-    def estimate_tokens(self, messages: List[dict]) -> int:
-        """Accurate message list token counting using litellm."""
-        return litellm.token_counter(model=self.model, messages=messages)
-
-    def calculate_safe_chunk_size(self, system_prompt: str, user_prompt_template: str, response_model: Type[BaseModel]) -> int:
-        """Calculates how many tokens are left for a chunk given a prompt template and schema."""
-        messages = self._construct_messages(user_prompt_template.format(chunk=""), system_prompt, response_model)
-        overhead = self.estimate_tokens(messages)
-        
-        # The safe size is the remaining space within the safe input limit after accounting for overhead.
-        safe_size = self.get_safe_input_limit() - overhead
-        
-        return max(512, safe_size)
-
-    async def summarize_to_fit(self, content: str, target_tokens: int, system_prompt: str = "You are a data compression specialist.", focus: str = None) -> str:
-        """Recursively summarizes content using Map-Reduce parallelization until it fits."""
-        # Use a single user message to estimate the content's token footprint.
-        # This includes a small role/message overhead which keeps us conservative.
-        current_tokens = self.estimate_tokens([{"role": "user", "content": content}])
-        
-        if current_tokens <= target_tokens:
-            return content
-
-        # Determine safe chunk size for a summary request
-        if focus:
-            summary_template = (
-                f"Following content is too long. Summarize it into high-density facts, prioritizing information related to: {focus}. "
-                "MANDATE: You MUST preserve all exact numerical values, technical metrics, units of measure, specific dates, and proper names. "
-                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
-            )        
-        else:
-            summary_template = (
-                "Following content is too long. Summarize it into high-density facts. "
-                "MANDATE: You MUST preserve all exact numerical values, technical metrics, units of measure, specific dates, and proper names. "
-                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
-            )
-        safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
-        
-        logger.debug(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")
-
-        # Split content into chunks
-        try:
-            tokens = litellm.encode(model=self.model, text=content)
-            chunks = []
-            for i in range(0, len(tokens), safe_chunk_tokens):
-                chunk_tokens = tokens[i:i + safe_chunk_tokens]
-                chunks.append(litellm.decode(model=self.model, tokens=chunk_tokens))
-        except Exception:
-            # Fallback to character splitting if tokenization fails
-            char_size = safe_chunk_tokens * 4
-            chunks = [content[i:i + char_size] for i in range(0, len(content), char_size)]
-
-        async def summarize_chunk(chunk_text: str) -> str:
-            prompt = summary_template.format(chunk=chunk_text)
-            res = await self.generate_structured(prompt, SummarySchema, system_prompt)
-            return res.summary
-
-        # Parallel map
-        summaries = await asyncio.gather(*(summarize_chunk(c) for c in chunks))
-        combined_summary = "\n\n".join(summaries)
-        
-        # Recursive reduce
-        return await self.summarize_to_fit(combined_summary, target_tokens, system_prompt, focus=focus)
-
-llm = LLMClient()

@@ -5,7 +5,7 @@ import json
 from schemas import ResearchState
 from utils.io_cache import DiskCache
 from utils.rate_limiter import MinuteRateLimiter
-from llm import llm
+from llm import LLMClient
 import logging
 
 logger = logging.getLogger(__name__)
@@ -100,7 +100,7 @@ async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
     return state
 
 
-async def run_search(state: ResearchState) -> ResearchState:
+async def run_search(state: ResearchState, llm: LLMClient) -> ResearchState:
     """
     Dispatcher to run search using the configured provider.
     """

@@ -5,12 +5,12 @@ import logging
 from typing import AsyncGenerator, Union
 from urllib.parse import urlparse
 from schemas import ResearchState, SingleTriageSchema
-from llm import llm
+from llm import LLMClient
 
 logger = logging.getLogger(__name__)
 
 
-async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | None = None) -> AsyncGenerator[Union[dict, ResearchState], None]:
+async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | None, llm: LLMClient) -> AsyncGenerator[Union[dict, ResearchState], None]:
     """
     LLM-based source triage: concurrent map-reduce over search result snippets.
     Each URL+snippet is evaluated independently by the LLM against a binary

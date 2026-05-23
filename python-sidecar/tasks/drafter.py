@@ -4,7 +4,7 @@ from schemas import (
     RevenueGeographySchema, AnchorFilingSchema,
     MarkdownSectionSchema, STRICT_CONFIG, InternalFact
 )
-from llm import llm
+from llm import LLMClient
 from utils.geocoder import geocoder
 import logging
 import json
@@ -39,7 +39,7 @@ class CustomerList(BaseModel):
     reasoning: str = Field(..., description="Evaluation of revenue dependency and major buyer relationships.")
     customerConcentration: List[CustomerNodeSchema]
 
-async def draft_section(prompt: str, response_model: Type[T], system_prompt: str, facts: str = None) -> T:
+async def draft_section(prompt: str, response_model: Type[T], llm: LLMClient, system_prompt: str, facts: str = None) -> T:
     """Helper to draft a single section with retries."""
     return await llm.generate_structured(
         prompt=prompt,
@@ -74,14 +74,14 @@ def _fill(template: str, query: str = None, facts: str = None) -> str:
     return res
 
 
-async def get_offices(facts: List, user_query: str) -> OfficeList:
+async def get_offices(facts: List, user_query: str, llm: LLMClient) -> OfficeList:
     """Extract office locations from categorized facts."""
     template = "Extract all physical office locations (HQ, R&D, manufacturing) for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- Coordinates must be decimal degrees.\n- id must be slug: TICKER-CITY-TYPE.\n- confidence must be 'verified' (Tier 1 source), 'unverified', 'unknown', or explicitly set to null."
     sys_prompt = f"Extract geographic office data for {user_query}. MANDATE: Prioritize the parent company's primary footprint. Include major subsidiaries only if they are globally significant. NEVER use placeholders like 'Office A'; only extract specific named sites."
 
     base_prompt = _fill(template, query=user_query)
     facts_text = await get_fact_subset(facts, ['OFFICES', 'CORPORATE'])
-    res = await draft_section(base_prompt, OfficeList, sys_prompt, facts=facts_text)
+    res = await draft_section(base_prompt, OfficeList, llm, sys_prompt, facts=facts_text)
 
     for o in res.offices:
         if (o.lat is None or o.lng is None) and (o.city or o.country):
@@ -96,14 +96,14 @@ async def get_offices(facts: List, user_query: str) -> OfficeList:
     return res
 
 
-async def get_supply_chain(facts: List, user_query: str) -> SupplyChainList:
+async def get_supply_chain(facts: List, user_query: str, llm: LLMClient) -> SupplyChainList:
     """Extract supply chain partners, foundries, and manufacturing nodes for __QUERY__ from these facts."""
     template = "Extract supply chain partners, foundries, and manufacturing nodes for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- Identify 'critical' (single-source) vs 'standard' nodes.\n- Include coordinates (decimal degrees) for all nodes."
     sys_prompt = f"Map supply chain infrastructure for {user_query}. MANDATE: Prioritize direct suppliers to the parent company. Include subsidiary-specific suppliers only if they are critical to the broader group. NEVER use placeholders like 'Supplier 1'; only extract specific named partners."
 
     base_prompt = _fill(template, query=user_query)
     facts_text = await get_fact_subset(facts, ['SUPPLY_CHAIN'])
-    res = await draft_section(base_prompt, SupplyChainList, sys_prompt, facts=facts_text)
+    res = await draft_section(base_prompt, SupplyChainList, llm, sys_prompt, facts=facts_text)
 
     for n in res.supply_chain:
         if (n.lat is None or n.lng is None) and (n.city or n.country):
@@ -114,14 +114,14 @@ async def get_supply_chain(facts: List, user_query: str) -> SupplyChainList:
     return res
 
 
-async def get_geopolitical_risks(facts: List, user_query: str) -> RiskList:
+async def get_geopolitical_risks(facts: List, user_query: str, llm: LLMClient) -> RiskList:
     """Extract and geocode geopolitical risks."""
     template = "Extract geopolitical risks for __QUERY__:\n__FACTS__\n\nRequirements:\n- riskScore: 1-5.\n- region: Identify the specific region (priorityize), country, or city affected."
     sys_prompt = f"Extract risks for {user_query}. MANDATE: Focus on risks affecting the parent entity and its primary revenue streams. NEVER use placeholders; only extract specific named entities and regions/countries."
 
     base_prompt = _fill(template, query=user_query)
     facts_text = await get_fact_subset(facts, ['RISKS'])
-    res = await draft_section(base_prompt, RiskList, sys_prompt, facts=facts_text)
+    res = await draft_section(base_prompt, RiskList, llm, sys_prompt, facts=facts_text)
 
     for r in res.geopoliticalRisks:
         if (r.lat is None or r.lng is None) and r.region:
@@ -130,14 +130,14 @@ async def get_geopolitical_risks(facts: List, user_query: str) -> RiskList:
     return res
 
 
-async def get_customer_concentration(facts: List, user_query: str) -> CustomerList:
+async def get_customer_concentration(facts: List, user_query: str, llm: LLMClient) -> CustomerList:
     """Extract and geocode customer concentration."""
     template = "Extract major customers and revenue dependencies for __QUERY__ from these facts:\n__FACTS__\n\nRequirements:\n- revenueShare: Extract the exact percentage or dollar amount of revenue dependency if mentioned.\n- Provide HQ city/country details to enable accurate geocoding."
     sys_prompt = "Extract customers. MANDATE: NEVER use placeholders; only extract specific named buyers and their financial share if available."
 
     base_prompt = _fill(template, query=user_query)
     facts_text = await get_fact_subset(facts, ['CUSTOMERS'])
-    res = await draft_section(base_prompt, CustomerList, sys_prompt, facts=facts_text)
+    res = await draft_section(base_prompt, CustomerList, llm, sys_prompt, facts=facts_text)
 
     for cust in res.customerConcentration:
         if (cust.lat is None or cust.lng is None) and (cust.hqCity or cust.hqCountry):
@@ -151,7 +151,7 @@ async def get_customer_concentration(facts: List, user_query: str) -> CustomerLi
 # Orchestrator
 # -----------------------------------------------------------------------
 
-async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, ResearchState], None]:
+async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Union[dict, ResearchState], None]:
     """
     Parallel multi-stage drafting with Granular Progress.
     Yields progress per drafted section and finally the updated state.
@@ -180,7 +180,7 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             sys_prompt = "You are a precision Geo-Intelligence data extractor."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE', 'REVENUE'])
-            return await draft_section(base_prompt, BasicInfo, sys_prompt, facts=facts_text)
+            return await draft_section(base_prompt, BasicInfo, llm, sys_prompt, facts=facts_text)
 
         # B. Anchor Filing
         async def get_anchor() -> AnchorFilingSchema:
@@ -192,7 +192,7 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             sys_prompt = "Extract anchor filing details. Prioritize the most recent reporting period regardless of document type (10-K, 10-Q, 8-K, Earnings Release, or Transcript)."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE'])
-            return await draft_section(base_prompt, AnchorFilingSchema, sys_prompt, facts=facts_text)
+            return await draft_section(base_prompt, AnchorFilingSchema, llm, sys_prompt, facts=facts_text)
 
         # C. Revenue Geography
         async def get_revenue() -> RevenueGeographySchema:
@@ -206,7 +206,7 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
             sys_prompt = "Extract revenue geography with raw numerical precision. Prioritize the most recent quarterly data to match the latest anchor filing."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(state.extracted_facts, ['REVENUE'])
-            return await draft_section(base_prompt, RevenueGeographySchema, sys_prompt, facts=facts_text)
+            return await draft_section(base_prompt, RevenueGeographySchema, llm, sys_prompt, facts=facts_text)
 
         # ------------------------------------------------------------------
         # 1. Start JSON Drafting: module-level functions receive explicit args
@@ -237,11 +237,11 @@ async def run_drafter(state: ResearchState) -> AsyncGenerator[Union[dict, Resear
         json_coros = [
             _json_task("b",   get_basic()),
             _json_task("anc", get_anchor()),
-            _json_task("o",   get_offices(state.extracted_facts, state.user_query)),
+            _json_task("o",   get_offices(state.extracted_facts, state.user_query, llm)),
             _json_task("rev", get_revenue()),
-            _json_task("sc",  get_supply_chain(state.extracted_facts, state.user_query)),
-            _json_task("risk", get_geopolitical_risks(state.extracted_facts, state.user_query)),
-            _json_task("cust", get_customer_concentration(state.extracted_facts, state.user_query)),
+            _json_task("sc",  get_supply_chain(state.extracted_facts, state.user_query, llm)),
+            _json_task("risk", get_geopolitical_risks(state.extracted_facts, state.user_query, llm)),
+            _json_task("cust", get_customer_concentration(state.extracted_facts, state.user_query, llm)),
         ]
 
         gather_task = asyncio.ensure_future(asyncio.gather(*json_coros))

@@ -4,7 +4,7 @@ from typing import AsyncGenerator, Union, List
 import os
 import litellm
 from schemas import ResearchState, SynthesizerSchema, InternalFact
-from llm import llm
+from llm import LLMClient
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +77,7 @@ def chunk_text(text: str, model: str, chunk_size: int, overlap: int) -> list:
         start += (chunk_size - overlap)
     return chunks
 
-async def squeeze_chunk(chunk: str, query: str, source_url: str = "") -> list:
+async def squeeze_chunk(chunk: str, query: str, llm: LLMClient, source_url: str = "") -> list:
     """
     Uses structured output to extract relevant facts from a chunk immediately.
     Uses the targeted query for maximum precision.
@@ -105,7 +105,7 @@ async def squeeze_chunk(chunk: str, query: str, source_url: str = "") -> list:
         logger.error(f"Error in early semantic squeeze: {e}")
         return []
 
-async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | None = None) -> AsyncGenerator[Union[dict, ResearchState], None]:
+async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | None, llm: LLMClient) -> AsyncGenerator[Union[dict, ResearchState], None]:
     """
     Pipelinable Semantic Sieve: Consumes content from a queue (produced by extractor) 
     and handles chunking + LLM fact extraction on the fly.
@@ -125,7 +125,7 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
     pending_tasks = set()
 
     async def process_chunk(chunk: str, query: str, url: str):
-        facts = await squeeze_chunk(chunk, query, url)
+        facts = await squeeze_chunk(chunk, query, llm, url)
         if facts:
             all_extracted_facts.extend(facts)
         await pulse_queue.put({

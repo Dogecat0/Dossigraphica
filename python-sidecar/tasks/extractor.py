@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from schemas import ResearchState
 from utils.io_cache import DiskCache
 from utils.rate_limiter import MinuteRateLimiter
-from llm import llm
+from llm import LLMClient
 import logging
 
 logger = logging.getLogger(__name__)
@@ -274,7 +274,7 @@ async def _run_tinyfish_extractor(
     yield state
 
 
-async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | None = None, url_queue: asyncio.Queue | None = None) -> AsyncGenerator[Union[dict, ResearchState], None]:
+async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | None, url_queue: asyncio.Queue | None, llm: LLMClient) -> AsyncGenerator[Union[dict, ResearchState], None]:
     """
     Dispatcher: routes extraction to TinyFish Fetch or Jina Reader based on FETCH_PROVIDER.
     Yields progress updates and finally the populated state.raw_content.
