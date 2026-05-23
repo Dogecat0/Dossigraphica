@@ -375,7 +375,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                             ],
                             startId: hq.id, endId: o.id,
                             dimmed: isDimmed(hq.id, o.id),
-                            stroke: 0.35,
+                            stroke: 0.08,
                         })
                     })
             }
@@ -387,23 +387,22 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             const hqLng = hq?.lng ?? intel.offices.find(o => o.type === 'headquarters')?.lng ?? 0
             const hqId = hq?.id || 'hq-fallback'
 
-            // Supply chain arcs
+            // Supply chain arcs: Supplier -> HQ
             if (activeLayers.has('supplyChain')) {
                 intel.supplyChain.forEach((node, i) => {
                     const id = `sc-${i}`
                     const nodeColor = CRITICALITY_COLORS[node.criticality] || '#57534e'
-                    // Gradient: HQ (Ink) -> Supplier (Criticality Color)
-                    // Start opacity 0.5 -> End opacity 0.8 to emphasize the destination
-                    const startColor = OFFICE_TYPE_COLORS.headquarters + '80' // 50% opacity
-                    const endColor = nodeColor + 'cc' // 80% opacity
+                    // Gradient: Supplier (Criticality Color) -> HQ (Ink)
+                    const startColor = nodeColor + 'cc' // 80% opacity
+                    const endColor = OFFICE_TYPE_COLORS.headquarters + '80' // 50% opacity
 
                     allArcs.push({
-                        startLat: hqLat, startLng: hqLng,
-                        endLat: node.lat ?? 0, endLng: node.lng ?? 0,
+                        startLat: node.lat ?? 0, startLng: node.lng ?? 0,
+                        endLat: hqLat, endLng: hqLng,
                         color: [startColor, endColor],
-                        startId: hqId, endId: id,
+                        startId: id, endId: hqId,
                         dimmed: isDimmed(hqId, id),
-                        stroke: 0.35,
+                        stroke: 0.08,
                     })
                 })
             }
@@ -421,7 +420,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                         endLat: cust.lat ?? 0, endLng: cust.lng ?? 0,
                         color: [startColor, endColor],
                         startId: hqId, endId: id,
-                        stroke: 0.35,
+                        stroke: 0.08,
                         dimmed: false
                     })
                 })
@@ -454,7 +453,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
                             : ['#c5a88066', '#c5a88033'],
                         startId: fromData.id, endId: toData.id,
                         dimmed: isDimmed(fromData.id, toData.id),
-                        stroke: 0.35,
+                        stroke: 0.08,
                     })
                 }
             })
@@ -682,13 +681,16 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             arcsData={arcsData}
             arcColor={(d: object) => {
                 const arc = d as ExtendedArcDatum
-                if (arc.dimmed) return ['rgba(0,0,0,0.05)', 'rgba(0,0,0,0.05)']
+                if (arc.dimmed) return ['rgba(0,0,0,0.03)', 'rgba(0,0,0,0.03)']
                 return arc.color
             }}
-            arcDashLength={0.5}
-            arcDashGap={0.5}
-            arcDashAnimateTime={2000}
-            arcStroke={0.35}
+            arcDashLength={0.02}
+            arcDashGap={0.015}
+            arcDashAnimateTime={12000}
+            arcStroke={(d: object) => {
+                const arc = d as ExtendedArcDatum
+                return arc.dimmed ? 0.04 : 0.08
+            }}
             arcAltitudeAutoScale={0.5}
             // arcTransitionDuration={0} // Instant update
 
