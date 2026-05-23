@@ -4,7 +4,7 @@ from schemas import (
     RevenueGeographySchema, AnchorFilingSchema,
     MarkdownSectionSchema, STRICT_CONFIG, InternalFact
 )
-from llm import llm, LLAMA_CTX_PER_REQUEST, LLAMA_OUTPUT_RESERVATION
+from llm import llm
 from utils.geocoder import geocoder
 import logging
 import json

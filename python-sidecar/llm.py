@@ -77,13 +77,13 @@ FEATHERLESS_N_PARALLEL = int(os.getenv("FEATHERLESS_N_PARALLEL", "1"))
 FEATHERLESS_CTX_PER_REQUEST = int(os.getenv("FEATHERLESS_CTX_PER_REQUEST", "32768"))
 
 # Output and safety configuration
-# LLAMA_OUTPUT_RESERVATION is the baseline / local-provider default.
+# OUTPUT_RESERVATION is the baseline / local-provider default.
 # GEMINI_OUTPUT_RESERVATION and FEATHERLESS_OUTPUT_RESERVATION override it
-# for their respective providers; each falls back to LLAMA_OUTPUT_RESERVATION.
-LLAMA_OUTPUT_RESERVATION = int(os.getenv("LLAMA_OUTPUT_RESERVATION", "4096"))
-GEMINI_OUTPUT_RESERVATION = int(os.getenv("GEMINI_OUTPUT_RESERVATION", str(LLAMA_OUTPUT_RESERVATION)))
-FEATHERLESS_OUTPUT_RESERVATION = int(os.getenv("FEATHERLESS_OUTPUT_RESERVATION", str(LLAMA_OUTPUT_RESERVATION)))
-LLAMA_SAFETY_BUFFER = 64
+# for their respective providers; each falls back to OUTPUT_RESERVATION.
+OUTPUT_RESERVATION = int(os.getenv("OUTPUT_RESERVATION", "4096"))
+GEMINI_OUTPUT_RESERVATION = int(os.getenv("GEMINI_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
+FEATHERLESS_OUTPUT_RESERVATION = int(os.getenv("FEATHERLESS_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
+SAFETY_BUFFER = 64
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
 LLM_OUTPUT_MODE = os.getenv("LLM_OUTPUT_MODE", "multi-shot").lower()
 LLM_REQUEST_TIMEOUT = int(os.getenv("LLM_REQUEST_TIMEOUT", "30"))
@@ -113,7 +113,7 @@ else:
     ACTIVE_BASE_URL = LLAMA_CPP_URL
     ACTIVE_N_PARALLEL = LLAMA_N_PARALLEL
     ACTIVE_CTX_LIMIT = LLAMA_CTX_PER_REQUEST
-    ACTIVE_OUTPUT_RESERVATION = LLAMA_OUTPUT_RESERVATION
+    ACTIVE_OUTPUT_RESERVATION = OUTPUT_RESERVATION
     logger.debug(f"LLM Provider: LOCAL (model={ACTIVE_MODEL}, url={ACTIVE_BASE_URL}, output_reservation={ACTIVE_OUTPUT_RESERVATION})")
 
 
@@ -171,7 +171,7 @@ class LLMClient:
 
     def get_safe_input_limit(self) -> int:
         """Absolute maximum input tokens allowed after reservation and safety buffer."""
-        return ACTIVE_CTX_LIMIT - LLAMA_OUTPUT_RESERVATION - LLAMA_SAFETY_BUFFER
+        return ACTIVE_CTX_LIMIT - OUTPUT_RESERVATION - SAFETY_BUFFER
 
     def _parse_unquoted_custom_syntax(self, content: str, deref_schema: dict) -> str:
         """
@@ -416,7 +416,7 @@ class LLMClient:
                             if delta_text:
                                 content += delta_text
                                 # Client-side runaway and repetition detection
-                                if len(content) > LLAMA_OUTPUT_RESERVATION * 6:
+                                if len(content) > OUTPUT_RESERVATION * 6:
                                     raise ValueError("Runaway generation detected: output exceeded maximum expected character limit.")
                                 
                                 tail = content[-250:]
