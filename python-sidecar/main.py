@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 import logging
 from pipeline import research_pipeline
@@ -24,7 +24,7 @@ app.add_middleware(
 )
 
 class ResearchRequest(BaseModel):
-    query: str
+    query: str = Field(..., min_length=1, max_length=500, description="Research query")
 
 @app.post("/api/research")
 async def start_research(request: ResearchRequest):
