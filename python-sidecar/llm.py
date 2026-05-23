@@ -31,6 +31,7 @@ from provider import (
     ACTIVE_BASE_URL,
     ACTIVE_N_PARALLEL,
     ACTIVE_CTX_LIMIT,
+    ACTIVE_CHUNK_SIZE,
     ACTIVE_OUTPUT_RESERVATION,
     LLM_PROVIDER,
     LLM_TEMPERATURE,
@@ -38,7 +39,6 @@ from provider import (
     LLM_REQUEST_TIMEOUT,
     OUTPUT_RESERVATION,
     SAFETY_BUFFER,
-    DEEPSEEK_THINKING,
     before_sleep_log_model,
     wait_if_not_timeout,
 )
@@ -103,6 +103,8 @@ class LLMClient:
         self, system_prompt: str, user_prompt_template: str, response_model: Type[BaseModel],
     ) -> int:
         """How many tokens are left for a chunk given a prompt template and schema."""
+        if ACTIVE_CHUNK_SIZE > 0:
+            return ACTIVE_CHUNK_SIZE
         messages = self._construct_messages(
             user_prompt_template.format(chunk=""), system_prompt, response_model,
         )
@@ -515,10 +517,9 @@ class LLMClient:
                         "type": "function",
                         "function": {"name": response_model.__name__},
                     }
-                    if DEEPSEEK_THINKING == "disabled":
-                        kwargs["thinking"] = {"type": "disabled"}
-                    else:
-                        kwargs["thinking"] = {"type": "enabled", "effort": DEEPSEEK_THINKING}
+                    # Thinking mode is incompatible with tool_choice.
+                    # All structured generation uses tool calls, so thinking must be disabled.
+                    kwargs["extra_body"] = {"thinking": {"type": "disabled"}}
                 else:
                     kwargs["response_format"] = {
                         "type": "json_schema",
@@ -550,7 +551,7 @@ class LLMClient:
 
                             if delta_text:
                                 content += delta_text
-                                if len(content) > OUTPUT_RESERVATION * 6:
+                                if len(content) > ACTIVE_OUTPUT_RESERVATION * 6:
                                     raise ValueError(
                                         "Runaway generation detected: output exceeded maximum expected character limit."
                                     )
