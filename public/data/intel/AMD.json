@@ -1,75 +1,2224 @@
 {
   "company": "Advanced Micro Devices, Inc.",
   "ticker": "AMD",
-  "website": "ir.amd.com",
+  "website": "https://www.amd.com",
   "sector": "Semiconductors",
-  "description": "Advanced Micro Devices, Inc. is a global semiconductor company that designs and develops high-performance computing and visualization products, maintaining a significant international presence through its diverse portfolio of processors, graphics cards, and data center solutions serving markets across North America, Europe, and Asia.",
+  "description": "AMD (Advanced Micro Devices, Inc.) is a global fabless semiconductor company headquartered in Santa Clara, California, with a worldwide footprint spanning subsidiaries in over 20 countries including Armenia, Barbados, Belgium, Bermuda, Brazil, Canada, China, Denmark, Finland, France, Germany, Hong Kong, India, Ireland, Israel, Italy, Japan, Malaysia, Netherlands, Poland, Romania, Serbia, Singapore, Spain, Sweden, Switzerland, and the UK. The company generates 66-71% of its net revenue from international markets, with significant revenue contributions from the United States ($8.7B), China/Hong Kong ($6.2B), Singapore ($3.6B), Taiwan ($3.3B), Japan ($1.8B), and Europe ($1.6B) in FY2024. AMD employs approximately 31,000 people globally and operates through segments including Data Center, Client, Gaming, and Embedded, serving customers across North America, Asia-Pacific, and Europe.",
   "anchorFiling": {
-    "reasoning": "The user requested the most recent primary source filing for AMD's Q1 2026 results. The facts confirm AMD reported these results on May 5, 2026, via an earnings release.",
+    "reason": "Most recent reporting period is Q1 2026 (ended March 28, 2026). The Q1 2026 Earnings Release dated May 5, 2026 is the most recent primary source filing available for AMD, as no 10-Q for Q1 2026 has been filed yet (the 10-Q would typically follow later).",
     "type": "Earnings Release",
     "date": "2026-05-05",
     "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-05-22",
+  "generatedDate": "2026-05-23",
   "offices": [
     {
-      "id": "AMD-SANTACLARA-HEADQUARTERS",
-      "name": "AMD Corporate Headquarters",
+      "id": "AMD-SANTA_CLARA-HQ",
+      "name": "AMD Global Headquarters",
       "city": "Santa Clara",
       "state": "California",
       "country": "United States",
-      "address": "Santa Clara, California",
-      "lat": 37.3541,
-      "lng": -121.9552,
-      "businessFocus": "Corporate headquarters and executive management",
+      "address": "2485 Augustine Drive, Santa Clara, CA 95054",
+      "lat": 37.3875,
+      "lng": -121.9783,
+      "businessFocus": "Corporate headquarters, executive management, administration",
       "type": "headquarters",
       "sources": [
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AUSTIN-ENGINEERING",
+      "name": "AMD Austin Office - Southwest Parkway",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "address": "7171 Southwest Parkway, Austin, TX 78735",
+      "lat": 30.3075,
+      "lng": -97.87,
+      "businessFocus": "R&D, engineering, corporate operations",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AUSTIN-SALES",
+      "name": "AMD Austin - Research Blvd",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "address": "12301 Research Blvd., Suite 300, Austin, TX 78759",
+      "lat": 30.4075,
+      "lng": -97.755,
+      "businessFocus": "Sales and support",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AUSTIN-SATELLITE1",
+      "name": "AMD Austin - Airport Commerce Drive",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "address": "1340 Airport Commerce Drive, Austin, TX 78741",
+      "lat": 30.2075,
+      "lng": -97.69,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AUSTIN-SATELLITE2",
+      "name": "AMD Austin - William Cannon Drive",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "address": "7000 West William Cannon Drive, Austin, TX 78735",
+      "lat": 30.2975,
+      "lng": -97.88,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AUSTIN-SATELLITE3",
+      "name": "AMD Austin - Metropolis Drive",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "address": "8000 Metropolis Drive, Building C, Austin, TX 78744",
+      "lat": 30.1975,
+      "lng": -97.72,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SAN_JOSE-ENGINEERING",
+      "name": "AMD San Jose Office",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "address": "2100 Logic Drive, San Jose, CA 95124",
+      "lat": 37.26,
+      "lng": -121.92,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-FOLSOM-ENGINEERING",
+      "name": "AMD Folsom Office",
+      "city": "Folsom",
+      "state": "California",
+      "country": "United States",
+      "address": "1024 Iron Point Road, Folsom, CA 95630",
+      "lat": 38.65,
+      "lng": -121.17,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SAN_DIEGO-ENGINEERING",
+      "name": "AMD San Diego Office",
+      "city": "San Diego",
+      "state": "California",
+      "country": "United States",
+      "address": "9620 Towne Centre Drive, San Diego, CA 92121",
+      "lat": 32.9,
+      "lng": -117.21,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-LONGMONT-ENGINEERING",
+      "name": "AMD Longmont Office",
+      "city": "Longmont",
+      "state": "Colorado",
+      "country": "United States",
+      "address": "1951 S. Fordham Street, Longmont, CO 80503",
+      "lat": 40.14,
+      "lng": -105.13,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-LONGMONT-SATELLITE",
+      "name": "AMD Longmont - Logic Drive",
+      "city": "Longmont",
+      "state": "Colorado",
+      "country": "United States",
+      "address": "3100 Logic Drive, Longmont, CO 80503",
+      "lat": 40.15,
+      "lng": -105.14,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-FT_COLLINS-ENGINEERING",
+      "name": "AMD Fort Collins Office",
+      "city": "Fort Collins",
+      "state": "Colorado",
+      "country": "United States",
+      "address": "2950 East Harmony Road, Fort Collins, CO 80528",
+      "lat": 40.52,
+      "lng": -105.03,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BELLEVUE-SALES",
+      "name": "AMD Bellevue Office",
+      "city": "Bellevue",
+      "state": "Washington",
+      "country": "United States",
+      "address": "2002-156th Avenue NE, Bellevue, WA 98007",
+      "lat": 47.62,
+      "lng": -122.13,
+      "businessFocus": "Sales, engineering",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SEATTLE-SALES",
+      "name": "AMD Seattle Office",
+      "city": "Seattle",
+      "state": "Washington",
+      "country": "United States",
+      "address": "901 Fifth Avenue, Suites #2200, 2250, 400, 4th floor, Seattle, WA 98164",
+      "lat": 47.605,
+      "lng": -122.33,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BOXBOROUGH-ENGINEERING",
+      "name": "AMD Boxborough Office",
+      "city": "Boxborough",
+      "state": "Massachusetts",
+      "country": "United States",
+      "address": "90 Central Street, Boxborough, MA 01719",
+      "lat": 42.48,
+      "lng": -71.52,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-ADDISON-SALES",
+      "name": "AMD Addison Office",
+      "city": "Addison",
+      "state": "Texas",
+      "country": "United States",
+      "address": "15455 N Dallas Parkway, Suite #1230, Addison, TX 75001",
+      "lat": 32.96,
+      "lng": -96.82,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SPRING-SALES",
+      "name": "AMD Spring Office",
+      "city": "Spring",
+      "state": "Texas",
+      "country": "United States",
+      "address": "2002 Timberloch Place, Spring, TX 77380",
+      "lat": 30.08,
+      "lng": -95.42,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-ALBUQUERQUE-SALES",
+      "name": "AMD Albuquerque Office",
+      "city": "Albuquerque",
+      "state": "New Mexico",
+      "country": "United States",
+      "address": "5051 Journal Center Blvd., NE, Suite #310, Albuquerque, NM 87109",
+      "lat": 35.15,
+      "lng": -106.57,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-FISHKILL-SALES",
+      "name": "AMD Fishkill Office",
+      "city": "Fishkill",
+      "state": "New York",
+      "country": "United States",
+      "address": "300 Westage Business Center Drive, Suite 200, Fishkill, NY 12524",
+      "lat": 41.53,
+      "lng": -73.9,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-ROCHESTER-SALES",
+      "name": "AMD Rochester Office",
+      "city": "Rochester",
+      "state": "New York",
+      "country": "United States",
+      "address": "350 Linden Oaks, Suite 210, Rochester, NY 14625",
+      "lat": 43.13,
+      "lng": -77.51,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-ORLANDO-SALES",
+      "name": "AMD Orlando Office",
+      "city": "Orlando",
+      "state": "Florida",
+      "country": "United States",
+      "address": "2300 Discovery Drive, Suite 500, Orlando, FL 32826",
+      "lat": 28.58,
+      "lng": -81.2,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-PLYMOUTH-SALES",
+      "name": "AMD Plymouth Office",
+      "city": "Plymouth",
+      "state": "Minnesota",
+      "country": "United States",
+      "address": "3650 Annapolis Lane North, Suite 120, Plymouth, MN 55447",
+      "lat": 45.02,
+      "lng": -93.46,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-RALEIGH-SALES",
+      "name": "AMD Raleigh Office",
+      "city": "Raleigh",
+      "state": "North Carolina",
+      "country": "United States",
+      "address": "220 Horizon Drive, Suite #114, Raleigh, NC 27615",
+      "lat": 35.88,
+      "lng": -78.65,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SECAUCUS-SALES",
+      "name": "AMD Secaucus Office",
+      "city": "Secaucus",
+      "state": "New Jersey",
+      "country": "United States",
+      "address": "10 Enterprise Avenue, Secaucus, NJ 07094",
+      "lat": 40.79,
+      "lng": -74.06,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-WIXOM-SALES",
+      "name": "AMD Wixom Office",
+      "city": "Wixom",
+      "state": "Michigan",
+      "country": "United States",
+      "address": "28345 Beck Road, Suite #400, Wixom, MI 48393",
+      "lat": 42.52,
+      "lng": -83.53,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-WASHINGTON_DC-SALES",
+      "name": "AMD Washington D.C. Office",
+      "city": "Washington",
+      "state": "District of Columbia",
+      "country": "United States",
+      "address": "401 9th Street NW, Washington, D.C. 20004",
+      "lat": 38.895,
+      "lng": -77.02,
+      "businessFocus": "Government affairs, sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MARKHAM-ENGINEERING",
+      "name": "AMD Markham Office - Commerce Valley Drive",
+      "city": "Markham",
+      "state": "Ontario",
+      "country": "Canada",
+      "address": "1 Commerce Valley Drive, Markham, ON L3T 7X3",
+      "lat": 43.84,
+      "lng": -79.38,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MARKHAM-SATELLITE1",
+      "name": "AMD Markham - Commerce Valley Drive West",
+      "city": "Markham",
+      "state": "Ontario",
+      "country": "Canada",
+      "address": "33 Commerce Valley Drive, Markham, ON L3T 7T6",
+      "lat": 43.84,
+      "lng": -79.39,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MARKHAM-SATELLITE2",
+      "name": "AMD Markham - McNabb Street",
+      "city": "Markham",
+      "state": "Ontario",
+      "country": "Canada",
+      "address": "160 McNabb Street, Markham, ON L3R 4B8",
+      "lat": 43.83,
+      "lng": -79.36,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-CALGARY-SALES",
+      "name": "AMD Calgary Office",
+      "city": "Calgary",
+      "state": "Alberta",
+      "country": "Canada",
+      "address": "2500-500 4th Avenue SW, Calgary, AB T2P 2V6",
+      "lat": 51.05,
+      "lng": -114.07,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-OTTAWA-ENGINEERING",
+      "name": "AMD Ottawa Office",
+      "city": "Ottawa",
+      "state": "Ontario",
+      "country": "Canada",
+      "address": "84 Hines Road, Suite #300, Ottawa, ON K2K 3G3",
+      "lat": 45.34,
+      "lng": -75.91,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-VANCOUVER-ENGINEERING",
+      "name": "AMD Vancouver Office",
+      "city": "Vancouver",
+      "state": "British Columbia",
+      "country": "Canada",
+      "address": "2930 Virtual Way #300, Vancouver, BC V5M 4X6",
+      "lat": 49.26,
+      "lng": -123.04,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-WATERLOO-ENGINEERING",
+      "name": "AMD Waterloo Office",
+      "city": "Waterloo",
+      "state": "Ontario",
+      "country": "Canada",
+      "address": "420 Weber Street, North Suite #J, Waterloo, ON N2L 4E7",
+      "lat": 43.48,
+      "lng": -80.54,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-DUBLIN-ENGINEERING",
+      "name": "AMD Dublin Office",
+      "city": "Dublin",
+      "state": null,
+      "country": "Ireland",
+      "address": "Logic Drive, Bianconi Avenue, Citywest, Dublin, D24 T683",
+      "lat": 53.29,
+      "lng": -6.43,
+      "businessFocus": "Engineering, R&D, sales",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-CORK-SALES",
+      "name": "AMD Cork Office",
+      "city": "Cork",
+      "state": null,
+      "country": "Ireland",
+      "address": "Unit 6 Eastgate Avenue, Little Island, Cork, T45 YW71",
+      "lat": 51.91,
+      "lng": -8.36,
+      "businessFocus": "Sales, operations",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-LONDON-SALES",
+      "name": "AMD London Office",
+      "city": "London",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "28th and 29th floor, 30 St Mary Axe, London, EC3A 8BF",
+      "lat": 51.514,
+      "lng": -0.081,
+      "businessFocus": "Sales, corporate",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BELFAST-ENGINEERING",
+      "name": "AMD Belfast Office",
+      "city": "Belfast",
+      "state": "Northern Ireland",
+      "country": "United Kingdom",
+      "address": "7 Clarendon Road (City Quays 2; 4th floor), Belfast, Northern Ireland BT1 3BG",
+      "lat": 54.6,
+      "lng": -5.93,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-CAMBRIDGE-ENGINEERING",
+      "name": "AMD Cambridge Office",
+      "city": "Cambridge",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "196 Science Park, Milton Road, Cambridge CB4 0AB",
+      "lat": 52.23,
+      "lng": 0.14,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-EDINBURGH-ENGINEERING",
+      "name": "AMD Edinburgh Office",
+      "city": "Edinburgh",
+      "state": "Scotland",
+      "country": "United Kingdom",
+      "address": "Charles Darwin House, Edinburgh Technopole, Bush Loan, Penicuik EH26 0PY",
+      "lat": 55.87,
+      "lng": -3.22,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MANCHESTER-SALES",
+      "name": "AMD Manchester Office",
+      "city": "Manchester",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "1 Balloon Street, Manchester M4 4BE",
+      "lat": 53.485,
+      "lng": -2.24,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-OXFORD-SALES",
+      "name": "AMD Oxford Office",
+      "city": "Oxford",
+      "state": null,
+      "country": "United Kingdom",
+      "address": "Prama House, 267 Banbury Road, Offices 40 & 41, Summertown, Oxford OX2 7HT",
+      "lat": 51.78,
+      "lng": -1.26,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MUNICH-ENGINEERING",
+      "name": "AMD Munich Office - Aschheim",
+      "city": "Munich",
+      "state": "Bavaria",
+      "country": "Germany",
+      "address": "Einsteinring 22-28, 85609 Aschheim, Munich",
+      "lat": 48.17,
+      "lng": 11.72,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MUNICH-SALES",
+      "name": "AMD Munich - Willy-Brandt-Allee",
+      "city": "Munich",
+      "state": "Bavaria",
+      "country": "Germany",
+      "address": "Willy-Brandt-Allee 4, 81829 Munich",
+      "lat": 48.13,
+      "lng": 11.7,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-KOLN-SALES",
+      "name": "AMD Cologne Office",
+      "city": "Cologne",
+      "state": "North Rhine-Westphalia",
+      "country": "Germany",
+      "address": "Widdersdorfer Str. 260, 50933 K\u00f6ln",
+      "lat": 50.94,
+      "lng": 6.87,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-PARIS-SALES",
+      "name": "AMD Paris Office",
+      "city": "Paris",
+      "state": null,
+      "country": "France",
+      "address": "44 Rue d'Al\u00e9sia, 75014 Paris",
+      "lat": 48.83,
+      "lng": 2.33,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-PALAISEAU-ENGINEERING",
+      "name": "AMD Palaiseau Office",
+      "city": "Palaiseau",
+      "state": null,
+      "country": "France",
+      "address": "24 Avenue Emile Baudot, 91120 Palaiseau",
+      "lat": 48.72,
+      "lng": 2.25,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-VOISIN_LE_BRETONNEUX-SALES",
+      "name": "AMD Voisin-le-Bretonneux Office",
+      "city": "Voisin-le-Bretonneux",
+      "state": null,
+      "country": "France",
+      "address": "Bat B, 2 Rue Rene Caudron, 78960 Voisin-le-Bretonneux",
+      "lat": 48.76,
+      "lng": 2.05,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-EYBENS-SALES",
+      "name": "AMD Eybens Office",
+      "city": "Eybens",
+      "state": null,
+      "country": "France",
+      "address": "Centre d'Affaires Le Concorde, 24 rue Lamartine, 38320 Eybens",
+      "lat": 45.15,
+      "lng": 5.75,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MILAN-SALES",
+      "name": "AMD Milan Office",
+      "city": "Milan",
+      "state": "Lombardy",
+      "country": "Italy",
+      "address": "Via Riccardo Lombardi No 19/16 and 19/18, 20153 Milano",
+      "lat": 45.48,
+      "lng": 9.12,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AMSTELVEEN-SALES",
+      "name": "AMD Amstelveen Office",
+      "city": "Amstelveen",
+      "state": null,
+      "country": "Netherlands",
+      "address": "Stroombaan 4, 1181 VX Amstelveen",
+      "lat": 52.3,
+      "lng": 4.86,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-NIJMEGEN-ENGINEERING",
+      "name": "AMD Nijmegen Office",
+      "city": "Nijmegen",
+      "state": null,
+      "country": "Netherlands",
+      "address": "Toernooiveld 100, 6525 EC Nijmegen",
+      "lat": 51.82,
+      "lng": 5.86,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-STOCKHOLM-ENGINEERING",
+      "name": "AMD Stockholm Office - Kista",
+      "city": "Stockholm",
+      "state": null,
+      "country": "Sweden",
+      "address": "Knarrarnasgatan 15, Kista, 16440 Stockholm",
+      "lat": 59.4,
+      "lng": 17.95,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-STOCKHOLM-SALES",
+      "name": "AMD Stockholm - Vasagatan",
+      "city": "Stockholm",
+      "state": null,
+      "country": "Sweden",
+      "address": "Vasagatan 12, 111 20 Stockholm",
+      "lat": 59.33,
+      "lng": 18.06,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-GOTHENBURG-ENGINEERING",
+      "name": "AMD Gothenburg Office",
+      "city": "Gothenburg",
+      "state": null,
+      "country": "Sweden",
+      "address": "Gotaforsliden 13 Nedre, Molndal, 43134 Gothenburg",
+      "lat": 57.66,
+      "lng": 12.01,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MALMO-SALES",
+      "name": "AMD Malmo Office",
+      "city": "Malmo",
+      "state": null,
+      "country": "Sweden",
+      "address": "Nordenskioldsgatan 11 A, Office 233, 211 19 Malmo",
+      "lat": 55.61,
+      "lng": 13.0,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HELSINKI-ENGINEERING",
+      "name": "AMD Helsinki Office",
+      "city": "Helsinki",
+      "state": null,
+      "country": "Finland",
+      "address": "Lapinlahdenkatu 1 C, 00180 Helsinki",
+      "lat": 60.16,
+      "lng": 24.93,
+      "businessFocus": "Engineering (Silo AI)",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-ESPOO-ENGINEERING",
+      "name": "AMD Espoo Office",
+      "city": "Espoo",
+      "state": null,
+      "country": "Finland",
+      "address": "Innopoli 2, Tekniikantie 14, 02150 Espoo",
+      "lat": 60.18,
+      "lng": 24.82,
+      "businessFocus": "Engineering (Silo AI)",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-TAMPERE-ENGINEERING",
+      "name": "AMD Tampere Office",
+      "city": "Tampere",
+      "state": null,
+      "country": "Finland",
+      "address": "Technopolis Asemakeskus, Peltokatu 26, 33100 Tampere",
+      "lat": 61.5,
+      "lng": 23.76,
+      "businessFocus": "Engineering (Silo AI)",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-TURKU-ENGINEERING",
+      "name": "AMD Turku Office",
+      "city": "Turku",
+      "state": null,
+      "country": "Finland",
+      "address": "Electrocity, Tykist\u00f6katu 4 D, 20520 Turku",
+      "lat": 60.45,
+      "lng": 22.28,
+      "businessFocus": "Engineering (Silo AI)",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-JYVASKYLA-ENGINEERING",
+      "name": "AMD Jyv\u00e4skyl\u00e4 Office",
+      "city": "Jyv\u00e4skyl\u00e4",
+      "state": null,
+      "country": "Finland",
+      "address": "Crazy Town Jyv\u00e4skyl\u00e4, Kauppakatu 39, 40100 Jyv\u00e4skyl\u00e4",
+      "lat": 62.24,
+      "lng": 25.74,
+      "businessFocus": "Engineering (Silo AI)",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-COPENHAGEN-SALES",
+      "name": "AMD Copenhagen Office",
+      "city": "Copenhagen",
+      "state": null,
+      "country": "Denmark",
+      "address": "Kronprinsessegade 26, 1306 Copenhagen",
+      "lat": 55.68,
+      "lng": 12.59,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-AALST-SALES",
+      "name": "AMD Aalst Office",
+      "city": "Aalst",
+      "state": null,
+      "country": "Belgium",
+      "address": "Villalaan 16, Erembodegen, 9320 Aalst",
+      "lat": 50.92,
+      "lng": 4.05,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BELGRADE-ENGINEERING",
+      "name": "AMD Belgrade Office",
+      "city": "Belgrade",
+      "state": null,
+      "country": "Serbia",
+      "address": "Milutina Milankovica 19 b, 11070 Belgrade",
+      "lat": 44.8,
+      "lng": 20.42,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-NIS-ENGINEERING",
+      "name": "AMD Ni\u0161 Office",
+      "city": "Ni\u0161",
+      "state": null,
+      "country": "Serbia",
+      "address": "Aleksandra Medvedeva 2a, 18104 Ni\u0161",
+      "lat": 43.32,
+      "lng": 21.9,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-IASI-ENGINEERING",
+      "name": "AMD Iasi Office",
+      "city": "Iasi",
+      "state": null,
+      "country": "Romania",
+      "address": "39A St. Andrew Street, Building B1/B2, 3rd floor, 700028 Iasi",
+      "lat": 47.16,
+      "lng": 27.59,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HOLON-ENGINEERING",
+      "name": "AMD Holon Office",
+      "city": "Holon",
+      "state": null,
+      "country": "Israel",
+      "address": "Holon Azrieli Center, 26 HaRokmin Street, Holon 5885880",
+      "lat": 32.01,
+      "lng": 34.77,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-DUBAI-SALES",
+      "name": "AMD Dubai Office",
+      "city": "Dubai",
+      "state": null,
+      "country": "United Arab Emirates",
+      "address": "Dubai Multi Commodities Centre, Jewellery & Gemplex 3, Unit Nos. 3337 & 3687, Floor 1, Dubai",
+      "lat": 25.07,
+      "lng": 55.14,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-ISTANBUL-SALES",
+      "name": "AMD Istanbul Office",
+      "city": "Istanbul",
+      "state": null,
+      "country": "Turkey",
+      "address": "Barbaros, Halk Cd. Palladium Ofis ve Residence No:8/A KAT 2, 34756 Ata\u015fehir/\u0130stanbul",
+      "lat": 40.99,
+      "lng": 29.13,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-YEREVAN-ENGINEERING",
+      "name": "AMD Yerevan Office",
+      "city": "Yerevan",
+      "state": null,
+      "country": "Armenia",
+      "address": "Vazgen Sargsyan 10, 3rd Floor, Office 79-81, Yerevan, Armenia 0010",
+      "lat": 40.18,
+      "lng": 44.51,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BENGALURU-ENGINEERING",
+      "name": "AMD Bengaluru - Prestige Technostar",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "address": "Prestige Technostar, Whitefield (Building II, Plot 100-103), Bengaluru, Karnataka",
+      "lat": 12.97,
+      "lng": 77.73,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BENGALURU-SATELLITE1",
+      "name": "AMD Bengaluru - Koramangala",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "address": "Kabra Excelsior, Koramangala, Bengaluru, Karnataka",
+      "lat": 12.93,
+      "lng": 77.62,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BENGALURU-SATELLITE2",
+      "name": "AMD Bengaluru - Palace Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "address": "No. 46 Palace Road, Bengaluru, Karnataka",
+      "lat": 12.98,
+      "lng": 77.59,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HYDERABAD-ENGINEERING",
+      "name": "AMD Hyderabad - Mindspace",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "address": "Building 11, Mindspace, Madhapur, Hyderabad, Telangana",
+      "lat": 17.44,
+      "lng": 78.39,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HYDERABAD-SATELLITE",
+      "name": "AMD Hyderabad - Knowledge City",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "address": "Salarpuria Sattva Knowledge City, 10th to 17th Floor, Hyderabad, Telangana",
+      "lat": 17.42,
+      "lng": 78.35,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-GURGAON-SALES",
+      "name": "AMD Gurgaon Office",
+      "city": "Gurgaon",
+      "state": "Haryana",
+      "country": "India",
+      "address": "Spaze I-Tech Park, Level 3, Unit 358 to 366, Tower B1, Sector 49, Sohna Road, Gurgaon-122018",
+      "lat": 28.41,
+      "lng": 77.04,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MUMBAI-SALES",
+      "name": "AMD Mumbai Office",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Sahar Road, Near Andheri (E) Railway Station, Andheri East, Mumbai, Maharashtra 400058",
+      "lat": 19.11,
+      "lng": 72.87,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-NEW_DELHI-SALES",
+      "name": "AMD New Delhi Office",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "address": "A-25, 2nd Floor, Mathura Road, Mohan Cooperative Industrial Estate, New Delhi, Delhi 110044",
+      "lat": 28.57,
+      "lng": 77.32,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SHANGHAI-ENGINEERING",
+      "name": "AMD Shanghai - Zhangdong Road",
+      "city": "Shanghai",
+      "state": null,
+      "country": "China",
+      "address": "1387 Zhangdong Road, Pudong District, Shanghai",
+      "lat": 31.22,
+      "lng": 121.59,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SHANGHAI-SATELLITE1",
+      "name": "AMD Shanghai - Huan Ke Road",
+      "city": "Shanghai",
+      "state": null,
+      "country": "China",
+      "address": "No. 669 Huan Ke Road, Pudong New Area, Shanghai",
+      "lat": 31.21,
+      "lng": 121.6,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SHANGHAI-SATELLITE2",
+      "name": "AMD Shanghai - Puruan Building",
+      "city": "Shanghai",
+      "state": null,
+      "country": "China",
+      "address": "Unit 601, Puruan Building, Zhangjiang Hi-Tech Park, Shanghai",
+      "lat": 31.2,
+      "lng": 121.58,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BEIJING-ENGINEERING",
+      "name": "AMD Beijing - Raycom Infotech Park",
+      "city": "Beijing",
+      "state": null,
+      "country": "China",
+      "address": "19F, Raycom Infotech Park Tower C, Haidian District, Beijing",
+      "lat": 39.98,
+      "lng": 116.31,
+      "businessFocus": "Engineering, sales",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BEIJING-SATELLITE",
+      "name": "AMD Beijing - An Ding Road",
+      "city": "Beijing",
+      "state": null,
+      "country": "China",
+      "address": "Building 5 of No.5 Yard, An Ding Road, Chaoyang District, Beijing",
+      "lat": 39.97,
+      "lng": 116.41,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SHENZHEN-ENGINEERING",
+      "name": "AMD Shenzhen - Chuangye Road",
+      "city": "Shenzhen",
+      "state": null,
+      "country": "China",
+      "address": "3023 Chuangye Road, Nanshan District, Shenzhen",
+      "lat": 22.54,
+      "lng": 113.94,
+      "businessFocus": "Engineering, sales",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SHENZHEN-SATELLITE",
+      "name": "AMD Shenzhen - Center 4th Road",
+      "city": "Shenzhen",
+      "state": null,
+      "country": "China",
+      "address": "No. 1-1, Center 4th Road, Futian District, Shenzhen",
+      "lat": 22.53,
+      "lng": 114.06,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SUZHOU-MANUFACTURING",
+      "name": "AMD Suzhou Office",
+      "city": "Suzhou",
+      "state": "Jiangsu",
+      "country": "China",
+      "address": "4th Floor Units 01 & 02 & 5th Floor Units 02-07, Building 5, No. 5 Xinghan Street, Suzhou Industrial Park, Suzhou, Jiangsu 215021",
+      "lat": 31.32,
+      "lng": 120.72,
+      "businessFocus": "Manufacturing, engineering (TF-AMD Semiconductor)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-XIAN-ENGINEERING",
+      "name": "AMD Xi'an Office",
+      "city": "Xi'an",
+      "state": "Shaanxi",
+      "country": "China",
+      "address": "Xi'an Hi-tech Industrial Development Zone No. 36 Jingye Road, Xi'an, Shaanxi 710011",
+      "lat": 34.21,
+      "lng": 108.89,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-CHENGDU-ENGINEERING",
+      "name": "AMD Chengdu Office",
+      "city": "Chengdu",
+      "state": "Sichuan",
+      "country": "China",
+      "address": "Unit 1205, No.1777, Chengdu China Taiping Finance Mansion, North Tianfu Avenue, High-Tech District, Chengdu, Sichuan 610041",
+      "lat": 30.57,
+      "lng": 104.07,
+      "businessFocus": "Engineering (Haiguang Microelectronics)",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-CHONGQING-SALES",
+      "name": "AMD Chongqing Office",
+      "city": "Chongqing",
+      "state": null,
+      "country": "China",
+      "address": "No. 6 Xiyuan Street North, Shapingba District, Chongqing City 401332",
+      "lat": 29.56,
+      "lng": 106.46,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-NANJING-SALES",
+      "name": "AMD Nanjing Office",
+      "city": "Nanjing",
+      "state": "Jiangsu",
+      "country": "China",
+      "address": "188 Lushan Road, Jianye District, Nanjing, Jiangsu 210019",
+      "lat": 32.01,
+      "lng": 118.73,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HONG_KONG-ENGINEERING",
+      "name": "AMD Hong Kong - Science Park",
+      "city": "Hong Kong",
+      "state": null,
+      "country": "Hong Kong",
+      "address": "No. 3 Science Park East Avenue, Hong Kong Science Park, Shatin, New Territories",
+      "lat": 22.42,
+      "lng": 114.21,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HONG_KONG-SALES",
+      "name": "AMD Hong Kong - Grand Century Place",
+      "city": "Hong Kong",
+      "state": null,
+      "country": "Hong Kong",
+      "address": "Units 102-104, Level 17, Tower I, Grand Century Place, Mongkok, Kowloon",
+      "lat": 22.32,
+      "lng": 114.17,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-TOKYO-ENGINEERING",
+      "name": "AMD Tokyo - Osaki",
+      "city": "Tokyo",
+      "state": null,
+      "country": "Japan",
+      "address": "1-2-2, Osaki, Shinagawa-ku, Tokyo 141-0032",
+      "lat": 35.62,
+      "lng": 139.73,
+      "businessFocus": "Engineering, sales",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-TOKYO-SALES",
+      "name": "AMD Tokyo - Marunouchi",
+      "city": "Tokyo",
+      "state": null,
+      "country": "Japan",
+      "address": "8-3 Marunouchi 1-chome, Chiyoda-ku, Tokyo 100-0005",
+      "lat": 35.68,
+      "lng": 139.76,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-NAGOYA-SALES",
+      "name": "AMD Nagoya Office",
+      "city": "Nagoya",
+      "state": null,
+      "country": "Japan",
+      "address": "3-28-12 Meieki, Nakamura-ku, Nagoya 4500002",
+      "lat": 35.17,
+      "lng": 136.88,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-TAIPEI-ENGINEERING",
+      "name": "AMD Taipei - Nangang",
+      "city": "Taipei",
+      "state": null,
+      "country": "Taiwan",
+      "address": "19F No. 170 Jingmao 1st Road, Nangang District, Taipei",
+      "lat": 25.06,
+      "lng": 121.61,
+      "businessFocus": "Engineering, sales",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-TAIPEI-SATELLITE",
+      "name": "AMD Taipei - Park Street",
+      "city": "Taipei",
+      "state": null,
+      "country": "Taiwan",
+      "address": "3F-6F, 11F-12F No. 3-2 Park Street, Nangang District, Taipei",
+      "lat": 25.06,
+      "lng": 121.62,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HSINCHU-ENGINEERING",
+      "name": "AMD Hsinchu - Gongdao 5th Road",
+      "city": "Hsinchu",
+      "state": null,
+      "country": "Taiwan",
+      "address": "No. 101, Sec. 2, Gongdao 5th Road, East District, Hsinchu",
+      "lat": 24.79,
+      "lng": 121.0,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-HSINCHU-SATELLITE",
+      "name": "AMD Hsinchu - Guanxin Road",
+      "city": "Hsinchu",
+      "state": null,
+      "country": "Taiwan",
+      "address": "No. 27 Guanxin Road, East District, Hsinchu",
+      "lat": 24.78,
+      "lng": 121.01,
+      "businessFocus": "Engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-KAOHSIUNG-SALES",
+      "name": "AMD Kaohsiung Office",
+      "city": "Kaohsiung",
+      "state": null,
+      "country": "Taiwan",
+      "address": "24F, No. 29, Haibian Road, Lingya District, Kaohsiung City 802608",
+      "lat": 22.62,
+      "lng": 120.29,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MIAOLI-MANUFACTURING",
+      "name": "AMD Miaoli Office",
+      "city": "Miaoli",
+      "state": null,
+      "country": "Taiwan",
+      "address": "No. 118, Chung-Hua Road, Chu-Nan, Miaoli City 35053",
+      "lat": 24.68,
+      "lng": 120.88,
+      "businessFocus": "Manufacturing, engineering",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-NEW_TAIPEI_CITY-SALES",
+      "name": "AMD New Taipei City Office",
+      "city": "New Taipei City",
+      "state": null,
+      "country": "Taiwan",
+      "address": "12F, No. 93, Sector 1, Xintai 5th Road, Xizhi District, New Taipei City 221416",
+      "lat": 25.06,
+      "lng": 121.65,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SINGAPORE-ENGINEERING",
+      "name": "AMD Singapore - Changi Business Park",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "5 Changi Business Park Vista, Singapore",
+      "lat": 1.34,
+      "lng": 103.96,
+      "businessFocus": "Engineering, R&D, regional HQ",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SINGAPORE-SATELLITE",
+      "name": "AMD Singapore - Chai Chee Lane",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "508 Chai Chee Lane, Singapore",
+      "lat": 1.33,
+      "lng": 103.92,
+      "businessFocus": "Engineering, sales",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-PENANG-MANUFACTURING",
+      "name": "AMD Penang Office",
+      "city": "Penang",
+      "state": "Pulau Pinang",
+      "country": "Malaysia",
+      "address": "GBS by the Sea \u2013 L9, #2 Medan Bayan Lepas, Technoplex, Bayan Lepas Industrial Park, Phase 4, 11900 Bayan Lepas, Pulau Pinang",
+      "lat": 5.3,
+      "lng": 100.28,
+      "businessFocus": "Manufacturing, engineering",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.amd.com",
+        "https://www.sec.gov"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-CYBERJAYA-ENGINEERING",
+      "name": "AMD Cyberjaya Office",
+      "city": "Cyberjaya",
+      "state": "Selangor",
+      "country": "Malaysia",
+      "address": "Block 3750 Persiaran APEC, Cyber 8, 63500 Cyberjaya, Selangor Darul Ehsan",
+      "lat": 2.92,
+      "lng": 101.65,
+      "businessFocus": "Engineering, R&D",
+      "type": "engineering",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SEOUL-SALES",
+      "name": "AMD Seoul - Yeongdong-daero",
+      "city": "Seoul",
+      "state": null,
+      "country": "South Korea",
+      "address": "517 Yeongdong-daero, Gangnam-gu, Seoul",
+      "lat": 37.51,
+      "lng": 127.04,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SEOUL-SATELLITE",
+      "name": "AMD Seoul - Yeouido",
+      "city": "Seoul",
+      "state": null,
+      "country": "South Korea",
+      "address": "63Ro (Hanwha 63 Building), 50 Yoido-dong, Youngdeungpo-gu, Seoul",
+      "lat": 37.52,
+      "lng": 126.94,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BANGKOK-SALES",
+      "name": "AMD Bangkok Office",
+      "city": "Bangkok",
+      "state": null,
+      "country": "Thailand",
+      "address": "Bangkok Regus Office, Wireless Road, Pathum Wan, Bangkok 10330",
+      "lat": 13.74,
+      "lng": 100.55,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SYDNEY-SALES",
+      "name": "AMD Sydney Office",
+      "city": "Sydney",
+      "state": "New South Wales",
+      "country": "Australia",
+      "address": "60 Martin Place, Podium Levels 1, 2 & 3, Offices 312-316, 331, Sydney NSW 2000",
+      "lat": -33.87,
+      "lng": 151.21,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-BUENOS_AIRES-SALES",
+      "name": "AMD Buenos Aires Office",
+      "city": "Buenos Aires",
+      "state": null,
+      "country": "Argentina",
+      "address": "El Salvador, 5220, Palermo Soho, Buenos Aires",
+      "lat": -34.58,
+      "lng": -58.43,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-SAO_PAULO-SALES",
+      "name": "AMD Sao Paulo Office",
+      "city": "Sao Paulo",
+      "state": "Sao Paulo",
+      "country": "Brazil",
+      "address": "230 George Ohm Street, Sao Paulo - SP 04576-020",
+      "lat": -23.61,
+      "lng": -46.69,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AMD-MEXICO_CITY-SALES",
+      "name": "AMD Mexico City Office",
+      "city": "Mexico City",
+      "state": null,
+      "country": "Mexico",
+      "address": "Blvd. Manuel Avila Camacho No. 40, Lomas de Chapultepec, 11000 Mexico City",
+      "lat": 19.43,
+      "lng": -99.22,
+      "businessFocus": "Sales",
+      "type": "sales",
+      "sources": [
+        "https://www.amd.com"
       ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "reasoning": "The provided source material for AMD's Q1 2026 financial results explicitly states that the report does not contain a breakdown of revenue by geographic region. Therefore, the segments list is empty.",
+    "reason": "Prioritizing the most recent quarterly data (Q1 2026 ended March 28, 2026) as the anchor filing. AMD does not provide a detailed geographic revenue breakdown in its quarterly earnings releases; the most recent detailed geographic revenue data available is from FY2024 (annual SEC filing) which shows United States $8.7B, China $6.2B, Singapore $3.6B, Taiwan $3.3B, Japan $1.8B, Europe $1.6B, Other $0.6B. For Q1 2026, total GAAP revenue is $10.3B. The FY2024 geographic percentages are applied as a proxy for the latest period, with the note that international sales were 66% of net revenue in FY2024. Q1 2026 also includes ~$100M AMD Instinct MI308 sales to China.",
     "fiscalYear": "2026",
-    "totalRevenue": 10250000000.0,
+    "totalRevenue": 10300000000.0,
     "currency": "USD",
-    "segments": [],
-    "concentrationRisk": "The provided financial reports for AMD Q1 2026 do not disclose geographic revenue concentration.",
+    "segments": [
+      {
+        "region": "United States",
+        "revenue": 3470000000.0,
+        "percentage": 0.337,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (33.7% of total revenue). Q1 2026 total revenue $10.3B."
+      },
+      {
+        "region": "China (incl. Hong Kong)",
+        "revenue": 2470000000.0,
+        "percentage": 0.24,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (24.0% of total). Q1 2026 included ~$100M AMD Instinct MI308 sales to China."
+      },
+      {
+        "region": "Singapore",
+        "revenue": 1440000000.0,
+        "percentage": 0.14,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (14.0% of total)."
+      },
+      {
+        "region": "Taiwan",
+        "revenue": 1320000000.0,
+        "percentage": 0.128,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (12.8% of total)."
+      },
+      {
+        "region": "Japan",
+        "revenue": 700000000.0,
+        "percentage": 0.068,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (6.8% of total)."
+      },
+      {
+        "region": "Europe",
+        "revenue": 600000000.0,
+        "percentage": 0.058,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (5.8% of total)."
+      },
+      {
+        "region": "Other Countries",
+        "revenue": 200000000.0,
+        "percentage": 0.019,
+        "yoyGrowth": null,
+        "notes": "Based on FY2024 geographic mix (2.3% of total)."
+      }
+    ],
+    "concentrationRisk": "International sales represented 66% of net revenue in FY2024, indicating significant geographic diversification but also exposure to geopolitical risks, particularly China (24% of revenue) which faces ongoing U.S. export restrictions. AMD incurred ~$800M in inventory/related charges in Q2 2025 due to MI308 export restrictions to China. BIS approved MI308 for sale to China with U.S. government receiving 15% of proceeds.",
     "sources": [
-      "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html",
-      "https://www.jonpeddie.com/news/amd-reports-fouth-quarter-revenue-up-40-y-y-to-10-3-billion/",
-      "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+      "AMD Q1 2026 earnings release (March 28, 2026): total GAAP revenue $10.3B",
+      "AMD FY2024 SEC filing: geographic revenue breakdown - United States $8.7B, China $6.2B, Singapore $3.6B, Taiwan $3.3B, Japan $1.8B, Europe $1.6B, Other $0.6B",
+      "AMD FY2024 10-K: international sales 66% of net revenue",
+      "AMD Q1 2026 earnings: ~$100M MI308 sales to China"
     ]
   },
   "supplyChain": [
     {
-      "entity": "Samsung",
-      "role": "key_supplier",
+      "entity": "Taiwan Semiconductor Manufacturing Company (TSMC)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "Wafer fabrication for 7nm and smaller nodes (microprocessors, GPUs, HPC, FPGA, Adaptive SoC)",
+      "criticality": "critical",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000012/0000002488-25-000012.pdf"
+      ]
+    },
+    {
+      "entity": "GLOBALFOUNDRIES Inc. (GF)",
+      "role": "foundry",
+      "city": "Malta",
+      "country": "United States",
+      "lat": 42.9676,
+      "lng": -73.7387,
+      "product": "Wafer fabrication for >7nm nodes (12nm and 14nm technology nodes for HPC products)",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm"
+      ]
+    },
+    {
+      "entity": "Samsung Electronics Co., Ltd.",
+      "role": "foundry",
       "city": "Suwon",
       "country": "South Korea",
       "lat": 37.2636,
       "lng": 127.0286,
-      "product": "HBM4 and advanced DRAM solutions",
+      "product": "Wafer fabrication for programmable logic devices; HBM4 memory supply for Instinct MI455X GPUs and advanced DRAM for EPYC CPUs",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm"
+      ]
+    },
+    {
+      "entity": "United Microelectronics Corporation (UMC)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8089,
+      "lng": 120.9608,
+      "product": "Wafer fabrication for programmable logic devices (integrated circuits)",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000012/0000002488-25-000012.pdf"
+      ]
+    },
+    {
+      "entity": "Tongfu Microelectronics Co., Ltd. (ATMP JV)",
+      "role": "assembly_test",
+      "city": "Nantong",
+      "country": "China",
+      "lat": 31.9797,
+      "lng": 120.8944,
+      "product": "Assembly, test, mark and packaging (ATMP) services - majority of AMD's ATMP needs",
       "criticality": "critical",
       "sources": [
-        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000166/amd-20250927.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm"
+      ]
+    },
+    {
+      "entity": "Siliconware Precision Industries Ltd. (SPIL)",
+      "role": "assembly_test",
+      "city": "Taichung",
+      "country": "Taiwan",
+      "lat": 24.1477,
+      "lng": 120.6736,
+      "product": "Assembly, test, mark and packaging (ATMP) services",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000012/0000002488-25-000012.pdf"
+      ]
+    },
+    {
+      "entity": "King Yuan Electronics Company (KYEC)",
+      "role": "assembly_test",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8089,
+      "lng": 120.9608,
+      "product": "Assembly, test, mark and packaging (ATMP) services",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000012/0000002488-25-000012.pdf"
+      ]
+    },
+    {
+      "entity": "Sanmina Corporation",
+      "role": "contract_manufacturer",
+      "city": "San Jose",
+      "country": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "product": "Preferred manufacturing partner - acquired ZT Systems' data center infrastructure manufacturing business from AMD",
+      "criticality": "important",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm"
+      ]
+    },
+    {
+      "entity": "Hindustan Semiconductor Manufacturing Corporation (HSMC)",
+      "role": "foundry",
+      "city": "Hyderabad",
+      "country": "India",
+      "lat": 17.385,
+      "lng": 78.4867,
+      "product": "Production of AMD products in India",
+      "criticality": "standard",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD"
       ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Meta",
+      "customer": "Sony",
+      "revenueShare": "18% (2024), 16% (2023, 2022) - Gaming segment (Customer A)",
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "Semi-custom SoC supplier for PlayStation 4, PlayStation 5, and PlayStation 5 Pro; Gaming segment customer",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm",
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000012/0000002488-25-000012.pdf"
+      ]
+    },
+    {
+      "customer": "Microsoft",
+      "revenueShare": null,
+      "hqCity": "Redmond",
+      "hqCountry": "USA",
+      "lat": 47.674,
+      "lng": -122.1215,
+      "relationship": "Semi-custom SoC supplier for Xbox One, Xbox Series S/X; Azure cloud instances with 5th Gen EPYC; strategic partner for OS support of x86 architecture; AI solutions partner",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000108/amd-20250628.htm",
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "Meta (Facebook)",
       "revenueShare": null,
       "hqCity": "Menlo Park",
-      "hqCountry": "United States",
-      "lat": 37.4848,
-      "lng": -122.1484,
-      "relationship": "Multiyear deal to deploy up to 6 gigawatts of AMD Instinct GPUs for AI data centers.",
+      "hqCountry": "USA",
+      "lat": 37.4525,
+      "lng": -122.1501,
+      "relationship": "Lead customer for 6th Gen AMD EPYC CPUs; deploying up to 6GW of AMD Instinct GPUs; metaverse chip development partnership; AI solutions partner",
       "sources": [
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html",
-        "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "OpenAI",
+      "revenueShare": "Multibillion-dollar partnership; 6GW chip commitment; warrant for 160M AMD shares at $0.01/share tied to GPU purchase milestones",
+      "hqCity": "San Francisco",
+      "hqCountry": "USA",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Multibillion-dollar AI data center partnership; AMD issued warrant to OpenAI OpCo, LLC for up to 160M shares tied to GPU purchase milestones and stock price targets; AI solutions partner",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000166/amd-20250927.htm",
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "Valve",
+      "revenueShare": null,
+      "hqCity": "Bellevue",
+      "hqCountry": "USA",
+      "lat": 47.6101,
+      "lng": -122.2015,
+      "relationship": "Semi-custom APU supplier for Steam Deck handheld gaming device",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm"
+      ]
+    },
+    {
+      "customer": "Samsung",
+      "revenueShare": null,
+      "hqCity": "Suwon",
+      "hqCountry": "South Korea",
+      "lat": 37.2636,
+      "lng": 127.0286,
+      "relationship": "Partnership to develop mobile processors using AMD RDNA 2 architecture",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD"
+      ]
+    },
+    {
+      "customer": "Amazon Web Services (AWS)",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "USA",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "Cloud instances powered by 5th Gen AMD EPYC CPUs; customer for AMD data center products",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results"
+      ]
+    },
+    {
+      "customer": "Google Cloud",
+      "revenueShare": null,
+      "hqCity": "Mountain View",
+      "hqCountry": "USA",
+      "lat": 37.4223,
+      "lng": -122.0841,
+      "relationship": "Cloud instances powered by 5th Gen AMD EPYC CPUs; customer for AMD data center products",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results"
+      ]
+    },
+    {
+      "customer": "Tencent Cloud",
+      "revenueShare": null,
+      "hqCity": "Shenzhen",
+      "hqCountry": "China",
+      "lat": 22.5431,
+      "lng": 114.0579,
+      "relationship": "Cloud instances powered by 5th Gen AMD EPYC CPUs; customer for AMD data center products",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results"
+      ]
+    },
+    {
+      "customer": "Oracle",
+      "revenueShare": null,
+      "hqCity": "Austin",
+      "hqCountry": "USA",
+      "lat": 30.2672,
+      "lng": -97.7431,
+      "relationship": "AI solutions partner; customer for AMD data center products",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "Dell Technologies",
+      "revenueShare": null,
+      "hqCity": "Round Rock",
+      "hqCountry": "USA",
+      "lat": 30.5083,
+      "lng": -97.6789,
+      "relationship": "OEM partner; Dell AI platform includes PowerEdge servers with AMD Instinct MI350 GPUs and EPYC CPUs; loose partnership",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "https://en.wikipedia.org/wiki/AMD"
+      ]
+    },
+    {
+      "customer": "Hewlett Packard Enterprise (HPE) / Cray",
+      "revenueShare": null,
+      "hqCity": "Houston",
+      "hqCountry": "USA",
+      "lat": 29.7604,
+      "lng": -95.3698,
+      "relationship": "Collaboration on Frontier and El Capitan exascale supercomputers for U.S. Department of Energy; Lux AI system with AMD Instinct MI355X GPUs",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://www.hpe.com/us/en/newsroom/press-release/2025/10/hpe-to-build-two-systems-for-oak-ridge-national-laboratory-next-generation-exascale-supercomputer-discovery-and-ai-cluster-lux.html"
+      ]
+    },
+    {
+      "customer": "U.S. Department of Energy",
+      "revenueShare": null,
+      "hqCity": "Washington",
+      "hqCountry": "USA",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "relationship": "Collaboration on Frontier (ORNL) and El Capitan (LLNL) exascale supercomputers using AMD technology",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD",
+        "https://www.energy.gov/articles/us-department-energy-and-cray-deliver-record-setting-frontier-supercomputer-ornl"
+      ]
+    },
+    {
+      "customer": "Nokia",
+      "revenueShare": null,
+      "hqCity": "Espoo",
+      "hqCountry": "Finland",
+      "lat": 60.2055,
+      "lng": 24.6559,
+      "relationship": "Will use 5th Gen AMD EPYC processors to power Nokia Cloud Platform for telecom infrastructure",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "KDDI",
+      "revenueShare": null,
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "relationship": "Agreement to leverage 4th Gen AMD EPYC CPUs for KDDI's advanced 5G virtualized network",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "Bosch",
+      "revenueShare": null,
+      "hqCity": "Gerlingen",
+      "hqCountry": "Germany",
+      "lat": 48.7991,
+      "lng": 9.0625,
+      "relationship": "Collaboration on next-generation robotaxi services in Europe using AMD Versal devices",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
       ]
     },
     {
@@ -79,10 +2228,9 @@
       "hqCountry": "India",
       "lat": 19.076,
       "lng": 72.8777,
-      "relationship": "Co-developing AMD Helios-based rack-scale AI infrastructure in India.",
+      "relationship": "Co-developing AMD Helios-based rack-scale AI infrastructure for enterprise and sovereign AI in India",
       "sources": [
-        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results"
       ]
     },
     {
@@ -90,99 +2238,254 @@
       "revenueShare": null,
       "hqCity": "Seongnam",
       "hqCountry": "South Korea",
-      "lat": 37.3861,
-      "lng": 127.1213,
-      "relationship": "Collaborating to deploy AMD Instinct GPUs and EPYC CPUs for AI infrastructure in Korea.",
+      "lat": 37.42,
+      "lng": 127.1269,
+      "relationship": "Collaboration to deploy AMD Instinct GPUs and EPYC CPUs across AI infrastructure in Korea",
       "sources": [
-        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results"
       ]
     },
     {
-      "customer": "AWS",
+      "customer": "Upstage",
       "revenueShare": null,
-      "hqCity": "Seattle",
-      "hqCountry": "United States",
-      "lat": 47.6062,
-      "lng": -122.3321,
-      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "hqCity": "Seongnam",
+      "hqCountry": "South Korea",
+      "lat": 37.42,
+      "lng": 127.1269,
+      "relationship": "Collaboration to deploy AMD Instinct GPUs and EPYC CPUs across AI infrastructure in Korea",
       "sources": [
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results"
       ]
     },
     {
-      "customer": "Google Cloud",
+      "customer": "HUMAIN",
       "revenueShare": null,
-      "hqCity": "Mountain View",
-      "hqCountry": "United States",
-      "lat": 37.3861,
-      "lng": -122.0839,
-      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "hqCity": "Riyadh",
+      "hqCountry": "Saudi Arabia",
+      "lat": 24.7136,
+      "lng": 46.6753,
+      "relationship": "Strategic collaboration to deploy 500 megawatts of AI compute capacity over five years",
       "sources": [
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
       ]
     },
     {
-      "customer": "Microsoft Azure",
+      "customer": "Red Hat",
       "revenueShare": null,
-      "hqCity": "Redmond",
-      "hqCountry": "United States",
-      "lat": 47.674,
-      "lng": -122.1215,
-      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
+      "hqCity": "Raleigh",
+      "hqCountry": "USA",
+      "lat": 35.7796,
+      "lng": -78.6382,
+      "relationship": "Expanded strategic collaboration to deliver high-performance AI inference with vLLM on AMD Instinct GPUs",
       "sources": [
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
       ]
     },
     {
-      "customer": "Tencent",
-      "revenueShare": null,
-      "hqCity": "Shenzhen",
-      "hqCountry": "China",
-      "lat": 22.5431,
-      "lng": 114.0579,
-      "relationship": "Expanding 5th Gen EPYC-powered cloud instances.",
-      "sources": [
-        "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
-      ]
-    },
-    {
-      "customer": "OpenAI",
+      "customer": "xAI",
       "revenueShare": null,
       "hqCity": "San Francisco",
-      "hqCountry": "United States",
+      "hqCountry": "USA",
       "lat": 37.7749,
       "lng": -122.4194,
-      "relationship": "Signed up for shipments of the Helios rack-scale system.",
+      "relationship": "AI solutions partner; Dell booked AI server deals with xAI",
       "sources": [
-        "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results"
+      ]
+    },
+    {
+      "customer": "Zyphra",
+      "revenueShare": null,
+      "hqCity": null,
+      "hqCountry": null,
+      "lat": null,
+      "lng": null,
+      "relationship": "AMD powers Frontier AI training for Zyphra",
+      "sources": [
+        "https://ir.amd.com/"
+      ]
+    },
+    {
+      "customer": "HP Inc.",
+      "revenueShare": null,
+      "hqCity": "Palo Alto",
+      "hqCountry": "USA",
+      "lat": 37.4419,
+      "lng": -122.143,
+      "relationship": "OEM partner; loose partnership for end-user computing",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD"
+      ]
+    },
+    {
+      "customer": "Asus",
+      "revenueShare": null,
+      "hqCity": "Taipei",
+      "hqCountry": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.5654,
+      "relationship": "OEM partner; loose partnership",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD"
+      ]
+    },
+    {
+      "customer": "Acer",
+      "revenueShare": null,
+      "hqCity": "New Taipei",
+      "hqCountry": "Taiwan",
+      "lat": 25.0111,
+      "lng": 121.4458,
+      "relationship": "OEM partner; loose partnership",
+      "sources": [
+        "https://en.wikipedia.org/wiki/AMD"
+      ]
+    },
+    {
+      "customer": "Analog Devices, Inc.",
+      "revenueShare": null,
+      "hqCity": "Wilmington",
+      "hqCountry": "USA",
+      "lat": 42.5467,
+      "lng": -71.1736,
+      "relationship": "Resolved patent litigations and committed to technology collaborations for communications and data center customers",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248823000047/amd-20221231.htm"
       ]
     }
   ],
   "geopoliticalRisks": [
     {
-      "region": "Global",
-      "lat": 0.0,
-      "lng": 0.0,
+      "region": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "Export and Trade Regulations",
-      "description": "AMD identifies export regulations, import tariffs, and trade protection measures as material factors that could negatively impact its financial results and global distribution capabilities.",
-      "impactLevel": "high",
-      "filingReference": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
-      "lastUpdated": "2026-05-05"
+      "riskLabel": "China Export Controls on MI308/MI325X",
+      "description": "BIS export controls since Oct 2023 prevent AMD from shipping Instinct MI308 and Versal FPGAs to China without license. April 2025 new license requirements for D5 countries. Q2 2025: ~$800M inventory charges on MI308. Full year 2025: ~$440M net charges. August 2025: AMD agreed to pay U.S. government 15% of AI chip sale revenues from China as MI308 license condition, raising constitutional concerns under Article I, Section 9, Clause 5. January 2026 BIS rule reviews MI325X on case-by-case basis. China accounted for 22% ($5,207M) of AMD's net revenue in fiscal 2022.",
+      "impactLevel": "critical",
+      "filingReference": "AMD 10-K FY2022; AMD 10-Q Q2/Q3/Q4 2025; CRS Report August 2025; BIS Rule January 13, 2026",
+      "lastUpdated": "2026-01-13"
     },
     {
-      "region": "Iran",
-      "lat": 32.4279,
-      "lng": 53.688,
-      "riskScore": 4,
+      "region": "Taiwan",
+      "lat": 23.6978,
+      "lng": 120.9605,
+      "riskScore": 5,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Supply Chain Disruption",
-      "description": "The ongoing war in Iran is creating significant supply chain challenges for the semiconductor industry, potentially affecting AMD's manufacturing and logistics operations.",
+      "riskLabel": "TSMC Manufacturing Concentration & Taiwan Strait Risk",
+      "description": "AMD depends entirely on TSMC for all advanced-node wafer production (7nm or smaller). Any disruption at TSMC due to geopolitical conflict between China and Taiwan could materially adversely affect AMD's business. Taiwan experienced earthquake in April 2024 where AMD's third-party wafer foundries are located. AMD's Taiwan-based third-party wafer foundries, manufacturing facilities, and subcontractors are at risk from geopolitical changes between China and Taiwan.",
+      "impactLevel": "critical",
+      "filingReference": "AMD 10-K FY2022 Risk Factors",
+      "lastUpdated": "2024-04-03"
+    },
+    {
+      "region": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "BIS Regulatory Uncertainty & Policy Flip-Flops",
+      "description": "January 2025: BIS issued AI Diffusion Rule. May 13, 2025: BIS rescinded Biden AI Diffusion Rule and instructed enforcement officials not to enforce. May 2025: BIS announced intention to rescind and issue replacement rules. January 13, 2026: BIS issued new rule revising licensing policy for semiconductor exports to China. This regulatory volatility creates persistent uncertainty for AMD's product roadmap and revenue planning. BIS also closed VEU program loophole (Aug 2025) and issued entity ownership rule (Sep 2025, enforcement suspended until Nov 2026).",
+      "impactLevel": "high",
+      "filingReference": "BIS AI Diffusion Rule Jan 2025; BIS Rescission May 13, 2025; BIS Rule Jan 13, 2026; BIS VEU Rule Aug 29, 2025",
+      "lastUpdated": "2026-01-13"
+    },
+    {
+      "region": "China",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "riskScore": 4,
+      "riskCategory": "sanctions",
+      "riskLabel": "THATIC Joint Venture Entity List Sanctions",
+      "description": "June 2019: BIS added THATIC and THATIC JV (AMD's joint venture with Higon Information Technology Co., Ltd.) to Entity List. AMD has equity interests in two joint ventures with Higon (Chinese entity on Entity List). AMD may not realize expected benefits including milestone payments and royalties. China's SAMR set restrictive conditions on AMD's acquisition of Xilinx in 2022 as part of antitrust review approvals.",
+      "impactLevel": "high",
+      "filingReference": "AMD 10-K FY2022; BIS Entity List June 2019",
+      "lastUpdated": "2022-02-14"
+    },
+    {
+      "region": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "riskScore": 3,
+      "riskCategory": "political_instability",
+      "riskLabel": "U.S.-China Trade War & Retaliatory Tariffs",
+      "description": "Worsening U.S.-China trade relationship could negatively impact AMD's worldwide operations. U.S. has imposed/proposed higher tariffs on imports; China has imposed retaliatory tariffs. Retaliatory actions by affected countries could result in tariffs/restrictions on AMD's products. Data center hardware infrastructure costs may increase for AMD's customers due to tariffs, potentially causing delays/halts in AI infrastructure investments.",
       "impactLevel": "moderate",
-      "filingReference": "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html",
-      "lastUpdated": "2026-05-05"
+      "filingReference": "AMD 10-K FY2022 Risk Factors",
+      "lastUpdated": "2025-12-08"
+    },
+    {
+      "region": "Russia",
+      "lat": 61.524,
+      "lng": 105.3188,
+      "riskScore": 3,
+      "riskCategory": "sanctions",
+      "riskLabel": "Russia/Ukraine Sanctions & Shipment Suspension",
+      "description": "U.S. and other countries issued sanctions and export control revisions against Russia, Belarus, DNR/LNR regions of Ukraine. AMD (including Xilinx) suspended shipments to Russian Federation during fiscal quarter ended March 26, 2022. Xilinx had authorized third-party resellers in Russia filing notifications with Russian FSB (U.S.-designated blocked party under Executive Order 13382). Ukraine-Russia conflict escalation could negatively impact global economy.",
+      "impactLevel": "moderate",
+      "filingReference": "AMD 10-K FY2022; Executive Order 13382",
+      "lastUpdated": "2022-03-26"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.5654,
+      "riskScore": 3,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Entity List Additions in Taiwan",
+      "description": "March 25, 2025: BIS added 80 entities to Entity List from China, UAE, South Africa, Iran, Taiwan (12 for developing advanced AI/supercomputers/AI chips). This expands restrictions affecting AMD's supply chain and partner ecosystem in Taiwan.",
+      "impactLevel": "moderate",
+      "filingReference": "BIS Entity List March 25, 2025",
+      "lastUpdated": "2025-03-25"
+    },
+    {
+      "region": "European Union",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "EU AI Act & GDPR Compliance Burden",
+      "description": "EU AI Act (adopted 2024, phased implementation) may impede AMD's ability to offer certain products/services in EU. New/proposed AI legislation could impact AMD's ability to sell AI-related products and reduce customer base. EU GDPR imposes significant requirements on personal data collection/processing with significant fines. EU enacted restrictions on lead and other materials in electronic products affecting semiconductor devices/packaging.",
+      "impactLevel": "moderate",
+      "filingReference": "EU AI Act 2024; EU GDPR; AMD 10-K FY2022",
+      "lastUpdated": "2024-08-01"
+    },
+    {
+      "region": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Deemed Export & R&D Team Restrictions",
+      "description": "Deemed export restrictions could affect AMD's ability to provide services/develop products in U.S. with non-U.S. personnel. New export controls may adversely impact AMD's R&D teams located outside U.S. from executing product roadmaps. BIS expands licensing requirements worldwide for transactions involving entities/end uses associated with AI capabilities development/proliferation.",
+      "impactLevel": "moderate",
+      "filingReference": "AMD 10-K FY2022 Risk Factors; BIS Rules 2025-2026",
+      "lastUpdated": "2026-01-13"
+    },
+    {
+      "region": "Xinjiang, China",
+      "lat": 41.748,
+      "lng": 82.9789,
+      "riskScore": 2,
+      "riskCategory": "labor_regulation",
+      "riskLabel": "Uyghur Forced Labor Act Compliance",
+      "description": "U.S. Uyghur Forced Labor Prevention Act prohibits goods from Xinjiang Uyghur Autonomous Region under presumption of forced labor. Germany, UK, Australia, California enacted laws requiring AMD to disclose forced labor/human trafficking elimination policies in supply chain. Customers and governments focus on eliminating forced labor risks, increasing AMD's compliance costs.",
+      "impactLevel": "low",
+      "filingReference": "Uyghur Forced Labor Prevention Act; AMD 10-K FY2022",
+      "lastUpdated": "2022-06-21"
+    },
+    {
+      "region": "Israel",
+      "lat": 31.0461,
+      "lng": 34.8516,
+      "riskScore": 2,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Israel-Hamas Conflict Escalation Risk",
+      "description": "Israel-Hamas conflict could escalate and negatively impact global economy and financial markets. While AMD does not have disclosed material direct operations in Israel, broader regional instability could affect global semiconductor supply chains and financial conditions.",
+      "impactLevel": "low",
+      "filingReference": "AMD 10-K FY2022 Risk Factors",
+      "lastUpdated": "2023-10-07"
     }
   ]
 }

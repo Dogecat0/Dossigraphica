@@ -1,167 +1,30 @@
 {
-  "lastUpdated": "2026-05-23T00:28:11.804715",
+  "lastUpdated": "2026-05-23T16:11:11.513412",
   "regions": [
-    {
-      "region": "Global",
-      "lat": 55.702215,
-      "lng": 12.5592485,
-      "overallScore": 7.5,
-      "contributingCompanies": [
-        {
-          "ticker": "AMD",
-          "riskScore": 5,
-          "impactLevel": "high",
-          "category": "trade_restriction"
-        },
-        {
-          "ticker": "GOOGL",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "tax_policy"
-        },
-        {
-          "ticker": "MSFT",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "sanctions"
-        },
-        {
-          "ticker": "NVDA",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "political_instability"
-        }
-      ],
-      "riskDimensions": [
-        "political_instability",
-        "sanctions",
-        "trade_restriction",
-        "tax_policy"
-      ],
-      "summary": "Aggregated risk from 4 companies in Global."
-    },
-    {
-      "region": "Iran",
-      "lat": 32.4279,
-      "lng": 53.688,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AMD",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "geopolitical_conflict"
-        }
-      ],
-      "riskDimensions": [
-        "geopolitical_conflict"
-      ],
-      "summary": "Aggregated risk from 1 companies in Iran."
-    },
-    {
-      "region": "United States",
-      "lat": 37.0902,
-      "lng": -95.7129,
-      "overallScore": 8.5,
-      "contributingCompanies": [
-        {
-          "ticker": "AMZN",
-          "riskScore": 5,
-          "impactLevel": "high",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "ASML",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "GOOGL",
-          "riskScore": 5,
-          "impactLevel": "critical",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "MSFT",
-          "riskScore": 5,
-          "impactLevel": "critical",
-          "category": "tax_policy"
-        },
-        {
-          "ticker": "MSFT",
-          "riskScore": 4,
-          "impactLevel": "high",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "MU",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "tax_policy"
-        },
-        {
-          "ticker": "NVDA",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "tax_policy"
-        },
-        {
-          "ticker": "TSM",
-          "riskScore": 5,
-          "impactLevel": "high",
-          "category": "trade_restriction"
-        }
-      ],
-      "riskDimensions": [
-        "regulatory_compliance",
-        "tax_policy",
-        "trade_restriction"
-      ],
-      "summary": "Aggregated risk from 8 companies in United States."
-    },
-    {
-      "region": "India",
-      "lat": 20.5937,
-      "lng": 78.9629,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AMZN",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "tax_policy"
-        }
-      ],
-      "riskDimensions": [
-        "tax_policy"
-      ],
-      "summary": "Aggregated risk from 1 companies in India."
-    },
-    {
-      "region": "Luxembourg",
-      "lat": 49.8153,
-      "lng": 6.1296,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AMZN",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "data_privacy"
-        }
-      ],
-      "riskDimensions": [
-        "data_privacy"
-      ],
-      "summary": "Aggregated risk from 1 companies in Luxembourg."
-    },
     {
       "region": "China",
       "lat": 35.8617,
       "lng": 104.1954,
-      "overallScore": 8.7,
+      "overallScore": 8.5,
       "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "AMD",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "political_instability"
+        },
         {
           "ticker": "AMZN",
           "riskScore": 4,
@@ -218,54 +81,31 @@
         }
       ],
       "riskDimensions": [
-        "political_instability",
+        "regulatory_compliance",
         "trade_restriction",
-        "regulatory_compliance"
+        "sanctions",
+        "political_instability"
       ],
-      "summary": "Aggregated risk from 9 companies in China."
-    },
-    {
-      "region": "Strait of Hormuz",
-      "lat": 26.5667,
-      "lng": 56.25,
-      "overallScore": 6.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AMZN",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "geopolitical_conflict"
-        }
-      ],
-      "riskDimensions": [
-        "geopolitical_conflict"
-      ],
-      "summary": "Aggregated risk from 1 companies in Strait of Hormuz."
-    },
-    {
-      "region": "Italy",
-      "lat": 41.8719,
-      "lng": 12.5674,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AMZN",
-          "riskScore": 4,
-          "impactLevel": "moderate",
-          "category": "regulatory_compliance"
-        }
-      ],
-      "riskDimensions": [
-        "regulatory_compliance"
-      ],
-      "summary": "Aggregated risk from 1 companies in Italy."
+      "summary": "Aggregated risk from 12 companies in China."
     },
     {
       "region": "Taiwan",
       "lat": 23.6978,
       "lng": 120.9605,
-      "overallScore": 9.0,
+      "overallScore": 8.8,
       "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "trade_restriction"
+        },
         {
           "ticker": "ASML",
           "riskScore": 4,
@@ -304,10 +144,260 @@
         }
       ],
       "riskDimensions": [
-        "environmental_regulation",
+        "geopolitical_conflict",
+        "trade_restriction",
+        "environmental_regulation"
+      ],
+      "summary": "Aggregated risk from 8 companies in Taiwan."
+    },
+    {
+      "region": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "overallScore": 8.2,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AMZN",
+          "riskScore": 5,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "GOOGL",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "MU",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "NVDA",
+          "riskScore": 4,
+          "impactLevel": "moderate",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 5,
+          "impactLevel": "high",
+          "category": "trade_restriction"
+        }
+      ],
+      "riskDimensions": [
+        "tax_policy",
+        "regulatory_compliance",
+        "trade_restriction"
+      ],
+      "summary": "Aggregated risk from 10 companies in United States."
+    },
+    {
+      "region": "Russia",
+      "lat": 55.7558,
+      "lng": 37.6173,
+      "overallScore": 7.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "GOOGL",
+          "riskScore": 4,
+          "impactLevel": "low",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
+        "geopolitical_conflict",
+        "sanctions"
+      ],
+      "summary": "Aggregated risk from 2 companies in Russia."
+    },
+    {
+      "region": "European Union",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "critical",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "GOOGL",
+          "riskScore": 5,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "NVDA",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 5 companies in European Union."
+    },
+    {
+      "region": "Xinjiang, China",
+      "lat": 41.748,
+      "lng": 82.9789,
+      "overallScore": 4.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "labor_regulation"
+        }
+      ],
+      "riskDimensions": [
+        "labor_regulation"
+      ],
+      "summary": "Aggregated risk from 1 companies in Xinjiang, China."
+    },
+    {
+      "region": "Israel",
+      "lat": 31.0461,
+      "lng": 34.8516,
+      "overallScore": 4.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMD",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
         "geopolitical_conflict"
       ],
-      "summary": "Aggregated risk from 6 companies in Taiwan."
+      "summary": "Aggregated risk from 1 companies in Israel."
+    },
+    {
+      "region": "India",
+      "lat": 20.5937,
+      "lng": 78.9629,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "moderate",
+          "category": "tax_policy"
+        }
+      ],
+      "riskDimensions": [
+        "tax_policy"
+      ],
+      "summary": "Aggregated risk from 1 companies in India."
+    },
+    {
+      "region": "Luxembourg",
+      "lat": 49.8153,
+      "lng": 6.1296,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "moderate",
+          "category": "data_privacy"
+        }
+      ],
+      "riskDimensions": [
+        "data_privacy"
+      ],
+      "summary": "Aggregated risk from 1 companies in Luxembourg."
+    },
+    {
+      "region": "Strait of Hormuz",
+      "lat": 26.5667,
+      "lng": 56.25,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
+        "geopolitical_conflict"
+      ],
+      "summary": "Aggregated risk from 1 companies in Strait of Hormuz."
+    },
+    {
+      "region": "Italy",
+      "lat": 41.8719,
+      "lng": 12.5674,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AMZN",
+          "riskScore": 4,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 1 companies in Italy."
     },
     {
       "region": "Netherlands",
@@ -346,42 +436,6 @@
       "summary": "Aggregated risk from 1 companies in South Korea."
     },
     {
-      "region": "European Union",
-      "lat": 50.8503,
-      "lng": 4.3517,
-      "overallScore": 8.5,
-      "contributingCompanies": [
-        {
-          "ticker": "AVGO",
-          "riskScore": 4,
-          "impactLevel": "critical",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "GOOGL",
-          "riskScore": 5,
-          "impactLevel": "high",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "MSFT",
-          "riskScore": 4,
-          "impactLevel": "high",
-          "category": "regulatory_compliance"
-        },
-        {
-          "ticker": "NVDA",
-          "riskScore": 4,
-          "impactLevel": "high",
-          "category": "regulatory_compliance"
-        }
-      ],
-      "riskDimensions": [
-        "regulatory_compliance"
-      ],
-      "summary": "Aggregated risk from 4 companies in European Union."
-    },
-    {
       "region": "Malaysia",
       "lat": 5.2647,
       "lng": 100.4429,
@@ -400,22 +454,36 @@
       "summary": "Aggregated risk from 1 companies in Malaysia."
     },
     {
-      "region": "Russia",
-      "lat": 55.7558,
-      "lng": 37.6173,
-      "overallScore": 8.0,
+      "region": "Global",
+      "lat": 55.702215,
+      "lng": 12.5592485,
+      "overallScore": 6.7,
       "contributingCompanies": [
         {
           "ticker": "GOOGL",
           "riskScore": 4,
-          "impactLevel": "low",
-          "category": "geopolitical_conflict"
+          "impactLevel": "moderate",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "MSFT",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "NVDA",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "political_instability"
         }
       ],
       "riskDimensions": [
-        "geopolitical_conflict"
+        "tax_policy",
+        "sanctions",
+        "political_instability"
       ],
-      "summary": "Aggregated risk from 1 companies in Russia."
+      "summary": "Aggregated risk from 3 companies in Global."
     },
     {
       "region": "European Union (EEA)",

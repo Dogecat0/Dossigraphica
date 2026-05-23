@@ -1,24 +1,1813 @@
 [
   {
     "company": "Advanced Micro Devices, Inc.",
-    "website": "ir.amd.com",
+    "website": "https://www.amd.com",
     "ticker": "AMD",
     "sector": "Semiconductors",
-    "description": "Advanced Micro Devices, Inc. is a global semiconductor company that designs and develops high-performance computing and visualization products, maintaining a significant international presence through its diverse portfolio of processors, graphics cards, and data center solutions serving markets across North America, Europe, and Asia.",
+    "description": "AMD (Advanced Micro Devices, Inc.) is a global fabless semiconductor company headquartered in Santa Clara, California, with a worldwide footprint spanning subsidiaries in over 20 countries including Armenia, Barbados, Belgium, Bermuda, Brazil, Canada, China, Denmark, Finland, France, Germany, Hong Kong, India, Ireland, Israel, Italy, Japan, Malaysia, Netherlands, Poland, Romania, Serbia, Singapore, Spain, Sweden, Switzerland, and the UK. The company generates 66-71% of its net revenue from international markets, with significant revenue contributions from the United States ($8.7B), China/Hong Kong ($6.2B), Singapore ($3.6B), Taiwan ($3.3B), Japan ($1.8B), and Europe ($1.6B) in FY2024. AMD employs approximately 31,000 people globally and operates through segments including Data Center, Client, Gaming, and Embedded, serving customers across North America, Asia-Pacific, and Europe.",
     "offices": [
       {
-        "id": "AMD-SANTACLARA-HEADQUARTERS",
-        "name": "AMD Corporate Headquarters",
+        "id": "AMD-SANTA_CLARA-HQ",
+        "name": "AMD Global Headquarters",
         "city": "Santa Clara",
         "state": "California",
         "country": "United States",
-        "address": "Santa Clara, California",
-        "lat": 37.3541,
-        "lng": -121.9552,
-        "businessFocus": "Corporate headquarters and executive management",
+        "address": "2485 Augustine Drive, Santa Clara, CA 95054",
+        "lat": 37.3875,
+        "lng": -121.9783,
+        "businessFocus": "Corporate headquarters, executive management, administration",
         "type": "headquarters",
         "sources": [
-          "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html"
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AUSTIN-ENGINEERING",
+        "name": "AMD Austin Office - Southwest Parkway",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "address": "7171 Southwest Parkway, Austin, TX 78735",
+        "lat": 30.3075,
+        "lng": -97.87,
+        "businessFocus": "R&D, engineering, corporate operations",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AUSTIN-SALES",
+        "name": "AMD Austin - Research Blvd",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "address": "12301 Research Blvd., Suite 300, Austin, TX 78759",
+        "lat": 30.4075,
+        "lng": -97.755,
+        "businessFocus": "Sales and support",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AUSTIN-SATELLITE1",
+        "name": "AMD Austin - Airport Commerce Drive",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "address": "1340 Airport Commerce Drive, Austin, TX 78741",
+        "lat": 30.2075,
+        "lng": -97.69,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AUSTIN-SATELLITE2",
+        "name": "AMD Austin - William Cannon Drive",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "address": "7000 West William Cannon Drive, Austin, TX 78735",
+        "lat": 30.2975,
+        "lng": -97.88,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AUSTIN-SATELLITE3",
+        "name": "AMD Austin - Metropolis Drive",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "United States",
+        "address": "8000 Metropolis Drive, Building C, Austin, TX 78744",
+        "lat": 30.1975,
+        "lng": -97.72,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SAN_JOSE-ENGINEERING",
+        "name": "AMD San Jose Office",
+        "city": "San Jose",
+        "state": "California",
+        "country": "United States",
+        "address": "2100 Logic Drive, San Jose, CA 95124",
+        "lat": 37.26,
+        "lng": -121.92,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-FOLSOM-ENGINEERING",
+        "name": "AMD Folsom Office",
+        "city": "Folsom",
+        "state": "California",
+        "country": "United States",
+        "address": "1024 Iron Point Road, Folsom, CA 95630",
+        "lat": 38.65,
+        "lng": -121.17,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SAN_DIEGO-ENGINEERING",
+        "name": "AMD San Diego Office",
+        "city": "San Diego",
+        "state": "California",
+        "country": "United States",
+        "address": "9620 Towne Centre Drive, San Diego, CA 92121",
+        "lat": 32.9,
+        "lng": -117.21,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-LONGMONT-ENGINEERING",
+        "name": "AMD Longmont Office",
+        "city": "Longmont",
+        "state": "Colorado",
+        "country": "United States",
+        "address": "1951 S. Fordham Street, Longmont, CO 80503",
+        "lat": 40.14,
+        "lng": -105.13,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-LONGMONT-SATELLITE",
+        "name": "AMD Longmont - Logic Drive",
+        "city": "Longmont",
+        "state": "Colorado",
+        "country": "United States",
+        "address": "3100 Logic Drive, Longmont, CO 80503",
+        "lat": 40.15,
+        "lng": -105.14,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-FT_COLLINS-ENGINEERING",
+        "name": "AMD Fort Collins Office",
+        "city": "Fort Collins",
+        "state": "Colorado",
+        "country": "United States",
+        "address": "2950 East Harmony Road, Fort Collins, CO 80528",
+        "lat": 40.52,
+        "lng": -105.03,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BELLEVUE-SALES",
+        "name": "AMD Bellevue Office",
+        "city": "Bellevue",
+        "state": "Washington",
+        "country": "United States",
+        "address": "2002-156th Avenue NE, Bellevue, WA 98007",
+        "lat": 47.62,
+        "lng": -122.13,
+        "businessFocus": "Sales, engineering",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SEATTLE-SALES",
+        "name": "AMD Seattle Office",
+        "city": "Seattle",
+        "state": "Washington",
+        "country": "United States",
+        "address": "901 Fifth Avenue, Suites #2200, 2250, 400, 4th floor, Seattle, WA 98164",
+        "lat": 47.605,
+        "lng": -122.33,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BOXBOROUGH-ENGINEERING",
+        "name": "AMD Boxborough Office",
+        "city": "Boxborough",
+        "state": "Massachusetts",
+        "country": "United States",
+        "address": "90 Central Street, Boxborough, MA 01719",
+        "lat": 42.48,
+        "lng": -71.52,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-ADDISON-SALES",
+        "name": "AMD Addison Office",
+        "city": "Addison",
+        "state": "Texas",
+        "country": "United States",
+        "address": "15455 N Dallas Parkway, Suite #1230, Addison, TX 75001",
+        "lat": 32.96,
+        "lng": -96.82,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SPRING-SALES",
+        "name": "AMD Spring Office",
+        "city": "Spring",
+        "state": "Texas",
+        "country": "United States",
+        "address": "2002 Timberloch Place, Spring, TX 77380",
+        "lat": 30.08,
+        "lng": -95.42,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-ALBUQUERQUE-SALES",
+        "name": "AMD Albuquerque Office",
+        "city": "Albuquerque",
+        "state": "New Mexico",
+        "country": "United States",
+        "address": "5051 Journal Center Blvd., NE, Suite #310, Albuquerque, NM 87109",
+        "lat": 35.15,
+        "lng": -106.57,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-FISHKILL-SALES",
+        "name": "AMD Fishkill Office",
+        "city": "Fishkill",
+        "state": "New York",
+        "country": "United States",
+        "address": "300 Westage Business Center Drive, Suite 200, Fishkill, NY 12524",
+        "lat": 41.53,
+        "lng": -73.9,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-ROCHESTER-SALES",
+        "name": "AMD Rochester Office",
+        "city": "Rochester",
+        "state": "New York",
+        "country": "United States",
+        "address": "350 Linden Oaks, Suite 210, Rochester, NY 14625",
+        "lat": 43.13,
+        "lng": -77.51,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-ORLANDO-SALES",
+        "name": "AMD Orlando Office",
+        "city": "Orlando",
+        "state": "Florida",
+        "country": "United States",
+        "address": "2300 Discovery Drive, Suite 500, Orlando, FL 32826",
+        "lat": 28.58,
+        "lng": -81.2,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-PLYMOUTH-SALES",
+        "name": "AMD Plymouth Office",
+        "city": "Plymouth",
+        "state": "Minnesota",
+        "country": "United States",
+        "address": "3650 Annapolis Lane North, Suite 120, Plymouth, MN 55447",
+        "lat": 45.02,
+        "lng": -93.46,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-RALEIGH-SALES",
+        "name": "AMD Raleigh Office",
+        "city": "Raleigh",
+        "state": "North Carolina",
+        "country": "United States",
+        "address": "220 Horizon Drive, Suite #114, Raleigh, NC 27615",
+        "lat": 35.88,
+        "lng": -78.65,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SECAUCUS-SALES",
+        "name": "AMD Secaucus Office",
+        "city": "Secaucus",
+        "state": "New Jersey",
+        "country": "United States",
+        "address": "10 Enterprise Avenue, Secaucus, NJ 07094",
+        "lat": 40.79,
+        "lng": -74.06,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-WIXOM-SALES",
+        "name": "AMD Wixom Office",
+        "city": "Wixom",
+        "state": "Michigan",
+        "country": "United States",
+        "address": "28345 Beck Road, Suite #400, Wixom, MI 48393",
+        "lat": 42.52,
+        "lng": -83.53,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-WASHINGTON_DC-SALES",
+        "name": "AMD Washington D.C. Office",
+        "city": "Washington",
+        "state": "District of Columbia",
+        "country": "United States",
+        "address": "401 9th Street NW, Washington, D.C. 20004",
+        "lat": 38.895,
+        "lng": -77.02,
+        "businessFocus": "Government affairs, sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MARKHAM-ENGINEERING",
+        "name": "AMD Markham Office - Commerce Valley Drive",
+        "city": "Markham",
+        "state": "Ontario",
+        "country": "Canada",
+        "address": "1 Commerce Valley Drive, Markham, ON L3T 7X3",
+        "lat": 43.84,
+        "lng": -79.38,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MARKHAM-SATELLITE1",
+        "name": "AMD Markham - Commerce Valley Drive West",
+        "city": "Markham",
+        "state": "Ontario",
+        "country": "Canada",
+        "address": "33 Commerce Valley Drive, Markham, ON L3T 7T6",
+        "lat": 43.84,
+        "lng": -79.39,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MARKHAM-SATELLITE2",
+        "name": "AMD Markham - McNabb Street",
+        "city": "Markham",
+        "state": "Ontario",
+        "country": "Canada",
+        "address": "160 McNabb Street, Markham, ON L3R 4B8",
+        "lat": 43.83,
+        "lng": -79.36,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-CALGARY-SALES",
+        "name": "AMD Calgary Office",
+        "city": "Calgary",
+        "state": "Alberta",
+        "country": "Canada",
+        "address": "2500-500 4th Avenue SW, Calgary, AB T2P 2V6",
+        "lat": 51.05,
+        "lng": -114.07,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-OTTAWA-ENGINEERING",
+        "name": "AMD Ottawa Office",
+        "city": "Ottawa",
+        "state": "Ontario",
+        "country": "Canada",
+        "address": "84 Hines Road, Suite #300, Ottawa, ON K2K 3G3",
+        "lat": 45.34,
+        "lng": -75.91,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-VANCOUVER-ENGINEERING",
+        "name": "AMD Vancouver Office",
+        "city": "Vancouver",
+        "state": "British Columbia",
+        "country": "Canada",
+        "address": "2930 Virtual Way #300, Vancouver, BC V5M 4X6",
+        "lat": 49.26,
+        "lng": -123.04,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-WATERLOO-ENGINEERING",
+        "name": "AMD Waterloo Office",
+        "city": "Waterloo",
+        "state": "Ontario",
+        "country": "Canada",
+        "address": "420 Weber Street, North Suite #J, Waterloo, ON N2L 4E7",
+        "lat": 43.48,
+        "lng": -80.54,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-DUBLIN-ENGINEERING",
+        "name": "AMD Dublin Office",
+        "city": "Dublin",
+        "state": null,
+        "country": "Ireland",
+        "address": "Logic Drive, Bianconi Avenue, Citywest, Dublin, D24 T683",
+        "lat": 53.29,
+        "lng": -6.43,
+        "businessFocus": "Engineering, R&D, sales",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-CORK-SALES",
+        "name": "AMD Cork Office",
+        "city": "Cork",
+        "state": null,
+        "country": "Ireland",
+        "address": "Unit 6 Eastgate Avenue, Little Island, Cork, T45 YW71",
+        "lat": 51.91,
+        "lng": -8.36,
+        "businessFocus": "Sales, operations",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-LONDON-SALES",
+        "name": "AMD London Office",
+        "city": "London",
+        "state": null,
+        "country": "United Kingdom",
+        "address": "28th and 29th floor, 30 St Mary Axe, London, EC3A 8BF",
+        "lat": 51.514,
+        "lng": -0.081,
+        "businessFocus": "Sales, corporate",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BELFAST-ENGINEERING",
+        "name": "AMD Belfast Office",
+        "city": "Belfast",
+        "state": "Northern Ireland",
+        "country": "United Kingdom",
+        "address": "7 Clarendon Road (City Quays 2; 4th floor), Belfast, Northern Ireland BT1 3BG",
+        "lat": 54.6,
+        "lng": -5.93,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-CAMBRIDGE-ENGINEERING",
+        "name": "AMD Cambridge Office",
+        "city": "Cambridge",
+        "state": null,
+        "country": "United Kingdom",
+        "address": "196 Science Park, Milton Road, Cambridge CB4 0AB",
+        "lat": 52.23,
+        "lng": 0.14,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-EDINBURGH-ENGINEERING",
+        "name": "AMD Edinburgh Office",
+        "city": "Edinburgh",
+        "state": "Scotland",
+        "country": "United Kingdom",
+        "address": "Charles Darwin House, Edinburgh Technopole, Bush Loan, Penicuik EH26 0PY",
+        "lat": 55.87,
+        "lng": -3.22,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MANCHESTER-SALES",
+        "name": "AMD Manchester Office",
+        "city": "Manchester",
+        "state": null,
+        "country": "United Kingdom",
+        "address": "1 Balloon Street, Manchester M4 4BE",
+        "lat": 53.485,
+        "lng": -2.24,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-OXFORD-SALES",
+        "name": "AMD Oxford Office",
+        "city": "Oxford",
+        "state": null,
+        "country": "United Kingdom",
+        "address": "Prama House, 267 Banbury Road, Offices 40 & 41, Summertown, Oxford OX2 7HT",
+        "lat": 51.78,
+        "lng": -1.26,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MUNICH-ENGINEERING",
+        "name": "AMD Munich Office - Aschheim",
+        "city": "Munich",
+        "state": "Bavaria",
+        "country": "Germany",
+        "address": "Einsteinring 22-28, 85609 Aschheim, Munich",
+        "lat": 48.17,
+        "lng": 11.72,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MUNICH-SALES",
+        "name": "AMD Munich - Willy-Brandt-Allee",
+        "city": "Munich",
+        "state": "Bavaria",
+        "country": "Germany",
+        "address": "Willy-Brandt-Allee 4, 81829 Munich",
+        "lat": 48.13,
+        "lng": 11.7,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-KOLN-SALES",
+        "name": "AMD Cologne Office",
+        "city": "Cologne",
+        "state": "North Rhine-Westphalia",
+        "country": "Germany",
+        "address": "Widdersdorfer Str. 260, 50933 Köln",
+        "lat": 50.94,
+        "lng": 6.87,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-PARIS-SALES",
+        "name": "AMD Paris Office",
+        "city": "Paris",
+        "state": null,
+        "country": "France",
+        "address": "44 Rue d'Alésia, 75014 Paris",
+        "lat": 48.83,
+        "lng": 2.33,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-PALAISEAU-ENGINEERING",
+        "name": "AMD Palaiseau Office",
+        "city": "Palaiseau",
+        "state": null,
+        "country": "France",
+        "address": "24 Avenue Emile Baudot, 91120 Palaiseau",
+        "lat": 48.72,
+        "lng": 2.25,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-VOISIN_LE_BRETONNEUX-SALES",
+        "name": "AMD Voisin-le-Bretonneux Office",
+        "city": "Voisin-le-Bretonneux",
+        "state": null,
+        "country": "France",
+        "address": "Bat B, 2 Rue Rene Caudron, 78960 Voisin-le-Bretonneux",
+        "lat": 48.76,
+        "lng": 2.05,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-EYBENS-SALES",
+        "name": "AMD Eybens Office",
+        "city": "Eybens",
+        "state": null,
+        "country": "France",
+        "address": "Centre d'Affaires Le Concorde, 24 rue Lamartine, 38320 Eybens",
+        "lat": 45.15,
+        "lng": 5.75,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MILAN-SALES",
+        "name": "AMD Milan Office",
+        "city": "Milan",
+        "state": "Lombardy",
+        "country": "Italy",
+        "address": "Via Riccardo Lombardi No 19/16 and 19/18, 20153 Milano",
+        "lat": 45.48,
+        "lng": 9.12,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AMSTELVEEN-SALES",
+        "name": "AMD Amstelveen Office",
+        "city": "Amstelveen",
+        "state": null,
+        "country": "Netherlands",
+        "address": "Stroombaan 4, 1181 VX Amstelveen",
+        "lat": 52.3,
+        "lng": 4.86,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-NIJMEGEN-ENGINEERING",
+        "name": "AMD Nijmegen Office",
+        "city": "Nijmegen",
+        "state": null,
+        "country": "Netherlands",
+        "address": "Toernooiveld 100, 6525 EC Nijmegen",
+        "lat": 51.82,
+        "lng": 5.86,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-STOCKHOLM-ENGINEERING",
+        "name": "AMD Stockholm Office - Kista",
+        "city": "Stockholm",
+        "state": null,
+        "country": "Sweden",
+        "address": "Knarrarnasgatan 15, Kista, 16440 Stockholm",
+        "lat": 59.4,
+        "lng": 17.95,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-STOCKHOLM-SALES",
+        "name": "AMD Stockholm - Vasagatan",
+        "city": "Stockholm",
+        "state": null,
+        "country": "Sweden",
+        "address": "Vasagatan 12, 111 20 Stockholm",
+        "lat": 59.33,
+        "lng": 18.06,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-GOTHENBURG-ENGINEERING",
+        "name": "AMD Gothenburg Office",
+        "city": "Gothenburg",
+        "state": null,
+        "country": "Sweden",
+        "address": "Gotaforsliden 13 Nedre, Molndal, 43134 Gothenburg",
+        "lat": 57.66,
+        "lng": 12.01,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MALMO-SALES",
+        "name": "AMD Malmo Office",
+        "city": "Malmo",
+        "state": null,
+        "country": "Sweden",
+        "address": "Nordenskioldsgatan 11 A, Office 233, 211 19 Malmo",
+        "lat": 55.61,
+        "lng": 13.0,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HELSINKI-ENGINEERING",
+        "name": "AMD Helsinki Office",
+        "city": "Helsinki",
+        "state": null,
+        "country": "Finland",
+        "address": "Lapinlahdenkatu 1 C, 00180 Helsinki",
+        "lat": 60.16,
+        "lng": 24.93,
+        "businessFocus": "Engineering (Silo AI)",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-ESPOO-ENGINEERING",
+        "name": "AMD Espoo Office",
+        "city": "Espoo",
+        "state": null,
+        "country": "Finland",
+        "address": "Innopoli 2, Tekniikantie 14, 02150 Espoo",
+        "lat": 60.18,
+        "lng": 24.82,
+        "businessFocus": "Engineering (Silo AI)",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-TAMPERE-ENGINEERING",
+        "name": "AMD Tampere Office",
+        "city": "Tampere",
+        "state": null,
+        "country": "Finland",
+        "address": "Technopolis Asemakeskus, Peltokatu 26, 33100 Tampere",
+        "lat": 61.5,
+        "lng": 23.76,
+        "businessFocus": "Engineering (Silo AI)",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-TURKU-ENGINEERING",
+        "name": "AMD Turku Office",
+        "city": "Turku",
+        "state": null,
+        "country": "Finland",
+        "address": "Electrocity, Tykistökatu 4 D, 20520 Turku",
+        "lat": 60.45,
+        "lng": 22.28,
+        "businessFocus": "Engineering (Silo AI)",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-JYVASKYLA-ENGINEERING",
+        "name": "AMD Jyväskylä Office",
+        "city": "Jyväskylä",
+        "state": null,
+        "country": "Finland",
+        "address": "Crazy Town Jyväskylä, Kauppakatu 39, 40100 Jyväskylä",
+        "lat": 62.24,
+        "lng": 25.74,
+        "businessFocus": "Engineering (Silo AI)",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-COPENHAGEN-SALES",
+        "name": "AMD Copenhagen Office",
+        "city": "Copenhagen",
+        "state": null,
+        "country": "Denmark",
+        "address": "Kronprinsessegade 26, 1306 Copenhagen",
+        "lat": 55.68,
+        "lng": 12.59,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-AALST-SALES",
+        "name": "AMD Aalst Office",
+        "city": "Aalst",
+        "state": null,
+        "country": "Belgium",
+        "address": "Villalaan 16, Erembodegen, 9320 Aalst",
+        "lat": 50.92,
+        "lng": 4.05,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BELGRADE-ENGINEERING",
+        "name": "AMD Belgrade Office",
+        "city": "Belgrade",
+        "state": null,
+        "country": "Serbia",
+        "address": "Milutina Milankovica 19 b, 11070 Belgrade",
+        "lat": 44.8,
+        "lng": 20.42,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-NIS-ENGINEERING",
+        "name": "AMD Niš Office",
+        "city": "Niš",
+        "state": null,
+        "country": "Serbia",
+        "address": "Aleksandra Medvedeva 2a, 18104 Niš",
+        "lat": 43.32,
+        "lng": 21.9,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-IASI-ENGINEERING",
+        "name": "AMD Iasi Office",
+        "city": "Iasi",
+        "state": null,
+        "country": "Romania",
+        "address": "39A St. Andrew Street, Building B1/B2, 3rd floor, 700028 Iasi",
+        "lat": 47.16,
+        "lng": 27.59,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HOLON-ENGINEERING",
+        "name": "AMD Holon Office",
+        "city": "Holon",
+        "state": null,
+        "country": "Israel",
+        "address": "Holon Azrieli Center, 26 HaRokmin Street, Holon 5885880",
+        "lat": 32.01,
+        "lng": 34.77,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-DUBAI-SALES",
+        "name": "AMD Dubai Office",
+        "city": "Dubai",
+        "state": null,
+        "country": "United Arab Emirates",
+        "address": "Dubai Multi Commodities Centre, Jewellery & Gemplex 3, Unit Nos. 3337 & 3687, Floor 1, Dubai",
+        "lat": 25.07,
+        "lng": 55.14,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-ISTANBUL-SALES",
+        "name": "AMD Istanbul Office",
+        "city": "Istanbul",
+        "state": null,
+        "country": "Turkey",
+        "address": "Barbaros, Halk Cd. Palladium Ofis ve Residence No:8/A KAT 2, 34756 Ataşehir/İstanbul",
+        "lat": 40.99,
+        "lng": 29.13,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-YEREVAN-ENGINEERING",
+        "name": "AMD Yerevan Office",
+        "city": "Yerevan",
+        "state": null,
+        "country": "Armenia",
+        "address": "Vazgen Sargsyan 10, 3rd Floor, Office 79-81, Yerevan, Armenia 0010",
+        "lat": 40.18,
+        "lng": 44.51,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BENGALURU-ENGINEERING",
+        "name": "AMD Bengaluru - Prestige Technostar",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "country": "India",
+        "address": "Prestige Technostar, Whitefield (Building II, Plot 100-103), Bengaluru, Karnataka",
+        "lat": 12.97,
+        "lng": 77.73,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BENGALURU-SATELLITE1",
+        "name": "AMD Bengaluru - Koramangala",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "country": "India",
+        "address": "Kabra Excelsior, Koramangala, Bengaluru, Karnataka",
+        "lat": 12.93,
+        "lng": 77.62,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BENGALURU-SATELLITE2",
+        "name": "AMD Bengaluru - Palace Road",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "country": "India",
+        "address": "No. 46 Palace Road, Bengaluru, Karnataka",
+        "lat": 12.98,
+        "lng": 77.59,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HYDERABAD-ENGINEERING",
+        "name": "AMD Hyderabad - Mindspace",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "country": "India",
+        "address": "Building 11, Mindspace, Madhapur, Hyderabad, Telangana",
+        "lat": 17.44,
+        "lng": 78.39,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HYDERABAD-SATELLITE",
+        "name": "AMD Hyderabad - Knowledge City",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "country": "India",
+        "address": "Salarpuria Sattva Knowledge City, 10th to 17th Floor, Hyderabad, Telangana",
+        "lat": 17.42,
+        "lng": 78.35,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-GURGAON-SALES",
+        "name": "AMD Gurgaon Office",
+        "city": "Gurgaon",
+        "state": "Haryana",
+        "country": "India",
+        "address": "Spaze I-Tech Park, Level 3, Unit 358 to 366, Tower B1, Sector 49, Sohna Road, Gurgaon-122018",
+        "lat": 28.41,
+        "lng": 77.04,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MUMBAI-SALES",
+        "name": "AMD Mumbai Office",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "address": "Sahar Road, Near Andheri (E) Railway Station, Andheri East, Mumbai, Maharashtra 400058",
+        "lat": 19.11,
+        "lng": 72.87,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-NEW_DELHI-SALES",
+        "name": "AMD New Delhi Office",
+        "city": "New Delhi",
+        "state": "Delhi",
+        "country": "India",
+        "address": "A-25, 2nd Floor, Mathura Road, Mohan Cooperative Industrial Estate, New Delhi, Delhi 110044",
+        "lat": 28.57,
+        "lng": 77.32,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SHANGHAI-ENGINEERING",
+        "name": "AMD Shanghai - Zhangdong Road",
+        "city": "Shanghai",
+        "state": null,
+        "country": "China",
+        "address": "1387 Zhangdong Road, Pudong District, Shanghai",
+        "lat": 31.22,
+        "lng": 121.59,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SHANGHAI-SATELLITE1",
+        "name": "AMD Shanghai - Huan Ke Road",
+        "city": "Shanghai",
+        "state": null,
+        "country": "China",
+        "address": "No. 669 Huan Ke Road, Pudong New Area, Shanghai",
+        "lat": 31.21,
+        "lng": 121.6,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SHANGHAI-SATELLITE2",
+        "name": "AMD Shanghai - Puruan Building",
+        "city": "Shanghai",
+        "state": null,
+        "country": "China",
+        "address": "Unit 601, Puruan Building, Zhangjiang Hi-Tech Park, Shanghai",
+        "lat": 31.2,
+        "lng": 121.58,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BEIJING-ENGINEERING",
+        "name": "AMD Beijing - Raycom Infotech Park",
+        "city": "Beijing",
+        "state": null,
+        "country": "China",
+        "address": "19F, Raycom Infotech Park Tower C, Haidian District, Beijing",
+        "lat": 39.98,
+        "lng": 116.31,
+        "businessFocus": "Engineering, sales",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BEIJING-SATELLITE",
+        "name": "AMD Beijing - An Ding Road",
+        "city": "Beijing",
+        "state": null,
+        "country": "China",
+        "address": "Building 5 of No.5 Yard, An Ding Road, Chaoyang District, Beijing",
+        "lat": 39.97,
+        "lng": 116.41,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SHENZHEN-ENGINEERING",
+        "name": "AMD Shenzhen - Chuangye Road",
+        "city": "Shenzhen",
+        "state": null,
+        "country": "China",
+        "address": "3023 Chuangye Road, Nanshan District, Shenzhen",
+        "lat": 22.54,
+        "lng": 113.94,
+        "businessFocus": "Engineering, sales",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SHENZHEN-SATELLITE",
+        "name": "AMD Shenzhen - Center 4th Road",
+        "city": "Shenzhen",
+        "state": null,
+        "country": "China",
+        "address": "No. 1-1, Center 4th Road, Futian District, Shenzhen",
+        "lat": 22.53,
+        "lng": 114.06,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SUZHOU-MANUFACTURING",
+        "name": "AMD Suzhou Office",
+        "city": "Suzhou",
+        "state": "Jiangsu",
+        "country": "China",
+        "address": "4th Floor Units 01 & 02 & 5th Floor Units 02-07, Building 5, No. 5 Xinghan Street, Suzhou Industrial Park, Suzhou, Jiangsu 215021",
+        "lat": 31.32,
+        "lng": 120.72,
+        "businessFocus": "Manufacturing, engineering (TF-AMD Semiconductor)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-XIAN-ENGINEERING",
+        "name": "AMD Xi'an Office",
+        "city": "Xi'an",
+        "state": "Shaanxi",
+        "country": "China",
+        "address": "Xi'an Hi-tech Industrial Development Zone No. 36 Jingye Road, Xi'an, Shaanxi 710011",
+        "lat": 34.21,
+        "lng": 108.89,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-CHENGDU-ENGINEERING",
+        "name": "AMD Chengdu Office",
+        "city": "Chengdu",
+        "state": "Sichuan",
+        "country": "China",
+        "address": "Unit 1205, No.1777, Chengdu China Taiping Finance Mansion, North Tianfu Avenue, High-Tech District, Chengdu, Sichuan 610041",
+        "lat": 30.57,
+        "lng": 104.07,
+        "businessFocus": "Engineering (Haiguang Microelectronics)",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-CHONGQING-SALES",
+        "name": "AMD Chongqing Office",
+        "city": "Chongqing",
+        "state": null,
+        "country": "China",
+        "address": "No. 6 Xiyuan Street North, Shapingba District, Chongqing City 401332",
+        "lat": 29.56,
+        "lng": 106.46,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-NANJING-SALES",
+        "name": "AMD Nanjing Office",
+        "city": "Nanjing",
+        "state": "Jiangsu",
+        "country": "China",
+        "address": "188 Lushan Road, Jianye District, Nanjing, Jiangsu 210019",
+        "lat": 32.01,
+        "lng": 118.73,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HONG_KONG-ENGINEERING",
+        "name": "AMD Hong Kong - Science Park",
+        "city": "Hong Kong",
+        "state": null,
+        "country": "Hong Kong",
+        "address": "No. 3 Science Park East Avenue, Hong Kong Science Park, Shatin, New Territories",
+        "lat": 22.42,
+        "lng": 114.21,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HONG_KONG-SALES",
+        "name": "AMD Hong Kong - Grand Century Place",
+        "city": "Hong Kong",
+        "state": null,
+        "country": "Hong Kong",
+        "address": "Units 102-104, Level 17, Tower I, Grand Century Place, Mongkok, Kowloon",
+        "lat": 22.32,
+        "lng": 114.17,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-TOKYO-ENGINEERING",
+        "name": "AMD Tokyo - Osaki",
+        "city": "Tokyo",
+        "state": null,
+        "country": "Japan",
+        "address": "1-2-2, Osaki, Shinagawa-ku, Tokyo 141-0032",
+        "lat": 35.62,
+        "lng": 139.73,
+        "businessFocus": "Engineering, sales",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-TOKYO-SALES",
+        "name": "AMD Tokyo - Marunouchi",
+        "city": "Tokyo",
+        "state": null,
+        "country": "Japan",
+        "address": "8-3 Marunouchi 1-chome, Chiyoda-ku, Tokyo 100-0005",
+        "lat": 35.68,
+        "lng": 139.76,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-NAGOYA-SALES",
+        "name": "AMD Nagoya Office",
+        "city": "Nagoya",
+        "state": null,
+        "country": "Japan",
+        "address": "3-28-12 Meieki, Nakamura-ku, Nagoya 4500002",
+        "lat": 35.17,
+        "lng": 136.88,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-TAIPEI-ENGINEERING",
+        "name": "AMD Taipei - Nangang",
+        "city": "Taipei",
+        "state": null,
+        "country": "Taiwan",
+        "address": "19F No. 170 Jingmao 1st Road, Nangang District, Taipei",
+        "lat": 25.06,
+        "lng": 121.61,
+        "businessFocus": "Engineering, sales",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-TAIPEI-SATELLITE",
+        "name": "AMD Taipei - Park Street",
+        "city": "Taipei",
+        "state": null,
+        "country": "Taiwan",
+        "address": "3F-6F, 11F-12F No. 3-2 Park Street, Nangang District, Taipei",
+        "lat": 25.06,
+        "lng": 121.62,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HSINCHU-ENGINEERING",
+        "name": "AMD Hsinchu - Gongdao 5th Road",
+        "city": "Hsinchu",
+        "state": null,
+        "country": "Taiwan",
+        "address": "No. 101, Sec. 2, Gongdao 5th Road, East District, Hsinchu",
+        "lat": 24.79,
+        "lng": 121.0,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-HSINCHU-SATELLITE",
+        "name": "AMD Hsinchu - Guanxin Road",
+        "city": "Hsinchu",
+        "state": null,
+        "country": "Taiwan",
+        "address": "No. 27 Guanxin Road, East District, Hsinchu",
+        "lat": 24.78,
+        "lng": 121.01,
+        "businessFocus": "Engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-KAOHSIUNG-SALES",
+        "name": "AMD Kaohsiung Office",
+        "city": "Kaohsiung",
+        "state": null,
+        "country": "Taiwan",
+        "address": "24F, No. 29, Haibian Road, Lingya District, Kaohsiung City 802608",
+        "lat": 22.62,
+        "lng": 120.29,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MIAOLI-MANUFACTURING",
+        "name": "AMD Miaoli Office",
+        "city": "Miaoli",
+        "state": null,
+        "country": "Taiwan",
+        "address": "No. 118, Chung-Hua Road, Chu-Nan, Miaoli City 35053",
+        "lat": 24.68,
+        "lng": 120.88,
+        "businessFocus": "Manufacturing, engineering",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-NEW_TAIPEI_CITY-SALES",
+        "name": "AMD New Taipei City Office",
+        "city": "New Taipei City",
+        "state": null,
+        "country": "Taiwan",
+        "address": "12F, No. 93, Sector 1, Xintai 5th Road, Xizhi District, New Taipei City 221416",
+        "lat": 25.06,
+        "lng": 121.65,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SINGAPORE-ENGINEERING",
+        "name": "AMD Singapore - Changi Business Park",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "5 Changi Business Park Vista, Singapore",
+        "lat": 1.34,
+        "lng": 103.96,
+        "businessFocus": "Engineering, R&D, regional HQ",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SINGAPORE-SATELLITE",
+        "name": "AMD Singapore - Chai Chee Lane",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "508 Chai Chee Lane, Singapore",
+        "lat": 1.33,
+        "lng": 103.92,
+        "businessFocus": "Engineering, sales",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-PENANG-MANUFACTURING",
+        "name": "AMD Penang Office",
+        "city": "Penang",
+        "state": "Pulau Pinang",
+        "country": "Malaysia",
+        "address": "GBS by the Sea – L9, #2 Medan Bayan Lepas, Technoplex, Bayan Lepas Industrial Park, Phase 4, 11900 Bayan Lepas, Pulau Pinang",
+        "lat": 5.3,
+        "lng": 100.28,
+        "businessFocus": "Manufacturing, engineering",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.amd.com",
+          "https://www.sec.gov"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-CYBERJAYA-ENGINEERING",
+        "name": "AMD Cyberjaya Office",
+        "city": "Cyberjaya",
+        "state": "Selangor",
+        "country": "Malaysia",
+        "address": "Block 3750 Persiaran APEC, Cyber 8, 63500 Cyberjaya, Selangor Darul Ehsan",
+        "lat": 2.92,
+        "lng": 101.65,
+        "businessFocus": "Engineering, R&D",
+        "type": "engineering",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SEOUL-SALES",
+        "name": "AMD Seoul - Yeongdong-daero",
+        "city": "Seoul",
+        "state": null,
+        "country": "South Korea",
+        "address": "517 Yeongdong-daero, Gangnam-gu, Seoul",
+        "lat": 37.51,
+        "lng": 127.04,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SEOUL-SATELLITE",
+        "name": "AMD Seoul - Yeouido",
+        "city": "Seoul",
+        "state": null,
+        "country": "South Korea",
+        "address": "63Ro (Hanwha 63 Building), 50 Yoido-dong, Youngdeungpo-gu, Seoul",
+        "lat": 37.52,
+        "lng": 126.94,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BANGKOK-SALES",
+        "name": "AMD Bangkok Office",
+        "city": "Bangkok",
+        "state": null,
+        "country": "Thailand",
+        "address": "Bangkok Regus Office, Wireless Road, Pathum Wan, Bangkok 10330",
+        "lat": 13.74,
+        "lng": 100.55,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SYDNEY-SALES",
+        "name": "AMD Sydney Office",
+        "city": "Sydney",
+        "state": "New South Wales",
+        "country": "Australia",
+        "address": "60 Martin Place, Podium Levels 1, 2 & 3, Offices 312-316, 331, Sydney NSW 2000",
+        "lat": -33.87,
+        "lng": 151.21,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-BUENOS_AIRES-SALES",
+        "name": "AMD Buenos Aires Office",
+        "city": "Buenos Aires",
+        "state": null,
+        "country": "Argentina",
+        "address": "El Salvador, 5220, Palermo Soho, Buenos Aires",
+        "lat": -34.58,
+        "lng": -58.43,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-SAO_PAULO-SALES",
+        "name": "AMD Sao Paulo Office",
+        "city": "Sao Paulo",
+        "state": "Sao Paulo",
+        "country": "Brazil",
+        "address": "230 George Ohm Street, Sao Paulo - SP 04576-020",
+        "lat": -23.61,
+        "lng": -46.69,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AMD-MEXICO_CITY-SALES",
+        "name": "AMD Mexico City Office",
+        "city": "Mexico City",
+        "state": null,
+        "country": "Mexico",
+        "address": "Blvd. Manuel Avila Camacho No. 40, Lomas de Chapultepec, 11000 Mexico City",
+        "lat": 19.43,
+        "lng": -99.22,
+        "businessFocus": "Sales",
+        "type": "sales",
+        "sources": [
+          "https://www.amd.com"
         ],
         "confidence": "verified"
       }

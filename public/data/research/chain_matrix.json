@@ -1,36 +1,124 @@
 {
-  "lastUpdated": "2026-05-23T00:28:11.803414",
+  "lastUpdated": "2026-05-23T16:11:11.511518",
   "version": "1.0.0",
   "dependencies": [
     {
       "from": "AMD",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "AMD depends on Taiwan Semiconductor Manufacturing Company (TSMC) for Wafer fabrication for 7nm and smaller nodes (microprocessors, GPUs, HPC, FPGA, Adaptive SoC)",
+      "strength": "critical",
+      "value": "foundry"
+    },
+    {
+      "from": "AMD",
+      "to": "GLOBALFOUNDRIES Inc. (GF)",
+      "type": "buyer_supplier",
+      "description": "AMD depends on GLOBALFOUNDRIES Inc. (GF) for Wafer fabrication for >7nm nodes (12nm and 14nm technology nodes for HPC products)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AMD",
       "to": "005930.KS",
       "type": "buyer_supplier",
-      "description": "AMD depends on Samsung for HBM4 and advanced DRAM solutions",
+      "description": "AMD depends on Samsung Electronics Co., Ltd. for Wafer fabrication for programmable logic devices; HBM4 memory supply for Instinct MI455X GPUs and advanced DRAM for EPYC CPUs",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AMD",
+      "to": "United Microelectronics Corporation (UMC)",
+      "type": "buyer_supplier",
+      "description": "AMD depends on United Microelectronics Corporation (UMC) for Wafer fabrication for programmable logic devices (integrated circuits)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AMD",
+      "to": "Tongfu Microelectronics Co., Ltd. (ATMP JV)",
+      "type": "buyer_supplier",
+      "description": "AMD depends on Tongfu Microelectronics Co., Ltd. (ATMP JV) for Assembly, test, mark and packaging (ATMP) services - majority of AMD's ATMP needs",
       "strength": "critical",
-      "value": "key_supplier"
+      "value": "assembly_test"
     },
     {
-      "from": "META",
+      "from": "AMD",
+      "to": "Siliconware Precision Industries Ltd. (SPIL)",
+      "type": "buyer_supplier",
+      "description": "AMD depends on Siliconware Precision Industries Ltd. (SPIL) for Assembly, test, mark and packaging (ATMP) services",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "AMD",
+      "to": "King Yuan Electronics Company (KYEC)",
+      "type": "buyer_supplier",
+      "description": "AMD depends on King Yuan Electronics Company (KYEC) for Assembly, test, mark and packaging (ATMP) services",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "AMD",
+      "to": "Sanmina Corporation",
+      "type": "buyer_supplier",
+      "description": "AMD depends on Sanmina Corporation for Preferred manufacturing partner - acquired ZT Systems' data center infrastructure manufacturing business from AMD",
+      "strength": "important",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "AMD",
+      "to": "Hindustan Semiconductor Manufacturing Corporation (HSMC)",
+      "type": "buyer_supplier",
+      "description": "AMD depends on Hindustan Semiconductor Manufacturing Corporation (HSMC) for Production of AMD products in India",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "Sony",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "Meta is a major customer of AMD",
+      "description": "Sony is a major customer of AMD",
+      "strength": "critical",
+      "value": "18% (2024), 16% (2023, 2022) - Gaming segment (Customer A)"
+    },
+    {
+      "from": "MSFT",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Microsoft is a major customer of AMD",
       "strength": "important",
       "value": null
     },
     {
-      "from": "TCS",
+      "from": "Facebook",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "TCS is a major customer of AMD",
+      "description": "Facebook is a major customer of AMD",
       "strength": "important",
       "value": null
     },
     {
-      "from": "NAVER Cloud",
+      "from": "OpenAI",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "NAVER Cloud is a major customer of AMD",
+      "description": "OpenAI is a major customer of AMD",
+      "strength": "important",
+      "value": "Multibillion-dollar partnership; 6GW chip commitment; warrant for 160M AMD shares at $0.01/share tied to GPU purchase milestones"
+    },
+    {
+      "from": "Valve",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Valve is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "005930.KS",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Samsung is a major customer of AMD",
       "strength": "important",
       "value": null
     },
@@ -51,26 +139,154 @@
       "value": null
     },
     {
-      "from": "Microsoft Azure",
+      "from": "Tencent Cloud",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "Microsoft Azure is a major customer of AMD",
+      "description": "Tencent Cloud is a major customer of AMD",
       "strength": "important",
       "value": null
     },
     {
-      "from": "Tencent",
+      "from": "Oracle",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "Tencent is a major customer of AMD",
+      "description": "Oracle is a major customer of AMD",
       "strength": "important",
       "value": null
     },
     {
-      "from": "OpenAI",
+      "from": "Dell Technologies",
       "to": "AMD",
       "type": "buyer_supplier",
-      "description": "OpenAI is a major customer of AMD",
+      "description": "Dell Technologies is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HPE",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "HPE is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "U.S. Department of Energy",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "U.S. Department of Energy is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Nokia",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Nokia is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "KDDI",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "KDDI is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Bosch",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Bosch is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "TCS",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "TCS is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NAVER Cloud",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "NAVER Cloud is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Upstage",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Upstage is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HUMAIN",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "HUMAIN is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Red Hat",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Red Hat is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "xAI",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "xAI is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Zyphra",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Zyphra is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HP Inc.",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "HP Inc. is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Asus",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Asus is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Acer",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Acer is a major customer of AMD",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Analog Devices, Inc.",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "Analog Devices, Inc. is a major customer of AMD",
       "strength": "important",
       "value": null
     },
