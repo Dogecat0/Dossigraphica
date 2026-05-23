@@ -125,8 +125,8 @@ async def _fetch_single_fallback(url: str, client: httpx.AsyncClient, state: Res
     result = await http_coro
     if result and result.get("content"):
         entry = {"content": result["content"], "title": result.get("title", "")}
-        own_cache.set(url, entry)
-        cross_cache.set(url, entry)
+        await own_cache.set(url, entry)
+        await cross_cache.set(url, entry)
         logger.debug(f"Fallback ({name}) succeeded for {url}")
     return result
 
@@ -226,7 +226,7 @@ async def _run_tinyfish_extractor(
                 title = res.get("title", "")
                 if not content:
                     continue
-                _tinyfish_cache.set(url, {"content": content, "title": title})
+                await _tinyfish_cache.set(url, {"content": content, "title": title})
                 entry = {"url": url, "content": content, "title": title}
                 extraction_results.append(entry)
                 if content_queue:
@@ -349,7 +349,7 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
                             response = await client.get(jina_url)
                             response.raise_for_status()
                             result = {"url": url, "content": response.text, "title": ""}
-                            _jina_cache.set(url, {"content": response.text, "title": ""})
+                            await _jina_cache.set(url, {"content": response.text, "title": ""})
                             return result
                         except httpx.HTTPStatusError as e:
                             if e.response.status_code == 451:

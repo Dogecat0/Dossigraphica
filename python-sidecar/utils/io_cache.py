@@ -1,5 +1,6 @@
 import json
 import os
+import asyncio
 import logging
 
 logger = logging.getLogger(__name__)
@@ -40,21 +41,25 @@ class DiskCache:
             logger.error(f"DiskCache failed to load {self._path}: {e}")
             self._store = {}
 
-    def _save(self) -> None:
+    async def _save(self) -> None:
         try:
-            with open(self._path, "w") as f:
-                json.dump(self._store, f, indent=2)
+            data = json.dumps(self._store, indent=2)
+            await asyncio.to_thread(self._write_file, data)
         except Exception as e:
             logger.error(f"DiskCache failed to save {self._path}: {e}")
+
+    def _write_file(self, data: str) -> None:
+        with open(self._path, "w") as f:
+            f.write(data)
 
     def get(self, key: str):
         """Return cached value or None if not present."""
         return self._store.get(key)
 
-    def set(self, key: str, value) -> None:
+    async def set(self, key: str, value) -> None:
         """Store a value and immediately persist to disk."""
         self._store[key] = value
-        self._save()
+        await self._save()
 
     def __contains__(self, key: str) -> bool:
         return key in self._store

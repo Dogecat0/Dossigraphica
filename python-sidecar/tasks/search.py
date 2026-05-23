@@ -67,7 +67,7 @@ async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
 
                     found = data.get("results", [])
                     logger.debug(f"Query '{query}' returned {len(found)} results from TinyFish.")
-                    _tinyfish_search_cache.set(cache_key, found)
+                    await _tinyfish_search_cache.set(cache_key, found)
                     return found, query
                 except Exception as e:
                     logger.error(f"Error searching TinyFish for query '{query}': {e}")
@@ -157,7 +157,7 @@ async def run_search(state: ResearchState) -> ResearchState:
                     # Brave results are nested under web -> results
                     found = data.get("web", {}).get("results", [])
                     logger.debug(f"Query '{query}' returned {len(found)} results from Brave.")
-                    _search_cache.set(cache_key, found)
+                    await _search_cache.set(cache_key, found)
                     return found, query
                 except Exception as e:
                     logger.error(f"Error searching for query '{query}': {e}")
