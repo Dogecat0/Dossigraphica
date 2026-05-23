@@ -81,7 +81,7 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
                     await url_queue.put({"url": url})
                 return result
             else:
-                logger.debug(f"  REJECT: {url} — {verdict.reasoning[:80]}")
+                logger.debug(f"  REJECT: {url} — {verdict.reason[:80]}")
                 return None
         except Exception as e:
             logger.error(f"  ERROR triaging {url}: {e}. Keeping URL as fallback.")

@@ -2,14 +2,14 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional, Literal, Union
 
 # --- Strict Config to enforce GBNF grammar generation ---
-STRICT_CONFIG = ConfigDict(extra='forbid', strict=True)
+STRICT_CONFIG = ConfigDict(extra='ignore', strict=True)
 
 # --- Research State ---
 
 class FactSchema(BaseModel):
     """Schema for LLM extraction (no metadata)."""
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Brief logical justification for why this specific fact was extracted and its relevance.")
+    reason: str = Field(..., description="Brief logical justification for why this specific fact was extracted and its relevance.")
     content: str = Field(..., description="The factual statement or data point.")
     category: Literal['CORPORATE', 'OFFICES', 'REVENUE', 'SUPPLY_CHAIN', 'CUSTOMERS', 'RISKS', 'UNKNOWN'] = Field(..., description="The intelligence module this fact belongs to.")
 
@@ -38,18 +38,18 @@ class ResearchState(BaseModel):
 
 class PlannerSchema(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Step-by-step internal logic for the research plan.")
+    reason: str = Field(..., description="Step-by-step internal logic for the research plan.")
     search_queries: List[str] = Field(..., description="Array of precise search strings to explore all facets of the query.")
 
 class SingleTriageSchema(BaseModel):
     """Binary outcome schema for evaluating a single URL's authority."""
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Brief justification for the boolean decision.")
+    reason: str = Field(..., description="Brief justification for the boolean decision.")
     is_authoritative: bool = Field(..., description="True if the source is high-signal, credible, and NOT SEO spam.")
 
 class SynthesizerSchema(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="High-level analysis of the document's utility and geographic density.")
+    reason: str = Field(..., description="High-level analysis of the document's utility and geographic density.")
     extracted_facts: List[FactSchema] = Field(..., description="Dense list of specific categorized facts, numbers, and findings. If none are found, return an empty list.")
 
 # --- Geo-Intelligence Output Schemas (Mirroring TS types - STRICT) ---
@@ -79,7 +79,7 @@ class RevenueSegmentSchema(BaseModel):
 
 class RevenueGeographySchema(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Internal logic for selecting the reporting period and reconciling discrepancies between latest available data, prioritizing the most recent reporting period rather than data from previous period.")
+    reason: str = Field(..., description="Internal logic for selecting the reporting period and reconciling discrepancies between latest available data, prioritizing the most recent reporting period rather than data from previous period.")
     fiscalYear: str = Field(..., description="Reporting year.")
     totalRevenue: float | None = Field(..., description="Total company revenue.")
     currency: str = Field(..., description="Reporting currency (e.g., USD).")
@@ -129,19 +129,19 @@ class GeopoliticalRiskSchema(BaseModel):
 
 class AnchorFilingSchema(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Internal logic for selecting this specific filing as the anchor, for instance if we need to prioritize an earnings release/transcript over an older 10-Q/10-K.")
+    reason: str = Field(..., description="Internal logic for selecting this specific filing as the anchor, for instance if we need to prioritize an earnings release/transcript over an older 10-Q/10-K.")
     type: str = Field(..., description="Filing type (e.g., 10-K, 10-Q, 8-K, Earnings Release, Earnings Transcript).")
     date: str = Field(..., description="Filing date (YYYY-MM-DD).")
     fiscalPeriod: str = Field(..., description="Reporting period (e.g., Q1 2026).")
 
 class MarkdownSectionSchema(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Plan for the markdown narrative structure.")
+    reason: str = Field(..., description="Plan for the markdown narrative structure.")
     markdown_content: str = Field(..., description="The full markdown content for the section, including headers and markdown formatting.")
 
 class SummarySchema(BaseModel):
     model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Logic for data compression and point selection.")
+    reason: str = Field(..., description="Logic for data compression and point selection.")
     summary: str = Field(..., description="A high-density summary of the provided information, preserving all exact numbers, coordinates, and citations.")
 
 class GeoIntelligenceSchema(BaseModel):

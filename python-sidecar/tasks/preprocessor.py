@@ -36,7 +36,7 @@ EXTRACTION_USER_TEMPLATE = (
     "- SUPPLY_CHAIN: Foundry names, assembly sites, raw materials, logistics hubs.\n"
     "- CUSTOMERS: Major client names and their HQ locations.\n"
     "- RISKS: Export controls, trade restrictions, regulatory probes, tax policies.\n\n"
-    "Mandate: Be exhaustive. Extract as many distinct facts as possible."
+    "Mandate: Keep each fact concise — one sentence for reason, one sentence for content. Compact facts prevent output truncation and ensure all extracted information is fully formed."
 )
 
 def chunk_text(text: str, model: str, chunk_size: int, overlap: int) -> list:
@@ -93,7 +93,7 @@ async def squeeze_chunk(chunk: str, query: str, llm: LLMClient, source_url: str 
         if output.extracted_facts:
             return [
                 InternalFact(
-                    reasoning=f.reasoning,
+                    reason=f.reason,
                     content=f.content, 
                     category=f.category, 
                     source_url=source_url
