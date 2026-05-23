@@ -8,8 +8,14 @@ in the full LLMClient class.
 
 import os
 import logging
+from dotenv import load_dotenv
 from tenacity import wait_exponential
 from litellm.exceptions import Timeout
+
+# Load .env — PWD overrides all. Pipeline root overrides project root.
+load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'), override=False)
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'), override=True)
+load_dotenv('.env', override=True)  # PWD wins
 
 # ---------------------------------------------------------------------------
 # Logging
@@ -68,8 +74,10 @@ GEMINI_CTX_PER_REQUEST = int(os.getenv("GEMINI_CTX_PER_REQUEST", "32768"))
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
 DEEPSEEK_N_PARALLEL = int(os.getenv("DEEPSEEK_N_PARALLEL", "10"))
-DEEPSEEK_CTX_PER_REQUEST = int(os.getenv("DEEPSEEK_CTX_PER_REQUEST", "65536"))
-DEEPSEEK_THINKING = os.getenv("DEEPSEEK_THINKING", "disabled").lower()  # disabled | low | medium | high
+DEEPSEEK_CTX_PER_REQUEST = int(os.getenv("DEEPSEEK_CTX_PER_REQUEST", "131072"))
+DEEPSEEK_CHUNK_SIZE = int(os.getenv("DEEPSEEK_CHUNK_SIZE", "0"))
+GEMINI_CHUNK_SIZE = int(os.getenv("GEMINI_CHUNK_SIZE", "0"))
+LLAMA_CHUNK_SIZE = int(os.getenv("LLAMA_CHUNK_SIZE", "0"))
 
 # -- Output / safety --------------------------------------------------------
 # OUTPUT_RESERVATION is the baseline (local-provider) default.
@@ -77,7 +85,7 @@ DEEPSEEK_THINKING = os.getenv("DEEPSEEK_THINKING", "disabled").lower()  # disabl
 # for their respective providers; each falls back to OUTPUT_RESERVATION.
 OUTPUT_RESERVATION = int(os.getenv("OUTPUT_RESERVATION", "4096"))
 GEMINI_OUTPUT_RESERVATION = int(os.getenv("GEMINI_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
-DEEPSEEK_OUTPUT_RESERVATION = int(os.getenv("DEEPSEEK_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
+DEEPSEEK_OUTPUT_RESERVATION = int(os.getenv("DEEPSEEK_OUTPUT_RESERVATION", "8192"))
 SAFETY_BUFFER = 64
 
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
@@ -94,6 +102,7 @@ if LLM_PROVIDER == "gemini":
     ACTIVE_N_PARALLEL = GEMINI_N_PARALLEL
     ACTIVE_CTX_LIMIT = GEMINI_CTX_PER_REQUEST
     ACTIVE_OUTPUT_RESERVATION = GEMINI_OUTPUT_RESERVATION
+    ACTIVE_CHUNK_SIZE = GEMINI_CHUNK_SIZE
     if GEMINI_API_KEY:
         os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
     logger.debug(
@@ -106,6 +115,7 @@ elif LLM_PROVIDER == "deepseek":
     ACTIVE_N_PARALLEL = DEEPSEEK_N_PARALLEL
     ACTIVE_CTX_LIMIT = DEEPSEEK_CTX_PER_REQUEST
     ACTIVE_OUTPUT_RESERVATION = DEEPSEEK_OUTPUT_RESERVATION
+    ACTIVE_CHUNK_SIZE = DEEPSEEK_CHUNK_SIZE
     if DEEPSEEK_API_KEY:
         os.environ["OPENAI_API_KEY"] = DEEPSEEK_API_KEY
     logger.debug(
@@ -118,7 +128,17 @@ else:
     ACTIVE_N_PARALLEL = LLAMA_N_PARALLEL
     ACTIVE_CTX_LIMIT = LLAMA_CTX_PER_REQUEST
     ACTIVE_OUTPUT_RESERVATION = OUTPUT_RESERVATION
+    ACTIVE_CHUNK_SIZE = LLAMA_CHUNK_SIZE
     logger.debug(
         "LLM Provider: LOCAL (model=%s, url=%s, output_reservation=%s)",
         ACTIVE_MODEL, ACTIVE_BASE_URL, ACTIVE_OUTPUT_RESERVATION,
     )
+
+print(
+    f"[CONFIG] provider={LLM_PROVIDER} "
+    f"model={ACTIVE_MODEL} "
+    f"context_limit={ACTIVE_CTX_LIMIT} "
+    f"output_reservation={ACTIVE_OUTPUT_RESERVATION} "
+    f"chunk_size={ACTIVE_CHUNK_SIZE or 'auto'} "
+    f"n_parallel={ACTIVE_N_PARALLEL}"
+)
