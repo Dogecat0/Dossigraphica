@@ -1,7 +1,6 @@
 fastapi
 uvicorn
 pydantic
-outlines
 sse-starlette
 openai
 litellm
@@ -10,4 +9,3 @@ json-repair
 tqdm
 jsonref
 tenacity
-botocore
