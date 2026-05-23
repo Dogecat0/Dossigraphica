@@ -596,10 +596,10 @@ class LLMClient:
             )        
         else:
             summary_template = (
-                f"Following content is too long. Summarize it into high-density facts, prioritizing information related to: {focus}. "
+                "Following content is too long. Summarize it into high-density facts. "
                 "MANDATE: You MUST preserve all exact numerical values, technical metrics, units of measure, specific dates, and proper names. "
                 "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
-            )            
+            )
         safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
         
         logger.debug(f"Map-Reduce Summary: {current_tokens} tokens -> target {target_tokens}. Chunking at {safe_chunk_tokens}.")
