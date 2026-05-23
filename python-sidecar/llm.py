@@ -83,8 +83,8 @@ class LLMClient:
         elif not os.getenv("OPENAI_API_KEY"):
             os.environ["OPENAI_API_KEY"] = "sk-no-key-required"
 
-        # Force register model capabilities if using Featherless
-        if LLM_PROVIDER == "featherless":
+        # Force register model capabilities if using DeepSeek
+        if LLM_PROVIDER == "deepseek":
             litellm.register_model({
                 self.model: {
                     "supports_function_calling": True,
@@ -510,13 +510,27 @@ class LLMClient:
                         "type": "json_object",
                         "response_schema": deref_schema,
                     }
-                elif LLM_PROVIDER == "featherless":
+                elif LLM_PROVIDER == "deepseek":
+                    # DeepSeek strict mode: tool calls with strict schema constraints.
+                    # Every nested object must have additionalProperties: false.
+                    def _ensure_strict(obj: dict) -> dict:
+                        if isinstance(obj, dict):
+                            if obj.get("type") == "object":
+                                obj["additionalProperties"] = False
+                            for v in obj.values():
+                                _ensure_strict(v)
+                        elif isinstance(obj, list):
+                            for item in obj:
+                                _ensure_strict(item)
+                        return obj
+                    _ensure_strict(deref_schema)
                     kwargs["tools"] = [{
                         "type": "function",
                         "function": {
                             "name": response_model.__name__,
                             "description": "Submit structured research data.",
                             "parameters": deref_schema,
+                            "strict": True,
                         },
                     }]
                     kwargs["tool_choice"] = {

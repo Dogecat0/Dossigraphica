@@ -64,20 +64,19 @@ GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini/gemini-3.1-flash-lite-preview")
 GEMINI_N_PARALLEL = int(os.getenv("GEMINI_N_PARALLEL", "10"))
 GEMINI_CTX_PER_REQUEST = int(os.getenv("GEMINI_CTX_PER_REQUEST", "32768"))
 
-# -- Featherless ------------------------------------------------------------
-FEATHERLESS_API_KEY = os.getenv("FEATHERLESS_API_KEY")
-FEATHERLESS_BASE_URL = os.getenv("FEATHERLESS_BASE_URL", "https://api.featherless.ai/v1")
-FEATHERLESS_MODEL = os.getenv("FEATHERLESS_MODEL", "moonshotai/Kimi-K2.6")
-FEATHERLESS_N_PARALLEL = int(os.getenv("FEATHERLESS_N_PARALLEL", "1"))
-FEATHERLESS_CTX_PER_REQUEST = int(os.getenv("FEATHERLESS_CTX_PER_REQUEST", "32768"))
+# -- DeepSeek ----------------------------------------------------------------
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
+DEEPSEEK_N_PARALLEL = int(os.getenv("DEEPSEEK_N_PARALLEL", "10"))
+DEEPSEEK_CTX_PER_REQUEST = int(os.getenv("DEEPSEEK_CTX_PER_REQUEST", "65536"))
 
 # -- Output / safety --------------------------------------------------------
 # OUTPUT_RESERVATION is the baseline (local-provider) default.
-# GEMINI_OUTPUT_RESERVATION and FEATHERLESS_OUTPUT_RESERVATION override it
+# GEMINI_OUTPUT_RESERVATION and DEEPSEEK_OUTPUT_RESERVATION override it
 # for their respective providers; each falls back to OUTPUT_RESERVATION.
 OUTPUT_RESERVATION = int(os.getenv("OUTPUT_RESERVATION", "4096"))
 GEMINI_OUTPUT_RESERVATION = int(os.getenv("GEMINI_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
-FEATHERLESS_OUTPUT_RESERVATION = int(os.getenv("FEATHERLESS_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
+DEEPSEEK_OUTPUT_RESERVATION = int(os.getenv("DEEPSEEK_OUTPUT_RESERVATION", str(OUTPUT_RESERVATION)))
 SAFETY_BUFFER = 64
 
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0"))
@@ -100,17 +99,17 @@ if LLM_PROVIDER == "gemini":
         "LLM Provider: GEMINI (model=%s, output_reservation=%s)",
         ACTIVE_MODEL, ACTIVE_OUTPUT_RESERVATION,
     )
-elif LLM_PROVIDER == "featherless":
-    ACTIVE_MODEL = f"openai/{FEATHERLESS_MODEL}"
-    ACTIVE_BASE_URL = FEATHERLESS_BASE_URL
-    ACTIVE_N_PARALLEL = FEATHERLESS_N_PARALLEL
-    ACTIVE_CTX_LIMIT = FEATHERLESS_CTX_PER_REQUEST
-    ACTIVE_OUTPUT_RESERVATION = FEATHERLESS_OUTPUT_RESERVATION
-    if FEATHERLESS_API_KEY:
-        os.environ["OPENAI_API_KEY"] = FEATHERLESS_API_KEY
+elif LLM_PROVIDER == "deepseek":
+    ACTIVE_MODEL = f"openai/{DEEPSEEK_MODEL}"
+    ACTIVE_BASE_URL = "https://api.deepseek.com/beta"
+    ACTIVE_N_PARALLEL = DEEPSEEK_N_PARALLEL
+    ACTIVE_CTX_LIMIT = DEEPSEEK_CTX_PER_REQUEST
+    ACTIVE_OUTPUT_RESERVATION = DEEPSEEK_OUTPUT_RESERVATION
+    if DEEPSEEK_API_KEY:
+        os.environ["OPENAI_API_KEY"] = DEEPSEEK_API_KEY
     logger.debug(
-        "LLM Provider: FEATHERLESS (model=%s, url=%s, output_reservation=%s)",
-        ACTIVE_MODEL, ACTIVE_BASE_URL, ACTIVE_OUTPUT_RESERVATION,
+        "LLM Provider: DEEPSEEK (model=%s, output_reservation=%s)",
+        ACTIVE_MODEL, ACTIVE_OUTPUT_RESERVATION,
     )
 else:
     ACTIVE_MODEL = f"openai/{LLAMA_MODEL}"
