@@ -26,7 +26,7 @@ from litellm.exceptions import (
     Timeout,
     MidStreamFallbackError
 )
-from schemas import STRICT_CONFIG
+from schemas import STRICT_CONFIG, SummarySchema
 
 # Configure logging
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
@@ -118,11 +118,6 @@ else:
 
 
 T = TypeVar("T", bound=BaseModel)
-
-class SummarySchema(BaseModel):
-    model_config = STRICT_CONFIG
-    reasoning: str = Field(..., description="Analysis of the source material before summarization.")
-    summary: str = Field(..., description="A high-density summary of the provided information, preserving all exact numbers, coordinates, and citations.")
 
 class LLMClient:
     """
