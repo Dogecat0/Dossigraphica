@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-23T19:44:54.431916",
+  "lastUpdated": "2026-05-24T22:35:43.694177",
   "chokepoints": [
     {
       "name": "TSMC Hsinchu Hub",
@@ -10,13 +10,13 @@
       "severity": "critical",
       "description": "Concentration of leading-edge semiconductor manufacturing.",
       "exposedCompanies": [
+        "META",
         "AMD",
+        "NVDA",
         "MSFT",
         "MU",
         "AMZN",
-        "AVGO",
-        "NVDA",
-        "META"
+        "AVGO"
       ],
       "id": "tsmc_hsinchu",
       "mitigationStatus": "Developing"
@@ -25,14 +25,15 @@
       "name": "ASML EUV Monopsony",
       "type": "Equipment",
       "location": "Veldhoven, Netherlands",
-      "lat": 51.412,
-      "lng": 5.455,
+      "lat": 51.4081,
+      "lng": 5.4086,
       "severity": "critical",
       "description": "Sole provider of EUV lithography systems.",
       "exposedCompanies": [
-        "MU",
         "GOOGL",
-        "TSM"
+        "TSM",
+        "ASML",
+        "MU"
       ],
       "id": "asml_euv",
       "mitigationStatus": "Developing"

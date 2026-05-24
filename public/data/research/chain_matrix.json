@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-23T19:44:54.428923",
+  "lastUpdated": "2026-05-24T22:35:43.690440",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -1548,43 +1548,59 @@
     },
     {
       "from": "ASML",
-      "to": "Carl Zeiss SMT GmbH",
+      "to": "Carl Zeiss SMT",
       "type": "buyer_supplier",
-      "description": "ASML depends on Carl Zeiss SMT GmbH for Optical columns, lenses, mirrors, and illuminators",
+      "description": "ASML depends on Carl Zeiss SMT for Mirror optics and optical systems for EUV lithography",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "Cymer",
+      "to": "Cymer (ASML subsidiary)",
       "type": "buyer_supplier",
-      "description": "ASML depends on Cymer for DUV and EUV light sources",
+      "description": "ASML depends on Cymer (ASML subsidiary) for Laser light sources for DUV and EUV lithography systems",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "Berliner Glas Group",
+      "to": "Berliner Glas Group (ASML subsidiary)",
       "type": "buyer_supplier",
-      "description": "ASML depends on Berliner Glas Group for Optical components for EUV systems",
+      "description": "ASML depends on Berliner Glas Group (ASML subsidiary) for Optical components and subassemblies for EUV systems",
       "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "imec",
+      "to": "IMEC",
       "type": "buyer_supplier",
-      "description": "ASML depends on imec for Research and innovation partnership for lithography",
+      "description": "ASML depends on IMEC for EUV lithography research and development collaboration",
       "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "Mistral AI",
+      "to": "Sematech",
       "type": "buyer_supplier",
-      "description": "ASML depends on Mistral AI for AI software and technology partnership",
-      "strength": "standard",
+      "description": "ASML depends on Sematech for EUV lithography research and development collaboration",
+      "strength": "important",
       "value": "key_supplier"
+    },
+    {
+      "from": "Taiwan Semiconductor Manufacturing Company",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Taiwan Semiconductor Manufacturing Company is a major customer of ASML",
+      "strength": "critical",
+      "value": "29.3%"
+    },
+    {
+      "from": "Samsung Electronics",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Samsung Electronics is a major customer of ASML",
+      "strength": "important",
+      "value": null
     },
     {
       "from": "INTC",
@@ -1595,26 +1611,26 @@
       "value": null
     },
     {
-      "from": "TSM",
-      "to": "ASML",
-      "type": "buyer_supplier",
-      "description": "TSMC is a major customer of ASML",
-      "strength": "important",
-      "value": null
-    },
-    {
-      "from": "005930.KS",
-      "to": "ASML",
-      "type": "buyer_supplier",
-      "description": "Samsung is a major customer of ASML",
-      "strength": "important",
-      "value": null
-    },
-    {
       "from": "Micron Technology",
       "to": "ASML",
       "type": "buyer_supplier",
       "description": "Micron Technology is a major customer of ASML",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "IBM",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "IBM is a major customer of ASML",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "country/region",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "country/region is a major customer of ASML",
       "strength": "important",
       "value": null
     },

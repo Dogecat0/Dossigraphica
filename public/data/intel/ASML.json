@@ -2,94 +2,702 @@
   "company": "ASML Holding N.V.",
   "ticker": "ASML",
   "website": "https://www.asml.com",
-  "sector": "Semiconductor Equipment",
-  "description": "ASML is a global leader in the semiconductor industry, specializing in the development and manufacturing of advanced lithography systems. Headquartered in Veldhoven, the company maintains a significant international presence with major revenue streams originating from China, Taiwan, South Korea, the United States, and Japan, supporting the global semiconductor supply chain.",
+  "sector": "Semiconductors",
+  "description": "ASML Holding N.V. is a Dutch multinational corporation headquartered in Veldhoven, the Netherlands, that develops and manufactures photolithography machines for the semiconductor industry. The company operates in more than 60 locations worldwide and employs over 44,000 people (FTE) representing more than 80 nationalities. ASML provides chipmakers with hardware, software, and services, including advanced EUV and High-NA EUV lithography systems, and computational lithography solutions. The company is publicly traded on Euronext Amsterdam and NASDAQ under the symbol ASML. ASML serves the world's leading semiconductor manufacturers across Asia, the Americas, and Europe, with China business accounting for approximately 20% of total net sales in 2025.",
   "anchorFiling": {
-    "reasoning": "The Q1 2026 financial results published on April 15, 2026, represent the most recent reporting period for ASML, taking precedence over the 2025 Annual Report.",
+    "reason": "Most recent primary source filing for ASML is the Q4 2025 / Full-Year 2025 earnings press release published on January 28, 2026. No 10-K or 10-Q filing dates were provided in the facts, so the earnings release is the best available anchor for the most recent reporting period.",
     "type": "Earnings Release",
-    "date": "2026-04-15",
-    "fiscalPeriod": "Q1 2026"
+    "date": "2026-01-28",
+    "fiscalPeriod": "Q4 2025 / Full-Year 2025"
   },
-  "generatedDate": "2026-05-18",
+  "generatedDate": "2026-05-24",
   "offices": [
     {
-      "id": "ASML-VELDHOVEN-HEADQUARTERS",
-      "name": "ASML Global Headquarters",
+      "id": "ASML-VELDHOVEN-HQ",
+      "name": "ASML Global Headquarters Veldhoven",
       "city": "Veldhoven",
       "state": "North Brabant",
       "country": "Netherlands",
-      "address": "De Run 6501, 5504 DR Veldhoven",
-      "lat": 51.412,
-      "lng": 5.455,
-      "businessFocus": "Corporate headquarters, R&D, manufacturing, and European support",
+      "address": "De Run 6501, 5504 DR",
+      "lat": 51.4081,
+      "lng": 5.4086,
+      "businessFocus": "Global headquarters, research, development, manufacturing, assembly, corporate functions",
       "type": "headquarters",
       "sources": [
         "https://www.asml.com/company/about-asml/locations/veldhoven",
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
-      ],
-      "confidence": "verified"
-    },
-    {
-      "id": "ASML-WILTON-MANUFACTURING",
-      "name": "ASML Wilton Facility",
-      "city": "Wilton",
-      "state": "Connecticut",
-      "country": "United States",
-      "address": "77 Danbury Road, Wilton, CT 06897",
-      "lat": 41.203,
-      "lng": -73.438,
-      "businessFocus": "Manufacturing, technology development, and capacity expansion",
-      "type": "manufacturing",
-      "sources": [
         "https://www.asml.com/company/about-asml/locations",
-        "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf"
+        "https://en.wikipedia.org/wiki/ASML"
       ],
       "confidence": "verified"
     },
     {
-      "id": "ASML-SANDIEGO-MANUFACTURING",
-      "name": "ASML San Diego Facility",
-      "city": "San Diego",
-      "state": "California",
-      "country": "United States",
-      "address": "17075 Thornmint Court, San Diego, CA 92127",
-      "lat": 33.015,
-      "lng": -117.085,
-      "businessFocus": "Lithography light source center of excellence (Cymer)",
-      "type": "manufacturing",
-      "sources": [
-        "https://www.asml.com/company/about-asml/locations",
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
-      ],
-      "confidence": "verified"
-    },
-    {
-      "id": "ASML-SANJOSE-ENGINEERING",
-      "name": "ASML Silicon Valley Facility",
-      "city": "San Jose",
-      "state": "California",
-      "country": "United States",
-      "address": "80 West Tasman Drive, San Jose, CA 95131",
-      "lat": 37.405,
-      "lng": -121.935,
-      "businessFocus": "Software, R&D, computational applications, and e-beam metrology",
+      "id": "ASML-LEUVEN-REGIONAL",
+      "name": "ASML Leuven Office",
+      "city": "Leuven",
+      "state": "Flemish Brabant",
+      "country": "Belgium",
+      "address": "Kapeldreef 75, B-3001",
+      "lat": 50.8645,
+      "lng": 4.6796,
+      "businessFocus": "Research and development collaboration (IMEC)",
       "type": "engineering",
       "sources": [
-        "https://www.asml.com/company/about-asml/locations/silicon-valley"
+        "https://www.asml.com/company/about-asml/locations"
       ],
       "confidence": "verified"
     },
     {
-      "id": "ASML-LINKOU-MANUFACTURING",
-      "name": "ASML Linkou Factory",
-      "city": "Taoyuan City",
-      "state": "Taiwan",
-      "country": "Taiwan",
-      "address": "Keji 6th Road #59, Hwa-Ya Technology Park, Guishan Dist.",
-      "lat": 25.055,
-      "lng": 121.375,
-      "businessFocus": "Manufacturing and system assembly",
+      "id": "ASML-CROLLES-REGIONAL",
+      "name": "ASML Crolles Office",
+      "city": "Crolles",
+      "state": "Auvergne-Rh\u00f4ne-Alpes",
+      "country": "France",
+      "address": "127 Rue Marcel Reynaud, 38920",
+      "lat": 45.2796,
+      "lng": 5.8822,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-BERLIN-MANUFACTURING",
+      "name": "ASML Berlin Office (Berliner Glas)",
+      "city": "Berlin",
+      "state": "Berlin",
+      "country": "Germany",
+      "address": "Waldkraiburger Stra\u00dfe 5, 12347",
+      "lat": 52.4377,
+      "lng": 13.4386,
+      "businessFocus": "Optical glass manufacturing and engineering",
       "type": "manufacturing",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations",
+        "https://en.wikipedia.org/wiki/ASML"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-DRESDEN-REGIONAL",
+      "name": "ASML Dresden Office",
+      "city": "Dresden",
+      "state": "Saxony",
+      "country": "Germany",
+      "address": "Hermann-Reichelt-Stra\u00dfe 3a, 01109",
+      "lat": 51.1256,
+      "lng": 13.7714,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-ERLANGEN-REGIONAL",
+      "name": "ASML Erlangen Office",
+      "city": "Erlangen",
+      "state": "Bavaria",
+      "country": "Germany",
+      "address": "Staudtstrasse 2, Max Planck Institut, 91058",
+      "lat": 49.5729,
+      "lng": 11.0038,
+      "businessFocus": "Research and development",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-MAYNOOTH-REGIONAL",
+      "name": "ASML Maynooth Office",
+      "city": "Maynooth",
+      "state": "County Kildare",
+      "country": "Ireland",
+      "address": "Maynooth Business Park, Block C Office, Ground Floor (West Wing)",
+      "lat": 53.3816,
+      "lng": -6.5936,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-KIRYATGAT-REGIONAL",
+      "name": "ASML Kiryat-Gat Office",
+      "city": "Kiryat-Gat",
+      "state": "Southern District",
+      "country": "Israel",
+      "address": "Mevo Sivan Street 1, 2F, 82021",
+      "lat": 31.6097,
+      "lng": 34.7712,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-MIGDALHAEMEK-REGIONAL",
+      "name": "ASML Migdal Ha'emek Office",
+      "city": "Migdal Ha'emek",
+      "state": "Northern District",
+      "country": "Israel",
+      "address": "Ramat Gabriel Industry Area 5, Africa Israel Building, 23513",
+      "lat": 32.6719,
+      "lng": 35.2409,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-AVEZZANO-REGIONAL",
+      "name": "ASML Avezzano Office",
+      "city": "Avezzano",
+      "state": "Abruzzo",
+      "country": "Italy",
+      "address": "Piazzale J.F. Kennedy, Scala A - IV Piano, 67051",
+      "lat": 42.031,
+      "lng": 13.4264,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-DELFT-ENGINEERING",
+      "name": "ASML Delft Office",
+      "city": "Delft",
+      "state": "South Holland",
+      "country": "Netherlands",
+      "address": "Computerlaan 15, 2628 XK",
+      "lat": 52.0067,
+      "lng": 4.3556,
+      "businessFocus": "Research and development",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-LANARKSHIRE-REGIONAL",
+      "name": "ASML Lanarkshire Office",
+      "city": "Lanarkshire",
+      "state": "Scotland",
+      "country": "United Kingdom",
+      "address": "Maxim 1, Maxim Business Park, 2 Parklands Way, Eurocentral, ML1 4WR",
+      "lat": 55.8642,
+      "lng": -3.9788,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SHANGHAI-HQ",
+      "name": "ASML China Headquarters Shanghai",
+      "city": "Shanghai",
+      "state": "Shanghai",
+      "country": "China",
+      "address": "Jinke Road 2889, 7F/9F Building A & 11F Building B, Chamtime Plaza, Pudong New Area, 201203",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "businessFocus": "China headquarters, sales, customer support",
+      "type": "regional",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-BEIJING-REGIONAL",
+      "name": "ASML Beijing Office",
+      "city": "Beijing",
+      "state": "Beijing",
+      "country": "China",
+      "address": "13th Ke-Chuang Street, Building #17, Block 18# (V-Park), Tongzhou District, 101100",
+      "lat": 39.8599,
+      "lng": 116.3711,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-DALIAN-REGIONAL",
+      "name": "ASML Dalian Office",
+      "city": "Dalian",
+      "state": "Liaoning",
+      "country": "China",
+      "address": "Yong De Street 111F, Unit 9-13, Jinma International Building, 116602",
+      "lat": 38.914,
+      "lng": 121.6147,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-HEFEI-REGIONAL",
+      "name": "ASML Hefei Office",
+      "city": "Hefei",
+      "state": "Anhui",
+      "country": "China",
+      "address": "Chuangxin Avenue, Floor 7/8, Building A, Chuangxin International Plaza, Gaoxin District, 230088",
+      "lat": 31.8206,
+      "lng": 117.2272,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-JINJIANG-REGIONAL",
+      "name": "ASML Jinjiang Office",
+      "city": "Jinjiang",
+      "state": "Fujian",
+      "country": "China",
+      "address": "Century Avenue #520, Room 701, Powerlong Center, 362200",
+      "lat": 24.8042,
+      "lng": 118.5524,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-NANJING-REGIONAL",
+      "name": "ASML Nanjing Office",
+      "city": "Nanjing",
+      "state": "Jiangsu",
+      "country": "China",
+      "address": "Tuanjie Road #997, 5F, Building C, Nanjing High-tech Zone Research & Innovation Park, 210001",
+      "lat": 32.0603,
+      "lng": 118.7969,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-QINGDAO-REGIONAL",
+      "name": "ASML Qingdao Office",
+      "city": "Qingdao",
+      "state": "Shandong",
+      "country": "China",
+      "address": "Jiulianshan Road #218, 5F, Xinjiang Center, Huangdao District, 266599",
+      "lat": 35.9386,
+      "lng": 120.1384,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SHENZHENNANSHAN-REGIONAL",
+      "name": "ASML Shenzhen (Nanshan) Office - Brion",
+      "city": "Shenzhen",
+      "state": "Guangdong",
+      "country": "China",
+      "address": "Nanhai Avenue #2163, 17F & 20F & 21F, Raffles City, Nanshan District, 518054",
+      "lat": 22.5176,
+      "lng": 113.9289,
+      "businessFocus": "Computational lithography (Brion)",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SHENZHENLONGGANG-REGIONAL",
+      "name": "ASML Shenzhen (Longgang) Office",
+      "city": "Shenzhen",
+      "state": "Guangdong",
+      "country": "China",
+      "address": "Huilongpu Community, Longcheng Street, 37F, Yanlord Dream Plaza, Longgang District, 518172",
+      "lat": 22.7208,
+      "lng": 114.2469,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TIANJIN-REGIONAL",
+      "name": "ASML Tianjin Office",
+      "city": "Tianjin",
+      "state": "Tianjin",
+      "country": "China",
+      "address": "Intersection of Hei Niucheng Road & Dongting Road, Units 09, 10 & 11, 25F, Zhonghai Fortune Center, Hexi District, 300200",
+      "lat": 39.0851,
+      "lng": 117.2234,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-WUHAN-REGIONAL",
+      "name": "ASML Wuhan Office",
+      "city": "Wuhan",
+      "state": "Hubei",
+      "country": "China",
+      "address": "Gaoxin Avenue #999, 10/12F, Building #3, Block C, Longshan Innovation Park, Wuhan East Lake New Technology Development Zone, 430206",
+      "lat": 30.4755,
+      "lng": 114.417,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-WUXI-REGIONAL",
+      "name": "ASML Wuxi Office",
+      "city": "Wuxi",
+      "state": "Jiangsu",
+      "country": "China",
+      "address": "Hefeng Road #26, 10F, Building C, Xinfa Huirong Plaza, Xinwu District, 214028",
+      "lat": 31.4912,
+      "lng": 120.3119,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-XIAMEN-REGIONAL",
+      "name": "ASML Xiamen Office",
+      "city": "Xiamen",
+      "state": "Fujian",
+      "country": "China",
+      "address": "Lianting Road #837, Room 401 & 402, 4F, Healthy Intelligence Valley, Building 39, Xiang'an District, 361023",
+      "lat": 24.6434,
+      "lng": 118.2426,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-XIAN-REGIONAL",
+      "name": "ASML Xi'an Office",
+      "city": "Xi'an",
+      "state": "Shaanxi",
+      "country": "China",
+      "address": "Tiangu Eighth Road #211, 10F, Building G3, Yanta District, 710076",
+      "lat": 34.2068,
+      "lng": 108.8866,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-CHENGDU-REGIONAL",
+      "name": "ASML Chengdu Office",
+      "city": "Chengdu",
+      "state": "Sichuan",
+      "country": "China",
+      "address": "Heshun Road #218, 8F, Unit 1, Building 2, IC Design Industrial Park, High-tech Zone, 610095",
+      "lat": 30.5728,
+      "lng": 104.0668,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TOKYO-HQ",
+      "name": "ASML Japan Headquarters Tokyo",
+      "city": "Tokyo",
+      "state": "Tokyo",
+      "country": "Japan",
+      "address": "Kita Shinagawa 4-7-35, 4F Gotenyama Trust Tower Building, 140-0001",
+      "lat": 35.6189,
+      "lng": 139.74,
+      "businessFocus": "Japan headquarters, sales, customer support",
+      "type": "regional",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-CHITOSE-REGIONAL",
+      "name": "ASML Chitose Office",
+      "city": "Chitose",
+      "state": "Hokkaido",
+      "country": "Japan",
+      "address": "1789-3 Chiyoda-Cho 7, Chitose Station Plaza 3F, 066-0062",
+      "lat": 42.8245,
+      "lng": 141.6507,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-HIGASHIHIROSHIMA-REGIONAL",
+      "name": "ASML Higashihiroshima Office",
+      "city": "Higashihiroshima",
+      "state": "Hiroshima",
+      "country": "Japan",
+      "address": "Saijo Okamachi 10-77, 739-0016",
+      "lat": 34.4268,
+      "lng": 132.7434,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-KITAKAMI-REGIONAL",
+      "name": "ASML Kitakami Office",
+      "city": "Kitakami",
+      "state": "Iwate",
+      "country": "Japan",
+      "address": "2-3-8 Odori, Iwate-Jisho Kitakami-Ekimae Bldg. 5F, 024-0061",
+      "lat": 39.2868,
+      "lng": 141.1131,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-KIKUYO-REGIONAL",
+      "name": "ASML Kikuyo Office",
+      "city": "Kikuyo",
+      "state": "Kumamoto",
+      "country": "Japan",
+      "address": "2422-4 Tsukure, Carino Kikuyo 3F, 869-1101",
+      "lat": 32.86,
+      "lng": 130.81,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-NAGASAKI-REGIONAL",
+      "name": "ASML Nagasaki Office",
+      "city": "Nagasaki",
+      "state": "Nagasaki",
+      "country": "Japan",
+      "address": "Higashikouji-Machi 28-3, 4F Room 401, Shigyo #2 Building, 854-0014",
+      "lat": 32.7503,
+      "lng": 129.8777,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TSURUOKA-REGIONAL",
+      "name": "ASML Tsuruoka Office",
+      "city": "Tsuruoka",
+      "state": "Yamagata",
+      "country": "Japan",
+      "address": "2-68 Nishiki-machi, SS Building 4F, 997-0031",
+      "lat": 38.7274,
+      "lng": 139.8268,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-YOKKAICHI-REGIONAL",
+      "name": "ASML Yokkaichi Office",
+      "city": "Yokkaichi",
+      "state": "Mie",
+      "country": "Japan",
+      "address": "Yasujima 2-1-15, Masuda Building, 510-0075",
+      "lat": 34.965,
+      "lng": 136.6249,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-HWASEONG-HQ",
+      "name": "ASML South Korea Headquarters Hwaseong",
+      "city": "Hwaseong",
+      "state": "Gyeonggi-do",
+      "country": "South Korea",
+      "address": "47 Dongtan-daero 9ga-gil, Hwaseong-si, Gyeonggi-do, 18488",
+      "lat": 37.1995,
+      "lng": 127.1062,
+      "businessFocus": "South Korea headquarters, sales, customer support",
+      "type": "regional",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-CHEONGJU-REGIONAL",
+      "name": "ASML Cheongju Office",
+      "city": "Cheongju",
+      "state": "Chungcheongbuk-do",
+      "country": "South Korea",
+      "address": "141 Jinjae-ro, Unit #101 Ground Floor, Heungdeok-gu, Chungcheongbuk-do, 28425",
+      "lat": 36.6424,
+      "lng": 127.489,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-ICHEON-REGIONAL",
+      "name": "ASML Icheon Office",
+      "city": "Icheon",
+      "state": "Gyeonggi-do",
+      "country": "South Korea",
+      "address": "866 Daewol-ro, Daewol-myeon, Icheon-si, Gyeonggi-do, 17342",
+      "lat": 37.2791,
+      "lng": 127.4425,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-PYEONGTAEK-REGIONAL",
+      "name": "ASML Pyeongtaek Office",
+      "city": "Pyeongtaek",
+      "state": "Gyeonggi-do",
+      "country": "South Korea",
+      "address": "128 Dosijiwon-ro, 4F-8F, Godeok-myeon, Pyeongtaek-si, Gyeonggi-do, 18021",
+      "lat": 36.992,
+      "lng": 127.1129,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-HSINCHU-HQ",
+      "name": "ASML Taiwan Headquarters Hsinchu",
+      "city": "Hsinchu",
+      "state": "Hsinchu City",
+      "country": "Taiwan",
+      "address": "Sec. 3, Gongdao 5th Road #11, 1F, East Dist., 300042 Hsinchu City",
+      "lat": 24.807,
+      "lng": 120.996,
+      "businessFocus": "Taiwan headquarters, sales, customer support",
+      "type": "regional",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TAOYUAN-MANUFACTURING",
+      "name": "ASML Taoyuan Factory",
+      "city": "Taoyuan",
+      "state": "Taoyuan City",
+      "country": "Taiwan",
+      "address": "Keji 6th Road #59, Hwa-Ya Technology Park, Guishan Dist., Taoyuan City 333411",
+      "lat": 25.01,
+      "lng": 121.38,
+      "businessFocus": "Manufacturing and Asia Training Center",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TAOYUAN-FIELD",
+      "name": "ASML Taoyuan Field Office",
+      "city": "Taoyuan",
+      "state": "Taoyuan City",
+      "country": "Taiwan",
+      "address": "Wenhe Road #188, 8F, Guishan Dist., Taoyuan City 333001",
+      "lat": 25.0075,
+      "lng": 121.3775,
+      "businessFocus": "Field office, customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-TAICHUNG-FIELD",
+      "name": "ASML Taichung Field Office",
+      "city": "Taichung",
+      "state": "Taichung City",
+      "country": "Taiwan",
+      "address": "Shizheng Road #480, 10F, Xitun Dist., 407028 Taichung City",
+      "lat": 24.1617,
+      "lng": 120.64,
+      "businessFocus": "Field office, customer support",
+      "type": "sales",
       "sources": [
         "https://www.asml.com/company/about-asml/locations"
       ],
@@ -98,13 +706,13 @@
     {
       "id": "ASML-TAINAN-MANUFACTURING",
       "name": "ASML Tainan Factory",
-      "city": "Tainan City",
-      "state": "Taiwan",
+      "city": "Tainan",
+      "state": "Tainan City",
       "country": "Taiwan",
-      "address": "Dali 1st Road #9, Xinshi Dist.",
-      "lat": 23.085,
-      "lng": 120.275,
-      "businessFocus": "Manufacturing and system assembly",
+      "address": "Dali 1st Road #9, Xinshi Dist., 744093 Tainan City",
+      "lat": 23.09,
+      "lng": 120.29,
+      "businessFocus": "Manufacturing",
       "type": "manufacturing",
       "sources": [
         "https://www.asml.com/company/about-asml/locations"
@@ -112,32 +720,322 @@
       "confidence": "verified"
     },
     {
-      "id": "ASML-HWASEONG-REGIONAL",
-      "name": "ASML South Korea Headquarters",
-      "city": "Hwaseong-si",
-      "state": "Gyeonggi-do",
-      "country": "South Korea",
-      "address": "47, Dongtan-daero 9ga-gil, 18488 Hwaseong-si",
-      "lat": 37.205,
-      "lng": 127.075,
-      "businessFocus": "Regional headquarters and support",
-      "type": "regional",
+      "id": "ASML-TAINAN-FIELD",
+      "name": "ASML Tainan Field Office",
+      "city": "Tainan",
+      "state": "Tainan City",
+      "country": "Taiwan",
+      "address": "Guoji Road #13, 1F Building C, Xinshi Dist., 744002",
+      "lat": 23.088,
+      "lng": 120.288,
+      "businessFocus": "Field office, customer support",
+      "type": "sales",
       "sources": [
         "https://www.asml.com/company/about-asml/locations"
       ],
       "confidence": "verified"
     },
     {
-      "id": "ASML-SHANGHAI-REGIONAL",
-      "name": "ASML China Headquarters",
-      "city": "Shanghai",
-      "state": "Shanghai",
-      "country": "China",
-      "address": "Jinke Road 288, Chamtime Plaza, Pudong New Area",
-      "lat": 31.205,
-      "lng": 121.605,
-      "businessFocus": "Regional headquarters and support",
-      "type": "regional",
+      "id": "ASML-KULIM-REGIONAL",
+      "name": "ASML Kulim Office",
+      "city": "Kulim",
+      "state": "Kedah",
+      "country": "Malaysia",
+      "address": "KHTP Business Centre, 2F Suite 2.02, Kulim Hi-Tech Park, 09000",
+      "lat": 5.4,
+      "lng": 100.55,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-PENANG-REGIONAL",
+      "name": "ASML Penang Office",
+      "city": "Penang",
+      "state": "Penang",
+      "country": "Malaysia",
+      "address": "Unit #1-1-07, Suntech @ Penang Cybercity, Lintang Mayang Pasir 3, 11950 Bayan Baru",
+      "lat": 5.293,
+      "lng": 100.266,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SINGAPORE-REGIONAL",
+      "name": "ASML Singapore Office",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "151 Lorong Chuan, New Tech Park #06-08, 556741",
+      "lat": 1.35,
+      "lng": 103.87,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-WILTON-MANUFACTURING",
+      "name": "ASML Wilton Office",
+      "city": "Wilton",
+      "state": "Connecticut",
+      "country": "United States",
+      "address": "77 Danbury Road, 06897",
+      "lat": 41.195,
+      "lng": -73.42,
+      "businessFocus": "Manufacturing, research and development",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations",
+        "https://en.wikipedia.org/wiki/ASML"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SANJOSE-ENGINEERING",
+      "name": "ASML San Jose Office (Cymer/HMI)",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "address": "80 West Tasman Drive, 95131",
+      "lat": 37.41,
+      "lng": -121.95,
+      "businessFocus": "Engineering, light source development (Cymer), e-beam inspection (HMI)",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations",
+        "https://en.wikipedia.org/wiki/ASML"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-SANDIEGO-ENGINEERING",
+      "name": "ASML San Diego Office (Cymer)",
+      "city": "San Diego",
+      "state": "California",
+      "country": "United States",
+      "address": "17075 Thornmint Court, 92127",
+      "lat": 32.96,
+      "lng": -117.09,
+      "businessFocus": "Light source engineering (Cymer)",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-ALBANY-ENGINEERING",
+      "name": "ASML Albany Office",
+      "city": "Albany",
+      "state": "New York",
+      "country": "United States",
+      "address": "255 Fuller Road, NanoFab South, 12203",
+      "lat": 42.68,
+      "lng": -73.83,
+      "businessFocus": "Research and development (CNSE collaboration)",
+      "type": "engineering",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-AUSTIN-REGIONAL",
+      "name": "ASML Austin Office",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "United States",
+      "address": "201 West Howard Lane, Suite 300, 78753",
+      "lat": 30.41,
+      "lng": -97.68,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-BOISE-REGIONAL",
+      "name": "ASML Boise Office",
+      "city": "Boise",
+      "state": "Idaho",
+      "country": "United States",
+      "address": "3130 South Owyhee Street, Parkview Plaza, 83705",
+      "lat": 43.58,
+      "lng": -116.21,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-CHANDLER-REGIONAL",
+      "name": "ASML Chandler Office",
+      "city": "Chandler",
+      "state": "Arizona",
+      "country": "United States",
+      "address": "2625 West Geronimo Place, 85224",
+      "lat": 33.3,
+      "lng": -111.88,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-CLIFTONPARK-REGIONAL",
+      "name": "ASML Clifton Park Office",
+      "city": "Clifton Park",
+      "state": "New York",
+      "country": "United States",
+      "address": "800 State Route 146, Suite 365, Town Plaza, 12065",
+      "lat": 42.86,
+      "lng": -73.77,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-RICHARDSON-REGIONAL",
+      "name": "ASML Richardson Office",
+      "city": "Richardson",
+      "state": "Texas",
+      "country": "United States",
+      "address": "870 North Dorothy Drive, Suite 706, 75081",
+      "lat": 32.96,
+      "lng": -96.73,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-EAGAN-REGIONAL",
+      "name": "ASML Eagan Office",
+      "city": "Eagan",
+      "state": "Minnesota",
+      "country": "United States",
+      "address": "2020 Silver Bell Road, Suite 1, 55122",
+      "lat": 44.82,
+      "lng": -93.17,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-FISHKILL-REGIONAL",
+      "name": "ASML Fishkill Office",
+      "city": "Fishkill",
+      "state": "New York",
+      "country": "United States",
+      "address": "60 Merritt Boulevard, Suite 105, 12524",
+      "lat": 41.53,
+      "lng": -73.9,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-HILLSBORO-REGIONAL",
+      "name": "ASML Hillsboro Office",
+      "city": "Hillsboro",
+      "state": "Oregon",
+      "country": "United States",
+      "address": "7451 Northeast Evergreen Parkway, Two Technology Building, 97124",
+      "lat": 45.53,
+      "lng": -122.88,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-LEHI-REGIONAL",
+      "name": "ASML Lehi Office",
+      "city": "Lehi",
+      "state": "Utah",
+      "country": "United States",
+      "address": "4000 North Flash Drive, Building 20 c/o Texas Instruments, 84043",
+      "lat": 40.39,
+      "lng": -111.85,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-MANASSAS-REGIONAL",
+      "name": "ASML Manassas Office",
+      "city": "Manassas",
+      "state": "Virginia",
+      "country": "United States",
+      "address": "9450 Innovation Drive, Ground Floor Unit 1, The Logis-Tech Building, 20110",
+      "lat": 38.75,
+      "lng": -77.48,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-NORTHPHOENIX-REGIONAL",
+      "name": "ASML North Phoenix Office",
+      "city": "Phoenix",
+      "state": "Arizona",
+      "country": "United States",
+      "address": "25700 Norterra Drive, 85085",
+      "lat": 33.72,
+      "lng": -112.12,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
+      "sources": [
+        "https://www.asml.com/company/about-asml/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "ASML-WESTBROOK-REGIONAL",
+      "name": "ASML Westbrook Office",
+      "city": "Westbrook",
+      "state": "Maine",
+      "country": "United States",
+      "address": "590 County Road, Suite 1, 04092",
+      "lat": 43.68,
+      "lng": -70.36,
+      "businessFocus": "Sales and customer support",
+      "type": "sales",
       "sources": [
         "https://www.asml.com/company/about-asml/locations"
       ],
@@ -145,167 +1043,140 @@
     }
   ],
   "revenueGeography": {
-    "reasoning": "The reporting period selected is the full fiscal year 2025, as it provides the most comprehensive and recent audited geographic revenue breakdown for ASML. Data from 2024 and Q1 2026 were reviewed, but 2025 provides the most complete regional dataset for the latest full fiscal year.",
+    "reason": "For ASML (ASML Holding N.V.), the most recent full-year data available is FY2025 (ending December 2025). The Q4 2025 press release confirms total net sales of \u20ac32,667 million (\u20ac32.7B) for FY2025. Geographic revenue breakdown is limited: a press release from 2024 mentions China business expected to be around 20% of total net sales for 2025, and a policy brief notes Chinese fabs accounted for 26.3% of ASML's revenues in 2023. No detailed geographic segmentation by region with precise percentages is available in the provided sources for FY2025. The most specific forward-looking data is the 20% China expectation for 2025. I prioritize the FY2025 annual data as the latest reporting period.",
     "fiscalYear": "2025",
-    "totalRevenue": 32667300000.0,
+    "totalRevenue": 32667000000.0,
     "currency": "EUR",
     "segments": [
       {
         "region": "China",
-        "revenue": 9519700000.0,
-        "percentage": 0.291,
+        "revenue": null,
+        "percentage": 0.2,
         "yoyGrowth": null,
-        "notes": "China was the largest geographic market for ASML in 2025."
-      },
-      {
-        "region": "Taiwan",
-        "revenue": 8337900000.0,
-        "percentage": 0.255,
-        "yoyGrowth": null,
-        "notes": "Taiwan remains a critical market for advanced lithography systems."
-      },
-      {
-        "region": "South Korea",
-        "revenue": 8159600000.0,
-        "percentage": 0.25,
-        "yoyGrowth": null,
-        "notes": "South Korea is a major hub for memory and logic chip manufacturing."
-      },
-      {
-        "region": "United States",
-        "revenue": 4089100000.0,
-        "percentage": 0.125,
-        "yoyGrowth": null,
-        "notes": "Revenue from the United States market."
-      },
-      {
-        "region": "Japan",
-        "revenue": 1420900000.0,
-        "percentage": 0.044,
-        "yoyGrowth": null,
-        "notes": "Revenue from the Japanese market."
+        "notes": "ASML expects China business (net system sales plus net service and field option sales) to be around 20% of total net sales for 2025, per press release on updated export restrictions."
       },
       {
         "region": "Rest of World",
-        "revenue": 1140100000.0,
-        "percentage": 0.035,
+        "revenue": null,
+        "percentage": 0.8,
         "yoyGrowth": null,
-        "notes": "Calculated as the remainder of total net sales."
+        "notes": "Implied remaining 80% of total net sales for 2025 based on China being ~20%."
       }
     ],
-    "concentrationRisk": "ASML has significant revenue concentration in Asia, specifically China, Taiwan, and South Korea, which collectively account for approximately 79.6% of total net sales in 2025.",
+    "concentrationRisk": "ASML faces concentration risk from China exposure (~20% of 2025 sales expected). The company noted it does not expect direct material impact from updated export restrictions for 2024, but geopolitical tensions and export controls on semiconductor equipment to China remain a key risk. Chinese fabs accounted for 26.3% of revenues in 2023, showing a declining trend to ~20% in 2025.",
     "sources": [
-      "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+      "https://www.asml.com/news/press-releases/2026/q4-2025-financial-results",
+      "https://www.asml.com/news/press-releases/2024/asml-expects-impact-of-updated-export-restrictions-to-fall-within-outlook-for-2025",
+      "https://ecipe.org/wp-content/uploads/2024/04/ECI_24_PolicyBrief_07-2024_LY03.pdf"
     ]
   },
   "supplyChain": [
     {
-      "entity": "Carl Zeiss SMT GmbH",
+      "entity": "Carl Zeiss SMT",
       "role": "key_supplier",
       "city": "Oberkochen",
       "country": "Germany",
       "lat": 48.7833,
-      "lng": 10.0967,
-      "product": "Optical columns, lenses, mirrors, and illuminators",
+      "lng": 10.1,
+      "product": "Mirror optics and optical systems for EUV lithography",
       "criticality": "critical",
       "sources": [
-        "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     },
     {
-      "entity": "Cymer",
+      "entity": "Cymer (ASML subsidiary)",
       "role": "key_supplier",
       "city": "San Diego",
       "country": "United States",
       "lat": 32.7157,
       "lng": -117.1611,
-      "product": "DUV and EUV light sources",
+      "product": "Laser light sources for DUV and EUV lithography systems",
       "criticality": "critical",
       "sources": [
-        "https://en.wikipedia.org/wiki/ASML"
+        "https://en.wikipedia.org/wiki/ASML",
+        "https://bidenwhitehouse.archives.gov/wp-content/uploads/2021/06/100-day-supply-chain-review-report.pdf"
       ]
     },
     {
-      "entity": "Berliner Glas Group",
+      "entity": "Berliner Glas Group (ASML subsidiary)",
       "role": "key_supplier",
       "city": "Berlin",
       "country": "Germany",
       "lat": 52.52,
       "lng": 13.405,
-      "product": "Optical components for EUV systems",
+      "product": "Optical components and subassemblies for EUV systems",
       "criticality": "important",
       "sources": [
         "https://en.wikipedia.org/wiki/ASML"
       ]
     },
     {
-      "entity": "imec",
+      "entity": "IMEC",
       "role": "key_supplier",
       "city": "Leuven",
       "country": "Belgium",
-      "lat": 50.8796,
-      "lng": 4.7009,
-      "product": "Research and innovation partnership for lithography",
+      "lat": 50.8798,
+      "lng": 4.7005,
+      "product": "EUV lithography research and development collaboration",
       "criticality": "important",
       "sources": [
-        "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     },
     {
-      "entity": "Mistral AI",
+      "entity": "Sematech",
       "role": "key_supplier",
-      "city": "Paris",
-      "country": "France",
-      "lat": 48.8566,
-      "lng": 2.3522,
-      "product": "AI software and technology partnership",
-      "criticality": "standard",
+      "city": "Albany",
+      "country": "United States",
+      "lat": 42.6526,
+      "lng": -73.7562,
+      "product": "EUV lithography research and development collaboration",
+      "criticality": "important",
       "sources": [
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Intel Corporation",
-      "revenueShare": null,
-      "hqCity": "Santa Clara",
-      "hqCountry": "United States",
-      "lat": 37.3947,
-      "lng": -121.977,
-      "relationship": "Major customer, stakeholder, and strategic partner.",
-      "sources": [
-        "https://en.wikipedia.org/wiki/ASML",
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html"
-      ]
-    },
-    {
-      "customer": "TSMC",
-      "revenueShare": null,
+      "customer": "TSMC (Taiwan Semiconductor Manufacturing Company)",
+      "revenueShare": "29.3%",
       "hqCity": "Hsinchu",
       "hqCountry": "Taiwan",
-      "lat": 24.7737,
-      "lng": 121.0121,
-      "relationship": "Major customer and strategic partner for advanced node production.",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "relationship": "Largest buyer of ASML's tools in 2023 (Taiwan accounted for 29.3% of ASML tool purchases); co-investor in ASML; uses EUV machines in production; bought a 10% stake in IMS Nanofabrication from Intel",
       "sources": [
+        "https://ecipe.org/wp-content/uploads/2024/04/ECI_24_PolicyBrief_07-2024_LY03.pdf",
+        "https://bidenwhitehouse.archives.gov/wp-content/uploads/2021/06/100-day-supply-chain-review-report.pdf",
         "https://en.wikipedia.org/wiki/ASML",
-        "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
-        "https://futurumgroup.com/insights/asml-q2-fy-2025-earnings-reflect-strong-demand-but-with-future-uncertainty/"
+        "https://www.sec.gov/Archives/edgar/data/50863/000005086324000010/intc-20231230.htm"
       ]
     },
     {
-      "customer": "Samsung",
+      "customer": "Samsung Electronics",
       "revenueShare": null,
       "hqCity": "Suwon",
       "hqCountry": "South Korea",
       "lat": 37.2636,
       "lng": 127.0286,
-      "relationship": "Major customer and foundry partner.",
+      "relationship": "Co-investor in ASML under co-investment program; uses EUV machines in production; major semiconductor manufacturer",
       "sources": [
         "https://en.wikipedia.org/wiki/ASML",
-        "https://futurumgroup.com/insights/asml-q2-fy-2025-earnings-reflect-strong-demand-but-with-future-uncertainty/"
+        "https://bidenwhitehouse.archives.gov/wp-content/uploads/2021/06/100-day-supply-chain-review-report.pdf"
+      ]
+    },
+    {
+      "customer": "Intel Corporation",
+      "revenueShare": null,
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.3875,
+      "lng": -121.9631,
+      "relationship": "Purchased a 15% stake in ASML for $4.1 billion in July 2012; major semiconductor manufacturer and potential foundry customer",
+      "sources": [
+        "https://en.wikipedia.org/wiki/ASML"
       ]
     },
     {
@@ -315,9 +1186,33 @@
       "hqCountry": "United States",
       "lat": 43.615,
       "lng": -116.2023,
-      "relationship": "Major customer and early adopter of ASML systems.",
+      "relationship": "First company to operate the PAS 5500; became ASML's largest customer for a time",
       "sources": [
         "https://en.wikipedia.org/wiki/ASML"
+      ]
+    },
+    {
+      "customer": "IBM",
+      "revenueShare": null,
+      "hqCity": "Armonk",
+      "hqCountry": "United States",
+      "lat": 41.1265,
+      "lng": -73.7141,
+      "relationship": "Ordered the PAS 5500 over Japanese counterparts due to serviceability advantage",
+      "sources": [
+        "https://en.wikipedia.org/wiki/ASML"
+      ]
+    },
+    {
+      "customer": "China (country/region)",
+      "revenueShare": null,
+      "hqCity": null,
+      "hqCountry": "China",
+      "lat": 35.828250499999996,
+      "lng": 104.35084499999999,
+      "relationship": "Second largest buyer of ASML's tools on a country/region basis in 2023",
+      "sources": [
+        "https://ecipe.org/wp-content/uploads/2024/04/ECI_24_PolicyBrief_07-2024_LY03.pdf"
       ]
     }
   ],
@@ -328,11 +1223,23 @@
       "lng": 104.1954,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "Export Control Restrictions",
-      "description": "Strict export license requirements for DUV immersion lithography systems and EUV tools, limiting sales to Chinese customers and impacting revenue streams.",
+      "riskLabel": "US-Dutch export controls on lithography systems to China",
+      "description": "US and Dutch export controls severely restrict ASML's ability to sell advanced DUV immersion and EUV lithography systems to Chinese customers. The December 2024 BIS rule added metrology, software, and additional Chinese fab locations to restricted lists. Dutch authorities have aligned with US restrictions, requiring export licenses for DUV immersion systems to specific Chinese sites. This directly impacts ASML's largest growth market.",
       "impactLevel": "critical",
-      "filingReference": "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
+      "filingReference": "https://www.asml.com/news/press-releases/2024/asml-expects-impact-of-updated-export-restrictions-to-fall-within-outlook-for-2025",
       "lastUpdated": "2024-12-02"
+    },
+    {
+      "region": "Netherlands",
+      "lat": 52.1326,
+      "lng": 5.2913,
+      "riskScore": 4,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Dutch government export license requirements",
+      "description": "The Dutch government has progressively tightened export controls on ASML's chipmaking equipment, aligning with US restrictions. In January 2025, ASML was required to apply for export licenses with the Dutch government instead of the US under tighter controls. Further restrictions on DUV immersion systems to Chinese locations could follow if Dutch authorities make similar security assessments as the US.",
+      "impactLevel": "high",
+      "filingReference": "https://en.wikipedia.org/wiki/ASML",
+      "lastUpdated": "2025-01-01"
     },
     {
       "region": "Taiwan",
@@ -340,47 +1247,95 @@
       "lng": 120.9605,
       "riskScore": 4,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Cross-Strait Instability",
-      "description": "High concentration of semiconductor manufacturing capacity in Taiwan makes ASML's supply chain and customer base vulnerable to regional geopolitical tensions and seismic activity.",
+      "riskLabel": "Taiwan Strait tensions threatening TSMC customer base",
+      "description": "Rising tensions between mainland China and Taiwan pose a direct risk to ASML's largest customer, TSMC, which accounts for a significant portion of ASML's EUV and DUV system sales. A disruption in Taiwan's semiconductor production could result in nearly $500 billion in lost revenues for electronic device manufacturers and severely impact ASML's order book and revenue stream.",
       "impactLevel": "high",
-      "filingReference": "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
-      "lastUpdated": "2026-01-28"
+      "filingReference": "https://www.intc.com/news-events/press-releases/detail/1767/intel-reports-first-quarter-2026-financial-results",
+      "lastUpdated": "2026-05-01"
     },
     {
       "region": "United States",
       "lat": 37.0902,
       "lng": -95.7129,
-      "riskScore": 3,
+      "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "US Executive Order 14173",
-      "description": "Impacts diversity targets and long-term incentive plan structures for US-based employees, requiring operational adjustments to comply with merit-based opportunity mandates.",
+      "riskLabel": "US Foreign Direct Product Rule (FDPR) jurisdiction",
+      "description": "ASML incorporates US technology in the design of certain equipment and chips, potentially making its products subject to US export regulations under the Foreign Direct Product Rule (FDPR). This gives the US government extraterritorial control over ASML's global sales, creating compliance complexity and risk of further restrictions beyond Dutch regulations.",
+      "impactLevel": "high",
+      "filingReference": "https://ecipe.org/wp-content/uploads/2024/04/ECI_24_PolicyBrief_07-2024_LY03.pdf",
+      "lastUpdated": "2024-04-01"
+    },
+    {
+      "region": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
+      "riskScore": 4,
+      "riskCategory": "sanctions",
+      "riskLabel": "Chinese entity list restrictions on key customers",
+      "description": "Chinese semiconductor firms including SMIC, YMTC, and CXMT have been added to the US BIS Entity List, restricting ASML's ability to obtain required licenses and approvals for sales. The list of affected Chinese entities has increased since 2022, further limiting ASML's addressable market in China and creating legal risks for inadvertent violations.",
+      "impactLevel": "high",
+      "filingReference": "https://ecipe.org/wp-content/uploads/2024/04/ECI_24_PolicyBrief_07-2024_LY03.pdf",
+      "lastUpdated": "2024-04-01"
+    },
+    {
+      "region": "China",
+      "lat": 22.5431,
+      "lng": 114.0579,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Chinese IP theft and reverse engineering of EUV technology",
+      "description": "In December 2025, Reuters reported that China secretly built a prototype EUV machine in Shenzhen with assistance from former ASML engineers. ASML's 2021 annual report also noted Dongfang Jingyuan Electron Limited actively marketing products in China potentially infringing on ASML's IP rights. This threatens ASML's core technological advantage and future revenue.",
       "impactLevel": "moderate",
-      "filingReference": "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
-      "lastUpdated": "2025-04-21"
+      "filingReference": "https://en.wikipedia.org/wiki/ASML",
+      "lastUpdated": "2025-12-01"
+    },
+    {
+      "region": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
+      "riskScore": 3,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Chinese retaliatory export controls on critical minerals",
+      "description": "The PRC government has used export controls on advanced manufacturing inputs such as germanium, gallium, and rare earth magnets to retaliate against US export controls. These materials are critical for semiconductor manufacturing equipment and supply chains, potentially disrupting ASML's production capabilities and increasing costs.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.congress.gov/crs-product/R48642",
+      "lastUpdated": "2025-09-01"
     },
     {
       "region": "Netherlands",
       "lat": 52.1326,
       "lng": 5.2913,
       "riskScore": 3,
-      "riskCategory": "labor_regulation",
-      "riskLabel": "Workforce Reduction",
-      "description": "Planned reduction of approximately 1,700 positions in Technology and IT organizations, primarily in the Netherlands and the US, to optimize operational efficiency.",
+      "riskCategory": "political_instability",
+      "riskLabel": "Dutch political pressure from US to tighten controls",
+      "description": "The Dutch government has faced significant pressure from the US to align export control regimes, moving ahead with restrictions on advanced semiconductor equipment. This creates regulatory uncertainty for ASML's long-term planning and may lead to further unanticipated restrictions that impact revenue from China and other markets.",
       "impactLevel": "moderate",
-      "filingReference": "https://www.stocktitan.net/sec-filings/ASML/6-k-asml-holding-nv-current-report-foreign-issuer-276032004312.html",
-      "lastUpdated": "2026-01-28"
+      "filingReference": "https://ecipe.org/wp-content/uploads/2024/04/ECI_24_PolicyBrief_07-2024_LY03.pdf",
+      "lastUpdated": "2024-04-01"
     },
     {
-      "region": "South Korea",
-      "lat": 35.9078,
-      "lng": 127.7669,
-      "riskScore": 2,
-      "riskCategory": "regulatory_compliance",
-      "riskLabel": "Local Certification Requirements",
-      "description": "Mandatory certification for heavy lifting tools (500kg+) and compliance with K-REACH environmental regulations for local operations.",
-      "impactLevel": "low",
-      "filingReference": "https://ourbrand.asml.com/m/5f0bf644f7e26c9a/original/2024-Strategic-report-section.pdf",
-      "lastUpdated": "2024-12-02"
+      "region": "Global",
+      "lat": 55.702215,
+      "lng": 12.5592485,
+      "riskScore": 3,
+      "riskCategory": "currency_exposure",
+      "riskLabel": "Macroeconomic uncertainty and currency fluctuations",
+      "description": "ASML cited increasing uncertainty driven by macro-economic and geopolitical developments affecting its 2026 outlook. Currency fluctuations, inflation, and interest rate changes across key markets (Eurozone, US, Asia) could impact ASML's profitability, as a portion of its costs and revenues are denominated in different currencies.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.asml.com/news/press-releases/2025/q2-2025-financial-results",
+      "lastUpdated": "2025-07-01"
+    },
+    {
+      "region": "China",
+      "lat": 35.8617,
+      "lng": 104.1954,
+      "riskScore": 3,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Chinese stockpiling and strategic response to controls",
+      "description": "Chinese firms have strategically responded to US export controls by increasing purchases of ASML lithographic machinery before restrictions take effect, creating demand volatility. Additionally, BIS's slow rulemaking process allows PRC firms to stockpile equipment, leading to boom-bust cycles in ASML's China revenue and complicating production planning.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr1096.pdf",
+      "lastUpdated": "2024-01-01"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-05-23T19:44:54.431102",
+  "lastUpdated": "2026-05-24T22:35:43.693364",
   "regions": [
     {
       "region": "China",
       "lat": 35.8617,
       "lng": 104.1954,
-      "overallScore": 8.7,
+      "overallScore": 8.1,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -35,6 +35,30 @@
           "ticker": "ASML",
           "riskScore": 5,
           "impactLevel": "critical",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
           "category": "trade_restriction"
         },
         {
@@ -81,12 +105,13 @@
         }
       ],
       "riskDimensions": [
-        "regulatory_compliance",
+        "sanctions",
+        "geopolitical_conflict",
         "trade_restriction",
         "political_instability",
-        "sanctions"
+        "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 12 companies in China."
+      "summary": "Aggregated risk from 16 companies in China."
     },
     {
       "region": "Taiwan",
@@ -150,9 +175,9 @@
         }
       ],
       "riskDimensions": [
+        "environmental_regulation",
         "geopolitical_conflict",
-        "trade_restriction",
-        "environmental_regulation"
+        "trade_restriction"
       ],
       "summary": "Aggregated risk from 9 companies in Taiwan."
     },
@@ -160,7 +185,7 @@
       "region": "United States",
       "lat": 37.0902,
       "lng": -95.7129,
-      "overallScore": 8.2,
+      "overallScore": 8.4,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -182,8 +207,8 @@
         },
         {
           "ticker": "ASML",
-          "riskScore": 3,
-          "impactLevel": "moderate",
+          "riskScore": 4,
+          "impactLevel": "high",
           "category": "regulatory_compliance"
         },
         {
@@ -224,8 +249,8 @@
         }
       ],
       "riskDimensions": [
-        "trade_restriction",
         "tax_policy",
+        "trade_restriction",
         "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 10 companies in United States."
@@ -517,62 +542,39 @@
       "region": "Netherlands",
       "lat": 52.1326,
       "lng": 5.2913,
-      "overallScore": 6.0,
+      "overallScore": 7.0,
       "contributingCompanies": [
+        {
+          "ticker": "ASML",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
         {
           "ticker": "ASML",
           "riskScore": 3,
           "impactLevel": "moderate",
-          "category": "labor_regulation"
+          "category": "political_instability"
         }
       ],
       "riskDimensions": [
-        "labor_regulation"
-      ],
-      "summary": "Aggregated risk from 1 companies in Netherlands."
-    },
-    {
-      "region": "South Korea",
-      "lat": 35.9078,
-      "lng": 127.7669,
-      "overallScore": 4.0,
-      "contributingCompanies": [
-        {
-          "ticker": "ASML",
-          "riskScore": 2,
-          "impactLevel": "low",
-          "category": "regulatory_compliance"
-        }
-      ],
-      "riskDimensions": [
+        "political_instability",
         "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 1 companies in South Korea."
-    },
-    {
-      "region": "Malaysia",
-      "lat": 5.2647,
-      "lng": 100.4429,
-      "overallScore": 8.0,
-      "contributingCompanies": [
-        {
-          "ticker": "AVGO",
-          "riskScore": 4,
-          "impactLevel": "high",
-          "category": "tax_policy"
-        }
-      ],
-      "riskDimensions": [
-        "tax_policy"
-      ],
-      "summary": "Aggregated risk from 1 companies in Malaysia."
+      "summary": "Aggregated risk from 2 companies in Netherlands."
     },
     {
       "region": "Global",
       "lat": 55.702215,
       "lng": 12.5592485,
-      "overallScore": 6.7,
+      "overallScore": 6.5,
       "contributingCompanies": [
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "currency_exposure"
+        },
         {
           "ticker": "GOOGL",
           "riskScore": 4,
@@ -593,11 +595,30 @@
         }
       ],
       "riskDimensions": [
-        "political_instability",
         "tax_policy",
+        "currency_exposure",
+        "political_instability",
         "sanctions"
       ],
-      "summary": "Aggregated risk from 3 companies in Global."
+      "summary": "Aggregated risk from 4 companies in Global."
+    },
+    {
+      "region": "Malaysia",
+      "lat": 5.2647,
+      "lng": 100.4429,
+      "overallScore": 8.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "tax_policy"
+        }
+      ],
+      "riskDimensions": [
+        "tax_policy"
+      ],
+      "summary": "Aggregated risk from 1 companies in Malaysia."
     },
     {
       "region": "European Union (EEA)",
