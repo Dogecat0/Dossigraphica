@@ -156,35 +156,104 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     # so the front-end (or test_run.py) correctly displays the massive amount
     # of work that led to this checkpoint rather than starting from 0.
     if state.pipeline_step != "init":
-        tracker.start_phase(0, "recovery") # Internal recovery phase
-        tracker.add_llm_total(tracker.get_llm_multiplier(PlannerSchema)) ; tracker.complete_llm(tracker.get_llm_multiplier(PlannerSchema)) # Planner
-        tracker.add_io_total(1) ; tracker.complete_io(1) # Primary Search
-        
-        triage_multiplier = tracker.get_llm_multiplier(SingleTriageSchema)
-        tracker.add_llm_total(len(state.search_results) * triage_multiplier)
-        tracker.complete_llm(len(state.search_results) * triage_multiplier) # Triage
-        
-        # Determine how many Extraction and Preprocessing chunks succeeded 
-        # by simply counting what exists in the logs director
+        tracker.start_phase(0, "recovery")
+
+        # Scan log files to identify phase boundaries by index.
+        import glob, re as _re
+        _all_logs = []
         if os.path.exists(log_dir):
-            import glob
-            chunk_files = glob.glob(os.path.join(log_dir, "*_SynthesizerSchema_output.json"))
-            num_chunks = len(chunk_files)
-            sieve_multiplier = tracker.get_llm_multiplier(SynthesizerSchema)
-            tracker.add_llm_total(num_chunks * sieve_multiplier) ; tracker.complete_llm(num_chunks * sieve_multiplier) # Sieve
-            
-            # Count the Extractor data to approximate IO steps
-            ext_files = glob.glob(os.path.join(log_dir, "*_ExtractorData_output.json"))
-            if ext_files:
-                approx_io = len(state.urls) 
-                tracker.add_io_total(approx_io) ; tracker.complete_io(approx_io)
-                
-        if state.pipeline_step in ["enrichment_searching", "enrichment_extracting", "drafting"]:
-            assembly_calls = 3 * tracker.get_llm_multiplier() # Assuming Assembly uses ~2 field schemas
-            tracker.add_llm_total(assembly_calls) ; tracker.complete_llm(assembly_calls) # Entity assembly
-            
-            if hasattr(state, "enrichment_queries") and state.enrichment_queries:
-                tracker.add_io_total(1) ; tracker.complete_io(1) # Enrichment Search
+            for f in os.listdir(log_dir):
+                m = _re.match(r"^(\d+)_(.+)_output\.json$", f)
+                if m:
+                    _all_logs.append((int(m.group(1)), m.group(2)))
+        _all_logs.sort(key=lambda x: x[0])
+
+        # Find boundary indices for phase separation.
+        _assembly_idx = None
+        _drafting_idx = None
+        for idx, name in _all_logs:
+            if "EntityAssemblyData" in name:
+                _assembly_idx = idx
+            elif "DraftingCompleteData" in name:
+                _drafting_idx = idx
+
+        def _is_enrichment(fname_idx: int) -> bool:
+            return _assembly_idx is not None and fname_idx > _assembly_idx
+
+        # Count IO from ExtractorData file contents (actual fetched URLs).
+        _io_primary = 0
+        _io_enrich = 0
+        for ext_path in glob.glob(os.path.join(log_dir, "*_ExtractorData_output.json")):
+            try:
+                with open(ext_path) as f:
+                    data = json.load(f)
+                count = len(data.get("raw_content", []))
+                ext_idx = int(_re.search(r"(\d+)", os.path.basename(ext_path)).group(1))
+                if _is_enrichment(ext_idx):
+                    _io_enrich += count
+                else:
+                    _io_primary += count
+            except Exception:
+                pass
+
+        # Count triage evaluations (SingleTriageSchema files — all primary).
+        _triage_count = 0
+        for tri_path in glob.glob(os.path.join(log_dir, "*_SingleTriageSchema_output.json")):
+            _triage_count += 1
+
+        # Count sieve chunks from SynthesizerSchema files.
+        _primary_chunks = 0
+        _enrich_chunks = 0
+        for chunk_path in glob.glob(os.path.join(log_dir, "*_SynthesizerSchema_output.json")):
+            chunk_idx = int(_re.search(r"(\d+)", os.path.basename(chunk_path)).group(1))
+            if _is_enrichment(chunk_idx):
+                _enrich_chunks += 1
+            else:
+                _primary_chunks += 1
+
+        # Seed all phases, only marking work as completed when the
+        # resolved pipeline_step proves it was done in the original run.
+        _sieve_mult = tracker.get_llm_multiplier(SynthesizerSchema)
+
+        # Phase 1 — Planner
+        tracker.add_llm_total(tracker.get_llm_multiplier(PlannerSchema))
+        tracker.complete_llm(tracker.get_llm_multiplier(PlannerSchema))
+        # Phase 2 — Search IO
+        tracker.add_io_total(1)
+        tracker.complete_io(1)
+        # Phase 3 — Triage (counted from SingleTriageSchema log files,
+        # not from state.search_results which may be overwritten by enrichment SearchData)
+        _triage_mult = tracker.get_llm_multiplier(SingleTriageSchema)
+        tracker.add_llm_total(_triage_count * _triage_mult)
+        tracker.complete_llm(_triage_count * _triage_mult)
+        # Phase 3 — Primary sieve chunks
+        tracker.add_llm_total(_primary_chunks * _sieve_mult)
+        tracker.complete_llm(_primary_chunks * _sieve_mult)
+        # Phase 3 — Primary extraction IO
+        tracker.add_io_total(_io_primary)
+        tracker.complete_io(_io_primary)
+
+        # Phase 4 — Entity assembly (done if we found EntityAssemblyData)
+        if _assembly_idx is not None:
+            _assembly_calls = 3 * tracker.get_llm_multiplier()
+            tracker.add_llm_total(_assembly_calls)
+            tracker.complete_llm(_assembly_calls)
+
+        # Phases 5-6 — Enrichment (done if pipeline_step proves it)
+        if state.pipeline_step in ["enrichment_searching", "enrichment_extracting", "drafting", "completed"]:
+            _enrich_search_io = 1 if (state.enrichment_queries) else 0
+            tracker.add_io_total(_enrich_search_io)
+            tracker.complete_io(_enrich_search_io)
+            tracker.add_llm_total(_enrich_chunks * _sieve_mult)
+            tracker.complete_llm(_enrich_chunks * _sieve_mult)
+            tracker.add_io_total(_io_enrich)
+            tracker.complete_io(_io_enrich)
+
+        # Phase 7 — Drafting (done if DraftingCompleteData checkpoint exists)
+        if _drafting_idx is not None:
+            _drafting_calls = 13 * tracker.get_llm_multiplier()  # 7 json + 6 md sections
+            tracker.add_llm_total(_drafting_calls)
+            tracker.complete_llm(_drafting_calls)
                 
     tracker._initial_llm_completed = tracker.llm_completed
     # --------------------------------------------------
