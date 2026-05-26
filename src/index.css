@@ -193,6 +193,7 @@ h4 {
   }
 }
 
+/* ===== Responsive: Tablet & Mobile ===== */
 @media (max-width: 768px) {
   .dossier-panel {
     width: 100% !important;
@@ -205,10 +206,93 @@ h4 {
     box-shadow: 0 -10px 30px rgba(18, 18, 20, 0.15);
     border-radius: 16px 16px 0 0;
     animation: slide-up-mobile 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    z-index: 55;
   }
-  
+
   .bookmark-strip {
     display: none !important;
+  }
+
+  /* Collapse 2-column grids to 1 column on mobile */
+  .stat-summary-bar {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce horizontal padding in panels on mobile */
+  .dossier-panel .\[padding-left\:1\.5rem\],
+  .dossier-panel [class*="px-8"] {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Smaller tab padding */
+  .dossier-panel .index-tab {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  /* Shrink heading sizes in panels */
+  .dossier-panel h2.text-3xl {
+    font-size: 1.5rem;
+  }
+
+  .dossier-panel .text-4xl {
+    font-size: 1.75rem;
+  }
+
+  /* Make risk table scrollable horizontally on mobile */
+  .risk-table-header,
+  .risk-row {
+    min-width: 500px;
+  }
+
+  /* Smaller stat cell values */
+  .dossier-panel .text-2xl.font-serif {
+    font-size: 1.25rem;
+  }
+
+  /* Make revenue tables horizontally scrollable */
+  .dossier-panel table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Card padding reduction */
+  .dossier-panel .dossier-card {
+    padding: 1rem;
+  }
+
+  /* Reduce gap in stat-summary bar items */
+  .dossier-panel .stat-summary-bar > div {
+    padding: 0.75rem;
+  }
+
+  /* Scale down the header logo */
+  header .w-10.h-10 {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dossier-panel {
+    height: 70vh !important;
+  }
+
+  .dossier-panel .index-tab {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+  }
+
+  .dossier-panel .stat-summary-bar > div p:last-child {
+    font-size: 1rem !important;
   }
 }
 
