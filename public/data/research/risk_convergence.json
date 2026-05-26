@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-24T22:35:43.693364",
+  "lastUpdated": "2026-05-26T22:40:37.417199",
   "regions": [
     {
       "region": "China",
@@ -41,7 +41,7 @@
           "ticker": "ASML",
           "riskScore": 4,
           "impactLevel": "high",
-          "category": "sanctions"
+          "category": "political_instability"
         },
         {
           "ticker": "ASML",
@@ -105,11 +105,11 @@
         }
       ],
       "riskDimensions": [
-        "sanctions",
-        "geopolitical_conflict",
         "trade_restriction",
+        "sanctions",
+        "regulatory_compliance",
         "political_instability",
-        "regulatory_compliance"
+        "geopolitical_conflict"
       ],
       "summary": "Aggregated risk from 16 companies in China."
     },
@@ -175,9 +175,9 @@
         }
       ],
       "riskDimensions": [
+        "trade_restriction",
         "environmental_regulation",
-        "geopolitical_conflict",
-        "trade_restriction"
+        "geopolitical_conflict"
       ],
       "summary": "Aggregated risk from 9 companies in Taiwan."
     },
@@ -185,7 +185,7 @@
       "region": "United States",
       "lat": 37.0902,
       "lng": -95.7129,
-      "overallScore": 8.4,
+      "overallScore": 8.0,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -207,9 +207,27 @@
         },
         {
           "ticker": "ASML",
+          "riskScore": 5,
+          "impactLevel": "critical",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "ASML",
           "riskScore": 4,
           "impactLevel": "high",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "high",
           "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "trade_restriction"
         },
         {
           "ticker": "GOOGL",
@@ -249,11 +267,12 @@
         }
       ],
       "riskDimensions": [
-        "tax_policy",
         "trade_restriction",
+        "tax_policy",
+        "sanctions",
         "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 10 companies in United States."
+      "summary": "Aggregated risk from 13 companies in United States."
     },
     {
       "region": "Russia",
@@ -290,7 +309,7 @@
       "region": "European Union",
       "lat": 50.8503,
       "lng": 4.3517,
-      "overallScore": 8.0,
+      "overallScore": 7.7,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -302,6 +321,12 @@
           "ticker": "AMZN",
           "riskScore": 4,
           "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
           "category": "regulatory_compliance"
         },
         {
@@ -332,7 +357,7 @@
       "riskDimensions": [
         "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 6 companies in European Union."
+      "summary": "Aggregated risk from 7 companies in European Union."
     },
     {
       "region": "Xinjiang, China",
@@ -468,8 +493,8 @@
     },
     {
       "region": "Japan",
-      "lat": 36.2,
-      "lng": 138.25,
+      "lat": 36.2048,
+      "lng": 138.2529,
       "overallScore": 6.0,
       "contributingCompanies": [
         {
@@ -477,12 +502,19 @@
           "riskScore": 3,
           "impactLevel": "moderate",
           "category": "currency_exposure"
+        },
+        {
+          "ticker": "ASML",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "trade_restriction"
         }
       ],
       "riskDimensions": [
+        "trade_restriction",
         "currency_exposure"
       ],
-      "summary": "Aggregated risk from 1 companies in Japan."
+      "summary": "Aggregated risk from 2 companies in Japan."
     },
     {
       "region": "Germany",
@@ -553,12 +585,11 @@
         {
           "ticker": "ASML",
           "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "political_instability"
+          "impactLevel": "low",
+          "category": "regulatory_compliance"
         }
       ],
       "riskDimensions": [
-        "political_instability",
         "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 2 companies in Netherlands."
@@ -595,10 +626,10 @@
         }
       ],
       "riskDimensions": [
-        "tax_policy",
-        "currency_exposure",
         "political_instability",
-        "sanctions"
+        "tax_policy",
+        "sanctions",
+        "currency_exposure"
       ],
       "summary": "Aggregated risk from 4 companies in Global."
     },

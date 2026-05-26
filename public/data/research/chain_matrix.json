@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-24T22:35:43.690440",
+  "lastUpdated": "2026-05-26T22:40:37.414741",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -1548,9 +1548,17 @@
     },
     {
       "from": "ASML",
+      "to": "ASML Holding N.V. (Headquarters)",
+      "type": "buyer_supplier",
+      "description": "ASML depends on ASML Holding N.V. (Headquarters) for EUV and DUV lithography systems design, assembly, and integration",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "ASML",
       "to": "Carl Zeiss SMT",
       "type": "buyer_supplier",
-      "description": "ASML depends on Carl Zeiss SMT for Mirror optics and optical systems for EUV lithography",
+      "description": "ASML depends on Carl Zeiss SMT for EUV mirrors and optical systems with atomic-level polishing",
       "strength": "critical",
       "value": "key_supplier"
     },
@@ -1558,7 +1566,7 @@
       "from": "ASML",
       "to": "Cymer (ASML subsidiary)",
       "type": "buyer_supplier",
-      "description": "ASML depends on Cymer (ASML subsidiary) for Laser light sources for DUV and EUV lithography systems",
+      "description": "ASML depends on Cymer (ASML subsidiary) for EUV and DUV laser light sources (85% of EUV components)",
       "strength": "critical",
       "value": "key_supplier"
     },
@@ -1566,24 +1574,40 @@
       "from": "ASML",
       "to": "Berliner Glas Group (ASML subsidiary)",
       "type": "buyer_supplier",
-      "description": "ASML depends on Berliner Glas Group (ASML subsidiary) for Optical components and subassemblies for EUV systems",
+      "description": "ASML depends on Berliner Glas Group (ASML subsidiary) for Optical glass components and glass ceramics for lithography systems",
       "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "ASML",
+      "to": "ASML Wilton (ASML site)",
+      "type": "buyer_supplier",
+      "description": "ASML depends on ASML Wilton (ASML site) for Reticle handler, reticle stage modules, and optical fabrication/polishing",
+      "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
       "to": "IMEC",
       "type": "buyer_supplier",
-      "description": "ASML depends on IMEC for EUV lithography research and development collaboration",
+      "description": "ASML depends on IMEC for EUV technology research and development collaboration",
       "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "ASML",
-      "to": "Sematech",
+      "to": "Nikon Corporation",
       "type": "buyer_supplier",
-      "description": "ASML depends on Sematech for EUV lithography research and development collaboration",
-      "strength": "important",
+      "description": "ASML depends on Nikon Corporation for Competitor in non-EUV photolithography stepper/scanner equipment",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "ASML",
+      "to": "Canon Inc.",
+      "type": "buyer_supplier",
+      "description": "ASML depends on Canon Inc. for Competitor in non-EUV photolithography stepper/scanner equipment",
+      "strength": "standard",
       "value": "key_supplier"
     },
     {
@@ -1592,21 +1616,29 @@
       "type": "buyer_supplier",
       "description": "Taiwan Semiconductor Manufacturing Company is a major customer of ASML",
       "strength": "critical",
-      "value": "29.3%"
-    },
-    {
-      "from": "Samsung Electronics",
-      "to": "ASML",
-      "type": "buyer_supplier",
-      "description": "Samsung Electronics is a major customer of ASML",
-      "strength": "important",
-      "value": null
+      "value": "Estimated >80% combined with Intel and Samsung (Fitch)"
     },
     {
       "from": "INTC",
       "to": "ASML",
       "type": "buyer_supplier",
       "description": "Intel Corporation is a major customer of ASML",
+      "strength": "critical",
+      "value": "Estimated >80% combined with TSMC and Samsung (Fitch)"
+    },
+    {
+      "from": "005930.KS",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Samsung Electronics Co., Ltd. is a major customer of ASML",
+      "strength": "critical",
+      "value": "Estimated >80% combined with TSMC and Intel (Fitch)"
+    },
+    {
+      "from": "000660.KS",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "SK Hynix is a major customer of ASML",
       "strength": "important",
       "value": null
     },
@@ -1619,6 +1651,22 @@
       "value": null
     },
     {
+      "from": "GlobalFoundries",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "GlobalFoundries is a major customer of ASML",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Instruments",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "Instruments is a major customer of ASML",
+      "strength": "important",
+      "value": null
+    },
+    {
       "from": "IBM",
       "to": "ASML",
       "type": "buyer_supplier",
@@ -1627,10 +1675,10 @@
       "value": null
     },
     {
-      "from": "country/region",
+      "from": "Semiconductor Manufacturing International Corporation",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "country/region is a major customer of ASML",
+      "description": "Semiconductor Manufacturing International Corporation is a major customer of ASML",
       "strength": "important",
       "value": null
     },

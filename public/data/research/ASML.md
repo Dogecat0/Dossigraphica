@@ -1,255 +1,370 @@
 ## 1. Geographic Profile Summary
 
-ASML Holding N.V. is a Dutch multinational corporation headquartered in **Veldhoven, the Netherlands**. The company operates across **more than 60 locations worldwide** and employs over **44,000 people (FTE)** representing **more than 80 nationalities**, underscoring its highly globalized and diverse workforce.
+ASML Holding N.V. is a Dutch multinational public corporation headquartered in **Veldhoven, Netherlands**. It is the world's leading lithography tool manufacturer, commanding over 90% of the global market share and serving as the sole producer of extreme-ultraviolet (EUV) lithography systems essential for advanced microchip production.
 
-- **Headquarters:** Veldhoven, Netherlands
-- **Global Footprint:** 60+ locations across Asia, the Americas, and Europe
-- **Workforce:** ~44,000 FTE from 80+ nationalities
-- **Primary Customers:** World's leading semiconductor manufacturers
-- **Key Regional Exposure:** China business accounts for approximately **20% of total net sales** in 2025, highlighting significant revenue concentration in the Asia-Pacific region alongside strong presence in the Americas and Europe.
+**Global Footprint:** ASML operates in more than **60 locations worldwide**, with major hubs in:
+- **Veldhoven, Netherlands** (Global Headquarters)
+- **Silicon Valley, USA**
+- **Wilton, USA**
+- Various locations across **Asia**
+
+**Workforce:** The company employs over **44,000 people** representing more than **100 nationalities**, reflecting a highly diverse and international talent base.
+
+**Revenue Distribution (Global Diversification):**
+| Region | Share of Revenue |
+|---|---|
+| Taiwan | 24.7% |
+| China | 22.2% |
+| South Korea | 21.3% |
+| United States | 9.6% |
+| EMEA | 3.7% |
+| Japan | 1.9% |
+| Singapore | 0.9% |
+
+**Stock Listings:** ASML is listed on **Euronext Amsterdam** and **NASDAQ** under the ticker **ASML**, with a market capitalization of approximately **€539.5 billion** as of early 2026.
 
 ## 2. Corporate Footprint
 
-ASML maintains a vast global network of over 60 verified office and facility locations spanning 16 countries across Europe, Asia, and North America. The company's footprint is strategically aligned with the world's leading semiconductor manufacturing clusters, research hubs, and customer bases.
+ASML maintains a vast global network of offices spanning Europe, Asia, and North America, encompassing headquarters, regional hubs, engineering and R&D centers, manufacturing sites, sales offices, and customer support satellites. The dataset contains **65 verified office locations** across **17 countries and territories**.
 
-### 2.1 Global Headquarters & European Operations
+### 2.1 Office Type Breakdown
 
-The company's global headquarters is located in **Veldhoven, Netherlands** (De Run 6501, 5504 DR), serving as the primary hub for research, development, manufacturing, assembly, and corporate functions. Within the Netherlands, ASML also operates an engineering and R&amp;D office in **Delft** (South Holland).
-
-Across Europe, ASML maintains a network of specialized facilities:
-
-| Location | Country | Type | Business Focus |
-|---|---|---|---|
-| Veldhoven | Netherlands | Headquarters | Global HQ, R&amp;D, manufacturing, corporate |
-| Delft | Netherlands | Engineering | Research and development |
-| Leuven | Belgium | Engineering | R&amp;D collaboration (IMEC) |
-| Crolles | France | Sales | Sales and customer support |
-| Berlin | Germany | Manufacturing | Optical glass manufacturing (Berliner Glas) |
-| Dresden | Germany | Sales | Sales and customer support |
-| Erlangen | Germany | Engineering | Research and development |
-| Maynooth | Ireland | Sales | Sales and customer support |
-| Kiryat-Gat | Israel | Sales | Sales and customer support |
-| Migdal Ha'emek | Israel | Sales | Sales and customer support |
-| Avezzano | Italy | Sales | Sales and customer support |
-| Lanarkshire | Scotland, UK | Sales | Sales and customer support |
-
-### 2.2 Greater China Presence
-
-ASML's largest concentration of offices outside Europe is in **Greater China**, with 15 verified locations. The regional headquarters is in **Shanghai** (China Headquarters), supported by a dense network of sales and customer support offices across major semiconductor hubs:
-
-- **Shanghai** — China HQ (sales, customer support)
-- **Beijing** — Sales and customer support
-- **Dalian** — Sales and customer support
-- **Hefei** — Sales and customer support
-- **Jinjiang** — Sales and customer support
-- **Nanjing** — Sales and customer support
-- **Qingdao** — Sales and customer support
-- **Shenzhen (Nanshan)** — Engineering (computational lithography, Brion)
-- **Shenzhen (Longgang)** — Sales and customer support
-- **Tianjin** — Sales and customer support
-- **Wuhan** — Sales and customer support
-- **Wuxi** — Sales and customer support
-- **Xiamen** — Sales and customer support
-- **Xi'an** — Sales and customer support
-- **Chengdu** — Sales and customer support
-
-### 2.3 Japan Operations
-
-ASML's **Japan Headquarters** is located in **Tokyo**, with an additional 8 sales and customer support offices positioned near key semiconductor manufacturing clusters:
-
-- **Tokyo** — Japan HQ (sales, customer support)
-- **Chitose** (Hokkaido)
-- **Higashihiroshima** (Hiroshima)
-- **Kitakami** (Iwate)
-- **Kikuyo** (Kumamoto)
-- **Nagasaki** (Nagasaki)
-- **Tsuruoka** (Yamagata)
-- **Yokkaichi** (Mie)
-
-### 2.4 Korea Operations
-
-The **South Korea Headquarters** is based in **Hwaseong** (Gyeonggi-do), supported by three additional sales offices:
-
-- **Hwaseong** — Korea HQ (sales, customer support)
-- **Cheongju** (Chungcheongbuk-do)
-- **Icheon** (Gyeonggi-do)
-- **Pyeongtaek** (Gyeonggi-do)
-
-### 2.5 Taiwan Operations
-
-Taiwan hosts a significant operational footprint with the **Taiwan Headquarters** in **Hsinchu**, two manufacturing facilities, and multiple field offices:
-
-| Location | Type | Business Focus |
+| Office Type | Count | Description |
 |---|---|---|
-| Hsinchu | Regional HQ | Taiwan HQ, sales, customer support |
-| Taoyuan | Manufacturing | Manufacturing &amp; Asia Training Center |
-| Taoyuan (Field) | Sales | Field office, customer support |
-| Taichung | Sales | Field office, customer support |
-| Tainan | Manufacturing | Manufacturing |
-| Tainan (Field) | Sales | Field office, customer support |
+| Headquarters | 1 | Global HQ in Veldhoven, Netherlands |
+| Regional | 5 | China, Japan, South Korea, Taiwan, Singapore |
+| Engineering/R&D | 12 | Dedicated R&D and engineering centers |
+| Manufacturing | 3 | Production and assembly facilities |
+| Sales | 12 | Sales and customer support offices |
+| Satellite | 32 | Customer support and field offices |
 
-### 2.6 Southeast Asia
+### 2.2 Europe
 
-ASML maintains sales and customer support offices in **Malaysia** (Kulim and Penang) and **Singapore**, providing coverage for the Southeast Asian semiconductor market.
+ASML's European footprint is anchored by its global headquarters in the Netherlands, with additional engineering and support offices across the continent.
 
-### 2.7 United States Operations
+**Netherlands**
+- **ASML Global Headquarters** (Veldhoven) — *Headquarters*: Global HQ, R&D, manufacturing, corporate functions, and global support center.
+- **Europe Customer Training Center** (Veldhoven) — *Satellite*: Customer training center.
+- **ASML Delft** (Delft) — *Engineering*: Engineering and R&D.
 
-The United States hosts ASML's largest concentration of offices in the Americas, with 16 verified locations spanning engineering, manufacturing, and sales functions:
+**Belgium**
+- **ASML Leuven** (Leuven) — *Engineering*: R&D and customer support.
 
-| Location | State | Type | Business Focus |
-|---|---|---|---|
-| Wilton | Connecticut | Manufacturing | Manufacturing, R&amp;D |
-| San Jose | California | Engineering | Light source (Cymer), e-beam inspection (HMI) |
-| San Diego | California | Engineering | Light source engineering (Cymer) |
-| Albany | New York | Engineering | R&amp;D (CNSE collaboration) |
-| Austin | Texas | Sales | Sales and customer support |
-| Boise | Idaho | Sales | Sales and customer support |
-| Chandler | Arizona | Sales | Sales and customer support |
-| Clifton Park | New York | Sales | Sales and customer support |
-| Richardson | Texas | Sales | Sales and customer support |
-| Eagan | Minnesota | Sales | Sales and customer support |
-| Fishkill | New York | Sales | Sales and customer support |
-| Hillsboro | Oregon | Sales | Sales and customer support |
-| Lehi | Utah | Sales | Sales and customer support |
-| Manassas | Virginia | Sales | Sales and customer support |
-| North Phoenix | Arizona | Sales | Sales and customer support |
-| Westbrook | Maine | Sales | Sales and customer support |
+**France**
+- **ASML Crolles** (Crolles) — *Satellite*: Customer support and R&D.
 
-### 2.8 Summary of Global Distribution
+**Germany**
+- **ASML Berlin** (Berlin) — *Engineering*: Engineering and R&D.
+- **ASML Dresden** (Dresden) — *Satellite*: Customer support and R&D.
+- **ASML Erlangen** (Erlangen) — *Engineering*: R&D and engineering.
 
-| Region | Offices | Headquarters | Manufacturing | Engineering/R&amp;D | Sales/Support |
-|---|---|---|---|---|---|
-| Europe | 12 | 1 | 1 | 4 | 7 |
-| Greater China | 15 | 1 | 0 | 1 | 14 |
-| Japan | 9 | 1 | 0 | 0 | 8 |
-| South Korea | 4 | 1 | 0 | 0 | 3 |
-| Taiwan | 6 | 1 | 2 | 0 | 3 |
-| Southeast Asia | 3 | 0 | 0 | 0 | 3 |
-| United States | 16 | 0 | 1 | 3 | 12 |
-| **Total** | **65** | **5** | **4** | **8** | **50** |
+**Ireland**
+- **ASML Maynooth** (Co. Kildare) — *Satellite*: Customer support and sales.
 
-ASML's corporate footprint is characterized by a centralized global headquarters in the Netherlands, regional headquarters in Shanghai, Tokyo, Hwaseong, and Hsinchu, and a dense network of sales and customer support offices co-located with the world's leading semiconductor fabs. Key manufacturing sites are located in Veldhoven (NL), Berlin (DE), Wilton (US), Taoyuan (TW), and Tainan (TW). Engineering and R&amp;D centers are concentrated in the Netherlands, Belgium, Germany, the United States (San Jose, San Diego, Albany), and China (Shenzhen-Brion).
+**Israel**
+- **ASML Kiryat-Gat** (Kiryat-Gat) — *Engineering*: R&D and customer support.
+- **ASML Migdal Ha'emek** (Migdal Ha'emek) — *Engineering*: R&D and engineering.
+
+**Italy**
+- **ASML Avezzano** (Avezzano) — *Satellite*: Customer support and sales.
+
+**United Kingdom**
+- **ASML Lanarkshire** (Scotland) — *Satellite*: Customer support and sales.
+
+### 2.3 Asia
+
+Asia represents ASML's largest regional presence by office count, driven by the concentration of semiconductor manufacturing in East Asia.
+
+**China** — 14 offices
+- **ASML Shanghai** (Shanghai) — *Regional*: China headquarters, sales, customer support.
+- **ASML Beijing** (Beijing) — *Sales*: Sales and customer support.
+- **HMI Beijing** (Beijing) — *Engineering*: E-beam metrology and inspection.
+- **ASML Dalian** (Dalian) — *Sales*: Sales and customer support.
+- **ASML Hefei** (Hefei) — *Sales*: Sales and customer support.
+- **ASML Jinjiang** (Jinjiang) — *Sales*: Sales and customer support.
+- **ASML Nanjing** (Nanjing) — *Sales*: Sales and customer support.
+- **ASML Qingdao** (Qingdao) — *Sales*: Sales and customer support.
+- **ASML Shenzhen - Nanshan (Brion)** (Shenzhen) — *Engineering*: Computational lithography (Brion subsidiary), R&D.
+- **ASML Shenzhen - Longgang** (Shenzhen) — *Sales*: Sales and customer support.
+- **ASML Tianjin** (Tianjin) — *Sales*: Sales and customer support.
+- **ASML Wuhan** (Wuhan) — *Sales*: Sales and customer support.
+- **ASML Wuxi** (Wuxi) — *Sales*: Sales and customer support.
+- **ASML Xiamen** (Xiamen) — *Sales*: Sales and customer support.
+- **ASML Xi'an** (Xi'an) — *Sales*: Sales and customer support.
+- **ASML Chengdu** (Chengdu) — *Sales*: Sales and customer support.
+
+**Japan** — 9 offices
+- **ASML Tokyo** (Tokyo) — *Regional*: Japan headquarters, sales, customer support.
+- **ASML Chitose** (Hokkaido) — *Satellite*: Customer support.
+- **ASML Hiroshima** (Higashihiroshima) — *Satellite*: Customer support.
+- **ASML Kitakami** (Iwate) — *Satellite*: Customer support.
+- **ASML Kumamoto** (Kikuyo) — *Satellite*: Customer support.
+- **ASML Nagasaki** (Nagasaki) — *Satellite*: Customer support.
+- **ASML Tsuruoka** (Yamagata) — *Satellite*: Customer support.
+- **ASML Yokkaichi** (Mie) — *Satellite*: Customer support.
+
+**South Korea** — 4 offices
+- **ASML Hwaseong** (Gyeonggi-do) — *Regional*: South Korea headquarters, sales, customer support.
+- **ASML Cheongju** (Chungcheongbuk-do) — *Satellite*: Customer support.
+- **ASML Icheon** (Gyeonggi-do) — *Satellite*: Customer support.
+- **ASML Pyeongtaek** (Gyeonggi-do) — *Satellite*: Customer support.
+
+**Taiwan** — 6 offices
+- **ASML Hsinchu** (Hsinchu) — *Regional*: Taiwan headquarters, sales, customer support.
+- **ASML Linkou** (Taoyuan) — *Satellite*: Field office, customer support.
+- **ASML Linkou Factory** (Taoyuan) — *Manufacturing*: Manufacturing and assembly.
+- **ASML Taichung** (Taichung) — *Satellite*: Field office, customer support.
+- **ASML Tainan** (Tainan) — *Satellite*: Field office, customer support.
+- **ASML Tainan Factory** (Tainan) — *Manufacturing*: Manufacturing and assembly.
+- **Asia Training Center** (Taoyuan) — *Satellite*: Customer training center.
+
+**Malaysia** — 2 offices
+- **ASML Kulim** (Kedah) — *Satellite*: Customer support.
+- **ASML Penang** (Bayan Baru, Penang) — *Satellite*: Customer support.
+
+**Singapore**
+- **ASML Singapore** (Singapore) — *Regional*: Sales, customer support, logistics.
+
+### 2.4 North America
+
+ASML's North American presence is concentrated in the United States, with a major R&D and manufacturing hub in Connecticut and numerous customer support offices near key semiconductor fabs.
+
+**United States** — 17 offices
+
+| Office | City | State | Type | Business Focus |
+|---|---|---|---|---|
+| ASML Silicon Valley | San Jose | California | Engineering | Computational lithography, e-beam metrology, software R&D |
+| HMI San Jose | San Jose | California | Engineering | E-beam inspection and metrology |
+| ASML San Diego | San Diego | California | Engineering | R&D and engineering |
+| ASML Wilton | Wilton | Connecticut | Manufacturing | Largest US R&D and manufacturing site, optical fabrication, mechatronics |
+| ASML Albany | Albany | New York | Engineering | R&D and customer support |
+| ASML Clifton Park | Clifton Park | New York | Satellite | Customer support |
+| ASML Fishkill | Fishkill | New York | Satellite | Customer support |
+| ASML Austin | Austin | Texas | Satellite | Customer support and sales |
+| ASML Dallas (Richardson) | Richardson | Texas | Satellite | Customer support and sales |
+| ASML Boise | Boise | Idaho | Satellite | Customer support |
+| ASML Chandler | Chandler | Arizona | Satellite | Customer support |
+| ASML North Phoenix | Phoenix | Arizona | Satellite | Customer support |
+| ASML Eagan | Eagan | Minnesota | Satellite | Customer support |
+| ASML Hillsboro | Hillsboro | Oregon | Satellite | Customer support |
+| ASML Lehi | Lehi | Utah | Satellite | Customer support |
+| ASML Manassas | Manassas | Virginia | Satellite | Customer support |
+| ASML Westbrook | Westbrook | Maine | Satellite | Customer support |
+
+### 2.5 Key Observations
+
+- **Global HQ Concentration**: The Netherlands hosts the primary global headquarters and training center in Veldhoven, along with an engineering office in Delft.
+- **Asia Dominance**: With 35 offices across China (16), Japan (9), Taiwan (6), South Korea (4), Malaysia (2), and Singapore (1), Asia accounts for the majority of ASML's physical footprint, reflecting the region's centrality to semiconductor manufacturing.
+- **US Engineering & Manufacturing**: The United States hosts 17 offices, with major R&D and manufacturing operations in Wilton (CT), San Jose (CA), and San Diego (CA), plus extensive customer support near major fabs.
+- **Brion Subsidiary**: ASML's computational lithography subsidiary, Brion, is represented by the Shenzhen - Nanshan office in China.
+- **HMI Operations**: Hermes Microvision (HMI), an ASML subsidiary specializing in e-beam inspection and metrology, has dedicated offices in Beijing and San Jose.
 
 ## 3. Revenue Geography
 
-For the fiscal year 2025 (ending December 2025), ASML Holding N.V. reported total net sales of **€32,667 million (€32.7B)**. Geographic revenue segmentation for FY2025 is limited in publicly available disclosures; however, the company has provided forward-looking guidance on its China exposure.
+ASML's revenue is heavily concentrated in the Asia-Pacific region, with the top three markets — Taiwan, China, and South Korea — collectively accounting for approximately **68%** of total net sales in fiscal year 2025. The table below provides a full geographic breakdown based on the company's €32.7 billion in total net sales for FY2025.
 
-### China
+| Region | Revenue (€) | Share of Total |
+|--------|-------------|----------------|
+| Taiwan | €8.10B | 24.7% |
+| China | €7.30B | 22.2% |
+| South Korea | €6.90B | 21.3% |
+| United States | €3.20B | 9.6% |
+| EMEA | €1.20B | 3.7% |
+| Japan | €0.61B | 1.9% |
+| Singapore | €0.28B | 0.9% |
+| Netherlands | €0.03B | 0.1% |
+| Rest of Asia | <€0.01B | <0.1% |
+| **Total** | **€32.70B** | **100.0%** |
 
-ASML expects its China business—comprising net system sales plus net service and field option sales—to account for **approximately 20% of total net sales in 2025**. This represents a notable decline from **26.3% of revenues in 2023**, reflecting the impact of updated export restrictions on semiconductor equipment to China. The company has stated it does not expect a direct material impact from these restrictions for 2024, but the trend signals a deliberate shift in geographic mix.
+### Top Three Markets
 
-### Rest of World
+- **Taiwan (24.7%)** — Remains ASML's largest single market, driven by TSMC's aggressive investment in advanced EUV lithography for leading-edge nodes (3nm and below).
+- **China (22.2%)** — The second-largest market, though its share has declined from 26.3% in 2023. ASML has guided that China will represent approximately **20%** of total net sales for 2025, with net system sales to China dropping sharply from 36% in Q4 2025 to 19% in Q1 2026.
+- **South Korea (21.3%)** — The third-largest segment, underpinned by Samsung and SK Hynix's memory and foundry investments.
 
-The implied share for the rest of the world is **~80% of total net sales** for FY2025, encompassing ASML's core markets in Taiwan, South Korea, the United States, Europe, and other regions.
+### China Exposure & Export Control Risk
 
-### Concentration Risk
+China's 22.2% revenue share represents a significant geopolitical risk factor. ASML is subject to escalating US and Dutch export restrictions that limit the sale of advanced lithography equipment (including NXT:2000i and above DUV systems, as well as all EUV systems) to Chinese customers. The company has publicly stated it expects the impact of updated export restrictions to fall within its outlook for 2025. The downward trend — from 26.3% (2023) to ~22% (2025) and expected ~20% going forward — reflects these tightening controls.
 
-ASML faces moderate concentration risk from its China exposure (~20% of 2025 sales expected). While the percentage has declined from prior years, geopolitical tensions and evolving export controls on advanced semiconductor equipment remain key risk factors. The company's diversified global customer base—including leading logic and memory chipmakers in Asia, the U.S., and Europe—partially mitigates this risk.
+### Secondary Markets
 
-*Sources: ASML Q4 2025 Press Release; ASML Press Release on Updated Export Restrictions (2024); ECIPE Policy Brief (2024).*
+- **United States (9.6%)** — A relatively modest share given the size of the US semiconductor industry, as Intel and other US fabs remain important but not dominant customers.
+- **EMEA (3.7%)** — Europe, Middle East, and Africa combined represent a small fraction of sales.
+- **Japan (1.9%)** — Limited exposure despite Japan's strong semiconductor materials and equipment sector.
+- **Singapore (0.9%)** — Minor but stable contribution.
+- **Netherlands (0.1%)** — ASML's home market is negligible in revenue terms.
+
+### Concentration Risk Assessment
+
+ASML faces **high geographic concentration risk**. The combined reliance on Taiwan, China, and South Korea (~68% of revenue) exposes the company to regional economic downturns, geopolitical tensions (particularly cross-strait risks involving Taiwan and China), and export control regime changes. Any disruption in the Asia-Pacific semiconductor ecosystem would have an outsized impact on ASML's top line. The ongoing diversification of semiconductor fabrication to the US (via the CHIPS Act) and Europe may gradually rebalance this concentration over the medium to long term, but near-term dependency on Asia remains acute.
 
 ## 4. Supply Chain Map
 
-The supply chain for ASML's extreme ultraviolet (EUV) lithography systems is a globally distributed network of specialized technology firms and research consortia. The map below identifies the key nodes, spanning Western Europe and the United States, that provide critical optical, laser, and R&D components.
+ASML's supply chain for extreme ultraviolet (EUV) and deep ultraviolet (DUV) lithography systems is a globally distributed network of critical, important, and standard suppliers. The map below organizes key nodes by geographic region and criticality.
 
-### Key Supply Chain Nodes
+### 4.1 Supply Chain Node Summary
 
-| Entity | Role | City | Country | Product | Criticality |
-|--------|------|------|---------|---------|-------------|
-| Carl Zeiss SMT | Key Supplier | Oberkochen | Germany | Mirror optics and optical systems for EUV lithography | Critical |
-| Cymer (ASML subsidiary) | Key Supplier | San Diego | United States | Laser light sources for DUV and EUV lithography systems | Critical |
-| Berliner Glas Group (ASML subsidiary) | Key Supplier | Berlin | Germany | Optical components and subassemblies for EUV systems | Important |
-| IMEC | Key Supplier | Leuven | Belgium | EUV lithography research and development collaboration | Important |
-| Sematech | Key Supplier | Albany | United States | EUV lithography research and development collaboration | Important |
+| Entity | City | Country | Product | Criticality |
+|--------|------|---------|---------|-------------|
+| **ASML Holding N.V. (Headquarters)** | Veldhoven | Netherlands | EUV/DUV lithography system design, assembly, integration | Critical |
+| **Carl Zeiss SMT** | Oberkochen | Germany | EUV mirrors and optical systems (atomic-level polishing) | Critical |
+| **Cymer (ASML subsidiary)** | San Diego | United States | EUV/DUV laser light sources (~85% of EUV components) | Critical |
+| **Berliner Glas Group (ASML subsidiary)** | Berlin | Germany | Optical glass components and glass ceramics | Important |
+| **ASML Wilton (ASML site)** | Wilton | United States | Reticle handler, reticle stage modules, optical fabrication | Critical |
+| **IMEC** | Leuven | Belgium | EUV technology R&D collaboration | Important |
+| **Nikon Corporation** | Tokyo | Japan | Non-EUV photolithography stepper/scanner (competitor) | Standard |
+| **Canon Inc.** | Tokyo | Japan | Non-EUV photolithography stepper/scanner (competitor) | Standard |
 
-### Geographic Distribution
+### 4.2 European Nodes
 
-- **Germany (Oberkochen & Berlin):** Two of the five key nodes are located in Germany. Carl Zeiss SMT in Oberkochen is the sole supplier of the ultra-precise mirror optics required for EUV systems, making it a single-source critical dependency. Berliner Glas Group, now an ASML subsidiary, provides additional optical subassemblies.
-- **United States (San Diego & Albany):** Cymer, based in San Diego and wholly owned by ASML, supplies the high-power laser light sources essential for both DUV and EUV systems. Sematech in Albany, New York, contributes to EUV research and development.
-- **Belgium (Leuven):** IMEC, a world-leading nanoelectronics research center in Leuven, collaborates closely with ASML on EUV process development and innovation.
+**Netherlands — ASML Headquarters (Veldhoven)**
+The central integration hub where all subsystems converge for final assembly and testing of EUV and DUV lithography machines. This node orchestrates the entire supply chain and holds the core intellectual property for system design.
 
-### Supply Chain Concentration & Risk
+**Germany — Carl Zeiss SMT (Oberkochen)**
+A **critical** supplier providing the ultra-precise mirrors and optical systems essential for EUV lithography. Zeiss's atomic-level polishing capability is a bottleneck technology with no viable substitute, making this node a single point of failure in the EUV supply chain.
 
-The map reveals a high degree of geographic concentration in two primary regions: **Germany** (optics) and the **United States** (laser sources). The criticality of Carl Zeiss SMT's mirror optics and Cymer's laser sources creates single points of failure. Any disruption—whether from geopolitical tensions, natural disasters, or trade restrictions—in either Oberkochen or San Diego could halt EUV system production globally. The inclusion of R&D partners like IMEC and Sematech highlights the importance of collaborative innovation hubs in maintaining ASML's technological edge.
+**Germany — Berliner Glas Group (Berlin)**
+An **important** ASML subsidiary supplying optical glass components and glass ceramics. While not as singularly critical as Zeiss, Berliner Glas provides specialized materials that support optical subsystem manufacturing.
+
+**Belgium — IMEC (Leuven)**
+An **important** research partner collaborating on EUV technology development. IMEC serves as a pre-competitive R&D node, advancing process technology and helping validate new lithography techniques before they enter commercial production.
+
+### 4.3 United States Nodes
+
+**California — Cymer (San Diego)**
+A wholly owned ASML subsidiary and **critical** supplier of laser light sources. Cymer produces the high-power CO₂ lasers that generate the 13.5 nm EUV light, accounting for approximately 85% of the value of EUV source components. This node is heavily dependent on U.S. export control regimes.
+
+**Connecticut — ASML Wilton (Wilton)**
+A **critical** ASML site responsible for manufacturing reticle handlers, reticle stage modules, and advanced optical fabrication/polishing. Wilton's output is integral to the wafer handling and alignment subsystems within ASML scanners.
+
+### 4.4 Japanese Nodes (Competitors)
+
+**Tokyo — Nikon Corporation & Canon Inc.**
+Both Nikon and Canon are **standard**-criticality competitors in the non-EUV photolithography market. While they do not supply ASML's EUV systems, they are key players in the broader lithography equipment landscape, particularly for DUV steppers and scanners used in mature-node fabrication.
+
+### 4.5 Geographic Dependency Analysis
+
+The supply chain exhibits a **high concentration of critical nodes in Europe** (Netherlands, Germany, Belgium) and the **United States** (California, Connecticut). The EUV system's most fragile dependencies are:
+
+- **Carl Zeiss SMT (Germany)** — sole source of EUV mirrors.
+- **Cymer (United States)** — sole source of EUV laser light sources.
+- **ASML Headquarters (Netherlands)** — final integration point.
+
+Any disruption at these three nodes would halt EUV system production globally. The Japanese competitors (Nikon, Canon) do not supply ASML but represent alternative sources for non-EUV lithography equipment, providing some redundancy in the broader semiconductor manufacturing ecosystem.
 
 ## 5. Customer Concentration
 
-ASML's revenue base exhibits a pronounced concentration risk, with a single customer—**TSMC (Taiwan Semiconductor Manufacturing Company)**—accounting for an outsized **29.3%** of ASML's tool purchases in 2023. This dependency is not merely transactional; TSMC is a co-investor in ASML, a primary user of its extreme ultraviolet (EUV) lithography machines in high-volume manufacturing, and recently acquired a 10% stake in IMS Nanofabrication from Intel. Headquartered in Hsinchu, Taiwan (24.81°N, 120.97°E), TSMC's dominance ties ASML's fortunes directly to the stability of the Taiwan semiconductor ecosystem.
+ASML exhibits an exceptionally high degree of customer concentration, a critical risk factor for revenue stability and bargaining power. According to Fitch Ratings, ASML's three largest customers—**TSMC**, **Intel**, and **Samsung**—collectively account for an estimated **>80% of total revenue**. This oligopsonistic structure means that the capital expenditure (capex) decisions of just a handful of semiconductor giants directly dictate ASML's order book and financial performance.
 
-Beyond TSMC, several other major semiconductor manufacturers form the core of ASML's customer base:
+### Top Three Customers (Estimated >80% Combined Revenue Share)
 
-| Customer | HQ Location | Relationship & Notes |
+| Customer | Headquarters | Relationship & Strategic Importance |
 |---|---|---|
-| **Samsung Electronics** | Suwon, South Korea (37.26°N, 127.03°E) | Co-investor under ASML's co-investment program; uses EUV machines in production. |
-| **Intel Corporation** | Santa Clara, USA (37.39°N, 121.96°W) | Purchased a 15% stake in ASML for $4.1 billion in July 2012; a major foundry customer. |
-| **Micron Technology** | Boise, USA (43.62°N, 116.20°W) | First to operate the PAS 5500; was ASML's largest customer for a period. |
-| **IBM** | Armonk, USA (41.13°N, 73.71°W) | Ordered the PAS 5500 over Japanese alternatives due to serviceability advantages. |
-| **China (country/region)** | — | Second-largest buyer of ASML's tools on a country/region basis in 2023, despite export restrictions. |
+| **TSMC** | Hsinchu, Taiwan | Major customer for EUV and DUV lithography systems; co-investment partner; key foundry customer using ASML's EUV machines for advanced node production (7nm and below). |
+| **Intel** | Santa Clara, USA | Purchased a 15% stake in ASML for $4.1B in 2012; first to receive high-NA EUV scanner; locked into agreements for current EUV and early access to high-NA EUV machinery. |
+| **Samsung** | Suwon, South Korea | Bought a stake in ASML under the 2012 co-investment program; uses ASML's EUV machines in production; locked into agreements for current EUV and early access to high-NA EUV machinery; expanding foundry capacity in Taylor, Texas. |
 
-### Geographic & Geopolitical Risk
+The **co-investment model** established in 2012, where Intel, Samsung, and TSMC invested billions into ASML's EUV R&D in exchange for preferential access and equity, created a deeply embedded mutual dependency. These customers are not merely buyers but strategic partners with vested interests in ASML's technological roadmap.
 
-The customer base is heavily concentrated in East Asia (Taiwan, South Korea) and the United States. The reliance on TSMC, located in a geopolitically sensitive region, introduces significant supply-chain and revenue risk. Any disruption to TSMC's operations—whether from geopolitical tensions, natural disasters, or export controls—would directly impact nearly a third of ASML's revenue. Similarly, China's position as the second-largest regional buyer creates tension with ongoing export control regimes targeting advanced semiconductor equipment.
+### Other Major Customers
 
-### Strategic Implications
+Beyond the top three, ASML serves a broader base of leading semiconductor manufacturers:
 
-- **Revenue Dependency:** TSMC alone represents a single-point-of-failure risk for ASML's top line.
-- **Co-Investment Ties:** Both TSMC and Intel hold equity stakes in ASML, aligning their strategic interests but also creating potential conflicts.
-- **Regulatory Exposure:** Sales to China are subject to shifting export controls, adding uncertainty to a key regional revenue stream.
-- **Customer Stickiness:** The deep integration of ASML's EUV and DUV tools into the manufacturing processes of these customers creates high switching costs, reinforcing long-term revenue stability despite concentration.
+| Customer | Headquarters | Notes |
+|---|---|---|
+| **SK Hynix** | Icheon, South Korea | Major DRAM/NAND memory manufacturer; one of ASML's largest customers that announced WFE capex cuts in 2023. |
+| **Micron Technology** | Boise, USA | First to operate the PAS 5500; historically ASML's largest customer for a time; US DRAM customer shifting strongly toward EUV; also announced capex cuts in 2023. |
+| **GlobalFoundries** | Malta, USA | Large US-based foundry customer using ASML's lithography systems. |
+| **Texas Instruments** | Dallas, USA | Large US-based semiconductor manufacturer using ASML's lithography systems. |
+| **IBM** | Armonk, USA | Ordered the PAS 5500 lithography machine; long-standing customer. |
+| **SMIC** | Shanghai, China | Chinese chipmaker using ASML's DUV machines; achieved 7nm process technology despite export restrictions on EUV machines to China. |
+
+### Geographic Distribution
+
+The customer base is heavily concentrated in the **Indo-Pacific region** (Taiwan, South Korea) and the **United States**:
+
+- **Taiwan**: TSMC (Hsinchu)
+- **South Korea**: Samsung (Suwon), SK Hynix (Icheon)
+- **United States**: Intel (Santa Clara), Micron (Boise), GlobalFoundries (Malta), Texas Instruments (Dallas), IBM (Armonk)
+- **China**: SMIC (Shanghai)
+
+### Risk Implications
+
+1. **Capex Cyclicality**: When top customers like SK Hynix and Micron announced wafer fab equipment (WFE) capex cuts in 2023, ASML's revenue was directly impacted. The concentration amplifies the effect of any single customer's spending slowdown.
+2. **Geopolitical Exposure**: TSMC's location in Taiwan introduces significant geopolitical risk. Any disruption to Taiwan's semiconductor ecosystem would directly threaten a major portion of ASML's revenue.
+3. **Export Control Vulnerability**: The presence of SMIC as a customer highlights ASML's exposure to US-led export controls on advanced lithography equipment to China. Restrictions on EUV sales to China have already reshaped ASML's addressable market.
+4. **Bargaining Power**: With three customers controlling >80% of revenue, ASML faces concentrated buyer power. However, ASML's near-monopoly on EUV lithography provides countervailing leverage, as these customers have no viable alternative suppliers for advanced node production.
 
 ## 6. Regulatory Risk
 
-ASML operates at the intersection of advanced semiconductor technology and intensifying geopolitical competition, making regulatory risk the most pervasive and structurally significant threat to its business model. The company faces a multi-layered web of export controls, sanctions regimes, extraterritorial legal frameworks, and political pressures that collectively constrain its addressable market, complicate compliance, and introduce volatility into its revenue streams.
+ASML operates at the epicenter of a rapidly escalating regulatory and geopolitical contest over advanced semiconductor manufacturing technology. The company faces a multi-layered web of export controls, sanctions, tariffs, and compliance obligations emanating primarily from the United States, the Netherlands, and the European Union. These regulatory pressures directly constrain ASML's largest revenue region (China, ~20% of total revenue) and threaten to reshape the global semiconductor supply chain.
 
-### 6.1 Export Controls & Trade Restrictions
+### 6.1 Risk Overview
 
-**US-Dutch Export Controls on Lithography Systems (Critical)**  
-The most consequential regulatory risk is the coordinated US-Dutch export control regime targeting advanced lithography equipment sales to China. The December 2024 BIS rule expanded restrictions to include metrology equipment, software, and additional Chinese fab locations, while Dutch authorities now require export licenses for DUV immersion systems destined for specific Chinese sites. This directly impacts ASML's largest growth market and has been assessed as a **critical** risk (Risk Score: 5). ASML's own filings confirm the impact falls within its 2025 outlook, but the trajectory of restrictions remains uncertain and potentially escalating.
+| Risk Label | Region | Risk Score | Impact Level | Last Updated |
+|---|---|---|---|---|
+| US Export Controls on EUV/DUV Lithography | China | 5/5 | Critical | 2024-12-02 |
+| MATCH Act Threatens 17% Revenue Loss | United States | 5/5 | Critical | 2026-04-01 |
+| Dutch Government Export Controls Aligned with US | Netherlands | 4/5 | High | 2025-01-01 |
+| Taiwan Strait Conflict Risk to Supply Chain | Taiwan | 4/5 | High | 2026-05-01 |
+| IP Theft and Technology Leakage to China | China | 4/5 | High | 2025-12-01 |
+| Section 232 Tariff Investigation on Semiconductors | United States | 4/5 | High | 2026-01-01 |
+| Foreign Direct Product Rule (FDPR) Extraterritoriality | United States | 3/5 | High | 2024-12-01 |
+| EU Export Control Harmonization Uncertainty | European Union | 3/5 | Moderate | 2025-09-01 |
+| Trilateral US/NL/Japan Export Control Agreement | Japan | 3/5 | Moderate | 2023-01-01 |
+| China's Domestic EUV Development Competition | China | 3/5 | Moderate | 2025-12-01 |
+| ECCN 3B090 Classification Impact | China | 3/5 | Moderate | 2023-10-17 |
+| Macroeconomic Uncertainty Affecting 2026 Outlook | Global | 3/5 | Moderate | 2025-07-01 |
+| Outbound Investment Security Program (OISP) Restrictions | China | 3/5 | Moderate | 2025-04-01 |
+| Dutch Nationality-Based Hiring Restrictions | Netherlands | 3/5 | Low | 2023-12-01 |
+| US CHIPS Act Subsidies Distorting Competition | United States | 2/5 | Low | 2022-08-01 |
 
-**US Foreign Direct Product Rule (FDPR) Jurisdiction (High)**  
-Because ASML incorporates US-origin technology in certain equipment and chips, its products may fall under the US Foreign Direct Product Rule (FDPR), granting Washington extraterritorial control over global sales. This creates a dual-regulatory burden—ASML must comply with both Dutch and US frameworks—and introduces the risk of unilateral US actions that could override Dutch licensing decisions. This risk is rated **high** (Risk Score: 4).
+### 6.2 US-Led Export Control Regime
 
-**Chinese Entity List Restrictions (High)**  
-Key Chinese semiconductor customers—including SMIC, YMTC, and CXMT—have been added to the US BIS Entity List, severely restricting ASML's ability to obtain required licenses for sales. The list of affected entities has expanded since 2022, progressively shrinking ASML's addressable market in China and creating legal risks for inadvertent violations. This risk is rated **high** (Risk Score: 4).
+The United States has progressively tightened its grip on ASML's ability to sell advanced lithography equipment to China through a series of escalating regulatory actions.
 
-**Dutch Government Export License Requirements (High)**  
-The Dutch government has progressively tightened controls, and as of January 2025, ASML must apply for export licenses directly with Dutch authorities rather than US counterparts under tighter oversight. Further restrictions on DUV immersion systems to Chinese locations could follow if Dutch authorities make security assessments similar to those of the US. This risk is rated **high** (Risk Score: 4).
+**EUV/DUV Lithography Restrictions (Critical, Score 5/5):** The October 2023 US rules imposed a "0% de minimis" rule, capturing all ASML equipment destined for China regardless of US content. The December 2024 update expanded restrictions to include metrology equipment and software, and added Chinese fab locations to the restricted list. ASML's China business represents approximately 20% of total revenue, making this the single most consequential regulatory risk facing the company.
 
-### 6.2 Geopolitical & Political Pressures
+**MATCH Act (Critical, Score 5/5):** Proposed in April 2026, the Multilateral Alignment of Technology Controls on Hardware (MATCH Act) represents a step-change in regulatory severity. It would prohibit not only new equipment sales to China but also the servicing and maintenance of previously sold machines. The Act enforces a 150-day deadline for allies like the Netherlands to conform or face sanctions. Analysts estimate this could cost ASML ~17% of revenue based on quarterly sales drop to China.
 
-**Taiwan Strait Tensions Threatening TSMC Customer Base (High)**  
-Rising cross-strait tensions pose a direct risk to ASML's largest customer, TSMC, which accounts for a significant portion of EUV and DUV system sales. A disruption in Taiwan's semiconductor production could result in nearly $500 billion in lost revenues for electronic device manufacturers, severely impacting ASML's order book. This risk is rated **high** (Risk Score: 4) and is closely monitored given TSMC's irreplaceable role in ASML's revenue mix.
+**Foreign Direct Product Rule (FDPR) Extraterritoriality (High, Score 3/5):** Because ASML incorporates US technology in its equipment design, it falls under US jurisdiction via the FDPR. The December 2024 update created new FDPRs and updated de minimis provisions, expanding unilateral US authority to potentially capture all semiconductor manufacturing equipment made globally. The "0% de minimis" rule extends US jurisdiction regardless of actual US content.
 
-**Dutch Political Pressure from the US (Moderate)**  
-The Dutch government has faced sustained pressure from Washington to align export control regimes, moving ahead with restrictions on advanced semiconductor equipment despite domestic economic interests. This creates regulatory uncertainty for ASML's long-term planning and may lead to further unanticipated restrictions. This risk is rated **moderate** (Risk Score: 3).
+**Section 232 Tariff Investigation (High, Score 4/5):** The Trump administration launched a national security investigation into imported semiconductors and semiconductor manufacturing equipment under Section 232 of the Trade Expansion Act. In January 2026, a 25% tariff on semiconductors was imposed, with case-by-case review for H200 chips to China, adding cost pressure to ASML's customer base.
 
-**Chinese IP Theft and Reverse Engineering of EUV Technology (Moderate)**  
-In December 2025, Reuters reported that China secretly built a prototype EUV machine in Shenzhen with assistance from former ASML engineers. ASML's 2021 annual report also noted Dongfang Jingyuan Electron Limited actively marketing potentially infringing products. This threatens ASML's core technological advantage and future revenue. This risk is rated **moderate** (Risk Score: 3).
+**ECCN 3B090 Classification (Moderate, Score 3/5):** BIS created Export Control Classification Number 3B090 covering semiconductor manufacturing equipment and related items, directly affecting ASML's lithography machine exports. The October 2023 BIS update expanded criteria for restricted items and extended geographic scope to 43 more countries with AI ties to China.
 
-### 6.3 Macroeconomic & Strategic Responses
+**Outbound Investment Security Program (OISP) (Moderate, Score 3/5):** The OISP prohibits US persons from engaging in certain transactions involving advanced semiconductors with China, including Hong Kong and Macau, further constraining the ecosystem in which ASML's customers operate.
 
-**Chinese Retaliatory Export Controls on Critical Minerals (Moderate)**  
-The PRC has used export controls on germanium, gallium, and rare earth magnets to retaliate against US export controls. These materials are critical for semiconductor manufacturing equipment and supply chains, potentially disrupting ASML's production capabilities and increasing costs. This risk is rated **moderate** (Risk Score: 3).
+### 6.3 Dutch and EU Regulatory Alignment
 
-**Chinese Stockpiling and Strategic Response to Controls (Moderate)**  
-Chinese firms have strategically responded to US export controls by increasing purchases of ASML lithography machinery before restrictions take effect, creating demand volatility. BIS's slow rulemaking process allows PRC firms to stockpile equipment, leading to boom-bust cycles in ASML's China revenue and complicating production planning. This risk is rated **moderate** (Risk Score: 3).
+The Netherlands, as ASML's home jurisdiction, has increasingly aligned its export control regime with US policy, while the EU struggles to harmonize its approach.
 
-**Macroeconomic Uncertainty and Currency Fluctuations (Moderate)**  
-ASML has cited increasing uncertainty driven by macro-economic and geopolitical developments affecting its 2026 outlook. Currency fluctuations, inflation, and interest rate changes across key markets (Eurozone, US, Asia) could impact profitability, as a portion of costs and revenues are denominated in different currencies. This risk is rated **moderate** (Risk Score: 3).
+**Dutch Government Export Controls (High, Score 4/5):** The Dutch government imposed national export controls on ASML in September 2023, January 2024, and September 2024, restricting shipments of DUV immersion lithography systems to China. In January 2025, ASML was required to apply for export licenses with the Dutch government instead of the US, formalizing the Netherlands' role as the primary licensing authority. These controls directly impact ASML's primary revenue stream.
 
-### Summary of Regulatory Risk Exposure
+**EU Export Control Harmonization Uncertainty (Moderate, Score 3/5):** The September 2025 update of EU Annex I added semiconductor manufacturing equipment to the EU control list. The European Commission noted that "the lack of a common EU voice exposes individual Member States to geopolitical pressures," referencing ASML. EU-produced items from the Netherlands continue to be found in Russian military equipment despite sanctions, highlighting enforcement gaps.
 
-| Risk | Region | Score | Impact |
-|------|--------|:-----:|:------:|
-| US-Dutch export controls on lithography | China | 5 | Critical |
-| Dutch export license requirements | Netherlands | 4 | High |
-| Taiwan Strait tensions | Taiwan | 4 | High |
-| US FDPR jurisdiction | United States | 4 | High |
-| Chinese entity list restrictions | China | 4 | High |
-| Chinese IP theft / reverse engineering | China | 3 | Moderate |
-| Chinese retaliatory mineral controls | China | 3 | Moderate |
-| Dutch political pressure from US | Netherlands | 3 | Moderate |
-| Macroeconomic / currency fluctuations | Global | 3 | Moderate |
-| Chinese stockpiling response | China | 3 | Moderate |
+**Dutch Nationality-Based Hiring Restrictions (Low, Score 3/5):** In December 2023, the Netherlands' Institute for Human Rights ruled that ASML could reject job applications from residents of countries subject to US sanctions (China, Cuba, Iran, North Korea, Syria), impacting talent acquisition and operations.
 
-The regulatory landscape for ASML is characterized by escalation risk—each new restriction tends to beget further restrictions, retaliatory measures, and strategic counter-moves by affected parties. The concentration of **critical** and **high** severity risks in the China-related export control domain underscores that ASML's growth trajectory is fundamentally contingent on the trajectory of US-China technology competition and the willingness of allied governments to maintain a coordinated approach.
+### 6.4 Geopolitical and Competitive Spillover Effects
+
+Beyond direct export controls, ASML faces regulatory and geopolitical risks that could reshape its competitive landscape and supply chain.
+
+**Taiwan Strait Conflict Risk (High, Score 4/5):** Taiwan is the world's most important silicon chokepoint, with TSMC holding ~90% of advanced AI chip market share. A China-Taiwan conflict would disrupt the global semiconductor supply chain, severely impacting ASML's customers and demand for lithography equipment. New fab construction lead times are now 3-5 years, meaning any disruption would have long-lasting effects.
+
+**IP Theft and Technology Leakage (High, Score 4/5):** ASML reported that a former employee allegedly stole information about company technology and went to work for Huawei. China secretly built a prototype EUV machine in Shenzhen with assistance from former ASML engineers. Dongfang Jingyuan Electron Limited was marketing products potentially infringing ASML's IP rights. These incidents underscore the risk that export restrictions may accelerate Chinese domestic competition.
+
+**China's Domestic EUV Development (Moderate, Score 3/5):** China is actively developing domestic chipmaking technology, including a prototype EUV machine in Shenzhen built with former ASML engineers. China's Phase II National IC Industry Investment Fund ($28.9-47B) focuses on semiconductor equipment. Export restrictions may force China to accelerate domestic alternatives, creating future competition for ASML.
+
+**Trilateral US/NL/Japan Agreement (Moderate, Score 3/5):** In January 2023, the US, Netherlands, and Japan — controlling ~90% of advanced semiconductor manufacturing equipment — agreed to jointly restrict China's access to frontier chip-making tools. The agreement includes no allied backfilling of US-restricted equipment to China and technology thresholds aligned with US controls, effectively closing off the primary alternative supply routes for China.
+
+**US CHIPS Act Subsidies (Low, Score 2/5):** The US CHIPS and Science Act set aside nearly $50 billion to grow US semiconductor manufacturing capacity. South Korea, Japan, India, and the EU have announced similar measures. These subsidies could shift demand away from ASML's export-dependent model toward regionalized production, potentially benefiting ASML in the long run if it can supply new fabs in allied countries.
+
+**Macroeconomic Uncertainty (Moderate, Score 3/5):** ASML cited increasing uncertainty driven by macro-economic and geopolitical developments affecting the 2026 outlook. The CEO stated that 2026 guidance bandwidth accommodates potential outcomes of ongoing discussions around export controls. Eurozone GDP growth forecast has been revised down to 0.7% for 2026, adding demand-side pressure.
+
+### 6.5 Key Takeaways
+
+- **Two critical risks** (US Export Controls and MATCH Act) each carry a risk score of 5/5 and could individually cost ASML 17-20% of revenue.
+- **Regulatory escalation is accelerating**: The progression from October 2023 rules to the December 2024 update to the April 2026 MATCH Act shows a clear trend of increasing severity and extraterritorial reach.
+- **The Netherlands is caught between the US and China**: Dutch export controls have tightened in lockstep with US policy, but the MATCH Act's 150-day deadline threatens to force an even more aggressive stance.
+- **IP leakage and domestic Chinese competition** represent a medium-term structural risk: export restrictions may accelerate the very competition they aim to prevent.
+- **Taiwan remains the single greatest geopolitical wildcard**: Any disruption to TSMC's operations would cascade through ASML's entire customer base.
