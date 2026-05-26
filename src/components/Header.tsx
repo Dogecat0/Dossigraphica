@@ -41,14 +41,14 @@ export default function Header({
             {/* Elegant luxury gold hairline underline at the very bottom of header */}
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--color-accent-gold)] via-[var(--color-bg-paper-dark)] to-[var(--color-accent-gold)] opacity-70" />
 
-            <div className="flex items-center justify-between px-6 py-3.5 md:px-8">
+            <div className="flex items-center justify-between max-md:px-3 max-md:py-2.5 px-6 py-3.5 md:px-8">
                 {/* Logo + Title (The Masthead) */}
-                <div className="flex items-center gap-4 md:gap-5">
+                <div className="flex items-center gap-2 md:gap-5">
                     <div className="flex items-center justify-center w-10 h-10 border border-[var(--color-accent-gold)] bg-[var(--color-bg-paper-dark)] rounded shadow-inner">
                         <BookOpen size={20} className="text-[var(--color-accent-gold)]" />
                     </div>
                     <div>
-                        <h1 className="text-xl md:text-2xl font-serif font-bold text-[var(--color-ink)] leading-none uppercase tracking-wide">
+                        <h1 className="text-lg md:text-2xl font-serif font-bold text-[var(--color-ink)] leading-none uppercase tracking-wide">
                             Dossigraphica
                         </h1>
                         <p className="text-[9px] font-mono text-[var(--color-ink-light)] uppercase tracking-[0.2em] mt-1 hidden sm:block">
@@ -58,7 +58,7 @@ export default function Header({
                 </div>
 
                 {/* Company selector + Intel button */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 md:gap-3">
                     {/* Company selector */}
                     {companies.length > 1 ? (
                         <div ref={dropdownRef} className="relative">
@@ -67,7 +67,7 @@ export default function Header({
                                 className="flex items-center gap-2.5 px-3.5 py-1.5 border border-[var(--color-border-muted)] hover:border-[var(--color-accent-gold)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 rounded shadow-sm cursor-pointer bg-white text-[var(--color-ink)]"
                             >
                                 <span className="text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
-                                <span className="text-xs md:text-sm font-serif font-semibold">
+                                <span className="text-xs md:text-sm font-serif font-semibold max-w-[120px] max-md:truncate">
                                     {companyName}
                                 </span>
                                 <ChevronDown
@@ -154,7 +154,7 @@ export default function Header({
                         onClick={onToggleIntel}
                         disabled={(!hasIntel && !intelLoading) || intelLoading}
                         className={`
-                            flex items-center gap-2 px-4 py-1.5 border transition-all duration-300 cursor-pointer font-serif font-semibold text-xs rounded shadow-sm
+                            flex items-center gap-1 md:gap-2 px-2.5 md:px-4 py-1.5 border transition-all duration-300 cursor-pointer font-serif font-semibold text-xs rounded shadow-sm
                             disabled:opacity-30 disabled:cursor-not-allowed
                             ${intelOpen
                                 ? 'bg-[var(--color-accent-green)] border-[var(--color-accent-green)] text-white hover:bg-[var(--color-ink-muted)] hover:border-[var(--color-ink-muted)]'
@@ -167,7 +167,7 @@ export default function Header({
                         ) : (
                             <Brain size={13} className={intelOpen ? 'text-white' : 'text-[var(--color-accent-gold)]'} />
                         )}
-                        <span className="uppercase tracking-wider text-[10px]">
+                        <span className="uppercase tracking-wider text-[9px] md:text-[10px] max-md:hidden">
                             {intelLoading ? 'Consulting...' : (!selectedCompany ? 'Global Dossier' : 'View Dossier')}
                         </span>
                     </button>

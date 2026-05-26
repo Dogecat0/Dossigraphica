@@ -26,8 +26,8 @@ export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode
     })
 
     return (
-        <div className="absolute bottom-10 right-12 max-md:bottom-6 max-md:right-6 z-40 animate-fade-in">
-            <div className="bg-[var(--color-bg-paper)] border border-[var(--color-border-muted)] border-t-2 border-t-[var(--color-accent-gold)] p-4 shadow-[var(--shadow-executive-lg)] rounded w-64">
+        <div className="absolute bottom-10 right-12 max-md:bottom-4 max-md:right-4 max-md:left-4 z-40 animate-fade-in">
+            <div className="bg-[var(--color-bg-paper)] border border-[var(--color-border-muted)] border-t-2 border-t-[var(--color-accent-gold)] p-3 md:p-4 shadow-[var(--shadow-executive-lg)] rounded w-auto max-md:min-w-0 md:w-64">
                 <p className="text-[9px] uppercase tracking-[0.15em] text-[var(--color-accent-gold)] font-mono font-bold mb-3 border-b border-[var(--color-border-muted)] pb-1.5">
                     {viewMode === 'global' ? 'Global Analysis Layers' : 'Company Dossier Layers'}
                 </p>

@@ -88,13 +88,13 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
     return (
         <div className="flex-1 flex flex-col h-full bg-[var(--color-bg-paper)]">
             {/* Dossier Header */}
-            <div className="px-8 py-8 border-b border-[var(--color-border-muted)]">
+            <div className="max-md:px-4 max-md:py-5 px-8 py-8 border-b border-[var(--color-border-muted)]">
                 <div className="flex items-start justify-between mb-4">
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--color-accent-gold)] font-bold mb-1">
+                        <p className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--color-accent-gold)] font-bold mb-1">
                             Corporate Intelligence Dossier
                         </p>
-                        <h2 className="text-3xl font-serif font-bold text-[var(--color-ink)] leading-none">
+                        <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--color-ink)] leading-none">
                             {intel.company}
                         </h2>
                     </div>
@@ -110,7 +110,7 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
             </div>
 
             {/* Index Tabs (Single Row) */}
-            <div className="flex flex-nowrap overflow-x-auto px-8 mt-4 pb-[2px]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex flex-nowrap overflow-x-auto max-md:px-4 px-8 mt-4 pb-[2px]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {availableTabs.map(tab => (
                     <button
                         key={tab.id}
@@ -123,7 +123,7 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
             </div>
 
             {/* Content Container (Paper style) */}
-            <div className="flex-1 overflow-y-auto px-8 py-6 bg-[var(--color-bg-paper)]">
+            <div className="flex-1 overflow-y-auto max-md:px-4 max-md:py-4 px-8 py-6 bg-[var(--color-bg-paper)]">
                 <div className="max-w-2xl mx-auto">
                     {activeTab === 'overview' && <OverviewTab intel={intel} />}
                     {activeTab === 'revenue' && <RevenueTab geo={intel.revenueGeography} />}
