@@ -6,6 +6,7 @@ from schemas import (
 )
 from llm import LLMClient
 from utils.geocoder import geocoder
+from provider import ACTIVE_OUTPUT_RESERVATION
 import logging
 import json
 import asyncio
@@ -48,18 +49,85 @@ async def draft_section(prompt: str, response_model: Type[T], llm: LLMClient, sy
         facts=facts
     )
 
-async def get_fact_subset(facts: List[InternalFact], categories: List[str]) -> str:
+async def get_fact_subset(
+    facts: List[InternalFact],
+    categories: List[str],
+    llm: LLMClient = None,
+    max_tokens: int = None,
+    user_query: str = None,
+) -> str:
     """
-    Filters facts by category and returns a grouped formatted string. 
+    Filters facts by category and returns a grouped formatted string.
+
+    Primary grouping is by *category* (the outer structure). Within each
+    category, facts are sub-grouped by ``source_url`` so each URL appears
+    at most once per category. The ``(Source: …)`` suffix is never
+    repeated on individual facts.
+
+    When *llm*, *max_tokens*, and *user_query* are all provided, runs
+    intelligent LLM compression per category block (via
+    ``summarize_to_fit``) with a generous per-category budget so most
+    blocks pass through without compression. Only truly enormous
+    category blocks get summarised.
+    When any parameter is omitted, falls back to simple concatenation.
     """
-    output = []
+    from collections import defaultdict
+
+    # First pass: build raw blocks for each non-empty category.
+    raw_blocks: list[str] = []
     for cat in categories:
-        filtered = [f for f in facts if f.category == cat]
-        if not filtered: continue
-        output.append(f"### {cat}:\n")
-        output.extend([f"- {fact.content} (Source: {fact.source_url})\n" for fact in filtered])
-            
-    return "".join(output) if output else ""
+        cat_facts = [f for f in facts if f.category == cat]
+        if not cat_facts:
+            continue
+
+        by_url: dict[str, list[InternalFact]] = defaultdict(list)
+        for f in cat_facts:
+            by_url[f.source_url or "(no source)"].append(f)
+
+        lines = [f"### {cat}:"]
+        for source_url, group in by_url.items():
+            lines.append(f"")
+            lines.append(f"## Source: {source_url}")
+            for f in group:
+                lines.append(f"- {f.content}")
+
+        raw_blocks.append("\n".join(lines))
+
+    if not raw_blocks:
+        return ""
+
+    # Second pass: optional compression with proportional budget allocation.
+    if llm is not None and max_tokens is not None and user_query is not None:
+        budget = max_tokens - ACTIVE_OUTPUT_RESERVATION
+        estimated = [llm.estimate_tokens([{"role": "user", "content": t}]) for t in raw_blocks]
+        total_raw = sum(estimated)
+
+        async def _compress(block: str, raw_tokens: int) -> str:
+            proportion = raw_tokens / total_raw if total_raw > 0 else 1.0
+            per_cat_budget = max(int(budget * proportion), 256)
+            return await llm.summarize_to_fit(
+                content=block,
+                target_tokens=per_cat_budget,
+                system_prompt=(
+                    "You are a precision data compressor. Extract ONLY facts relevant "
+                    "to the user's research query. Preserve ALL proper names, "
+                    "exact numbers, dates, coordinates, and geographies in what you keep. "
+                    "Omit irrelevant material entirely. If relevant facts are mixed with "
+                    "irrelevant content, extract only the relevant parts. "
+                    "Produce a condensed version significantly shorter than the original. "
+                    "Eliminate redundancy and narrative fluff. Do not rephrase verbatim."
+                ),
+                focus=f"{user_query}",
+                filter_relevance=True,
+            )
+
+        compressed = await asyncio.gather(
+            *(_compress(b, t) for b, t in zip(raw_blocks, estimated))
+        )
+        return "\n\n".join(c for c in compressed if c)
+
+    # No compression — just concatenate the raw blocks.
+    return "\n\n".join(raw_blocks)
 # -----------------------------------------------------------------------
 # Module-level assembly functions.
 # Accept explicit (facts, user_query) so they can be reused by both
@@ -80,7 +148,11 @@ async def get_offices(facts: List, user_query: str, llm: LLMClient) -> OfficeLis
     sys_prompt = f"Extract geographic office data for {user_query}. MANDATE: Prioritize the parent company's primary footprint. Include major subsidiaries only if they are globally significant. NEVER use placeholders like 'Office A'; only extract specific named sites."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['OFFICES', 'CORPORATE'])
+    fact_budget = llm.get_safe_input_limit()
+    facts_text = await get_fact_subset(
+        facts, ['OFFICES', 'CORPORATE'],
+        llm=llm, max_tokens=fact_budget, user_query=user_query,
+    )
     res = await draft_section(base_prompt, OfficeList, llm, sys_prompt, facts=facts_text)
 
     for o in res.offices:
@@ -102,7 +174,11 @@ async def get_supply_chain(facts: List, user_query: str, llm: LLMClient) -> Supp
     sys_prompt = f"Map supply chain infrastructure for {user_query}. MANDATE: Prioritize direct suppliers to the parent company. Include subsidiary-specific suppliers only if they are critical to the broader group. NEVER use placeholders like 'Supplier 1'; only extract specific named partners."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['SUPPLY_CHAIN'])
+    fact_budget = llm.get_safe_input_limit()
+    facts_text = await get_fact_subset(
+        facts, ['SUPPLY_CHAIN'],
+        llm=llm, max_tokens=fact_budget, user_query=user_query,
+    )
     res = await draft_section(base_prompt, SupplyChainList, llm, sys_prompt, facts=facts_text)
 
     for n in res.supply_chain:
@@ -120,7 +196,11 @@ async def get_geopolitical_risks(facts: List, user_query: str, llm: LLMClient) -
     sys_prompt = f"Extract risks for {user_query}. MANDATE: Focus on risks affecting the parent entity and its primary revenue streams. NEVER use placeholders; only extract specific named entities and regions/countries."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['RISKS'])
+    fact_budget = llm.get_safe_input_limit()
+    facts_text = await get_fact_subset(
+        facts, ['RISKS'],
+        llm=llm, max_tokens=fact_budget, user_query=user_query,
+    )
     res = await draft_section(base_prompt, RiskList, llm, sys_prompt, facts=facts_text)
 
     for r in res.geopoliticalRisks:
@@ -136,7 +216,11 @@ async def get_customer_concentration(facts: List, user_query: str, llm: LLMClien
     sys_prompt = "Extract customers. MANDATE: NEVER use placeholders; only extract specific named buyers and their financial share if available."
 
     base_prompt = _fill(template, query=user_query)
-    facts_text = await get_fact_subset(facts, ['CUSTOMERS'])
+    fact_budget = llm.get_safe_input_limit()
+    facts_text = await get_fact_subset(
+        facts, ['CUSTOMERS'],
+        llm=llm, max_tokens=fact_budget, user_query=user_query,
+    )
     res = await draft_section(base_prompt, CustomerList, llm, sys_prompt, facts=facts_text)
 
     for cust in res.customerConcentration:
@@ -164,6 +248,8 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
     logger.debug(f"Drafting final reports in parallel.")
     
     try:
+        fact_budget = llm.get_safe_input_limit()
+
         # A. JSON Definitions (Basic, Anchor, Offices, Revenue, Supply, Risks)
         class BasicInfo(BaseModel):
             model_config = STRICT_CONFIG
@@ -179,7 +265,10 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
             template = "Extract basic company details for __QUERY__ from these facts:\n__FACTS__\n\nRequirement: description must emphasize global geographic footprint."
             sys_prompt = "You are a precision Geo-Intelligence data extractor."
             base_prompt = _fill(template, query=state.user_query)
-            facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE', 'REVENUE'])
+            facts_text = await get_fact_subset(
+                state.extracted_facts, ['CORPORATE', 'REVENUE'],
+                llm=llm, max_tokens=fact_budget, user_query=state.user_query,
+            )
             return await draft_section(base_prompt, BasicInfo, llm, sys_prompt, facts=facts_text)
 
         # B. Anchor Filing
@@ -191,7 +280,10 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
             )
             sys_prompt = "Extract anchor filing details. Prioritize the most recent reporting period regardless of document type (10-K, 10-Q, 8-K, Earnings Release, or Transcript)."
             base_prompt = _fill(template, query=state.user_query)
-            facts_text = await get_fact_subset(state.extracted_facts, ['CORPORATE'])
+            facts_text = await get_fact_subset(
+                state.extracted_facts, ['CORPORATE'],
+                llm=llm, max_tokens=fact_budget, user_query=state.user_query,
+            )
             return await draft_section(base_prompt, AnchorFilingSchema, llm, sys_prompt, facts=facts_text)
 
         # C. Revenue Geography
@@ -205,7 +297,10 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
             )
             sys_prompt = "Extract revenue geography with raw numerical precision. Prioritize the most recent quarterly data to match the latest anchor filing."
             base_prompt = _fill(template, query=state.user_query)
-            facts_text = await get_fact_subset(state.extracted_facts, ['REVENUE'])
+            facts_text = await get_fact_subset(
+                state.extracted_facts, ['REVENUE'],
+                llm=llm, max_tokens=fact_budget, user_query=state.user_query,
+            )
             return await draft_section(base_prompt, RevenueGeographySchema, llm, sys_prompt, facts=facts_text)
 
         # ------------------------------------------------------------------
