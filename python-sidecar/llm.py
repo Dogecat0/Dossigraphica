@@ -195,19 +195,21 @@ class LLMClient:
                         system_prompt=system_prompt,
                     )
 
-                    entities = []
-                    for entity_id in discovery_res.entities:
+                    async def _extract_entity(entity_id: str) -> BaseModel:
                         entity_summary = await self.summarize_to_fit(
                             facts, _get_target_tokens(args[0]), system_prompt, focus=entity_id,
                         )
-                        entity_item = await self.generate_structured(
+                        return await self.generate_structured(
                             prompt=f"Extract full details for the specific entity '{entity_id}' using these facts:\n{entity_summary}",
                             response_model=args[0],
                             system_prompt=system_prompt,
                         )
-                        entities.append(entity_item)
 
-                    current_output[field_name] = entities
+                    entities = await asyncio.gather(
+                        *(_extract_entity(eid) for eid in discovery_res.entities)
+                    )
+
+                    current_output[field_name] = list(entities)
                     continue
 
                 target_tokens = _get_target_tokens(FieldModel)
@@ -251,8 +253,15 @@ class LLMClient:
         target_tokens: int,
         system_prompt: str = "You are a data compression specialist.",
         focus: str = None,
+        filter_relevance: bool = False,
     ) -> str:
-        """Recursively summarizes content using Map-Reduce parallelization until it fits."""
+        """Recursively summarizes content using Map-Reduce parallelization until it fits.
+
+        When *filter_relevance* is True, each chunk's SummarySchema is checked for
+        ``is_relevant`` — irrelevant chunks are dropped entirely. This is used by
+        ``get_fact_subset`` to discard off-topic material. Defaults to False for
+        backward compatibility with all other callers.
+        """
         current_tokens = self.estimate_tokens([{"role": "user", "content": content}])
 
         if current_tokens <= target_tokens:
@@ -260,18 +269,24 @@ class LLMClient:
 
         if focus:
             summary_template = (
-                f"Following content is too long. Summarize it into high-density facts, "
-                f"prioritizing information related to: {focus}. "
+                f"Following content is too long. Extract and condense ONLY the facts "
+                f"relevant to: {focus}. "
                 "MANDATE: You MUST preserve all exact numerical values, technical metrics, "
                 "units of measure, specific dates, and proper names. "
-                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
+                "Omit irrelevant material entirely. If some relevant facts are found "
+                "mixed with irrelevant content, extract only the relevant parts. "
+                "Produce a condensed version significantly shorter than the original. "
+                "Eliminate redundancy and narrative fluff. Do not rephrase verbatim.\n{chunk}"
             )
         else:
             summary_template = (
-                "Following content is too long. Summarize it into high-density facts. "
+                "Following content is too long. Extract and condense ONLY the relevant facts. "
                 "MANDATE: You MUST preserve all exact numerical values, technical metrics, "
                 "units of measure, specific dates, and proper names. "
-                "Do not generalize or omit specific measurements. Only condense the narrative language.\n{chunk}"
+                "Omit irrelevant material entirely. If some relevant facts are found "
+                "mixed with irrelevant content, extract only the relevant parts. "
+                "Produce a condensed version significantly shorter than the original. "
+                "Eliminate redundancy and narrative fluff. Do not rephrase verbatim.\n{chunk}"
             )
 
         safe_chunk_tokens = self.calculate_safe_chunk_size(system_prompt, summary_template, SummarySchema)
@@ -295,10 +310,15 @@ class LLMClient:
         async def summarize_chunk(chunk_text: str) -> str:
             prompt = summary_template.format(chunk=chunk_text)
             res = await self.generate_structured(prompt, SummarySchema, system_prompt)
-            return res.summary
+            if filter_relevance and not res.is_relevant:
+                return ""
+            return res.summary or ""
 
         summaries = await asyncio.gather(*(summarize_chunk(c) for c in chunks))
-        combined_summary = "\n\n".join(summaries)
+        if filter_relevance:
+            combined_summary = "\n\n".join(s for s in summaries if s)
+        else:
+            combined_summary = "\n\n".join(summaries)
 
         return await self.summarize_to_fit(combined_summary, target_tokens, system_prompt, focus=focus)
 

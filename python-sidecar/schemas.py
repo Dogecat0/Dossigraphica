@@ -141,8 +141,9 @@ class MarkdownSectionSchema(BaseModel):
 
 class SummarySchema(BaseModel):
     model_config = STRICT_CONFIG
-    reason: str = Field(..., description="Logic for data compression and point selection.")
-    summary: str = Field(..., description="A high-density summary of the provided information, preserving all exact numbers, coordinates, and citations.")
+    reason: str = Field(..., description="Logic for data compression and point selection, including relevance assessment.")
+    is_relevant: bool = Field(..., description="True if any facts relevant to the research query were found in this content, even if mixed with irrelevant material. False only if the content is entirely unrelated, off-topic, or noise. When true, summary must contain the condensed relevant facts only.")
+    summary: str | None = Field(None, description="A high-density summary containing ONLY the facts relevant to the research query, preserving all exact numbers, coordinates, and citations. Irrelevant material must be omitted entirely. Must be non-null when is_relevant is true.")
 
 class GeoIntelligenceSchema(BaseModel):
     model_config = STRICT_CONFIG
