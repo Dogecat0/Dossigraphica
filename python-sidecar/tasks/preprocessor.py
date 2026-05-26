@@ -192,6 +192,18 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
     
     state.extracted_facts = list(unique_facts.values())
     state.raw_content = [] # Clear raw content to save memory
-    
+
+    await llm.save_checkpoint("PreprocessorFacts", {
+        "extracted_facts": [
+            {
+                "content": f.content,
+                "category": f.category,
+                "reason": f.reason,
+                "source_url": f.source_url,
+            }
+            for f in state.extracted_facts
+        ]
+    })
+
     logger.debug(f"Pipelined Preprocessing complete. Total unique facts: {len(state.extracted_facts)}")
     yield state

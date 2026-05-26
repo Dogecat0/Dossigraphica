@@ -41,10 +41,59 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
         
     files.sort(key=lambda x: x[0])
     
+    # Step ordering for monotonic resolution (never downgrade).
+    _STEP_ORDER = {
+        "init": 0,
+        "searching": 1,
+        "source_triage": 2,
+        "extracting": 3,
+        "preprocessing": 4,
+        "entity_assembly": 5,
+        "enrichment_searching": 6,
+        "enrichment_extracting": 7,
+        "drafting": 8,
+        "completed": 9,
+    }
+
     latest_step_resolved = "init"
-    
+    latest_order = 0
+
+    def _resolve(step: str) -> None:
+        nonlocal latest_step_resolved, latest_order
+        order = _STEP_ORDER.get(step, 0)
+        if order > latest_order:
+            latest_step_resolved = step
+            latest_order = order
+
+    # Check for aggregate PreprocessorFacts checkpoint first.
+    # This preserves source_url on every fact (the per-file SynthesizerSchema
+    # logs don't include it), which is critical for correct source-url grouping.
+    preproc_checkpoint = None
+    for idx, filename in files:
+        if "PreprocessorFacts" in filename:
+            filepath = os.path.join(log_dir, filename)
+            try:
+                with open(filepath, 'r') as f:
+                    preproc_checkpoint = json.load(f)
+            except Exception:
+                pass
+            break
+
+    if preproc_checkpoint is not None:
+        from schemas import InternalFact
+        for fact_dict in preproc_checkpoint.get("extracted_facts", []):
+            f = InternalFact(
+                reason=fact_dict.get("reason", ""),
+                content=fact_dict.get("content", ""),
+                category=fact_dict.get("category", "UNKNOWN"),
+                source_url=fact_dict.get("source_url", ""),
+            )
+            state.extracted_facts.append(f)
+
     for idx, filename in files:
         filepath = os.path.join(log_dir, filename)
+        if "PreprocessorFacts" in filename:
+            continue  # already loaded above
         try:
             with open(filepath, 'r') as f:
                 data = json.load(f)
@@ -53,12 +102,12 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
             
         if "PlannerSchema" in filename:
             state.search_queries = data.get("search_queries", [])
-            latest_step_resolved = "searching"
+            _resolve("searching")
 
         elif "SearchData" in filename:
             state.search_results = data.get("search_results", [])
             state.urls = data.get("urls", [])
-            latest_step_resolved = "source_triage"
+            _resolve("source_triage")
         elif "TriageData" in filename:
             surviving_urls = data.get("surviving_urls", [])
             if surviving_urls:
@@ -68,43 +117,51 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
                 state.search_results = [
                     r for r in state.search_results if r.get("url") in surviving_set
                 ]
-            latest_step_resolved = "extracting"
+            _resolve("extracting")
         elif "ExtractorData" in filename:
             state.raw_content = data.get("raw_content", [])
-            latest_step_resolved = "preprocessing"
-            
+            _resolve("preprocessing")
+
         elif "SynthesizerSchema" in filename:
-            # Reconstruct the facts so the extractor knows which URLs have been fully processed
-            if "extracted_facts" in data:
+            # Reconstruct facts from individual LLM outputs ONLY when there
+            # is no aggregate PreprocessorFacts checkpoint (which carries
+            # source_url — SynthesizerSchema logs don't).
+            if preproc_checkpoint is None and "extracted_facts" in data:
                 from schemas import InternalFact
                 for fact_dict in data["extracted_facts"]:
                     f = InternalFact(
+                        reason=fact_dict.get("reason", ""),
                         content=fact_dict.get("content", ""),
                         category=fact_dict.get("category", "UNKNOWN"),
-                        reasoning=fact_dict.get("reasoning", ""),
-                        source_url=fact_dict.get("source_url", "")
+                        source_url=fact_dict.get("source_url", ""),
                     )
                     state.extracted_facts.append(f)
-            latest_step_resolved = "entity_assembly"
+            _resolve("entity_assembly")
 
         elif "EntityAssemblyData" in filename:
             state.enrichment_queries = data.get("enrichment_queries", [])
             if state.enrichment_queries:
-                latest_step_resolved = "enrichment_searching"
+                _resolve("enrichment_searching")
             else:
-                latest_step_resolved = "drafting"
+                _resolve("drafting")
+
+        elif "DraftingCompleteData" in filename:
+            # Full drafting outputs available — skip straight to completed
+            state.final_report_json = data.get("final_report_json")
+            state.final_report_md = data.get("final_report_md", "")
+            _resolve("completed")
 
         elif "EnrichmentCompleteData" in filename:
             # Canonical post-enrichment checkpoint written by pipeline.py after
             # pipeline_sieve(6) completes.  Unambiguously signals the enrichment
             # sub-loop is done and the next step is drafting.
-            latest_step_resolved = "drafting"
+            _resolve("drafting")
 
         elif "MarkdownSectionSchema" in filename:
             # Fallback: MarkdownSectionSchema logs are only written by the drafter,
             # which only runs after the enrichment loop has fully completed.
             # This handles legacy log directories that pre-date EnrichmentCompleteData.
-            latest_step_resolved = "drafting"
+            _resolve("drafting")
 
     state.pipeline_step = latest_step_resolved
 

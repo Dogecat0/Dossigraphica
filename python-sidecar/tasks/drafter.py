@@ -403,6 +403,13 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
         await md_gather  # propagate any exceptions
 
         state.final_report_md = "\n\n".join(md_sections)
+
+        # Persist drafting outputs so log replay can skip re-drafting
+        await llm.save_checkpoint("DraftingCompleteData", {
+            "final_report_json": state.final_report_json,
+            "final_report_md": state.final_report_md,
+        })
+
         logger.debug("Markdown report assembled.")
 
     except Exception as e:
