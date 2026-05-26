@@ -42,12 +42,11 @@ async def run_planner(state: ResearchState) -> ResearchState:
     """
     Deterministic Programmatic Planner.
 
-    Generates search queries as the Cartesian product of:
-      - GeoIntelligenceSchema searchable field descriptions
-      - Relative temporal anchors (derived from QUARTER_LOOKBACK env var)
+    Generates two search queries per field:
+      1. Clean content query (no temporal anchor) — for structural data.
+      2. Temporal-anchored query — for time-sensitive data.
 
-    No LLM is used. Query count is bounded:
-      len(SEARCHABLE_FIELDS) × QUARTER_LOOKBACK
+    Query count: 2 × len(SEARCHABLE_FIELDS)
     """
     lookback = int(os.getenv("QUARTER_LOOKBACK", "1"))
     quarters_block = _get_rigid_quarters_block(lookback)
@@ -58,20 +57,30 @@ async def run_planner(state: ResearchState) -> ResearchState:
     )
 
     queries: list[str] = []
+
+    # For every field generate TWO queries:
+    #   1. Clean content query (no temporal anchor) — finds structural data
+    #      (offices, supply chain, risks) without noise from temporal keywords.
+    #   2. Temporal-anchored query — finds time-sensitive data (earnings,
+    #      financials) for the specified quarters.
+    #
+    # This is fully domain-agnostic: it doesn't know about "financial" vs
+    # "operational" fields. Every field gets both a content-focused and a
+    # time-focused query, so whichever applies gets the right signal.
     for field_name in SEARCHABLE_FIELDS:
         field_info = GeoIntelligenceSchema.model_fields[field_name]
         description = field_info.description or field_name
 
-        # Single query per field containing all requested time markers
-        query = f"{state.user_query} {description} {quarters_block}"
-        queries.append(query)
+        clean_query = f"{state.user_query} {description}"
+        temporal_query = f"{state.user_query} {description} {quarters_block}"
+        queries.extend([clean_query, temporal_query])
 
     state.search_queries = queries
     state.scratchpad += (
         f"\n## Programmatic Research Plan\n"
-        f"Generated {len(queries)} queries from schema introspection.\n"
+        f"Generated {len(queries)} queries (2 per field: clean + temporal).\n"
         f"Rigid Quarters: {quarters_block}\n"
     )
 
-    logger.debug(f"Planner generated {len(queries)} deterministic queries.")
+    logger.debug(f"Planner generated {len(queries)} deterministic queries (2 per field).")
     return state

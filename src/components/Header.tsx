@@ -1,4 +1,4 @@
-import { ChevronDown, Brain, Loader2, BookOpen } from 'lucide-react'
+import { ChevronDown, Brain, Loader2 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { useGeoIntel } from '../useGeoIntel'
 import type { Company } from '../types'
@@ -44,9 +44,18 @@ export default function Header({
             <div className="flex items-center justify-between max-md:px-3 max-md:py-2.5 px-6 py-3.5 md:px-8">
                 {/* Logo + Title (The Masthead) */}
                 <div className="flex items-center gap-2 md:gap-5">
-                    <div className="flex items-center justify-center w-10 h-10 border border-[var(--color-accent-gold)] bg-[var(--color-bg-paper-dark)] rounded shadow-inner">
-                        <BookOpen size={20} className="text-[var(--color-accent-gold)]" />
-                    </div>
+                    <svg viewBox="0 0 120 120" className="w-10 h-10" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="0" width="120" height="120" rx="40" ry="40" fill="#f4f3e6"/>
+                        <line x1="22" y1="14" x2="22" y2="106" stroke="#1a1a1a" stroke-width="14" stroke-linecap="round" />
+                        <path d="M 22 14 h 32 c 28 0 46 20 46 46 c 0 26 -18 46 -46 46 h -32" fill="none" stroke="#1a1a1a" stroke-width="14" stroke-linecap="round" />
+                        <circle cx="88" cy="38" r="10" fill="#c2593f" stroke="#f4f3e6" stroke-width="3" />
+                        <circle cx="94" cy="68" r="7" fill="#c5a880" stroke="#f4f3e6" stroke-width="3" />
+                        <circle cx="80" cy="94" r="6" fill="#2e4d3a" stroke="#f4f3e6" stroke-width="3" />
+                        <circle cx="22" cy="34" r="5" fill="#1a1a1a" stroke="#f4f3e6" stroke-width="2.5" />
+                        <path d="M 88 38 Q 96 50 94 68" fill="none" stroke="#c2593f" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+                        <path d="M 94 68 Q 88 84 80 94" fill="none" stroke="#c5a880" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+                        <path d="M 22 34 Q 55 28 88 38" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="2 3" opacity="0.35"/>
+                    </svg>
                     <div>
                         <h1 className="text-lg md:text-2xl font-serif font-bold text-[var(--color-ink)] leading-none uppercase tracking-wide">
                             Dossigraphica
