@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react'
 import {
-    Building2, Link2, Users, ShieldAlert, Network, Target
+    Building2, Link2, Users, ShieldAlert, Network, Target, Layers, X
 } from 'lucide-react'
 import type { LayerName } from '../types'
 
@@ -20,17 +21,50 @@ const LAYERS: { id: LayerName; label: string; icon: any; color: string; type: 'c
 ]
 
 export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode }: LayerToggleProps) {
+    const [isExpanded, setIsExpanded] = useState(() => typeof window !== 'undefined' ? window.innerWidth > 768 : true)
+
+    useEffect(() => {
+        const handleResize = () => {
+            // Keep state synchronous on resize if needed
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
     const visibleLayers = LAYERS.filter(l => {
         if (viewMode === 'global') return l.type === 'global' || l.type === 'both'
         return l.type === 'company' || l.type === 'both'
     })
 
+    if (!isExpanded) {
+        return (
+            <div className="absolute top-[80px] left-6 max-md:top-[68px] max-md:left-4 z-40 animate-fade-in">
+                <button
+                    onClick={() => setIsExpanded(true)}
+                    title="Layers Legend"
+                    className="w-11 h-11 bg-[var(--color-bg-paper)] border border-[var(--color-border-muted)] border-t-2 border-t-[var(--color-accent-gold)] rounded-full shadow-[var(--shadow-executive-lg)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 cursor-pointer flex items-center justify-center text-[var(--color-accent-gold)] hover:text-[var(--color-accent-blue)]"
+                >
+                    <Layers size={18} />
+                </button>
+            </div>
+        )
+    }
+
     return (
-        <div className="absolute bottom-10 right-12 max-md:bottom-4 max-md:right-4 max-md:left-4 z-40 animate-fade-in">
+        <div className="absolute top-[80px] left-6 max-md:top-[68px] max-md:left-4 z-40 animate-fade-in">
             <div className="bg-[var(--color-bg-paper)] border border-[var(--color-border-muted)] border-t-2 border-t-[var(--color-accent-gold)] p-3 md:p-4 shadow-[var(--shadow-executive-lg)] rounded w-auto max-md:min-w-0 md:w-64">
-                <p className="text-[9px] uppercase tracking-[0.15em] text-[var(--color-accent-gold)] font-mono font-bold mb-2 md:mb-3 border-b border-[var(--color-border-muted)] pb-1.5">
-                    {viewMode === 'global' ? 'Global Analysis Layers' : 'Company Dossier Layers'}
-                </p>
+                <div className="flex items-center justify-between border-b border-[var(--color-border-muted)] pb-1.5 mb-2 md:mb-3 gap-3">
+                    <p className="text-[9px] uppercase tracking-[0.15em] text-[var(--color-accent-gold)] font-mono font-bold">
+                        {viewMode === 'global' ? 'Global Analysis Layers' : 'Company Dossier Layers'}
+                    </p>
+                    <button
+                        onClick={() => setIsExpanded(false)}
+                        title="Minimize"
+                        className="text-[var(--color-ink-light)] hover:text-[var(--color-ink)] hover:bg-[var(--color-bg-paper-dark)]/50 p-1 rounded transition-colors duration-200 cursor-pointer flex-shrink-0"
+                    >
+                        <X size={13} />
+                    </button>
+                </div>
                 <div className="flex flex-col max-md:grid max-md:grid-cols-2 max-md:gap-x-3 max-md:gap-y-1 gap-1">
                     {visibleLayers.map(layer => {
                         const Icon = layer.icon
