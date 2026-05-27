@@ -73,7 +73,7 @@ export default function Header({
                         <div ref={dropdownRef} className="relative">
                             <button
                                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                                className="flex items-center gap-1.5 xs:gap-2.5 px-2 xs:px-3 md:px-3.5 py-1.5 border border-[var(--color-border-muted)] hover:border-[var(--color-accent-gold)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 rounded shadow-sm cursor-pointer bg-white text-[var(--color-ink)]"
+                                className="flex items-center h-[34px] gap-1.5 xs:gap-2.5 px-2 xs:px-3 md:px-3.5 border border-[var(--color-border-muted)] hover:border-[var(--color-accent-gold)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 rounded shadow-sm cursor-pointer bg-white text-[var(--color-ink)]"
                             >
                                 <span className="text-[8px] xs:text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
                                 <span className="inline-block text-[11px] xs:text-xs md:text-sm font-serif font-semibold max-w-[65px] xs:max-w-[90px] sm:max-w-[120px] truncate">
@@ -152,7 +152,7 @@ export default function Header({
                             )}
                         </div>
                     ) : (
-                        <div className="px-2 xs:px-3 py-1.5 border border-[var(--color-border-muted)] bg-white rounded shadow-sm flex items-center gap-1.5 xs:gap-2.5">
+                        <div className="px-2 xs:px-3 h-[34px] border border-[var(--color-border-muted)] bg-white rounded shadow-sm flex items-center gap-1.5 xs:gap-2.5">
                             <span className="text-[8px] xs:text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
                             <span className="inline-block text-[11px] xs:text-xs md:text-sm font-serif font-semibold text-[var(--color-ink)] max-w-[65px] xs:max-w-[90px] sm:max-w-[120px] truncate">{companyName}</span>
                         </div>
@@ -163,7 +163,7 @@ export default function Header({
                         onClick={onToggleIntel}
                         disabled={(!hasIntel && !intelLoading) || intelLoading}
                         className={`
-                            flex items-center gap-1 md:gap-2 px-1.5 xs:px-2.5 md:px-4 py-1.5 border transition-all duration-300 cursor-pointer font-serif font-semibold text-xs rounded shadow-sm
+                            flex items-center justify-center h-[34px] gap-1 md:gap-2 px-1.5 xs:px-2.5 md:px-4 border transition-all duration-300 cursor-pointer font-serif font-semibold text-xs rounded shadow-sm
                             disabled:opacity-30 disabled:cursor-not-allowed
                             ${intelOpen
                                 ? 'bg-[var(--color-accent-green)] border-[var(--color-accent-green)] text-white hover:bg-[var(--color-ink-muted)] hover:border-[var(--color-ink-muted)]'

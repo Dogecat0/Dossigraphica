@@ -21,7 +21,7 @@ const LAYERS: { id: LayerName; label: string; icon: any; color: string; type: 'c
 ]
 
 export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode }: LayerToggleProps) {
-    const [isExpanded, setIsExpanded] = useState(() => typeof window !== 'undefined' ? window.innerWidth > 768 : true)
+    const [isExpanded, setIsExpanded] = useState(true)
 
     useEffect(() => {
         const handleResize = () => {
@@ -42,9 +42,9 @@ export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode
                 <button
                     onClick={() => setIsExpanded(true)}
                     title="Layers Legend"
-                    className="w-11 h-11 bg-[var(--color-bg-paper)] border border-[var(--color-border-muted)] border-t-2 border-t-[var(--color-accent-gold)] rounded-full shadow-[var(--shadow-executive-lg)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 cursor-pointer flex items-center justify-center text-[var(--color-accent-gold)] hover:text-[var(--color-accent-blue)]"
+                    className="w-12 h-12 bg-[var(--color-ink)] border-2 border-[var(--color-accent-gold)] rounded-full shadow-[var(--shadow-executive-lg)] hover:bg-[var(--color-ink-muted)] transition-all duration-300 cursor-pointer flex items-center justify-center text-[var(--color-accent-gold)] hover:text-white"
                 >
-                    <Layers size={18} />
+                    <Layers size={20} />
                 </button>
             </div>
         )
