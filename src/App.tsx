@@ -243,7 +243,7 @@ export default function App() {
                 )}
 
                 {/* Attribution */}
-                <div className="absolute bottom-2 left-4 z-30">
+                <div className="absolute bottom-2 left-4 z-30 hidden sm:block">
                     <p className="text-[10px] text-[var(--color-ink-muted)] opacity-50 font-mono">
                         GLOBE DATA © OPENSTREETMAP · DOSSIGRAPHICA PROJECT 2026
                     </p>

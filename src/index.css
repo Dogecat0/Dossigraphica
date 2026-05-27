@@ -7,6 +7,9 @@
   --font-serif: 'Crimson Pro', serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
+  /* Custom breakpoints for precise responsive layout */
+  --breakpoint-xs: 400px;
+
   /* Paper & Ink Executive Palette */
   --color-bg-paper: #faf8f0;
   --color-bg-paper-dark: #f3f0e2;

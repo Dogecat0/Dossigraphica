@@ -28,10 +28,10 @@ export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode
     return (
         <div className="absolute bottom-10 right-12 max-md:bottom-4 max-md:right-4 max-md:left-4 z-40 animate-fade-in">
             <div className="bg-[var(--color-bg-paper)] border border-[var(--color-border-muted)] border-t-2 border-t-[var(--color-accent-gold)] p-3 md:p-4 shadow-[var(--shadow-executive-lg)] rounded w-auto max-md:min-w-0 md:w-64">
-                <p className="text-[9px] uppercase tracking-[0.15em] text-[var(--color-accent-gold)] font-mono font-bold mb-3 border-b border-[var(--color-border-muted)] pb-1.5">
+                <p className="text-[9px] uppercase tracking-[0.15em] text-[var(--color-accent-gold)] font-mono font-bold mb-2 md:mb-3 border-b border-[var(--color-border-muted)] pb-1.5">
                     {viewMode === 'global' ? 'Global Analysis Layers' : 'Company Dossier Layers'}
                 </p>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col max-md:grid max-md:grid-cols-2 max-md:gap-x-3 max-md:gap-y-1 gap-1">
                     {visibleLayers.map(layer => {
                         const Icon = layer.icon
                         const isActive = activeLayers.has(layer.id)
@@ -43,13 +43,13 @@ export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode
                                 onClick={() => !isDisabled && onToggle(layer.id)}
                                 disabled={isDisabled}
                                 className={`
-                                    flex items-center gap-3 text-left transition-all duration-200 cursor-pointer px-2 py-1.5 rounded
+                                    flex items-center gap-2 md:gap-3 text-left transition-all duration-200 cursor-pointer px-1.5 py-1 md:px-2 md:py-1.5 rounded
                                     disabled:opacity-30 disabled:cursor-not-allowed
                                     ${!isDisabled && 'hover:bg-[var(--color-bg-paper-dark)]/50 hover:text-[var(--color-ink)]'}
                                 `}
                             >
                                 <div
-                                    className="w-3.5 h-3.5 border rounded-sm flex items-center justify-center transition-all duration-200"
+                                    className="w-3.5 h-3.5 border rounded-sm flex items-center justify-center transition-all duration-200 flex-shrink-0"
                                     style={{
                                         borderColor: isActive ? layer.color : 'var(--color-border-muted)',
                                         backgroundColor: isActive ? 'var(--color-ink)' : 'white',
@@ -62,8 +62,8 @@ export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode
                                          />
                                      )}
                                 </div>
-                                <Icon size={14} className={isActive ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-light)]'} />
-                                <span className={`text-xs font-serif font-bold ${isActive ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-light)]'}`}>
+                                <Icon size={13} className={`flex-shrink-0 ${isActive ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-light)]'}`} />
+                                <span className={`text-[11px] md:text-xs font-serif font-bold truncate ${isActive ? 'text-[var(--color-ink)]' : 'text-[var(--color-ink-light)]'}`}>
                                     {layer.id === 'offices' && viewMode === 'global' ? 'Headquarters' : layer.label}
                                 </span>
                             </button>

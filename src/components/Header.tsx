@@ -41,10 +41,10 @@ export default function Header({
             {/* Elegant luxury gold hairline underline at the very bottom of header */}
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--color-accent-gold)] via-[var(--color-bg-paper-dark)] to-[var(--color-accent-gold)] opacity-70" />
 
-            <div className="flex items-center justify-between max-md:px-3 max-md:py-2.5 px-6 py-3.5 md:px-8">
+            <div className="flex items-center justify-between px-2.5 py-2.5 xs:px-3 sm:px-6 md:px-8">
                 {/* Logo + Title (The Masthead) */}
-                <div className="flex items-center gap-2 md:gap-5">
-                    <svg viewBox="0 0 120 120" className="w-10 h-10" xmlns="http://www.w3.org/2000/svg">
+                <div className="flex items-center gap-1.5 xs:gap-2 md:gap-5">
+                    <svg viewBox="0 0 120 120" className="w-8 h-8 md:w-10 md:h-10" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0" y="0" width="120" height="120" rx="40" ry="40" fill="#f4f3e6"/>
                         <line x1="22" y1="14" x2="22" y2="106" stroke="#1a1a1a" stroke-width="14" stroke-linecap="round" />
                         <path d="M 22 14 h 32 c 28 0 46 20 46 46 c 0 26 -18 46 -46 46 h -32" fill="none" stroke="#1a1a1a" stroke-width="14" stroke-linecap="round" />
@@ -57,7 +57,7 @@ export default function Header({
                         <path d="M 22 34 Q 55 28 88 38" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="2 3" opacity="0.35"/>
                     </svg>
                     <div>
-                        <h1 className="text-lg md:text-2xl font-serif font-bold text-[var(--color-ink)] leading-none uppercase tracking-wide">
+                        <h1 className="text-sm xs:text-base sm:text-lg md:text-2xl font-serif font-bold text-[var(--color-ink)] leading-none uppercase tracking-wide">
                             Dossigraphica
                         </h1>
                         <p className="text-[9px] font-mono text-[var(--color-ink-light)] uppercase tracking-[0.2em] mt-1 hidden sm:block">
@@ -67,21 +67,21 @@ export default function Header({
                 </div>
 
                 {/* Company selector + Intel button */}
-                <div className="flex items-center gap-1.5 md:gap-3">
+                <div className="flex items-center gap-1 xs:gap-1.5 md:gap-3">
                     {/* Company selector */}
                     {companies.length > 1 ? (
                         <div ref={dropdownRef} className="relative">
                             <button
                                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                                className="flex items-center gap-2.5 px-3.5 py-1.5 border border-[var(--color-border-muted)] hover:border-[var(--color-accent-gold)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 rounded shadow-sm cursor-pointer bg-white text-[var(--color-ink)]"
+                                className="flex items-center gap-1.5 xs:gap-2.5 px-2 xs:px-3 md:px-3.5 py-1.5 border border-[var(--color-border-muted)] hover:border-[var(--color-accent-gold)] hover:bg-[var(--color-bg-paper-dark)] transition-all duration-300 rounded shadow-sm cursor-pointer bg-white text-[var(--color-ink)]"
                             >
-                                <span className="text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
-                                <span className="text-xs md:text-sm font-serif font-semibold max-w-[120px] max-md:truncate">
+                                <span className="text-[8px] xs:text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
+                                <span className="inline-block text-[11px] xs:text-xs md:text-sm font-serif font-semibold max-w-[65px] xs:max-w-[90px] sm:max-w-[120px] truncate">
                                     {companyName}
                                 </span>
                                 <ChevronDown
                                     size={12}
-                                    className={`text-[var(--color-ink-light)] transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`}
+                                    className={`text-[var(--color-ink-light)] transition-transform duration-300 flex-shrink-0 ${dropdownOpen ? 'rotate-180' : ''}`}
                                 />
                             </button>
 
@@ -152,9 +152,9 @@ export default function Header({
                             )}
                         </div>
                     ) : (
-                        <div className="px-3.5 py-1.5 border border-[var(--color-border-muted)] bg-white rounded shadow-sm flex items-center gap-2.5">
-                            <span className="text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
-                            <span className="text-xs md:text-sm font-serif font-semibold text-[var(--color-ink)]">{companyName}</span>
+                        <div className="px-2 xs:px-3 py-1.5 border border-[var(--color-border-muted)] bg-white rounded shadow-sm flex items-center gap-1.5 xs:gap-2.5">
+                            <span className="text-[8px] xs:text-[9px] font-mono font-bold text-[var(--color-accent-gold)] uppercase tracking-wider">Record</span>
+                            <span className="inline-block text-[11px] xs:text-xs md:text-sm font-serif font-semibold text-[var(--color-ink)] max-w-[65px] xs:max-w-[90px] sm:max-w-[120px] truncate">{companyName}</span>
                         </div>
                     )}
 
@@ -163,7 +163,7 @@ export default function Header({
                         onClick={onToggleIntel}
                         disabled={(!hasIntel && !intelLoading) || intelLoading}
                         className={`
-                            flex items-center gap-1 md:gap-2 px-2.5 md:px-4 py-1.5 border transition-all duration-300 cursor-pointer font-serif font-semibold text-xs rounded shadow-sm
+                            flex items-center gap-1 md:gap-2 px-1.5 xs:px-2.5 md:px-4 py-1.5 border transition-all duration-300 cursor-pointer font-serif font-semibold text-xs rounded shadow-sm
                             disabled:opacity-30 disabled:cursor-not-allowed
                             ${intelOpen
                                 ? 'bg-[var(--color-accent-green)] border-[var(--color-accent-green)] text-white hover:bg-[var(--color-ink-muted)] hover:border-[var(--color-ink-muted)]'

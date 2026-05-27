@@ -1,4 +1,5 @@
 import fs from 'fs';
+import process from 'process';
 
 try {
   const content = fs.readFileSync('public/readme-animation.svg', 'utf8');
@@ -11,8 +12,6 @@ try {
     throw new Error('SVG file does not end with </svg>');
   }
   
-  // Basic XML tag matching checks
-  const tags = ['svg', 'style', 'rect', 'circle', 'path', 'g', 'text', 'defs', 'pattern'];
   console.log('--------------------------------------------------');
   console.log('🔍 SVG STRUCTURAL CHECK:');
   
