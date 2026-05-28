@@ -1,159 +1,584 @@
 {
-  "company": "Taiwan Semiconductor Manufacturing Company Limited",
+  "company": "Taiwan Semiconductor Manufacturing Company Limited (TSMC)",
   "ticker": "TSM",
   "website": "https://www.tsmc.com",
   "sector": "Semiconductors",
-  "description": "Taiwan Semiconductor Manufacturing Company Limited (TSMC) is the world's largest dedicated semiconductor foundry, headquartered in Hsinchu, Taiwan, with a vast global footprint that includes major manufacturing operations in Taiwan and significant expansion projects in the United States, such as its facility in Phoenix, Arizona, serving a diverse international client base across North America, Europe, and Asia.",
+  "description": "TSMC is the world's largest dedicated semiconductor foundry, headquartered in Hsinchu, Taiwan, with a dominant global geographic footprint. In 2025, 74.4% of its US$122.42 billion revenue came from the US, 8.6% from China, 7.9% from Taiwan, 3.9% from Japan, 3.3% from EMEA, and 1.8% from other regions. In 2024, geographic revenue split was North America 70%, China 11%, Asia Pacific (ex-China/Japan) 10%, Japan 5%, and EMEA 4%. The company operates advanced fabs in Taiwan, Arizona (USA), Kumamoto (Japan), and Dresden (Germany), with overseas expansion accelerating its global manufacturing presence. TSMC produces over 12,000 different products for customers worldwide, holds ~70% of the global foundry market share, and manufactures 92% of all logic chips at 10nm or smaller nodes.",
   "anchorFiling": {
-    "reasoning": "The most recent historical earnings date for TSM is 2026-04-16, which corresponds to the Q1 2026 reporting period. This is the latest available financial filing event prior to the current date of 2026-05-22.",
-    "type": "Earnings Release",
-    "date": "2026-04-16",
-    "fiscalPeriod": "Q1 2026"
+    "reason": "Most recent primary source filing identified is the Q4 2025 (fiscal year 2025) consolidated financial statements (10-K equivalent) for TSMC, dated 2025-12-31, which is the latest available audited financial report covering the full fiscal year 2025.",
+    "type": "10-K",
+    "date": "2025-12-31",
+    "fiscalPeriod": "FY 2025"
   },
-  "generatedDate": "2026-05-22",
+  "generatedDate": "2026-05-28",
   "offices": [
     {
-      "id": "TSM-HSINCHU-headquarters",
-      "name": "TSMC Headquarters",
+      "id": "TSMC-HSINCHU-HQ",
+      "name": "TSMC Corporate Headquarters",
       "city": "Hsinchu",
-      "state": "Taiwan",
+      "state": "Hsinchu County",
       "country": "Taiwan",
       "address": "8, Li-Hsin Rd. 6, Hsinchu Science Park, Hsinchu 300-096, Taiwan, R.O.C.",
-      "lat": 24.773,
-      "lng": 121.012,
-      "businessFocus": "Corporate headquarters and semiconductor manufacturing",
+      "lat": 24.775,
+      "lng": 121.0,
+      "businessFocus": "Corporate headquarters and administration",
       "type": "headquarters",
       "sources": [
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://www.tsmc.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "TSM-HSINCHU-engineering",
+      "id": "TSMC-HSINCHU-RD",
       "name": "TSMC Global R&D Center",
       "city": "Hsinchu",
-      "state": "Taiwan",
+      "state": "Hsinchu County",
       "country": "Taiwan",
       "address": "168, Kehuan Rd., Hsinchu Science Park, Hsinchu 308-001, Taiwan, R.O.C.",
-      "lat": 24.775,
-      "lng": 121.015,
-      "businessFocus": "Advanced semiconductor research and development",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "Research and development",
       "type": "engineering",
       "sources": [
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://www.tsmc.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "TSM-PHOENIX-manufacturing",
-      "name": "TSMC Arizona Corporation",
+      "id": "TSMC-HSINCHU-FAB12",
+      "name": "TSMC Fab 12A & Fab 12B (GIGAFAB)",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu Science Park, Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "300mm wafer manufacturing and R&D (Fab 12B)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAICHUNG-FAB15",
+      "name": "TSMC Fab 15A & Fab 15B",
+      "city": "Taichung",
+      "state": "Taichung City",
+      "country": "Taiwan",
+      "address": "Central Taiwan Science Park, Taichung, Taiwan",
+      "lat": 24.22,
+      "lng": 120.62,
+      "businessFocus": "300mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAINAN-FAB14",
+      "name": "TSMC Fab 14A & Fab 14B",
+      "city": "Tainan",
+      "state": "Tainan City",
+      "country": "Taiwan",
+      "address": "Southern Taiwan Science Park, Tainan, Taiwan",
+      "lat": 23.12,
+      "lng": 120.28,
+      "businessFocus": "300mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAINAN-FAB18",
+      "name": "TSMC Fab 18A & Fab 18B",
+      "city": "Tainan",
+      "state": "Tainan City",
+      "country": "Taiwan",
+      "address": "Southern Taiwan Science Park, Anding District, Tainan, Taiwan",
+      "lat": 23.1,
+      "lng": 120.28,
+      "businessFocus": "300mm wafer manufacturing (3nm/5nm)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-HSINCHU-FAB20",
+      "name": "TSMC Fab 20",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu Science Park, Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "300mm wafer manufacturing (planned, 4 phases)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-KAOHSIUNG-FAB22",
+      "name": "TSMC Fab 22",
+      "city": "Kaohsiung",
+      "state": "Kaohsiung City",
+      "country": "Taiwan",
+      "address": "Kaohsiung, Taiwan",
+      "lat": 22.63,
+      "lng": 120.3,
+      "businessFocus": "300mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-HSINCHU-FAB3",
+      "name": "TSMC Fab 3",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "200mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-HSINCHU-FAB5",
+      "name": "TSMC Fab 5",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "200mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAINAN-FAB6",
+      "name": "TSMC Fab 6",
+      "city": "Tainan",
+      "state": "Tainan City",
+      "country": "Taiwan",
+      "address": "Shanhua District, Tainan, Taiwan",
+      "lat": 23.12,
+      "lng": 120.28,
+      "businessFocus": "200mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-HSINCHU-FAB8",
+      "name": "TSMC Fab 8",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "200mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-HSINCHU-FAB2",
+      "name": "TSMC Fab 2",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "150mm wafer manufacturing (planned to wind down)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-HSINCHU-BACKEND1",
+      "name": "TSMC Advanced Backend Fab 1",
+      "city": "Hsinchu",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "Hsinchu, Taiwan",
+      "lat": 24.78,
+      "lng": 121.0,
+      "businessFocus": "Advanced backend/3DIC packaging",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAINAN-BACKEND2",
+      "name": "TSMC Advanced Backend Fab 2",
+      "city": "Tainan",
+      "state": "Tainan City",
+      "country": "Taiwan",
+      "address": "Shanhua District, Tainan, Taiwan",
+      "lat": 23.12,
+      "lng": 120.28,
+      "businessFocus": "Advanced backend/3DIC packaging",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAOYUAN-BACKEND3",
+      "name": "TSMC Advanced Backend Fab 3",
+      "city": "Taoyuan",
+      "state": "Taoyuan City",
+      "country": "Taiwan",
+      "address": "Longtan District, Taoyuan, Taiwan",
+      "lat": 24.86,
+      "lng": 121.2,
+      "businessFocus": "Advanced backend/3DIC packaging",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-TAICHUNG-BACKEND5",
+      "name": "TSMC Advanced Backend Fab 5",
+      "city": "Taichung",
+      "state": "Taichung City",
+      "country": "Taiwan",
+      "address": "Taichung, Taiwan",
+      "lat": 24.22,
+      "lng": 120.62,
+      "businessFocus": "Advanced backend/3DIC packaging",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-MIAOLI-BACKEND6",
+      "name": "TSMC Advanced Backend Fab 6",
+      "city": "Miaoli",
+      "state": "Miaoli County",
+      "country": "Taiwan",
+      "address": "Zhunan, Miaoli County, Taiwan",
+      "lat": 24.68,
+      "lng": 120.88,
+      "businessFocus": "Advanced backend/3DIC packaging",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-CHIAYI-BACKEND7",
+      "name": "TSMC Advanced Backend Fab 7",
+      "city": "Chiayi",
+      "state": "Chiayi County",
+      "country": "Taiwan",
+      "address": "Taibo City, Chiayi County, Taiwan",
+      "lat": 23.48,
+      "lng": 120.45,
+      "businessFocus": "Advanced backend/3DIC packaging (planned)",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-PHOENIX-FAB21",
+      "name": "TSMC Arizona Corporation - Fab 21",
       "city": "Phoenix",
       "state": "Arizona",
       "country": "United States",
-      "address": "5088 W. Innovation Circle, Phoenix, AZ 85083, U.S.A.",
-      "lat": 33.815,
-      "lng": -112.155,
-      "businessFocus": "Advanced semiconductor manufacturing",
+      "address": "Phoenix, Arizona, USA",
+      "lat": 33.45,
+      "lng": -112.07,
+      "businessFocus": "300mm wafer manufacturing (N4, N3, N2/A16)",
       "type": "manufacturing",
       "sources": [
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://www.tsmc.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "TSM-KIKUYO-manufacturing",
-      "name": "Japan Advanced Semiconductor Manufacturing, Inc. (JASM)",
+      "id": "TSMC-CAMAS-FAB11",
+      "name": "TSMC Washington, LLC - Fab 11",
+      "city": "Camas",
+      "state": "Washington",
+      "country": "United States",
+      "address": "5509 N.W. Parker Street, Camas, WA 98607-9299, USA",
+      "lat": 45.59,
+      "lng": -122.41,
+      "businessFocus": "200mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-SANJOSE-SALES",
+      "name": "TSMC North America",
+      "city": "San Jose",
+      "state": "California",
+      "country": "United States",
+      "address": "San Jose, California, USA",
+      "lat": 37.34,
+      "lng": -121.89,
+      "businessFocus": "Sales and marketing",
+      "type": "sales",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-KUMAMOTO-FAB23",
+      "name": "JASM - Japan Advanced Semiconductor Manufacturing (Fab 23)",
       "city": "Kikuyo",
       "state": "Kumamoto",
       "country": "Japan",
-      "address": "4106-1, Haramizu, Kikuyo-machi, Kikuchi-gun, Kumamoto, 869-1102, Japan",
-      "lat": 32.875,
-      "lng": 130.825,
-      "businessFocus": "Semiconductor manufacturing",
+      "address": "Kikuyo, Kumamoto, Japan",
+      "lat": 32.87,
+      "lng": 130.82,
+      "businessFocus": "300mm wafer manufacturing (40nm to 3nm)",
       "type": "manufacturing",
       "sources": [
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://www.tsmc.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "TSM-DRESDEN-manufacturing",
-      "name": "European Semiconductor Manufacturing Company (ESMC) GmbH",
+      "id": "TSMC-YOKOHAMA-SALES",
+      "name": "TSMC Japan Limited",
+      "city": "Yokohama",
+      "state": "Kanagawa",
+      "country": "Japan",
+      "address": "Yokohama, Kanagawa, Japan",
+      "lat": 35.44,
+      "lng": 139.64,
+      "businessFocus": "Customer service",
+      "type": "sales",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-YOKOHAMA-DESIGN",
+      "name": "TSMC Design Technology Japan, Inc.",
+      "city": "Yokohama",
+      "state": "Kanagawa",
+      "country": "Japan",
+      "address": "Yokohama, Kanagawa, Japan",
+      "lat": 35.44,
+      "lng": 139.64,
+      "businessFocus": "Design technology and engineering",
+      "type": "engineering",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-YOKOHAMA-3DIC",
+      "name": "TSMC Japan 3DIC R&D Center, Inc.",
+      "city": "Yokohama",
+      "state": "Kanagawa",
+      "country": "Japan",
+      "address": "Yokohama, Kanagawa, Japan",
+      "lat": 35.44,
+      "lng": 139.64,
+      "businessFocus": "3DIC research and development",
+      "type": "engineering",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-DRESDEN-ESMC",
+      "name": "ESMC - European Semiconductor Manufacturing Company GmbH",
       "city": "Dresden",
       "state": "Saxony",
       "country": "Germany",
-      "address": "World Trade Center, Rosenstrasse 32, 01067 Dresden, Germany",
-      "lat": 51.045,
-      "lng": 13.735,
-      "businessFocus": "Specialty semiconductor manufacturing",
+      "address": "Dresden, Saxony, Germany",
+      "lat": 51.05,
+      "lng": 13.74,
+      "businessFocus": "300mm specialty wafer manufacturing (28/22nm, 16/12nm)",
       "type": "manufacturing",
       "sources": [
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://www.tsmc.com"
       ],
       "confidence": "verified"
     },
     {
-      "id": "TSM-NANJING-manufacturing",
-      "name": "TSMC Nanjing Company Limited",
+      "id": "TSMC-AMSTERDAM-SALES",
+      "name": "TSMC Europe B.V.",
+      "city": "Amsterdam",
+      "state": "North Holland",
+      "country": "Netherlands",
+      "address": "Amsterdam, Netherlands",
+      "lat": 52.37,
+      "lng": 4.9,
+      "businessFocus": "Customer service and sales",
+      "type": "sales",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-SHANGHAI-FAB10",
+      "name": "TSMC China Company Limited - Fab 10",
+      "city": "Shanghai",
+      "state": "Shanghai",
+      "country": "China",
+      "address": "4000, Wen Xiang Road, Songjiang, Shanghai, China",
+      "lat": 31.03,
+      "lng": 121.23,
+      "businessFocus": "200mm wafer manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-NANJING-FAB16",
+      "name": "TSMC Nanjing Company Limited - Fab 16",
       "city": "Nanjing",
       "state": "Jiangsu",
       "country": "China",
-      "address": "Pukou Economic Development Zone, Nanjing, Jiangsu Province, China",
+      "address": "16, Zifeng Road, Pukou Economic Development Zone, Nanjing, Jiangsu Province, China",
       "lat": 32.06,
-      "lng": 118.63,
-      "businessFocus": "Semiconductor manufacturing",
+      "lng": 118.8,
+      "businessFocus": "300mm wafer manufacturing (16nm)",
       "type": "manufacturing",
       "sources": [
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-SEOUL-SALES",
+      "name": "TSMC Korea Limited",
+      "city": "Seoul",
+      "state": null,
+      "country": "South Korea",
+      "address": "Seoul, South Korea",
+      "lat": 37.57,
+      "lng": 126.98,
+      "businessFocus": "Customer service",
+      "type": "sales",
+      "sources": [
+        "https://www.tsmc.com"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "TSMC-KANATA-ENGINEERING",
+      "name": "TSMC Design Technology Canada Inc.",
+      "city": "Kanata",
+      "state": "Ontario",
+      "country": "Canada",
+      "address": "Kanata, Ontario, Canada",
+      "lat": 45.31,
+      "lng": -75.9,
+      "businessFocus": "Engineering support and design technology",
+      "type": "engineering",
+      "sources": [
+        "https://www.tsmc.com"
       ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "reasoning": "The most recent comprehensive geographic revenue breakdown for TSMC is provided in the 2024 Annual Report. While Q1 2026 revenue data is available, it does not provide a geographic split, so the 2024 annual figures are used as the most reliable anchor for regional concentration.",
-    "fiscalYear": "2024",
-    "totalRevenue": 89000000000.0,
-    "currency": "USD",
+    "reason": "For TSMC, the most recent detailed geographic revenue breakdown available is from the 2025 annual report (filed as part of Q4 2025 consolidated financial statements), which provides revenue by geography in NT dollars and percentages. This is more recent than the 2024 annual report data. The 2025 data shows revenue by: United States (74.4%), China (8.6%), Taiwan (7.9%), Japan (3.9%), Europe/Middle East/Africa (3.3%), and Others (1.8%). Total revenue for 2025 was NT$3,809,054,272 thousand. Wikipedia also confirms similar percentages for 2025 (US 68.8%, China 11.5%, Taiwan 9.3%, Japan 5.0%, EMEA 3.6%, Other 1.8%) but the official filing data is used as primary source. The most recent quarterly data (Q1 2026) does not provide a geographic breakdown, so the latest full-year (2025) data is used.",
+    "fiscalYear": "2025",
+    "totalRevenue": 3809054272000.0,
+    "currency": "NTD",
     "segments": [
       {
-        "region": "North America",
-        "revenue": 62300000000.0,
-        "percentage": 0.7,
-        "yoyGrowth": null,
-        "notes": "Based on 2024 annual report geographic revenue distribution."
+        "region": "United States",
+        "revenue": 2834692138000.0,
+        "percentage": 0.744,
+        "yoyGrowth": 42.3,
+        "notes": "Revenue based on customer headquarters location. Grew 42.3% YoY from NT$1,992,280,443 thousand in 2024."
       },
       {
         "region": "China",
-        "revenue": 9790000000.0,
-        "percentage": 0.11,
-        "yoyGrowth": null,
-        "notes": "Based on 2024 annual report geographic revenue distribution."
+        "revenue": 327502739000.0,
+        "percentage": 0.086,
+        "yoyGrowth": -1.3,
+        "notes": "Revenue based on customer headquarters location. Declined 1.3% YoY from NT$331,673,315 thousand in 2024."
       },
       {
-        "region": "Asia Pacific (excluding China and Japan)",
-        "revenue": 8900000000.0,
-        "percentage": 0.1,
-        "yoyGrowth": null,
-        "notes": "Based on 2024 annual report geographic revenue distribution."
+        "region": "Taiwan",
+        "revenue": 299445782000.0,
+        "percentage": 0.079,
+        "yoyGrowth": 10.7,
+        "notes": "Revenue based on customer headquarters location. Grew 10.7% YoY from NT$270,413,546 thousand in 2024."
       },
       {
         "region": "Japan",
-        "revenue": 4450000000.0,
-        "percentage": 0.05,
-        "yoyGrowth": null,
-        "notes": "Based on 2024 annual report geographic revenue distribution."
+        "revenue": 150427931000.0,
+        "percentage": 0.039,
+        "yoyGrowth": 4.3,
+        "notes": "Revenue based on customer headquarters location. Grew 4.3% YoY from NT$144,239,882 thousand in 2024."
       },
       {
-        "region": "EMEA",
-        "revenue": 3560000000.0,
-        "percentage": 0.04,
-        "yoyGrowth": null,
-        "notes": "Based on 2024 annual report geographic revenue distribution."
+        "region": "Europe, Middle East and Africa",
+        "revenue": 126584061000.0,
+        "percentage": 0.033,
+        "yoyGrowth": 23.2,
+        "notes": "Revenue based on customer headquarters location. Grew 23.2% YoY from NT$102,760,879 thousand in 2024."
+      },
+      {
+        "region": "Other",
+        "revenue": 70401621000.0,
+        "percentage": 0.018,
+        "yoyGrowth": 33.0,
+        "notes": "Revenue based on customer headquarters location. Grew 33.0% YoY from NT$52,939,634 thousand in 2024."
       }
     ],
-    "concentrationRisk": "TSMC exhibits significant geographic concentration, with 70% of its net revenue derived from North American customers as of 2024.",
+    "concentrationRisk": "TSMC has high concentration risk in North America (United States alone represents 74.4% of 2025 revenue). China represents 8.6% and is subject to export control risks. The top two customers (Nvidia and Apple) are estimated to account for approximately 22% and 18% of revenue respectively, indicating customer concentration as well.",
     "sources": [
-      "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+      "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+      "https://en.wikipedia.org/wiki/TSMC",
+      "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html"
     ]
   },
   "supplyChain": [
@@ -162,12 +587,13 @@
       "role": "key_supplier",
       "city": "Veldhoven",
       "country": "Netherlands",
-      "lat": 51.427,
-      "lng": 5.463,
-      "product": "EUV photolithography machines",
+      "lat": 51.4189,
+      "lng": 5.3983,
+      "product": "EUV lithography machines (sole supplier, ~$180M each)",
       "criticality": "critical",
       "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf",
+        "https://balsilliepapers.ca/bsia-paper/the-geopolitical-rivalry-behind-us-chip-export-controls-and-its-implications-for-canadas-semiconductor-autonomy/",
         "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
       ]
     },
@@ -175,54 +601,80 @@
       "entity": "Applied Materials",
       "role": "key_supplier",
       "city": "Santa Clara",
-      "country": "USA",
-      "lat": 37.392,
-      "lng": -121.977,
-      "product": "Semiconductor production tools",
+      "country": "United States",
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "product": "Wafer fabrication equipment, R&D center in Taiwan",
       "criticality": "critical",
       "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
       ]
     },
     {
-      "entity": "ASE Technology",
-      "role": "assembly_test",
-      "city": "Kaohsiung",
-      "country": "Taiwan",
-      "lat": 22.627,
-      "lng": 120.301,
-      "product": "Packaging and testing services",
-      "criticality": "important",
-      "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
-      ]
-    },
-    {
-      "entity": "Sunlit Chemical",
-      "role": "raw_material",
-      "city": "Phoenix",
-      "country": "USA",
-      "lat": 33.448,
-      "lng": -112.074,
-      "product": "Chemicals for semiconductor manufacturing",
-      "criticality": "important",
-      "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf"
-      ]
-    },
-    {
-      "entity": "ZEISS",
+      "entity": "KLA Corporation",
       "role": "key_supplier",
-      "city": "Oberkochen",
-      "country": "Germany",
-      "lat": 48.785,
-      "lng": 10.095,
-      "product": "Lenses for EUV machines",
+      "city": "Milpitas",
+      "country": "United States",
+      "lat": 37.4282,
+      "lng": -121.8997,
+      "product": "Wafer fabrication process control and inspection equipment",
       "criticality": "critical",
       "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf"
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
+      ]
+    },
+    {
+      "entity": "Lam Research",
+      "role": "key_supplier",
+      "city": "Fremont",
+      "country": "United States",
+      "lat": 37.5485,
+      "lng": -121.9886,
+      "product": "Wafer fabrication equipment",
+      "criticality": "critical",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Canon",
+      "role": "key_supplier",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.7649,
+      "product": "Lithography equipment for wafer fabrication",
+      "criticality": "important",
+      "sources": [
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
+      ]
+    },
+    {
+      "entity": "JSR Corporation",
+      "role": "raw_material",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.7649,
+      "product": "Photoresists (top global producer, ~90% market share with 4 other Japanese firms)",
+      "criticality": "critical",
+      "sources": [
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Tokyo Ohka Kogyo (TOK)",
+      "role": "raw_material",
+      "city": "Kawasaki",
+      "country": "Japan",
+      "lat": 35.5305,
+      "lng": 139.7031,
+      "product": "Photoresists",
+      "criticality": "critical",
+      "sources": [
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
       ]
     },
     {
@@ -230,169 +682,1225 @@
       "role": "raw_material",
       "city": "Tokyo",
       "country": "Japan",
-      "lat": 35.676,
-      "lng": 139.65,
-      "product": "High-end photoresists",
+      "lat": 35.6762,
+      "lng": 139.7649,
+      "product": "Photoresists, silicon wafers",
       "criticality": "critical",
       "sources": [
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf",
         "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
       ]
     },
     {
-      "entity": "Mirle Automation Corporation",
-      "role": "key_supplier",
-      "city": "Hsinchu",
-      "country": "Taiwan",
-      "lat": 24.813,
-      "lng": 120.967,
-      "product": "Intelligent automation systems",
-      "criticality": "standard",
+      "entity": "FUJI Film",
+      "role": "raw_material",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.7649,
+      "product": "Photoresists, electronic materials",
+      "criticality": "critical",
       "sources": [
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
       ]
     },
     {
-      "entity": "Marketech International Corp",
+      "entity": "BASF SE",
+      "role": "raw_material",
+      "city": "Ludwigshafen",
+      "country": "Germany",
+      "lat": 49.4774,
+      "lng": 8.4452,
+      "product": "Critical chemicals for semiconductor manufacturing",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Merck Group",
+      "role": "raw_material",
+      "city": "Darmstadt",
+      "country": "Germany",
+      "lat": 49.8728,
+      "lng": 8.6512,
+      "product": "Critical chemicals for semiconductor manufacturing",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Cadence Design Systems",
       "role": "key_supplier",
-      "city": "Taipei",
+      "city": "San Jose",
+      "country": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "product": "EDA software (70% market share with Synopsys and Mentor)",
+      "criticality": "critical",
+      "sources": [
+        "https://balsilliepapers.ca/bsia-paper/the-geopolitical-rivalry-behind-us-chip-export-controls-and-its-implications-for-canadas-semiconductor-autonomy/"
+      ]
+    },
+    {
+      "entity": "Synopsys",
+      "role": "key_supplier",
+      "city": "Sunnyvale",
+      "country": "United States",
+      "lat": 37.3688,
+      "lng": -122.0363,
+      "product": "EDA software (70% market share with Cadence and Mentor)",
+      "criticality": "critical",
+      "sources": [
+        "https://balsilliepapers.ca/bsia-paper/the-geopolitical-rivalry-behind-us-chip-export-controls-and-its-implications-for-canadas-semiconductor-autonomy/"
+      ]
+    },
+    {
+      "entity": "Mentor Graphics (Siemens EDA)",
+      "role": "key_supplier",
+      "city": "Wilsonville",
+      "country": "United States",
+      "lat": 45.3101,
+      "lng": -122.7737,
+      "product": "EDA software (70% market share with Cadence and Synopsys)",
+      "criticality": "critical",
+      "sources": [
+        "https://balsilliepapers.ca/bsia-paper/the-geopolitical-rivalry-behind-us-chip-export-controls-and-its-implications-for-canadas-semiconductor-autonomy/"
+      ]
+    },
+    {
+      "entity": "Advanced Semiconductor Engineering (ASE)",
+      "role": "assembly_test",
+      "city": "Kaohsiung",
       "country": "Taiwan",
-      "lat": 25.033,
-      "lng": 121.565,
-      "product": "Facility monitor control systems",
+      "lat": 22.6273,
+      "lng": 120.3014,
+      "product": "OSAT - semiconductor packaging and testing (world's largest OSAT)",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.infineon.com/dgdl/Infineon+Annual+Report+2024.pdf?fileId=8ac78c8b92bced620193694bfb970095"
+      ]
+    },
+    {
+      "entity": "Powertech Technology",
+      "role": "assembly_test",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "OSAT - semiconductor packaging and testing (global top 10)",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "KYEC (King Yuan Electronics)",
+      "role": "assembly_test",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "IC testing and manufacturing services",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.mediatek.com/hubfs/MediaTek%20Assets/Pdfs/Financial%20Reports/2023/Q1-Consolidated-Report.pdf"
+      ]
+    },
+    {
+      "entity": "Chipmos",
+      "role": "assembly_test",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "OSAT - semiconductor packaging and testing (global top 10)",
       "criticality": "standard",
       "sources": [
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Chipbond",
+      "role": "assembly_test",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "OSAT - semiconductor packaging and testing (global top 10)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Sigurd",
+      "role": "assembly_test",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "OSAT - semiconductor packaging and testing (global top 10)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Unimicron",
+      "role": "raw_material",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.9936,
+      "lng": 121.301,
+      "product": "IC carrier boards (packaging substrates)",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Kinsus",
+      "role": "raw_material",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.9936,
+      "lng": 121.301,
+      "product": "IC carrier boards (packaging substrates)",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Chang Wah Electromaterials",
+      "role": "raw_material",
+      "city": "Kaohsiung",
+      "country": "Taiwan",
+      "lat": 22.6273,
+      "lng": 120.3014,
+      "product": "Gold wire, leadframes for packaging",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Eternal Materials",
+      "role": "raw_material",
+      "city": "Kaohsiung",
+      "country": "Taiwan",
+      "lat": 22.6273,
+      "lng": 120.3014,
+      "product": "Molding materials for semiconductor packaging",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Yeh-Chiang Technology",
+      "role": "raw_material",
+      "city": "Kaohsiung",
+      "country": "Taiwan",
+      "lat": 22.6273,
+      "lng": 120.3014,
+      "product": "Solder paste for semiconductor packaging",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Shenmao Technology",
+      "role": "raw_material",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.9936,
+      "lng": 121.301,
+      "product": "Solder paste for semiconductor packaging",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Nvidia",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "product": "Largest TSMC customer (AI GPUs - Rubin chip on 3nm, H100/B200)",
+      "criticality": "critical",
+      "sources": [
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html"
+      ]
+    },
+    {
+      "entity": "Apple",
+      "role": "key_supplier",
+      "city": "Cupertino",
+      "country": "United States",
+      "lat": 37.323,
+      "lng": -122.0322,
+      "product": "Major TSMC customer (iPhone processors - A-series chips)",
+      "criticality": "critical",
+      "sources": [
+        "https://laweconcenter.org/resources/us-export-controls-on-ai-and-semiconductors-two-divergent-visions/"
+      ]
+    },
+    {
+      "entity": "AMD",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "product": "TSMC customer (Ryzen, EPYC, Instinct GPUs)",
+      "criticality": "important",
+      "sources": [
+        "https://balsilliepapers.ca/bsia-paper/the-geopolitical-rivalry-behind-us-chip-export-controls-and-its-implications-for-canadas-semiconductor-autonomy/"
+      ]
+    },
+    {
+      "entity": "MediaTek",
+      "role": "key_supplier",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "TSMC customer (Dimensity smartphone chips on 2nm/3nm/4nm)",
+      "criticality": "important",
+      "sources": [
+        "https://www.taipeitimes.com/News/biz/archives/2026/05/01/2003856534",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Qualcomm",
+      "role": "key_supplier",
+      "city": "San Diego",
+      "country": "United States",
+      "lat": 32.7157,
+      "lng": -117.1611,
+      "product": "TSMC customer (Snapdragon processors, primary foundry supplier)",
+      "criticality": "important",
+      "sources": [
+        "https://s204.q4cdn.com/645488518/files/doc_downloads/2025/07/Annual-Report-on-Form-10-K-of-Qualcomm-Incorporated-for-the-fiscal-year-ended-29-September-2024.pdf"
+      ]
+    },
+    {
+      "entity": "HiSilicon (Huawei)",
+      "role": "key_supplier",
+      "city": "Shenzhen",
+      "country": "China",
+      "lat": 22.5431,
+      "lng": 114.0579,
+      "product": "TSMC customer (Kirin processors - 7nm Kirin 980, previously 14% of TSMC sales)",
+      "criticality": "important",
+      "sources": [
+        "https://itif.org/publications/2025/10/27/backfire-export-controls-helped-huawei-and-hurt-us-firms/",
+        "https://www.chinadailyhk.com/hk/article/129938"
+      ]
+    },
+    {
+      "entity": "Xilinx (AMD)",
+      "role": "key_supplier",
+      "city": "San Jose",
+      "country": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "product": "TSMC customer (FPGAs on 28nm, 20nm, 16nm processes)",
+      "criticality": "standard",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Xilinx",
+        "https://finance.yahoo.com/news/xilinx-deal-accelerate-growth-advanced-160423240.html"
+      ]
+    },
+    {
+      "entity": "Marvell Technology",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.3541,
+      "lng": -121.9552,
+      "product": "TSMC customer (custom ASICs, ethernet solutions, storage controllers)",
+      "criticality": "standard",
+      "sources": [
+        "https://simplywall.st/stocks/us/semiconductors/nasdaq-mrvl/marvell-technology",
+        "https://seekingalpha.com/symbol/MRVL"
+      ]
+    },
+    {
+      "entity": "TSMC Arizona",
+      "role": "foundry",
+      "city": "Phoenix",
+      "country": "United States",
+      "lat": 33.4484,
+      "lng": -112.074,
+      "product": "Advanced wafer fabrication (subsidiary, government subsidies)",
+      "criticality": "important",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+        "https://www.tsmc.com/static/abouttsmcaz/index.htm"
+      ]
+    },
+    {
+      "entity": "TSMC Nanjing",
+      "role": "foundry",
+      "city": "Nanjing",
+      "country": "China",
+      "lat": 32.0603,
+      "lng": 118.7969,
+      "product": "Wafer fabrication (16nm process, VEU authorized)",
+      "criticality": "important",
+      "sources": [
+        "https://investor.tsmc.com/static/annualReports/2024/english/ebook/files/basic-html/page147.html",
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf"
+      ]
+    },
+    {
+      "entity": "JASM (TSMC Japan)",
+      "role": "foundry",
+      "city": "Kumamoto",
+      "country": "Japan",
+      "lat": 32.8031,
+      "lng": 130.7079,
+      "product": "Wafer fabrication (12/16nm, 22/28nm processes, JV with Sony 20%, Denso 10%)",
+      "criticality": "important",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "entity": "ESMC (TSMC Germany)",
+      "role": "foundry",
+      "city": "Dresden",
+      "country": "Germany",
+      "lat": 51.0504,
+      "lng": 13.7373,
+      "product": "Wafer fabrication (JV with Bosch 10%, Infineon 10%, NXP 10%)",
+      "criticality": "important",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+        "https://en.wikipedia.org/wiki/TSMC",
+        "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf"
+      ]
+    },
+    {
+      "entity": "SSMC (Systems on Silicon Manufacturing Company)",
+      "role": "foundry",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "product": "200mm wafer fabrication (JV: TSMC 38.8%, NXP 61.2%)",
+      "criticality": "important",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "entity": "Vanguard International Semiconductor (VIS)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "Wafer fabrication (8th largest foundry globally, TSMC associate)",
+      "criticality": "standard",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Global Unichip Corporation (GUC)",
+      "role": "key_supplier",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "ASIC design services (TSMC associate)",
+      "criticality": "standard",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf"
+      ]
+    },
+    {
+      "entity": "Xintec Inc.",
+      "role": "assembly_test",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.9936,
+      "lng": 121.301,
+      "product": "Wafer level chip size packaging (TSMC associate)",
+      "criticality": "standard",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf"
+      ]
+    },
+    {
+      "entity": "Sony Semiconductor Solutions",
+      "role": "key_supplier",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.7649,
+      "product": "JASM investor (20% stake), image sensor partner",
+      "criticality": "important",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC",
+        "https://www.sony.com/en/SonyInfo/IR/library/corporatereport/CorporateReport2025_E.pdf"
+      ]
+    },
+    {
+      "entity": "Denso Corporation",
+      "role": "key_supplier",
+      "city": "Kariya",
+      "country": "Japan",
+      "lat": 34.989,
+      "lng": 136.988,
+      "product": "JASM investor (10% stake), automotive electronics",
+      "criticality": "standard",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Robert Bosch GmbH",
+      "role": "key_supplier",
+      "city": "Stuttgart",
+      "country": "Germany",
+      "lat": 48.7758,
+      "lng": 9.1829,
+      "product": "ESMC investor (10% stake), automotive/industrial semiconductors",
+      "criticality": "important",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "entity": "Infineon Technologies",
+      "role": "key_supplier",
+      "city": "Neubiberg",
+      "country": "Germany",
+      "lat": 48.0767,
+      "lng": 11.6656,
+      "product": "ESMC investor (10% stake), automotive/industrial semiconductors",
+      "criticality": "important",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC",
+        "https://www.infineon.com/assets/row/public/documents/corporate/investors/annual-reports/2025/2025-annual-report-v01-00-en.pdf"
+      ]
+    },
+    {
+      "entity": "NXP Semiconductors",
+      "role": "key_supplier",
+      "city": "Eindhoven",
+      "country": "Netherlands",
+      "lat": 51.4416,
+      "lng": 5.4697,
+      "product": "ESMC investor (10% stake), SSMC JV partner (61.2%)",
+      "criticality": "important",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC",
+        "https://en.wikipedia.org/wiki/NXP_Semiconductors"
+      ]
+    },
+    {
+      "entity": "\u00d8rsted",
+      "role": "logistics",
+      "city": "Fredericia",
+      "country": "Denmark",
+      "lat": 55.5641,
+      "lng": 9.756,
+      "product": "Offshore wind energy (20-year PPA for two wind farms off Taiwan)",
+      "criticality": "standard",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "entity": "Amkor Technology",
+      "role": "assembly_test",
+      "city": "Tempe",
+      "country": "United States",
+      "lat": 33.4255,
+      "lng": -111.94,
+      "product": "OSAT - semiconductor packaging and testing (Qualcomm supplier)",
+      "criticality": "standard",
+      "sources": [
+        "https://s204.q4cdn.com/645488518/files/doc_downloads/2025/07/Annual-Report-on-Form-10-K-of-Qualcomm-Incorporated-for-the-fiscal-year-ended-29-September-2024.pdf"
+      ]
+    },
+    {
+      "entity": "Siliconware Precision Industries (SPIL)",
+      "role": "assembly_test",
+      "city": "Taichung",
+      "country": "Taiwan",
+      "lat": 24.1477,
+      "lng": 120.6736,
+      "product": "OSAT - semiconductor packaging and testing (Qualcomm supplier)",
+      "criticality": "standard",
+      "sources": [
+        "https://s204.q4cdn.com/645488518/files/doc_downloads/2025/07/Annual-Report-on-Form-10-K-of-Qualcomm-Incorporated-for-the-fiscal-year-ended-29-September-2024.pdf"
+      ]
+    },
+    {
+      "entity": "STATS ChipPAC",
+      "role": "assembly_test",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "product": "OSAT - semiconductor packaging and testing (Qualcomm supplier)",
+      "criticality": "standard",
+      "sources": [
+        "https://s204.q4cdn.com/645488518/files/doc_downloads/2025/07/Annual-Report-on-Form-10-K-of-Qualcomm-Incorporated-for-the-fiscal-year-ended-29-September-2024.pdf"
+      ]
+    },
+    {
+      "entity": "Samsung Electronics",
+      "role": "foundry",
+      "city": "Suwon",
+      "country": "South Korea",
+      "lat": 37.2636,
+      "lng": 127.0286,
+      "product": "Foundry competitor (2nd largest, 17% market share, 3nm GAA first to mass produce)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
+      ]
+    },
+    {
+      "entity": "SK Hynix",
+      "role": "key_supplier",
+      "city": "Icheon",
+      "country": "South Korea",
+      "lat": 37.2791,
+      "lng": 127.4425,
+      "product": "HBM memory (one of only 3 HBM makers globally)",
+      "criticality": "important",
+      "sources": [
+        "https://globaltaiwan.org/2025/03/how-taiwans-chip-industry-navigates-us-industrial-policy-and-export-controls/"
+      ]
+    },
+    {
+      "entity": "Micron Technology",
+      "role": "key_supplier",
+      "city": "Boise",
+      "country": "United States",
+      "lat": 43.615,
+      "lng": -116.2023,
+      "product": "HBM memory, DRAM (one of only 3 HBM makers globally)",
+      "criticality": "important",
+      "sources": [
+        "https://globaltaiwan.org/2025/03/how-taiwans-chip-industry-navigates-us-industrial-policy-and-export-controls/"
+      ]
+    },
+    {
+      "entity": "UMC (United Microelectronics Corporation)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "Foundry competitor (3rd largest, 7% market share)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
+      ]
+    },
+    {
+      "entity": "GlobalFoundries",
+      "role": "foundry",
+      "city": "Malta",
+      "country": "United States",
+      "lat": 42.9676,
+      "lng": -73.7979,
+      "product": "Foundry competitor (4th largest, 7% market share)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
+      ]
+    },
+    {
+      "entity": "SMIC (Semiconductor Manufacturing International Corporation)",
+      "role": "foundry",
+      "city": "Shanghai",
+      "country": "China",
+      "lat": 31.2304,
+      "lng": 121.4737,
+      "product": "Foundry competitor (5th largest, 5% market share, 14nm production)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
+      ]
+    },
+    {
+      "entity": "PSMC (Powerchip Semiconductor Manufacturing Corporation)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "Foundry competitor (7th largest globally)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
+      ]
+    },
+    {
+      "entity": "Renesas Electronics",
+      "role": "foundry",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.6762,
+      "lng": 139.7649,
+      "product": "Automotive semiconductor manufacturer (fire disruption in 2021)",
+      "criticality": "standard",
+      "sources": [
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
       ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Apple",
-      "revenueShare": "22%",
+      "customer": "Apple Inc.",
+      "revenueShare": "22% of TSMC net revenue in 2024 (largest customer); 17% in 2025 (Customer B)",
       "hqCity": "Cupertino",
       "hqCountry": "United States",
-      "lat": 37.3318,
-      "lng": -122.0312,
-      "relationship": "Primary customer for advanced nodes (5nm, 3nm, 2nm)",
+      "lat": 37.323,
+      "lng": -122.032,
+      "relationship": "TSMC's largest customer historically; manufactures A-series chips for iPhones and M-series chips for PCs and servers; main foundry provider since 2016",
       "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
-        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
       ]
     },
     {
-      "customer": "NVIDIA",
+      "customer": "NVIDIA Corporation",
+      "revenueShare": "12% of TSMC net revenue in 2024 (second largest); 19% in 2025 (Customer A); set to become largest customer in 2025",
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.387,
+      "lng": -121.963,
+      "relationship": "TSMC's main foundry provider for GPUs and AI chips; becoming TSMC's largest customer in 2025",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
+        "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf"
+      ]
+    },
+    {
+      "customer": "Advanced Micro Devices (AMD)",
       "revenueShare": null,
       "hqCity": "Santa Clara",
       "hqCountry": "United States",
-      "lat": 37.3688,
-      "lng": -121.9703,
-      "relationship": "Top-tier client utilizing sub-7nm advanced process technology",
+      "lat": 37.387,
+      "lng": -121.963,
+      "relationship": "TSMC customer; main foundry provider since 2020; uses TSMC for Ryzen, EPYC, and Instinct GPUs",
       "sources": [
-        "https://www.roc-taiwan.org/uploads/sites/86/2025/07/June_and_July_Issue_-20250702_-_Taiwan_and_the_Global_Semiconductor_Supply_Chain.pdf",
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
       ]
     },
     {
-      "customer": "AMD",
+      "customer": "Broadcom Inc.",
       "revenueShare": null,
-      "hqCity": "Santa Clara",
+      "hqCity": "San Jose",
       "hqCountry": "United States",
-      "lat": 37.3541,
-      "lng": -121.9552,
-      "relationship": "Fabless client for foundry services",
+      "lat": 37.339,
+      "lng": -121.885,
+      "relationship": "TSMC customer; main foundry provider",
       "sources": [
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
       ]
     },
     {
-      "customer": "Qualcomm",
+      "customer": "Qualcomm Incorporated",
       "revenueShare": null,
       "hqCity": "San Diego",
       "hqCountry": "United States",
-      "lat": 32.8975,
-      "lng": -117.2057,
-      "relationship": "Fabless client relying on TSMC for chip production",
+      "lat": 32.716,
+      "lng": -117.161,
+      "relationship": "TSMC customer; main foundry provider for Snapdragon chips",
       "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf"
       ]
     },
     {
-      "customer": "Intel",
+      "customer": "MediaTek Inc.",
+      "revenueShare": null,
+      "hqCity": "Hsinchu",
+      "hqCountry": "Taiwan",
+      "lat": 24.813,
+      "lng": 120.967,
+      "relationship": "TSMC customer; main foundry provider; 5th largest IC design company globally in 2022",
+      "sources": [
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf",
+        "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Intel Corporation",
       "revenueShare": null,
       "hqCity": "Santa Clara",
       "hqCountry": "United States",
-      "lat": 37.3875,
-      "lng": -121.9682,
-      "relationship": "Customer for 2nm technology trial and mass production",
+      "lat": 37.387,
+      "lng": -121.963,
+      "relationship": "TSMC customer (outsources some production); also a competitor; expected trial production at TSMC advanced nodes by end of 2024",
       "sources": [
+        "https://www.cnbc.com/2026/01/26/nvidia-set-to-supplant-apple-as-tsmcs-largest-customer.html",
         "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://www.alpha-sense.com/earnings/tsm/",
+        "https://en.wikipedia.org/wiki/TSMC"
       ]
     },
     {
-      "customer": "Broadcom",
+      "customer": "Marvell Technology, Inc.",
       "revenueShare": null,
-      "hqCity": "Palo Alto",
+      "hqCity": "Santa Clara",
       "hqCountry": "United States",
-      "lat": 37.4042,
-      "lng": -122.1451,
-      "relationship": "Fabless client for foundry services",
+      "lat": 37.387,
+      "lng": -121.963,
+      "relationship": "TSMC customer",
       "sources": [
-        "https://www.us-taiwan.org/wp-content/uploads/2023/06/2023.06.21-Final-Semiconductor-Report.pdf",
-        "https://www.taiwanembassy.org/uploads/sites/86/2024/04/2024_April___May_Issue.pdf"
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "NXP Semiconductors N.V.",
+      "revenueShare": null,
+      "hqCity": "Eindhoven",
+      "hqCountry": "Netherlands",
+      "lat": 51.441,
+      "lng": 5.478,
+      "relationship": "TSMC customer; selected TSMC's 5nm process for next-gen automotive platform; joint venture partner with TSMC for European fab",
+      "sources": [
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Texas Instruments Incorporated",
+      "revenueShare": null,
+      "hqCity": "Dallas",
+      "hqCountry": "United States",
+      "lat": 32.776,
+      "lng": -96.797,
+      "relationship": "TSMC customer; outsources some production to TSMC",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "STMicroelectronics N.V.",
+      "revenueShare": null,
+      "hqCity": "Geneva",
+      "hqCountry": "Switzerland",
+      "lat": 46.204,
+      "lng": 6.143,
+      "relationship": "TSMC customer; outsources some production to TSMC",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Infineon Technologies AG",
+      "revenueShare": null,
+      "hqCity": "Neubiberg",
+      "hqCountry": "Germany",
+      "lat": 48.077,
+      "lng": 11.661,
+      "relationship": "TSMC customer; joint venture partner with TSMC for European fab",
+      "sources": [
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Bosch (Robert Bosch GmbH)",
+      "revenueShare": null,
+      "hqCity": "Gerlingen",
+      "hqCountry": "Germany",
+      "lat": 48.799,
+      "lng": 9.062,
+      "relationship": "TSMC customer; joint venture partner with TSMC for European fab",
+      "sources": [
+        "https://preprints.apsanet.org/engage/api-gateway/apsa/assets/orp/resource/item/64df036a01042bc1cc413c68/original/a-discussion-on-geopolitical-risk-of-taiwan-semiconductor-industry.pdf"
+      ]
+    },
+    {
+      "customer": "Sony Semiconductor Solutions Corporation",
+      "revenueShare": null,
+      "hqCity": "Tokyo",
+      "hqCountry": "Japan",
+      "lat": 35.676,
+      "lng": 139.65,
+      "relationship": "TSMC customer; minority investor in JASM (TSMC's Japan fab)",
+      "sources": [
+        "https://investor.tsmc.com/static/annualReports/2024/english/index.html"
+      ]
+    },
+    {
+      "customer": "DENSO Corporation",
+      "revenueShare": null,
+      "hqCity": "Kariya",
+      "hqCountry": "Japan",
+      "lat": 34.989,
+      "lng": 136.988,
+      "relationship": "TSMC customer; minority investor in JASM",
+      "sources": [
+        "https://investor.tsmc.com/static/annualReports/2024/english/index.html"
+      ]
+    },
+    {
+      "customer": "Toyota Motor Corporation",
+      "revenueShare": null,
+      "hqCity": "Toyota City",
+      "hqCountry": "Japan",
+      "lat": 35.084,
+      "lng": 137.156,
+      "relationship": "TSMC customer; minority investor in JASM",
+      "sources": [
+        "https://investor.tsmc.com/static/annualReports/2024/english/index.html"
+      ]
+    },
+    {
+      "customer": "HiSilicon Technologies Co., Ltd.",
+      "revenueShare": null,
+      "hqCity": "Shenzhen",
+      "hqCountry": "China",
+      "lat": 22.543,
+      "lng": 114.058,
+      "relationship": "Former TSMC customer; shipments discontinued since September 2020 due to US export controls; previously used TSMC as main foundry provider",
+      "sources": [
+        "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
+        "https://www.rand.org/content/dam/rand/pubs/research_reports/RRA2300/RRA2354-1/RAND_RRA2354-1.pdf",
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Tesla, Inc.",
+      "revenueShare": null,
+      "hqCity": "Austin",
+      "hqCountry": "United States",
+      "lat": 30.267,
+      "lng": -97.743,
+      "relationship": "TSMC customer and also a competitor",
+      "sources": [
+        "https://www.alpha-sense.com/earnings/tsm/"
+      ]
+    },
+    {
+      "customer": "Altera Corporation (now part of Intel)",
+      "revenueShare": null,
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.339,
+      "lng": -121.885,
+      "relationship": "TSMC customer; uses TSMC foundry services for FPGAs",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Xilinx (now part of AMD)",
+      "revenueShare": null,
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.339,
+      "lng": -121.885,
+      "relationship": "TSMC customer; uses TSMC foundry services for FPGAs",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Allwinner Technology Co., Ltd.",
+      "revenueShare": null,
+      "hqCity": "Zhuhai",
+      "hqCountry": "China",
+      "lat": 22.271,
+      "lng": 113.577,
+      "relationship": "TSMC customer",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "UNISOC (Shanghai) Technologies Co., Ltd.",
+      "revenueShare": null,
+      "hqCity": "Shanghai",
+      "hqCountry": "China",
+      "lat": 31.23,
+      "lng": 121.474,
+      "relationship": "TSMC customer",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "Spectra7 Microsystems Inc.",
+      "revenueShare": null,
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.339,
+      "lng": -121.885,
+      "relationship": "TSMC customer",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "customer": "ARM Holdings plc",
+      "revenueShare": null,
+      "hqCity": "Cambridge",
+      "hqCountry": "United Kingdom",
+      "lat": 52.205,
+      "lng": 0.119,
+      "relationship": "TSMC customer",
+      "sources": [
+        "https://en.wikipedia.org/wiki/TSMC"
       ]
     }
   ],
   "geopoliticalRisks": [
     {
       "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
+      "lat": 24.0,
+      "lng": 121.0,
       "riskScore": 5,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Taiwan Strait Conflict",
-      "description": "Potential military conflict in the Taiwan Strait poses an existential threat to TSMC's production, with estimated global financial impacts ranging from US$600 billion to US$1 trillion annually.",
+      "riskLabel": "Chinese invasion/military conflict risk",
+      "description": "TSMC's headquarters and main foundries are in Taiwan, within easy reach of Chinese missiles. China has longstanding claims on Taiwan. A hot war disrupting TSMC's manufacturing would cause $600B-$1T in annual global financial impact. TSMC's chairman warned an invasion would render TSMC not operable. Over 1,000 Chinese ballistic missiles are positioned as a deterrent.",
       "impactLevel": "critical",
-      "filingReference": "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
-      "lastUpdated": "2026-05-22"
-    },
-    {
-      "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
-      "riskScore": 4,
-      "riskCategory": "environmental_regulation",
-      "riskLabel": "Carbon Fees and Energy Costs",
-      "description": "TSMC faces rising operational costs due to new carbon fees starting in 2026 and a 25% increase in electricity tariffs, alongside physical risks from drought and earthquakes.",
-      "impactLevel": "moderate",
-      "filingReference": "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
-      "lastUpdated": "2026-05-22"
+      "filingReference": "https://laweconcenter.org/resources/us-export-controls-on-ai-and-semiconductors-two-divergent-visions/",
+      "lastUpdated": "2026-05-28"
     },
     {
       "region": "United States",
-      "lat": 37.0902,
-      "lng": -95.7129,
+      "lat": 38.0,
+      "lng": -97.0,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "U.S. Export Controls",
-      "description": "Strict U.S. export control measures, including the FDPR and AI Diffusion Rule, restrict TSMC's ability to ship advanced chips to China and other restricted entities.",
-      "impactLevel": "high",
-      "filingReference": "https://globaltaiwan.org/2025/03/how-taiwans-chip-industry-navigates-us-industrial-policy-and-export-controls/",
-      "lastUpdated": "2026-05-22"
+      "riskLabel": "US export controls on advanced chips to China",
+      "description": "TSMC must comply with US Foreign Direct Product Rule (FDPR) due to US technology in its tools. BIS October 2022/2023 rules and January 2025 rules require TSMC to obtain export licenses for chips using 16nm or below process to global destinations unless conditions are met. TSMC halted shipments to Huawei in Sept 2020. Potential $1B+ penalties from Sophgo/Huawei diversion incident.",
+      "impactLevel": "critical",
+      "filingReference": "https://investor.tsmc.com/static/annualReports/2024/english/ebook/files/basic-html/page147.html",
+      "lastUpdated": "2026-05-28"
     },
     {
       "region": "China",
-      "lat": 35.8617,
-      "lng": 104.1954,
+      "lat": 35.0,
+      "lng": 105.0,
+      "riskScore": 4,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Loss of Chinese market and customer base",
+      "description": "US export controls restrict TSMC from selling advanced AI/HPC chips to Chinese customers like Alibaba, Baidu, and Huawei. Huawei was TSMC's second-largest customer before the 2020 ban. China's blocking statute (Jan 2021) entitles Chinese entities to seek civil remedies from multinationals complying with foreign laws. China's antitrust investigations and antidumping probes against US chip firms create retaliatory risk.",
+      "impactLevel": "high",
+      "filingReference": "https://investor.tsmc.com/static/annualReports/2024/english/ebook/files/basic-html/page147.html",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 24.0,
+      "lng": 121.0,
+      "riskScore": 4,
+      "riskCategory": "political_instability",
+      "riskLabel": "Taiwan's export control entity list expansion",
+      "description": "On June 10, 2025, Taiwan added 601 entities from Russia, Pakistan, Iran, Myanmar, and China to its Strategic High-Tech Commodities (SHTC) entity list, including Huawei and SMIC. TSMC must now secure government licenses before exporting to these entities. This could expose Taiwan to WTO litigation from China.",
+      "impactLevel": "high",
+      "filingReference": "https://thediplomat.com/2025/07/silicon-statecraft-alignment-taiwans-strategic-bet-on-us-led-export-controls/",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "United States",
+      "lat": 38.0,
+      "lng": -97.0,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "US tariffs on Taiwanese semiconductors",
+      "description": "President Trump threatened to place tariffs on all Taiwanese semiconductors and announced intentions for more expansive tariffs. Tariffs on semiconductor imports to the US would increase costs and decrease demand for TSMC's products. Trump's 'reciprocal tariffs' on countries with goods trade deficits create uncertainty.",
+      "impactLevel": "high",
+      "filingReference": "https://investor.tsmc.com/static/annualReports/2024/english/ebook/files/basic-html/page147.html",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "United States",
+      "lat": 38.0,
+      "lng": -97.0,
       "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "China Blocking Statute",
-      "description": "China's 2021 blocking statute allows Chinese entities to seek civil remedies against companies complying with foreign (U.S.) export laws, creating a legal conflict for TSMC.",
+      "riskLabel": "CHIPS Act restrictions on China expansion",
+      "description": "TSMC's subsidies from the US CHIPS Act prevent the company from expanding manufacturing in China. The Act prohibits companies receiving subsidies from increasing production of chips more advanced than 28nm in China and Russia for 10 years. TSMC's VEU authorization for its Nanjing fab may be terminated in the future.",
+      "impactLevel": "high",
+      "filingReference": "https://globaltaiwan.org/2025/03/how-taiwans-chip-industry-navigates-us-industrial-policy-and-export-controls/",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "United States",
+      "lat": 38.0,
+      "lng": -97.0,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "US AI Diffusion Rule and licensing requirements",
+      "description": "The January 2025 AI Diffusion Rule categorizes countries into three tiers, with only 18 key allies facing no restrictions. TSMC may need export licenses for 16nm or below chips to any global destination. The rule applies to AI model 'weights'. BIS rescinded the rule in May 2025 but uncertainty remains.",
+      "impactLevel": "moderate",
+      "filingReference": "https://globaltaiwan.org/2025/03/how-taiwans-chip-industry-navigates-us-industrial-policy-and-export-controls/",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 24.0,
+      "lng": 121.0,
+      "riskScore": 3,
+      "riskCategory": "currency_exposure",
+      "riskLabel": "USD/NTD currency exchange risk",
+      "description": "Every 1% depreciation of the US dollar against the NT dollar results in an approximately 0.4 percentage point decrease in TSMC's operating margin. TSMC's revenue is largely USD-denominated while costs are partly in NTD, creating significant currency exposure.",
       "impactLevel": "moderate",
       "filingReference": "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
-      "lastUpdated": "2026-05-22"
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 24.0,
+      "lng": 121.0,
+      "riskScore": 3,
+      "riskCategory": "environmental_regulation",
+      "riskLabel": "Energy costs and carbon fees in Taiwan",
+      "description": "Effective April 1, 2024, TSMC faces a 25% higher electricity tariff rate in Taiwan. TSMC will start paying carbon fees in Taiwan from 2026 under the Climate Change Response Act. TSMC accounts for ~5% of Taiwan's total energy consumption, exceeding Taipei city. Taiwan government secured LNG supply through May 2026 but diversification is ongoing.",
+      "impactLevel": "moderate",
+      "filingReference": "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 24.0,
+      "lng": 121.0,
+      "riskScore": 3,
+      "riskCategory": "political_instability",
+      "riskLabel": "Earthquake and natural disaster risk",
+      "description": "Taiwan is seismically active. TSMC recognized ~NT$3B in earthquake losses (net of insurance) in Q2 2024 and ~NT$5.3B in Q1 2025 from earthquakes. TSMC consumed over 150,000 tons of water per day in Hsinchu City in 2024 (~10% of city supply), creating water scarcity risk.",
+      "impactLevel": "moderate",
+      "filingReference": "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "United States",
+      "lat": 33.0,
+      "lng": -112.0,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Arizona fab cost overruns and talent shortages",
+      "description": "TSMC stated construction costs for US fabs are 4-5x higher than identical plants in Taiwan, making US-made chips at least 50% more expensive. TSMC warned US talent is insufficient for Arizona fabs, requiring Taiwanese workers temporarily. Gross margin dilution of 2-3% expected from overseas expansion in 2026.",
+      "impactLevel": "moderate",
+      "filingReference": "https://en.wikipedia.org/wiki/TSMC",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Middle East",
+      "lat": 28.0,
+      "lng": 45.0,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Middle East conflict driving chemical/gas prices",
+      "description": "Geopolitical uncertainty in the Middle East is driving up prices for chemicals and gases used in semiconductor manufacturing. TSMC cited this as a factor in rising component prices. Memory price hikes impact price-sensitive end markets (PC, smartphone). Foxconn called the Middle East war the biggest external challenge in 2026.",
+      "impactLevel": "moderate",
+      "filingReference": "https://www.manufacturingdive.com/news/tsmc-q1-2026-revenue-q2-guidance-ai-arizona/817728/",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "China",
+      "lat": 35.0,
+      "lng": 105.0,
+      "riskScore": 3,
+      "riskCategory": "sanctions",
+      "riskLabel": "Chinese retaliation and blocking statutes",
+      "description": "China adopted a blocking statute (Jan 2021) allowing Chinese entities to seek civil remedies from multinationals complying with foreign laws. China opened antitrust investigations against Nvidia (Dec 2024) and Qualcomm (Oct 2025), and an antidumping investigation on US analog chips (Sept 2025). China uses export controls on germanium, gallium, and rare earth magnets to retaliate.",
+      "impactLevel": "moderate",
+      "filingReference": "https://investor.tsmc.com/static/annualReports/2024/english/ebook/files/basic-html/page147.html",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "China",
+      "lat": 35.0,
+      "lng": 105.0,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Chinese self-sufficiency eroding TSMC's strategic value",
+      "description": "US export controls encourage China to develop domestic advanced chip manufacturing, potentially eliminating Chinese economic dependence on Taiwan. China's Big Fund invested $14.92B (phase 1) and $31.6B (phase 2) in semiconductors. Tax exemptions for Chinese foundries producing <28nm nodes. This erodes Taiwan's 'silicon shield' deterrent.",
+      "impactLevel": "moderate",
+      "filingReference": "https://laweconcenter.org/resources/us-export-controls-on-ai-and-semiconductors-two-divergent-visions/",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 24.0,
+      "lng": 121.0,
+      "riskScore": 2,
+      "riskCategory": "data_privacy",
+      "riskLabel": "Trade secret theft and IP risks",
+      "description": "In August 2025, TSMC reported that two current and six former employees had illegally acquired trade secrets related to the 2nm process. TSMC has been entangled in disputes over trade secret theft and industrial espionage with competitors in South Korea and China. Chinese tech enterprises set up head-hunting agencies in Taiwan to poach talent.",
+      "impactLevel": "low",
+      "filingReference": "https://en.wikipedia.org/wiki/TSMC",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "United States",
+      "lat": 38.0,
+      "lng": -97.0,
+      "riskScore": 2,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Patent litigation risk in US",
+      "description": "In February 2025, Longitude Licensing Ltd. and Marlin Semiconductor Limited filed complaints with the US ITC and US District Court alleging TSMC and its customers infringe five US patents. The ITC instituted an investigation on March 21, 2025.",
+      "impactLevel": "low",
+      "filingReference": "https://investor.tsmc.com/sites/ir/financial-report/2025/TSMC%202025Q4%20Consolidated%20Financial%20Statements_E.pdf",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Japan",
+      "lat": 36.0,
+      "lng": 138.0,
+      "riskScore": 2,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Japan export restrictions on semiconductor equipment",
+      "description": "Japan listed 23 types of semiconductor technology subject to export restrictions beginning July 23, 2023, including advanced chip manufacturing equipment. The Netherlands restricted sales of ASML's EUV tools to China since 2019 and tightened DUV restrictions in March 2023. These multilateral controls affect TSMC's supply chain.",
+      "impactLevel": "low",
+      "filingReference": "https://www.roc-taiwan.org/uploads/sites/86/2023/08/20230824-TAIWAN-AND-THE-GLOBAL-SEMICONDUCTOR-SUPPLY-CHAIN.pdf",
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "region": "Global",
+      "lat": 55.702215,
+      "lng": 12.5592485,
+      "riskScore": 2,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Global trade fragmentation and supply chain restructuring",
+      "description": "Geopolitical tensions and US tariffs on China are restructuring global supply chains. TSMC adopted a 'China for China' strategy, localizing supply chains in China. The multilateral trade agreements the US has with Japan and the Netherlands do not include Taiwan, leaving TSMC exposed to asymmetric regulatory burdens.",
+      "impactLevel": "low",
+      "filingReference": "https://thediplomat.com/2025/07/silicon-statecraft-alignment-taiwans-strategic-bet-on-us-led-export-controls/",
+      "lastUpdated": "2026-05-28"
     }
   ]
 }

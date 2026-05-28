@@ -3753,105 +3753,521 @@
     ]
   },
   {
-    "company": "Taiwan Semiconductor Manufacturing Company Limited",
+    "company": "Taiwan Semiconductor Manufacturing Company Limited (TSMC)",
     "website": "https://www.tsmc.com",
     "ticker": "TSM",
     "sector": "Semiconductors",
-    "description": "Taiwan Semiconductor Manufacturing Company Limited (TSMC) is the world's largest dedicated semiconductor foundry, headquartered in Hsinchu, Taiwan, with a vast global footprint that includes major manufacturing operations in Taiwan and significant expansion projects in the United States, such as its facility in Phoenix, Arizona, serving a diverse international client base across North America, Europe, and Asia.",
+    "description": "TSMC is the world's largest dedicated semiconductor foundry, headquartered in Hsinchu, Taiwan, with a dominant global geographic footprint. In 2025, 74.4% of its US$122.42 billion revenue came from the US, 8.6% from China, 7.9% from Taiwan, 3.9% from Japan, 3.3% from EMEA, and 1.8% from other regions. In 2024, geographic revenue split was North America 70%, China 11%, Asia Pacific (ex-China/Japan) 10%, Japan 5%, and EMEA 4%. The company operates advanced fabs in Taiwan, Arizona (USA), Kumamoto (Japan), and Dresden (Germany), with overseas expansion accelerating its global manufacturing presence. TSMC produces over 12,000 different products for customers worldwide, holds ~70% of the global foundry market share, and manufactures 92% of all logic chips at 10nm or smaller nodes.",
     "offices": [
       {
-        "id": "TSM-HSINCHU-headquarters",
-        "name": "TSMC Headquarters",
+        "id": "TSMC-HSINCHU-HQ",
+        "name": "TSMC Corporate Headquarters",
         "city": "Hsinchu",
-        "state": "Taiwan",
+        "state": "Hsinchu County",
         "country": "Taiwan",
         "address": "8, Li-Hsin Rd. 6, Hsinchu Science Park, Hsinchu 300-096, Taiwan, R.O.C.",
-        "lat": 24.773,
-        "lng": 121.012,
-        "businessFocus": "Corporate headquarters and semiconductor manufacturing",
+        "lat": 24.775,
+        "lng": 121.0,
+        "businessFocus": "Corporate headquarters and administration",
         "type": "headquarters",
         "sources": [
-          "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+          "https://www.tsmc.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "TSM-HSINCHU-engineering",
+        "id": "TSMC-HSINCHU-RD",
         "name": "TSMC Global R&D Center",
         "city": "Hsinchu",
-        "state": "Taiwan",
+        "state": "Hsinchu County",
         "country": "Taiwan",
         "address": "168, Kehuan Rd., Hsinchu Science Park, Hsinchu 308-001, Taiwan, R.O.C.",
-        "lat": 24.775,
-        "lng": 121.015,
-        "businessFocus": "Advanced semiconductor research and development",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "Research and development",
         "type": "engineering",
         "sources": [
-          "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+          "https://www.tsmc.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "TSM-PHOENIX-manufacturing",
-        "name": "TSMC Arizona Corporation",
+        "id": "TSMC-HSINCHU-FAB12",
+        "name": "TSMC Fab 12A & Fab 12B (GIGAFAB)",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu Science Park, Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "300mm wafer manufacturing and R&D (Fab 12B)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAICHUNG-FAB15",
+        "name": "TSMC Fab 15A & Fab 15B",
+        "city": "Taichung",
+        "state": "Taichung City",
+        "country": "Taiwan",
+        "address": "Central Taiwan Science Park, Taichung, Taiwan",
+        "lat": 24.22,
+        "lng": 120.62,
+        "businessFocus": "300mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAINAN-FAB14",
+        "name": "TSMC Fab 14A & Fab 14B",
+        "city": "Tainan",
+        "state": "Tainan City",
+        "country": "Taiwan",
+        "address": "Southern Taiwan Science Park, Tainan, Taiwan",
+        "lat": 23.12,
+        "lng": 120.28,
+        "businessFocus": "300mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAINAN-FAB18",
+        "name": "TSMC Fab 18A & Fab 18B",
+        "city": "Tainan",
+        "state": "Tainan City",
+        "country": "Taiwan",
+        "address": "Southern Taiwan Science Park, Anding District, Tainan, Taiwan",
+        "lat": 23.1,
+        "lng": 120.28,
+        "businessFocus": "300mm wafer manufacturing (3nm/5nm)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-HSINCHU-FAB20",
+        "name": "TSMC Fab 20",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu Science Park, Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "300mm wafer manufacturing (planned, 4 phases)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-KAOHSIUNG-FAB22",
+        "name": "TSMC Fab 22",
+        "city": "Kaohsiung",
+        "state": "Kaohsiung City",
+        "country": "Taiwan",
+        "address": "Kaohsiung, Taiwan",
+        "lat": 22.63,
+        "lng": 120.3,
+        "businessFocus": "300mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-HSINCHU-FAB3",
+        "name": "TSMC Fab 3",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "200mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-HSINCHU-FAB5",
+        "name": "TSMC Fab 5",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "200mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAINAN-FAB6",
+        "name": "TSMC Fab 6",
+        "city": "Tainan",
+        "state": "Tainan City",
+        "country": "Taiwan",
+        "address": "Shanhua District, Tainan, Taiwan",
+        "lat": 23.12,
+        "lng": 120.28,
+        "businessFocus": "200mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-HSINCHU-FAB8",
+        "name": "TSMC Fab 8",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "200mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-HSINCHU-FAB2",
+        "name": "TSMC Fab 2",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "150mm wafer manufacturing (planned to wind down)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-HSINCHU-BACKEND1",
+        "name": "TSMC Advanced Backend Fab 1",
+        "city": "Hsinchu",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "Hsinchu, Taiwan",
+        "lat": 24.78,
+        "lng": 121.0,
+        "businessFocus": "Advanced backend/3DIC packaging",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAINAN-BACKEND2",
+        "name": "TSMC Advanced Backend Fab 2",
+        "city": "Tainan",
+        "state": "Tainan City",
+        "country": "Taiwan",
+        "address": "Shanhua District, Tainan, Taiwan",
+        "lat": 23.12,
+        "lng": 120.28,
+        "businessFocus": "Advanced backend/3DIC packaging",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAOYUAN-BACKEND3",
+        "name": "TSMC Advanced Backend Fab 3",
+        "city": "Taoyuan",
+        "state": "Taoyuan City",
+        "country": "Taiwan",
+        "address": "Longtan District, Taoyuan, Taiwan",
+        "lat": 24.86,
+        "lng": 121.2,
+        "businessFocus": "Advanced backend/3DIC packaging",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-TAICHUNG-BACKEND5",
+        "name": "TSMC Advanced Backend Fab 5",
+        "city": "Taichung",
+        "state": "Taichung City",
+        "country": "Taiwan",
+        "address": "Taichung, Taiwan",
+        "lat": 24.22,
+        "lng": 120.62,
+        "businessFocus": "Advanced backend/3DIC packaging",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-MIAOLI-BACKEND6",
+        "name": "TSMC Advanced Backend Fab 6",
+        "city": "Miaoli",
+        "state": "Miaoli County",
+        "country": "Taiwan",
+        "address": "Zhunan, Miaoli County, Taiwan",
+        "lat": 24.68,
+        "lng": 120.88,
+        "businessFocus": "Advanced backend/3DIC packaging",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-CHIAYI-BACKEND7",
+        "name": "TSMC Advanced Backend Fab 7",
+        "city": "Chiayi",
+        "state": "Chiayi County",
+        "country": "Taiwan",
+        "address": "Taibo City, Chiayi County, Taiwan",
+        "lat": 23.48,
+        "lng": 120.45,
+        "businessFocus": "Advanced backend/3DIC packaging (planned)",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-PHOENIX-FAB21",
+        "name": "TSMC Arizona Corporation - Fab 21",
         "city": "Phoenix",
         "state": "Arizona",
         "country": "United States",
-        "address": "5088 W. Innovation Circle, Phoenix, AZ 85083, U.S.A.",
-        "lat": 33.815,
-        "lng": -112.155,
-        "businessFocus": "Advanced semiconductor manufacturing",
+        "address": "Phoenix, Arizona, USA",
+        "lat": 33.45,
+        "lng": -112.07,
+        "businessFocus": "300mm wafer manufacturing (N4, N3, N2/A16)",
         "type": "manufacturing",
         "sources": [
-          "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+          "https://www.tsmc.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "TSM-KIKUYO-manufacturing",
-        "name": "Japan Advanced Semiconductor Manufacturing, Inc. (JASM)",
+        "id": "TSMC-CAMAS-FAB11",
+        "name": "TSMC Washington, LLC - Fab 11",
+        "city": "Camas",
+        "state": "Washington",
+        "country": "United States",
+        "address": "5509 N.W. Parker Street, Camas, WA 98607-9299, USA",
+        "lat": 45.59,
+        "lng": -122.41,
+        "businessFocus": "200mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-SANJOSE-SALES",
+        "name": "TSMC North America",
+        "city": "San Jose",
+        "state": "California",
+        "country": "United States",
+        "address": "San Jose, California, USA",
+        "lat": 37.34,
+        "lng": -121.89,
+        "businessFocus": "Sales and marketing",
+        "type": "sales",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-KUMAMOTO-FAB23",
+        "name": "JASM - Japan Advanced Semiconductor Manufacturing (Fab 23)",
         "city": "Kikuyo",
         "state": "Kumamoto",
         "country": "Japan",
-        "address": "4106-1, Haramizu, Kikuyo-machi, Kikuchi-gun, Kumamoto, 869-1102, Japan",
-        "lat": 32.875,
-        "lng": 130.825,
-        "businessFocus": "Semiconductor manufacturing",
+        "address": "Kikuyo, Kumamoto, Japan",
+        "lat": 32.87,
+        "lng": 130.82,
+        "businessFocus": "300mm wafer manufacturing (40nm to 3nm)",
         "type": "manufacturing",
         "sources": [
-          "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+          "https://www.tsmc.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "TSM-DRESDEN-manufacturing",
-        "name": "European Semiconductor Manufacturing Company (ESMC) GmbH",
+        "id": "TSMC-YOKOHAMA-SALES",
+        "name": "TSMC Japan Limited",
+        "city": "Yokohama",
+        "state": "Kanagawa",
+        "country": "Japan",
+        "address": "Yokohama, Kanagawa, Japan",
+        "lat": 35.44,
+        "lng": 139.64,
+        "businessFocus": "Customer service",
+        "type": "sales",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-YOKOHAMA-DESIGN",
+        "name": "TSMC Design Technology Japan, Inc.",
+        "city": "Yokohama",
+        "state": "Kanagawa",
+        "country": "Japan",
+        "address": "Yokohama, Kanagawa, Japan",
+        "lat": 35.44,
+        "lng": 139.64,
+        "businessFocus": "Design technology and engineering",
+        "type": "engineering",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-YOKOHAMA-3DIC",
+        "name": "TSMC Japan 3DIC R&D Center, Inc.",
+        "city": "Yokohama",
+        "state": "Kanagawa",
+        "country": "Japan",
+        "address": "Yokohama, Kanagawa, Japan",
+        "lat": 35.44,
+        "lng": 139.64,
+        "businessFocus": "3DIC research and development",
+        "type": "engineering",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-DRESDEN-ESMC",
+        "name": "ESMC - European Semiconductor Manufacturing Company GmbH",
         "city": "Dresden",
         "state": "Saxony",
         "country": "Germany",
-        "address": "World Trade Center, Rosenstrasse 32, 01067 Dresden, Germany",
-        "lat": 51.045,
-        "lng": 13.735,
-        "businessFocus": "Specialty semiconductor manufacturing",
+        "address": "Dresden, Saxony, Germany",
+        "lat": 51.05,
+        "lng": 13.74,
+        "businessFocus": "300mm specialty wafer manufacturing (28/22nm, 16/12nm)",
         "type": "manufacturing",
         "sources": [
-          "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+          "https://www.tsmc.com"
         ],
         "confidence": "verified"
       },
       {
-        "id": "TSM-NANJING-manufacturing",
-        "name": "TSMC Nanjing Company Limited",
+        "id": "TSMC-AMSTERDAM-SALES",
+        "name": "TSMC Europe B.V.",
+        "city": "Amsterdam",
+        "state": "North Holland",
+        "country": "Netherlands",
+        "address": "Amsterdam, Netherlands",
+        "lat": 52.37,
+        "lng": 4.9,
+        "businessFocus": "Customer service and sales",
+        "type": "sales",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-SHANGHAI-FAB10",
+        "name": "TSMC China Company Limited - Fab 10",
+        "city": "Shanghai",
+        "state": "Shanghai",
+        "country": "China",
+        "address": "4000, Wen Xiang Road, Songjiang, Shanghai, China",
+        "lat": 31.03,
+        "lng": 121.23,
+        "businessFocus": "200mm wafer manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-NANJING-FAB16",
+        "name": "TSMC Nanjing Company Limited - Fab 16",
         "city": "Nanjing",
         "state": "Jiangsu",
         "country": "China",
-        "address": "Pukou Economic Development Zone, Nanjing, Jiangsu Province, China",
+        "address": "16, Zifeng Road, Pukou Economic Development Zone, Nanjing, Jiangsu Province, China",
         "lat": 32.06,
-        "lng": 118.63,
-        "businessFocus": "Semiconductor manufacturing",
+        "lng": 118.8,
+        "businessFocus": "300mm wafer manufacturing (16nm)",
         "type": "manufacturing",
         "sources": [
-          "https://investor.tsmc.com/sites/ir/annual-report/2024/2024%20Annual%20Report_E.pdf"
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-SEOUL-SALES",
+        "name": "TSMC Korea Limited",
+        "city": "Seoul",
+        "state": null,
+        "country": "South Korea",
+        "address": "Seoul, South Korea",
+        "lat": 37.57,
+        "lng": 126.98,
+        "businessFocus": "Customer service",
+        "type": "sales",
+        "sources": [
+          "https://www.tsmc.com"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "TSMC-KANATA-ENGINEERING",
+        "name": "TSMC Design Technology Canada Inc.",
+        "city": "Kanata",
+        "state": "Ontario",
+        "country": "Canada",
+        "address": "Kanata, Ontario, Canada",
+        "lat": 45.31,
+        "lng": -75.9,
+        "businessFocus": "Engineering support and design technology",
+        "type": "engineering",
+        "sources": [
+          "https://www.tsmc.com"
         ],
         "confidence": "verified"
       }

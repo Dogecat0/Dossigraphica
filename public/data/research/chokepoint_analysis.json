@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-26T22:40:37.418415",
+  "lastUpdated": "2026-05-28T21:57:49.345484",
   "chokepoints": [
     {
       "name": "TSMC Hsinchu Hub",
@@ -10,13 +10,13 @@
       "severity": "critical",
       "description": "Concentration of leading-edge semiconductor manufacturing.",
       "exposedCompanies": [
-        "NVDA",
-        "MU",
-        "META",
-        "AMZN",
         "AMD",
         "AVGO",
-        "MSFT"
+        "META",
+        "MSFT",
+        "NVDA",
+        "AMZN",
+        "MU"
       ],
       "id": "tsmc_hsinchu",
       "mitigationStatus": "Developing"
@@ -30,10 +30,10 @@
       "severity": "critical",
       "description": "Sole provider of EUV lithography systems.",
       "exposedCompanies": [
-        "TSM",
-        "GOOGL",
         "ASML",
-        "MU"
+        "MU",
+        "TSM",
+        "GOOGL"
       ],
       "id": "asml_euv",
       "mitigationStatus": "Developing"

@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-05-26T22:40:37.417199",
+  "lastUpdated": "2026-05-28T21:57:49.344385",
   "regions": [
     {
       "region": "China",
-      "lat": 35.8617,
-      "lng": 104.1954,
-      "overallScore": 8.1,
+      "lat": 35.0,
+      "lng": 105.0,
+      "overallScore": 7.9,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -100,24 +100,36 @@
         {
           "ticker": "TSM",
           "riskScore": 4,
+          "impactLevel": "high",
+          "category": "trade_restriction"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
           "impactLevel": "moderate",
-          "category": "regulatory_compliance"
+          "category": "sanctions"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "geopolitical_conflict"
         }
       ],
       "riskDimensions": [
+        "geopolitical_conflict",
         "trade_restriction",
-        "sanctions",
-        "regulatory_compliance",
         "political_instability",
-        "geopolitical_conflict"
+        "regulatory_compliance",
+        "sanctions"
       ],
-      "summary": "Aggregated risk from 16 companies in China."
+      "summary": "Aggregated risk from 18 companies in China."
     },
     {
       "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
-      "overallScore": 8.7,
+      "lat": 24.0,
+      "lng": 121.0,
+      "overallScore": 7.7,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -170,22 +182,49 @@
         {
           "ticker": "TSM",
           "riskScore": 4,
+          "impactLevel": "high",
+          "category": "political_instability"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "currency_exposure"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
           "impactLevel": "moderate",
           "category": "environmental_regulation"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "political_instability"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "data_privacy"
         }
       ],
       "riskDimensions": [
+        "geopolitical_conflict",
         "trade_restriction",
-        "environmental_regulation",
-        "geopolitical_conflict"
+        "data_privacy",
+        "political_instability",
+        "currency_exposure",
+        "environmental_regulation"
       ],
-      "summary": "Aggregated risk from 9 companies in Taiwan."
+      "summary": "Aggregated risk from 13 companies in Taiwan."
     },
     {
       "region": "United States",
-      "lat": 37.0902,
-      "lng": -95.7129,
-      "overallScore": 8.0,
+      "lat": 38.0,
+      "lng": -97.0,
+      "overallScore": 7.6,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -262,17 +301,47 @@
         {
           "ticker": "TSM",
           "riskScore": 5,
-          "impactLevel": "high",
+          "impactLevel": "critical",
           "category": "trade_restriction"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "regulatory_compliance"
         }
       ],
       "riskDimensions": [
+        "regulatory_compliance",
         "trade_restriction",
-        "tax_policy",
         "sanctions",
-        "regulatory_compliance"
+        "tax_policy"
       ],
-      "summary": "Aggregated risk from 13 companies in United States."
+      "summary": "Aggregated risk from 18 companies in United States."
     },
     {
       "region": "Russia",
@@ -493,9 +562,9 @@
     },
     {
       "region": "Japan",
-      "lat": 36.2048,
-      "lng": 138.2529,
-      "overallScore": 6.0,
+      "lat": 36.0,
+      "lng": 138.0,
+      "overallScore": 5.3,
       "contributingCompanies": [
         {
           "ticker": "AMZN",
@@ -508,13 +577,20 @@
           "riskScore": 3,
           "impactLevel": "moderate",
           "category": "trade_restriction"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "regulatory_compliance"
         }
       ],
       "riskDimensions": [
+        "regulatory_compliance",
         "trade_restriction",
         "currency_exposure"
       ],
-      "summary": "Aggregated risk from 2 companies in Japan."
+      "summary": "Aggregated risk from 3 companies in Japan."
     },
     {
       "region": "Germany",
@@ -554,12 +630,18 @@
     },
     {
       "region": "Middle East",
-      "lat": 26.0,
-      "lng": 53.0,
+      "lat": 28.0,
+      "lng": 45.0,
       "overallScore": 6.0,
       "contributingCompanies": [
         {
           "ticker": "AMZN",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "TSM",
           "riskScore": 3,
           "impactLevel": "moderate",
           "category": "geopolitical_conflict"
@@ -568,7 +650,7 @@
       "riskDimensions": [
         "geopolitical_conflict"
       ],
-      "summary": "Aggregated risk from 1 companies in Middle East."
+      "summary": "Aggregated risk from 2 companies in Middle East."
     },
     {
       "region": "Netherlands",
@@ -598,7 +680,7 @@
       "region": "Global",
       "lat": 55.702215,
       "lng": 12.5592485,
-      "overallScore": 6.5,
+      "overallScore": 6.0,
       "contributingCompanies": [
         {
           "ticker": "ASML",
@@ -623,15 +705,22 @@
           "riskScore": 3,
           "impactLevel": "moderate",
           "category": "political_instability"
+        },
+        {
+          "ticker": "TSM",
+          "riskScore": 2,
+          "impactLevel": "low",
+          "category": "trade_restriction"
         }
       ],
       "riskDimensions": [
+        "trade_restriction",
         "political_instability",
-        "tax_policy",
+        "currency_exposure",
         "sanctions",
-        "currency_exposure"
+        "tax_policy"
       ],
-      "summary": "Aggregated risk from 4 companies in Global."
+      "summary": "Aggregated risk from 5 companies in Global."
     },
     {
       "region": "Malaysia",

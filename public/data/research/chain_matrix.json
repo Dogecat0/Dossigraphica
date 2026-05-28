@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-26T22:40:37.414741",
+  "lastUpdated": "2026-05-28T21:57:49.341540",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -2076,7 +2076,7 @@
     },
     {
       "from": "NVDA",
-      "to": "Taiwan Semiconductor Manufacturing Company Limited (TSMC)",
+      "to": "TSM",
       "type": "buyer_supplier",
       "description": "NVDA depends on Taiwan Semiconductor Manufacturing Company Limited (TSMC) for Semiconductor wafer fabrication",
       "strength": "critical",
@@ -2198,7 +2198,7 @@
       "from": "TSM",
       "to": "ASML",
       "type": "buyer_supplier",
-      "description": "TSM depends on ASML for EUV photolithography machines",
+      "description": "TSM depends on ASML for EUV lithography machines (sole supplier, ~$180M each)",
       "strength": "critical",
       "value": "key_supplier"
     },
@@ -2206,73 +2206,481 @@
       "from": "TSM",
       "to": "Applied Materials",
       "type": "buyer_supplier",
-      "description": "TSM depends on Applied Materials for Semiconductor production tools",
+      "description": "TSM depends on Applied Materials for Wafer fabrication equipment, R&D center in Taiwan",
       "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "TSM",
-      "to": "ASE Technology",
+      "to": "KLA Corporation",
       "type": "buyer_supplier",
-      "description": "TSM depends on ASE Technology for Packaging and testing services",
-      "strength": "important",
-      "value": "assembly_test"
+      "description": "TSM depends on KLA Corporation for Wafer fabrication process control and inspection equipment",
+      "strength": "critical",
+      "value": "key_supplier"
     },
     {
       "from": "TSM",
-      "to": "Sunlit Chemical",
+      "to": "Lam Research",
       "type": "buyer_supplier",
-      "description": "TSM depends on Sunlit Chemical for Chemicals for semiconductor manufacturing",
+      "description": "TSM depends on Lam Research for Wafer fabrication equipment",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Canon",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Canon for Lithography equipment for wafer fabrication",
       "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "JSR Corporation",
+      "type": "buyer_supplier",
+      "description": "TSM depends on JSR Corporation for Photoresists (top global producer, ~90% market share with 4 other Japanese firms)",
+      "strength": "critical",
       "value": "raw_material"
     },
     {
       "from": "TSM",
-      "to": "ZEISS",
+      "to": "Tokyo Ohka Kogyo (TOK)",
       "type": "buyer_supplier",
-      "description": "TSM depends on ZEISS for Lenses for EUV machines",
+      "description": "TSM depends on Tokyo Ohka Kogyo (TOK) for Photoresists",
       "strength": "critical",
-      "value": "key_supplier"
+      "value": "raw_material"
     },
     {
       "from": "TSM",
       "to": "Shin-Etsu Chemical",
       "type": "buyer_supplier",
-      "description": "TSM depends on Shin-Etsu Chemical for High-end photoresists",
+      "description": "TSM depends on Shin-Etsu Chemical for Photoresists, silicon wafers",
       "strength": "critical",
       "value": "raw_material"
     },
     {
       "from": "TSM",
-      "to": "Mirle Automation Corporation",
+      "to": "FUJI Film",
       "type": "buyer_supplier",
-      "description": "TSM depends on Mirle Automation Corporation for Intelligent automation systems",
+      "description": "TSM depends on FUJI Film for Photoresists, electronic materials",
+      "strength": "critical",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "BASF SE",
+      "type": "buyer_supplier",
+      "description": "TSM depends on BASF SE for Critical chemicals for semiconductor manufacturing",
+      "strength": "important",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Merck Group",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Merck Group for Critical chemicals for semiconductor manufacturing",
+      "strength": "important",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Cadence Design Systems",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Cadence Design Systems for EDA software (70% market share with Synopsys and Mentor)",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Synopsys",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Synopsys for EDA software (70% market share with Cadence and Mentor)",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Mentor Graphics (Siemens EDA)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Mentor Graphics (Siemens EDA) for EDA software (70% market share with Cadence and Synopsys)",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Advanced Semiconductor Engineering (ASE)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Advanced Semiconductor Engineering (ASE) for OSAT - semiconductor packaging and testing (world's largest OSAT)",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Powertech Technology",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Powertech Technology for OSAT - semiconductor packaging and testing (global top 10)",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "KYEC (King Yuan Electronics)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on KYEC (King Yuan Electronics) for IC testing and manufacturing services",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Chipmos",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Chipmos for OSAT - semiconductor packaging and testing (global top 10)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Chipbond",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Chipbond for OSAT - semiconductor packaging and testing (global top 10)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Sigurd",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Sigurd for OSAT - semiconductor packaging and testing (global top 10)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Unimicron",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Unimicron for IC carrier boards (packaging substrates)",
+      "strength": "important",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Kinsus",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Kinsus for IC carrier boards (packaging substrates)",
+      "strength": "important",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Chang Wah Electromaterials",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Chang Wah Electromaterials for Gold wire, leadframes for packaging",
+      "strength": "standard",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Eternal Materials",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Eternal Materials for Molding materials for semiconductor packaging",
+      "strength": "standard",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Yeh-Chiang Technology",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Yeh-Chiang Technology for Solder paste for semiconductor packaging",
+      "strength": "standard",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Shenmao Technology",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Shenmao Technology for Solder paste for semiconductor packaging",
+      "strength": "standard",
+      "value": "raw_material"
+    },
+    {
+      "from": "TSM",
+      "to": "Nvidia",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Nvidia for Largest TSMC customer (AI GPUs - Rubin chip on 3nm, H100/B200)",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "AAPL",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Apple for Major TSMC customer (iPhone processors - A-series chips)",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "AMD",
+      "type": "buyer_supplier",
+      "description": "TSM depends on AMD for TSMC customer (Ryzen, EPYC, Instinct GPUs)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "MediaTek",
+      "type": "buyer_supplier",
+      "description": "TSM depends on MediaTek for TSMC customer (Dimensity smartphone chips on 2nm/3nm/4nm)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Qualcomm",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Qualcomm for TSMC customer (Snapdragon processors, primary foundry supplier)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "HiSilicon (Huawei)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on HiSilicon (Huawei) for TSMC customer (Kirin processors - 7nm Kirin 980, previously 14% of TSMC sales)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Xilinx (AMD)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Xilinx (AMD) for TSMC customer (FPGAs on 28nm, 20nm, 16nm processes)",
       "strength": "standard",
       "value": "key_supplier"
     },
     {
       "from": "TSM",
-      "to": "Marketech International Corp",
+      "to": "Marvell Technology",
       "type": "buyer_supplier",
-      "description": "TSM depends on Marketech International Corp for Facility monitor control systems",
+      "description": "TSM depends on Marvell Technology for TSMC customer (custom ASICs, ethernet solutions, storage controllers)",
       "strength": "standard",
       "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "TSMC Arizona",
+      "type": "buyer_supplier",
+      "description": "TSM depends on TSMC Arizona for Advanced wafer fabrication (subsidiary, government subsidies)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "TSMC Nanjing",
+      "type": "buyer_supplier",
+      "description": "TSM depends on TSMC Nanjing for Wafer fabrication (16nm process, VEU authorized)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "JASM (TSMC Japan)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on JASM (TSMC Japan) for Wafer fabrication (12/16nm, 22/28nm processes, JV with Sony 20%, Denso 10%)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "ESMC (TSMC Germany)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on ESMC (TSMC Germany) for Wafer fabrication (JV with Bosch 10%, Infineon 10%, NXP 10%)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "SSMC (Systems on Silicon Manufacturing Company)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on SSMC (Systems on Silicon Manufacturing Company) for 200mm wafer fabrication (JV: TSMC 38.8%, NXP 61.2%)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "Vanguard International Semiconductor (VIS)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Vanguard International Semiconductor (VIS) for Wafer fabrication (8th largest foundry globally, TSMC associate)",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "Global Unichip Corporation (GUC)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Global Unichip Corporation (GUC) for ASIC design services (TSMC associate)",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Xintec Inc.",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Xintec Inc. for Wafer level chip size packaging (TSMC associate)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Sony Semiconductor Solutions",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Sony Semiconductor Solutions for JASM investor (20% stake), image sensor partner",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Denso Corporation",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Denso Corporation for JASM investor (10% stake), automotive electronics",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Robert Bosch GmbH",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Robert Bosch GmbH for ESMC investor (10% stake), automotive/industrial semiconductors",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Infineon Technologies",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Infineon Technologies for ESMC investor (10% stake), automotive/industrial semiconductors",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "NXP Semiconductors",
+      "type": "buyer_supplier",
+      "description": "TSM depends on NXP Semiconductors for ESMC investor (10% stake), SSMC JV partner (61.2%)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "\u00d8rsted",
+      "type": "buyer_supplier",
+      "description": "TSM depends on \u00d8rsted for Offshore wind energy (20-year PPA for two wind farms off Taiwan)",
+      "strength": "standard",
+      "value": "logistics"
+    },
+    {
+      "from": "TSM",
+      "to": "Amkor Technology",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Amkor Technology for OSAT - semiconductor packaging and testing (Qualcomm supplier)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Siliconware Precision Industries (SPIL)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Siliconware Precision Industries (SPIL) for OSAT - semiconductor packaging and testing (Qualcomm supplier)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "STATS ChipPAC",
+      "type": "buyer_supplier",
+      "description": "TSM depends on STATS ChipPAC for OSAT - semiconductor packaging and testing (Qualcomm supplier)",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "TSM",
+      "to": "Samsung Electronics",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Samsung Electronics for Foundry competitor (2nd largest, 17% market share, 3nm GAA first to mass produce)",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "000660.KS",
+      "type": "buyer_supplier",
+      "description": "TSM depends on SK Hynix for HBM memory (one of only 3 HBM makers globally)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "Micron Technology",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Micron Technology for HBM memory, DRAM (one of only 3 HBM makers globally)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "TSM",
+      "to": "UMC (United Microelectronics Corporation)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on UMC (United Microelectronics Corporation) for Foundry competitor (3rd largest, 7% market share)",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "GlobalFoundries",
+      "type": "buyer_supplier",
+      "description": "TSM depends on GlobalFoundries for Foundry competitor (4th largest, 7% market share)",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "SMIC (Semiconductor Manufacturing International Corporation)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on SMIC (Semiconductor Manufacturing International Corporation) for Foundry competitor (5th largest, 5% market share, 14nm production)",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "PSMC (Powerchip Semiconductor Manufacturing Corporation)",
+      "type": "buyer_supplier",
+      "description": "TSM depends on PSMC (Powerchip Semiconductor Manufacturing Corporation) for Foundry competitor (7th largest globally)",
+      "strength": "standard",
+      "value": "foundry"
+    },
+    {
+      "from": "TSM",
+      "to": "Renesas Electronics",
+      "type": "buyer_supplier",
+      "description": "TSM depends on Renesas Electronics for Automotive semiconductor manufacturer (fire disruption in 2021)",
+      "strength": "standard",
+      "value": "foundry"
     },
     {
       "from": "AAPL",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Apple is a major customer of TSM",
+      "description": "Apple Inc. is a major customer of TSM",
       "strength": "critical",
-      "value": "22%"
+      "value": "22% of TSMC net revenue in 2024 (largest customer); 17% in 2025 (Customer B)"
     },
     {
       "from": "NVDA",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "NVIDIA is a major customer of TSM",
-      "strength": "important",
-      "value": null
+      "description": "NVIDIA Corporation is a major customer of TSM",
+      "strength": "critical",
+      "value": "12% of TSMC net revenue in 2024 (second largest); 19% in 2025 (Customer A); set to become largest customer in 2025"
     },
     {
       "from": "AMD",
@@ -2283,10 +2691,26 @@
       "value": null
     },
     {
-      "from": "Qualcomm",
+      "from": "AVGO",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Qualcomm is a major customer of TSM",
+      "description": "Broadcom Inc. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Qualcomm Incorporated",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Qualcomm Incorporated is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "MediaTek Inc.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "MediaTek Inc. is a major customer of TSM",
       "strength": "important",
       "value": null
     },
@@ -2294,15 +2718,143 @@
       "from": "INTC",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Intel is a major customer of TSM",
+      "description": "Intel Corporation is a major customer of TSM",
       "strength": "important",
       "value": null
     },
     {
-      "from": "AVGO",
+      "from": "Marvell Technology, Inc.",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "Broadcom is a major customer of TSM",
+      "description": "Marvell Technology, Inc. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "NXP Semiconductors N.V.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "NXP Semiconductors N.V. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Instruments Incorporated",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Instruments Incorporated is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "STMicroelectronics N.V.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "STMicroelectronics N.V. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Infineon Technologies AG",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Infineon Technologies AG is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Robert Bosch GmbH",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Robert Bosch GmbH is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Sony Semiconductor Solutions Corporation",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Sony Semiconductor Solutions Corporation is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "DENSO Corporation",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "DENSO Corporation is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Toyota Motor Corporation",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Toyota Motor Corporation is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HiSilicon Technologies Co., Ltd.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "HiSilicon Technologies Co., Ltd. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Tesla, Inc.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Tesla, Inc. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "now part of Intel",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "now part of Intel is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "now part of AMD",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "now part of AMD is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Allwinner Technology Co., Ltd.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Allwinner Technology Co., Ltd. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Shanghai",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Shanghai is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Spectra7 Microsystems Inc.",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "Spectra7 Microsystems Inc. is a major customer of TSM",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "ARM Holdings plc",
+      "to": "TSM",
+      "type": "buyer_supplier",
+      "description": "ARM Holdings plc is a major customer of TSM",
       "strength": "important",
       "value": null
     }
