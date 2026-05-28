@@ -24,6 +24,9 @@ __pycache__
 /logs/inference/*
 /archive/*  
 
+# Blog / draft files
+BLOG_POST_ENRICHED.md
+
 # Test files
 /test_data/*
 test_*.md

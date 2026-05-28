@@ -196,6 +196,34 @@ export type MapEntity =
     | { type: 'chokepoint', data: Chokepoint }
     | { type: 'supplier', data: SupplyChainNode }
     | { type: 'customer', data: CustomerNode }
+    | { type: 'institutionalHolder', data: InstitutionalHolderData & { companyTicker?: string } }
+
+/** Institutional holder data from 13F filings */
+export interface InstitutionalHolderData {
+    institution: string
+    value: number
+    shares: number
+    value_formatted: string
+    city: string
+    country: string
+    lat: number
+    lng: number
+    ownership_pct: number
+    ownership_pct_formatted: string
+    report_period: string
+    rank: number
+}
+
+/** Per-company institutional holdings */
+export interface CompanyHoldings {
+    company_name: string
+    shares_outstanding?: number
+    total_institutional_value: number
+    top_holders: InstitutionalHolderData[]
+}
+
+/** All institutional holdings keyed by ticker */
+export type InstitutionalHoldingsMap = Record<string, CompanyHoldings>
 
 /** Layer visibility toggles */
-export type LayerName = 'offices' | 'supplyChain' | 'customers' | 'risks' | 'chain' | 'chokepoints'
+export type LayerName = 'offices' | 'supplyChain' | 'customers' | 'risks' | 'chain' | 'chokepoints' | 'institutionalHoldings'
