@@ -63,44 +63,30 @@ SHARES_OUTSTANDING = {
 }
 
 # ── Known Major Institutional Managers ───────────────────────────────────────
-# CIKs for the largest 13F filers. These are the managers whose 13F filings
-# we fetch to build the holdings dataset. Add or update as needed.
-# CIKs can be found at: https://www.sec.gov/files/company_tickers.json
-# (investment managers also have CIK entries there)
+# CIKs for the largest 13F filers, verified from SEC EDGAR.
+# These rarely change. Update if a manager re-registers with the SEC.
 MAJOR_MANAGERS = [
-    # Name                             CIK
-    ("Vanguard Group Inc",              1047877),  # Largest
-    ("BlackRock Inc",                   1364742),
-    ("State Street Corp",               93751),
-    ("FMR LLC (Fidelity)",              315066),
-    ("Morgan Stanley",                   895421),
-    ("JPMorgan Chase & Co",             19617),
-    ("Goldman Sachs Group Inc",          886982),
-    ("Bank of New York Mellon Corp",     1390777),
-    ("Northern Trust Corp",              73124),
-    ("Invesco Ltd",                      914208),
-    ("Capital World Investors",          973118),   # Capital Group
-    ("Capital Research Global Investors", 1091677),
-    ("T. Rowe Price Associates Inc",     1116938),
-    ("Geode Capital Management LLC",     1028942),
-    ("Legal & General Group PLC",        1103978),
-    ("Wellington Management Group LLP",  1089114),
-    ("Dimensional Fund Advisors LP",     1059205),
-    ("Charles Schwab Investment Mgmt",   1105847),
-    ("Ameriprise Financial Inc",         1013685),
-    ("Norges Bank Investment Mgmt",      1227457),
-    ("Mitsubishi UFJ Financial Group",   1098950),
-    ("UBS Group AG",                     1114448),
-    ("Deutsche Bank AG",                 1159506),
-    ("Credit Suisse Group AG",           1084204),
-    ("BNP Paribas SA",                   1119586),
-    ("Barclays PLC",                      81258),
-    ("Citigroup Inc",                     705841),
-    ("Bank of America Corp",             70858),
-    ("Wells Fargo & Co",                   72971),
-    ("Prudential Financial Inc",          1137774),
-    ("MetLife Inc",                       1364743),
-    ("AIG Inc",                            5272),
+    # Name                                              CIK
+    ("Vanguard Group Inc",                              102909),
+    ("BlackRock Inc",                                   2012383),
+    ("State Street Corp",                               93751),
+    ("FMR LLC (Fidelity)",                              315066),
+    ("Morgan Stanley",                                  895421),
+    ("JPMorgan Chase & Co",                             19617),
+    ("Goldman Sachs Group Inc",                         886982),
+    ("Bank of New York Mellon Corp",                    1390777),
+    ("Northern Trust Corp",                             73124),
+    ("Invesco Ltd",                                     914208),
+    ("Ameriprise Financial Inc",                        820027),
+    ("UBS Group AG",                                    1610520),
+    ("Deutsche Bank AG",                                1159506),
+    ("Barclays PLC",                                    312069),
+    ("Citigroup Inc",                                   831001),
+    ("Bank of America Corp /DE/",                       70858),
+    ("Wells Fargo & Company",                           72971),
+    ("Prudential Financial Inc",                        1137774),
+    ("MetLife Inc",                                     1099219),
+    ("Legal & General Group PLC",                       1103978),
 ]
 
 # Known institution HQ locations for geocoding
@@ -149,6 +135,7 @@ COUNTRY_CENTERS = {
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 SEC_BASE = "https://www.sec.gov"
+SEC_API = "https://data.sec.gov"
 SEC_USER_AGENT = "Dossigraphica Research (contact@dossigraphica.example.com)"
 SEC_RATE_LIMIT_S = 0.15  # delay between requests
 
@@ -244,7 +231,7 @@ def fetch_manager_13f(client: httpx.Client, cik: int, manager_name: str) -> dict
     cik_padded = pad_cik(cik)
 
     # Get submissions overview
-    url = f"{SEC_BASE}/data/edgar/CIK{cik_padded}.json"
+    url = f"{SEC_API}/submissions/CIK{cik_padded}.json"
     try:
         text = sec_get(client, url)
     except httpx.HTTPStatusError as e:
@@ -271,30 +258,56 @@ def fetch_manager_13f(client: httpx.Client, cik: int, manager_name: str) -> dict
         return None
 
     accession = accession_numbers[idx]
-    primary_doc = primary_docs[idx]
     filing_date = filing_dates[idx]
     report_date = report_dates[idx] if idx < len(report_dates) else ""
 
-    # Build info table URL
     acc_no_dash = accession.replace("-", "")
     cik_str = str(cik)
-    info_url = f"{SEC_BASE}/Archives/edgar/data/{cik_str}/{acc_no_dash}/{primary_doc}"
 
-    # Try primary doc first; if it doesn't end with .xml, try infoTable.xml
-    if not primary_doc.lower().endswith(".xml"):
-        info_url = f"{SEC_BASE}/Archives/edgar/data/{cik_str}/{acc_no_dash}/form13fInfoTable.xml"
-
-    # Fetch the XML info table
+    # Check the directory index to find the actual 13F data XML file
+    # Different filers name their files differently:
+    #   Vanguard: 13F_0000102909_20251231.xml
+    #   BlackRock: form13fInfoTable.xml
     try:
-        xml_text = sec_get(client, info_url)
-    except httpx.HTTPStatusError:
-        # Try alternative: /primary.xml
-        info_url = f"{SEC_BASE}/Archives/edgar/data/{cik_str}/{acc_no_dash}/primary.xml"
-        try:
-            xml_text = sec_get(client, info_url)
-        except httpx.HTTPStatusError:
-            print(f"  ⚠  {manager_name}: Could not fetch info table XML")
+        index_url = f"{SEC_BASE}/Archives/edgar/data/{cik_str}/{acc_no_dash}/index.json"
+        index_text = sec_get(client, index_url)
+        index_data = json.loads(index_text)
+        items = index_data.get("directory", {}).get("item", [])
+
+        # Find the data XML file (largest XML that isn't the primary wrapper)
+        data_filename = None
+        max_size = 0
+        for item in items:
+            name = item["name"]
+            if not name.endswith(".xml") or name == "primary_doc.xml":
+                continue
+            try:
+                size = int(item["size"])
+            except (ValueError, KeyError):
+                size = 0
+            if size > max_size:
+                max_size = size
+                data_filename = name
+
+        if not data_filename:
+            print(f"  ⚠  {manager_name}: No XML data file found in filing directory")
             return None
+
+        if not data_filename:
+            print(f"  ⚠  {manager_name}: No 13F data XML found in filing directory")
+            return None
+
+    except Exception as e:
+        print(f"  ⚠  {manager_name}: Could not read filing directory: {e}")
+        return None
+
+    # Fetch the 13F data XML
+    data_url = f"{SEC_BASE}/Archives/edgar/data/{cik_str}/{acc_no_dash}/{data_filename}"
+    try:
+        xml_text = sec_get(client, data_url)
+    except httpx.HTTPStatusError:
+        print(f"  ⚠  {manager_name}: Could not fetch 13F data XML at {data_url.split('/')[-1]}")
+        return None
 
     # Parse XML to extract holdings
     holdings = parse_13f_xml(xml_text, manager_name)
@@ -311,47 +324,34 @@ def fetch_manager_13f(client: httpx.Client, cik: int, manager_name: str) -> dict
     }
 
 
+# The 13F XML namespace used by SEC EDGAR
+_13F_NS = "http://www.sec.gov/edgar/document/thirteenf/informationtable"
+
+
 def parse_13f_xml(xml_text: str, manager_name: str) -> list[dict]:
     """Parse a 13F XML info table, returning list of {ticker, name, value, shares}."""
     holdings = []
     try:
         root = ET.fromstring(xml_text)
     except ET.ParseError:
-        # Try to find XML content within a non-XML wrapper
-        match = re.search(r'<\?xml.*?>.*?(<[a-zA-Z].*)', xml_text, re.DOTALL)
-        if match:
-            try:
-                root = ET.fromstring(match.group(1))
-            except ET.ParseError:
-                return holdings
-        else:
-            return holdings
+        return holdings
 
-    # SEC 13F XML namespace varies. Try common patterns.
-    ns = {"ns": "http://www.sec.gov/edgar/thirteenf"} if "thirteenf" in xml_text else {}
-
-    # Find all infoTable elements
-    tables = root.findall(".//infoTable") or root.findall(".//ns:infoTable", ns)
-    if not tables:
-        # Try investmentDiscretion variant
-        tables = root.findall(".//investmentDiscretion") or []
+    ns = _13F_NS
+    tables = root.findall(f".//{{{ns}}}infoTable")
 
     for table in tables:
-        # Extract fields
-        name_of_issuer = table.findtext("nameOfIssuer") or table.findtext("ns:nameOfIssuer", "", ns)
+        name_of_issuer = table.findtext(f"{{{ns}}}nameOfIssuer")
         if not name_of_issuer:
             continue
 
-        value_text = table.findtext("value") or table.findtext("ns:value", "", ns)
-        shares_text = ""
-        ssh_node = table.find("shrsOrPrnAmt") or table.find("ns:shrsOrPrnAmt", ns)
-        if ssh_node is not None:
-            shares_text = ssh_node.findtext("sshPrnamt") or ssh_node.findtext("ns:sshPrnamt", "", ns)
+        value_text = table.findtext(f"{{{ns}}}value")
+        ssh_node = table.find(f"{{{ns}}}shrsOrPrnAmt")
+        shares_text = ssh_node.findtext(f"{{{ns}}}sshPrnamt") if ssh_node is not None else None
 
         if not value_text or not shares_text:
             continue
 
-        value = int(value_text) * 1000  # value is in $thousands
+        value = int(value_text)  # value is in dollars (not thousands in current SEC format)
         shares = int(shares_text)
 
         if value > 0 and shares > 0:
@@ -379,12 +379,13 @@ def fetch_cik_map(client: httpx.Client) -> dict[str, int]:
 def fetch_company_info(client: httpx.Client, cik: int, ticker: str) -> str | None:
     """Fetch the company name from SEC submissions data."""
     cik_padded = pad_cik(cik)
-    url = f"{SEC_BASE}/data/edgar/CIK{cik_padded}.json"
+    url = f"{SEC_API}/submissions/CIK{cik_padded}.json"
     try:
         text = sec_get(client, url)
         data = json.loads(text)
         return data.get("name", ticker)
-    except Exception:
+    except Exception as e:
+        print(f"  ⚠  {ticker}: Could not fetch company info: {e}")
         return ticker
 
 
@@ -485,7 +486,7 @@ def main():
                         report_period,
                     ))
 
-        # Step 4: For each tracked company, aggregate by institution, sort, take top N
+        # Step 5: For each tracked company, aggregate by institution, sort, take top N
         print(f"\n→ Aggregating holdings...")
 
         output = {}
@@ -568,7 +569,7 @@ def main():
 
             print(f"  {ticker}: {len(sorted_holders)} holders aggregated → {fmt_currency(total_value)}")
 
-        # Step 5: Write output
+        # Step 6: Write output
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(json.dumps(output, indent=2))
 
