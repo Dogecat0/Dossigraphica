@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {
-    Building2, Link2, Users, ShieldAlert, Network, Target, Layers, X
+    Building2, Link2, Users, ShieldAlert, Network, Target, Layers, X, DollarSign
 } from 'lucide-react'
 import type { LayerName } from '../types'
 
@@ -18,6 +18,7 @@ const LAYERS: { id: LayerName; label: string; icon: any; color: string; type: 'c
     { id: 'risks', label: 'Geopolitical Risks', icon: ShieldAlert, color: '#c2593f', type: 'both' }, // Rust
     { id: 'chain', label: 'Global Value Chain', icon: Network, color: '#2e4d3a', type: 'global' }, // Sage
     { id: 'chokepoints', label: 'Systemic Chokepoints', icon: Target, color: '#8f331d', type: 'global' }, // Rust Red
+    { id: 'institutionalHoldings', label: 'Institutional Holdings', icon: DollarSign, color: '#c5a880', type: 'both' }, // Gold
 ]
 
 export default function LayerToggle({ activeLayers, onToggle, hasIntel, viewMode }: LayerToggleProps) {

@@ -1,5 +1,5 @@
-import { X, Building, ShieldAlert, Target, Factory, Users } from 'lucide-react'
-import type { MapEntity, Company, Office, GeopoliticalRisk, RegionalRiskScore, Chokepoint, SupplyChainNode, CustomerNode } from '../types'
+import { X, Building, ShieldAlert, Target, Factory, Users, Coins } from 'lucide-react'
+import type { MapEntity, Company, Office, GeopoliticalRisk, RegionalRiskScore, Chokepoint, SupplyChainNode, CustomerNode, InstitutionalHolderData } from '../types'
 
 interface EntityPopupProps {
     entity: MapEntity | null
@@ -36,6 +36,7 @@ export default function EntityPopup({ entity, company, onClose }: EntityPopupPro
             {type === 'chokepoint' && <ChokepointContent data={data as Chokepoint} />}
             {type === 'supplier' && <SupplierContent data={data as SupplyChainNode} />}
             {type === 'customer' && <CustomerContent data={data as CustomerNode} />}
+            {type === 'institutionalHolder' && <InstitutionalHolderContent data={data as InstitutionalHolderData & { companyTicker?: string }} company={company} />}
         </div>
     )
 }
@@ -256,6 +257,69 @@ function CustomerContent({ data }: { data: CustomerNode }) {
                 <p className="text-2xl font-serif font-bold text-[var(--color-ink)]">
                     {data.revenueShare}
                 </p>
+            </div>
+        </div>
+    )
+}
+
+function InstitutionalHolderContent({ data, company }: { data: InstitutionalHolderData & { companyTicker?: string }, company?: Company | null }) {
+    return (
+        <div className="space-y-4">
+            <div className="flex items-center gap-3 border-b border-[var(--color-border-muted)] pb-3">
+                <div className="bg-[var(--color-accent-gold)]/10 text-[var(--color-accent-gold)] p-2 rounded">
+                    <Coins size={18} />
+                </div>
+                <div>
+                    <h3 className="text-lg font-serif font-bold leading-none text-[var(--color-ink)] mb-1">{data.institution}</h3>
+                    <p className="text-[10px] font-mono uppercase tracking-wider text-[var(--color-accent-gold)] font-bold">
+                        Institutional Holder · Rank #{data.rank}
+                    </p>
+                </div>
+            </div>
+
+            <div className="space-y-2">
+                <div className="bg-white border border-[var(--color-border-muted)] p-3 rounded shadow-executive border-l-2 border-l-[var(--color-accent-gold)]">
+                    <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-[var(--color-ink-light)] mb-0.5">Asset Value (13F)</p>
+                    <p className="text-xl font-serif font-bold text-[var(--color-ink)]">
+                        {data.value_formatted}
+                    </p>
+                </div>
+
+                <div className="bg-white border border-[var(--color-border-muted)] p-3 rounded shadow-executive border-l-2 border-l-[var(--color-accent-blue)]">
+                    <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-[var(--color-ink-light)] mb-0.5">Shares Held</p>
+                    <p className="text-sm font-serif font-bold text-[var(--color-ink)]">
+                        {data.shares.toLocaleString()} shares
+                    </p>
+                </div>
+
+                <div className="bg-white border border-[var(--color-border-muted)] p-3 rounded shadow-executive border-l-2 border-l-[var(--color-accent-gold)]">
+                    <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-[var(--color-ink-light)] mb-0.5">Ownership of Outstanding</p>
+                    <p className="text-2xl font-serif font-bold text-[var(--color-ink)]">
+                        {data.ownership_pct_formatted}
+                    </p>
+                </div>
+
+                {company && (
+                    <div className="bg-white border border-[var(--color-border-muted)] p-3 rounded shadow-executive border-l-2 border-l-[var(--color-accent-green)]">
+                        <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-[var(--color-ink-light)] mb-0.5">Holding Target</p>
+                        <p className="text-sm font-serif font-bold text-[var(--color-ink)]">
+                            {company.company} ({company.ticker})
+                        </p>
+                    </div>
+                )}
+
+                <div className="bg-white border border-[var(--color-border-muted)] p-3 rounded shadow-executive border-l-2 border-l-[#76767c]">
+                    <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-[var(--color-ink-light)] mb-0.5">Headquarters Address</p>
+                    <p className="text-sm font-serif text-[var(--color-ink)]">
+                        {data.city}, {data.country}
+                    </p>
+                </div>
+            </div>
+
+            <div className="text-right">
+                <span className="text-[9px] font-mono text-[var(--color-ink-light)] bg-[var(--color-bg-paper-dark)] px-2 py-0.5 rounded">
+                    Report Period: {data.report_period}
+                </span>
             </div>
         </div>
     )

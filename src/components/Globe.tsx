@@ -6,7 +6,8 @@ import { assignStackPositions, getStackOffset } from '../utils/nodeGrouping'
 import type {
     Office, OfficeType,
     GeoIntelligence, LayerName, MapEntity,
-    ChainMatrix, RiskConvergence, ChokepointAnalysis
+    ChainMatrix, RiskConvergence, ChokepointAnalysis,
+    InstitutionalHoldingsMap
 } from '../types'
 
 const OFFICE_TYPE_COLORS: Record<OfficeType, string> = {
@@ -50,7 +51,7 @@ export interface GlobeViewHandle {
 interface IntelNodeDatum {
     lat: number
     lng: number
-    layerType: 'office' | 'supplyChain' | 'customer' | 'risk' | 'chokepoint' | 'regionalRisk'
+    layerType: 'office' | 'supplyChain' | 'customer' | 'risk' | 'chokepoint' | 'regionalRisk' | 'institutionalHolder'
     label: string
     sublabel: string
     detail: string
@@ -71,6 +72,7 @@ interface GlobeViewProps {
     chainMatrix: ChainMatrix | null
     riskConvergence: RiskConvergence | null
     chokepointAnalysis: ChokepointAnalysis | null
+    institutionalHoldings: InstitutionalHoldingsMap
     activeLayers: Set<LayerName>
 }
 
@@ -87,7 +89,7 @@ interface ExtendedArcDatum {
 }
 
 const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView(
-    { viewMode, offices, onEntityClick, selectedEntity, intel, chainMatrix, riskConvergence, chokepointAnalysis, activeLayers },
+    { viewMode, offices, onEntityClick, selectedEntity, intel, chainMatrix, riskConvergence, chokepointAnalysis, institutionalHoldings, activeLayers },
     ref
 ) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -459,8 +461,45 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             })
         }
 
+        // Institutional Holdings arcs: holder HQ → company HQ
+        // In global view: all holders of all visible companies
+        // In company view: holders of selected company
+        if (activeLayers.has('institutionalHoldings')) {
+            const tickerToHq = new Map<string, { lat: number, lng: number, id: string }>()
+            offices.forEach(o => {
+                if (o.type === 'headquarters' && o.companyId) {
+                    tickerToHq.set(o.companyId, { lat: o.lat, lng: o.lng, id: o.id })
+                }
+            })
+
+            Object.entries(institutionalHoldings).forEach(([ticker, companyData]) => {
+                const hq = tickerToHq.get(ticker)
+                // Only show arcs if we have the company's HQ on the globe
+                if (!hq) return
+
+                // In company view, only show holders for the selected company
+                if (viewMode === 'company') {
+                    const selTicker = offices.find(o => o.type === 'headquarters' && o.companyId)?.companyId
+                    if (selTicker && ticker !== selTicker) return
+                }
+
+                companyData.top_holders.forEach((holder, i) => {
+                    const holderId = `ih-${ticker}-${i}`
+                    const alpha = Math.max(0.2, 1 - (holder.rank - 1) * 0.12) // Dim lower ranks
+                    allArcs.push({
+                        startLat: holder.lat, startLng: holder.lng,
+                        endLat: hq.lat, endLng: hq.lng,
+                        color: [`#c5a880${Math.round(alpha * 255).toString(16).padStart(2, '0')}`, '#c5a88033'],
+                        startId: holderId, endId: hq.id,
+                        dimmed: isDimmed(hq.id, holderId),
+                        stroke: 0.1,
+                    })
+                })
+            })
+        }
+
         return allArcs
-    }, [offices, intel, chainMatrix, activeLayers, hoveredEntityId])
+    }, [offices, intel, chainMatrix, activeLayers, hoveredEntityId, institutionalHoldings, viewMode])
 
     // ===== Compute interactive HTML overlay nodes for intel layers =====
     // Helper: check if a node should be dimmed based on hover adjacency
@@ -570,13 +609,35 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             }
         }
 
+        // Institutional Holder nodes: show at holder HQ with rank info
+        if (activeLayers.has('institutionalHoldings')) {
+            Object.entries(institutionalHoldings).forEach(([ticker, companyData]) => {
+                companyData.top_holders.forEach((holder, i) => {
+                    const holderId = `ih-${ticker}-${i}`
+                    const detail = viewMode === 'company'
+                        ? `#${holder.rank} · ${holder.ownership_pct_formatted} ownership · ${holder.value_formatted}`
+                        : `${companyData.company_name} · #${holder.rank} · ${holder.ownership_pct_formatted}`
+                    rawNodes.push({
+                        lat: holder.lat, lng: holder.lng,
+                        layerType: 'institutionalHolder',
+                        label: holder.institution.split(' ').slice(0, 3).join(' '),
+                        sublabel: `${holder.city}, ${holder.country}`,
+                        detail,
+                        color: '#c5a880', // Gold for institutional holders
+                        id: holderId,
+                        entity: { type: 'institutionalHolder', data: { ...holder, companyTicker: ticker } }
+                    })
+                })
+            })
+        }
+
         // Assign stack positions for overlapping nodes, then add dimmed state
         const stacked = assignStackPositions(rawNodes, 0.5)
         return stacked.map(node => ({
             ...node,
             dimmed: isDimmedNode(node.id),
         }))
-    }, [intel, activeLayers, offices, riskConvergence, chokepointAnalysis, viewMode, isDimmedNode])
+    }, [intel, activeLayers, offices, riskConvergence, chokepointAnalysis, viewMode, isDimmedNode, institutionalHoldings])
 
     // Build an HTML element for each intel node overlay
     const handleHtmlElement = useCallback((d: object) => {
@@ -589,7 +650,7 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
         const { dx, dy } = getStackOffset(node.stackIndex, node.stackTotal)
         wrapper.style.cssText = `--node-color: ${node.color}; --stack-dx: ${dx}px; --stack-dy: ${dy}px;`
 
-        // Render an SVG shield for regionalRisk, regular dot for everything else
+        // Render specialized markers for different layer types
         if (node.layerType === 'regionalRisk') {
             const shield = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
             shield.setAttribute('viewBox', '0 0 24 24')
@@ -598,6 +659,15 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
             shield.setAttribute('class', 'intel-node-shield')
             shield.innerHTML = `<path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z" fill="${node.color}" stroke="rgba(253,252,240,0.9)" stroke-width="1.5"/>`
             wrapper.appendChild(shield)
+        } else if (node.layerType === 'institutionalHolder') {
+            // Gold diamond for institutional holders
+            const diamond = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+            diamond.setAttribute('viewBox', '0 0 24 24')
+            diamond.setAttribute('width', '18')
+            diamond.setAttribute('height', '18')
+            diamond.setAttribute('class', 'intel-node-diamond')
+            diamond.innerHTML = `<rect x="2" y="2" width="20" height="20" rx="2" fill="${node.color}" stroke="rgba(253,252,240,0.95)" stroke-width="1.5" transform="rotate(45, 12, 12)"/>`
+            wrapper.appendChild(diamond)
         } else {
             const dot = document.createElement('div')
             dot.className = `intel-node-dot type-${node.layerType}`
