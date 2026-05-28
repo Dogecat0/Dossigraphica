@@ -112,9 +112,68 @@ The pipeline defaults to Gemini. To use a local model, set `LLM_PROVIDER=local` 
 
 ## Data Management
 
-- **Register a new company:** Drop its JSON intel file in `public/data/intel/`, then run `python scripts/register_intel.py` to rebuild `src/data/companies.json`.
-- **Regenerate global analysis:** Run `python scripts/generate_analysis.py` to rebuild the Value Chain Matrix, Risk Convergence, and Chokepoint Analysis from all registered intel files.
-- **Live research:** Use the "View Dossier" button in the header to trigger the pipeline against any registered company.
+- **Live research:** Use the "View Dossier" button in the header to trigger the 8-stage pipeline against any registered company.
+- **Register intel files:** After the pipeline produces a dossier, run the intel registry to make it visible on the globe.
+- **Regenerate global analysis:** After registering new intel, run the analysis generator to rebuild cross-company views.
+
+### Intel Registry
+
+After the research pipeline produces a company dossier and places it in `public/data/intel/`, run the registry script to make it available in the frontend navigation and globe:
+
+```bash
+python scripts/register_intel.py
+```
+
+**What the script does:**
+1. Scans all `public/data/intel/*.json` files for company metadata
+2. Extracts `company`, `website`, `ticker`, `sector`, `description`, and `offices` from each dossier
+3. Writes a consolidated `src/data/companies.json` — the single source consumed by
+   the company selector dropdown and the 3D globe's initial node layout
+4. The globe renders offices from every registered company immediately, even before
+   the user triggers a live research run
+
+**When to run:** Every time a new intel JSON file is placed in `public/data/intel/`.
+The script is idempotent — it always rebuilds from scratch by scanning the directory.
+
+**Adding a company manually:** Drop a properly structured JSON intel file into
+`public/data/intel/` and re-run the registry. The script handles malformed files
+individually without crashing the entire registration.
+
+### Cross-Company Analysis Generator
+
+Aggregates all registered intel files into the three cross-company views shown in
+the Global Strategy Hub (accessible via the "Global Strategy" button in the header):
+
+```bash
+python scripts/generate_analysis.py
+```
+
+**What the script does:**
+1. Loads every intel file from `public/data/intel/` and builds three analysis files:
+
+   **Value Chain Matrix** (`public/data/research/chain_matrix.json`) — Maps
+   buyer-supplier dependencies by resolving supply chain and customer concentration
+data from each dossier. Normalises company names through a manual alias table
+(e.g., "TSMC" → "TSM") and parses revenue share percentages (including projected
+ranges like "11-15% (Proj.)") to assign dependency strength.
+
+   **Macro Risk Convergence** (`public/data/research/risk_convergence.json`) —
+   Aggregates geopolitical risks by geographic region. Companies contributing to
+   the same region are merged; risk scores are normalised to a 0-10 scale and
+   dimensions (e.g., "Regulatory", "Trade Restrictions") are collected for each
+   region.
+
+   **Chokepoint Analysis** (`public/data/research/chokepoint_analysis.json`) —
+   Programmatically identifies critical infrastructure bottlenecks by matching
+   supply chain entries against known chokepoints (TSMC Hsinchu Hub, ASML EUV
+   Monopsony). Each chokepoint lists the exposed companies and its geographic
+   coordinates.
+
+2. All three files carry a `lastUpdated` ISO timestamp for staleness tracking
+
+**When to run:** After registering new intel or updating existing dossiers.
+The generator always processes every registered company — incremental rebuild
+is handled by the glob-based load (it loads whatever is on disk).
 
 ### Institutional Holdings Data
 
