@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "update-holdings": "node scripts/fetch_13f_holdings.mjs"
   },
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
