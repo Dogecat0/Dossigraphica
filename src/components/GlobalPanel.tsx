@@ -1,13 +1,15 @@
 import { useCallback, useMemo, useState } from 'react'
 import {
     Network, ShieldAlert, Target, Loader2, ArrowRight,
-    Globe, AlertTriangle, MapPin, ChevronDown
+    Globe, AlertTriangle, MapPin, ChevronDown, Coins
 } from 'lucide-react'
 import type {
-    ChainMatrix, RiskConvergence, ChokepointAnalysis, DependencyLink
+    ChainMatrix, RiskConvergence, ChokepointAnalysis, DependencyLink, InstitutionalHoldingsMap
 } from '../types'
+import institutionalHoldingsData from '../data/institutional_holders.json'
+const institutionalHoldings = institutionalHoldingsData as InstitutionalHoldingsMap
 
-type TabId = 'overview' | 'chain' | 'risks' | 'chokepoints'
+type TabId = 'overview' | 'chain' | 'risks' | 'chokepoints' | 'holdings'
 
 interface GlobalPanelProps {
     chainMatrix: ChainMatrix | null
@@ -26,6 +28,7 @@ const TABS: { id: TabId; label: string; icon: typeof Globe }[] = [
     { id: 'chain', label: 'Value Chain', icon: Network },
     { id: 'risks', label: 'Macro Risks', icon: ShieldAlert },
     { id: 'chokepoints', label: 'Chokepoints', icon: Target },
+    { id: 'holdings', label: 'Holdings', icon: Coins },
 ]
 
 /** Known tracked tickers in the system */
@@ -116,7 +119,10 @@ export default function GlobalPanel({
 
             {/* Index Tabs */}
             <div className="flex flex-nowrap overflow-x-auto max-md:px-4 px-8 mt-4 pb-[2px]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                {TABS.map(tab => (
+                {TABS.filter(t => {
+                    if (t.id === 'holdings') return Object.keys(institutionalHoldings).length > 0
+                    return true
+                }).map(tab => (
                     <button
                         key={tab.id}
                         onClick={() => onTabChange(tab.id as TabId)}
@@ -125,6 +131,9 @@ export default function GlobalPanel({
                         {tab.label}
                     </button>
                 ))}
+                {/* Spacer to guarantee padding-right on scrollable overflow */}
+                <div style={{ minWidth: '32px', height: '1px' }} className="shrink-0 max-md:hidden pointer-events-none" />
+                <div style={{ minWidth: '16px', height: '1px' }} className="shrink-0 md:hidden pointer-events-none" />
             </div>
 
             {/* Content Container */}
@@ -134,6 +143,7 @@ export default function GlobalPanel({
                     {activeTab === 'chain' && <ChainTab matrix={chainMatrix} />}
                     {activeTab === 'risks' && <RisksTab risks={riskConvergence} onNavigate={handleNavigate} />}
                     {activeTab === 'chokepoints' && <ChokepointsTab analysis={chokepointAnalysis} onNavigate={handleNavigate} />}
+                    {activeTab === 'holdings' && <HoldingsTab onNavigate={handleNavigate} />}
                     
                     {/* Dossier Footer */}
                     <div className="mt-12 pt-6 border-t border-[var(--color-border-muted)] text-center">
@@ -256,13 +266,6 @@ function ChainTab({ matrix }: { matrix: ChainMatrix | null }) {
 
         return { groups: sorted, totalDeps: matrix.dependencies.length, criticalDeps: critical }
     }, [matrix])
-
-    // Auto-expand first group on mount
-    useMemo(() => {
-        if (groups.length > 0 && expandedGroups.size === 0) {
-            setExpandedGroups(new Set([groups[0].ticker]))
-        }
-    }, [groups]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const toggleGroup = useCallback((ticker: string) => {
         setExpandedGroups(prev => {
@@ -546,6 +549,197 @@ function ChokepointsTab({ analysis, onNavigate }: { analysis: ChokepointAnalysis
                         </button>
                     </div>
                 ))}
+            </div>
+        </div>
+    )
+}
+
+/* ================================================================
+   HOLDINGS TAB — Aggregate Institutional Holdings Across All Entities
+   ================================================================ */
+
+function HoldingsTab({ onNavigate }: { onNavigate: (lat: number, lng: number) => void }) {
+    const tickers = Object.keys(institutionalHoldings);
+    const totalValue = tickers.reduce((sum, t) => sum + institutionalHoldings[t].total_institutional_value, 0);
+
+    // Aggregate holders across companies by institution name
+    const aggregatedByInstitution = useMemo(() => {
+        const aggMap = new Map<string, {
+            institution: string
+            city: string
+            country: string
+            lat: number
+            lng: number
+            totalValue: number
+            companies: { ticker: string; company_name: string; value: number; ownership_pct: number; ownership_pct_formatted: string; rank: number }[]
+        }>()
+
+        tickers.forEach(ticker => {
+            const company = institutionalHoldings[ticker]
+            company.top_holders.forEach(holder => {
+                const key = holder.institution
+                const existing = aggMap.get(key)
+                if (existing) {
+                    existing.totalValue += holder.value
+                    existing.companies.push({
+                        ticker,
+                        company_name: company.company_name,
+                        value: holder.value,
+                        ownership_pct: holder.ownership_pct,
+                        ownership_pct_formatted: holder.ownership_pct_formatted,
+                        rank: holder.rank
+                    })
+                } else {
+                    aggMap.set(key, {
+                        institution: holder.institution,
+                        city: holder.city,
+                        country: holder.country,
+                        lat: holder.lat,
+                        lng: holder.lng,
+                        totalValue: holder.value,
+                        companies: [{
+                            ticker,
+                            company_name: company.company_name,
+                            value: holder.value,
+                            ownership_pct: holder.ownership_pct,
+                            ownership_pct_formatted: holder.ownership_pct_formatted,
+                            rank: holder.rank
+                        }]
+                    })
+                }
+            })
+        })
+
+        return Array.from(aggMap.values()).sort((a, b) => b.totalValue - a.totalValue)
+    }, [])
+
+    if (tickers.length === 0) {
+        return (
+            <div className="text-center p-8 border border-dashed border-[var(--color-border-muted)] rounded animate-fade-in">
+                <p className="text-sm font-mono text-[var(--color-ink-light)] uppercase tracking-wider">No institutional holdings data available</p>
+            </div>
+        )
+    }
+
+    return (
+        <div className="space-y-8 animate-fade-in">
+            {/* Total Aggregate Summary */}
+            <section className="bg-white border-l-4 border-[var(--color-accent-gold)] rounded shadow-executive p-6">
+                <p className="text-[10px] font-mono uppercase tracking-[0.2em] mb-2 text-[var(--color-ink-light)] font-bold">
+                    Total Tracked Institutional Value Across All Entities
+                </p>
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h4 className="text-3xl font-serif font-bold text-[var(--color-ink)]">
+                        {`$${totalValue.toLocaleString()}`}
+                    </h4>
+                    <span className="text-[9px] font-mono font-bold border border-[var(--color-border-muted)] text-[var(--color-ink-light)] px-2 py-0.5 rounded">
+                        SOURCE: SEC 13F
+                    </span>
+                </div>
+            </section>
+
+            {/* Per-Company Breakdown */}
+            <div className="space-y-6">
+                <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1">
+                    Holdings by Company
+                </p>
+                {tickers.map(ticker => {
+                    const company = institutionalHoldings[ticker]
+                    return (
+                        <div key={ticker} className="dep-group expanded">
+                            <div className="dep-group-header">
+                                <div className="flex items-center gap-3">
+                                    <span className="text-sm font-serif font-bold text-[var(--color-ink)]">{ticker}</span>
+                                    <span className="text-[10px] font-mono text-[var(--color-ink-light)] font-bold">{company.company_name}</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-[10px] font-mono font-bold text-[var(--color-ink)]">
+                                        {company.top_holders.length} holder{company.top_holders.length !== 1 ? 's' : ''}
+                                    </span>
+                                    <span className="text-[9px] font-mono font-bold border border-[var(--color-accent-gold)] text-[var(--color-accent-gold)] px-1.5 py-0.5 rounded">
+                                        {company.shares_outstanding ? `${company.top_holders.reduce((sum, h) => sum + h.ownership_pct, 0).toFixed(2)}% tracked` : ''}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="dep-group-body">
+                                {company.top_holders.map(holder => (
+                                    <div key={holder.rank} className="dep-row hover:bg-[var(--color-bg-paper-dark)]">
+                                        <span className="text-[9px] font-mono font-bold text-[var(--color-accent-gold)] bg-[var(--color-accent-gold)]/10 px-1.5 py-0.5 rounded border border-[var(--color-accent-gold)]/20 flex-shrink-0">
+                                            #{holder.rank}
+                                        </span>
+                                        <div className="flex-1 min-w-0 ml-2">
+                                            <span className="text-xs font-serif font-bold text-[var(--color-ink)]">{holder.institution}</span>
+                                            <p className="text-[10px] font-serif italic text-[var(--color-ink-muted)] leading-snug mt-0.5">
+                                                {holder.value_formatted} · {holder.shares.toLocaleString()} shares · <strong>{holder.ownership_pct_formatted} ownership</strong>
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); onNavigate(holder.lat, holder.lng) }}
+                                            className="text-[9px] font-mono font-bold border border-[var(--color-border-muted)] rounded px-2 py-1 hover:bg-[var(--color-ink)] hover:text-white hover:border-[var(--color-ink)] transition-all flex items-center gap-1 flex-shrink-0 cursor-pointer"
+                                        >
+                                            <MapPin size={10} />
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            {/* Top Aggregated Institutional Holders Across All Entities */}
+            <div className="space-y-4">
+                <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1">
+                    Top Institutional Holders (Aggregated Across All Entities)
+                </p>
+                <div className="space-y-4">
+                    {aggregatedByInstitution.slice(0, 15).map((inst, i) => (
+                        <div key={inst.institution} className="bg-white border border-[var(--color-border-muted)] rounded shadow-executive hover:border-[var(--color-accent-gold)] p-5 transition-all">
+                            <div className="flex items-start justify-between gap-4 mb-3">
+                                <div className="min-w-[150px] flex-1">
+                                    <h4 className="text-lg font-serif font-bold text-[var(--color-ink)] flex items-center gap-2">
+                                        <span className="text-xs font-mono font-bold text-[var(--color-accent-gold)] bg-[var(--color-accent-gold)]/10 px-2 py-0.5 rounded border border-[var(--color-accent-gold)]/20">
+                                            #{i + 1}
+                                        </span>
+                                        {inst.institution}
+                                    </h4>
+                                    <p className="text-[10px] font-mono text-[var(--color-ink-light)] mt-1 font-bold">
+                                        {inst.city}, {inst.country}
+                                    </p>
+                                </div>
+                                <div className="text-right max-sm:text-left">
+                                    <p className="text-base font-serif font-bold text-[var(--color-ink)]">
+                                        ${inst.totalValue.toLocaleString()}
+                                    </p>
+                                    <p className="text-[9px] font-mono text-[var(--color-ink-light)] font-bold">
+                                        {inst.companies.length} entit{inst.companies.length !== 1 ? 'ies' : 'y'}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Holdings in each company */}
+                            <div className="border-t border-[var(--color-border-muted)] pt-3">
+                                <p className="text-[9px] font-mono font-bold uppercase text-[var(--color-ink-light)] mb-2 tracking-wider">Holdings</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {inst.companies.map(c => (
+                                        <span key={c.ticker} className="text-[9px] font-mono font-bold bg-[var(--color-bg-paper-dark)] text-[var(--color-ink)] border border-[var(--color-border-muted)] px-2 py-0.5 rounded transition-colors hover:border-[var(--color-accent-gold)]">
+                                            {c.ticker}: {c.ownership_pct_formatted}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mt-3 flex justify-end">
+                                <button
+                                    onClick={() => onNavigate(inst.lat, inst.lng)}
+                                    className="text-[10px] font-mono font-bold border border-[var(--color-border-muted)] rounded px-3 py-1.5 transition-all flex items-center gap-2 hover:bg-[var(--color-ink)] hover:text-white hover:border-[var(--color-ink)] cursor-pointer"
+                                >
+                                    VIEW ON MAP <ArrowRight size={10} />
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

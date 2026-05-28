@@ -7,8 +7,11 @@ import LayerToggle from './components/LayerToggle'
 import IntelPanel from './components/IntelPanel'
 import GlobalPanel from './components/GlobalPanel'
 import companiesData from './data/companies.json'
+import institutionalHoldingsData from './data/institutional_holders.json'
+
+const institutionalHoldings = institutionalHoldingsData as InstitutionalHoldingsMap
 import { useGeoIntel } from './useGeoIntel'
-import type { Company, Office, LayerName, MapEntity } from './types'
+import type { Company, Office, LayerName, MapEntity, InstitutionalHoldingsMap, InstitutionalHolderData } from './types'
 import { PanelRightClose, PanelRightOpen, X } from 'lucide-react'
 
 const companies = companiesData as Company[]
@@ -38,9 +41,9 @@ export default function App() {
     const viewMode = selectedCompany ? 'company' : 'global'
 
     // UI state
-    const [activeLayers, setActiveLayers] = useState<Set<LayerName>>(new Set(['chain', 'risks', 'chokepoints', 'offices']))
+    const [activeLayers, setActiveLayers] = useState<Set<LayerName>>(new Set(['chain', 'risks', 'chokepoints', 'offices', 'institutionalHoldings']))
     const [selectedEntity, setSelectedEntity] = useState<MapEntity | null>(null)
-    const [globalTab, setGlobalTab] = useState<'overview' | 'chain' | 'risks' | 'chokepoints'>('overview')
+    const [globalTab, setGlobalTab] = useState<'overview' | 'chain' | 'risks' | 'chokepoints' | 'holdings'>('overview')
 
     const globeRef = useRef<GlobeViewHandle>(null)
 
@@ -63,7 +66,7 @@ export default function App() {
         if (selectedCompany) {
             fetchGeoIntelData(selectedCompany.ticker)
             // Auto-switch layers for company view
-            setActiveLayers(new Set(['offices', 'supplyChain', 'customers', 'risks']))
+            setActiveLayers(new Set(['offices', 'supplyChain', 'customers', 'risks', 'institutionalHoldings']))
             setSelectedEntity(null) // Clear selection
             
             // Initial fly-to HQ
@@ -73,14 +76,14 @@ export default function App() {
             }
         } else {
             // Auto-switch layers for global view
-            setActiveLayers(new Set(['chain', 'risks', 'chokepoints', 'offices']))
+            setActiveLayers(new Set(['chain', 'risks', 'chokepoints', 'offices', 'institutionalHoldings']))
             setSelectedEntity(null)
             setGlobalTab('overview')
         }
     }, [selectedCompany, fetchGeoIntelData])
 
     // Handle Global Tab Changes (Dynamic Filtering)
-    const handleGlobalTabChange = useCallback((tab: 'overview' | 'chain' | 'risks' | 'chokepoints') => {
+    const handleGlobalTabChange = useCallback((tab: 'overview' | 'chain' | 'risks' | 'chokepoints' | 'holdings') => {
         setGlobalTab(tab)
         if (viewMode === 'global') {
             switch (tab) {
@@ -95,6 +98,9 @@ export default function App() {
                     break
                 case 'chokepoints':
                     setActiveLayers(new Set(['chokepoints']))
+                    break
+                case 'holdings':
+                    setActiveLayers(new Set(['institutionalHoldings', 'offices']))
                     break
             }
         }
@@ -152,12 +158,21 @@ export default function App() {
         return result
     }, [viewMode, selectedCompany, geoIntelligence, chainMatrix])
 
-    // Fix EntityPopup company lookup bug (for offices)
+    // Fix EntityPopup company lookup bug (for offices and institutional holders)
     const popupCompany = useMemo(() => {
-        if (!selectedEntity || selectedEntity.type !== 'office') return null
-        const office = selectedEntity.data as Office
-        if (selectedCompany && office.companyId === selectedCompany.ticker) return selectedCompany
-        return companies.find(c => c.ticker === office.companyId) || null
+        if (!selectedEntity) return null
+        if (selectedEntity.type === 'office') {
+            const office = selectedEntity.data as Office
+            if (selectedCompany && office.companyId === selectedCompany.ticker) return selectedCompany
+            return companies.find(c => c.ticker === office.companyId) || null
+        }
+        if (selectedEntity.type === 'institutionalHolder') {
+            const holder = selectedEntity.data as InstitutionalHolderData & { companyTicker?: string }
+            const ticker = holder.companyTicker
+            if (selectedCompany && ticker === selectedCompany.ticker) return selectedCompany
+            return companies.find(c => c.ticker === ticker) || null
+        }
+        return null
     }, [selectedEntity, selectedCompany])
 
     const handleEntityClick = useCallback((entity: MapEntity | null) => {
@@ -221,6 +236,7 @@ export default function App() {
                         chainMatrix={chainMatrix}
                         riskConvergence={riskConvergence}
                         chokepointAnalysis={chokepointAnalysis}
+                        institutionalHoldings={institutionalHoldings}
                         activeLayers={activeLayers}
                     />
                 </div>
