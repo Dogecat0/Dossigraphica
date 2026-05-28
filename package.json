@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "update-holdings": "node scripts/fetch_13f_holdings.mjs"
+    "update-holdings": "python3 scripts/fetch_13f_holdings.py"
   },
   "dependencies": {
     "@mozilla/readability": "^0.6.0",
