@@ -1,7 +1,8 @@
 import { useState, useCallback, useMemo } from 'react'
 import {
     Building2, DollarSign, Link2, Users, ShieldAlert,
-    FileText, MapPin, AlertTriangle, Loader2, ArrowRight
+    FileText, MapPin, AlertTriangle, Loader2, ArrowRight,
+    Coins
 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
@@ -11,8 +12,11 @@ import type {
     CustomerNode, GeopoliticalRisk
 } from '../types'
 import AnimatedNumber from './AnimatedNumber'
+import institutionalHoldingsData from '../data/institutional_holders.json'
+import type { InstitutionalHoldingsMap } from '../types'
+const institutionalHoldings = institutionalHoldingsData as InstitutionalHoldingsMap
 
-type TabId = 'overview' | 'revenue' | 'supply' | 'customers' | 'risks' | 'research'
+type TabId = 'overview' | 'revenue' | 'supply' | 'customers' | 'risks' | 'holdings' | 'research'
 
 interface IntelPanelProps {
     intel: GeoIntelligence | null
@@ -29,6 +33,7 @@ const TABS: { id: TabId; label: string; icon: typeof Building2 }[] = [
     { id: 'supply', label: 'Supply Chain', icon: Link2 },
     { id: 'customers', label: 'Customers', icon: Users },
     { id: 'risks', label: 'Risks', icon: ShieldAlert },
+    { id: 'holdings', label: 'Holdings', icon: Coins },
     { id: 'research', label: 'Research', icon: FileText },
 ]
 
@@ -59,8 +64,12 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
         if (!markdown) {
             tabs = tabs.filter(t => t.id !== 'research')
         }
+        const hasHoldings = intel && institutionalHoldings[intel.ticker];
+        if (!hasHoldings) {
+            tabs = tabs.filter(t => t.id !== 'holdings')
+        }
         return tabs
-    }, [markdown])
+    }, [markdown, intel])
 
     if (loading) return (
         <div className="flex-1 flex flex-col items-center justify-center p-12 text-center bg-[var(--color-bg-paper)]">
@@ -120,6 +129,9 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
                         {tab.label}
                     </button>
                 ))}
+                {/* Spacer to guarantee padding-right on scrollable overflow */}
+                <div style={{ minWidth: '32px', height: '1px' }} className="shrink-0 max-md:hidden pointer-events-none" />
+                <div style={{ minWidth: '16px', height: '1px' }} className="shrink-0 md:hidden pointer-events-none" />
             </div>
 
             {/* Content Container (Paper style) */}
@@ -130,6 +142,7 @@ export default function IntelPanel({ intel, loading, error, markdown, onClose, o
                     {activeTab === 'supply' && <SupplyChainTab nodes={intel.supplyChain} onNavigate={handleNavigate} />}
                     {activeTab === 'customers' && <CustomersTab customers={intel.customerConcentration} onNavigate={handleNavigate} />}
                     {activeTab === 'risks' && <RisksTab risks={intel.geopoliticalRisks} onNavigate={handleNavigate} />}
+                    {activeTab === 'holdings' && <HoldingsTab ticker={intel.ticker} onNavigate={handleNavigate} />}
                     {activeTab === 'research' && markdown && <ResearchTab markdown={markdown} onNavigate={handleNavigate} />}
 
                     {/* Dossier Footer */}
@@ -439,6 +452,85 @@ function StatCell({ label, value }: { label: string; value: string }) {
         <div className="bg-white border border-[var(--color-border-muted)] rounded shadow-executive p-4 flex flex-col justify-center hover:border-[var(--color-accent-gold)] transition-colors">
             <p className="text-[9px] font-mono uppercase tracking-widest text-[var(--color-ink-light)] mb-1 font-bold">{label}</p>
             <p className="text-2xl font-serif font-bold text-[var(--color-ink)]">{value}</p>
+        </div>
+    )
+}
+
+function HoldingsTab({ ticker, onNavigate }: { ticker: string; onNavigate: (lat: number, lng: number) => void }) {
+    const holdings = institutionalHoldings[ticker]
+    if (!holdings) {
+        return (
+            <div className="text-center p-8 border border-dashed border-[var(--color-border-muted)] rounded">
+                <p className="text-sm font-mono text-[var(--color-ink-light)] uppercase tracking-wider">No ownership records found</p>
+            </div>
+        )
+    }
+
+    return (
+        <div className="space-y-6 animate-fade-in">
+            {/* Total Institutional Ownership Summary */}
+            <section className="bg-white border-l-4 border-[var(--color-accent-gold)] rounded shadow-executive p-6">
+                <p className="text-[10px] font-mono uppercase tracking-[0.2em] mb-2 text-[var(--color-ink-light)] font-bold">
+                    Total Tracked Institutional Value
+                </p>
+                <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                    <h4 className="text-3xl font-serif font-bold text-[var(--color-ink)]">
+                        {`$${holdings.total_institutional_value.toLocaleString()}`}
+                    </h4>
+                    <span className="text-[9px] font-mono font-bold border border-[var(--color-border-muted)] text-[var(--color-ink-light)] px-2 py-0.5 rounded">
+                        SOURCE: SEC 13F
+                    </span>
+                </div>
+                <p className="text-xs font-serif italic text-[var(--color-ink-muted)]">
+                    Aggregate assets held across major investment managers reported in recent filing periods.
+                </p>
+            </section>
+
+            {/* List of Top Institutional Holders */}
+            <div className="space-y-4">
+                <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-accent-gold)] border-b border-[var(--color-border-muted)] pb-1">
+                    Top Institutional Holders
+                </p>
+                <div className="space-y-4">
+                    {holdings.top_holders.map((holder) => (
+                        <div key={holder.rank} className="bg-white border border-[var(--color-border-muted)] rounded shadow-executive hover:border-[var(--color-accent-gold)] p-5 transition-all">
+                            <div className="flex flex-wrap items-start justify-between gap-4 mb-2">
+                                <div className="min-w-[150px] flex-1">
+                                    <h4 className="text-lg font-serif font-bold text-[var(--color-ink)] flex items-center gap-2">
+                                        <span className="text-xs font-mono font-bold text-[var(--color-accent-gold)] bg-[var(--color-accent-gold)]/10 px-2 py-0.5 rounded border border-[var(--color-accent-gold)]/20">
+                                            #{holder.rank}
+                                        </span>
+                                        {holder.institution}
+                                    </h4>
+                                    <p className="text-[10px] font-mono text-[var(--color-ink-light)] mt-1 font-bold">
+                                        Reported: {holder.report_period}
+                                    </p>
+                                </div>
+                                <div className="text-right max-sm:text-left">
+                                    <p className="text-base font-serif font-bold text-[var(--color-ink)]">
+                                        {holder.value_formatted}
+                                    </p>
+                                    <p className="text-[9px] font-mono text-[var(--color-ink-light)] font-bold">
+                                        {holder.shares.toLocaleString()} shares
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="mt-3 flex flex-wrap items-center justify-between border-t border-[var(--color-border-muted)] pt-3 gap-3">
+                                <p className="text-xs font-mono text-[var(--color-ink-muted)] flex items-center gap-1.5">
+                                    <MapPin size={10} className="text-[var(--color-accent-gold)]" /> {holder.city}, {holder.country}
+                                </p>
+                                <button
+                                    onClick={() => holder.lat && holder.lng && onNavigate(holder.lat, holder.lng)}
+                                    className={`text-[10px] font-mono font-bold border border-[var(--color-border-muted)] rounded px-3 py-1.5 transition-all flex items-center gap-2 hover:bg-[var(--color-ink)] hover:text-white hover:border-[var(--color-ink)] cursor-pointer`}
+                                >
+                                    VIEW ON MAP <ArrowRight size={10} />
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
