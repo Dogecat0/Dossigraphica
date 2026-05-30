@@ -16,7 +16,8 @@ def reconstruct_state_from_logs(query: str, log_dir: str) -> ResearchState:
     if os.path.exists(blocklist_path):
         try:
             with open(blocklist_path, "r") as f:
-                state.blocked_domains = set(json.load(f))
+                raw = json.load(f)
+                state.blocked_domains = {k: int(v) for k, v in raw.items()} if isinstance(raw, dict) else {d: 1 for d in raw}
             if state.blocked_domains:
                 logging.getLogger(__name__).info(
                     f"Loaded {len(state.blocked_domains)} blocked domains from disk: {state.blocked_domains}"

@@ -27,7 +27,7 @@ class ResearchState(BaseModel):
     search_results: List[dict] = []
     raw_content: List[dict] = []
     enrichment_queries: List[str] = []
-    blocked_domains: set[str] = Field(default_factory=set, description="Domains that returned HTTP 451 from Jina, skipped in subsequent extractions.")
+    blocked_domains: dict[str, int] = Field(default_factory=dict, description="Domain → how many times it returned HTTP 451 from Jina. Used to prioritize -site: exclusions.")
     nudge_count: int = 0
     is_exhausted: bool = False
     is_complete: bool = False

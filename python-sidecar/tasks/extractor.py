@@ -46,7 +46,7 @@ def _persist_blocklist(state: ResearchState) -> None:
     """Write the current blocked_domains set to disk for cross-run persistence."""
     try:
         with open(BLOCKLIST_PATH, "w") as f:
-            json.dump(sorted(state.blocked_domains), f, indent=2)
+            json.dump(dict(sorted(state.blocked_domains.items(), key=lambda x: -x[1])), f, indent=2)
         logger.debug(f"Blocklist persisted ({len(state.blocked_domains)} domains): {BLOCKLIST_PATH}")
     except Exception as e:
         logger.error(f"Failed to persist blocklist: {e}")
@@ -60,10 +60,11 @@ async def _jina_http_fetch(url: str, client: httpx.AsyncClient, state: ResearchS
     except httpx.HTTPStatusError as e:
         if e.response.status_code == 451:
             domain = urlparse(url).netloc.lower().replace("www.", "")
-            if domain not in state.blocked_domains:
-                state.blocked_domains.add(domain)
+            was_new = domain not in state.blocked_domains
+            state.blocked_domains[domain] = state.blocked_domains.get(domain, 0) + 1
+            if was_new:
                 _persist_blocklist(state)
-                logger.warning(f"HTTP 451 for {url} — domain '{domain}' blocked.")
+            logger.warning(f"HTTP 451 for {url} — domain '{domain}' blocked. (count={state.blocked_domains[domain]})")
         else:
             logger.warning(f"Jina fetch failed for {url}: HTTP {e.response.status_code}")
         return None
@@ -355,10 +356,11 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
                             if e.response.status_code == 451:
                                 # Domain blocked by Jina (Legal) — remember and persist if new
                                 domain = urlparse(url).netloc.lower().replace("www.", "")
-                                if domain not in state.blocked_domains:
-                                    state.blocked_domains.add(domain)
+                                was_new = domain not in state.blocked_domains
+                                state.blocked_domains[domain] = state.blocked_domains.get(domain, 0) + 1
+                                if was_new:
                                     _persist_blocklist(state)
-                                    logger.warning(f"HTTP 451 for {url} — domain '{domain}' added to blocklist.")
+                                logger.warning(f"HTTP 451 for {url} — domain '{domain}' blocked. (count={state.blocked_domains[domain]})")
                                 return None
                             elif e.response.status_code == 429:
                                 # Rate Limit Hit: Exponential backoff or Retry-After

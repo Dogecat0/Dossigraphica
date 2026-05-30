@@ -18,6 +18,50 @@ _search_cache = DiskCache("search_cache.json")
 _tinyfish_search_cache = DiskCache("tinyfish_search_cache.json")
 _tinyfish_search_limiter = MinuteRateLimiter(TINYFISH_SEARCH_RPM)
 
+# Max TinyFish query-param length (conservative; actual server limit is ~8 KB via GET)
+MAX_TINYFISH_QUERY_LENGTH = 6000
+
+
+def _build_site_exclusions(query: str, blocked: dict[str, int]) -> str:
+    """
+    Append `-site:domain.com` exclusions to a TinyFish search query,
+    sorted by block frequency (most-blocked first). Truncates at
+    MAX_TINYFISH_QUERY_LENGTH so the total query stays under the
+    practical GET-request limit.
+
+    Args:
+        query: The original search query string.
+        blocked: dict of domain → block-count.
+
+    Returns:
+        The query string with as many -site: exclusions as fit within
+        MAX_TINYFISH_QUERY_LENGTH, ordered by descending count.
+    """
+    if not blocked:
+        return query
+
+    sorted_domains = sorted(blocked.items(), key=lambda x: -x[1])
+
+    exclusion_parts: list[str] = []
+    for domain, count in sorted_domains:
+        term = f"-site:{domain}"
+        candidate_length = len(query) + sum(len(p) + 1 for p in exclusion_parts) + 1 + len(term)
+        if candidate_length <= MAX_TINYFISH_QUERY_LENGTH:
+            exclusion_parts.append(term)
+
+    fitted = len(exclusion_parts)
+    total = len(sorted_domains)
+    if fitted < total:
+        logger.debug(
+            f"Query length limit reached: fitted {fitted}/{total} -site: exclusions "
+            f"(dropped {sorted_domains[fitted][0]} with count={sorted_domains[fitted][1]}, "
+            f"and {total - fitted - 1} less-frequent domains)"
+        )
+
+    if exclusion_parts:
+        return query + " " + " ".join(exclusion_parts)
+    return query
+
 
 async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
     """
@@ -41,7 +85,8 @@ async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
     
     async with httpx.AsyncClient(timeout=30.0) as client:
         async def fetch_query(query: str, index: int):
-            cache_key = query.strip().lower()
+            enriched_query = _build_site_exclusions(query, state.blocked_domains)
+            cache_key = enriched_query.strip().lower()
             cached = _tinyfish_search_cache.get(cache_key)
             if cached is not None:
                 logger.debug(f"TinyFish Search cache HIT for query: '{query}' ({len(cached)} results)")
@@ -57,7 +102,7 @@ async def _run_tinyfish_search(state: ResearchState) -> ResearchState:
                         "X-API-Key": TINYFISH_API_KEY
                     }
                     params = {
-                        "query": query
+                        "query": enriched_query
                     }
 
                     response = await client.get(url, headers=headers, params=params)
