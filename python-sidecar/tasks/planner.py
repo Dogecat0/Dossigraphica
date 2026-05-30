@@ -14,6 +14,7 @@ SEARCHABLE_FIELDS = [
     "supplyChain",
     "customerConcentration",
     "geopoliticalRisks",
+    "anchorFiling",
 ]
 
 def _get_rigid_quarters_block(lookback: int) -> str:

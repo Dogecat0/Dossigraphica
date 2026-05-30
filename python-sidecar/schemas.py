@@ -152,7 +152,7 @@ class GeoIntelligenceSchema(BaseModel):
     website: str | None = Field(..., description="Official URL.")
     sector: str | None = Field(..., description="Industry sector.")
     description: str = Field(..., description="Business summary.")
-    anchorFiling: AnchorFilingSchema = Field(..., description="Primary source filing.")
+    anchorFiling: AnchorFilingSchema = Field(..., description="latest quarterly earnings report filing financial results")
     generatedDate: str = Field(..., description="Current date.")
     offices: List[OfficeSchema] = Field(..., description="Corporate office locations headquarters regional engineering manufacturing sites addresses")
     revenueGeography: RevenueGeographySchema = Field(..., description="Revenue breakdown by geographic region segment percentage growth year-over-year")

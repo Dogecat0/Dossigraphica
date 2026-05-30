@@ -278,7 +278,7 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
             sys_prompt = "Extract anchor filing details. Prioritize the most recent reporting period regardless of document type (10-K, 10-Q, 8-K, Earnings Release, or Transcript)."
             base_prompt = _fill(template, query=state.user_query)
             facts_text = await get_fact_subset(
-                state.extracted_facts, ['CORPORATE'],
+                state.extracted_facts, ['CORPORATE', 'REVENUE', 'SUPPLY_CHAIN', 'CUSTOMERS', 'RISKS', 'OFFICES'],
                 llm=llm, max_tokens=fact_budget, user_query=state.user_query,
             )
             return await draft_section(base_prompt, AnchorFilingSchema, llm, sys_prompt, facts=facts_text)
