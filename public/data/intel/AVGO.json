@@ -1,137 +1,231 @@
 {
   "company": "Broadcom Inc.",
   "ticker": "AVGO",
-  "website": "https://www.broadcom.com",
-  "sector": "Semiconductor and Infrastructure Software",
-  "description": "A global technology leader designing, developing, and supplying semiconductor and infrastructure software solutions, operating a bifurcated geographic model that pairs Western R&D and administration with highly concentrated Indo-Pacific manufacturing and distribution networks.",
+  "website": "www.broadcom.com",
+  "sector": "Information Technology",
+  "description": "Broadcom Inc. is a Delaware corporation headquartered in Palo Alto, California, and a global technology leader that designs, develops, and supplies semiconductor and infrastructure software solutions. The company operates in two segments: Semiconductor Solutions (networking, wireless, storage, broadband, and industrial chips) and Infrastructure Software (mainframe, cybersecurity, enterprise software, and VMware cloud solutions). Broadcom has a vast global geographic footprint, with revenue spanning the Americas, Asia Pacific (including significant contributions from China, Singapore, and Taiwan), and Europe, the Middle East and Africa. In fiscal year 2025, the Americas contributed $18.9 billion, Asia Pacific $35.9 billion, and EMEA $9.1 billion of total net revenue of $63.9 billion. The company has over 33,000 employees worldwide, operates R&D and manufacturing facilities across North America, Asia, and Europe, and serves customers in more than 170 countries. Broadcom trades on the Nasdaq Global Select Market under the ticker symbol AVGO.",
   "anchorFiling": {
+    "reason": "The most recent primary source filing identified is the Form 10-Q for Q1 FY2026 (period ended February 1, 2026), which is the latest SEC filing available. The facts explicitly state 'This is a Form 10-Q quarterly report for the period ended February 1, 2026 (Q1 FY2026).' No later 10-K or 10-Q is referenced, and the next earnings release is scheduled for June 3, 2026 (future).",
     "type": "10-Q",
     "date": "2026-03-04",
-    "fiscalPeriod": "Q1 FY2026"
+    "fiscalPeriod": "Q1 2026"
   },
-  "generatedDate": "2026-03-10",
+  "generatedDate": "2026-05-30",
   "offices": [
     {
-      "id": "avgo-palo-alto-hq",
-      "name": "Broadcom Corporate Headquarters",
+      "id": "AVGO-PALO-ALTO-HQ",
+      "name": "Broadcom Inc. Corporate Headquarters",
       "city": "Palo Alto",
-      "state": "CA",
+      "state": "California",
       "country": "United States",
-      "address": "3421 Hillview Avenue",
-      "lat": 37.3986,
-      "lng": -122.1466,
+      "address": "3421 Hillview Ave, Palo Alto, CA 94304",
+      "lat": 37.418,
+      "lng": -122.143,
+      "businessFocus": "Corporate headquarters, executive management, administration",
       "type": "headquarters",
-      "businessFocus": "Principal executive offices, software engineering, enterprise administration",
-      "size": "561,000 sq ft",
-      "established": "2023",
-      "source": "10-K FY2025, Item 2",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm",
+        "https://www.globaldata.com/company-profile/broadcom-inc/locations/"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "avgo-fort-collins-eng",
-      "name": "Fort Collins Engineering Node",
-      "city": "Fort Collins",
-      "state": "CO",
+      "id": "AVGO-SAN-JOSE-HQ",
+      "name": "Broadcom Inc. San Jose Office (Former HQ)",
+      "city": "San Jose",
+      "state": "California",
       "country": "United States",
-      "address": "4380 Ziegler Road",
-      "lat": 40.5401,
-      "lng": -105.0268,
-      "type": "engineering",
-      "businessFocus": "Engineering, design, internal manufacturing oversight",
-      "source": "10-K FY2025, Item 2",
+      "address": "1320 Ridder Park Drive, San Jose, CA 95131-2313",
+      "lat": 37.386,
+      "lng": -121.896,
+      "businessFocus": "Administration, engineering (historical headquarters)",
+      "type": "regional",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "avgo-batu-kawan-dist",
-      "name": "Global Distribution Hub",
-      "city": "Batu Kawan",
+      "id": "AVGO-FORT-COLLINS-MFG",
+      "name": "Broadcom Fort Collins Fabrication Facility",
+      "city": "Fort Collins",
+      "state": "Colorado",
+      "country": "United States",
+      "address": null,
+      "lat": 40.585,
+      "lng": -105.084,
+      "businessFocus": "Internal GaAs wafer fabrication, sole source for FBAR components used in wireless devices",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AVGO-BREINIGSVILLE-MFG",
+      "name": "Broadcom Breinigsville Fabrication Facility",
+      "city": "Breinigsville",
+      "state": "Pennsylvania",
+      "country": "United States",
+      "address": "9999 Hamilton Blvd, Breinigsville, PA 18031",
+      "lat": 40.543,
+      "lng": -75.656,
+      "businessFocus": "Internal InP wafer fabrication, sole source for indium phosphide-based wafers used in fibre optics products",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.waze.com/live-map/directions/us/pa/breinigsville/broadcom-limited?to=place.ChIJyar-F0eLZUAR-OfgqFvxK18",
+        "https://local.yahoo.com/info-206921547-broadcom-limited-breinigsville/",
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AVGO-SINGAPORE-MFG",
+      "name": "Broadcom Singapore Fabrication Facility",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "1 Yishun Avenue 7, Singapore 768923",
+      "lat": 1.428,
+      "lng": 103.835,
+      "businessFocus": "Internal GaAs wafer fabrication, semiconductor manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AVGO-SINGAPORE-EXEC",
+      "name": "Avago Technologies Limited (Former Principal Executive Offices)",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "1 Yishun Avenue 7, Singapore 768923",
+      "lat": 1.428,
+      "lng": 103.835,
+      "businessFocus": "Former principal executive offices of Avago Technologies Limited",
+      "type": "regional",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AVGO-PENANG-MFG",
+      "name": "Broadcom Penang Manufacturing & Warehouse Facility",
+      "city": "Bayan Lepas",
       "state": "Penang",
       "country": "Malaysia",
-      "lat": 5.2647,
-      "lng": 100.4429,
-      "type": "logistics",
-      "businessFocus": "Global supply chain management, final product engineering, physical distribution",
-      "size": "Primary global node",
-      "established": "2018",
-      "source": "10-K FY2025, Item 2",
+      "address": "Fasa 3, Kawasan Perindustrian Bayan Lepas, 11900 Bayan Lepas, Penang, Malaysia",
+      "lat": 5.321,
+      "lng": 100.301,
+      "businessFocus": "Back-end assembly, primary warehouse, manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.waze.com/live-map/directions/my/penang/bayan-lepas/avago-technologies,-a-broadcom-inc-company?to=place.ChIJ2aPyZmHASjARp-Ahc85-4uQ",
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "avgo-tel-aviv-rd",
-      "name": "Israel R&D Center",
-      "city": "Tel Aviv",
-      "country": "Israel",
-      "address": "17 George Weiss Street",
-      "lat": 32.1130,
-      "lng": 34.8016,
-      "type": "engineering",
-      "businessFocus": "Advanced networking and security solutions development",
-      "source": "10-K FY2025, Item 2",
+      "id": "AVGO-MATAMOROS-MFG",
+      "name": "Broadcom Matamoros Back-End Assembly Facility",
+      "city": "Matamoros",
+      "state": "Tamaulipas",
+      "country": "Mexico",
+      "address": null,
+      "lat": 25.869,
+      "lng": -97.502,
+      "businessFocus": "InP back-end assembly facility",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ],
       "confidence": "verified"
     },
     {
-      "id": "avgo-singapore-sub",
-      "name": "Singapore Operations Hub",
-      "city": "Singapore",
-      "country": "Singapore",
-      "lat": 1.3521,
-      "lng": 103.8198,
-      "type": "regional",
-      "businessFocus": "Tax optimization, supply chain billing, corporate subsidiary (Avago Technologies International Sales Pte. Limited)",
-      "source": "Exhibit 21 FY2025",
-      "confidence": "verified"
-    },
-    {
-      "id": "avgo-bangalore-rd",
-      "name": "Bangalore Engineering Hub",
+      "id": "AVGO-BANGALORE-RD",
+      "name": "Broadcom India Private Limited (Bangalore R&D/Admin)",
       "city": "Bangalore",
       "state": "Karnataka",
       "country": "India",
-      "address": "International Tech Park",
-      "lat": 12.9866,
-      "lng": 77.7374,
+      "address": "Ground Floor, Campus 1A, RMZ Ecospace, Bellandur Village, Varthur Hobli, Bangalore, Karnataka 560103",
+      "lat": 12.926,
+      "lng": 77.676,
+      "businessFocus": "Research and development, software engineering, administration",
       "type": "engineering",
-      "businessFocus": "Software engineering, back-end design support",
-      "source": "10-K FY2025, Item 2",
+      "sources": [
+        "https://cleartax.in/f/company/broadcom-india-private-limited/U30009KA1997PTC022294/",
+        "https://tracxn.com/d/legal-entities/india/broadcom-india-private-limited/__YdqxowOBOpCUUONDrL9p4JZGFvcjMbRCaD5JxuIbC1M"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AVGO-HYDERABAD-RD",
+      "name": "Broadcom India Technologies Private Limited (Hyderabad R&D Center)",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "address": "No. 3 & 4, 9th Floor, Building No.9, K. Raheja MindSpace, Hi-Tec City, Madhapur, Hyderabad, Telangana 500081",
+      "lat": 17.445,
+      "lng": 78.39,
+      "businessFocus": "Research and development, software engineering",
+      "type": "engineering",
+      "sources": [
+        "https://tracxn.com/d/legal-entities/india/broadcom-india-technologies-private-limited/__3-uf52cdeBjUr1hj2XuRtqINEdZPQ1GNAQtQcgJ2XfM"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "AVGO-HERZLIYA-RD",
+      "name": "Broadcom Israel Ltd. (Herzliya R&D Center)",
+      "city": "Herzliya",
+      "state": null,
+      "country": "Israel",
+      "address": null,
+      "lat": 32.164,
+      "lng": 34.845,
+      "businessFocus": "Research and development, semiconductor design",
+      "type": "engineering",
+      "sources": [
+        "https://www.northdata.com/Broadcom+Israel+Ltd.,+Herzliya/ICA-513041442"
+      ],
       "confidence": "verified"
     }
   ],
   "revenueGeography": {
-    "fiscalYear": "FY2025",
-    "totalRevenue": 63880000000,
+    "reason": "Extracted the most recent quarterly geographic revenue breakdown for Broadcom (AVGO) from Q1 FY2026 (period ended February 1, 2026). The data comes from the Q1 FY2026 earnings release which provides net revenue by region: Americas ($5,081M), Asia Pacific ($11,615M), and EMEA ($2,615M). Total Q1 FY2026 revenue was $19,311M. Percentages calculated from total. YoY growth calculated from prior year Q1 FY2025 figures (Americas $4,632M, Asia Pacific $8,032M, EMEA $2,252M, total $14,916M). This is the most recent quarterly data available, prioritized over FY2025 annual data.",
+    "fiscalYear": "FY2026 Q1",
+    "totalRevenue": 19311000000.0,
     "currency": "USD",
     "segments": [
       {
-        "region": "United States",
-        "revenue": 16506000000,
-        "percentage": 25.83,
-        "yoyGrowth": null,
-        "notes": "Largest single billing destination, though end-market consumption varies."
+        "region": "Americas",
+        "revenue": 5081000000.0,
+        "percentage": 0.2631,
+        "yoyGrowth": 9.69,
+        "notes": "Includes United States and other Americas countries. Q1 FY2025 Americas revenue was $4,632M."
       },
       {
-        "region": "China (Including Hong Kong)",
-        "revenue": 11155000000,
-        "percentage": 17.46,
-        "yoyGrowth": null,
-        "notes": "High risk of two-way tariffs; significant end-customer reliance."
+        "region": "Asia Pacific",
+        "revenue": 11615000000.0,
+        "percentage": 0.6015,
+        "yoyGrowth": 44.61,
+        "notes": "Includes China (including Hong Kong), Singapore, Taiwan, and other Asia Pacific countries. Q1 FY2025 Asia Pacific revenue was $8,032M."
       },
       {
-        "region": "Singapore",
-        "revenue": 10796000000,
-        "percentage": 16.90,
-        "yoyGrowth": null,
-        "notes": "Primarily a billing artifact for contract manufacturers and distribution."
-      },
-      {
-        "region": "Taiwan",
-        "revenue": 6451000000,
-        "percentage": 10.09,
-        "yoyGrowth": null,
-        "notes": "Assembly and manufacturing hub for key clients."
+        "region": "Europe, the Middle East and Africa (EMEA)",
+        "revenue": 2615000000.0,
+        "percentage": 0.1354,
+        "yoyGrowth": 16.12,
+        "notes": "Q1 FY2025 EMEA revenue was $2,252M."
       }
     ],
-    "concentrationRisk": "Direct sales to a single semiconductor distributor (Customer A) represent 32% of net revenue. Top 5 customers account for ~40%.",
-    "source": "10-K FY2025, Geographic Net Revenue Table"
+    "concentrationRisk": "Asia Pacific represents approximately 60% of total revenue, with significant concentration in China (including Hong Kong), Singapore, and Taiwan. In FY2025, China (including Hong Kong) contributed $11,155M, Singapore $10,796M, and Taiwan $6,451M. The region's high share and reliance on semiconductor supply chains and Asian manufacturing hubs presents geographic concentration risk.",
+    "sources": [
+      "Broadcom Q1 FY2026 earnings release - Americas net revenue $5,081M, Asia Pacific $11,615M, EMEA $2,615M for quarter ended February 1, 2026"
+    ]
   },
   "supplyChain": [
     {
@@ -139,101 +233,351 @@
       "role": "foundry",
       "city": "Hsinchu",
       "country": "Taiwan",
-      "lat": 24.7735,
-      "lng": 120.9972,
-      "product": "Sub-5nm wafers, CoWoS advanced packaging, custom XPUs",
+      "lat": 24.8138,
+      "lng": 120.9675,
+      "product": "Silicon wafer fabrication (95% of Broadcom's wafers)",
       "criticality": "critical",
-      "source": "Q1 2026 Earnings Call Transcript"
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
     },
     {
-      "entity": "Advanced Semiconductor Engineering (ASE)",
-      "role": "assembly_test",
-      "city": "Taipei",
+      "entity": "United Microelectronics Corporation (UMC)",
+      "role": "foundry",
+      "city": "Hsinchu",
       "country": "Taiwan",
-      "lat": 25.0329,
-      "lng": 121.5654,
-      "product": "OSAT full turnkey services",
+      "lat": 24.8067,
+      "lng": 120.9686,
+      "product": "Front-end wafer manufacturing",
       "criticality": "important",
-      "source": "10-K FY2025"
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
     },
     {
-      "entity": "Amkor Technology",
-      "role": "assembly_test",
-      "city": "Peoria",
+      "entity": "GlobalFoundries",
+      "role": "foundry",
+      "city": "Malta",
       "country": "United States",
-      "lat": 33.5805,
-      "lng": -112.2373,
-      "product": "Advanced packaging and test (under construction)",
+      "lat": 42.9676,
+      "lng": -73.7987,
+      "product": "Front-end wafer manufacturing",
       "criticality": "important",
-      "source": "10-K FY2025, Item 1A"
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
     },
     {
-      "entity": "Broadcom Batu Kawan Distribution",
-      "role": "logistics",
-      "city": "Batu Kawan",
-      "country": "Malaysia",
-      "lat": 5.2647,
-      "lng": 100.4429,
-      "product": "Final distribution of >95% hardware revenue",
-      "criticality": "critical",
-      "source": "10-K FY2025, Item 2"
-    },
-    {
-      "entity": "Advanced Substrate Technologies (AST)",
-      "role": "key_supplier",
+      "entity": "Silicon Manufacturing Partners (SMP)",
+      "role": "foundry",
       "city": "Singapore",
       "country": "Singapore",
       "lat": 1.3521,
       "lng": 103.8198,
-      "product": "FC-BGA substrates for AI devices",
+      "product": "IC manufacturing (joint venture with GlobalFoundries, 51% owned by Avago)",
       "criticality": "important",
-      "source": "Investor Presentations 2025"
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Tower Semiconductor",
+      "role": "foundry",
+      "city": "Migdal Haemek",
+      "country": "Israel",
+      "lat": 32.6719,
+      "lng": 35.2425,
+      "product": "Front-end wafer manufacturing",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "WIN Semiconductors Corp.",
+      "role": "foundry",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.9936,
+      "lng": 121.301,
+      "product": "Front-end wafer manufacturing (GaAs)",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Advanced Semiconductor Engineering, Inc. (ASE)",
+      "role": "assembly_test",
+      "city": "Kaohsiung",
+      "country": "Taiwan",
+      "lat": 22.6273,
+      "lng": 120.3014,
+      "product": "Assembly and test operations",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "ASE Korea Inc.",
+      "role": "assembly_test",
+      "city": "Seoul",
+      "country": "South Korea",
+      "lat": 37.5665,
+      "lng": 126.978,
+      "product": "Assembly and test operations",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Foxconn Technology Group",
+      "role": "assembly_test",
+      "city": "New Taipei",
+      "country": "Taiwan",
+      "lat": 25.0111,
+      "lng": 121.4453,
+      "product": "Assembly and test operations",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Amkor Technology, Inc.",
+      "role": "assembly_test",
+      "city": "Tempe",
+      "country": "United States",
+      "lat": 33.4255,
+      "lng": -111.94,
+      "product": "Assembly and test operations",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Siliconware Precision Industries Co., Ltd. (SPIL)",
+      "role": "assembly_test",
+      "city": "Taichung",
+      "country": "Taiwan",
+      "lat": 24.1477,
+      "lng": 120.6736,
+      "product": "Assembly and test operations",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Inari Technology SDN BHD",
+      "role": "assembly_test",
+      "city": "Penang",
+      "country": "Malaysia",
+      "lat": 5.4164,
+      "lng": 100.3327,
+      "product": "Assembly and test operations",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Avnet, Inc.",
+      "role": "logistics",
+      "city": "Phoenix",
+      "country": "United States",
+      "lat": 33.4484,
+      "lng": -112.074,
+      "product": "Global distribution of semiconductor products",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Arrow Electronics, Inc.",
+      "role": "logistics",
+      "city": "Centennial",
+      "country": "United States",
+      "lat": 39.5807,
+      "lng": -104.8773,
+      "product": "Global distribution of semiconductor products",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
+    },
+    {
+      "entity": "Broadcom Primary Warehouse (Malaysia)",
+      "role": "logistics",
+      "city": "Penang",
+      "country": "Malaysia",
+      "lat": 5.4164,
+      "lng": 100.3327,
+      "product": "Primary product inventory storage and title transfer point",
+      "criticality": "critical",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+      ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Customer A (Distributor for Primary Mobile OEM)",
-      "revenueShare": "32%",
+      "customer": "Apple Inc.",
+      "revenueShare": "~20% of net revenue (FY2021, FY2019)",
       "hqCity": "Cupertino",
-      "hqCountry": "USA",
-      "lat": 37.3229,
-      "lng": -122.0321,
-      "relationship": "Largest single semiconductor solutions customer (RF components, wireless chips)",
-      "source": "10-K FY2025, Note 3"
+      "hqCountry": "United States",
+      "lat": 37.323,
+      "lng": -122.032,
+      "relationship": "Customer for RF front end modules, Wi-Fi, Bluetooth, GPS/GNSS SoCs, custom touch controllers; also uses Broadcom components in iPhones; aggregate sales through all channels ~20% of revenue",
+      "sources": []
     },
     {
-      "customer": "Alphabet Inc. (Google)",
-      "revenueShare": "Undisclosed",
+      "customer": "Google (Alphabet Inc.)",
+      "revenueShare": null,
       "hqCity": "Mountain View",
-      "hqCountry": "USA",
-      "lat": 37.3860,
-      "lng": -122.0838,
-      "relationship": "Custom AI Accelerator (TPU) co-development",
-      "source": "Q1 2026 Earnings Call Transcript"
+      "hqCountry": "United States",
+      "lat": 37.422,
+      "lng": -122.084,
+      "relationship": "Major hyperscale customer for custom silicon solutions including TPUs (all generations); multi-year agreement for TPU development and networking components for AI racks; partnership on Cloud Network Insights",
+      "sources": []
     },
     {
-      "customer": "Meta Platforms",
-      "revenueShare": "Undisclosed",
+      "customer": "Meta Platforms, Inc.",
+      "revenueShare": null,
       "hqCity": "Menlo Park",
-      "hqCountry": "USA",
-      "lat": 37.4529,
-      "lng": -122.1817,
-      "relationship": "Custom AI Accelerator (MTIA) co-development",
-      "source": "Q1 2026 Earnings Call Transcript"
+      "hqCountry": "United States",
+      "lat": 37.485,
+      "lng": -122.149,
+      "relationship": "Major hyperscale customer for custom AI accelerators (MTIA chips); multi-year deal for 2nm AI chips and data center networking",
+      "sources": []
+    },
+    {
+      "customer": "Anthropic",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Customer for custom AI accelerators (XPUs); agreement to access ~3.5 GW of TPU compute through Broadcom starting next year; extension of business relationship",
+      "sources": []
+    },
+    {
+      "customer": "ByteDance",
+      "revenueShare": null,
+      "hqCity": "Beijing",
+      "hqCountry": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "relationship": "Client for custom chip design services; co-develops custom AI chips (XPU)",
+      "sources": []
+    },
+    {
+      "customer": "OpenAI",
+      "revenueShare": null,
+      "hqCity": "San Francisco",
+      "hqCountry": "United States",
+      "lat": 37.7749,
+      "lng": -122.4194,
+      "relationship": "Customer for custom AI chip co-development (first-generation XPU deploying in 2027 at over 1 GW compute capacity); Broadcom helping design and secure manufacturing capacity",
+      "sources": []
+    },
+    {
+      "customer": "Cisco Systems, Inc.",
+      "revenueShare": ">10% of net revenue (FY2013 Avago)",
+      "hqCity": "San Jose",
+      "hqCountry": "United States",
+      "lat": 37.3382,
+      "lng": -121.8863,
+      "relationship": "Major customer for Ethernet switching and routing merchant silicon products",
+      "sources": []
+    },
+    {
+      "customer": "Dell Technologies",
+      "revenueShare": null,
+      "hqCity": "Round Rock",
+      "hqCountry": "United States",
+      "lat": 30.5083,
+      "lng": -97.6789,
+      "relationship": "Key customer for SAS/RAID controllers, PCIe switches, and Fibre Channel host bus adapters; Dell PowerEdge servers use Broadcom Ethernet adapters",
+      "sources": []
+    },
+    {
+      "customer": "Hewlett Packard Enterprise (HPE)",
+      "revenueShare": null,
+      "hqCity": "Spring",
+      "hqCountry": "United States",
+      "lat": 30.0799,
+      "lng": -95.4172,
+      "relationship": "Key customer for SAS/RAID controllers, PCIe switches, and Fibre Channel host bus adapters",
+      "sources": []
+    },
+    {
+      "customer": "Amazon (AWS)",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "Customer for custom AI accelerators (XPUs)",
+      "sources": []
+    },
+    {
+      "customer": "Samsung Electronics",
+      "revenueShare": null,
+      "hqCity": "Suwon",
+      "hqCountry": "South Korea",
+      "lat": 37.2636,
+      "lng": 127.0286,
+      "relationship": "Collaboration on world's first integrated 5G and Wi-Fi 8 FWA platform (announced May 2026)",
+      "sources": []
+    },
+    {
+      "customer": "Foxconn Technology Group",
+      "revenueShare": "20% of Avago net revenue (FY2014); 18% (FY2013); 17% (FY2012)",
+      "hqCity": "New Taipei City",
+      "hqCountry": "Taiwan",
+      "lat": 25.0111,
+      "lng": 121.4458,
+      "relationship": "Direct customer (historical Avago data); contract manufacturer for Apple and others",
+      "sources": []
+    },
+    {
+      "customer": "WT Microelectronics Co., Ltd.",
+      "revenueShare": "18% of net revenue (FY2021); 17% (FY2019)",
+      "hqCity": "Taipei",
+      "hqCountry": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.5654,
+      "relationship": "Distributor customer for semiconductor solutions",
+      "sources": []
+    },
+    {
+      "customer": "Unnamed distributor (semiconductor solutions)",
+      "revenueShare": "32% of net revenue (FY2025); 42% of net revenue (Q1 FY2026)",
+      "hqCity": null,
+      "hqCountry": null,
+      "lat": null,
+      "lng": null,
+      "relationship": "Distributor customer; one semiconductor solutions customer accounted for 32% of FY2025 revenue and 42% of Q1 FY2026 revenue",
+      "sources": []
     }
   ],
   "geopoliticalRisks": [
     {
       "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
+      "lat": 35.8617,
+      "lng": 104.1954,
       "riskScore": 5,
-      "riskCategory": "regulatory_compliance",
-      "riskLabel": "Xinchuang (Document 79) Software Ban",
-      "description": "Chinese government mandate blacklisting VMware products from state-owned enterprises, threatening massive software backlog and domestic R&D footprint.",
+      "riskCategory": "trade_restriction",
+      "riskLabel": "US-China trade tensions & tariffs",
+      "description": "Broadcom derives ~30% of revenue from China. Escalation of US-China trade tensions, including proposed 60% tariffs on Chinese goods under President Trump, export restrictions, and potential decoupling of economies, directly threatens Broadcom's ability to sell products in China and disrupts its supply chain.",
       "impactLevel": "critical",
-      "filingReference": "Q1 2026 Earnings Disclosures / Macro Risk Updates",
-      "lastUpdated": "2026-02-15"
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
     },
     {
       "region": "Taiwan",
@@ -241,35 +585,167 @@
       "lng": 120.9605,
       "riskScore": 5,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Cross-Strait Tensions & TSMC Reliance",
-      "description": "100% reliance on Taiwan for sub-5nm wafer fabrication and CoWoS packaging. Any maritime blockade or kinetic conflict would cause existential supply shock.",
+      "riskLabel": "TSMC dependency & Taiwan strait tensions",
+      "description": "Broadcom depends on TSMC (Taiwan) for a meaningful portion of its total production capacity. Geopolitical turmoil involving China-Taiwan relations could disrupt wafer supply, severely impacting Broadcom's semiconductor revenue.",
       "impactLevel": "critical",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2025-11-20"
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
     },
     {
-      "region": "European Union",
-      "lat": 50.8476,
-      "lng": 4.3572,
+      "region": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
       "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "EC Antitrust Probe",
-      "description": "European Commission investigation into abuse of market dominance regarding VMware licensing overhauls. Potential fines up to 10% of global annual revenue (~$6.3B).",
-      "impactLevel": "critical",
-      "filingReference": "Q1 2026 Earnings Call Macro Updates",
-      "lastUpdated": "2026-01-30"
+      "riskLabel": "Export restrictions on Huawei & entity list",
+      "description": "Huawei, a Broadcom customer, is subject to US export restrictions requiring Broadcom to suspend sales until licenses are obtained from the US Department of Commerce. The US government continues to add companies to restricted entity lists, adversely affecting Broadcom's revenue.",
+      "impactLevel": "high",
+      "filingReference": "SEC 10-K; May 15, 2019 Entity List addition",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "Singapore tax incentive expiration & global minimum tax",
+      "description": "Broadcom's principal tax incentives from the Singapore Economic Development Board are scheduled to expire through November 2030. The corporate income tax rate in Singapore would otherwise be 17%. Global minimum tax (Pillar Two) enactment in Singapore effective FY2026 will materially impact consolidated results and cash flows.",
+      "impactLevel": "high",
+      "filingReference": "SEC 10-K; Broadcom FY2025 filing",
+      "lastUpdated": "2026-05-30"
     },
     {
       "region": "Malaysia",
-      "lat": 5.2647,
-      "lng": 100.4429,
+      "lat": 4.2105,
+      "lng": 101.9758,
       "riskScore": 4,
       "riskCategory": "tax_policy",
-      "riskLabel": "Single Node Logistics Concentration & Tax Expirations",
-      "description": ">95% of hardware revenue flows through one Batu Kawan facility. Vulnerable to maritime disruptions. Local tax holidays set to expire in 2028 under global minimum tax pressures.",
+      "riskLabel": "Malaysia tax holiday expiration",
+      "description": "Broadcom has a tax holiday on qualifying income in Malaysia scheduled to expire in fiscal year 2028. Non-compliance with operating conditions could require refund of previously realized material tax benefits. The tax holiday decreased provision for income taxes by approximately $2,709 million for FY2025.",
       "impactLevel": "high",
-      "filingReference": "10-K FY2025, Item 1A",
-      "lastUpdated": "2025-11-20"
+      "filingReference": "SEC 10-K; Broadcom FY2025 filing",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "South Korea",
+      "lat": 35.9078,
+      "lng": 127.7669,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Korean Fair Trade Commission investigation",
+      "description": "Broadcom is subject to an ongoing investigation by the Korean Fair Trade Commission into certain of its contracting and business practices. Such investigations can be costly, lengthy, and divert management attention.",
+      "impactLevel": "moderate",
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "European Union",
+      "lat": 50.8503,
+      "lng": 4.3517,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "EU antitrust investigations & VMware licensing complaint",
+      "description": "Broadcom has been involved in regulatory investigations in the European Union. In March 2026, CISPE filed a formal complaint alleging Broadcom's VMware licensing infringed EU antitrust rules. Broadcom previously committed to suspend exclusivity agreements for seven years following EU interim order.",
+      "impactLevel": "moderate",
+      "filingReference": "SEC 10-K; EU antitrust proceedings",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "FTC antitrust investigation & settlement",
+      "description": "In 2021, Broadcom agreed to settle an FTC antitrust complaint alleging abuse of monopoly power through restrictive contract terms. The FTC continues to investigate Broadcom's contracting practices, posing ongoing regulatory compliance risk.",
+      "impactLevel": "moderate",
+      "filingReference": "SEC 10-K; FTC complaint 2021",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "One Big Beautiful Bill Act & valuation allowance",
+      "description": "On July 4, 2025, the US enacted the One Big Beautiful Bill Act. Broadcom established a $1,321 million valuation allowance against its federal corporate alternative minimum tax credit carryforwards, materially impacting financial results.",
+      "impactLevel": "high",
+      "filingReference": "SEC 10-K; Broadcom FY2025 filing",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 37.0902,
+      "lng": -95.7129,
+      "riskScore": 3,
+      "riskCategory": "political_instability",
+      "riskLabel": "CFIUS & national security review risk for acquisitions",
+      "description": "Broadcom's proposed $117 billion hostile takeover of Qualcomm was blocked by the Trump administration in March 2018 via executive order citing national security concerns. Future acquisitions face heightened CFIUS scrutiny and potential blockage.",
+      "impactLevel": "moderate",
+      "filingReference": "Executive order March 2018; CFIUS review",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "Pacific Rim",
+      "lat": 25.0,
+      "lng": 135.0,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Facility concentration in seismic/weather-prone Pacific Rim",
+      "description": "Many of Broadcom's facilities and those of its contract manufacturers are located in California and the Pacific Rim region, which have above-average seismic activity and severe weather activity. Disruptions could limit capacity to meet customer demands.",
+      "impactLevel": "moderate",
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 40.5853,
+      "lng": -105.0844,
+      "riskScore": 4,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Sole-source facility risk: Fort Collins FBAR filters",
+      "description": "The Fort Collins, Colorado facility is the sole source for FBAR filters used in many of Broadcom's wireless devices. Any disruption at this facility would severely impact Broadcom's ability to manufacture FBAR products and adversely affect its wireless business.",
+      "impactLevel": "high",
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 40.6714,
+      "lng": -75.3807,
+      "riskScore": 4,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Sole-source facility risk: Breinigsville InP wafers",
+      "description": "The Breinigsville, Pennsylvania facility is the sole source for InP-based wafers used in Broadcom's fiber optics products. Any disruption would severely impact Broadcom's ability to manufacture fiber optics products.",
+      "impactLevel": "high",
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "Global",
+      "lat": 20.0,
+      "lng": 0.0,
+      "riskScore": 3,
+      "riskCategory": "sanctions",
+      "riskLabel": "US export controls & restricted entity list expansion",
+      "description": "Broadcom is subject to US Export Administration Regulations. The US government continues to add companies to its restricted entity list and technologies to prohibited export lists, which has had and will continue to have an adverse effect on Broadcom's ability to sell products and its revenue.",
+      "impactLevel": "moderate",
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "Global",
+      "lat": 20.0,
+      "lng": 0.0,
+      "riskScore": 3,
+      "riskCategory": "currency_exposure",
+      "riskLabel": "Foreign exchange & commodity price exposure",
+      "description": "Broadcom enters into foreign exchange forward contracts to hedge exposures but these strategies may not be effective. Broadcom does not hedge its exposure to commodity prices (including gold and fuel), which are very volatile and could adversely affect gross margin.",
+      "impactLevel": "moderate",
+      "filingReference": "SEC 10-K; Broadcom risk factors",
+      "lastUpdated": "2026-05-30"
     }
   ]
 }
