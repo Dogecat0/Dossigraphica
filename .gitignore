@@ -31,6 +31,7 @@ BLOG_POST_ENRICHED.md
 /test_data/*
 test_*.md
 test_*.json
+token_usage.json
 
 # Docs
 /docs/*
