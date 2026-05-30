@@ -611,7 +611,11 @@ const GlobeView = forwardRef<GlobeViewHandle, GlobeViewProps>(function GlobeView
 
         // Institutional Holder nodes: show at holder HQ with rank info
         if (activeLayers.has('institutionalHoldings')) {
+            const selTicker = intel?.ticker || offices.find(o => o.type === 'headquarters' && o.companyId)?.companyId
             Object.entries(institutionalHoldings).forEach(([ticker, companyData]) => {
+                // In company view, only show holders for the selected company
+                if (viewMode === 'company' && selTicker && ticker !== selTicker) return
+
                 companyData.top_holders.forEach((holder, i) => {
                     const holderId = `ih-${ticker}-${i}`
                     const detail = viewMode === 'company'
