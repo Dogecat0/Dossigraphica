@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-28T21:57:49.341540",
+  "lastUpdated": "2026-05-30T11:44:01.832639",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -1616,7 +1616,7 @@
       "type": "buyer_supplier",
       "description": "Taiwan Semiconductor Manufacturing Company is a major customer of ASML",
       "strength": "critical",
-      "value": "Estimated >80% combined with Intel and Samsung (Fitch)"
+      "value": "Estimated >50% combined with Intel and Samsung (Fitch)"
     },
     {
       "from": "INTC",
@@ -1624,7 +1624,7 @@
       "type": "buyer_supplier",
       "description": "Intel Corporation is a major customer of ASML",
       "strength": "critical",
-      "value": "Estimated >80% combined with TSMC and Samsung (Fitch)"
+      "value": "Estimated >50% combined with TSMC and Samsung (Fitch)"
     },
     {
       "from": "005930.KS",
@@ -1632,7 +1632,7 @@
       "type": "buyer_supplier",
       "description": "Samsung Electronics Co., Ltd. is a major customer of ASML",
       "strength": "critical",
-      "value": "Estimated >80% combined with TSMC and Intel (Fitch)"
+      "value": "Estimated >50% combined with TSMC and Intel (Fitch)"
     },
     {
       "from": "000660.KS",
@@ -1686,65 +1686,233 @@
       "from": "AVGO",
       "to": "TSM",
       "type": "buyer_supplier",
-      "description": "AVGO depends on Taiwan Semiconductor Manufacturing Company (TSMC) for Sub-5nm wafers, CoWoS advanced packaging, custom XPUs",
+      "description": "AVGO depends on Taiwan Semiconductor Manufacturing Company (TSMC) for Silicon wafer fabrication (95% of Broadcom's wafers)",
       "strength": "critical",
       "value": "foundry"
     },
     {
       "from": "AVGO",
-      "to": "Advanced Semiconductor Engineering (ASE)",
+      "to": "United Microelectronics Corporation (UMC)",
       "type": "buyer_supplier",
-      "description": "AVGO depends on Advanced Semiconductor Engineering (ASE) for OSAT full turnkey services",
+      "description": "AVGO depends on United Microelectronics Corporation (UMC) for Front-end wafer manufacturing",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AVGO",
+      "to": "GlobalFoundries",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on GlobalFoundries for Front-end wafer manufacturing",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AVGO",
+      "to": "Silicon Manufacturing Partners (SMP)",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Silicon Manufacturing Partners (SMP) for IC manufacturing (joint venture with GlobalFoundries, 51% owned by Avago)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AVGO",
+      "to": "Tower Semiconductor",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Tower Semiconductor for Front-end wafer manufacturing",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AVGO",
+      "to": "WIN Semiconductors Corp.",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on WIN Semiconductors Corp. for Front-end wafer manufacturing (GaAs)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "AVGO",
+      "to": "Advanced Semiconductor Engineering, Inc. (ASE)",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Advanced Semiconductor Engineering, Inc. (ASE) for Assembly and test operations",
       "strength": "important",
       "value": "assembly_test"
     },
     {
       "from": "AVGO",
-      "to": "Amkor Technology",
+      "to": "ASE Korea Inc.",
       "type": "buyer_supplier",
-      "description": "AVGO depends on Amkor Technology for Advanced packaging and test (under construction)",
+      "description": "AVGO depends on ASE Korea Inc. for Assembly and test operations",
       "strength": "important",
       "value": "assembly_test"
     },
     {
       "from": "AVGO",
-      "to": "Broadcom Batu Kawan Distribution",
+      "to": "Foxconn Technology Group",
       "type": "buyer_supplier",
-      "description": "AVGO depends on Broadcom Batu Kawan Distribution for Final distribution of >95% hardware revenue",
-      "strength": "critical",
+      "description": "AVGO depends on Foxconn Technology Group for Assembly and test operations",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "AVGO",
+      "to": "Amkor Technology, Inc.",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Amkor Technology, Inc. for Assembly and test operations",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "AVGO",
+      "to": "Siliconware Precision Industries Co., Ltd. (SPIL)",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Siliconware Precision Industries Co., Ltd. (SPIL) for Assembly and test operations",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "AVGO",
+      "to": "Inari Technology SDN BHD",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Inari Technology SDN BHD for Assembly and test operations",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "AVGO",
+      "to": "Avnet, Inc.",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Avnet, Inc. for Global distribution of semiconductor products",
+      "strength": "standard",
       "value": "logistics"
     },
     {
       "from": "AVGO",
-      "to": "Advanced Substrate Technologies (AST)",
+      "to": "Arrow Electronics, Inc.",
       "type": "buyer_supplier",
-      "description": "AVGO depends on Advanced Substrate Technologies (AST) for FC-BGA substrates for AI devices",
-      "strength": "important",
-      "value": "key_supplier"
+      "description": "AVGO depends on Arrow Electronics, Inc. for Global distribution of semiconductor products",
+      "strength": "standard",
+      "value": "logistics"
     },
     {
-      "from": "Distributor for Primary Mobile OEM",
+      "from": "AVGO",
+      "to": "Broadcom Primary Warehouse (Malaysia)",
+      "type": "buyer_supplier",
+      "description": "AVGO depends on Broadcom Primary Warehouse (Malaysia) for Primary product inventory storage and title transfer point",
+      "strength": "critical",
+      "value": "logistics"
+    },
+    {
+      "from": "AAPL",
       "to": "AVGO",
       "type": "buyer_supplier",
-      "description": "Distributor for Primary Mobile OEM is a major customer of AVGO",
+      "description": "Apple Inc. is a major customer of AVGO",
       "strength": "critical",
-      "value": "32%"
+      "value": "~20% of net revenue (FY2021, FY2019)"
     },
     {
       "from": "GOOGL",
       "to": "AVGO",
       "type": "buyer_supplier",
-      "description": "Google is a major customer of AVGO",
+      "description": "Alphabet Inc. is a major customer of AVGO",
       "strength": "important",
-      "value": "Undisclosed"
+      "value": null
     },
     {
       "from": "META",
       "to": "AVGO",
       "type": "buyer_supplier",
-      "description": "Meta Platforms is a major customer of AVGO",
+      "description": "Meta Platforms, Inc. is a major customer of AVGO",
       "strength": "important",
-      "value": "Undisclosed"
+      "value": null
+    },
+    {
+      "from": "Anthropic",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "Anthropic is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "ByteDance",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "ByteDance is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "OpenAI",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "OpenAI is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Cisco Systems, Inc.",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "Cisco Systems, Inc. is a major customer of AVGO",
+      "strength": "important",
+      "value": ">10% of net revenue (FY2013 Avago)"
+    },
+    {
+      "from": "Dell Technologies",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "Dell Technologies is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "HPE",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "HPE is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "AWS",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "AWS is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Samsung Electronics",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "Samsung Electronics is a major customer of AVGO",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Foxconn Technology Group",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "Foxconn Technology Group is a major customer of AVGO",
+      "strength": "critical",
+      "value": "20% of Avago net revenue (FY2014); 18% (FY2013); 17% (FY2012)"
+    },
+    {
+      "from": "WT Microelectronics Co., Ltd.",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "WT Microelectronics Co., Ltd. is a major customer of AVGO",
+      "strength": "critical",
+      "value": "18% of net revenue (FY2021); 17% (FY2019)"
+    },
+    {
+      "from": "semiconductor solutions",
+      "to": "AVGO",
+      "type": "buyer_supplier",
+      "description": "semiconductor solutions is a major customer of AVGO",
+      "strength": "critical",
+      "value": "32% of net revenue (FY2025); 42% of net revenue (Q1 FY2026)"
     },
     {
       "from": "GOOGL",

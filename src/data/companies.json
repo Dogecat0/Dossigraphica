@@ -3116,93 +3116,190 @@
   },
   {
     "company": "Broadcom Inc.",
-    "website": "https://www.broadcom.com",
+    "website": "www.broadcom.com",
     "ticker": "AVGO",
-    "sector": "Semiconductor and Infrastructure Software",
-    "description": "A global technology leader designing, developing, and supplying semiconductor and infrastructure software solutions, operating a bifurcated geographic model that pairs Western R&D and administration with highly concentrated Indo-Pacific manufacturing and distribution networks.",
+    "sector": "Information Technology",
+    "description": "Broadcom Inc. is a Delaware corporation headquartered in Palo Alto, California, and a global technology leader that designs, develops, and supplies semiconductor and infrastructure software solutions. The company operates in two segments: Semiconductor Solutions (networking, wireless, storage, broadband, and industrial chips) and Infrastructure Software (mainframe, cybersecurity, enterprise software, and VMware cloud solutions). Broadcom has a vast global geographic footprint, with revenue spanning the Americas, Asia Pacific (including significant contributions from China, Singapore, and Taiwan), and Europe, the Middle East and Africa. In fiscal year 2025, the Americas contributed $18.9 billion, Asia Pacific $35.9 billion, and EMEA $9.1 billion of total net revenue of $63.9 billion. The company has over 33,000 employees worldwide, operates R&D and manufacturing facilities across North America, Asia, and Europe, and serves customers in more than 170 countries. Broadcom trades on the Nasdaq Global Select Market under the ticker symbol AVGO.",
     "offices": [
       {
-        "id": "avgo-palo-alto-hq",
-        "name": "Broadcom Corporate Headquarters",
+        "id": "AVGO-PALO-ALTO-HQ",
+        "name": "Broadcom Inc. Corporate Headquarters",
         "city": "Palo Alto",
-        "state": "CA",
+        "state": "California",
         "country": "United States",
-        "address": "3421 Hillview Avenue",
-        "lat": 37.3986,
-        "lng": -122.1466,
+        "address": "3421 Hillview Ave, Palo Alto, CA 94304",
+        "lat": 37.418,
+        "lng": -122.143,
+        "businessFocus": "Corporate headquarters, executive management, administration",
         "type": "headquarters",
-        "businessFocus": "Principal executive offices, software engineering, enterprise administration",
-        "size": "561,000 sq ft",
-        "established": "2023",
-        "source": "10-K FY2025, Item 2",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm",
+          "https://www.globaldata.com/company-profile/broadcom-inc/locations/"
+        ],
         "confidence": "verified"
       },
       {
-        "id": "avgo-fort-collins-eng",
-        "name": "Fort Collins Engineering Node",
-        "city": "Fort Collins",
-        "state": "CO",
+        "id": "AVGO-SAN-JOSE-HQ",
+        "name": "Broadcom Inc. San Jose Office (Former HQ)",
+        "city": "San Jose",
+        "state": "California",
         "country": "United States",
-        "address": "4380 Ziegler Road",
-        "lat": 40.5401,
-        "lng": -105.0268,
-        "type": "engineering",
-        "businessFocus": "Engineering, design, internal manufacturing oversight",
-        "source": "10-K FY2025, Item 2",
+        "address": "1320 Ridder Park Drive, San Jose, CA 95131-2313",
+        "lat": 37.386,
+        "lng": -121.896,
+        "businessFocus": "Administration, engineering (historical headquarters)",
+        "type": "regional",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
         "confidence": "verified"
       },
       {
-        "id": "avgo-batu-kawan-dist",
-        "name": "Global Distribution Hub",
-        "city": "Batu Kawan",
+        "id": "AVGO-FORT-COLLINS-MFG",
+        "name": "Broadcom Fort Collins Fabrication Facility",
+        "city": "Fort Collins",
+        "state": "Colorado",
+        "country": "United States",
+        "address": null,
+        "lat": 40.585,
+        "lng": -105.084,
+        "businessFocus": "Internal GaAs wafer fabrication, sole source for FBAR components used in wireless devices",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AVGO-BREINIGSVILLE-MFG",
+        "name": "Broadcom Breinigsville Fabrication Facility",
+        "city": "Breinigsville",
+        "state": "Pennsylvania",
+        "country": "United States",
+        "address": "9999 Hamilton Blvd, Breinigsville, PA 18031",
+        "lat": 40.543,
+        "lng": -75.656,
+        "businessFocus": "Internal InP wafer fabrication, sole source for indium phosphide-based wafers used in fibre optics products",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.waze.com/live-map/directions/us/pa/breinigsville/broadcom-limited?to=place.ChIJyar-F0eLZUAR-OfgqFvxK18",
+          "https://local.yahoo.com/info-206921547-broadcom-limited-breinigsville/",
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AVGO-SINGAPORE-MFG",
+        "name": "Broadcom Singapore Fabrication Facility",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "1 Yishun Avenue 7, Singapore 768923",
+        "lat": 1.428,
+        "lng": 103.835,
+        "businessFocus": "Internal GaAs wafer fabrication, semiconductor manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AVGO-SINGAPORE-EXEC",
+        "name": "Avago Technologies Limited (Former Principal Executive Offices)",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "1 Yishun Avenue 7, Singapore 768923",
+        "lat": 1.428,
+        "lng": 103.835,
+        "businessFocus": "Former principal executive offices of Avago Technologies Limited",
+        "type": "regional",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AVGO-PENANG-MFG",
+        "name": "Broadcom Penang Manufacturing & Warehouse Facility",
+        "city": "Bayan Lepas",
         "state": "Penang",
         "country": "Malaysia",
-        "lat": 5.2647,
-        "lng": 100.4429,
-        "type": "logistics",
-        "businessFocus": "Global supply chain management, final product engineering, physical distribution",
-        "size": "Primary global node",
-        "established": "2018",
-        "source": "10-K FY2025, Item 2",
+        "address": "Fasa 3, Kawasan Perindustrian Bayan Lepas, 11900 Bayan Lepas, Penang, Malaysia",
+        "lat": 5.321,
+        "lng": 100.301,
+        "businessFocus": "Back-end assembly, primary warehouse, manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.waze.com/live-map/directions/my/penang/bayan-lepas/avago-technologies,-a-broadcom-inc-company?to=place.ChIJ2aPyZmHASjARp-Ahc85-4uQ",
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
         "confidence": "verified"
       },
       {
-        "id": "avgo-tel-aviv-rd",
-        "name": "Israel R&D Center",
-        "city": "Tel Aviv",
-        "country": "Israel",
-        "address": "17 George Weiss Street",
-        "lat": 32.113,
-        "lng": 34.8016,
-        "type": "engineering",
-        "businessFocus": "Advanced networking and security solutions development",
-        "source": "10-K FY2025, Item 2",
+        "id": "AVGO-MATAMOROS-MFG",
+        "name": "Broadcom Matamoros Back-End Assembly Facility",
+        "city": "Matamoros",
+        "state": "Tamaulipas",
+        "country": "Mexico",
+        "address": null,
+        "lat": 25.869,
+        "lng": -97.502,
+        "businessFocus": "InP back-end assembly facility",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1730168/000173016819000144/avgo-11032019x10k.htm"
+        ],
         "confidence": "verified"
       },
       {
-        "id": "avgo-singapore-sub",
-        "name": "Singapore Operations Hub",
-        "city": "Singapore",
-        "country": "Singapore",
-        "lat": 1.3521,
-        "lng": 103.8198,
-        "type": "regional",
-        "businessFocus": "Tax optimization, supply chain billing, corporate subsidiary (Avago Technologies International Sales Pte. Limited)",
-        "source": "Exhibit 21 FY2025",
-        "confidence": "verified"
-      },
-      {
-        "id": "avgo-bangalore-rd",
-        "name": "Bangalore Engineering Hub",
+        "id": "AVGO-BANGALORE-RD",
+        "name": "Broadcom India Private Limited (Bangalore R&D/Admin)",
         "city": "Bangalore",
         "state": "Karnataka",
         "country": "India",
-        "address": "International Tech Park",
-        "lat": 12.9866,
-        "lng": 77.7374,
+        "address": "Ground Floor, Campus 1A, RMZ Ecospace, Bellandur Village, Varthur Hobli, Bangalore, Karnataka 560103",
+        "lat": 12.926,
+        "lng": 77.676,
+        "businessFocus": "Research and development, software engineering, administration",
         "type": "engineering",
-        "businessFocus": "Software engineering, back-end design support",
-        "source": "10-K FY2025, Item 2",
+        "sources": [
+          "https://cleartax.in/f/company/broadcom-india-private-limited/U30009KA1997PTC022294/",
+          "https://tracxn.com/d/legal-entities/india/broadcom-india-private-limited/__YdqxowOBOpCUUONDrL9p4JZGFvcjMbRCaD5JxuIbC1M"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AVGO-HYDERABAD-RD",
+        "name": "Broadcom India Technologies Private Limited (Hyderabad R&D Center)",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "country": "India",
+        "address": "No. 3 & 4, 9th Floor, Building No.9, K. Raheja MindSpace, Hi-Tec City, Madhapur, Hyderabad, Telangana 500081",
+        "lat": 17.445,
+        "lng": 78.39,
+        "businessFocus": "Research and development, software engineering",
+        "type": "engineering",
+        "sources": [
+          "https://tracxn.com/d/legal-entities/india/broadcom-india-technologies-private-limited/__3-uf52cdeBjUr1hj2XuRtqINEdZPQ1GNAQtQcgJ2XfM"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "AVGO-HERZLIYA-RD",
+        "name": "Broadcom Israel Ltd. (Herzliya R&D Center)",
+        "city": "Herzliya",
+        "state": null,
+        "country": "Israel",
+        "address": null,
+        "lat": 32.164,
+        "lng": 34.845,
+        "businessFocus": "Research and development, semiconductor design",
+        "type": "engineering",
+        "sources": [
+          "https://www.northdata.com/Broadcom+Israel+Ltd.,+Herzliya/ICA-513041442"
+        ],
         "confidence": "verified"
       }
     ]

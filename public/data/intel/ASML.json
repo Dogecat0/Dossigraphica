@@ -1300,7 +1300,7 @@
   "customerConcentration": [
     {
       "customer": "TSMC (Taiwan Semiconductor Manufacturing Company)",
-      "revenueShare": "Estimated >80% combined with Intel and Samsung (Fitch)",
+      "revenueShare": "Estimated >50% combined with Intel and Samsung (Fitch)",
       "hqCity": "Hsinchu",
       "hqCountry": "Taiwan",
       "lat": 24.8138,
@@ -1316,7 +1316,7 @@
     },
     {
       "customer": "Intel Corporation",
-      "revenueShare": "Estimated >80% combined with TSMC and Samsung (Fitch)",
+      "revenueShare": "Estimated >50% combined with TSMC and Samsung (Fitch)",
       "hqCity": "Santa Clara",
       "hqCountry": "United States",
       "lat": 37.3875,
@@ -1331,7 +1331,7 @@
     },
     {
       "customer": "Samsung Electronics Co., Ltd.",
-      "revenueShare": "Estimated >80% combined with TSMC and Intel (Fitch)",
+      "revenueShare": "Estimated >50% combined with TSMC and Intel (Fitch)",
       "hqCity": "Suwon",
       "hqCountry": "South Korea",
       "lat": 37.2636,

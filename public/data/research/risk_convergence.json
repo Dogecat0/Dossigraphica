@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-28T21:57:49.344385",
+  "lastUpdated": "2026-05-30T11:44:01.836235",
   "regions": [
     {
       "region": "China",
@@ -65,7 +65,7 @@
           "ticker": "AVGO",
           "riskScore": 5,
           "impactLevel": "critical",
-          "category": "regulatory_compliance"
+          "category": "trade_restriction"
         },
         {
           "ticker": "GOOGL",
@@ -117,11 +117,11 @@
         }
       ],
       "riskDimensions": [
-        "geopolitical_conflict",
-        "trade_restriction",
         "political_instability",
-        "regulatory_compliance",
-        "sanctions"
+        "sanctions",
+        "trade_restriction",
+        "geopolitical_conflict",
+        "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 18 companies in China."
     },
@@ -211,12 +211,12 @@
         }
       ],
       "riskDimensions": [
-        "geopolitical_conflict",
+        "currency_exposure",
+        "environmental_regulation",
+        "political_instability",
         "trade_restriction",
         "data_privacy",
-        "political_instability",
-        "currency_exposure",
-        "environmental_regulation"
+        "geopolitical_conflict"
       ],
       "summary": "Aggregated risk from 13 companies in Taiwan."
     },
@@ -224,7 +224,7 @@
       "region": "United States",
       "lat": 38.0,
       "lng": -97.0,
-      "overallScore": 7.6,
+      "overallScore": 7.5,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -267,6 +267,42 @@
           "riskScore": 2,
           "impactLevel": "low",
           "category": "trade_restriction"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "political_instability"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "geopolitical_conflict"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "geopolitical_conflict"
         },
         {
           "ticker": "GOOGL",
@@ -336,12 +372,14 @@
         }
       ],
       "riskDimensions": [
-        "regulatory_compliance",
-        "trade_restriction",
+        "political_instability",
         "sanctions",
-        "tax_policy"
+        "tax_policy",
+        "trade_restriction",
+        "geopolitical_conflict",
+        "regulatory_compliance"
       ],
-      "summary": "Aggregated risk from 18 companies in United States."
+      "summary": "Aggregated risk from 24 companies in United States."
     },
     {
       "region": "Russia",
@@ -369,8 +407,8 @@
         }
       ],
       "riskDimensions": [
-        "geopolitical_conflict",
-        "sanctions"
+        "sanctions",
+        "geopolitical_conflict"
       ],
       "summary": "Aggregated risk from 3 companies in Russia."
     },
@@ -378,7 +416,7 @@
       "region": "European Union",
       "lat": 50.8503,
       "lng": 4.3517,
-      "overallScore": 7.7,
+      "overallScore": 7.4,
       "contributingCompanies": [
         {
           "ticker": "AMD",
@@ -400,8 +438,8 @@
         },
         {
           "ticker": "AVGO",
-          "riskScore": 4,
-          "impactLevel": "critical",
+          "riskScore": 3,
+          "impactLevel": "moderate",
           "category": "regulatory_compliance"
         },
         {
@@ -586,8 +624,8 @@
         }
       ],
       "riskDimensions": [
-        "regulatory_compliance",
         "trade_restriction",
+        "regulatory_compliance",
         "currency_exposure"
       ],
       "summary": "Aggregated risk from 3 companies in Japan."
@@ -689,6 +727,18 @@
           "category": "currency_exposure"
         },
         {
+          "ticker": "AVGO",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "sanctions"
+        },
+        {
+          "ticker": "AVGO",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "currency_exposure"
+        },
+        {
           "ticker": "GOOGL",
           "riskScore": 4,
           "impactLevel": "moderate",
@@ -714,18 +764,42 @@
         }
       ],
       "riskDimensions": [
-        "trade_restriction",
-        "political_instability",
         "currency_exposure",
+        "political_instability",
         "sanctions",
+        "tax_policy",
+        "trade_restriction"
+      ],
+      "summary": "Aggregated risk from 7 companies in Global."
+    },
+    {
+      "region": "Singapore",
+      "lat": 1.3521,
+      "lng": 103.8198,
+      "overallScore": 7.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AVGO",
+          "riskScore": 4,
+          "impactLevel": "high",
+          "category": "tax_policy"
+        },
+        {
+          "ticker": "MU",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "tax_policy"
+        }
+      ],
+      "riskDimensions": [
         "tax_policy"
       ],
-      "summary": "Aggregated risk from 5 companies in Global."
+      "summary": "Aggregated risk from 2 companies in Singapore."
     },
     {
       "region": "Malaysia",
-      "lat": 5.2647,
-      "lng": 100.4429,
+      "lat": 4.2105,
+      "lng": 101.9758,
       "overallScore": 8.0,
       "contributingCompanies": [
         {
@@ -739,6 +813,42 @@
         "tax_policy"
       ],
       "summary": "Aggregated risk from 1 companies in Malaysia."
+    },
+    {
+      "region": "South Korea",
+      "lat": 35.9078,
+      "lng": 127.7669,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AVGO",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "regulatory_compliance"
+        }
+      ],
+      "riskDimensions": [
+        "regulatory_compliance"
+      ],
+      "summary": "Aggregated risk from 1 companies in South Korea."
+    },
+    {
+      "region": "Pacific Rim",
+      "lat": 25.0,
+      "lng": 135.0,
+      "overallScore": 6.0,
+      "contributingCompanies": [
+        {
+          "ticker": "AVGO",
+          "riskScore": 3,
+          "impactLevel": "moderate",
+          "category": "geopolitical_conflict"
+        }
+      ],
+      "riskDimensions": [
+        "geopolitical_conflict"
+      ],
+      "summary": "Aggregated risk from 1 companies in Pacific Rim."
     },
     {
       "region": "European Union (EEA)",
@@ -763,24 +873,6 @@
         "regulatory_compliance"
       ],
       "summary": "Aggregated risk from 2 companies in European Union (EEA)."
-    },
-    {
-      "region": "Singapore",
-      "lat": 1.3521,
-      "lng": 103.8198,
-      "overallScore": 6.0,
-      "contributingCompanies": [
-        {
-          "ticker": "MU",
-          "riskScore": 3,
-          "impactLevel": "moderate",
-          "category": "tax_policy"
-        }
-      ],
-      "riskDimensions": [
-        "tax_policy"
-      ],
-      "summary": "Aggregated risk from 1 companies in Singapore."
     },
     {
       "region": "International",
