@@ -1,44 +1,330 @@
 {
-  "company": "Micron Technology, Inc.",
+  "company": "Micron Technology Inc.",
   "ticker": "MU",
-  "website": "https://investors.micron.com/",
-  "sector": "Information Technology",
-  "description": "Micron Technology, Inc. is a leading global semiconductor company headquartered in Boise, Idaho, with a vast international presence that includes manufacturing, research, and operational facilities across the United States, Singapore, and other key global markets, serving a diverse customer base worldwide with advanced memory and storage solutions.",
+  "website": "https://www.micron.com",
+  "sector": "Technology",
+  "description": "Micron Technology Inc. is a global leader in innovative memory and storage solutions, designing, developing, and manufacturing high-performance DRAM, HBM, NAND, and NOR semiconductor products. Headquartered in Boise, Idaho, USA, and founded in 1978, Micron operates across four business segments (Cloud Memory, Core Data Center, Mobile and Client, Automotive and Embedded) with a global footprint spanning manufacturing and R&D facilities in the United States, Singapore, Japan, Taiwan, China, Malaysia, India, and Europe. Approximately 80% of the company's revenue comes from customers outside the United States, serving data center, mobile, consumer electronics, industrial IoT, automotive, and aerospace markets worldwide. Micron is one of only three major memory chipmakers globally alongside Samsung and SK Hynix, and is a member of the S&P 500 and NASDAQ 100.",
   "anchorFiling": {
-    "reasoning": "The most recent financial reporting period for Micron Technology is Q2 2026, which was reported via an earnings release on March 18, 2026. While a 10-Q for Q1 2026 exists, the Q2 2026 earnings release represents a more recent fiscal period.",
+    "reason": "Most recent primary source filing available. The Q2 FY2026 10-Q (period ended February 26, 2026) is the latest SEC quarterly report, but the facts only contain the Q1 FY2026 10-Q (period ended November 27, 2025). The most recent earnings release/transcript is for Q2 FY2026 (reported March 18, 2026), which is the latest primary source filing available for Micron.",
     "type": "Earnings Release",
     "date": "2026-03-18",
-    "fiscalPeriod": "Q2 2026"
+    "fiscalPeriod": "Q2 FY2026"
   },
-  "generatedDate": "2026-05-22",
+  "generatedDate": "2026-05-30",
   "offices": [
     {
-      "id": "MU-BOISE-HEADQUARTERS",
+      "id": "MU-BOISE-HQ",
       "name": "Micron Technology Corporate Headquarters",
       "city": "Boise",
       "state": "Idaho",
-      "country": "United States",
-      "address": "8000 S. Federal Way, Boise, Idaho 83716-9632",
-      "lat": 43.555,
-      "lng": -116.125,
-      "businessFocus": "Corporate headquarters and semiconductor manufacturing",
+      "country": "USA",
+      "address": "8000 S Federal Way, Boise, ID 83716",
+      "lat": 43.567,
+      "lng": -116.195,
+      "businessFocus": "Corporate headquarters, executive offices, R&D, DRAM manufacturing fab",
       "type": "headquarters",
       "sources": [
-        "https://www.sec.gov/Archives/edgar/data/723125/000072312522000004/mu-20211202.htm",
+        "https://www.micron.com/about/locations",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-BOISE-MFG",
+      "name": "Micron Boise Fab (Leading-Edge Memory Manufacturing)",
+      "city": "Boise",
+      "state": "Idaho",
+      "country": "USA",
+      "address": "8000 S Federal Way, Boise, ID 83716",
+      "lat": 43.567,
+      "lng": -116.195,
+      "businessFocus": "Leading-edge DRAM manufacturing fab (first wafer output mid-2027); second fab under construction",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-MERIDIAN-OFFICE",
+      "name": "Micron Meridian Office",
+      "city": "Meridian",
+      "state": "Idaho",
+      "country": "USA",
+      "address": "3475 East Commercial Court, Meridian, ID 83642",
+      "lat": 43.594,
+      "lng": -116.37,
+      "businessFocus": "Office / support functions",
+      "type": "satellite",
+      "sources": [
         "https://www.micron.com/about/locations"
       ],
       "confidence": "verified"
     },
     {
-      "id": "MU-MANASSAS-MANUFACTURING",
-      "name": "Micron Manassas Facility",
+      "id": "MU-MANASSAS-MFG",
+      "name": "Micron Manassas Fab",
       "city": "Manassas",
       "state": "Virginia",
-      "country": "United States",
-      "address": "9600 Godwin Drive, Manassas, Virginia 20110",
-      "lat": 38.75,
-      "lng": -77.47,
-      "businessFocus": "Semiconductor manufacturing",
+      "country": "USA",
+      "address": "9600 Godwin Drive, Manassas, VA 20110",
+      "lat": 38.746,
+      "lng": -77.506,
+      "businessFocus": "DRAM manufacturing (LPDDR4X, DDR4); expansion and modernization for industrial, automotive, defense, aerospace, medical",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-CLAY-NY-MFG",
+      "name": "Micron New York Megafab (White Pine Commerce Park)",
+      "city": "Clay",
+      "state": "New York",
+      "country": "USA",
+      "address": "White Pine Commerce Park, Clay, NY 13041",
+      "lat": 43.175,
+      "lng": -76.2,
+      "businessFocus": "Leading-edge DRAM memory fabs (up to 4 fabs); ground broken Jan 2026",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny",
+        "https://www.micron.com/about/blog/company/community/welcome-to-new-york-micron-selects-an-office-location-as-megafab-progresses",
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SYRACUSE-OFFICE",
+      "name": "Micron Syracuse Office (One Lincoln Center)",
+      "city": "Syracuse",
+      "state": "New York",
+      "country": "USA",
+      "address": "One Lincoln Center, Floor 8, 110 West Fayette St, Syracuse, NY 13202",
+      "lat": 43.05,
+      "lng": -76.153,
+      "businessFocus": "Local Procurement, Facilities Construction, Operations, Government and Public Affairs, People team; community welcome and recruitment center",
+      "type": "satellite",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/blog/company/community/welcome-to-new-york-micron-selects-an-office-location-as-megafab-progresses"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-AUSTIN-OFFICE",
+      "name": "Micron Austin Office",
+      "city": "Austin",
+      "state": "Texas",
+      "country": "USA",
+      "address": "101 West Louis Henna Blvd Ste. 210, Austin, TX 78728",
+      "lat": 30.449,
+      "lng": -97.694,
+      "businessFocus": "Sales / regional office",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-RICHARDSON-OFFICE",
+      "name": "Micron Richardson Office",
+      "city": "Richardson",
+      "state": "Texas",
+      "country": "USA",
+      "address": "1500 N Greenville Ave Suite 900, Richardson, TX 75081",
+      "lat": 32.966,
+      "lng": -96.722,
+      "businessFocus": "Sales / regional office",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-FOLSOM-OFFICE",
+      "name": "Micron Folsom Office",
+      "city": "Folsom",
+      "state": "California",
+      "country": "USA",
+      "address": "2235 Iron Point Road, Folsom, CA 95630",
+      "lat": 38.655,
+      "lng": -121.127,
+      "businessFocus": "Design / engineering center",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SANJOSE-OFFICE",
+      "name": "Micron San Jose Office",
+      "city": "San Jose",
+      "state": "California",
+      "country": "USA",
+      "address": "110 Holger Way, San Jose, CA 95134",
+      "lat": 37.418,
+      "lng": -121.957,
+      "businessFocus": "Sales, marketing, and design facility",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-LONGMONT-OFFICE",
+      "name": "Micron Longmont Office",
+      "city": "Longmont",
+      "state": "Colorado",
+      "country": "USA",
+      "address": "1900 Pike Road, Longmont, CO 80501",
+      "lat": 40.16,
+      "lng": -105.13,
+      "businessFocus": "Design / engineering center",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-MINNEAPOLIS-OFFICE",
+      "name": "Micron Minneapolis Office",
+      "city": "Minneapolis",
+      "state": "Minnesota",
+      "country": "USA",
+      "address": "3001 Broadway Street N.E. Suite 200, Minneapolis, MN 55413",
+      "lat": 45.0,
+      "lng": -93.23,
+      "businessFocus": "Sales / regional office",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-HIROSHIMA-MFG",
+      "name": "Micron Hiroshima Plant / Technology Development",
+      "city": "Higashihiroshima",
+      "state": "Hiroshima",
+      "country": "Japan",
+      "address": "7-10 Yoshikawakogyodanchi, Higashihiroshima-shi, Hiroshima 739-0198",
+      "lat": 34.4,
+      "lng": 132.75,
+      "businessFocus": "DRAM manufacturing fab; cleanroom expansion for advanced DRAM nodes and AI memory production",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SAGAMIHARA-ENG",
+      "name": "Micron Hashimoto Engineering Center",
+      "city": "Sagamihara",
+      "state": "Kanagawa",
+      "country": "Japan",
+      "address": "3-1-35 Minamihashimoto, Chuo-ku, Sagamihara-shi, Kanagawa 252-5297",
+      "lat": 35.55,
+      "lng": 139.38,
+      "businessFocus": "Engineering / design center",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-HIROSHIMA-SAIJO",
+      "name": "Micron Saijo Office",
+      "city": "Higashihiroshima",
+      "state": "Hiroshima",
+      "country": "Japan",
+      "address": "Hakuwa Showa-cho Building, 11-2 Saijo Showa-cho, Higashihiroshima City, Hiroshima Prefecture 739-0014",
+      "lat": 34.38,
+      "lng": 132.74,
+      "businessFocus": "Administrative / support office",
+      "type": "satellite",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TOKYO-OFFICE",
+      "name": "Micron Tokyo Office",
+      "city": "Tokyo",
+      "state": null,
+      "country": "Japan",
+      "address": "Shinagawa Season Terrace 8F, 1-2-70 Konan, Minato-ku, Tokyo 108-0075",
+      "lat": 35.63,
+      "lng": 139.74,
+      "businessFocus": "Sales / regional headquarters Japan",
+      "type": "regional",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SINGAPORE-MFG1",
+      "name": "Micron Singapore Fab (Woodlands)",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "1 Woodlands Industrial Park D Street 1, Singapore 738799",
+      "lat": 1.44,
+      "lng": 103.79,
+      "businessFocus": "NAND flash manufacturing fab; new NAND fab broke ground Jan 2026",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SINGAPORE-MFG2",
+      "name": "Micron Singapore HBM Advanced Packaging Facility",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "1 North Coast Drive, Singapore 738799",
+      "lat": 1.435,
+      "lng": 103.785,
+      "businessFocus": "HBM advanced packaging facility; under construction, contributing to HBM supply in CY2027",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SINGAPORE-MFG3",
+      "name": "Micron Singapore Facility (North Coast Avenue)",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "1 North Coast Avenue, Singapore 738799",
+      "lat": 1.438,
+      "lng": 103.788,
+      "businessFocus": "Manufacturing / assembly and test",
       "type": "manufacturing",
       "sources": [
         "https://www.micron.com/about/locations"
@@ -46,123 +332,601 @@
       "confidence": "verified"
     },
     {
-      "id": "MU-SHANGHAI-ENGINEERING",
+      "id": "MU-SINGAPORE-OFFICE",
+      "name": "Micron Singapore Office (Bendemeer Road)",
+      "city": "Singapore",
+      "state": null,
+      "country": "Singapore",
+      "address": "990 Bendemeer Road, Singapore 339942",
+      "lat": 1.325,
+      "lng": 103.87,
+      "businessFocus": "Office / support functions",
+      "type": "satellite",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TAICHUNG-MFG",
+      "name": "Micron Taichung Fab",
+      "city": "Taichung",
+      "state": null,
+      "country": "Taiwan",
+      "address": "No. 369, Sec. 4, Sanfeng Rd., Houli Dist., Taichung City 42152",
+      "lat": 24.3,
+      "lng": 120.72,
+      "businessFocus": "DRAM manufacturing fab; modernization for DRAM and HBM production",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TAINAN-MFG",
+      "name": "Micron Tainan Fab",
+      "city": "Tainan",
+      "state": null,
+      "country": "Taiwan",
+      "address": "No. 36, Keji 1st Rd., Annan Dist., Tainan City 709404",
+      "lat": 23.05,
+      "lng": 120.18,
+      "businessFocus": "DRAM manufacturing fab",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TAOYUAN-MFG",
+      "name": "Micron Taoyuan Fab",
+      "city": "Taoyuan",
+      "state": null,
+      "country": "Taiwan",
+      "address": "No. 667, Fuhsing 3rd Rd., Hwa-Ya Technology Park, Guishan District, Taoyuan City 33383",
+      "lat": 25.0,
+      "lng": 121.33,
+      "businessFocus": "DRAM manufacturing fab",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TONGLUO-MFG",
+      "name": "Micron Tongluo Site (Micron Memory Taiwan)",
+      "city": "Tongluo",
+      "state": "Miaoli County",
+      "country": "Taiwan",
+      "address": "No. 8, Tongke 7th Rd., Tongluo Township, Miaoli County 366003",
+      "lat": 24.48,
+      "lng": 120.79,
+      "businessFocus": "DRAM manufacturing fab (acquired from Powerchip); meaningful product shipments from FY2028",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-HSINCHU-OFFICE",
+      "name": "Micron Hsinchu Office",
+      "city": "Zhubei",
+      "state": "Hsinchu County",
+      "country": "Taiwan",
+      "address": "7F., No. 1, Huanke 1st Rd., Zhubei City, Hsinchu County 30247",
+      "lat": 24.83,
+      "lng": 121.01,
+      "businessFocus": "Office / design center",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TAIPEI-OFFICE",
+      "name": "Micron Taipei Office",
+      "city": "Taipei",
+      "state": null,
+      "country": "Taiwan",
+      "address": "23F & 24F., No. 170 Jingmao 1st Rd., Nangang Dist., Taipei City 11568",
+      "lat": 25.055,
+      "lng": 121.615,
+      "businessFocus": "Sales / regional headquarters Taiwan",
+      "type": "regional",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-PENANG-MFG1",
+      "name": "Micron Penang Facility (Prai)",
+      "city": "Prai",
+      "state": "Penang",
+      "country": "Malaysia",
+      "address": "No.1063, Plot 19, Tingkat Perusahaan 6, Prai Industrial Estate, 13600 Prai, Penang",
+      "lat": 5.38,
+      "lng": 100.4,
+      "businessFocus": "Assembly and test manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-PENANG-MFG2",
+      "name": "Micron Penang Facility (Batu Kawan)",
+      "city": "Bandar Cassia",
+      "state": "Penang",
+      "country": "Malaysia",
+      "address": "PMT 779, Lingkaran Cassia Selatan, Taman Perindustrian Batu Kawan, 14110 Bandar Cassia, Penang",
+      "lat": 5.26,
+      "lng": 100.43,
+      "businessFocus": "Assembly and test manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-MUAR-MFG",
+      "name": "Micron Muar Facility",
+      "city": "Muar",
+      "state": "Johor",
+      "country": "Malaysia",
+      "address": "Tanjung Agas Industrial Area, PO Box 62, Muar, Johor 84000",
+      "lat": 2.05,
+      "lng": 102.57,
+      "businessFocus": "Assembly and test manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-XIAN-MFG",
+      "name": "Micron Xi'an Facility",
+      "city": "Xi'an",
+      "state": "Shaanxi",
+      "country": "China",
+      "address": "Zone B of Shaanxi Xi'an Export Processing Zone, 28 XinXi Avenue, Xi'an 710119",
+      "lat": 34.26,
+      "lng": 108.94,
+      "businessFocus": "Assembly and test manufacturing; water reclamation project",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SHANGHAI-OFFICE",
       "name": "Micron Shanghai Office",
       "city": "Shanghai",
       "state": null,
       "country": "China",
-      "address": "Xinglian Science and Technology Park 11-18F Building #1, No.1535 Hong Mei Road, Shanghai 200233",
-      "lat": 31.15,
+      "address": "Xinglian Science and Technology Park, 11-18F Building #1, No.1535 Hong Mei Road, Shanghai 200233",
+      "lat": 31.17,
       "lng": 121.4,
-      "businessFocus": "Sales and engineering support",
-      "type": "engineering",
-      "sources": [
-        "https://www.micron.com/about/locations"
-      ],
-      "confidence": "verified"
-    },
-    {
-      "id": "MU-BENGALURU-ENGINEERING",
-      "name": "Micron Bengaluru Office",
-      "city": "Bengaluru",
-      "state": "Karnataka",
-      "country": "India",
-      "address": "Cessna Business Park, Kadubeesanahalli Village, Varthur hobli, Outer Ring Road, Bengaluru 560103",
-      "lat": 12.92,
-      "lng": 77.68,
-      "businessFocus": "R&D and engineering",
-      "type": "engineering",
-      "sources": [
-        "https://www.micron.com/about/locations"
-      ],
-      "confidence": "verified"
-    },
-    {
-      "id": "MU-TAIPEI-ENGINEERING",
-      "name": "Micron Taipei Office",
-      "city": "Taipei City",
-      "state": null,
-      "country": "Taiwan",
-      "address": "23F & 24F., No. 170 Jingmao 1st Rd., Nangang Dist., Taipei City 11568",
-      "lat": 25.05,
-      "lng": 121.61,
-      "businessFocus": "Engineering and regional operations",
-      "type": "engineering",
-      "sources": [
-        "https://www.micron.com/about/locations"
-      ],
-      "confidence": "verified"
-    },
-    {
-      "id": "MU-MUNICH-SALES",
-      "name": "Micron Munich Office",
-      "city": "Munich",
-      "state": null,
-      "country": "Germany",
-      "address": "Leopoldstrasse 250B, Munich 80807",
-      "lat": 48.18,
-      "lng": 11.59,
-      "businessFocus": "Sales and regional support",
+      "businessFocus": "Sales / regional office",
       "type": "sales",
       "sources": [
         "https://www.micron.com/about/locations"
       ],
       "confidence": "verified"
+    },
+    {
+      "id": "MU-SHENZHEN-OFFICE",
+      "name": "Micron Shenzhen Office",
+      "city": "Shenzhen",
+      "state": null,
+      "country": "China",
+      "address": "10B01~04, 10A03~04, Anlian Plaza, No.4018 Jintian Road, Shenzhen 518026",
+      "lat": 22.54,
+      "lng": 114.06,
+      "businessFocus": "Sales / regional office",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-GUJARAT-MFG",
+      "name": "Micron Gujarat Assembly and Test Facility (Sanand)",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "address": "AV-11, GIDC Sanand II, Bol Ind. Estate, Sanand, Ahmedabad, Gujarat 382110",
+      "lat": 22.98,
+      "lng": 72.38,
+      "businessFocus": "Assembly and test manufacturing; pilot production initiated, ramp in 2026; among largest single flow assembly and test clean rooms globally",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations",
+        "https://www.micron.com/about/company/corporate-profile",
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-GUJARAT-MFG2",
+      "name": "Micron Gujarat Facility (Sanand Plot SM12)",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "address": "Plot No. SM12 51/3, Sanand GIDC-II, Industrial Estate, Ahmedabad, Gujarat 382110",
+      "lat": 22.98,
+      "lng": 72.38,
+      "businessFocus": "Assembly and test manufacturing",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-BENGALURU-OFFICE",
+      "name": "Micron Bengaluru Office",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "address": "Cessna Business Park, Kadubeesanahalli Village, Varthur hobli, Outer Ring Road, Bengaluru, Karnataka 560103",
+      "lat": 12.93,
+      "lng": 77.68,
+      "businessFocus": "Design / engineering center",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-HYDERABAD-OFFICE",
+      "name": "Micron Hyderabad Office",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "country": "India",
+      "address": "Phoenix - Aquila Block A, Financial District, Nankaramguda, Serilingampally, Hyderabad, Telangana 500032",
+      "lat": 17.42,
+      "lng": 78.34,
+      "businessFocus": "Design / engineering center",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-MUNICH-OFFICE1",
+      "name": "Micron Munich Office (Leopoldstrasse)",
+      "city": "Munich",
+      "state": "Bavaria",
+      "country": "Germany",
+      "address": "Leopoldstrasse 250B, Munich 80807",
+      "lat": 48.18,
+      "lng": 11.58,
+      "businessFocus": "Sales / regional office Europe",
+      "type": "regional",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-MUNICH-OFFICE2",
+      "name": "Micron Munich Office (Carl-Wery-Str)",
+      "city": "Munich",
+      "state": "Bavaria",
+      "country": "Germany",
+      "address": "Carl-Wery-Str 22, Munich 81739",
+      "lat": 48.09,
+      "lng": 11.66,
+      "businessFocus": "Sales / engineering office",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-ARZANO-MFG",
+      "name": "Micron Arzano Facility",
+      "city": "Arzano",
+      "state": "Naples",
+      "country": "Italy",
+      "address": "Viale Remo De Feo, 1, 80022 Arzano (NA)",
+      "lat": 40.91,
+      "lng": 14.27,
+      "businessFocus": "Manufacturing / assembly and test",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-AVEZZANO-MFG",
+      "name": "Micron Avezzano Facility",
+      "city": "Avezzano",
+      "state": "L'Aquila",
+      "country": "Italy",
+      "address": "Via Newton, 34, 67051 Avezzano (AQ)",
+      "lat": 42.03,
+      "lng": 13.43,
+      "businessFocus": "Manufacturing / assembly and test",
+      "type": "manufacturing",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-VIMERCATE-OFFICE",
+      "name": "Micron Vimercate Office",
+      "city": "Vimercate",
+      "state": "Monza and Brianza",
+      "country": "Italy",
+      "address": "Via Trento, 26, Vimercate, MB 20871",
+      "lat": 45.61,
+      "lng": 9.37,
+      "businessFocus": "Sales / engineering office",
+      "type": "engineering",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-BRACKNELL-OFFICE",
+      "name": "Micron Bracknell Office (UK)",
+      "city": "Bracknell",
+      "state": "Berkshire",
+      "country": "United Kingdom",
+      "address": "Venture House, 2 Arlington Square, Downshire Way, Bracknell, Berkshire, RG12 1WA",
+      "lat": 51.41,
+      "lng": -0.75,
+      "businessFocus": "Sales / regional office UK",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-TLAQUEPAQUE-OFFICE",
+      "name": "Micron Guadalajara Office",
+      "city": "Tlaquepaque",
+      "state": "Jalisco",
+      "country": "Mexico",
+      "address": "Connect Building Floor 6, Anillo Perif\u00e9rico Sur 7988, Santa Maria Tequepexpan, Tlaquepaque, Jalisco, MX 45601",
+      "lat": 20.63,
+      "lng": -103.38,
+      "businessFocus": "Sales / regional office",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-SEOUL-OFFICE",
+      "name": "Micron Seoul Office",
+      "city": "Seoul",
+      "state": null,
+      "country": "South Korea",
+      "address": "5th Floor Glass Tower Bldg., 534 Teheran-ro, Gangnam-gu, Seoul 06181",
+      "lat": 37.51,
+      "lng": 127.06,
+      "businessFocus": "Sales / regional office Korea",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "verified"
+    },
+    {
+      "id": "MU-PARIS-OFFICE",
+      "name": "Micron Paris Office",
+      "city": "Paris",
+      "state": null,
+      "country": "France",
+      "address": "Immeuble Iliade, 23 Avenue Carnot, Paris",
+      "lat": 48.88,
+      "lng": 2.3,
+      "businessFocus": "Sales / regional office France",
+      "type": "sales",
+      "sources": [
+        "https://www.micron.com/about/locations"
+      ],
+      "confidence": "unverified"
     }
   ],
   "revenueGeography": {
-    "reasoning": "The most recent fiscal data for Micron Technology (MU) is for fiscal year 2025, which ended August 28, 2025. Total revenue for FY2025 is reported as $37.378 billion. Geographic breakdown for 2025 indicates approximately one-third of revenue from customers headquartered outside the U.S. and 80% of revenue from products shipped to locations outside the U.S.",
-    "fiscalYear": "2025",
-    "totalRevenue": 37378000000.0,
+    "reason": "The latest available quarterly data is Q2 FY2026 (period ending February 26, 2026) with total revenue of $23.86 billion. However, the sources do not provide a geographic revenue breakdown for Micron by country/region. The SEC filing (Q1 FY2026 10-Q) notes that approximately 80% of FY2025 revenue was from products shipped to customer locations outside the United States, but no specific geographic segment revenue breakdown is provided in any of the available sources. The revenue breakdowns available are by business unit (CMBU, CDBU, MCBU, AEBU) and by product type (DRAM, NAND), not by geography. Therefore, I cannot extract a geographic revenue segmentation. I will report the most recent quarterly total revenue ($23.86B = $23,860,000,000 for Q2 FY2026) and note the lack of geographic segment data.",
+    "fiscalYear": "FY2026 Q2",
+    "totalRevenue": 23860000000.0,
     "currency": "USD",
-    "segments": [
-      {
-        "region": "United States (Headquartered)",
-        "revenue": 24943126000.0,
-        "percentage": 0.667,
-        "yoyGrowth": null,
-        "notes": "Based on approximately one-third of revenue from customers headquartered outside the U.S."
-      },
-      {
-        "region": "International (Headquartered)",
-        "revenue": 12434874000.0,
-        "percentage": 0.333,
-        "yoyGrowth": null,
-        "notes": "Based on approximately one-third of revenue from customers headquartered outside the U.S."
-      }
-    ],
-    "concentrationRisk": "Micron has significant geographic concentration in product shipments, with 80% of revenue derived from products shipped to locations outside the United States.",
+    "segments": [],
+    "concentrationRisk": "Approximately 80% of Micron's FY2025 revenue was from products shipped to customer locations outside the United States, indicating significant geographic diversification and exposure to international markets. No detailed geographic segment breakdown by country/region was available in the provided sources.",
     "sources": [
-      "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08",
-      "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+      "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29",
+      "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "https://www.moomoo.com/stock/MU-US/earnings",
+      "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
     ]
   },
   "supplyChain": [
+    {
+      "entity": "Micron Technology (Boise Fab)",
+      "role": "foundry",
+      "city": "Boise",
+      "country": "United States",
+      "lat": 43.615,
+      "lng": -116.202,
+      "product": "DRAM and NAND R&D and manufacturing; lead fab for DRAM technology transitions",
+      "criticality": "critical",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ]
+    },
+    {
+      "entity": "Micron Technology (Hiroshima Fab)",
+      "role": "foundry",
+      "city": "Hiroshima",
+      "country": "Japan",
+      "lat": 34.385,
+      "lng": 132.455,
+      "product": "Advanced DRAM nodes; cleanroom expansion for advanced DRAM",
+      "criticality": "critical",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/"
+      ]
+    },
+    {
+      "entity": "Micron Technology (Manassas Fab)",
+      "role": "foundry",
+      "city": "Manassas",
+      "country": "United States",
+      "lat": 38.751,
+      "lng": -77.475,
+      "product": "Legacy DRAM supply",
+      "criticality": "important",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ]
+    },
+    {
+      "entity": "Micron Technology (Clay Megafab - New York)",
+      "role": "foundry",
+      "city": "Clay",
+      "country": "United States",
+      "lat": 43.156,
+      "lng": -76.194,
+      "product": "Future DRAM manufacturing; first fab expected supply in 2030+",
+      "criticality": "important",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "entity": "Micron Technology (Singapore Manufacturing Facilities)",
+      "role": "foundry",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.352,
+      "lng": 103.82,
+      "product": "HBM advanced packaging facility; general memory manufacturing",
+      "criticality": "critical",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+      ]
+    },
+    {
+      "entity": "Micron Technology (India Assembly & Test Facility)",
+      "role": "assembly_test",
+      "city": "Gujarat",
+      "country": "India",
+      "lat": 23.022,
+      "lng": 72.571,
+      "product": "Assembly and test; pilot production initiated",
+      "criticality": "important",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ]
+    },
+    {
+      "entity": "IM Flash Technologies (Joint Venture with Intel)",
+      "role": "foundry",
+      "city": "Lehi",
+      "country": "United States",
+      "lat": 40.388,
+      "lng": -111.851,
+      "product": "NAND Flash memory manufacturing (joint venture with Intel)",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm",
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "TECH Semiconductor Singapore",
+      "role": "foundry",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.352,
+      "lng": 103.82,
+      "product": "Semiconductor memory manufacturing joint venture (~43% ownership)",
+      "criticality": "important",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm",
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "Inotera Memories (Nanya Technology JV)",
+      "role": "foundry",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.993,
+      "lng": 121.301,
+      "product": "DRAM memory manufacturing (equity method investment)",
+      "criticality": "important",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "MP Mask Technology Center (Photronics JV)",
+      "role": "foundry",
+      "city": "Boise",
+      "country": "United States",
+      "lat": 43.615,
+      "lng": -116.202,
+      "product": "Photomask production (joint venture with Photronics)",
+      "criticality": "important",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
     {
       "entity": "ASML",
       "role": "key_supplier",
       "city": "Veldhoven",
       "country": "Netherlands",
-      "lat": 51.425,
-      "lng": 5.465,
-      "product": "EUV lithography equipment",
+      "lat": 51.418,
+      "lng": 5.409,
+      "product": "Photolithography equipment (single-source dependency for key tools)",
       "criticality": "critical",
       "sources": [
-        "https://quartr.com/companies/micron-technology-inc_5199",
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
-      ]
-    },
-    {
-      "entity": "TSMC",
-      "role": "foundry",
-      "city": "Hsinchu",
-      "country": "Taiwan",
-      "lat": 24.776,
-      "lng": 121.023,
-      "product": "HBM4E customization and logic die",
-      "criticality": "critical",
-      "sources": [
-        "https://quartr.com/companies/micron-technology-inc_5199"
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29",
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
       ]
     },
     {
@@ -170,12 +934,13 @@
       "role": "key_supplier",
       "city": "Santa Clara",
       "country": "United States",
-      "lat": 37.392,
-      "lng": -121.977,
+      "lat": 37.354,
+      "lng": -121.955,
       "product": "Semiconductor manufacturing equipment",
-      "criticality": "important",
+      "criticality": "critical",
       "sources": [
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29"
       ]
     },
     {
@@ -183,12 +948,13 @@
       "role": "key_supplier",
       "city": "Fremont",
       "country": "United States",
-      "lat": 37.513,
-      "lng": -121.944,
+      "lat": 37.548,
+      "lng": -121.989,
       "product": "Semiconductor manufacturing equipment",
-      "criticality": "important",
+      "criticality": "critical",
       "sources": [
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29"
       ]
     },
     {
@@ -196,91 +962,439 @@
       "role": "key_supplier",
       "city": "Milpitas",
       "country": "United States",
-      "lat": 37.422,
-      "lng": -121.906,
-      "product": "Process control and yield management systems",
+      "lat": 37.428,
+      "lng": -121.9,
+      "product": "Semiconductor process control equipment",
+      "criticality": "critical",
+      "sources": [
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29"
+      ]
+    },
+    {
+      "entity": "Advanced Semiconductor Engineering (ASE)",
+      "role": "assembly_test",
+      "city": "Penang",
+      "country": "Malaysia",
+      "lat": 5.416,
+      "lng": 100.333,
+      "product": "Packaging and testing (5th plant launched Feb 2025)",
       "criticality": "important",
       "sources": [
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+        "https://www.fedex.com/en-au/business-insights/tech-innovation/semiconductor-supply-chain-resilience.html"
       ]
     },
     {
-      "entity": "Micron Memory Japan",
+      "entity": "Advanced Semiconductor Engineering (ASE) - Kaohsiung",
       "role": "assembly_test",
-      "city": "Higashihiroshima",
-      "country": "Japan",
-      "lat": 34.433,
-      "lng": 132.75,
-      "product": "Memory manufacturing and technology development",
-      "criticality": "critical",
-      "sources": [
-        "https://www.micron.com/about/locations"
-      ]
-    },
-    {
-      "entity": "Micron Memory Taiwan",
-      "role": "foundry",
-      "city": "Taichung",
+      "city": "Kaohsiung",
       "country": "Taiwan",
-      "lat": 24.25,
-      "lng": 120.717,
-      "product": "DRAM manufacturing",
-      "criticality": "critical",
+      "lat": 22.627,
+      "lng": 120.301,
+      "product": "Panel-level packaging facility ($200M investment)",
+      "criticality": "important",
       "sources": [
-        "https://www.micron.com/about/locations"
+        "https://www.fedex.com/en-au/business-insights/tech-innovation/semiconductor-supply-chain-resilience.html"
       ]
     },
     {
-      "entity": "Micron Technology Singapore",
+      "entity": "FedEx",
+      "role": "logistics",
+      "city": "Memphis",
+      "country": "United States",
+      "lat": 35.117,
+      "lng": -89.971,
+      "product": "Logistics and supply chain digital intelligence; 27% improvement in on-time recovery",
+      "criticality": "important",
+      "sources": [
+        "https://www.fedex.com/en-au/business-insights/tech-innovation/semiconductor-supply-chain-resilience.html"
+      ]
+    },
+    {
+      "entity": "FedEx China",
+      "role": "logistics",
+      "city": "Shanghai",
+      "country": "China",
+      "lat": 31.23,
+      "lng": 121.474,
+      "product": "Sustainable supply chain collaboration with Micron",
+      "criticality": "standard",
+      "sources": [
+        "https://www.fedex.com/en-au/business-insights/tech-innovation/semiconductor-supply-chain-resilience.html"
+      ]
+    },
+    {
+      "entity": "Gainfront",
+      "role": "key_supplier",
+      "city": "Santa Clara",
+      "country": "United States",
+      "lat": 37.354,
+      "lng": -121.955,
+      "product": "Trusted third-party platform for supplier registration and profile submission",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/company/suppliers",
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "entity": "Gilbane",
+      "role": "contract_manufacturer",
+      "city": "Clay",
+      "country": "United States",
+      "lat": 43.156,
+      "lng": -76.194,
+      "product": "Preconstruction and site enabling works for Micron's New York project",
+      "criticality": "important",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "entity": "E. Smith Contractors",
+      "role": "contract_manufacturer",
+      "city": "Clay",
+      "country": "United States",
+      "lat": 43.156,
+      "lng": -76.194,
+      "product": "Office interior design and outfitting for Micron's New York office",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/blog/company/community/welcome-to-new-york-micron-selects-an-office-location-as-megafab-progresses"
+      ]
+    },
+    {
+      "entity": "Albany NanoTech Complex",
+      "role": "key_supplier",
+      "city": "Albany",
+      "country": "United States",
+      "lat": 42.686,
+      "lng": -73.824,
+      "product": "R&D and workforce development programs",
+      "criticality": "important",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "entity": "U.S. Air Force Research Laboratory (Rome, NY)",
+      "role": "key_supplier",
+      "city": "Rome",
+      "country": "United States",
+      "lat": 43.213,
+      "lng": -75.456,
+      "product": "Mission-critical R&D and military/defense readiness collaboration",
+      "criticality": "important",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "entity": "AIC",
+      "role": "key_supplier",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "AVL partner by platform",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/company/suppliers"
+      ]
+    },
+    {
+      "entity": "ASRock",
+      "role": "key_supplier",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "AVL partner by platform",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/company/suppliers"
+      ]
+    },
+    {
+      "entity": "ASUS",
+      "role": "key_supplier",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "AVL partner by platform",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/company/suppliers"
+      ]
+    },
+    {
+      "entity": "Giga Computing",
+      "role": "key_supplier",
+      "city": "New Taipei",
+      "country": "Taiwan",
+      "lat": 25.012,
+      "lng": 121.465,
+      "product": "AVL partner by platform",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/company/suppliers"
+      ]
+    },
+    {
+      "entity": "Mitac",
+      "role": "key_supplier",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "AVL partner by platform",
+      "criticality": "standard",
+      "sources": [
+        "https://www.micron.com/about/company/suppliers"
+      ]
+    },
+    {
+      "entity": "Rare Earth Materials (China supply dependency)",
+      "role": "raw_material",
+      "city": null,
+      "country": "China",
+      "lat": 35.828250499999996,
+      "lng": 104.35084499999999,
+      "product": "Rare earth elements, metals, and materials (lithium, nickel, copper, aluminum, gallium)",
+      "criticality": "critical",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ]
+    },
+    {
+      "entity": "PC Partner (Lexar assembly)",
+      "role": "assembly_test",
+      "city": "Shenzhen",
+      "country": "China",
+      "lat": 22.543,
+      "lng": 114.058,
+      "product": "Flash card assembly and testing",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "Macrotron (Taiwan)",
+      "role": "assembly_test",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "Flash card assembly and testing",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "Power Digital Card",
+      "role": "assembly_test",
+      "city": "Taipei",
+      "country": "Taiwan",
+      "lat": 25.033,
+      "lng": 121.565,
+      "product": "Flash card assembly and testing",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "Venture Manufacturing Services",
       "role": "assembly_test",
       "city": "Singapore",
       "country": "Singapore",
-      "lat": 1.445,
-      "lng": 103.79,
-      "product": "Memory assembly and test",
+      "lat": 1.352,
+      "lng": 103.82,
+      "product": "Flash card assembly and testing",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "Advanced Interconnection Technologies",
+      "role": "assembly_test",
+      "city": "Batam",
+      "country": "Indonesia",
+      "lat": 1.126,
+      "lng": 104.053,
+      "product": "Controller assembly, test and packaging",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "United Microelectronics Corporation (UMC)",
+      "role": "foundry",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.813,
+      "lng": 120.967,
+      "product": "Controller manufacturing for Lexar",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "Silicon Motion (SMI)",
+      "role": "key_supplier",
+      "city": "Hsinchu",
+      "country": "Taiwan",
+      "lat": 24.813,
+      "lng": 120.967,
+      "product": "Controller manufacturing for Lexar",
+      "criticality": "standard",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+      ]
+    },
+    {
+      "entity": "Nanya Technology Corporation",
+      "role": "key_supplier",
+      "city": "Taoyuan",
+      "country": "Taiwan",
+      "lat": 24.993,
+      "lng": 121.301,
+      "product": "DRAM technology partnering arrangement (Inotera/MeiYa JVs)",
       "criticality": "important",
       "sources": [
-        "https://www.micron.com/about/locations"
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "Photronics (MP Mask JV)",
+      "role": "key_supplier",
+      "city": "Brookfield",
+      "country": "United States",
+      "lat": 43.053,
+      "lng": -88.107,
+      "product": "Photomask production joint venture (MP Mask Technology Center)",
+      "criticality": "important",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "Canon Inc. (TECH Semiconductor JV)",
+      "role": "key_supplier",
+      "city": "Tokyo",
+      "country": "Japan",
+      "lat": 35.676,
+      "lng": 139.65,
+      "product": "Joint venture partner in TECH Semiconductor Singapore",
+      "criticality": "standard",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "Hewlett-Packard (TECH Semiconductor JV)",
+      "role": "key_supplier",
+      "city": "Palo Alto",
+      "country": "United States",
+      "lat": 37.441,
+      "lng": -122.143,
+      "product": "Joint venture partner in TECH Semiconductor Singapore",
+      "criticality": "standard",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "entity": "Taiwan Water Corporation",
+      "role": "key_supplier",
+      "city": "Taichung",
+      "country": "Taiwan",
+      "lat": 24.148,
+      "lng": 120.674,
+      "product": "Water restoration and pipeline replacement projects in Taiwan",
+      "criticality": "standard",
+      "sources": [
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ]
+    },
+    {
+      "entity": "Singapore Economic Development Board",
+      "role": "key_supplier",
+      "city": "Singapore",
+      "country": "Singapore",
+      "lat": 1.278,
+      "lng": 103.851,
+      "product": "Government support for central abatement system",
+      "criticality": "standard",
+      "sources": [
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ]
+    },
+    {
+      "entity": "Energy Commission of Malaysia",
+      "role": "key_supplier",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "lat": 3.139,
+      "lng": 101.687,
+      "product": "Green Electricity Tariff program for 100% carbon-free electricity",
+      "criticality": "standard",
+      "sources": [
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+      ]
+    },
+    {
+      "entity": "Department of Science and Technology of Gujarat",
+      "role": "key_supplier",
+      "city": "Gandhinagar",
+      "country": "India",
+      "lat": 23.216,
+      "lng": 72.683,
+      "product": "MoU for environmental sustainability, safety, and STEM education",
+      "criticality": "standard",
+      "sources": [
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
       ]
     }
   ],
   "customerConcentration": [
     {
-      "customer": "Kingston Technology Company, Inc.",
-      "revenueShare": "10%",
-      "hqCity": "Fountain Valley",
-      "hqCountry": "United States",
-      "lat": 33.709,
-      "lng": -117.955,
-      "relationship": "Major customer with concentration risk",
-      "sources": [
-        "https://www.sec.gov/Archives/edgar/data/723125/000072312522000004/mu-20211202.htm"
-      ]
-    },
-    {
-      "customer": "Undisclosed Customer",
-      "revenueShare": "17%",
-      "hqCity": null,
-      "hqCountry": null,
-      "lat": null,
-      "lng": null,
-      "relationship": "Major customer within the CMBU segment",
-      "sources": [
-        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
-      ]
-    },
-    {
       "customer": "Apple Inc.",
-      "revenueShare": null,
+      "revenueShare": "17%",
       "hqCity": "Cupertino",
       "hqCountry": "United States",
       "lat": 37.3318,
       "lng": -122.0312,
-      "relationship": "Major customer integrating memory and storage into mobile devices",
+      "relationship": "Major customer for NAND Flash and memory products used in smartphones and mobile devices. Revenue was 17% of total in Q1 FY2026 (SEC filing). Also an important partner for Micron's U.S. manufacturing investments.",
       "sources": [
-        "https://en.wikipedia.org/wiki/Micron_Technology",
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08",
-        "https://www.biz.uiowa.edu/henry/download/f24_DELL.pdf"
+        "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+        "https://www.micron.com/us-expansion/ny",
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29",
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "customer": "NVIDIA Corporation",
+      "revenueShare": null,
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.3875,
+      "lng": -121.9632,
+      "relationship": "Key customer for HBM products. Micron's HBM4 36GB 12-high is designed for NVIDIA Rubin platform. High-volume production of HBM4 for NVIDIA's Vera Rubin platform announced Feb 2026. Entire HBM supply sold out for CY2026 under fixed-price contracts. NVIDIA states high-performance memory from Micron is foundational to AI platforms.",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/",
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29",
+        "https://www.micron.com/us-expansion/ny",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
       ]
     },
     {
@@ -288,11 +1402,13 @@
       "revenueShare": null,
       "hqCity": "Round Rock",
       "hqCountry": "United States",
-      "lat": 30.5083,
+      "lat": 30.5113,
       "lng": -97.6789,
-      "relationship": "Major customer utilizing DRAM, NAND, and SSD solutions",
+      "relationship": "Major customer for DRAM, NAND, and SSD solutions for PCs, servers, and data centers. Long-standing partnership and collaboration across the AI ecosystem.",
       "sources": [
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+        "https://www.micron.com/us-expansion/ny",
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29"
       ]
     },
     {
@@ -302,85 +1418,328 @@
       "hqCountry": "United States",
       "lat": 47.674,
       "lng": -122.1215,
-      "relationship": "Major customer using memory and storage for Azure cloud platform",
+      "relationship": "Major customer for memory products used in Azure cloud platform. Supports Micron's investment in U.S. memory manufacturing. Collaboration on sustainability goals.",
       "sources": [
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+        "https://www.micron.com/us-expansion/ny",
+        "https://www.trefis.com/data/companies/MU?from=MU_quality_momentum_2026-05-30",
+        "https://www.trefis.com/data/companies/MU?from=MU_how_low_2026-05-29",
+        "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
       ]
     },
     {
-      "customer": "NVIDIA",
+      "customer": "Amazon Web Services (AWS)",
+      "revenueShare": null,
+      "hqCity": "Seattle",
+      "hqCountry": "United States",
+      "lat": 47.6062,
+      "lng": -122.3321,
+      "relationship": "Customer that depends on Micron's advanced memory technologies for cloud infrastructure.",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "customer": "Hewlett Packard Enterprise (HPE)",
+      "revenueShare": null,
+      "hqCity": "Spring",
+      "hqCountry": "United States",
+      "lat": 30.0799,
+      "lng": -95.4172,
+      "relationship": "Supports Micron's investment in U.S. memory manufacturing for the AI-driven future.",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "customer": "Lenovo",
+      "revenueShare": null,
+      "hqCity": "Beijing",
+      "hqCountry": "China",
+      "lat": 39.9042,
+      "lng": 116.4074,
+      "relationship": "Supports Micron's new manufacturing complex in New York as a milestone for U.S. manufacturing for next-generation AI.",
+      "sources": [
+        "https://www.micron.com/us-expansion/ny"
+      ]
+    },
+    {
+      "customer": "AMD (Advanced Micro Devices)",
       "revenueShare": null,
       "hqCity": "Santa Clara",
       "hqCountry": "United States",
-      "lat": 37.3688,
-      "lng": -121.9703,
-      "relationship": "Major customer for HBM products and H200 GPU chips",
+      "lat": 37.3875,
+      "lng": -121.9632,
+      "relationship": "Partner and customer. AMD states advanced memory is essential for AI and HPC. Micron's LPDDR5X is designed into AMD Ryzen AI Halo platforms.",
       "sources": [
-        "https://www.babson.edu/media/babson/assets/cutler-center/micron-technology.pdf",
-        "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08"
+        "https://www.micron.com/us-expansion/ny",
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ]
+    },
+    {
+      "customer": "Samsung Electronics",
+      "revenueShare": null,
+      "hqCity": "Suwon",
+      "hqCountry": "South Korea",
+      "lat": 37.2636,
+      "lng": 127.0286,
+      "relationship": "Samsung Galaxy S26 flagship smartphone uses Micron memory.",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ]
+    },
+    {
+      "customer": "Google (Alphabet Inc.)",
+      "revenueShare": null,
+      "hqCity": "Mountain View",
+      "hqCountry": "United States",
+      "lat": 37.4223,
+      "lng": -122.0841,
+      "relationship": "Google Pixel 10 flagship smartphone uses Micron memory.",
+      "sources": [
+        "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+      ]
+    },
+    {
+      "customer": "Intel Corporation",
+      "revenueShare": "9%",
+      "hqCity": "Santa Clara",
+      "hqCountry": "United States",
+      "lat": 37.3875,
+      "lng": -121.9632,
+      "relationship": "Historical major customer. Sales to Intel were 9% of net sales in Q2 2010, and 22-24% in 2009.",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
+      ]
+    },
+    {
+      "customer": "HP Inc.",
+      "revenueShare": "13%",
+      "hqCity": "Palo Alto",
+      "hqCountry": "United States",
+      "lat": 37.4419,
+      "lng": -122.143,
+      "relationship": "Historical major customer. Sales to HP were 13% of net sales in Q2 2010.",
+      "sources": [
+        "https://investors.micron.com/static-files/e8ead0f3-04e5-4640-9762-8f0044934b2b"
       ]
     }
   ],
   "geopoliticalRisks": [
     {
       "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
+      "lat": 35.86,
+      "lng": 104.19,
       "riskScore": 5,
       "riskCategory": "trade_restriction",
-      "riskLabel": "CAC Purchase Restrictions",
-      "description": "The Cyberspace Administration of China (CAC) barred critical information infrastructure operators from purchasing Micron products, significantly impacting revenue streams from mainland China and Hong Kong.",
-      "impactLevel": "high",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "riskLabel": "China Ban on Micron Products",
+      "description": "China's CAC determined that critical information infrastructure operators in China may not purchase Micron products, directly impacting revenue from companies headquartered in mainland China and Hong Kong. Further Chinese government actions could impact Micron's revenue inside or outside China.",
+      "impactLevel": "critical",
+      "filingReference": "Micron 10-K FY2025 (SEC filing mu-20251127)",
       "lastUpdated": "2025-11-27"
     },
     {
       "region": "Taiwan",
-      "lat": 23.6978,
-      "lng": 120.9605,
-      "riskScore": 4,
+      "lat": 23.7,
+      "lng": 120.96,
+      "riskScore": 5,
       "riskCategory": "geopolitical_conflict",
-      "riskLabel": "Manufacturing Concentration Risk",
-      "description": "A substantial portion of Micron's manufacturing and operational footprint is located in Taiwan, exposing the company to significant risks from regional geopolitical tensions and potential supply chain disruptions.",
+      "riskLabel": "Taiwan Geopolitical Risk",
+      "description": "A majority of Micron's DRAM production output in FY2025 was from fabrication facilities in Taiwan. Any political, economic, or military actions affecting Taiwan could have a material adverse impact on Micron's operations and supply chain.",
       "impactLevel": "critical",
-      "filingReference": "https://www.trefis.com/data/companies/MU?from=MU_why_stock_moved_up_2026-05-08",
-      "lastUpdated": "2026-05-08"
+      "filingReference": "Micron 10-K FY2025 (SEC filing mu-20251127)",
+      "lastUpdated": "2025-11-27"
     },
     {
       "region": "United States",
-      "lat": 38.8951,
-      "lng": -77.0364,
-      "riskScore": 3,
-      "riskCategory": "tax_policy",
-      "riskLabel": "OBBBA Tax Code Changes",
-      "description": "The One Big Beautiful Bill Act (OBBBA) enacted July 4, 2025, introduces broad changes to the U.S. tax code effective for 2026 and 2027, creating uncertainty regarding future tax provisions and effective rates.",
-      "impactLevel": "moderate",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
-      "lastUpdated": "2025-11-27"
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 4,
+      "riskCategory": "trade_restriction",
+      "riskLabel": "Section 232 Tariffs on Semiconductors",
+      "description": "On April 14, 2025, the U.S. BIS initiated Section 232 investigations into semiconductor imports, which may result in industry-wide additional tariffs and trade restrictions. A 25% tariff on semiconductors was imposed in January 2026, affecting Micron's cost structure and global competitiveness.",
+      "impactLevel": "high",
+      "filingReference": "Micron 10-K FY2025; MUFG Bottlenecks Report 2026",
+      "lastUpdated": "2026-01-31"
     },
     {
       "region": "China",
-      "lat": 39.9042,
-      "lng": 116.4074,
+      "lat": 35.86,
+      "lng": 104.19,
+      "riskScore": 4,
+      "riskCategory": "sanctions",
+      "riskLabel": "US Export Controls on China",
+      "description": "The U.S. government restricts Micron from selling products and software to certain Chinese customers. These restrictions may not prohibit competitors from selling similar products, putting Micron at a competitive disadvantage. The Entity List has grown to over 3,300 entities with China accounting for 1,155 entries.",
+      "impactLevel": "high",
+      "filingReference": "Micron 10-K FY2025; MUFG Bottlenecks Report 2026",
+      "lastUpdated": "2026-05-01"
+    },
+    {
+      "region": "China",
+      "lat": 35.86,
+      "lng": 104.19,
+      "riskScore": 4,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "State-Backed Chinese Competitors (CXMT, YMTC)",
+      "description": "Chinese chipmaker CXMT is rapidly scaling DDR5 DRAM mass production ahead of a potential IPO, aiming to compete with Micron. YMTC has filed multiple patent infringement lawsuits against Micron in the US, China, UK, and Germany. Governments have provided significant financial assistance to CXMT and YMTC, increasing the threat of DRAM and NAND oversupply.",
+      "impactLevel": "high",
+      "filingReference": "Micron 10-K FY2025; US Funds Report; Trefis Analysis",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
       "riskScore": 4,
       "riskCategory": "regulatory_compliance",
-      "riskLabel": "Patent Litigation with YMTC",
-      "description": "Micron is a party to multiple pending patent infringement complaints filed by Yangtze Memory Technologies Company Ltd. (YMTC) across various jurisdictions including China, the U.S., Germany, and the U.K.",
+      "riskLabel": "CHIPS Act Compliance & Clawback Risk",
+      "description": "Micron's government incentives from the CHIPS Act are conditioned upon achieving certain milestones. Failure to achieve them could result in clawbacks, including interest and/or loss of project assets. Share repurchases are permitted only as allowed by the terms of the CHIPS Agreement, limiting capital return flexibility.",
       "impactLevel": "high",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
-      "lastUpdated": "2025-11-27"
+      "filingReference": "Micron 10-K FY2025; MarketBeat Earnings Reports",
+      "lastUpdated": "2026-03-18"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 4,
+      "riskCategory": "tax_policy",
+      "riskLabel": "OBBBA Tax Code Changes",
+      "description": "The One Big Beautiful Bill Act (OBBBA) enacted on July 4, 2025 introduces broad changes to the U.S. tax code effective for Micron beginning in 2026 and 2027, with uncertain aggregate impact on the company's tax burden and financial results.",
+      "impactLevel": "high",
+      "filingReference": "Micron 10-K FY2025 (SEC filing mu-20251127)",
+      "lastUpdated": "2025-07-04"
     },
     {
       "region": "Singapore",
-      "lat": 1.3521,
-      "lng": 103.8198,
+      "lat": 1.35,
+      "lng": 103.82,
       "riskScore": 3,
       "riskCategory": "tax_policy",
-      "riskLabel": "Pillar Two Tax Implementation",
-      "description": "Singapore enacted Pillar Two Model Rules effective in 2026, which offsets benefits from existing Singapore tax incentive arrangements, potentially increasing the effective tax rate for regional operations.",
+      "riskLabel": "Singapore Pillar Two Tax Legislation",
+      "description": "Singapore enacted Pillar Two legislation effective for Micron in 2026, which largely offsets the benefit from its Singapore tax incentive arrangements, increasing the company's effective tax rate.",
       "impactLevel": "moderate",
-      "filingReference": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm",
+      "filingReference": "Micron 10-K FY2025 (SEC filing mu-20251127)",
       "lastUpdated": "2025-11-27"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "PFAS & Environmental Regulations",
+      "description": "Micron is subject to increasing regulations on per- and polyfluoroalkyl substances (PFAS), which could alter product design, manufacturing, and operations. New sustainability laws such as California's climate change disclosure rules could result in additional costs and regulatory risks.",
+      "impactLevel": "moderate",
+      "filingReference": "Micron 10-K FY2025; Micron 2026 Sustainability Report",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "AI Export Control & Chip Security Act",
+      "description": "The bipartisan Chip Security Act would require location verification mechanisms for exported AI chips and mandatory reporting of suspected diversions. The AI OVERWATCH Act is advancing in Congress, potentially creating new regulatory requirements for AI-related semiconductor companies. HBM export whitelisting recommendations could directly affect Micron's export compliance.",
+      "impactLevel": "moderate",
+      "filingReference": "CNAS Report; MUFG Bottlenecks Report 2026",
+      "lastUpdated": "2026-05-01"
+    },
+    {
+      "region": "China",
+      "lat": 35.86,
+      "lng": 104.19,
+      "riskScore": 3,
+      "riskCategory": "currency_exposure",
+      "riskLabel": "US-China Trade War & Currency Risk",
+      "description": "The trade war between the US and China has frozen much of the trade between them and raised fears of a global recession. China has exempted some US imports from 125% tariffs but demands the US cancel unilateral tariff increases. Currency fluctuations and trade uncertainty impact Micron's global revenue, with ~83% of sales outside the US historically.",
+      "impactLevel": "moderate",
+      "filingReference": "SIA News Roundup; Micron SEC Filings",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "South Korea",
+      "lat": 35.91,
+      "lng": 127.77,
+      "riskScore": 3,
+      "riskCategory": "geopolitical_conflict",
+      "riskLabel": "Intense Competition from Samsung & SK Hynix",
+      "description": "Samsung has committed to over $73 billion in capex and R&D for 2026, indicating an aggressive capacity race. SK Hynix holds a time-to-market advantage in new HBM generations. Micron may be trailing in the HBM4 market, potentially impacting market share and pricing power. A massive industry-wide capex race could create a supply glut post-2026.",
+      "impactLevel": "moderate",
+      "filingReference": "Trefis Analysis; CNAS Report",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "Taiwan",
+      "lat": 23.7,
+      "lng": 120.96,
+      "riskScore": 3,
+      "riskCategory": "political_instability",
+      "riskLabel": "Taiwan Semiconductor Supply Chain Concentration",
+      "description": "Taiwan's semiconductor supply chain contributes 60% of the global foundry market and produces over 90% of advanced chips. TSMC holds ~90% market share in advanced AI chips. Any disruption in Taiwan would severely impact Micron's DRAM production and the broader semiconductor ecosystem.",
+      "impactLevel": "high",
+      "filingReference": "FedEx Supply Chain Report; MUFG Bottlenecks Report 2026",
+      "lastUpdated": "2026-05-01"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 3,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Patent Litigation & IP Risks",
+      "description": "Micron faces multiple patent infringement lawsuits from Netlist Inc., YMTC, Besang Inc., Palisade Technologies, and Advanced Memory Technologies in US courts and internationally. A securities class action and shareholder derivative complaints have also been filed, creating legal and financial exposure.",
+      "impactLevel": "moderate",
+      "filingReference": "Micron 10-K FY2025 (SEC filing mu-20251127)",
+      "lastUpdated": "2025-11-27"
+    },
+    {
+      "region": "Democratic Republic of the Congo",
+      "lat": -4.04,
+      "lng": 21.76,
+      "riskScore": 2,
+      "riskCategory": "regulatory_compliance",
+      "riskLabel": "Conflict Minerals Sourcing Risk",
+      "description": "Micron conducts due diligence on conflict mineral sourcing that may support civil unrest or human rights abuses in the Democratic Republic of the Congo or neighboring countries. Non-compliance with Dodd-Frank Section 1502 could result in reputational and regulatory penalties.",
+      "impactLevel": "low",
+      "filingReference": "Micron Supplier Page; Micron 2026 Sustainability Report",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 43.62,
+      "lng": -116.21,
+      "riskScore": 2,
+      "riskCategory": "environmental_regulation",
+      "riskLabel": "Water Stress at US Facilities",
+      "description": "Micron's Boise, Idaho facility is classified as extremely high water stress, and Manassas, Virginia as high water stress by the World Resources Institute. Water scarcity could impact manufacturing operations and increase costs.",
+      "impactLevel": "low",
+      "filingReference": "Micron 2026 Sustainability Report",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "China",
+      "lat": 34.26,
+      "lng": 108.94,
+      "riskScore": 2,
+      "riskCategory": "environmental_regulation",
+      "riskLabel": "Water Stress at Xi'an Facility",
+      "description": "Micron's Xi'an, China facility is classified as high water stress by the World Resources Institute Aqueduct Water Risk Atlas, posing operational risks to manufacturing in the region.",
+      "impactLevel": "low",
+      "filingReference": "Micron 2026 Sustainability Report",
+      "lastUpdated": "2026-05-30"
+    },
+    {
+      "region": "United States",
+      "lat": 37.09,
+      "lng": -95.71,
+      "riskScore": 3,
+      "riskCategory": "labor_regulation",
+      "riskLabel": "Construction Labor & Talent Shortage",
+      "description": "Concurrent semiconductor expansion projects across the industry create competition for limited construction talent, potentially causing delays and cost increases for Micron's U.S. fab projects. Fiscal 2026 CapEx above $25B and fiscal 2027 construction spend increase of over $10B YoY raise execution risk.",
+      "impactLevel": "moderate",
+      "filingReference": "Micron 10-K FY2025; MarketBeat Earnings Reports",
+      "lastUpdated": "2026-03-18"
     }
   ]
 }

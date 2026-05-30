@@ -3650,39 +3650,325 @@
     ]
   },
   {
-    "company": "Micron Technology, Inc.",
-    "website": "https://investors.micron.com/",
+    "company": "Micron Technology Inc.",
+    "website": "https://www.micron.com",
     "ticker": "MU",
-    "sector": "Information Technology",
-    "description": "Micron Technology, Inc. is a leading global semiconductor company headquartered in Boise, Idaho, with a vast international presence that includes manufacturing, research, and operational facilities across the United States, Singapore, and other key global markets, serving a diverse customer base worldwide with advanced memory and storage solutions.",
+    "sector": "Technology",
+    "description": "Micron Technology Inc. is a global leader in innovative memory and storage solutions, designing, developing, and manufacturing high-performance DRAM, HBM, NAND, and NOR semiconductor products. Headquartered in Boise, Idaho, USA, and founded in 1978, Micron operates across four business segments (Cloud Memory, Core Data Center, Mobile and Client, Automotive and Embedded) with a global footprint spanning manufacturing and R&D facilities in the United States, Singapore, Japan, Taiwan, China, Malaysia, India, and Europe. Approximately 80% of the company's revenue comes from customers outside the United States, serving data center, mobile, consumer electronics, industrial IoT, automotive, and aerospace markets worldwide. Micron is one of only three major memory chipmakers globally alongside Samsung and SK Hynix, and is a member of the S&P 500 and NASDAQ 100.",
     "offices": [
       {
-        "id": "MU-BOISE-HEADQUARTERS",
+        "id": "MU-BOISE-HQ",
         "name": "Micron Technology Corporate Headquarters",
         "city": "Boise",
         "state": "Idaho",
-        "country": "United States",
-        "address": "8000 S. Federal Way, Boise, Idaho 83716-9632",
-        "lat": 43.555,
-        "lng": -116.125,
-        "businessFocus": "Corporate headquarters and semiconductor manufacturing",
+        "country": "USA",
+        "address": "8000 S Federal Way, Boise, ID 83716",
+        "lat": 43.567,
+        "lng": -116.195,
+        "businessFocus": "Corporate headquarters, executive offices, R&D, DRAM manufacturing fab",
         "type": "headquarters",
         "sources": [
-          "https://www.sec.gov/Archives/edgar/data/723125/000072312522000004/mu-20211202.htm",
+          "https://www.micron.com/about/locations",
+          "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-BOISE-MFG",
+        "name": "Micron Boise Fab (Leading-Edge Memory Manufacturing)",
+        "city": "Boise",
+        "state": "Idaho",
+        "country": "USA",
+        "address": "8000 S Federal Way, Boise, ID 83716",
+        "lat": 43.567,
+        "lng": -116.195,
+        "businessFocus": "Leading-edge DRAM manufacturing fab (first wafer output mid-2027); second fab under construction",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+          "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-MERIDIAN-OFFICE",
+        "name": "Micron Meridian Office",
+        "city": "Meridian",
+        "state": "Idaho",
+        "country": "USA",
+        "address": "3475 East Commercial Court, Meridian, ID 83642",
+        "lat": 43.594,
+        "lng": -116.37,
+        "businessFocus": "Office / support functions",
+        "type": "satellite",
+        "sources": [
           "https://www.micron.com/about/locations"
         ],
         "confidence": "verified"
       },
       {
-        "id": "MU-MANASSAS-MANUFACTURING",
-        "name": "Micron Manassas Facility",
+        "id": "MU-MANASSAS-MFG",
+        "name": "Micron Manassas Fab",
         "city": "Manassas",
         "state": "Virginia",
-        "country": "United States",
-        "address": "9600 Godwin Drive, Manassas, Virginia 20110",
-        "lat": 38.75,
-        "lng": -77.47,
-        "businessFocus": "Semiconductor manufacturing",
+        "country": "USA",
+        "address": "9600 Godwin Drive, Manassas, VA 20110",
+        "lat": 38.746,
+        "lng": -77.506,
+        "businessFocus": "DRAM manufacturing (LPDDR4X, DDR4); expansion and modernization for industrial, automotive, defense, aerospace, medical",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-CLAY-NY-MFG",
+        "name": "Micron New York Megafab (White Pine Commerce Park)",
+        "city": "Clay",
+        "state": "New York",
+        "country": "USA",
+        "address": "White Pine Commerce Park, Clay, NY 13041",
+        "lat": 43.175,
+        "lng": -76.2,
+        "businessFocus": "Leading-edge DRAM memory fabs (up to 4 fabs); ground broken Jan 2026",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/us-expansion/ny",
+          "https://www.micron.com/about/blog/company/community/welcome-to-new-york-micron-selects-an-office-location-as-megafab-progresses",
+          "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SYRACUSE-OFFICE",
+        "name": "Micron Syracuse Office (One Lincoln Center)",
+        "city": "Syracuse",
+        "state": "New York",
+        "country": "USA",
+        "address": "One Lincoln Center, Floor 8, 110 West Fayette St, Syracuse, NY 13202",
+        "lat": 43.05,
+        "lng": -76.153,
+        "businessFocus": "Local Procurement, Facilities Construction, Operations, Government and Public Affairs, People team; community welcome and recruitment center",
+        "type": "satellite",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/blog/company/community/welcome-to-new-york-micron-selects-an-office-location-as-megafab-progresses"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-AUSTIN-OFFICE",
+        "name": "Micron Austin Office",
+        "city": "Austin",
+        "state": "Texas",
+        "country": "USA",
+        "address": "101 West Louis Henna Blvd Ste. 210, Austin, TX 78728",
+        "lat": 30.449,
+        "lng": -97.694,
+        "businessFocus": "Sales / regional office",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-RICHARDSON-OFFICE",
+        "name": "Micron Richardson Office",
+        "city": "Richardson",
+        "state": "Texas",
+        "country": "USA",
+        "address": "1500 N Greenville Ave Suite 900, Richardson, TX 75081",
+        "lat": 32.966,
+        "lng": -96.722,
+        "businessFocus": "Sales / regional office",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-FOLSOM-OFFICE",
+        "name": "Micron Folsom Office",
+        "city": "Folsom",
+        "state": "California",
+        "country": "USA",
+        "address": "2235 Iron Point Road, Folsom, CA 95630",
+        "lat": 38.655,
+        "lng": -121.127,
+        "businessFocus": "Design / engineering center",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SANJOSE-OFFICE",
+        "name": "Micron San Jose Office",
+        "city": "San Jose",
+        "state": "California",
+        "country": "USA",
+        "address": "110 Holger Way, San Jose, CA 95134",
+        "lat": 37.418,
+        "lng": -121.957,
+        "businessFocus": "Sales, marketing, and design facility",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.sec.gov/Archives/edgar/data/723125/000104746906008154/a2171103zs-4a.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-LONGMONT-OFFICE",
+        "name": "Micron Longmont Office",
+        "city": "Longmont",
+        "state": "Colorado",
+        "country": "USA",
+        "address": "1900 Pike Road, Longmont, CO 80501",
+        "lat": 40.16,
+        "lng": -105.13,
+        "businessFocus": "Design / engineering center",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-MINNEAPOLIS-OFFICE",
+        "name": "Micron Minneapolis Office",
+        "city": "Minneapolis",
+        "state": "Minnesota",
+        "country": "USA",
+        "address": "3001 Broadway Street N.E. Suite 200, Minneapolis, MN 55413",
+        "lat": 45.0,
+        "lng": -93.23,
+        "businessFocus": "Sales / regional office",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-HIROSHIMA-MFG",
+        "name": "Micron Hiroshima Plant / Technology Development",
+        "city": "Higashihiroshima",
+        "state": "Hiroshima",
+        "country": "Japan",
+        "address": "7-10 Yoshikawakogyodanchi, Higashihiroshima-shi, Hiroshima 739-0198",
+        "lat": 34.4,
+        "lng": 132.75,
+        "businessFocus": "DRAM manufacturing fab; cleanroom expansion for advanced DRAM nodes and AI memory production",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SAGAMIHARA-ENG",
+        "name": "Micron Hashimoto Engineering Center",
+        "city": "Sagamihara",
+        "state": "Kanagawa",
+        "country": "Japan",
+        "address": "3-1-35 Minamihashimoto, Chuo-ku, Sagamihara-shi, Kanagawa 252-5297",
+        "lat": 35.55,
+        "lng": 139.38,
+        "businessFocus": "Engineering / design center",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-HIROSHIMA-SAIJO",
+        "name": "Micron Saijo Office",
+        "city": "Higashihiroshima",
+        "state": "Hiroshima",
+        "country": "Japan",
+        "address": "Hakuwa Showa-cho Building, 11-2 Saijo Showa-cho, Higashihiroshima City, Hiroshima Prefecture 739-0014",
+        "lat": 34.38,
+        "lng": 132.74,
+        "businessFocus": "Administrative / support office",
+        "type": "satellite",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TOKYO-OFFICE",
+        "name": "Micron Tokyo Office",
+        "city": "Tokyo",
+        "state": null,
+        "country": "Japan",
+        "address": "Shinagawa Season Terrace 8F, 1-2-70 Konan, Minato-ku, Tokyo 108-0075",
+        "lat": 35.63,
+        "lng": 139.74,
+        "businessFocus": "Sales / regional headquarters Japan",
+        "type": "regional",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SINGAPORE-MFG1",
+        "name": "Micron Singapore Fab (Woodlands)",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "1 Woodlands Industrial Park D Street 1, Singapore 738799",
+        "lat": 1.44,
+        "lng": 103.79,
+        "businessFocus": "NAND flash manufacturing fab; new NAND fab broke ground Jan 2026",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SINGAPORE-MFG2",
+        "name": "Micron Singapore HBM Advanced Packaging Facility",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "1 North Coast Drive, Singapore 738799",
+        "lat": 1.435,
+        "lng": 103.785,
+        "businessFocus": "HBM advanced packaging facility; under construction, contributing to HBM supply in CY2027",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.marketbeat.com/earnings/reports/2025-12-17-micron-technology-inc-stock/",
+          "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SINGAPORE-MFG3",
+        "name": "Micron Singapore Facility (North Coast Avenue)",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "1 North Coast Avenue, Singapore 738799",
+        "lat": 1.438,
+        "lng": 103.788,
+        "businessFocus": "Manufacturing / assembly and test",
         "type": "manufacturing",
         "sources": [
           "https://www.micron.com/about/locations"
@@ -3690,68 +3976,432 @@
         "confidence": "verified"
       },
       {
-        "id": "MU-SHANGHAI-ENGINEERING",
+        "id": "MU-SINGAPORE-OFFICE",
+        "name": "Micron Singapore Office (Bendemeer Road)",
+        "city": "Singapore",
+        "state": null,
+        "country": "Singapore",
+        "address": "990 Bendemeer Road, Singapore 339942",
+        "lat": 1.325,
+        "lng": 103.87,
+        "businessFocus": "Office / support functions",
+        "type": "satellite",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TAICHUNG-MFG",
+        "name": "Micron Taichung Fab",
+        "city": "Taichung",
+        "state": null,
+        "country": "Taiwan",
+        "address": "No. 369, Sec. 4, Sanfeng Rd., Houli Dist., Taichung City 42152",
+        "lat": 24.3,
+        "lng": 120.72,
+        "businessFocus": "DRAM manufacturing fab; modernization for DRAM and HBM production",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://www.sec.gov/Archives/edgar/data/723125/000072312525000046/mu-20251127.htm"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TAINAN-MFG",
+        "name": "Micron Tainan Fab",
+        "city": "Tainan",
+        "state": null,
+        "country": "Taiwan",
+        "address": "No. 36, Keji 1st Rd., Annan Dist., Tainan City 709404",
+        "lat": 23.05,
+        "lng": 120.18,
+        "businessFocus": "DRAM manufacturing fab",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TAOYUAN-MFG",
+        "name": "Micron Taoyuan Fab",
+        "city": "Taoyuan",
+        "state": null,
+        "country": "Taiwan",
+        "address": "No. 667, Fuhsing 3rd Rd., Hwa-Ya Technology Park, Guishan District, Taoyuan City 33383",
+        "lat": 25.0,
+        "lng": 121.33,
+        "businessFocus": "DRAM manufacturing fab",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TONGLUO-MFG",
+        "name": "Micron Tongluo Site (Micron Memory Taiwan)",
+        "city": "Tongluo",
+        "state": "Miaoli County",
+        "country": "Taiwan",
+        "address": "No. 8, Tongke 7th Rd., Tongluo Township, Miaoli County 366003",
+        "lat": 24.48,
+        "lng": 120.79,
+        "businessFocus": "DRAM manufacturing fab (acquired from Powerchip); meaningful product shipments from FY2028",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/",
+          "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-HSINCHU-OFFICE",
+        "name": "Micron Hsinchu Office",
+        "city": "Zhubei",
+        "state": "Hsinchu County",
+        "country": "Taiwan",
+        "address": "7F., No. 1, Huanke 1st Rd., Zhubei City, Hsinchu County 30247",
+        "lat": 24.83,
+        "lng": 121.01,
+        "businessFocus": "Office / design center",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TAIPEI-OFFICE",
+        "name": "Micron Taipei Office",
+        "city": "Taipei",
+        "state": null,
+        "country": "Taiwan",
+        "address": "23F & 24F., No. 170 Jingmao 1st Rd., Nangang Dist., Taipei City 11568",
+        "lat": 25.055,
+        "lng": 121.615,
+        "businessFocus": "Sales / regional headquarters Taiwan",
+        "type": "regional",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-PENANG-MFG1",
+        "name": "Micron Penang Facility (Prai)",
+        "city": "Prai",
+        "state": "Penang",
+        "country": "Malaysia",
+        "address": "No.1063, Plot 19, Tingkat Perusahaan 6, Prai Industrial Estate, 13600 Prai, Penang",
+        "lat": 5.38,
+        "lng": 100.4,
+        "businessFocus": "Assembly and test manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-PENANG-MFG2",
+        "name": "Micron Penang Facility (Batu Kawan)",
+        "city": "Bandar Cassia",
+        "state": "Penang",
+        "country": "Malaysia",
+        "address": "PMT 779, Lingkaran Cassia Selatan, Taman Perindustrian Batu Kawan, 14110 Bandar Cassia, Penang",
+        "lat": 5.26,
+        "lng": 100.43,
+        "businessFocus": "Assembly and test manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-MUAR-MFG",
+        "name": "Micron Muar Facility",
+        "city": "Muar",
+        "state": "Johor",
+        "country": "Malaysia",
+        "address": "Tanjung Agas Industrial Area, PO Box 62, Muar, Johor 84000",
+        "lat": 2.05,
+        "lng": 102.57,
+        "businessFocus": "Assembly and test manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-XIAN-MFG",
+        "name": "Micron Xi'an Facility",
+        "city": "Xi'an",
+        "state": "Shaanxi",
+        "country": "China",
+        "address": "Zone B of Shaanxi Xi'an Export Processing Zone, 28 XinXi Avenue, Xi'an 710119",
+        "lat": 34.26,
+        "lng": 108.94,
+        "businessFocus": "Assembly and test manufacturing; water reclamation project",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://jp.micron.com/content/dam/micron/global/public/programs/sustainability/documents/micron-technology-2026-sustainability-report.pdf"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SHANGHAI-OFFICE",
         "name": "Micron Shanghai Office",
         "city": "Shanghai",
         "state": null,
         "country": "China",
-        "address": "Xinglian Science and Technology Park 11-18F Building #1, No.1535 Hong Mei Road, Shanghai 200233",
-        "lat": 31.15,
+        "address": "Xinglian Science and Technology Park, 11-18F Building #1, No.1535 Hong Mei Road, Shanghai 200233",
+        "lat": 31.17,
         "lng": 121.4,
-        "businessFocus": "Sales and engineering support",
-        "type": "engineering",
-        "sources": [
-          "https://www.micron.com/about/locations"
-        ],
-        "confidence": "verified"
-      },
-      {
-        "id": "MU-BENGALURU-ENGINEERING",
-        "name": "Micron Bengaluru Office",
-        "city": "Bengaluru",
-        "state": "Karnataka",
-        "country": "India",
-        "address": "Cessna Business Park, Kadubeesanahalli Village, Varthur hobli, Outer Ring Road, Bengaluru 560103",
-        "lat": 12.92,
-        "lng": 77.68,
-        "businessFocus": "R&D and engineering",
-        "type": "engineering",
-        "sources": [
-          "https://www.micron.com/about/locations"
-        ],
-        "confidence": "verified"
-      },
-      {
-        "id": "MU-TAIPEI-ENGINEERING",
-        "name": "Micron Taipei Office",
-        "city": "Taipei City",
-        "state": null,
-        "country": "Taiwan",
-        "address": "23F & 24F., No. 170 Jingmao 1st Rd., Nangang Dist., Taipei City 11568",
-        "lat": 25.05,
-        "lng": 121.61,
-        "businessFocus": "Engineering and regional operations",
-        "type": "engineering",
-        "sources": [
-          "https://www.micron.com/about/locations"
-        ],
-        "confidence": "verified"
-      },
-      {
-        "id": "MU-MUNICH-SALES",
-        "name": "Micron Munich Office",
-        "city": "Munich",
-        "state": null,
-        "country": "Germany",
-        "address": "Leopoldstrasse 250B, Munich 80807",
-        "lat": 48.18,
-        "lng": 11.59,
-        "businessFocus": "Sales and regional support",
+        "businessFocus": "Sales / regional office",
         "type": "sales",
         "sources": [
           "https://www.micron.com/about/locations"
         ],
         "confidence": "verified"
+      },
+      {
+        "id": "MU-SHENZHEN-OFFICE",
+        "name": "Micron Shenzhen Office",
+        "city": "Shenzhen",
+        "state": null,
+        "country": "China",
+        "address": "10B01~04, 10A03~04, Anlian Plaza, No.4018 Jintian Road, Shenzhen 518026",
+        "lat": 22.54,
+        "lng": 114.06,
+        "businessFocus": "Sales / regional office",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-GUJARAT-MFG",
+        "name": "Micron Gujarat Assembly and Test Facility (Sanand)",
+        "city": "Ahmedabad",
+        "state": "Gujarat",
+        "country": "India",
+        "address": "AV-11, GIDC Sanand II, Bol Ind. Estate, Sanand, Ahmedabad, Gujarat 382110",
+        "lat": 22.98,
+        "lng": 72.38,
+        "businessFocus": "Assembly and test manufacturing; pilot production initiated, ramp in 2026; among largest single flow assembly and test clean rooms globally",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations",
+          "https://www.micron.com/about/company/corporate-profile",
+          "https://www.marketbeat.com/earnings/reports/2026-3-18-micron-technology-inc-stock/"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-GUJARAT-MFG2",
+        "name": "Micron Gujarat Facility (Sanand Plot SM12)",
+        "city": "Ahmedabad",
+        "state": "Gujarat",
+        "country": "India",
+        "address": "Plot No. SM12 51/3, Sanand GIDC-II, Industrial Estate, Ahmedabad, Gujarat 382110",
+        "lat": 22.98,
+        "lng": 72.38,
+        "businessFocus": "Assembly and test manufacturing",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-BENGALURU-OFFICE",
+        "name": "Micron Bengaluru Office",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "country": "India",
+        "address": "Cessna Business Park, Kadubeesanahalli Village, Varthur hobli, Outer Ring Road, Bengaluru, Karnataka 560103",
+        "lat": 12.93,
+        "lng": 77.68,
+        "businessFocus": "Design / engineering center",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-HYDERABAD-OFFICE",
+        "name": "Micron Hyderabad Office",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "country": "India",
+        "address": "Phoenix - Aquila Block A, Financial District, Nankaramguda, Serilingampally, Hyderabad, Telangana 500032",
+        "lat": 17.42,
+        "lng": 78.34,
+        "businessFocus": "Design / engineering center",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-MUNICH-OFFICE1",
+        "name": "Micron Munich Office (Leopoldstrasse)",
+        "city": "Munich",
+        "state": "Bavaria",
+        "country": "Germany",
+        "address": "Leopoldstrasse 250B, Munich 80807",
+        "lat": 48.18,
+        "lng": 11.58,
+        "businessFocus": "Sales / regional office Europe",
+        "type": "regional",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-MUNICH-OFFICE2",
+        "name": "Micron Munich Office (Carl-Wery-Str)",
+        "city": "Munich",
+        "state": "Bavaria",
+        "country": "Germany",
+        "address": "Carl-Wery-Str 22, Munich 81739",
+        "lat": 48.09,
+        "lng": 11.66,
+        "businessFocus": "Sales / engineering office",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-ARZANO-MFG",
+        "name": "Micron Arzano Facility",
+        "city": "Arzano",
+        "state": "Naples",
+        "country": "Italy",
+        "address": "Viale Remo De Feo, 1, 80022 Arzano (NA)",
+        "lat": 40.91,
+        "lng": 14.27,
+        "businessFocus": "Manufacturing / assembly and test",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-AVEZZANO-MFG",
+        "name": "Micron Avezzano Facility",
+        "city": "Avezzano",
+        "state": "L'Aquila",
+        "country": "Italy",
+        "address": "Via Newton, 34, 67051 Avezzano (AQ)",
+        "lat": 42.03,
+        "lng": 13.43,
+        "businessFocus": "Manufacturing / assembly and test",
+        "type": "manufacturing",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-VIMERCATE-OFFICE",
+        "name": "Micron Vimercate Office",
+        "city": "Vimercate",
+        "state": "Monza and Brianza",
+        "country": "Italy",
+        "address": "Via Trento, 26, Vimercate, MB 20871",
+        "lat": 45.61,
+        "lng": 9.37,
+        "businessFocus": "Sales / engineering office",
+        "type": "engineering",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-BRACKNELL-OFFICE",
+        "name": "Micron Bracknell Office (UK)",
+        "city": "Bracknell",
+        "state": "Berkshire",
+        "country": "United Kingdom",
+        "address": "Venture House, 2 Arlington Square, Downshire Way, Bracknell, Berkshire, RG12 1WA",
+        "lat": 51.41,
+        "lng": -0.75,
+        "businessFocus": "Sales / regional office UK",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-TLAQUEPAQUE-OFFICE",
+        "name": "Micron Guadalajara Office",
+        "city": "Tlaquepaque",
+        "state": "Jalisco",
+        "country": "Mexico",
+        "address": "Connect Building Floor 6, Anillo Periférico Sur 7988, Santa Maria Tequepexpan, Tlaquepaque, Jalisco, MX 45601",
+        "lat": 20.63,
+        "lng": -103.38,
+        "businessFocus": "Sales / regional office",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-SEOUL-OFFICE",
+        "name": "Micron Seoul Office",
+        "city": "Seoul",
+        "state": null,
+        "country": "South Korea",
+        "address": "5th Floor Glass Tower Bldg., 534 Teheran-ro, Gangnam-gu, Seoul 06181",
+        "lat": 37.51,
+        "lng": 127.06,
+        "businessFocus": "Sales / regional office Korea",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "verified"
+      },
+      {
+        "id": "MU-PARIS-OFFICE",
+        "name": "Micron Paris Office",
+        "city": "Paris",
+        "state": null,
+        "country": "France",
+        "address": "Immeuble Iliade, 23 Avenue Carnot, Paris",
+        "lat": 48.88,
+        "lng": 2.3,
+        "businessFocus": "Sales / regional office France",
+        "type": "sales",
+        "sources": [
+          "https://www.micron.com/about/locations"
+        ],
+        "confidence": "unverified"
       }
     ]
   },

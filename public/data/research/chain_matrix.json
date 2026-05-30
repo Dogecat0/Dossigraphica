@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-30T11:44:01.832639",
+  "lastUpdated": "2026-05-30T18:07:37.179549",
   "version": "1.0.0",
   "dependencies": [
     {
@@ -2132,26 +2132,98 @@
     },
     {
       "from": "MU",
-      "to": "ASML",
+      "to": "Micron Technology (Boise Fab)",
       "type": "buyer_supplier",
-      "description": "MU depends on ASML for EUV lithography equipment",
+      "description": "MU depends on Micron Technology (Boise Fab) for DRAM and NAND R&D and manufacturing; lead fab for DRAM technology transitions",
       "strength": "critical",
-      "value": "key_supplier"
+      "value": "foundry"
     },
     {
       "from": "MU",
-      "to": "TSM",
+      "to": "Micron Technology (Hiroshima Fab)",
       "type": "buyer_supplier",
-      "description": "MU depends on TSMC for HBM4E customization and logic die",
+      "description": "MU depends on Micron Technology (Hiroshima Fab) for Advanced DRAM nodes; cleanroom expansion for advanced DRAM",
       "strength": "critical",
       "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Technology (Manassas Fab)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Technology (Manassas Fab) for Legacy DRAM supply",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Technology (Clay Megafab - New York)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Technology (Clay Megafab - New York) for Future DRAM manufacturing; first fab expected supply in 2030+",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Technology (Singapore Manufacturing Facilities)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Technology (Singapore Manufacturing Facilities) for HBM advanced packaging facility; general memory manufacturing",
+      "strength": "critical",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "Micron Technology (India Assembly & Test Facility)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Micron Technology (India Assembly & Test Facility) for Assembly and test; pilot production initiated",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "IM Flash Technologies (Joint Venture with Intel)",
+      "type": "buyer_supplier",
+      "description": "MU depends on IM Flash Technologies (Joint Venture with Intel) for NAND Flash memory manufacturing (joint venture with Intel)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "TECH Semiconductor Singapore",
+      "type": "buyer_supplier",
+      "description": "MU depends on TECH Semiconductor Singapore for Semiconductor memory manufacturing joint venture (~43% ownership)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "Inotera Memories (Nanya Technology JV)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Inotera Memories (Nanya Technology JV) for DRAM memory manufacturing (equity method investment)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "MP Mask Technology Center (Photronics JV)",
+      "type": "buyer_supplier",
+      "description": "MU depends on MP Mask Technology Center (Photronics JV) for Photomask production (joint venture with Photronics)",
+      "strength": "important",
+      "value": "foundry"
+    },
+    {
+      "from": "MU",
+      "to": "ASML",
+      "type": "buyer_supplier",
+      "description": "MU depends on ASML for Photolithography equipment (single-source dependency for key tools)",
+      "strength": "critical",
+      "value": "key_supplier"
     },
     {
       "from": "MU",
       "to": "Applied Materials",
       "type": "buyer_supplier",
       "description": "MU depends on Applied Materials for Semiconductor manufacturing equipment",
-      "strength": "important",
+      "strength": "critical",
       "value": "key_supplier"
     },
     {
@@ -2159,62 +2231,270 @@
       "to": "Lam Research",
       "type": "buyer_supplier",
       "description": "MU depends on Lam Research for Semiconductor manufacturing equipment",
-      "strength": "important",
+      "strength": "critical",
       "value": "key_supplier"
     },
     {
       "from": "MU",
       "to": "KLA Corporation",
       "type": "buyer_supplier",
-      "description": "MU depends on KLA Corporation for Process control and yield management systems",
+      "description": "MU depends on KLA Corporation for Semiconductor process control equipment",
+      "strength": "critical",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Advanced Semiconductor Engineering (ASE)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Advanced Semiconductor Engineering (ASE) for Packaging and testing (5th plant launched Feb 2025)",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "Advanced Semiconductor Engineering (ASE) - Kaohsiung",
+      "type": "buyer_supplier",
+      "description": "MU depends on Advanced Semiconductor Engineering (ASE) - Kaohsiung for Panel-level packaging facility ($200M investment)",
+      "strength": "important",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "FedEx",
+      "type": "buyer_supplier",
+      "description": "MU depends on FedEx for Logistics and supply chain digital intelligence; 27% improvement in on-time recovery",
+      "strength": "important",
+      "value": "logistics"
+    },
+    {
+      "from": "MU",
+      "to": "FedEx China",
+      "type": "buyer_supplier",
+      "description": "MU depends on FedEx China for Sustainable supply chain collaboration with Micron",
+      "strength": "standard",
+      "value": "logistics"
+    },
+    {
+      "from": "MU",
+      "to": "Gainfront",
+      "type": "buyer_supplier",
+      "description": "MU depends on Gainfront for Trusted third-party platform for supplier registration and profile submission",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Gilbane",
+      "type": "buyer_supplier",
+      "description": "MU depends on Gilbane for Preconstruction and site enabling works for Micron's New York project",
+      "strength": "important",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "MU",
+      "to": "E. Smith Contractors",
+      "type": "buyer_supplier",
+      "description": "MU depends on E. Smith Contractors for Office interior design and outfitting for Micron's New York office",
+      "strength": "standard",
+      "value": "contract_manufacturer"
+    },
+    {
+      "from": "MU",
+      "to": "Albany NanoTech Complex",
+      "type": "buyer_supplier",
+      "description": "MU depends on Albany NanoTech Complex for R&D and workforce development programs",
       "strength": "important",
       "value": "key_supplier"
     },
     {
       "from": "MU",
-      "to": "Micron Memory Japan",
+      "to": "U.S. Air Force Research Laboratory (Rome, NY)",
       "type": "buyer_supplier",
-      "description": "MU depends on Micron Memory Japan for Memory manufacturing and technology development",
+      "description": "MU depends on U.S. Air Force Research Laboratory (Rome, NY) for Mission-critical R&D and military/defense readiness collaboration",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "AIC",
+      "type": "buyer_supplier",
+      "description": "MU depends on AIC for AVL partner by platform",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "ASRock",
+      "type": "buyer_supplier",
+      "description": "MU depends on ASRock for AVL partner by platform",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "ASUS",
+      "type": "buyer_supplier",
+      "description": "MU depends on ASUS for AVL partner by platform",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Giga Computing",
+      "type": "buyer_supplier",
+      "description": "MU depends on Giga Computing for AVL partner by platform",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Mitac",
+      "type": "buyer_supplier",
+      "description": "MU depends on Mitac for AVL partner by platform",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Rare Earth Materials (China supply dependency)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Rare Earth Materials (China supply dependency) for Rare earth elements, metals, and materials (lithium, nickel, copper, aluminum, gallium)",
       "strength": "critical",
+      "value": "raw_material"
+    },
+    {
+      "from": "MU",
+      "to": "PC Partner (Lexar assembly)",
+      "type": "buyer_supplier",
+      "description": "MU depends on PC Partner (Lexar assembly) for Flash card assembly and testing",
+      "strength": "standard",
       "value": "assembly_test"
     },
     {
       "from": "MU",
-      "to": "Micron Memory Taiwan",
+      "to": "Macrotron (Taiwan)",
       "type": "buyer_supplier",
-      "description": "MU depends on Micron Memory Taiwan for DRAM manufacturing",
-      "strength": "critical",
+      "description": "MU depends on Macrotron (Taiwan) for Flash card assembly and testing",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "Power Digital Card",
+      "type": "buyer_supplier",
+      "description": "MU depends on Power Digital Card for Flash card assembly and testing",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "Venture Manufacturing Services",
+      "type": "buyer_supplier",
+      "description": "MU depends on Venture Manufacturing Services for Flash card assembly and testing",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "Advanced Interconnection Technologies",
+      "type": "buyer_supplier",
+      "description": "MU depends on Advanced Interconnection Technologies for Controller assembly, test and packaging",
+      "strength": "standard",
+      "value": "assembly_test"
+    },
+    {
+      "from": "MU",
+      "to": "United Microelectronics Corporation (UMC)",
+      "type": "buyer_supplier",
+      "description": "MU depends on United Microelectronics Corporation (UMC) for Controller manufacturing for Lexar",
+      "strength": "standard",
       "value": "foundry"
     },
     {
       "from": "MU",
-      "to": "Micron Technology Singapore",
+      "to": "Silicon Motion (SMI)",
       "type": "buyer_supplier",
-      "description": "MU depends on Micron Technology Singapore for Memory assembly and test",
-      "strength": "important",
-      "value": "assembly_test"
+      "description": "MU depends on Silicon Motion (SMI) for Controller manufacturing for Lexar",
+      "strength": "standard",
+      "value": "key_supplier"
     },
     {
-      "from": "Kingston Technology Company, Inc.",
-      "to": "MU",
+      "from": "MU",
+      "to": "Nanya Technology Corporation",
       "type": "buyer_supplier",
-      "description": "Kingston Technology Company, Inc. is a major customer of MU",
+      "description": "MU depends on Nanya Technology Corporation for DRAM technology partnering arrangement (Inotera/MeiYa JVs)",
       "strength": "important",
-      "value": "10%"
+      "value": "key_supplier"
     },
     {
-      "from": "Undisclosed Customer",
-      "to": "MU",
+      "from": "MU",
+      "to": "Photronics (MP Mask JV)",
       "type": "buyer_supplier",
-      "description": "Undisclosed Customer is a major customer of MU",
-      "strength": "critical",
-      "value": "17%"
+      "description": "MU depends on Photronics (MP Mask JV) for Photomask production joint venture (MP Mask Technology Center)",
+      "strength": "important",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Canon Inc. (TECH Semiconductor JV)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Canon Inc. (TECH Semiconductor JV) for Joint venture partner in TECH Semiconductor Singapore",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Hewlett-Packard (TECH Semiconductor JV)",
+      "type": "buyer_supplier",
+      "description": "MU depends on Hewlett-Packard (TECH Semiconductor JV) for Joint venture partner in TECH Semiconductor Singapore",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Taiwan Water Corporation",
+      "type": "buyer_supplier",
+      "description": "MU depends on Taiwan Water Corporation for Water restoration and pipeline replacement projects in Taiwan",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Singapore Economic Development Board",
+      "type": "buyer_supplier",
+      "description": "MU depends on Singapore Economic Development Board for Government support for central abatement system",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Energy Commission of Malaysia",
+      "type": "buyer_supplier",
+      "description": "MU depends on Energy Commission of Malaysia for Green Electricity Tariff program for 100% carbon-free electricity",
+      "strength": "standard",
+      "value": "key_supplier"
+    },
+    {
+      "from": "MU",
+      "to": "Department of Science and Technology of Gujarat",
+      "type": "buyer_supplier",
+      "description": "MU depends on Department of Science and Technology of Gujarat for MoU for environmental sustainability, safety, and STEM education",
+      "strength": "standard",
+      "value": "key_supplier"
     },
     {
       "from": "AAPL",
       "to": "MU",
       "type": "buyer_supplier",
       "description": "Apple Inc. is a major customer of MU",
+      "strength": "critical",
+      "value": "17%"
+    },
+    {
+      "from": "NVDA",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "NVIDIA Corporation is a major customer of MU",
       "strength": "important",
       "value": null
     },
@@ -2235,12 +2515,68 @@
       "value": null
     },
     {
-      "from": "NVDA",
+      "from": "AWS",
       "to": "MU",
       "type": "buyer_supplier",
-      "description": "NVIDIA is a major customer of MU",
+      "description": "AWS is a major customer of MU",
       "strength": "important",
       "value": null
+    },
+    {
+      "from": "HPE",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "HPE is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Lenovo",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Lenovo is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Advanced Micro Devices",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Advanced Micro Devices is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "Samsung Electronics",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Samsung Electronics is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "GOOGL",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Alphabet Inc. is a major customer of MU",
+      "strength": "important",
+      "value": null
+    },
+    {
+      "from": "INTC",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "Intel Corporation is a major customer of MU",
+      "strength": "important",
+      "value": "9%"
+    },
+    {
+      "from": "HP Inc.",
+      "to": "MU",
+      "type": "buyer_supplier",
+      "description": "HP Inc. is a major customer of MU",
+      "strength": "critical",
+      "value": "13%"
     },
     {
       "from": "NVDA",
