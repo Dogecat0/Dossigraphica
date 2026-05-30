@@ -9,7 +9,6 @@ import signal
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from tqdm import tqdm
-from contextlib import AsyncExitStack
 
 # Load environment variables from .env in the project root
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
@@ -120,7 +119,12 @@ class Profiler:
         self._llm_call_id += 1
         cid = self._llm_call_id
         self._active_llm_calls[cid] = time.monotonic()
-        st = "".join(traceback.format_stack(sys._getframe().f_back.f_back, limit=6))
+        _frame = sys._getframe()
+        for _ in range(2):
+            if _frame is None:
+                break
+            _frame = _frame.f_back
+        st = "".join(traceback.format_stack(_frame, limit=6)) if _frame else ""
         self._write("LLM_START", f"call_{cid}", {
             "stack": st,
             "phase": self._current_phase,
@@ -146,7 +150,7 @@ class Profiler:
     def log_task(self, label: str, detail: dict | None = None):
         """Log an arbitrary pipeline task event."""
         self._current_task = label
-        if not self._enabled:
+        if not self.enabled:
             return
         if self._log_file:
             self._write("TASK", label, detail or {})
@@ -213,6 +217,11 @@ async def run_test_research(query: str):
                 print(f"  Cleared {log_count} files from log directory.")
             else:
                 print("  Keeping existing logs.")
+
+    # -- Reconstruct token_usage.json from checkpoint files ----
+    _reconstructed = _reconstruct_token_usage_from_logs(log_dir)
+    if _reconstructed is not None:
+        _save_token_usage(query, 0.0, _reconstructed, Profiler(enabled=False))
 
     # -- Init profiler (controlled by DEBUG_PROFILE env var) ----------------
     debug_enabled = os.getenv("DEBUG_PROFILE", "").lower() in ("1", "true", "yes")
@@ -487,7 +496,130 @@ def _save_token_usage_interrupt(query: str, elapsed_s: float, tokens_data: dict,
         print(f"\n[WARN] Failed to save checkpoint: {e}")
 
     # Also snapshot the profiler trace path for post-mortem
-    print(f"\n[DEBUG] Trace log preserved for analysis.")
+    print("\n[DEBUG] Trace log preserved for analysis.")
+
+
+# ---------------------------------------------------------------------------
+# Pre-flight: reconstruct token usage from inference logs
+# ---------------------------------------------------------------------------
+
+def _reconstruct_token_usage_from_logs(log_dir: str) -> dict | None:
+    """Scan all inference log files and reconstruct exact token/cost totals.
+
+    Uses companion ``.meta`` files when available, otherwise reads the saved
+    ``_input.md`` / ``_output.json`` and counts tokens via ``litellm.token_counter``.
+    Returns a ``tokens`` dict matching ``TaskTracker.as_dict()`` shape, or None.
+    """
+    import litellm, re
+    from provider import ACTIVE_MODEL
+    from pipeline import _resolve_cost_rates, _COST_RATES
+
+    if not os.path.isdir(log_dir):
+        return None
+
+    # Known LLM-call schema names (not pipeline checkpoints)
+    _LLM_SCHEMAS = {
+        "SynthesizerSchema", "SingleTriageSchema", "PlannerSchema",
+        "OfficeList", "SupplyChainList", "RiskList", "CustomerList",
+    }
+
+    total_in = total_out = total_reas = total_cached = total_cw = 0
+    files_scanned = 0
+
+    for fname in sorted(os.listdir(log_dir)):
+        m = re.match(r"^(\d+)_(.+)_output\.json$", fname)
+        if not m:
+            continue
+        name = m.group(2)
+        if name not in _LLM_SCHEMAS:
+            continue
+        idx = int(m.group(1))
+
+        # Prefer companion .meta file
+        meta_path = os.path.join(log_dir, f"{idx:04d}_{name}_meta.json")
+        if os.path.exists(meta_path):
+            try:
+                with open(meta_path) as f:
+                    meta = json.load(f)
+                total_in += meta.get("input_tokens", 0)
+                total_out += meta.get("output_tokens", 0)
+                total_reas += meta.get("reasoning_tokens", 0)
+                total_cached += meta.get("cached_input_tokens", 0)
+                total_cw += meta.get("cache_write_tokens", 0)
+                files_scanned += 1
+                continue
+            except Exception:
+                pass
+
+        # Fallback: read files and count tokens directly
+        out_path = os.path.join(log_dir, fname)
+        inp_path = os.path.join(log_dir, f"{idx:04d}_{name}_input.md")
+
+        out_tok = inp_tok = 0
+        try:
+            with open(out_path) as f:
+                out_content = f.read()
+            try:
+                out_content = json.dumps(json.loads(out_content), separators=(",", ":"))
+            except Exception:
+                pass
+            out_tok = litellm.token_counter(model=ACTIVE_MODEL, text=out_content)
+        except Exception:
+            pass
+
+        try:
+            with open(inp_path) as f:
+                inp_content = f.read()
+            sys_marker = "## System Prompt\n\n"
+            usr_marker = "## User Prompt\n\n"
+            sys_start = inp_content.find(sys_marker)
+            usr_start = inp_content.find(usr_marker)
+            if sys_start >= 0 and usr_start > sys_start:
+                sys_text = inp_content[sys_start + len(sys_marker):usr_start]
+                if sys_text.endswith("\n"):
+                    sys_text = sys_text[:-1]
+                usr_text = inp_content[usr_start + len(usr_marker):]
+                if usr_text.endswith("\n"):
+                    usr_text = usr_text[:-1]
+                messages = [
+                    {"role": "system", "content": sys_text},
+                    {"role": "user", "content": usr_text},
+                ]
+                inp_tok = litellm.token_counter(model=ACTIVE_MODEL, messages=messages)
+            else:
+                inp_tok = litellm.token_counter(model=ACTIVE_MODEL, text=inp_content)
+        except Exception:
+            pass
+
+        total_in += inp_tok
+        total_out += out_tok
+        files_scanned += 1
+
+    if files_scanned == 0:
+        return None
+
+    # Resolve cost rates and compute cost
+    _resolve_cost_rates()
+    assert _COST_RATES is not None
+    inp_rate, out_rate, cache_hit_rate, cache_write_rate = _COST_RATES
+    cached_in = min(total_cached, total_in)
+    written_in = min(total_cw, total_in - cached_in)
+    miss_in = total_in - cached_in - written_in
+    cost = miss_in * inp_rate + cached_in * cache_hit_rate + written_in * cache_write_rate + total_out * out_rate
+
+    total_tok = total_in + total_out + total_reas
+
+    return {
+        "total_input_tokens": total_in,
+        "total_output_tokens": total_out,
+        "total_reasoning_tokens": total_reas,
+        "total_cached_input_tokens": total_cached,
+        "total_cache_write_tokens": total_cw,
+        "total": total_tok,
+        "total_cost_usd": round(cost, 6),
+        "cost_model": _COST_RATES,
+        "by_phase": {},
+    }
 
 
 # ---------------------------------------------------------------------------

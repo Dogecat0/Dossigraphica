@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List, Optional, Literal, Union
+from typing import List, Optional, Literal
 
 # --- Strict Config to enforce GBNF grammar generation ---
 STRICT_CONFIG = ConfigDict(extra='ignore', strict=True)

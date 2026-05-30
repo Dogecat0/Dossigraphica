@@ -50,6 +50,7 @@ def init(log_dir: str | None = None) -> str:
 async def next_index() -> int:
     """Atomically bump and return the next checkpoint index."""
     global _counter
+    assert _counter_lock is not None, "checkpoint.init() must be called before next_index()"
     async with _counter_lock:
         _counter += 1
         return _counter
@@ -57,6 +58,7 @@ async def next_index() -> int:
 
 async def save_checkpoint(name: str, data: dict) -> str:
     """Persist a pipeline checkpoint and return its file path."""
+    assert _log_dir is not None, "checkpoint.init() must be called before save_checkpoint()"
     idx = await next_index()
     filepath = os.path.join(_log_dir, f"{idx:04d}_{name}_output.json")
     try:

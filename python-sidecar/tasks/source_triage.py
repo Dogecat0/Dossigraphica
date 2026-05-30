@@ -1,6 +1,4 @@
 import asyncio
-import os
-import json
 import logging
 from typing import AsyncGenerator, Union
 from urllib.parse import urlparse
@@ -117,7 +115,7 @@ async def run_source_triage(state: ResearchState, url_queue: asyncio.Queue | Non
         # Yield absolute unit pulse
         yield {
             "status": "source_triage",
-            "message": f"Source Triage: Evaluating search results"
+            "message": "Source Triage: Evaluating search results"
         }
 
     # Reassign curated state

@@ -12,12 +12,12 @@ import json
 import asyncio
 import os
 import time
-from typing import AsyncGenerator, Union
+from typing import AsyncGenerator, Any, Union
 
 import litellm
 from llm import LLMClient
 from provider import LLM_OUTPUT_MODE, ACTIVE_MODEL
-from schemas import PlannerSchema, SingleTriageSchema, SynthesizerSchema, GeoIntelligenceSchema
+from schemas import PlannerSchema, SingleTriageSchema, SynthesizerSchema
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +75,7 @@ def _levenshtein(a: str, b: str) -> int:
 # ---------------------------------------------------------------------------
 # Cost-per-token cache — computed once at first call, then reused
 # ---------------------------------------------------------------------------
-_COST_RATES = None  # (input_rate, output_rate, cache_hit_rate)
+_COST_RATES: tuple[float, float, float, float] | None = None  # (input_rate, output_rate, cache_hit_rate, cache_write_rate)
 _COST_MODEL_SOURCE = None  # human-readable source for the match
 
 
@@ -148,6 +148,7 @@ def _compute_llm_cost(input_tokens: int, output_tokens: int, *, cached_input_tok
     if input_tokens == 0 and output_tokens == 0:
         return 0.0
     _resolve_cost_rates()
+    assert _COST_RATES is not None
     inp_rate, out_rate, cache_hit_rate, cache_write_rate = _COST_RATES
     cached_in = min(cached_input_tokens, input_tokens)
     miss_in = input_tokens - cached_in
@@ -437,11 +438,13 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                     with open(ext_path) as f:
                         data = json.load(f)
                     count = len(data.get("raw_content", []))
-                    ext_idx = int(_re.search(r"(\d+)", os.path.basename(ext_path)).group(1))
-                    if _is_enrichment(ext_idx):
-                        _io_enrich += count
-                    else:
-                        _io_primary += count
+                    m = _re.search(r"(\d+)", os.path.basename(ext_path))
+                    if m:
+                        ext_idx = int(m.group(1))
+                        if _is_enrichment(ext_idx):
+                            _io_enrich += count
+                        else:
+                            _io_primary += count
                 except Exception:
                     pass
 
@@ -454,11 +457,13 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             _primary_chunks = 0
             _enrich_chunks = 0
             for chunk_path in _glob.glob(os.path.join(log_dir, "*_SynthesizerSchema_output.json")):
-                chunk_idx = int(_re.search(r"(\d+)", os.path.basename(chunk_path)).group(1))
-                if _is_enrichment(chunk_idx):
-                    _enrich_chunks += 1
-                else:
-                    _primary_chunks += 1
+                m = _re.search(r"(\d+)", os.path.basename(chunk_path))
+                if m:
+                    chunk_idx = int(m.group(1))
+                    if _is_enrichment(chunk_idx):
+                        _enrich_chunks += 1
+                    else:
+                        _primary_chunks += 1
 
             # Seed all phases, only marking work as completed when the
             # resolved pipeline_step proves it was done in the original run.
@@ -624,8 +629,10 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
     # Shared async multiplexing helpers
     # ------------------------------------------------------------------
 
-    def _drain_queue(q: asyncio.Queue) -> None:
+    def _drain_queue(q: asyncio.Queue | None) -> None:
         """Discard any stale items from a queue (non-blocking)."""
+        if q is None:
+            return
         while not q.empty():
             try:
                 q.get_nowait()
@@ -634,10 +641,11 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
 
     async def _multiplex(
         generators: dict[str, AsyncGenerator],
-        pulse_queue: asyncio.Queue,
-    ) -> AsyncGenerator[tuple[str, any], None]:
+        pulse_queue: asyncio.Queue | None,
+    ) -> AsyncGenerator[tuple[str, Any], None]:
         """
-        Concurrently poll multiple async generators + an LLM progress pulse queue.
+        Concurrently poll multiple async generators.
+        When *pulse_queue* is provided, also polls it for LLM progress pulses.
         Yields (label, item) tuples. Stops when only llm_pulse remains.
         Cancels all pending tasks on exit.
         """
@@ -645,7 +653,8 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         pending: dict[asyncio.Task, str] = {}
         for label, gen in generators.items():
             pending[asyncio.create_task(gen.__anext__())] = label
-        pending[asyncio.create_task(pulse_queue.get())] = "llm_pulse"
+        if pulse_queue is not None:
+            pending[asyncio.create_task(pulse_queue.get())] = "llm_pulse"
 
         try:
             while pending:
@@ -658,7 +667,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                     try:
                         item = future.result()
                         yield (label, item)
-                        if label == "llm_pulse":
+                        if label == "llm_pulse" and pulse_queue is not None:
                             pending[asyncio.create_task(pulse_queue.get())] = "llm_pulse"
                         else:
                             pending[asyncio.create_task(generators[label].__anext__())] = label
@@ -728,9 +737,11 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         task_generator: AsyncGenerator[Union[dict, ResearchState], None], phase_idx: int,
     ) -> AsyncGenerator[str, None]:
         nonlocal state
-        _drain_queue(llm.progress_queue)
+        _pq = llm.progress_queue
+        assert _pq is not None
+        _drain_queue(_pq)
 
-        async for label, item in _multiplex({"gen": task_generator}, llm.progress_queue):
+        async for label, item in _multiplex({"gen": task_generator}, _pq):
             if label == "gen":
                 if isinstance(item, ResearchState):
                     state = item
@@ -760,7 +771,9 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
             triage_gen = None
             extractor_gen = run_extractor(state, extract_to_pre_queue, None)
 
-        _drain_queue(llm.progress_queue)
+        _pq = llm.progress_queue
+        assert _pq is not None
+        _drain_queue(_pq)
 
         generators = {
             "pre": preprocessor_gen,
@@ -776,7 +789,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         })
 
         _sieve_event_count = 0
-        async for label, item in _multiplex(generators, llm.progress_queue):
+        async for label, item in _multiplex(generators, _pq):
             _sieve_event_count += 1
 
             # Log queue depths every 100 events

@@ -11,7 +11,7 @@ import logging
 import json
 import asyncio
 from datetime import datetime
-from typing import List, Type, TypeVar, AsyncGenerator, Union
+from typing import Any, List, Type, TypeVar, AsyncGenerator, Union
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -40,7 +40,7 @@ class CustomerList(BaseModel):
     reasoning: str = Field(..., description="Evaluation of revenue dependency and major buyer relationships.")
     customerConcentration: List[CustomerNodeSchema]
 
-async def draft_section(prompt: str, response_model: Type[T], llm: LLMClient, system_prompt: str, facts: str = None) -> T:
+async def draft_section(prompt: str, response_model: Type[T], llm: LLMClient, system_prompt: str, facts: str | None = None) -> T:
     """Helper to draft a single section with retries."""
     return await llm.generate_structured(
         prompt=prompt,
@@ -52,9 +52,9 @@ async def draft_section(prompt: str, response_model: Type[T], llm: LLMClient, sy
 async def get_fact_subset(
     facts: List[InternalFact],
     categories: List[str],
-    llm: LLMClient = None,
-    max_tokens: int = None,
-    user_query: str = None,
+    llm: LLMClient | None = None,
+    max_tokens: int | None = None,
+    user_query: str | None = None,
 ) -> str:
     """
     Filters facts by category and returns a grouped formatted string.
@@ -86,7 +86,7 @@ async def get_fact_subset(
 
         lines = [f"### {cat}:"]
         for source_url, group in by_url.items():
-            lines.append(f"")
+            lines.append("")
             lines.append(f"## Source: {source_url}")
             for f in group:
                 lines.append(f"- {f.content}")
@@ -134,7 +134,7 @@ async def get_fact_subset(
 # entity_assembly.py (gap detection) and run_drafter (final assembly).
 # -----------------------------------------------------------------------
 
-def _fill(template: str, query: str = None, facts: str = None) -> str:
+def _fill(template: str, query: str | None = None, facts: str | None = None) -> str:
     """Brace-free template interpolation helper."""
     res = template
     if query: res = res.replace("__QUERY__", query)
@@ -157,7 +157,6 @@ async def get_offices(facts: List, user_query: str, llm: LLMClient) -> OfficeLis
 
     for o in res.offices:
         if (o.lat is None or o.lng is None) and (o.city or o.country):
-            location_str = f"{o.city}, {o.country}" if o.city and o.country else (o.city or o.country)
             c = await geocoder.get_coords_async(city=o.city, country=o.country)
             if c:
                 o.lat, o.lng = c["lat"], c["lng"]
@@ -183,7 +182,6 @@ async def get_supply_chain(facts: List, user_query: str, llm: LLMClient) -> Supp
 
     for n in res.supply_chain:
         if (n.lat is None or n.lng is None) and (n.city or n.country):
-            location_str = f"{n.city}, {n.country}" if n.city and n.country else (n.city or n.country)
             c = await geocoder.get_coords_async(city=n.city, country=n.country)
             if c:
                 n.lat, n.lng = c["lat"], c["lng"]
@@ -225,7 +223,6 @@ async def get_customer_concentration(facts: List, user_query: str, llm: LLMClien
 
     for cust in res.customerConcentration:
         if (cust.lat is None or cust.lng is None) and (cust.hqCity or cust.hqCountry):
-            location_str = f"{cust.hqCity}, {cust.hqCountry}" if cust.hqCity and cust.hqCountry else (cust.hqCity or cust.hqCountry)
             c = await geocoder.get_coords_async(city=cust.hqCity, country=cust.hqCountry)
             if c: cust.lat, cust.lng = c["lat"], c["lng"]
     return res
@@ -245,7 +242,7 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
         yield state
         return
 
-    logger.debug(f"Drafting final reports in parallel.")
+    logger.debug("Drafting final reports in parallel.")
     
     try:
         fact_budget = llm.get_safe_input_limit()
@@ -368,7 +365,7 @@ async def run_drafter(state: ResearchState, llm: LLMClient) -> AsyncGenerator[Un
         # ------------------------------------------------------------------
         # Phase 2: MD Drafting (7 parallel tasks, order-preserving)
         # ------------------------------------------------------------------
-        async def draft_md_section(title: str, json_data: any, instructions: str) -> str:
+        async def draft_md_section(title: str, json_data: Any, instructions: str) -> str:
             prompt = f"Generate '{title}' section.\n\nDATA:\n{json.dumps(json_data, indent=2)}\n\nINSTRUCTIONS:\n{instructions}\n\nReturn markdown content."
             res = await llm.generate_structured(prompt, MarkdownSectionSchema, "You are a professional Geo-Intelligence Analyst.")
             return res.markdown_content

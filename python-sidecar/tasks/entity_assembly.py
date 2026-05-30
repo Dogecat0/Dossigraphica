@@ -13,9 +13,7 @@ and proceeds directly to drafting.
 """
 
 import asyncio
-import json
 import logging
-import os
 
 from schemas import ResearchState
 from tasks.drafter import (

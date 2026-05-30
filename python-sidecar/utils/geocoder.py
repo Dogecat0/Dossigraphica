@@ -74,7 +74,7 @@ class Geocoder:
         except Exception as e:
             logger.error(f"Failed to load countries for geocoding: {e}")
 
-    async def get_coords_async(self, location_string: str = None, city: str = None, country: str = None):
+    async def get_coords_async(self, location_string: str | None = None, city: str | None = None, country: str | None = None):
         """
         Asynchronously resolves a location string to coordinates.
         Uses local country centroids as a fast fallback and Nominatim for specific cities.
@@ -101,6 +101,8 @@ class Geocoder:
         if self._nominatim_semaphore is None:
             self._nominatim_semaphore = asyncio.Semaphore(1)
             self._pacing_lock = asyncio.Lock()
+        assert self._nominatim_semaphore is not None
+        assert self._pacing_lock is not None
 
         try:
             async with self._nominatim_semaphore:

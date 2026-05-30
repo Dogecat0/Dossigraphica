@@ -5,7 +5,7 @@ import traceback
 from datetime import datetime
 import litellm
 from pydantic import BaseModel, Field, create_model
-from typing import Type, TypeVar, List
+from typing import Any, Type, TypeVar, List, get_origin, get_args, cast
 import logging
 import json
 import jsonref
@@ -15,7 +15,6 @@ from tenacity import (
     retry,
     stop_after_attempt,
     retry_if_exception_type,
-    before_sleep_log,
 )
 from pydantic import ValidationError
 from litellm.exceptions import (
@@ -26,7 +25,7 @@ from litellm.exceptions import (
     Timeout,
     MidStreamFallbackError,
 )
-from schemas import STRICT_CONFIG, SummarySchema
+from schemas import SummarySchema
 import checkpoint
 from provider import (
     ACTIVE_MODEL,
@@ -111,14 +110,14 @@ class LLMClient:
         self.base_url = base_url
         self.model = model
         self.semaphore = asyncio.Semaphore(ACTIVE_N_PARALLEL)
-        self.progress_queue = None
+        self.progress_queue: asyncio.Queue | None = None
 
         # Shared checkpoint counter + log directory (idempotent init)
         self.log_dir = checkpoint.init()
 
         # Suppress LiteLLM internal logging unless there is an error
         logging.getLogger("LiteLLM").setLevel(logging.WARNING)
-        litellm.set_verbose = False
+        litellm.set_verbose = False  # type: ignore[reportPrivateImportUsage]
 
         if not os.getenv("OPENAI_API_KEY") and not ACTIVE_BASE_URL:
             pass
@@ -181,7 +180,7 @@ class LLMClient:
         prompt: str,
         response_model: Type[T],
         system_prompt: str = "You are a professional research agent.",
-        facts: str = None,
+        facts: str | None = None,
     ) -> T:
         current_index = await checkpoint.next_index()
 
@@ -212,7 +211,7 @@ class LLMClient:
                         "event": "llm_complete",
                         "tokens": {"input": input_tokens, "output": output_tokens, "reasoning": reasoning_tokens, "cached_input": getattr(self, "_last_cached_input_tokens", 0), "cache_write": getattr(self, "_last_cache_write_tokens", 0)},
                     })
-            return res
+            return cast(T, res)
 
         # Multi-shot generation
         current_output = {}
@@ -220,7 +219,7 @@ class LLMClient:
             annotation = field_info.annotation
             FieldModel = create_model(
                 field_name,
-                **{field_name: (annotation, Field(..., description=field_info.description))},
+                **{field_name: (annotation, Field(..., description=field_info.description))},  # type: ignore[reportArgumentType, reportCallIssue]
             )
 
             field_facts = ""
@@ -264,7 +263,7 @@ class LLMClient:
                         )
 
                     entities = await asyncio.gather(
-                        *(_extract_entity(eid) for eid in discovery_res.entities)
+                        *(_extract_entity(eid) for eid in cast(Any, discovery_res).entities)
                     )
 
                     current_output[field_name] = list(entities)
@@ -316,7 +315,7 @@ class LLMClient:
         content: str,
         target_tokens: int,
         system_prompt: str = "You are a data compression specialist.",
-        focus: str = None,
+        focus: str | None = None,
         filter_relevance: bool = False,
     ) -> str:
         """Recursively summarizes content using Map-Reduce parallelization until it fits.
@@ -549,7 +548,7 @@ class LLMClient:
         response_model: Type[BaseModel],
         current_index: int,
         step_suffix: str,
-        log_model_name: str = None,
+        log_model_name: str | None = None,
     ) -> tuple[BaseModel, int, int]:
         _call_start_time = time.monotonic()
         _sem_acquired_time = None
@@ -575,9 +574,9 @@ class LLMClient:
             })
             try:
                 raw_schema = response_model.model_json_schema()
-                deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
-                deref_schema.pop("$defs", None)
-                deref_schema["required"] = list(response_model.model_fields.keys())
+                deref_schema = jsonref.replace_refs(raw_schema, proxies=False)  # type: ignore[reportIndexIssue]
+                deref_schema.pop("$defs", None)  # type: ignore[reportAttributeAccessIssue, reportCallIssue]
+                deref_schema["required"] = list(response_model.model_fields.keys())  # type: ignore[reportIndexIssue]
 
                 logger.debug("LLM Call: %s | model=%s", response_model.__name__, self.model)
 
@@ -611,7 +610,7 @@ class LLMClient:
                             for item in obj:
                                 _ensure_strict(item)
                         return obj
-                    _ensure_strict(deref_schema)
+                    _ensure_strict(deref_schema)  # type: ignore[reportArgumentType]
                     kwargs["tools"] = [{
                         "type": "function",
                         "function": {
@@ -650,7 +649,7 @@ class LLMClient:
                     # mid-stream stalls within seconds instead of waiting for a full fixed
                     # deadline, while still allowing slow-start servers enough time.
                     _print_stream = os.getenv("LLM_DEBUG_STREAM", "false").lower() == "true"
-                    _stream_iter = response.__aiter__()
+                    _stream_iter = response.__aiter__()  # type: ignore[reportAttributeAccessIssue]
                     _first_chunk = True
                     while True:
                         _chunk_timeout = (
@@ -668,7 +667,7 @@ class LLMClient:
                             break
                         except asyncio.TimeoutError:
                             try:
-                                await response.aclose()
+                                await response.aclose()  # type: ignore[reportAttributeAccessIssue]
                             except Exception:
                                 pass
                             _llm_provider = self.model.split("/")[0] if "/" in self.model else self.model
@@ -679,31 +678,32 @@ class LLMClient:
                             )
 
                         # Capture usage from the final chunk (has usage but empty choices)
-                        if chunk.usage is not None:
-                            _prompt_d = getattr(chunk.usage, "prompt_tokens_details", None)
+                        _chunk_usage = chunk.usage  # type: ignore[reportAttributeAccessIssue]
+                        if _chunk_usage is not None:
+                            _prompt_d = getattr(_chunk_usage, "prompt_tokens_details", None)
                             if _prompt_d is not None:
                                 _ct = getattr(_prompt_d, "cached_tokens", None)
                                 if _ct is not None:
                                     _cached_input_tokens = _ct
-                            _cr = getattr(chunk.usage, "cache_read_input_tokens", None)
+                            _cr = getattr(_chunk_usage, "cache_read_input_tokens", None)
                             if _cr is not None:
                                 _cached_input_tokens = _cr
-                            _cw = getattr(chunk.usage, "cache_creation_input_tokens", None)
+                            _cw = getattr(_chunk_usage, "cache_creation_input_tokens", None)
                             if _cw is not None:
                                 _cache_write_tokens = _cw
 
-                        if chunk.choices and len(chunk.choices) > 0:
+                        if chunk.choices and len(chunk.choices) > 0:  # type: ignore[reportOptionalSubscript]
                             delta = chunk.choices[0].delta
                             delta_text = ""
 
                             if getattr(delta, "reasoning_content", None):
-                                reasoning_content_text += delta.reasoning_content
+                                reasoning_content_text += delta.reasoning_content or ""
                                 delta_text = delta.reasoning_content
                             elif delta.content:
                                 content += delta.content
                                 delta_text = delta.content
                             elif getattr(delta, "tool_calls", None):
-                                tc = delta.tool_calls[0]
+                                tc = delta.tool_calls[0]  # type: ignore[reportOptionalSubscript]
                                 if getattr(tc, "function", None) and tc.function.arguments:
                                     content += tc.function.arguments
                                     delta_text = tc.function.arguments
@@ -726,7 +726,7 @@ class LLMClient:
                     if _print_stream:
                         print()
                 else:
-                    message = response.choices[0].message
+                    message = response.choices[0].message  # type: ignore[reportAttributeAccessIssue]
                     content = message.content or ""
                     reasoning_content_text = getattr(message, "reasoning_content", None) or ""
                     tool_calls = getattr(message, "tool_calls", None)
@@ -754,6 +754,9 @@ class LLMClient:
                 )
                 raise
 
+        self._last_cached_input_tokens = _cached_input_tokens
+        self._last_cache_write_tokens = _cache_write_tokens
+
         # --- Semaphore released: log and parse outside the concurrency gate ---
         name_for_logging = log_model_name or response_model.__name__
         _io_start_time = time.monotonic()
@@ -761,7 +764,7 @@ class LLMClient:
 
         try:
             if content.startswith("call:"):
-                content = self._parse_unquoted_custom_syntax(content, deref_schema)
+                content = self._parse_unquoted_custom_syntax(content, deref_schema)  # type: ignore[reportArgumentType]
                 parsed_model = response_model.model_validate_json(content)
             else:
                 content = repair_json(content)

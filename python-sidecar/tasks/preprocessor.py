@@ -1,6 +1,6 @@
 import logging
 import asyncio
-from typing import AsyncGenerator, Union, List
+from typing import AsyncGenerator, Union
 import os
 import litellm
 from schemas import ResearchState, SynthesizerSchema, InternalFact
@@ -130,7 +130,7 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
             all_extracted_facts.extend(facts)
         await pulse_queue.put({
             "status": "preprocessing",
-            "message": f"Preprocessing: Squeezing chunk facts"
+            "message": "Preprocessing: Squeezing chunk facts"
         })
 
     async def process_item(item: dict):

@@ -7,9 +7,11 @@ in the full LLMClient class.
 """
 
 import os
+import json
 import logging
 from dotenv import load_dotenv
 from tenacity import wait_exponential
+import litellm
 from litellm.exceptions import Timeout
 
 # Load .env — PWD overrides all. Pipeline root overrides project root.
