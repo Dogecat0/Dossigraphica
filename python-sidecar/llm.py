@@ -1,5 +1,7 @@
 import os
 import asyncio
+import time
+import traceback
 from datetime import datetime
 import litellm
 from pydantic import BaseModel, Field, create_model
@@ -46,6 +48,56 @@ from provider import (
 logger = logging.getLogger(__name__)
 
 T = TypeVar("T", bound=BaseModel)
+
+
+# ---------------------------------------------------------------------------
+# DEBUG profile — per-LLM-call stack-trace logging
+# Active when DEBUG_PROFILE=1 env var is set.
+# Writes line-delimited JSON to logs/debug/llm_trace_TIMESTAMP.log
+# ---------------------------------------------------------------------------
+
+_DEBUG_TRACE_FILE = None
+_DEBUG_TRACE_PATH = None
+
+def _init_debug_trace():
+    global _DEBUG_TRACE_FILE, _DEBUG_TRACE_PATH
+    if not os.getenv("DEBUG_PROFILE", "").lower() in ("1", "true", "yes"):
+        return None
+    log_dir = os.path.join(os.path.dirname(__file__), "logs", "debug")
+    os.makedirs(log_dir, exist_ok=True)
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    path = os.path.join(log_dir, f"llm_trace_{ts}.log")
+    _DEBUG_TRACE_PATH = path
+    _DEBUG_TRACE_FILE = open(path, "w", buffering=1)
+    _debug_write("init", {"msg": "debug trace opened"})
+    print(f"[DEBUG_PROFILE] LLM trace → {path}")
+    return path
+
+def _debug_write(kind: str, data: dict):
+    f = _DEBUG_TRACE_FILE
+    if f is None:
+        return
+    try:
+        now = datetime.now().isoformat(timespec="milliseconds")
+        line = json.dumps({"t": now, "kind": kind, **data}, default=str)
+        f.write(line + "\n")
+    except Exception:
+        pass
+
+def _close_debug_trace():
+    global _DEBUG_TRACE_FILE, _DEBUG_TRACE_PATH
+    if _DEBUG_TRACE_FILE:
+        try:
+            _DEBUG_TRACE_FILE.close()
+        except Exception:
+            pass
+        _DEBUG_TRACE_FILE = None
+    _DEBUG_TRACE_PATH = None
+
+# Initialize on import
+_init_debug_trace()
+import atexit
+atexit.register(_close_debug_trace)
 
 
 class LLMClient:
@@ -149,11 +201,17 @@ class LLMClient:
                 final_prompt = prompt
 
             messages = self._construct_messages(final_prompt, system_prompt, response_model)
+            input_tokens = self.estimate_tokens(messages)
+            output_tokens = 0
+            reasoning_tokens = 0
             try:
-                res = await self._generate_single_field(messages, response_model, current_index, "")
+                res, output_tokens, reasoning_tokens = await self._generate_single_field(messages, response_model, current_index, "")
             finally:
                 if self.progress_queue:
-                    self.progress_queue.put_nowait(True)
+                    self.progress_queue.put_nowait({
+                        "event": "llm_complete",
+                        "tokens": {"input": input_tokens, "output": output_tokens, "reasoning": reasoning_tokens, "cached_input": getattr(self, "_last_cached_input_tokens", 0), "cache_write": getattr(self, "_last_cache_write_tokens", 0)},
+                    })
             return res
 
         # Multi-shot generation
@@ -229,14 +287,20 @@ class LLMClient:
             messages = self._construct_messages(
                 multi_shot_prompt, system_prompt, response_model, function_name=field_name,
             )
+            input_tokens = self.estimate_tokens(messages)
+            output_tokens = 0
+            reasoning_tokens = 0
             try:
-                partial_result = await self._generate_single_field(
+                partial_result, output_tokens, reasoning_tokens = await self._generate_single_field(
                     messages, FieldModel, current_index, f"_{i:02d}",
                     log_model_name=response_model.__name__,
                 )
             finally:
                 if self.progress_queue:
-                    self.progress_queue.put_nowait(True)
+                    self.progress_queue.put_nowait({
+                        "event": "llm_complete",
+                        "tokens": {"input": input_tokens, "output": output_tokens, "reasoning": reasoning_tokens, "cached_input": getattr(self, "_last_cached_input_tokens", 0), "cache_write": getattr(self, "_last_cache_write_tokens", 0)},
+                    })
 
             field_value = getattr(partial_result, field_name)
             current_output[field_name] = field_value
@@ -422,8 +486,8 @@ class LLMClient:
     async def _log_inference(
         self, current_index: int, messages: List[dict], model_name: str,
         raw_response: str, step_suffix: str = "",
-    ):
-        """Logs the raw inputs and outputs to separate, readable files."""
+    ) -> float:
+        """Logs the raw inputs and outputs to separate, readable files. Returns write duration in seconds."""
         base_name = f"{current_index:04d}_{model_name}{step_suffix}"
 
         input_path = os.path.join(self.log_dir, f"{base_name}_input.md")
@@ -448,6 +512,7 @@ class LLMClient:
         except Exception:
             formatted_output = raw_response
 
+        _io_start = time.monotonic()
         try:
             with open(input_path, "w") as f:
                 f.write(input_md)
@@ -459,6 +524,8 @@ class LLMClient:
             logger.debug("Inference logged: %s", base_name)
         except Exception as e:
             logger.error("Failed to log inference files: %s", e)
+        _io_dur = time.monotonic() - _io_start
+        return _io_dur
 
     @retry(
         stop=stop_after_attempt(10),
@@ -483,8 +550,29 @@ class LLMClient:
         current_index: int,
         step_suffix: str,
         log_model_name: str = None,
-    ) -> BaseModel:
+    ) -> tuple[BaseModel, int, int]:
+        _call_start_time = time.monotonic()
+        _sem_acquired_time = None
+
+        # DEBUG trace: log before LLM call with stack trace
+        _debug_write("llm_start", {
+            "schema": log_model_name or response_model.__name__,
+            "stack": "\n".join(traceback.format_stack()[:-1]),
+        })
+
         async with self.semaphore:
+            _sem_acquired_time = time.monotonic()
+            _sem_wait = _sem_acquired_time - _call_start_time
+            if _sem_wait > 1.0:
+                logger.warning(
+                    "Semaphore wait %.1fs for %s (slots: %d/%d)",
+                    _sem_wait, response_model.__name__,
+                    ACTIVE_N_PARALLEL - self.semaphore._value, ACTIVE_N_PARALLEL,
+                )
+            _debug_write("sem_acquired", {
+                "schema": log_model_name or response_model.__name__,
+                "wait_s": round(_sem_wait, 3),
+            })
             try:
                 raw_schema = response_model.model_json_schema()
                 deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
@@ -553,24 +641,74 @@ class LLMClient:
                 response = await litellm.acompletion(**kwargs)
 
                 content = ""
+                reasoning_content_text = ""
+                _cached_input_tokens = 0
+                _cache_write_tokens = 0
                 if kwargs.get("stream"):
-                    print_stream = os.getenv("LLM_DEBUG_STREAM", "false").lower() == "true"
-                    async for chunk in response:
+                    # Per-chunk timeout: generous for the first chunk (server needs to
+                    # start generating), then tight inter-chunk timeout.  This detects
+                    # mid-stream stalls within seconds instead of waiting for a full fixed
+                    # deadline, while still allowing slow-start servers enough time.
+                    _print_stream = os.getenv("LLM_DEBUG_STREAM", "false").lower() == "true"
+                    _stream_iter = response.__aiter__()
+                    _first_chunk = True
+                    while True:
+                        _chunk_timeout = (
+                            LLM_REQUEST_TIMEOUT + 30
+                            if _first_chunk
+                            else max(15, LLM_REQUEST_TIMEOUT // 2)
+                        )
+                        try:
+                            chunk = await asyncio.wait_for(
+                                _stream_iter.__anext__(),
+                                timeout=_chunk_timeout,
+                            )
+                            _first_chunk = False
+                        except StopAsyncIteration:
+                            break
+                        except asyncio.TimeoutError:
+                            try:
+                                await response.aclose()
+                            except Exception:
+                                pass
+                            _llm_provider = self.model.split("/")[0] if "/" in self.model else self.model
+                            raise Timeout(
+                                f"Stream response timed out after {_chunk_timeout}s (inter-chunk)",
+                                self.model,
+                                _llm_provider,
+                            )
+
+                        # Capture usage from the final chunk (has usage but empty choices)
+                        if chunk.usage is not None:
+                            _prompt_d = getattr(chunk.usage, "prompt_tokens_details", None)
+                            if _prompt_d is not None:
+                                _ct = getattr(_prompt_d, "cached_tokens", None)
+                                if _ct is not None:
+                                    _cached_input_tokens = _ct
+                            _cr = getattr(chunk.usage, "cache_read_input_tokens", None)
+                            if _cr is not None:
+                                _cached_input_tokens = _cr
+                            _cw = getattr(chunk.usage, "cache_creation_input_tokens", None)
+                            if _cw is not None:
+                                _cache_write_tokens = _cw
+
                         if chunk.choices and len(chunk.choices) > 0:
                             delta = chunk.choices[0].delta
                             delta_text = ""
 
                             if getattr(delta, "reasoning_content", None):
+                                reasoning_content_text += delta.reasoning_content
                                 delta_text = delta.reasoning_content
                             elif delta.content:
+                                content += delta.content
                                 delta_text = delta.content
                             elif getattr(delta, "tool_calls", None):
                                 tc = delta.tool_calls[0]
                                 if getattr(tc, "function", None) and tc.function.arguments:
+                                    content += tc.function.arguments
                                     delta_text = tc.function.arguments
 
                             if delta_text:
-                                content += delta_text
                                 if len(content) > ACTIVE_OUTPUT_RESERVATION * 6:
                                     raise ValueError(
                                         "Runaway generation detected: output exceeded maximum expected character limit."
@@ -582,19 +720,22 @@ class LLMClient:
                                         raise ValueError(
                                             "Dynamic text repetition loop detected in output stream."
                                         )
-                                if print_stream:
+                                if _print_stream:
                                     print(delta_text, end="", flush=True)
 
-                    if print_stream:
+                    if _print_stream:
                         print()
                 else:
                     message = response.choices[0].message
                     content = message.content or ""
+                    reasoning_content_text = getattr(message, "reasoning_content", None) or ""
                     tool_calls = getattr(message, "tool_calls", None)
                     if tool_calls and len(tool_calls) > 0 and tool_calls[0].function:
                         content = tool_calls[0].function.arguments
 
-                if not content:
+                # Log combined content, parse normal content only
+                _log_full_response = reasoning_content_text + content
+                if not _log_full_response:
                     raise ValueError("LLM returned empty content and no tool calls.")
 
             except (
@@ -615,15 +756,55 @@ class LLMClient:
 
         # --- Semaphore released: log and parse outside the concurrency gate ---
         name_for_logging = log_model_name or response_model.__name__
-        await self._log_inference(current_index, messages, name_for_logging, content, step_suffix)
+        _io_start_time = time.monotonic()
+        _io_write_dur = await self._log_inference(current_index, messages, name_for_logging, _log_full_response, step_suffix)
 
         try:
             if content.startswith("call:"):
                 content = self._parse_unquoted_custom_syntax(content, deref_schema)
-                return response_model.model_validate_json(content)
-
-            content = repair_json(content)
-            return response_model.model_validate_json(content)
+                parsed_model = response_model.model_validate_json(content)
+            else:
+                content = repair_json(content)
+                parsed_model = response_model.model_validate_json(content)
         except Exception as e:
             logger.error("Pydantic Validation Failure: %s. Content: %s", e, content)
             raise
+
+        # Compute output and reasoning tokens from the raw response
+        output_tokens = litellm.token_counter(model=self.model, text=content) if content else 0
+        reasoning_tokens = litellm.token_counter(model=self.model, text=reasoning_content_text) if reasoning_content_text else 0
+
+        _now = time.monotonic()
+        _sem_wait_logged = _sem_acquired_time - _call_start_time if _sem_acquired_time else 0
+        _llm_dur = _now - _sem_acquired_time if _sem_acquired_time else _now - _call_start_time
+        _total_dur = _now - _call_start_time
+
+        # Save exact token metadata for replay recovery (used by pipeline.py)
+        _input_tok = litellm.token_counter(model=self.model, messages=messages)
+        try:
+            _meta_base = f"{current_index:04d}_{name_for_logging}{step_suffix}"
+            _meta_path = os.path.join(self.log_dir, f"{_meta_base}_meta.json")
+            with open(_meta_path, "w") as _mf:
+                json.dump({
+                    "input_tokens": _input_tok,
+                    "output_tokens": output_tokens,
+                    "reasoning_tokens": reasoning_tokens,
+                    "cached_input_tokens": _cached_input_tokens,
+                    "cache_write_tokens": _cache_write_tokens,
+                }, _mf)
+        except Exception:
+            pass
+
+        # DEBUG trace: log completion with timing breakdown
+        _debug_write("llm_end", {
+            "schema": response_model.__name__,
+            "total_s": round(_total_dur, 3),
+            "sem_wait_s": round(_sem_wait_logged, 3),
+            "llm_call_s": round(_llm_dur, 3),
+            "io_write_s": round(_io_write_dur, 3),
+            "input_tokens": _input_tok if _DEBUG_TRACE_FILE else 0,
+            "output_tokens": output_tokens,
+            "reasoning_tokens": reasoning_tokens,
+        })
+
+        return parsed_model, output_tokens, reasoning_tokens
