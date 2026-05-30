@@ -1,0 +1,39 @@
+[project]
+name = "dossigraphica-sidecar"
+version = "0.1.0"
+description = "Python sidecar for the Dossigraphica deep research pipeline"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.136.3",
+    "uvicorn==0.48.0",
+    "pydantic==2.13.4",
+    "sse-starlette==3.4.4",
+    "openai==2.38.0",
+    "litellm==1.86.2",
+    "httpx==0.28.1",
+    "json-repair==0.59.10",
+    "tqdm==4.67.3",
+    "jsonref==1.1.0",
+    "tenacity==9.1.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.15.15",
+    "basedpyright==1.39.6",
+]
+
+[tool.ruff.lint]
+# F821 = undefined-name — catches NameErrors before runtime
+select = ["F821"]
+
+[tool.basedpyright]
+typeCheckingMode = "standard"
+reportMissingImports = "warning"
+reportMissingTypeStubs = "none"
+reportGeneralTypeIssues = "warning"
+reportOptionalSubscript = "warning"
+reportOptionalMemberAccess = "warning"
+reportUnusedImport = "warning"
+include = ["."]
+pythonVersion = "3.12"
