@@ -168,8 +168,21 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
                 for item in state.raw_content:
                     await process_item(item)
                     
+            # Wait for background tasks with periodic heartbeats so the
+            # progress bar never stalls, even during long tail-wait periods.
             if pending_tasks:
-                await asyncio.gather(*pending_tasks)
+                _heartbeat_interval = 15.0  # seconds
+                _remaining_tasks = set(pending_tasks)  # copy to avoid mutating outer set
+                while _remaining_tasks:
+                    _done, _remaining_tasks = await asyncio.wait(
+                        _remaining_tasks, timeout=_heartbeat_interval,
+                        return_when=asyncio.FIRST_COMPLETED,
+                    )
+                    if _remaining_tasks:
+                        await pulse_queue.put({
+                            "status": "preprocessing",
+                            "message": f"Preprocessing: Waiting for {len(_remaining_tasks)} chunk tasks"
+                        })
         except Exception as e:
             logger.error(f"Error in preprocessor consumer: {e}")
         finally:
@@ -182,6 +195,17 @@ async def run_preprocessor(state: ResearchState, content_queue: asyncio.Queue | 
         if pulse is None:
             break
         yield pulse
+
+    # All LLM work is done — drain any stale stream_estimate wakeups still
+    # sitting in the progress queue, then push a None sentinel so the multiplex
+    # knows not to re-create the pulse task.  This eliminates the tail drain.
+    if llm.progress_queue is not None:
+        while not llm.progress_queue.empty():
+            try:
+                llm.progress_queue.get_nowait()
+            except asyncio.QueueEmpty:
+                break
+        llm.progress_queue.put_nowait(None)
 
     await consumer_task
 
