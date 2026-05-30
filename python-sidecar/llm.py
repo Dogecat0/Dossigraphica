@@ -111,6 +111,13 @@ class LLMClient:
         self.model = model
         self.semaphore = asyncio.Semaphore(ACTIVE_N_PARALLEL)
         self.progress_queue: asyncio.Queue | None = None
+        # Holds the LATEST stream_estimate per active call_id (updated in-place).
+        self._latest_stream_pulses: dict[str, dict] = {}
+        # Backoff-driven stream pulse scheduling: start at chunk 15, double each
+        # interval (15→30→60→120→240), then every 240 chunks thereafter.
+        self._next_stream_push: dict[str, int] = {}
+        self._stream_push_interval: dict[str, int] = {}
+        self._batch_start: str = datetime.now().strftime("%Y-%m-%d")
 
         # Shared checkpoint counter + log directory (idempotent init)
         self.log_dir = checkpoint.init()
@@ -144,7 +151,7 @@ class LLMClient:
 
     def get_safe_input_limit(self) -> int:
         """Absolute maximum input tokens allowed after reservation and safety buffer."""
-        return ACTIVE_CTX_LIMIT - OUTPUT_RESERVATION - SAFETY_BUFFER
+        return ACTIVE_CTX_LIMIT - ACTIVE_OUTPUT_RESERVATION - SAFETY_BUFFER
 
     def estimate_tokens(self, messages: List[dict]) -> int:
         """Accurate message list token counting using litellm."""
@@ -207,6 +214,9 @@ class LLMClient:
             try:
                 res, output_tokens, reasoning_tokens = await self._generate_single_field(messages, response_model, current_index, "")
             finally:
+                self._latest_stream_pulses.pop(_call_id, None)
+                self._next_stream_push.pop(_call_id, None)
+                self._stream_push_interval.pop(_call_id, None)
                 if self.progress_queue:
                     self.progress_queue.put_nowait({
                         "event": "llm_complete",
@@ -298,6 +308,9 @@ class LLMClient:
                     log_model_name=response_model.__name__,
                 )
             finally:
+                self._latest_stream_pulses.pop(_call_id, None)
+                self._next_stream_push.pop(_call_id, None)
+                self._stream_push_interval.pop(_call_id, None)
                 if self.progress_queue:
                     self.progress_queue.put_nowait({
                         "event": "llm_complete",
@@ -401,8 +414,7 @@ class LLMClient:
         deref_schema = jsonref.replace_refs(raw_schema, proxies=False)
         deref_schema.pop("$defs", None)
 
-        schema_json = json.dumps(deref_schema, indent=2)
-        now = datetime.now().isoformat()
+        schema_json = json.dumps(deref_schema, separators=(',', ':'))
 
         call_instruction = (
             f"5. You MUST call the function `{function_name}` to submit your result.\n"
@@ -411,7 +423,6 @@ class LLMClient:
 
         strict_system_prompt = (
             f"{system_prompt}\n\n"
-            f"CURRENT_TIME: {now}\n\n"
             "STRICT INSTRUCTIONS:\n"
             "1. You MUST respond with ONLY a valid JSON object.\n"
             "2. You MUST NOT add any extra fields or rename keys.\n"
@@ -422,7 +433,8 @@ class LLMClient:
             "you MUST provide a valid value.\n"
             f"{call_instruction}"
             "Do NOT include markdown code blocks or preamble text.\n\n"
-            f"REQUIRED SCHEMA:\n{schema_json}"
+            f"REQUIRED SCHEMA:\n{schema_json}\n\n"
+            f"CURRENT_TIME: {self._batch_start}"
         )
         return [
             {"role": "system", "content": strict_system_prompt},
@@ -683,7 +695,8 @@ class LLMClient:
                             )
 
                         # Capture usage from the final chunk (has usage but empty choices)
-                        _chunk_usage = chunk.usage  # type: ignore[reportAttributeAccessIssue]
+                        # Use getattr because ModelResponseStream (DeepSeek V4 Flash) has no `usage` field.
+                        _chunk_usage = getattr(chunk, "usage", None)
                         if _chunk_usage is not None:
                             _prompt_d = getattr(_chunk_usage, "prompt_tokens_details", None)
                             if _prompt_d is not None:
@@ -728,19 +741,30 @@ class LLMClient:
                                 if _print_stream:
                                     print(delta_text, end="", flush=True)
 
-                            # Every 15 chunks push a live token estimate so the progress
-                            # bar ticks during long generations (hang detection).
+                            # Every 15 chunks: update estimate, then push a wakeup
+                            # with exponential backoff (15→30→60→120→240 chunks, then
+                            # capped).  Preprocessor heartbeats handle the long tail.
                             _stream_chunk_count += 1
                             if self.progress_queue and _stream_chunk_count % 15 == 0:
                                 _est_out = len(content) // 4
                                 _est_reas = len(reasoning_content_text) // 4
                                 _stream_call_id = f"{current_index:04d}{step_suffix}"
-                                self.progress_queue.put_nowait({
-                                    "type": "stream_estimate",
-                                    "call_id": _stream_call_id,
+                                self._latest_stream_pulses[_stream_call_id] = {
                                     "estimated_output_tokens": _est_out,
                                     "estimated_reasoning_tokens": _est_reas,
-                                })
+                                }
+                                _target = self._next_stream_push.get(_stream_call_id, 15)
+                                if _stream_chunk_count >= _target:
+                                    self.progress_queue.put_nowait({
+                                        "type": "stream_estimate",
+                                        "call_id": _stream_call_id,
+                                        "estimated_output_tokens": _est_out,
+                                        "estimated_reasoning_tokens": _est_reas,
+                                    })
+                                    _interval = self._stream_push_interval.get(_stream_call_id, 15)
+                                    _new_interval = min(_interval * 2, 240)
+                                    self._next_stream_push[_stream_call_id] = _stream_chunk_count + _new_interval
+                                    self._stream_push_interval[_stream_call_id] = _new_interval
 
                     if _print_stream:
                         print()

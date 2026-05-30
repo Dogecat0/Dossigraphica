@@ -352,16 +352,15 @@ async def run_test_research(query: str):
             cost_usd = tokens_data.get("total_cost_usd", 0)
             cost_str = f"${cost_usd:.4f}" if cost_usd > 0 else None
 
-            # Live output token counter: use streaming estimate when mid-call,
-            # otherwise real total (output + reasoning).
+            # Live output+reasoning token rate (tokens/sec).
+            # Uses accumulated real tokens + in-flight streaming estimates to compute
+            # a smooth rate that doesn't jump when individual streams start/finish.
             est_out = tokens_data.get("streaming_estimated_output", 0)
             est_reas = tokens_data.get("streaming_estimated_reasoning", 0)
-            if est_out or est_reas:
-                display_out = est_out + est_reas
-                out_token_str = f"O~:{display_out:,}"
-            else:
-                display_out = token_out + token_reas
-                out_token_str = f"O:{display_out:,}" if display_out > 0 else None
+            elapsed = data.get("elapsed_seconds", 1)
+            total_gen = token_out + token_reas + est_out + est_reas
+            rate = total_gen / max(elapsed, 1)
+            out_token_str = f"O~:{rate:,.0f}/s"
 
             eta_str = None
             eta_sec = data.get("eta_seconds")

@@ -203,6 +203,8 @@ class TaskTracker:
             self.phase_input_tokens[idx] = 0
             self.phase_output_tokens[idx] = 0
             self.phase_reasoning_tokens[idx] = 0
+            self.phase_cached_input_tokens[idx] = 0
+            self.phase_cache_write_tokens[idx] = 0
             self.phase_cost[idx] = 0.0
 
     def set_streaming_estimates(self, call_id: str, output_tokens: int, reasoning_tokens: int):
@@ -696,6 +698,11 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                     label = pending.pop(future)
                     try:
                         item = future.result()
+                        # Sentinel from pulser: no more pulses will arrive, so
+                        # don't re-create the pulse task.  The break condition
+                        # at the top of the loop will fire once generators exhaust.
+                        if label == "llm_pulse" and item is None:
+                            continue
                         yield (label, item)
                         if label == "llm_pulse" and pulse_queue is not None:
                             pending[asyncio.create_task(pulse_queue.get())] = "llm_pulse"
@@ -751,21 +758,32 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         """
         call_id = pulse.get("call_id", "")
         if pulse.get("type") == "stream_estimate":
-            tracker.set_streaming_estimates(
-                call_id,
-                pulse.get("estimated_output_tokens", 0),
-                pulse.get("estimated_reasoning_tokens", 0),
-            )
+            # Read the LATEST estimate from the in-place dict (the queued wakeup
+            # may be stale — the real value was updated since it was pushed).
+            _latest = llm._latest_stream_pulses.get(call_id, pulse)
+            _est_out = _latest.get("estimated_output_tokens", 0)
+            _est_reas = _latest.get("estimated_reasoning_tokens", 0)
+            tracker.set_streaming_estimates(call_id, _est_out, _est_reas)
             return
         token_data = pulse.get("tokens", {})
+        if not isinstance(token_data, dict):
+            logger.error("llm_pulse tokens is not a dict: %s (type=%s)", token_data, type(token_data).__name__)
+            tracker.complete_llm(1, phase_idx)
+            return
         input_t = token_data.get("input", 0)
         output_t = token_data.get("output", 0)
         reasoning_t = token_data.get("reasoning", 0)
         cached_t = token_data.get("cached_input", 0)
         cache_write_t = token_data.get("cache_write", 0)
         if input_t > 0 or output_t > 0 or reasoning_t > 0:
-            tracker.add_tokens(input_t, output_t, reasoning_t, phase_idx, cached_input_tokens=cached_t, cache_write_tokens=cache_write_t, call_id=call_id)
-        tracker.complete_llm(1, phase_idx)
+            try:
+                tracker.add_tokens(input_t, output_t, reasoning_t, phase_idx, cached_input_tokens=cached_t, cache_write_tokens=cache_write_t, call_id=call_id)
+            except Exception as _add_tok_err:
+                logger.error("add_tokens failed: %s %s", type(_add_tok_err).__name__, _add_tok_err)
+        try:
+            tracker.complete_llm(1, phase_idx)
+        except Exception as _comp_err:
+            logger.error("complete_llm failed: %s %s", type(_comp_err).__name__, _comp_err)
 
     def _enrich_progress(item: dict, phase_idx: int) -> dict:
         """Attach progress metadata to a status update dict."""
@@ -792,10 +810,8 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 else:
                     _apply_discovery(item, phase_idx)
                     yield json.dumps(_enrich_progress(item, phase_idx))
-            else:  # llm_pulse
+            else:  # llm_pulse — tracker update only, no SSE yield
                 _apply_llm_pulse(item, phase_idx)
-                pulse = {"status": "synthesizing", "message": "Synthesizing..."}
-                yield json.dumps(_enrich_progress(pulse, phase_idx))
 
     # ------------------------------------------------------------------
     # pipeline_sieve: multiplex extractor + preprocessor (+ optional triage)
@@ -833,27 +849,41 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         })
 
         _sieve_event_count = 0
+        _last_rate_event = 0
+        _last_rate_time = 0.0
         async for label, item in _multiplex(generators, _pq):
             _sieve_event_count += 1
 
             # Log queue depths every 100 events
             if _sieve_event_count % 100 == 0:
+                _now = time.monotonic()
+                _rate = (_sieve_event_count - _last_rate_event) / (_now - _last_rate_time) if _last_rate_event and _last_rate_time > 0 else 0.0
                 _pipeline_debug_write("queue_depth", {
                     "phase": phase_idx,
                     "triage_to_extract": triage_to_extract_queue.qsize(),
                     "extract_to_pre": extract_to_pre_queue.qsize(),
+                    "llm_pq": _pq.qsize(),
                     "event_count": _sieve_event_count,
+                    "event_rate": round(_rate, 1),
                 })
+                _last_rate_event = _sieve_event_count
+                _last_rate_time = _now
 
-            if label == "llm_pulse":
-                _apply_llm_pulse(item, phase_idx)
-                pulse = {"status": "synthesizing", "message": "Synthesizing..."}
-                yield json.dumps(_enrich_progress(pulse, phase_idx))
-            elif isinstance(item, ResearchState):
-                state = item
-            else:
-                _apply_discovery(item, phase_idx)
-                yield json.dumps(_enrich_progress(item, phase_idx))
+            try:
+                if label == "llm_pulse":
+                    _apply_llm_pulse(item, phase_idx)
+                elif isinstance(item, ResearchState):
+                    state = item
+                else:
+                    _apply_discovery(item, phase_idx)
+                    yield json.dumps(_enrich_progress(item, phase_idx))
+            except Exception as _sieve_item_err:
+                import traceback as _tb
+                _tb_str = "".join(_tb.format_exception_only(type(_sieve_item_err), _sieve_item_err)).strip()
+                logger.error(
+                    "Sieve item processing failed (label=%s, item_type=%s): %s | %s",
+                    label, type(item).__name__, _sieve_item_err, _tb_str,
+                )
 
         _pipeline_debug_write("sieve_end", {
             "phase": phase_idx,
