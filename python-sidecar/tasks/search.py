@@ -18,8 +18,9 @@ _search_cache = DiskCache("search_cache.json")
 _tinyfish_search_cache = DiskCache("tinyfish_search_cache.json")
 _tinyfish_search_limiter = MinuteRateLimiter(TINYFISH_SEARCH_RPM)
 
-# Max TinyFish query-param length (conservative; actual server limit is ~8 KB via GET)
-MAX_TINYFISH_QUERY_LENGTH = 6000
+# Max TinyFish query-param length (hard server limit: 2000 chars on the decoded query string)
+# See https://docs.tinyfish.ai/search-api/reference#error-codes — 400 INVALID_INPUT / too_big
+MAX_TINYFISH_QUERY_LENGTH = 2000
 
 
 def _build_site_exclusions(query: str, blocked: dict[str, int]) -> str:
