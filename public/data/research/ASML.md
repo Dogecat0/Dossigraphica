@@ -254,9 +254,9 @@ Any disruption at these three nodes would halt EUV system production globally. T
 
 ## 5. Customer Concentration
 
-ASML exhibits an exceptionally high degree of customer concentration, a critical risk factor for revenue stability and bargaining power. According to Fitch Ratings, ASML's three largest customers—**TSMC**, **Intel**, and **Samsung**—collectively account for an estimated **>80% of total revenue**. This oligopsonistic structure means that the capital expenditure (capex) decisions of just a handful of semiconductor giants directly dictate ASML's order book and financial performance.
+ASML exhibits an exceptionally high degree of customer concentration, a critical risk factor for revenue stability and bargaining power. According to Fitch Ratings, ASML's three largest customers—**TSMC**, **Intel**, and **Samsung**—collectively account for an estimated **>50% of total revenue**. This oligopsonistic structure means that the capital expenditure (capex) decisions of just a handful of semiconductor giants directly dictate ASML's order book and financial performance.
 
-### Top Three Customers (Estimated >80% Combined Revenue Share)
+### Top Three Customers (Estimated >50% Combined Revenue Share)
 
 | Customer | Headquarters | Relationship & Strategic Importance |
 |---|---|---|
@@ -293,7 +293,7 @@ The customer base is heavily concentrated in the **Indo-Pacific region** (Taiwan
 1. **Capex Cyclicality**: When top customers like SK Hynix and Micron announced wafer fab equipment (WFE) capex cuts in 2023, ASML's revenue was directly impacted. The concentration amplifies the effect of any single customer's spending slowdown.
 2. **Geopolitical Exposure**: TSMC's location in Taiwan introduces significant geopolitical risk. Any disruption to Taiwan's semiconductor ecosystem would directly threaten a major portion of ASML's revenue.
 3. **Export Control Vulnerability**: The presence of SMIC as a customer highlights ASML's exposure to US-led export controls on advanced lithography equipment to China. Restrictions on EUV sales to China have already reshaped ASML's addressable market.
-4. **Bargaining Power**: With three customers controlling >80% of revenue, ASML faces concentrated buyer power. However, ASML's near-monopoly on EUV lithography provides countervailing leverage, as these customers have no viable alternative suppliers for advanced node production.
+4. **Bargaining Power**: With three customers controlling >50% of revenue, ASML faces concentrated buyer power. However, ASML's near-monopoly on EUV lithography provides countervailing leverage, as these customers have no viable alternative suppliers for advanced node production.
 
 ## 6. Regulatory Risk
 
