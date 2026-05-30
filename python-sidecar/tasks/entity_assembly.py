@@ -64,17 +64,17 @@ def _build_customer_queries(customers, user_query: str) -> list[str]:
         missing_hq = not c.hqCity
         missing_coords = c.lat is None or c.lng is None
         missing_revenue = not c.revenueShare
-        
+
         if missing_hq or missing_coords or missing_revenue:
             requirements = []
-            if missing_hq or missing_coords: requirements.append("headquarters city and coordinates")
-            if missing_revenue: requirements.append("percentage revenue share")
-            
+            if missing_hq or missing_coords:
+                requirements.append("headquarters city and coordinates")
+            if missing_revenue:
+                requirements.append("percentage revenue share")
+
             req_str = " and ".join(requirements)
             country_hint = c.hqCountry or ""
-            queries.append(
-                f"{c.customer} {country_hint} {req_str}"
-            )
+            queries.append(f"{c.customer} {country_hint} {req_str}")
     return queries
 
 
@@ -104,7 +104,7 @@ async def run_entity_assembly(state: ResearchState, llm: LLMClient) -> ResearchS
     )
 
     # Run the modular assembly functions in parallel against current facts
-    
+
     office_res, sc_res, risk_res, cust_res = await asyncio.gather(
         get_offices(state.extracted_facts, state.user_query, llm),
         get_supply_chain(state.extracted_facts, state.user_query, llm),
@@ -115,9 +115,15 @@ async def run_entity_assembly(state: ResearchState, llm: LLMClient) -> ResearchS
     # Programmatic gap detection
     gap_queries: list[str] = []
     gap_queries.extend(_build_office_queries(office_res.offices, state.user_query))
-    gap_queries.extend(_build_supply_chain_queries(sc_res.supply_chain, state.user_query))
-    gap_queries.extend(_build_customer_queries(cust_res.customerConcentration, state.user_query))
-    gap_queries.extend(_build_risk_queries(risk_res.geopoliticalRisks, state.user_query))
+    gap_queries.extend(
+        _build_supply_chain_queries(sc_res.supply_chain, state.user_query)
+    )
+    gap_queries.extend(
+        _build_customer_queries(cust_res.customerConcentration, state.user_query)
+    )
+    gap_queries.extend(
+        _build_risk_queries(risk_res.geopoliticalRisks, state.user_query)
+    )
 
     # Deduplicate while preserving order
     seen: set[str] = set()
@@ -135,8 +141,10 @@ async def run_entity_assembly(state: ResearchState, llm: LLMClient) -> ResearchS
     )
     if unique_queries:
         for i, q in enumerate(unique_queries):
-            logger.debug(f"  Gap {i+1}: {q}")
+            logger.debug(f"  Gap {i + 1}: {q}")
 
-    await llm.save_checkpoint("EntityAssemblyData", {"enrichment_queries": state.enrichment_queries})
+    await llm.save_checkpoint(
+        "EntityAssemblyData", {"enrichment_queries": state.enrichment_queries}
+    )
 
     return state
