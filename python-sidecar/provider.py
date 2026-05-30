@@ -134,6 +134,33 @@ else:
         ACTIVE_MODEL, ACTIVE_BASE_URL, ACTIVE_OUTPUT_RESERVATION,
     )
 
+# ---------------------------------------------------------------------------
+# Custom model cost registration (takes precedence over litellm built-in)
+# ---------------------------------------------------------------------------
+_custom_costs_path = os.path.join(os.path.dirname(__file__), "custom_model_costs.json")
+if os.path.exists(_custom_costs_path):
+    try:
+        with open(_custom_costs_path) as _cf:
+            _custom_costs = json.load(_cf)
+        for _mname, _mcost in _custom_costs.items():
+            # Overwrite even if litellm already has it — custom file wins
+            litellm.model_cost[_mname] = {
+                "input_cost_per_token": _mcost["input_cost_per_token"],
+                "output_cost_per_token": _mcost["output_cost_per_token"],
+                "input_cache_hit_cost_per_token": _mcost.get("input_cache_hit_cost_per_token", _mcost["input_cost_per_token"]),
+                "input_cache_write_cost_per_token": _mcost.get("input_cache_write_cost_per_token", _mcost["input_cost_per_token"]),
+            }
+            logger.info(
+                "Registered custom cost rates for '%s': in=$%.2e out=$%.2e cache_hit=$%.2e cache_write=$%.2e",
+                _mname,
+                _mcost["input_cost_per_token"],
+                _mcost["output_cost_per_token"],
+                _mcost.get("input_cache_hit_cost_per_token", _mcost["input_cost_per_token"]),
+                _mcost.get("input_cache_write_cost_per_token", _mcost["input_cost_per_token"]),
+            )
+    except Exception as _e:
+        logger.warning("Failed to load custom model costs: %s", _e)
+
 print(
     f"[CONFIG] provider={LLM_PROVIDER} "
     f"model={ACTIVE_MODEL} "
