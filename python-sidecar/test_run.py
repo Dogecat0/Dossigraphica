@@ -352,13 +352,24 @@ async def run_test_research(query: str):
             cost_usd = tokens_data.get("total_cost_usd", 0)
             cost_str = f"${cost_usd:.4f}" if cost_usd > 0 else None
 
+            # Live output token counter: use streaming estimate when mid-call,
+            # otherwise real total (output + reasoning).
+            est_out = tokens_data.get("streaming_estimated_output", 0)
+            est_reas = tokens_data.get("streaming_estimated_reasoning", 0)
+            if est_out or est_reas:
+                display_out = est_out + est_reas
+                out_token_str = f"O~:{display_out:,}"
+            else:
+                display_out = token_out + token_reas
+                out_token_str = f"O:{display_out:,}" if display_out > 0 else None
+
             eta_str = None
             eta_sec = data.get("eta_seconds")
             if eta_sec is not None:
                 m, s = divmod(eta_sec, 60)
                 eta_str = f"E:{m:>2}m{s:02d}s" if m > 0 else f"E:{s:>2}s"
 
-            stat_parts = [p for p in [llm_line, io_line, token_str, cost_str, eta_str] if p]
+            stat_parts = [p for p in [llm_line, io_line, out_token_str, token_str, cost_str, eta_str] if p]
             stats = f"[{' '.join(stat_parts)}]" if stat_parts else ""
 
             # Phase Roadmap
@@ -366,13 +377,13 @@ async def run_test_research(query: str):
             p_total = data.get("phase_total", 0)
             phase_label = f"{p_curr}/{p_total} " if p_total > 0 else ""
 
-            # Dynamic Message Truncation based on terminal width
-            overhead = 22 + 5 + 3 + 25 + len(stats) + 5
-            max_msg = max(20, term_width - overhead)
+            # Message truncated to keep the bar from getting too cramped.
+            # The |{bar}| component auto-fills to ncols, but we keep messages
+            # short enough that the bar doesn't vanish entirely.
+            overhead = 22 + 8 + 30 + len(stats) + 5
+            max_msg = max(10, term_width - overhead)
             if len(message) > max_msg:
                 message = message[:max_msg - 3] + "..."
-            else:
-                message = message.ljust(max_msg)
 
             status_label = f"[{phase_label}{status.upper()}]"
             pbar.desc = f"{status_label:<22}"

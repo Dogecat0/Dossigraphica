@@ -183,6 +183,10 @@ class TaskTracker:
         # Cost tracking (computed lazily in as_dict)
         self._total_cost = 0.0
         self.phase_cost = {}  # phase_idx -> float
+
+        # Per-call streaming estimates — keyed by call_id so concurrent streams
+        # don't trample each other. Each value is (estimated_output, estimated_reasoning).
+        self._streaming_estimates: dict[str, tuple[int, int]] = {}
         
     def start_phase(self, idx, name=None):
         self.active_phase = idx
@@ -201,13 +205,37 @@ class TaskTracker:
             self.phase_reasoning_tokens[idx] = 0
             self.phase_cost[idx] = 0.0
 
-    def add_tokens(self, input_tokens: int, output_tokens: int, reasoning_tokens: int = 0, phase_idx=None, cached_input_tokens: int = 0, cache_write_tokens: int = 0):
+    def set_streaming_estimates(self, call_id: str, output_tokens: int, reasoning_tokens: int):
+        """Set mid-stream token estimates for one call (shown until completion clears it)."""
+        if output_tokens > 0 or reasoning_tokens > 0:
+            self._streaming_estimates[call_id] = (output_tokens, reasoning_tokens)
+        else:
+            self._streaming_estimates.pop(call_id, None)
+
+    def clear_streaming_estimate(self, call_id: str):
+        """Remove the streaming estimate for a completed call."""
+        self._streaming_estimates.pop(call_id, None)
+
+    @property
+    def _streaming_estimated_output(self) -> int:
+        return sum(v[0] for v in self._streaming_estimates.values())
+
+    @property
+    def _streaming_estimated_reasoning(self) -> int:
+        return sum(v[1] for v in self._streaming_estimates.values())
+
+    def add_tokens(self, input_tokens: int, output_tokens: int, reasoning_tokens: int = 0, phase_idx=None, cached_input_tokens: int = 0, cache_write_tokens: int = 0, call_id: str | None = None):
         """Track token consumption for an LLM call. Computes cost incrementally.
 
         Args:
             cached_input_tokens: Input tokens served from the API cache (reads).
             cache_write_tokens:  Input tokens written to the API cache.
+            call_id:             If set, removes this call's streaming estimate.
+
+        When exact tokens arrive, any prior streaming estimate is cleared.
         """
+        if call_id is not None:
+            self.clear_streaming_estimate(call_id)
         self._total_input_tokens += input_tokens
         self._total_output_tokens += output_tokens
         self._total_reasoning_tokens += reasoning_tokens
@@ -342,6 +370,8 @@ class TaskTracker:
                 "total_reasoning": self._total_reasoning_tokens,
                 "total_cached_input": self._total_cached_input_tokens,
                 "total_cache_write": self._total_cache_write_tokens,
+                "streaming_estimated_output": self._streaming_estimated_output,
+                "streaming_estimated_reasoning": self._streaming_estimated_reasoning,
                 "total_cost_usd": round(self._total_cost, 6),
                 "cost_model": _COST_MODEL_SOURCE or "unknown",
                 "total": total_tok,
@@ -712,7 +742,21 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
                 tracker.complete_io(1, phase_idx)
 
     def _apply_llm_pulse(pulse: dict, phase_idx: int) -> None:
-        """Apply an LLM progress pulse (carrying token data) to the tracker."""
+        """Apply an LLM progress pulse to the tracker.
+
+        Two pulse types:
+          - ``{"type": "stream_estimate", "call_id": "…", "estimated_output_tokens": N, "estimated_reasoning_tokens": M}``
+            → live mid-stream estimate (no completion count increment).
+          - ``{"call_id": "…", "tokens": {…}}`` → exact completion pulse.
+        """
+        call_id = pulse.get("call_id", "")
+        if pulse.get("type") == "stream_estimate":
+            tracker.set_streaming_estimates(
+                call_id,
+                pulse.get("estimated_output_tokens", 0),
+                pulse.get("estimated_reasoning_tokens", 0),
+            )
+            return
         token_data = pulse.get("tokens", {})
         input_t = token_data.get("input", 0)
         output_t = token_data.get("output", 0)
@@ -720,7 +764,7 @@ async def research_pipeline(query: str) -> AsyncGenerator[str, None]:
         cached_t = token_data.get("cached_input", 0)
         cache_write_t = token_data.get("cache_write", 0)
         if input_t > 0 or output_t > 0 or reasoning_t > 0:
-            tracker.add_tokens(input_t, output_t, reasoning_t, phase_idx, cached_input_tokens=cached_t, cache_write_tokens=cache_write_t)
+            tracker.add_tokens(input_t, output_t, reasoning_t, phase_idx, cached_input_tokens=cached_t, cache_write_tokens=cache_write_t, call_id=call_id)
         tracker.complete_llm(1, phase_idx)
 
     def _enrich_progress(item: dict, phase_idx: int) -> dict:

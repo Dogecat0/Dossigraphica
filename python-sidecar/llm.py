@@ -203,12 +203,14 @@ class LLMClient:
             input_tokens = self.estimate_tokens(messages)
             output_tokens = 0
             reasoning_tokens = 0
+            _call_id = f"{current_index:04d}"
             try:
                 res, output_tokens, reasoning_tokens = await self._generate_single_field(messages, response_model, current_index, "")
             finally:
                 if self.progress_queue:
                     self.progress_queue.put_nowait({
                         "event": "llm_complete",
+                        "call_id": _call_id,
                         "tokens": {"input": input_tokens, "output": output_tokens, "reasoning": reasoning_tokens, "cached_input": getattr(self, "_last_cached_input_tokens", 0), "cache_write": getattr(self, "_last_cache_write_tokens", 0)},
                     })
             return cast(T, res)
@@ -289,6 +291,7 @@ class LLMClient:
             input_tokens = self.estimate_tokens(messages)
             output_tokens = 0
             reasoning_tokens = 0
+            _call_id = f"{current_index:04d}_{i:02d}"
             try:
                 partial_result, output_tokens, reasoning_tokens = await self._generate_single_field(
                     messages, FieldModel, current_index, f"_{i:02d}",
@@ -298,6 +301,7 @@ class LLMClient:
                 if self.progress_queue:
                     self.progress_queue.put_nowait({
                         "event": "llm_complete",
+                        "call_id": _call_id,
                         "tokens": {"input": input_tokens, "output": output_tokens, "reasoning": reasoning_tokens, "cached_input": getattr(self, "_last_cached_input_tokens", 0), "cache_write": getattr(self, "_last_cache_write_tokens", 0)},
                     })
 
@@ -651,6 +655,7 @@ class LLMClient:
                     _print_stream = os.getenv("LLM_DEBUG_STREAM", "false").lower() == "true"
                     _stream_iter = response.__aiter__()  # type: ignore[reportAttributeAccessIssue]
                     _first_chunk = True
+                    _stream_chunk_count = 0
                     while True:
                         _chunk_timeout = (
                             LLM_REQUEST_TIMEOUT + 30
@@ -722,6 +727,20 @@ class LLMClient:
                                         )
                                 if _print_stream:
                                     print(delta_text, end="", flush=True)
+
+                            # Every 15 chunks push a live token estimate so the progress
+                            # bar ticks during long generations (hang detection).
+                            _stream_chunk_count += 1
+                            if self.progress_queue and _stream_chunk_count % 15 == 0:
+                                _est_out = len(content) // 4
+                                _est_reas = len(reasoning_content_text) // 4
+                                _stream_call_id = f"{current_index:04d}{step_suffix}"
+                                self.progress_queue.put_nowait({
+                                    "type": "stream_estimate",
+                                    "call_id": _stream_call_id,
+                                    "estimated_output_tokens": _est_out,
+                                    "estimated_reasoning_tokens": _est_reas,
+                                })
 
                     if _print_stream:
                         print()
