@@ -60,10 +60,8 @@ async def _jina_http_fetch(url: str, client: httpx.AsyncClient, state: ResearchS
     except httpx.HTTPStatusError as e:
         if e.response.status_code == 451:
             domain = urlparse(url).netloc.lower().replace("www.", "")
-            was_new = domain not in state.blocked_domains
             state.blocked_domains[domain] = state.blocked_domains.get(domain, 0) + 1
-            if was_new:
-                _persist_blocklist(state)
+            _persist_blocklist(state)
             logger.warning(f"HTTP 451 for {url} — domain '{domain}' blocked. (count={state.blocked_domains[domain]})")
         else:
             logger.warning(f"Jina fetch failed for {url}: HTTP {e.response.status_code}")
@@ -354,12 +352,10 @@ async def run_extractor(state: ResearchState, content_queue: asyncio.Queue | Non
                             return result
                         except httpx.HTTPStatusError as e:
                             if e.response.status_code == 451:
-                                # Domain blocked by Jina (Legal) — remember and persist if new
+                                # Domain blocked by Jina (Legal) — persist accumulated count
                                 domain = urlparse(url).netloc.lower().replace("www.", "")
-                                was_new = domain not in state.blocked_domains
                                 state.blocked_domains[domain] = state.blocked_domains.get(domain, 0) + 1
-                                if was_new:
-                                    _persist_blocklist(state)
+                                _persist_blocklist(state)
                                 logger.warning(f"HTTP 451 for {url} — domain '{domain}' blocked. (count={state.blocked_domains[domain]})")
                                 return None
                             elif e.response.status_code == 429:
