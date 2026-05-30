@@ -27,6 +27,65 @@ logging.basicConfig(level=getattr(logging, LOG_LEVEL, logging.INFO))
 logger = logging.getLogger(__name__)
 
 
+class _NewlineHandler(logging.StreamHandler):
+    """Ensures log messages never collide with the progress bar.
+
+    Behavior by context:
+
+    * **TTY + tqdm active** — delegates to ``tqdm.write()``, which
+      clears the current bar line, writes the log message above it,
+      and redraws the bar on the last line. This keeps the progress
+      bar anchored at the bottom of the terminal at all times.
+
+    * **TTY + no tqdm** — prepends ``\\n`` so the message starts on
+      a fresh line (safety net against any other ``\\r``-based
+      output).
+
+    * **Non-TTY (pipe, file, Docker)** — writes the message as-is
+      with no prefix.
+    """
+
+    def emit(self, record: logging.LogRecord) -> None:
+        try:
+            msg = self.format(record)
+            stream = self.stream
+            if not stream.isatty():
+                stream.write(msg + self.terminator)
+            else:
+                # If tqdm is active, use tqdm.write() which clears the bar,
+                # writes the message above it, and redraws the bar at the
+                # bottom of the terminal. This keeps the progress bar anchored
+                # below all log output.
+                try:
+                    import tqdm as _tqdm
+                    if getattr(_tqdm.tqdm, '_instances', None):
+                        _tqdm.tqdm.write(msg, file=stream, end=self.terminator)
+                        self.flush()
+                        return
+                except (ImportError, Exception):
+                    pass
+                stream.write("\n" + msg + self.terminator)
+            self.flush()
+        except Exception:
+            self.handleError(record)
+
+
+# Replace the default stream handler (added by basicConfig) with our
+# newline-safe variant so all logger output respects the progress bar.
+# We preserve the formatter from the original handler to keep the log
+# format unchanged (``LEVEL:name:message``).
+_root = logging.getLogger()
+_formatter = None
+for _h in list(_root.handlers):
+    if isinstance(_h, logging.StreamHandler):
+        _formatter = _h.formatter
+    _root.removeHandler(_h)
+_new_h = _NewlineHandler()
+if _formatter:
+    _new_h.setFormatter(_formatter)
+_root.addHandler(_new_h)
+
+
 # ---------------------------------------------------------------------------
 # Retry helpers (shared by LLMClient)
 # ---------------------------------------------------------------------------
